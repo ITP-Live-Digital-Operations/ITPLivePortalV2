@@ -90,7 +90,9 @@ app.use('/api/v1/logs', authHandler, logRoutes);
 app.use('/api/v1/salesbriefs', authHandler, salesBriefRoutes);
 app.use('/api/v1/tasks', authHandler, TaskRoutes); 
 
-app.use('/api/v1/webhooks', webHookRoutes)
+console.log('Backend started 1')
+app.use('/api/v1/webhooks', webHookRoutes);
+console.log('Backend started 2');
 app.use('/api/v1/seeds', exportRoutes);
 
 
