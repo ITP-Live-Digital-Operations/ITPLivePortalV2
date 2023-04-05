@@ -1,0 +1,668 @@
+<h2> Edit Influencer</h2>
+
+  <div class="form-container">
+    <form [formGroup]="updateCelebrityForm" (ngSubmit)="onSubmit()" autocomplete="off">
+      <h2>General Information</h2>
+
+      <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="Name" autocomplete="off" required />
+        <mat-error *ngIf="
+        updateCelebrityForm.controls['Name'].invalid &&
+        updateCelebrityForm.controls['Name'].touched
+          ">
+          Please enter a name.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="Gender">
+          <mat-option *ngFor="let option of genders" [value]="option">{{option}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+        updateCelebrityForm.controls['Gender'].invalid &&
+            updateCelebrityForm.controls['Gender'].touched
+          ">
+          Please enter a gender.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="number" formControlName="Number" autocomplete="off" />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['Number'].invalid &&
+            updateCelebrityForm.controls['Number'].touched
+          ">
+          Please enter a number.
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input matInput type="email" formControlName="Email" autocomplete="off" required />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['Email'].invalid &&
+            updateCelebrityForm.controls['Email'].touched
+          ">
+          Please enter a valid email address.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Main Content Language</mat-label>
+        <mat-select formControlName="MainContentLanguage">
+          <mat-option *ngFor="let language of languages" [value]="language">{{language}}</mat-option>
+
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['MainContentLanguage'].invalid &&
+            updateCelebrityForm.controls['MainContentLanguage'].touched
+          ">
+          Please select a language.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Sub Content Language</mat-label>
+        <mat-select formControlName="SubContentLang">
+          <mat-option *ngFor="let language of languages" [value]="language">{{language}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['SubContentLang'].invalid &&
+            updateCelebrityForm.controls['SubContentLang'].touched
+          ">
+          Please select a language.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Main Vertical</mat-label>
+        <mat-select formControlName="MainVertical">
+          <mat-option *ngFor="let vertical of verticals" [value]="vertical">{{vertical}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['MainVertical'].invalid &&
+            updateCelebrityForm.controls['MainVertical'].touched
+          ">
+          Please select a vertical.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Sub Vertical</mat-label>
+        <mat-select formControlName="SubVertical">
+          <mat-option *ngFor="let vertical of verticals" [value]="vertical">{{vertical}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['SubVertical'].invalid &&
+            updateCelebrityForm.controls['SubVertical'].touched
+          ">
+          Please select a vertical.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Occupation</mat-label>
+        <input matInput type="text" formControlName="Occupation" autocomplete="off" />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['Occupation'].invalid &&
+            updateCelebrityForm.controls['Occupation'].touched
+          ">
+          Please enter an Occupation.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>ITP Relationship</mat-label>
+        <input matInput type="text" formControlName="ItpRelationship" autocomplete="off" />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['ItpRelationship'].invalid &&
+            updateCelebrityForm.controls['ItpRelationship'].touched
+          ">
+          Please enter the Relationship.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nationality</mat-label>
+        <mat-select formControlName="Nationality">
+          <mat-option *ngFor="let country of nationalities" [value]="country">{{country}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['Nationality'].invalid &&
+            updateCelebrityForm.controls['Nationality'].touched
+          ">
+          Please select a Nationality.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Second Nationality</mat-label>
+        <mat-select formControlName="SecondNationality">
+          <mat-option *ngFor="let country of nationalities" [value]="country">{{country}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['SecondNationality'].invalid &&
+            updateCelebrityForm.controls['SecondNationality'].touched
+          ">
+          Please select a Nationality.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Location</mat-label>
+        <mat-select formControlName="CountryLocation">
+          <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['CountryLocation'].invalid &&
+            updateCelebrityForm.controls['CountryLocation'].touched
+          ">
+          Please select a Country.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput type="text" formControlName="CityLocation" autocomplete="off" />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['CityLocation'].invalid &&
+            updateCelebrityForm.controls['CityLocation'].touched
+          ">
+          Please enter a city.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput type="text" formControlName="Address" autocomplete="off" />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['Address'].invalid &&
+            updateCelebrityForm.controls['Address'].touched
+          ">
+          Please enter a Address.
+        </mat-error>
+      </mat-form-field>
+      <hr>
+    </div>
+
+
+    <div class="row">
+      <h2> Socials </h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Instagram Handle</mat-label>
+        <input matInput type="text" formControlName="InstagramHandle" autocomplete="off" required />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['InstagramHandle'].invalid &&
+            updateCelebrityForm.controls['InstagramHandle'].touched
+          ">
+          Please enter Instagram Handle.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Instagram Followers</mat-label>
+        <input matInput type="number" formControlName="InstagramFollowers" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['InstagramFollowers'].invalid &&
+            updateCelebrityForm.controls['InstagramFollowers'].touched
+          ">
+          Please enter Instagram Followers.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Instagram Link</mat-label>
+        <input matInput type="text" formControlName="InstagramLink" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['InstagramLink'].invalid &&
+            updateCelebrityForm.controls['InstagramLink'].touched
+          ">
+          Please enter Instagram Link.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Tiktok Handle</mat-label>
+        <input matInput type="text" formControlName="TiktokHandle" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['TiktokHandle'].invalid &&
+            updateCelebrityForm.controls['TiktokHandle'].touched
+          ">
+          Please enter Tiktok Handle.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tiktok Followers</mat-label>
+        <input matInput type="number" formControlName="TiktokFollowers" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['TiktokFollowers'].invalid &&
+            updateCelebrityForm.controls['TiktokFollowers'].touched
+          ">
+          Please enter Tiktok Followers.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tiktok Link</mat-label>
+        <input matInput type="text" formControlName="TiktokLink" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['TiktokLink'].invalid &&
+            updateCelebrityForm.controls['TiktokLink'].touched
+          ">
+          Please enter Tiktok Link.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>SnapChat Handle</mat-label>
+        <input matInput type="text" formControlName="SnapchatHandle" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['SnapchatHandle'].invalid &&
+            updateCelebrityForm.controls['SnapchatHandle'].touched
+          ">
+          Please enter SnapChat Handle.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>SnapChat Followers</mat-label>
+        <input matInput type="number" formControlName="SnapchatFollowers" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['SnapchatFollowers'].invalid &&
+            updateCelebrityForm.controls['SnapchatFollowers'].touched
+          ">
+          Please enter SnapChat Followers.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>SnapChat Link</mat-label>
+        <input matInput type="text" formControlName="SnapchatLink" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['SnapchatLink'].invalid &&
+            updateCelebrityForm.controls['SnapchatLink'].touched
+          ">
+          Please enter SnapChat Link.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Twitter Handle</mat-label>
+        <input matInput type="text" formControlName="TwitterHandle" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['TwitterHandle'].invalid &&
+            updateCelebrityForm.controls['TwitterHandle'].touched
+          ">
+          Please enter Twitter Handle.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Twitter Followers</mat-label>
+        <input matInput type="number" formControlName="TwitterFollowers" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['TwitterFollowers'].invalid &&
+            updateCelebrityForm.controls['TwitterFollowers'].touched
+          ">
+          Please enter Twitter Followers.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Twitter Link</mat-label>
+        <input matInput type="text" formControlName="TwitterLink" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['TwitterLink'].invalid &&
+            updateCelebrityForm.controls['TwitterLink'].touched
+          ">
+          Please enter Twitter Link.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Facebook Handle</mat-label>
+        <input matInput type="text" formControlName="FacebookHandle" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['FacebookHandle'].invalid &&
+            updateCelebrityForm.controls['FacebookHandle'].touched
+          ">
+          Please enter Facebook Handle.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Facebook Followers</mat-label>
+        <input matInput type="number" formControlName="FacebookFollowers" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['FacebookFollowers'].invalid &&
+            updateCelebrityForm.controls['FacebookFollowers'].touched
+          ">
+          Please enter Facebook Followers.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Facebook Link</mat-label>
+        <input matInput type="text" formControlName="FacebookLink" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['FacebookLink'].invalid &&
+            updateCelebrityForm.controls['FacebookLink'].touched
+          ">
+          Please enter Facebook Link.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>YouTube Handle</mat-label>
+        <input matInput type="text" formControlName="YoutubeHandle" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['YoutubeHandle'].invalid &&
+            updateCelebrityForm.controls['YoutubeHandle'].touched
+          ">
+          Please enter YouTube Handle.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>YouTube Followers</mat-label>
+        <input matInput type="number" formControlName="YoutubeFollowers" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['YoutubeFollowers'].invalid &&
+            updateCelebrityForm.controls['YoutubeFollowers'].touched
+          ">
+          Please enter YouTube Followers.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>YouTube Link</mat-label>
+        <input matInput type="text" formControlName="YoutubeLink" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['YoutubeLink'].invalid &&
+            updateCelebrityForm.controls['YoutubeLink'].touched
+          ">
+          Please enter YouTube Link.
+        </mat-error>
+      </mat-form-field>
+      <hr>
+    </div>
+
+    <div class="row">
+      <h2> Statistics </h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Audience Male Percentage</mat-label>
+        <input matInput type="number" formControlName="AudienceMalePer" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AudienceMalePer'].invalid &&
+            updateCelebrityForm.controls['AudienceMalePer'].touched
+          ">
+          Please enter Audience Male Percentage.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Audience Female Percentage</mat-label>
+        <input matInput type="number" formControlName="AudienceFemalePer" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AudienceFemalePer'].invalid &&
+            updateCelebrityForm.controls['AudienceFemalePer'].touched
+          ">
+          Please enter Audience Female Percentage.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <h3> Age Groups Followers Percentages </h3>
+      <mat-form-field appearance="outline">
+        <mat-label>13-17 </mat-label>
+        <input matInput type="number" formControlName="AgeGroup1317" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AgeGroup1317'].invalid &&
+            updateCelebrityForm.controls['AgeGroup1317'].touched
+          ">
+          Please enter Age Group Percentage.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>18-24 </mat-label>
+        <input matInput type="number" formControlName="AgeGroup1824" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AgeGroup1824'].invalid &&
+            updateCelebrityForm.controls['AgeGroup1824'].touched
+          ">
+          Please enter Age Group Percentage.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>25-34</mat-label>
+        <input matInput type="number" formControlName="AgeGroup2534" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AgeGroup2534'].invalid &&
+            updateCelebrityForm.controls['AgeGroup2534'].touched
+          ">
+          Please enter Age Group Percentage.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>35-44</mat-label>
+        <input matInput type="number" formControlName="AgeGroup3544" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AgeGroup3544'].invalid &&
+            updateCelebrityForm.controls['AgeGroup3544'].touched
+          ">
+          Please enter Age Group Percentage.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>45-54</mat-label>
+        <input matInput type="number" formControlName="AgeGroup4554" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AgeGroup4554'].invalid &&
+            updateCelebrityForm.controls['AgeGroup4554'].touched
+          ">
+          Please enter Age Group Percentage.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>55+ </mat-label>
+        <input matInput type="number" formControlName="AgeGroup55" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AgeGroup55'].invalid &&
+            updateCelebrityForm.controls['AgeGroup55'].touched
+          ">
+          Please enter Age Group Percentage.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <h3> Audience Top Countries and Percentages </h3>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Country 1</mat-label>
+        <mat-select formControlName="AudienceTopCountries1">
+          <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AudienceTopCountries1'].invalid &&
+            updateCelebrityForm.controls['AudienceTopCountries1'].touched
+          ">
+          Please select a Country.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Followers Percentage in Country 1 </mat-label>
+        <input matInput type="number" formControlName="AudienceTopCountries1Percentage" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AudienceTopCountries1Percentage'].invalid &&
+            updateCelebrityForm.controls['AudienceTopCountries1Percentage'].touched
+          ">
+          Please enter Percentage.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Country 2</mat-label>
+        <mat-select formControlName="AudienceTopCountries2">
+          <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AudienceTopCountries2'].invalid &&
+            updateCelebrityForm.controls['AudienceTopCountries2'].touched
+          ">
+          Please select a Country.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Followers Percentage in Country 2 </mat-label>
+        <input matInput type="number" formControlName="AudienceTopCountries2Percentage" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AudienceTopCountries2Percentage'].invalid &&
+            updateCelebrityForm.controls['AudienceTopCountries2Percentage'].touched
+          ">
+          Please enter Percentage.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Country 3</mat-label>
+        <mat-select formControlName="AudienceTopCountries3">
+          <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AudienceTopCountries3'].invalid &&
+            updateCelebrityForm.controls['AudienceTopCountries3'].touched
+          ">
+          Please select a Country.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Followers Percentage in Country 3 </mat-label>
+        <input matInput type="number" formControlName="AudienceTopCountries3Percentage" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AudienceTopCountries3Percentage'].invalid &&
+            updateCelebrityForm.controls['AudienceTopCountries3Percentage'].touched
+          ">
+          Please enter Percentage.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <hr>
+      <h2> Licenses </h2>
+        <mat-checkbox formControlName="KSALicense">KSA License</mat-checkbox>
+        <mat-checkbox formControlName="UAELicense">UAE License</mat-checkbox>
+        <hr>
+      </div>
+
+    <div class="row">
+      <h2> Agency Information </h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Person</mat-label>
+        <input matInput type="text" formControlName="AgencyContactPerson" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AgencyContactPerson'].invalid &&
+            updateCelebrityForm.controls['AgencyContactPerson'].touched
+          ">
+          Please enter a Contact Person.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="number" formControlName="AgencyNumber" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AgencyNumber'].invalid &&
+            updateCelebrityForm.controls['AgencyNumber'].touched
+          ">
+          Please enter a Contact Person.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="AgencyEmail" autocomplete="off"  />
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['AgencyEmail'].invalid &&
+            updateCelebrityForm.controls['AgencyEmail'].touched
+          ">
+          Please enter a Contact Person.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <hr>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Previous Brands</mat-label>
+        <textarea matInput formControlName="PreviousBrands" rows="2" autocomplete="off"></textarea>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['PreviousBrands'].invalid &&
+            updateCelebrityForm.controls['PreviousBrands'].touched
+          ">
+          Please enter previous brands.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Biography </mat-label>
+        <textarea matInput formControlName="Bio" rows="2" autocomplete="off"></textarea>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['Bio'].invalid &&
+            updateCelebrityForm.controls['Bio'].touched
+          ">
+          Please enter previous brands.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Notes </mat-label>
+        <textarea matInput formControlName="Notes" rows="2" autocomplete="off"></textarea>
+        <mat-error *ngIf="
+            updateCelebrityForm.controls['Notes'].invalid &&
+            updateCelebrityForm.controls['Notes'].touched
+          ">
+          Please enter previous brands.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+      <button mat-raised-button color="primary" style="margin-bottom: 2%;" type="submit" [disabled]="!updateCelebrityForm.valid">
+        Edit Influencer
+      </button>
+    </form>
+  </div>

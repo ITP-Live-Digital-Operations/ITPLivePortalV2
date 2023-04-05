@@ -1,0 +1,35 @@
+/* Define the font and font size for the entire document */
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 16px;
+}
+
+/* Style the card */
+.card {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+/* Style the card header */
+.card-header {
+  background-color: #343a40;
+  border-radius: 5px 5px 0 0;
+  color: #fff;
+  font-size: 24px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+/* Style the card text */
+.card-text {
+  margin-bottom: 10px;
+}
+
+/* Style the container */
+.container {
+  max-width: auto;
+  margin: 0 auto;
+}

@@ -1,0 +1,85 @@
+.form-container {
+
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('../../../assets/login.png') /* linear-gradient(135deg, #10746f 0%, #254776 100%) */;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow-x: hidden;
+
+
+}
+
+
+mat-form-field {
+  width: 90%;
+  margin-bottom: 20px;
+
+}
+
+button {
+  width: 90%;
+  margin-top: 20px;
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+
+
+.logo {
+  font-size: 60px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  justify-content: center;
+  padding-left: 16%;
+  max-width: 100%;
+
+
+
+}
+
+@media (max-width: 900px) {
+  .logo {
+    width: 90%;
+    height: 90%;
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .logo {
+    width: 90%;
+    height: 90%;
+    font-size: 20px;
+  }
+}
+
+mat-label{
+  color: rgba(255, 255, 255, 0.336);
+}
+
+
+mat-toolbar{
+
+  background-color: transparent;
+  font-size: 60px;
+  padding-bottom: 20%;
+
+}
+
+
+
+
+

@@ -1,0 +1,12 @@
+button[mat-raised-button]{
+  background-color: #D4C5E2 !important;
+  width: 250%;
+  margin-bottom: 15px;
+}
+
+
+.container{
+  max-width: 20%;
+  padding-top: 10%;
+  max-height: 100%;
+}

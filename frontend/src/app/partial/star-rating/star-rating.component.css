@@ -1,0 +1,39 @@
+.m-star-rating {
+  display: flex;
+  align-items: flex-end;
+  }
+
+  .m-star-rating:not(.readonly) .m-star-rating-item {
+  cursor: pointer;
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  -o-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
+  }
+
+  .m-star-rating:not(.readonly) .m-star-rating-item:hover {
+  color: rgb(5, 52, 206);
+  }
+
+  .m-star-rating-clear {
+  font-size: 14px;
+  font-weight: 500;
+  color: grey;
+  cursor: pointer;
+  }
+
+  .m-star-rating-clear:hover {
+  color: black;
+  }
+
+  .m-star-rating-item {
+  padding-right: 5px;
+  color: grey;
+  display: flex;
+  }
+
+  .m-star-rating-item.active {
+  color: rgb(5, 52, 206);
+  }
+  
+

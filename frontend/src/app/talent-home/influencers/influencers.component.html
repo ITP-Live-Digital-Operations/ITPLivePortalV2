@@ -1,0 +1,81 @@
+<div style="position: relative;">
+<div class="search-container">
+  <button mat-raised-button  class="back-button"color="primary"  (click)="backButton()">
+    <mat-icon>arrow_back</mat-icon>
+    BACK
+  </button>
+  <mat-form-field appearance="outline" style="width: 85%; height: 10%; padding-left: 2%;">
+    <input #searchInput matInput (keyup)="applyFilter(searchInput.value)" placeholder="Search">
+  </mat-form-field>
+  </div>
+
+<div class="table-container">
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+
+  <ng-container matColumnDef="ID">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Gender">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+    <td mat-cell *matCellDef="let element"> {{element.Gender}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="InstagramFollowers">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>  Followers </th>
+    <td mat-cell *matCellDef="let element"> {{element.InstagramFollowers}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Email">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="InstagramHandle" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Instagram Handle </th>
+    <td mat-cell *matCellDef="let element"> {{element.InstagramHandle}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="CountryLocation" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+    <td mat-cell *matCellDef="let element"> {{element.CountryLocation}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="MainVertical" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Main Vertical </th>
+    <td mat-cell *matCellDef="let element"> {{element.MainVertical}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Action" >
+    <th mat-header-cell *matHeaderCellDef> Action  </th>
+    <td mat-cell *matCellDef="let element">
+    <button mat-raised-button color="primary" (click)="editInfluencer(element.id)">Edit</button> |
+    <button mat-raised-button color="warn" (click)="deleteInfluencer(element.id)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row (click)="onRowClicked(row)"  *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+</table>
+<mat-paginator  pageSize="5"
+               [pageSizeOptions]="[3, 5, 10, 25, 50, 100]"
+               (page)="onPageChange($event)"
+               showFirstLastButtons
+               aria-label="Select page">
+</mat-paginator>
+</div>
+</div>

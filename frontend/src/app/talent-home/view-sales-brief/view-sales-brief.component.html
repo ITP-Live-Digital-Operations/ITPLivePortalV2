@@ -1,0 +1,57 @@
+<div class="container py-5">
+  <button mat-raised-button  style="margin-bottom: 1%; margin-left: 1%"class="back-button"color="primary"  (click)="backButton()">
+    <mat-icon>arrow_back</mat-icon>
+    BACK
+  </button>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card p-4">
+        <div class="card-header bg-dark text-light">
+          {{ this.brief.data.CampaignName }}
+        </div>
+        <div class="card-body">
+          <p class="card-text">ID: {{ brief.data.id }}</p>
+          <p class="card-text">Agency: {{ brief.data.Agency }}</p>
+          <p class="card-text">Client: {{ brief.data.Client }}</p>
+          <p class="card-text">Client Industry: {{ brief.data.ClientIndustry }}</p>
+          <p class="card-text">Campaign Overview: {{ brief.data.CampaignOverview }}</p>
+          <p class="card-text">Campaign Objective: {{ brief.data.CampaignObjective }}</p>
+          <p class="card-text">Campaign Objective Details: {{ brief.data.CampaignObjectiveDetails }}</p>
+          <p class="card-text">Number of Recommendations: {{ brief.data.NumberofRecommendations }}</p>
+          <p class="card-text">Currency: {{ brief.data.Currency }}</p>
+          <p class="card-text">Budget: {{ brief.data.Budget }}</p>
+          <p class="card-text">Created by ID: {{ brief.data.CreatedbyID }}</p>
+          <p class="card-text">Viewed by Talent:<span *ngIf="brief.data.ViewedByTalent == 1"> Yes </span> <span *ngIf="brief.data.ViewedByTalent == 0"> No</span></p>
+          <p class="card-text">Ready: {{ brief.data.Ready }}</p>
+          <p class="card-text">Created At: {{ brief.data.createdAt | date }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4" style="margin-top: 2%;" *ngIf=" role === 'talent' && privilege_level > 7">
+      <form [formGroup]="assignForm" (ngSubmit)="assign()" autocomplete="off" >
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Talent Employee </mat-label>
+            <mat-select formControlName="Employee" required>
+              <mat-option *ngFor="let item of talentEmployees" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- <mat-form-field appearance="outline">
+            <mat-label> Weight </mat-label>
+            <input matInput type="number"  formControlName="Weight" autocomplete="off" required />
+          </mat-form-field> -->
+          <mat-form-field appearance="outline">
+            <mat-label>Weight:</mat-label>
+            <mat-select formControlName="Weight">
+              <mat-option *ngFor="let num of [1,2,3,4,5,6,7,8,9,10]" [value]="num">{{num}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button type="submit" class="btn btn-primary" >Assign</button>
+      </form>
+    </div>
+    <div class="col-sm-4" style="margin-top: 2%; width: 40%;" *ngIf=" role === 'talent' && privilege_level < 7"> <button  mat-raised-button>Task Done</button></div>
+  </div>
+</div>

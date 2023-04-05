@@ -1,0 +1,6 @@
+.form-container{
+  max-height: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  margin-left: 10px;
+}

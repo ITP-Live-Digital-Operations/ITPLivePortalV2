@@ -1,0 +1,59 @@
+table {
+  width: 100%;
+}
+
+.warn {
+  background-color: red;
+  color: white;
+
+}
+
+.table-container{
+  padding-top: 8%;
+  overflow-y: scroll;
+  max-height: auto;
+
+}
+
+.search-container
+{ padding-top:2% ;
+  padding-bottom: 2%;
+  padding-left: 1%;
+  position: absolute; top: 5; left: 0; right: 0; z-index: 1;
+  background-color: white;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* customize the scroll bar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+/* customize the scroll bar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* customize the scroll bar width and height */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+

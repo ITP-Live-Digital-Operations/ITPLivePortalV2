@@ -1,0 +1,83 @@
+<div style="padding-bottom: 2%; padding-left: 1%; padding-top: 1%;">
+  <button mat-raised-button  color="primary"  (click)="backButton()">
+    <mat-icon>arrow_back</mat-icon>
+    BACK
+  </button>
+</div>
+
+<div class="form-container">
+  <h2> New Log Form</h2>
+  <form [formGroup]="logForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Influencer</mat-label>
+        <mat-select formControlName="Influencer">
+          <mat-option *ngFor="let option of influencers" [value]="option.id">{{option.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label> Campaign </mat-label>
+        <input matInput type="text"  formControlName="Campaign" autocomplete="off" required />
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Currency</mat-label>
+        <mat-select formControlName="Currency" required>
+          <mat-option *ngFor="let option of currencies" [value]="option" >{{option}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label> Rate</mat-label>
+        <input matInput type="number"  formControlName="Rate" autocomplete="off" required />
+      </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Notes </mat-label>
+          <textarea matInput formControlName="Notes" rows="2" autocomplete="off"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label> Time to reply </mat-label>
+          <input matInput type="text"  formControlName="Time_to_reply" autocomplete="off" required />
+        </mat-form-field>
+
+      </div>
+
+    </form>
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div formArrayName="fields">
+    <div *ngFor="let field of fields.controls; let i = index" [formGroupName]="i">
+      <div class="row">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Platform {{i+1}}</mat-label>
+        <mat-select formControlName="Platform" (change)="onPlatformChange(i)">
+          <mat-option *ngFor="let option of platforms" [value]="option">{{option}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Deliverable</mat-label>
+        <mat-select formControlName="Deliverable" >
+          <mat-option *ngFor="let option of getAvailableDeliverables(i)" [value]="option">{{option}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    </div>
+  </div>
+  <div class="row">
+  <button mat-raised-button  color="accent"  (click)="addFields()">Add Platform</button>
+  <button mat-raised-button  color="primary" (click)="onSubmit()" [disabled]="!(logForm.valid && form.valid)">Submit</button>
+  </div>
+
+</form>
+
+
+
+

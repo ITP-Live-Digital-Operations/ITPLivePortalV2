@@ -1,0 +1,98 @@
+<mat-toolbar class="mat-elevation-z10">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </button>
+    <span>ITP Live Portal</span>
+    <span class="spacer"></span>
+    <a mat-icon-button *ngIf="userRole === 'talent'" routerLink="talent/influencers">
+    <mat-icon class="icon">search</mat-icon>
+    </a>
+
+    <div *ngIf=" userRole === 'talent' && userPrivilege_level > 7 ">
+      <a mat-icon-button  routerLink="talent/briefsFromSales" >
+      <span class="icon-spacer"></span>
+      <mat-icon class="icon">notifications</mat-icon>
+      <span *ngIf="talentHeadNotificationCount.data > 0 " class="notification-mark"></span>
+      </a>
+    </div>
+    <div *ngIf="userRole == 'talent' && userPrivilege_level < 7 ">
+      <a mat-icon-button  routerLink="talent/tasksFromTalentHead">
+      <span class="icon-spacer"></span>
+      <mat-icon class="icon">notifications</mat-icon>
+      <span *ngIf="talentEmployeeNotificationCount.data > 0 " class="notification-mark">  </span>
+      </a>
+    </div>
+
+    <span class="icon-spacer"></span>
+    <a mat-icon-button routerLink="talent/changePassword">
+    <mat-icon class="icon">account_circle</mat-icon>
+    </a>
+    <span class="icon-spacer"></span>
+    <a mat-icon-button href="login">
+      <mat-icon>logout</mat-icon>
+    </a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened #sidenav="matSidenav">
+    <!-- <img class="avatar mat-elevation-z8" src="../../assets/IMG_5891.jpg" /> -->
+
+    <h4>{{userName}} <!-- {{userID}} --></h4>
+    <H5 >{{userRole | uppercase}}  </H5>
+    <p class="designation"></p>
+
+<mat-divider></mat-divider>
+
+    <button *ngIf="userRole === 'talent'" mat-button class="menu-button" (click)="redirectToTalentForms()">
+      <mat-icon>home</mat-icon>
+      <span>Talent Forms</span>
+  </button>
+  <button *ngIf="userRole === 'sales'" mat-button class="menu-button" (click)="redirectToSalesForms()">
+    <mat-icon>home</mat-icon>
+    <span>Sales Forms</span>
+</button>
+
+  <button mat-button class="menu-button" *ngIf=" userRole === 'talent' && userPrivilege_level > 7 " routerLink="talent/briefsFromSales">
+      <mat-icon>assignment</mat-icon>
+      <span >Sales Briefs</span>
+  </button>
+  <button mat-button class="menu-button" *ngIf=" userRole === 'talent' && userPrivilege_level < 7 " routerLink="talent/tasksFromTalentHead">
+    <mat-icon>assignment</mat-icon>
+    <span >Tasks</span>
+</button>
+<div *ngIf=" userRole === 'superadmin' && userPrivilege_level > 9">
+  <button mat-button class="menu-button"  routerLink="admin/forms">
+    <mat-icon>home</mat-icon>
+    <span>Admin forms</span>
+  </button>
+
+  <button mat-button class="menu-button"  routerLink="admin/register-user">
+      <mat-icon>assignment</mat-icon>
+      <span>Register User</span>
+  </button>
+  <button mat-button class="menu-button"  (click)="exportSeeds()">
+    <mat-icon>import_export</mat-icon>
+    <span>Export Seeds</span>
+</button>
+</div>
+  <mat-divider></mat-divider>
+
+  <button mat-button class="menu-button">
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+  </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <div class="d-flex content mat-elevation-z8" class="router-container">
+            <router-outlet></router-outlet>
+      </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+

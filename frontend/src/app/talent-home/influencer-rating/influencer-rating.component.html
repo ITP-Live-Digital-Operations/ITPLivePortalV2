@@ -1,0 +1,114 @@
+<div style="padding-bottom: 2%; padding-left: 1%; padding-top: 1%;">
+  <button mat-raised-button  color="primary"  (click)="backButton()">
+    <mat-icon>arrow_back</mat-icon>
+    BACK
+  </button>
+</div>
+
+<div class="form-container">
+<form [formGroup]="influencerForm" (ngSubmit)="onSubmit()">
+  <table class="table
+  ">
+    <thead>
+    <tr>
+      <th>Field</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Authenticity</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickAuthenticity($event)"></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Engagement</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickEngagement($event)"></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Transparency</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickTransparency($event)"></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Relevance</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickRelevance($event)" ></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Consistency</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickConsistency($event)"></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Creativity</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickCreativity($event)"></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Influence</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickInfluence($event)"></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Trustworthiness</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickTrustworthiness($event)"></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Responsiveness</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickResponsiveness($event)"></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Personality</td>
+      <td>
+        <span class="star-rating">
+          <app-star-rating (onClick)="handleClickPersonality($event)"></app-star-rating>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Notes</td>
+      <td>
+        <mat-form-field>
+          <textarea formControlName="notes" matInput placeholder="Notes"></textarea>
+          <mat-hint align="end">{{influencerForm.get('notes')?.value?.length || 0}}/500</mat-hint>
+        </mat-form-field>
+      </td>
+    </tr>
+    <button mat-raised-button type="submit" [disabled]="influencerForm.invalid">Submit</button>
+  </tbody>
+
+
+</table>
+</form>
+</div>

@@ -1,0 +1,167 @@
+<div style="padding-bottom: 2%; padding-left: 1%; padding-top: 2%;">
+  <button mat-raised-button  color="primary"  (click)="navigateToForms()">
+    <mat-icon>arrow_back</mat-icon>
+    BACK
+  </button>
+  </div>
+
+  <div class="form-container">
+    <h1 style="align-content: center; margin-left: 34%; font-size: 300%; margin-top: 2%; margin-bottom: 3%;"> Sales Brief Form</h1>
+    <form [formGroup]="newSalesBriefForm" (ngSubmit)="createSalesBrief()" autocomplete="off">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Agency </mat-label>
+          <input matInput type="text" formControlName="Agency" autocomplete="off"  />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Client </mat-label>
+          <input matInput type="text" formControlName="Client" autocomplete="off"  />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Client's Industry</mat-label>
+          <mat-select formControlName="ClientIndustry">
+            <mat-option *ngFor="let option of clientIndustries" [value]="option">{{option}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+
+        <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Campaign Name</mat-label>
+          <input matInput type="text" formControlName="CampaignName" autocomplete="off" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Campaign Overview</mat-label>
+          <textarea matInput formControlName="CampaignOverview" rows="1" autocomplete="off"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Campaign Objective</mat-label>
+          <mat-select formControlName="CampaignObjective">
+            <mat-option *ngFor="let option of campaignobjectives" [value]="option">{{option}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Campaign Objective Details</mat-label>
+          <textarea matInput formControlName="CampaignObjectiveDetails" rows="1" autocomplete="off"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Number of recommendations</mat-label>
+          <input matInput type="number" formControlName="NumberofRecommendations" autocomplete="off" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Currency</mat-label>
+          <mat-select formControlName="Currency" >
+            <mat-option *ngFor="let option of currencies" [value]="option" >{{option}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label> Approximate Budget </mat-label>
+          <input matInput type="number" formControlName="Budget" autocomplete="off" />
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Campaign Launch Date</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="CampaignStartDate" />
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1 ></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Campaign End Date</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="CampaignEndDate" />
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Deadline for Recommendations</mat-label>
+          <input matInput [matDatepicker]="picker3" formControlName="DeadlineForRecommendations" />
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+
+      <div class="row">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Campaign Message Phase 1</mat-label>
+          <textarea matInput formControlName="CampaignMessagePhaseOne" rows="1" autocomplete="off"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Campaign Message Phase 2</mat-label>
+          <textarea matInput formControlName="CampaignMessagePhaseTwo" rows="1" autocomplete="off"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Campaign Message Phase 3</mat-label>
+          <textarea matInput formControlName="CampaignMessagePhaseThree" rows="1" autocomplete="off"></textarea>
+        </mat-form-field>
+
+      </div>
+
+      <div class="row">
+        <h2> Content Deliverables </h2>
+        <div formGroupName="contentDeliverables" class="checkbox-container">
+
+          <mat-checkbox formControlName="Instagram"> Instagram</mat-checkbox>
+          <mat-checkbox formControlName="SnapChat"> SnapChat</mat-checkbox>
+          <mat-checkbox formControlName="TikTok"> TikTok</mat-checkbox>
+          <mat-checkbox formControlName="YouTube"> YouTube</mat-checkbox>
+          <mat-checkbox formControlName="Facebook"> Facebook</mat-checkbox>
+          <mat-checkbox formControlName="Twitter"> Twitter</mat-checkbox>
+          <mat-checkbox formControlName="Linkedin"> Linkedin</mat-checkbox>
+          <mat-checkbox formControlName="Twitch"> Twitch</mat-checkbox>
+        </div>
+        <hr>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Brand Exclusivity Duration in Days</mat-label>
+          <input matInput type="number" formControlName="BrandExclusivityDurationinDays" autocomplete="off" />
+        </mat-form-field>
+
+        <hr>
+        <h2> Video  </h2>
+        <div class="checkbox-container">
+        <mat-checkbox formControlName="VideoProduction">Video Production</mat-checkbox>
+
+        <mat-checkbox formControlName="VideoEditing">Video Editing</mat-checkbox>
+      </div>
+      </div>
+
+      <div class="row">
+        <h2> Influencer Age Range </h2>
+        <div formGroupName="InfluencerAgeRange" class="checkbox-container">
+
+          <mat-checkbox formControlName="AgeGroup1"> 12 - 17</mat-checkbox>
+          <mat-checkbox formControlName="AgeGroup2"> 18 - 24</mat-checkbox>
+          <mat-checkbox formControlName="AgeGroup3"> 25 - 34</mat-checkbox>
+          <mat-checkbox formControlName="AgeGroup4"> 35 - 49</mat-checkbox>
+          <mat-checkbox formControlName="AgeGroup5"> 50 + </mat-checkbox>
+
+        </div>
+      </div>
+
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!newSalesBriefForm.valid" style="margin-bottom: 2%;">
+        Submit Brief Form
+      </button>
+
+
+    </form>
+  </div>

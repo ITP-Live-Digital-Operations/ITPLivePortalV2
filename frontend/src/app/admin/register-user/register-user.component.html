@@ -1,0 +1,57 @@
+<div style="padding-bottom: 2%; padding-left: 1%; padding-top: 1%;">
+  <button mat-raised-button  color="primary"  (click)="backButton()">
+    <mat-icon>arrow_back</mat-icon>
+    BACK
+  </button>
+</div>
+
+<div class="form-container">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" required>
+    <mat-error>Please enter a name</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" required>
+    <mat-error>Please enter a valid email address</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" required>
+    <mat-error>Please enter a password</mat-error>
+  </mat-form-field>
+</div>
+<div class="row">
+
+
+  <mat-form-field appearance="outline">
+    <mat-label>Role</mat-label>
+    <input matInput formControlName="role" required>
+    <mat-error>Please enter a role</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Privilege Level</mat-label>
+    <input matInput formControlName="privilege_level" type="number" required>
+    <mat-error>Please enter a privilege level</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Parent ID</mat-label>
+        <mat-select formControlName="parentId">
+          <mat-option *ngFor="let option of users" [value]="option.id">{{option.name}}</mat-option>
+        </mat-select>
+  </mat-form-field>
+</div>
+
+  <div class="form-buttons">
+    <button mat-raised-button color="primary" type="submit">Register</button>
+    <button mat-raised-button type="button" (click)="userForm.reset()">Reset</button>
+  </div>
+
+</form>
+</div>

@@ -1,0 +1,53 @@
+.form-container{
+  max-height: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  margin-left: 10px;
+}
+
+
+mat-form-field {
+  flex: 1;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+h2{
+  color : black !important;
+  justify-content: center;
+  align-items: center ;
+  font-size: 200%;
+}
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+button {
+  flex: 1;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* customize the scroll bar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+/* customize the scroll bar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* customize the scroll bar width and height */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}

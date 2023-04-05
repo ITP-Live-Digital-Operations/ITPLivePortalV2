@@ -1,0 +1,146 @@
+mat-toolbar {
+
+  background: #002b5c !important;
+  color: white;
+}
+
+mat-sidenav {
+  margin: 16px;
+  width: 200px;
+  border-right: none;
+  background: #002b5c;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.content {
+  height: calc(100vh - 98px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2rem;
+  color: lightgray;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+
+.menu-button{
+  width: 100%;
+  padding-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  color: #fff !important;
+
+}
+
+.avatar {
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+h4{
+  margin-top: 8px;
+  font-weight: normal;
+}
+
+.designation {
+
+  font-size: 0.7rem;
+  color: lightgrey;
+}
+
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.icon {
+  margin-right: 16px;
+}
+
+.a
+:hover
+{
+  color:blueviolet;
+}
+
+
+.router-container{
+  overflow-y: scroll;
+  padding-left: 2%;
+  /* overflow-x: hidden ; */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* customize the scroll bar thumb */
+::-webkit-scrollbar-thumb {
+
+  background-color: #888;
+  border-radius: 5px;
+}
+
+/* customize the scroll bar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* customize the scroll bar width and height */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.notification-mark {
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  min-width: 15px;
+  height: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+
+
+
+.NotificationPopoverstyle{
+  width: auto;
+  height: 38px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  background-color: #002b5c;
+  border: 1px solid #002b5c;
+  padding: 0px 10px;
+  border-radius: 6px;
+  outline: 0px;
+  cursor: pointer;
+  color: #fff;
+}

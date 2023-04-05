@@ -1,0 +1,30 @@
+
+.form-container{
+  max-height: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  margin-left: 10px;
+}
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+mat-form-field {
+  flex: 1;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+h2{
+  color : black !important;
+}
+
+h3{
+  color : black;
+}
+
+
+
+
