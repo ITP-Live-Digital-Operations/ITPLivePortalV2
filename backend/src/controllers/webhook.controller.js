@@ -1,6 +1,7 @@
 const { exec } = require('child_process');
 
 exports.updateWebhook = (req, res) => {
+ 
     exec('./update_app.sh', (error, stdout, stderr) => {
         if (error) {
           console.error(`exec error: ${error}`);
