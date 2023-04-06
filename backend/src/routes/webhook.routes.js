@@ -5,3 +5,5 @@ const webhookController = require('../controllers/webhook.controller');
 
 router.route('/update-webhook')
     .post(asyncHandler(webhookController.updateWebhook));
+
+module.exports = router;
