@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('influencer', [[
+    await queryInterface.bulkInsert('influencer', [
       {
         "id": "1",
         "Name": "Ahmed Al Nasheet",
@@ -99699,7 +99699,7 @@ module.exports = {
         "createdAt": "2023-04-07 15:43:41",
         "updatedAt": "2023-04-07 15:43:41"
       }
-    ]], {});
+    ], {});
   },
 
   down: async (queryInterface, Sequelize) => {
