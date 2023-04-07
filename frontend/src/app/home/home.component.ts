@@ -49,14 +49,30 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.token = localStorage.getItem('token');
+   /*  this.token = localStorage.getItem('token');
     this.parts = this.token.split('.');
 
     this.payload = JSON.parse(atob(this.parts[1]));
     this.userID = parseInt(this.payload.id);
     this.userName = this.payload.name;
     this.userRole = this.payload.role;
-    this.userPrivilege_level = this.payload.privilege_level;
+    this.userPrivilege_level = this.payload.privilege_level; */
+
+
+    this.token = localStorage.getItem('token');
+
+    // Check if the token exists and starts with "Bearer "
+    if (this.token && this.token.startsWith("Bearer ")) {
+      // Extract the JWT from the "Bearer" token string
+      var jwt = this.token.substring(7);
+
+      this.parts = jwt.split('.');
+      this.payload = JSON.parse(atob(this.parts[1]));
+      this.userID = parseInt(this.payload.id);
+      this.userName = this.payload.name;
+      this.userRole = this.payload.role;
+      this.userPrivilege_level = this.payload.privilege_level;
+    }
 
     const load =  this.userID
 
