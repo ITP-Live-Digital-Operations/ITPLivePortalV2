@@ -31,8 +31,9 @@ export class InfluencersComponent implements OnInit {
 
 
   ngAfterViewInit() {
+    if (this.sort && this.dataSource){
     this.dataSource.sort = this.sort;
-
+    }
   }
 
 
@@ -51,8 +52,10 @@ export class InfluencersComponent implements OnInit {
 
       this.UserDetails = response;
       this.dataSource = new MatTableDataSource<InfluencerModel>(this.UserDetails);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      setTimeout(() => {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }, 0);
 
 
 

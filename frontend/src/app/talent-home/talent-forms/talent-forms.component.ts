@@ -45,9 +45,16 @@ export class TalentFormsComponent {
 
   getPrivilegeLevel(){
     var token = localStorage.getItem('token');
-    var parts = token!.split('.');
-    var payload = JSON.parse(atob(parts[1]));
-    this.pl = payload.privilege_level;
+
+    // Check if the token exists and starts with "Bearer "
+    if (token && token.startsWith("Bearer ")) {
+      // Extract the JWT from the "Bearer" token string
+      var jwt = token.substring(7);
+
+      var parts = jwt.split('.');
+      var payload = JSON.parse(atob(parts[1]));
+      this.pl = payload.privilege_level;
+    }
 
   }
 }

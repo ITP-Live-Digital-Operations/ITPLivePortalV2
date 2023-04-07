@@ -68,11 +68,17 @@ export class UserService {
 
   getPrivilegeLevel(){
     const token = this.getToken();
-    const parts = token!.split('.');
-    const payload = JSON.parse(atob(parts[1]));
-    const userPrivilege_level = payload.privilege_level;
+
+    if ( token && token.startsWith('Bearer ')) {
+      var jwt = token.substring(7);
+      var parts = jwt.split('.');
+      var payload = JSON.parse(atob(parts[1]));
+      var userPrivilege_level = payload.privilege_level;
+    }
     return userPrivilege_level;
   }
+
+
 
   getAllUsers(){
     return this.http.get(`${this.authApiURL}/getAllUsers`)

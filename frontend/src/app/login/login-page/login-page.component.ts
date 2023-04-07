@@ -29,10 +29,11 @@ export class LoginPageComponent implements OnInit{
 
   onSubmit() {
 
+
     this.service.logIn(this.loginForm.value).subscribe((res) => {
 
       this.data = res;
-      console.log(this.data);
+
 
       if(this.data.status === 'success'){
         localStorage.setItem('token',this.data.data.token)
@@ -42,11 +43,10 @@ export class LoginPageComponent implements OnInit{
           }else {
             this.route.navigate([`home/${this.data.data.role}/forms`])
           }
-      }else{
-        alertify(`${this.data.statusText}`)
-      }
-
-
+        }
+    },
+    (err) => {
+      alertify.error('Invalid Credentials');
     });
   }
 }

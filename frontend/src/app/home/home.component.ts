@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   sidenav!: MatSidenav;
 
   constructor(private observer: BreakpointObserver, private router: Router, private salesService: SalesService,
-     private taskService: TaskService, private location: Location,  private cdr: ChangeDetectorRef, private dataService : DataService) { }
+     private taskService: TaskService, private location: Location,  private cdr: ChangeDetectorRef, private dataService : DataService, private ngZone: NgZone) { }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -64,14 +64,18 @@ export class HomeComponent implements OnInit {
     if (this.userRole == 'talent') {
       if (this.userPrivilege_level > 7) {
         this.salesService.getSalesBriefsNotViewedByTalent().subscribe(item => {
-          this.talentHeadNotificationCount = item;
-          this.cdr.detectChanges();
+          this.ngZone.run(() => {
+            this.talentHeadNotificationCount = item;
+            this.cdr.detectChanges();
+          });
         })
       }
       else {
         this.taskService.getUnfinishedTasks(load).subscribe(item => {
-          this.talentEmployeeNotificationCount = item;
-          this.cdr.detectChanges();
+          this.ngZone.run(() => {
+            this.talentEmployeeNotificationCount = item;
+            this.cdr.detectChanges();
+          });
         })
       }
     }
