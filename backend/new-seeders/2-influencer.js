@@ -62,8 +62,8 @@ module.exports = {
         "Notes": null,
         "Status": "Active",
         "updatedBy": 1,
-        "createdAt": "2023-04-07 15:43:41",
-        "updatedAt": "2023-04-07 15:43:41"
+        "createdAt": "2023-04-06 15:43:41",
+        "updatedAt": "2023-04-06 15:43:41"
       },
       {
         "id": "2",
