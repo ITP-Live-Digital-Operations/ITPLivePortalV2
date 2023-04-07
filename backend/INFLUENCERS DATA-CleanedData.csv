@@ -989,7 +989,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 990,Meredith Damouni,Female,,meredith@d-journaldubai.com,Lifestyle,Mother,All Others,,,UAE,therealmrsdamouni,,,,,,N/A
 991,Merlette,Female,,merlettebymaryam@gmail.com,Fashion,Stylist,All Others,Pakistan,,KSA,maryamraja,,,,,,N/A
 992,Meshal Khaled,Female,,m4l@momentsa.com,Lifestyle,Model,All Others,KSA,,KSA,iim4l,,,,,,N/A
-993,Mestaka,Female,,‏iafaf2030@gmail.com,Chef,Food,All Others,KSA,,KSA,afofa,,,,,,N/A
+993,Mestaka,Female,,,Chef,Food,All Others,KSA,,KSA,afofa,,,,,,N/A
 994,Michelle Karam,Female,,info@traveljunkiediary.com,Travel,,All Others,Lebanon,,UAE,traveljunkiediary,,,,,0,N/A
 995,Michelle PoleFitDubai,Female,,michellepolefitdubai@gmail.com,Fitness,,All Others,,,UAE,michelle_polefitdubai,,,,,,N/A
 996,Miled & Melissa,Female/Male,,hello@therahal.com,Travel,,All Others,Lebanon,,UAE,the.rahal,miledandmelissa,,,TheRahhal,,N/A
@@ -1448,7 +1448,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1450,Jood Aziz,Female,,jood@dic.io,Model,Lifestyle,Agencies,KSA,,KSA,joodaziz_,,,,,,DIC
 1451,Manal Al Basrawi,Female,,mb@dic.io,Lifestyle,Self Development,Agencies,KSA,,KSA,manalbasrawi,,,,,,DIC
 1452,Meshal Khaled,Male,,meshal@dic.io,Model,Lifestyle,Agencies,KSA,,KSA,iim4l,,,,,,DIC
-1453,Mohammed Alattas,Male,,Moodyalaz@dic.io ‏‬,Lifestyle,,Agencies,KSA,,KSA,moodyalaz,,,,,,DIC
+1453,Mohammed Alattas,Male,,,Lifestyle,,Agencies,KSA,,KSA,moodyalaz,,,,,,DIC
 1454,Mohammed Alqarni,Male,,m6@dic.io,Athlete,Football,Agencies,KSA,,KSA,mqarrni,,,,,,DIC
 1455,Mosab Almalki,Male,,Mosab@dic.io,Filmmaker,Model,Agencies,KSA,,KSA,4msb,,,,,,DIC
 1456,Muath Abdulrahman,Male,,muath@dic.io,Comedy,Lifestyle,Agencies,KSA,,KSA,xm195,,,,,,DIC
