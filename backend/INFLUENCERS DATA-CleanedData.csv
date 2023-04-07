@@ -198,7 +198,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 197,Zainab Al Eqabi,Female,,z.aleqabi@gmail.com,Fashion,Lifestyle,Close Friends,Iraq,,UAE,zainab.aleqabi,,,,,,UAE Nation Brand
 198,Mahira Abdel Aziz,Female,,mahira.abdelaziz@gmail.com,TV Presenter,,Close Friends,UAE,,UAE,mahiraabdelaziz,,,,,,x ITP Live
 199,Rashed Belhasa,Male,,info@winfinityentertainment.com,Lifestyle,Luxury,Close Friends,UAE,,UAE,rsbelhasa,,rashedbelhasa,,,Money Kicks,x ITP Live
-200,Abdullah & Abdelaziz,Male,,info@saudireporters.com,Comedy,Entertainment,Close Friends,KSA,,KSA,saudireporters,,,SAUDIREPORTERS,,TheSaudiReporters | سعودي ريبورترز,Campaign
+200,Abdullah & Abdelaziz,Male,,info@saudireporters.com,Comedy,Entertainment,Close Friends,KSA,,KSA,saudireporters,,,SAUDIREPORTERS,,,Campaign
 201,Abdelaziz Bakr,Male,,info@saudireporters.com,Comedy,Entertainment,Close Friends,KSA,,KSA,zozobakrtv,,,,,,Campaign
 202,Abdullah Bakr,Male,,info@saudireporters.com,Comedy,Entertainment,Close Friends,KSA,,KSA,boodyzozo,,boodyzozo,,,TheSaudiReporters,Campaign
 203,Mohamed Beiraghdary,Male,,movlogsbusiness@gmail.com,Entrepreneur,Lifestyle,Close Friends,Iran,,UAE,movlogs,,mohamedoo,,,Mo Vlogs,x ITP Live
@@ -239,7 +239,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 238,Ayoub Sisters,Female,,theayoubsisters@gmail.com,Music,,Friends,Egypt,,Egypt,theayoubsisters,,,,,The Ayoub Sisters,Email
 239,Aysha Al Obeidli,Female,,3yshow@gmail.com,Chef,Food,Friends,UAE,,UAE,chefaysha,,,,,,Other
 240,Layal Ghosn,Female,,layalghosn01@gmail.com,Lifestyle,Travel,Friends,Lebanon,,UAE,layalghosn,,,,,,Campaign
-241,Baha Mohammad,Male,,C7Gaming77@Gmail.com,Fortnite,Gaming,Friends,KSA,,KSA,c7gaming1999,,,,,خشب - C7GAMING,Apex Legends
+241,Baha Mohammad,Male,,C7Gaming77@Gmail.com,Fortnite,Gaming,Friends,KSA,,KSA,c7gaming1999,,,,,,Apex Legends
 242,Banan Alawneh,Female,,ba@bananalawneh,Creative Director,Fashion,Friends,Jordan,,Jordan,bananalawneh,,,,,,Campaign
 243,Basma El Khereiji,Female,,basma@thesocialkollective.com,Entrepreneur,Food,Friends,KSA,,KSA,basmaelkhereiji,,basmaelkhereiji,,,,Email
 244,Bayt Kalthoum,Female,,info@baytkalthoum,Interior Designer,,Friends,Morocco,,UAE,baytkalthoum,,,,,,Campaign
@@ -526,7 +526,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 525,Nouf Alabd,Female,,nouf.alabd@gmail.com,Fashion,Food,Friends,UAE,,UAE,n_al3bd,,,,,,Email
 526,Tasneem Abu Seedo,Female,,tassneemabuseedu@gmail.com,Beauty,Lifestyle,Friends,Palestine,,UAE,tasneemabuseedo,,,,,,Campaign
 527,Mama Bella,Female,,fluffymarshmellow77@icloud.com,Mother,Model,Friends,KSA,,KSA,_bella_model_,,,,,,N/A
-528,Leila & Mohamed Mati,Female,,leila.aljour@gmail.com,Family,Fashion,Friends,Russia,Syria,UAE,the.matis,,,,,محمد و ليلى THE MATI's,Other
+528,Leila & Mohamed Mati,Female,,leila.aljour@gmail.com,Family,Fashion,Friends,Russia,Syria,UAE,the.matis,,,,,,Other
 529,Huwaida Samman,Female,,huwida.abdalwahab.samman@gmail.com,Fashion,Lifetsyle,Friends,,,UAE,huwaidasamman,,,,,,N/A
 530,Rim Katerji,Female,,rim.katerji@live.com,Fashion,Lifestyle,Friends,Lebanon,,UAE,rimkaterji,,,,,,Email/Ahmad
 531,Virdah Javed Khan,Female,,mom_in_dubai@outlook.com,Beauty,Fashion,Friends,India,,UAE,mom_in_dubai,virdahkhan,,,momindxb,,Campaign
@@ -585,10 +585,10 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 584,Ale Alamm,Male,,ali.al3mm@gmail.com,Fashion,,All Others,Bahrain,,Bahrain,aleealamm,,,,,,N/A
 585,Alexa,Female,,styleandmacaroni@gmail.com,Fashion,Lifestyle,All Others,,,UAE,styleandmakaroni,,,,,,N/A
 586,Alexandra Ibrahim,Female,,info@alexsaibrahim.com,Beauty,Fashion,All Others,Lebanon,,UAE,alexsaibrahim,,,,,,N/A
-587,Ali Abo Atwan,Male,,dragoniraqis@gmail.com,Gaming,,All Others,KSA,,KSA,ali_abo_atwan,ali_abo_atwan,,,دراجون عطوان,DRAGONLORD I Abu Atwan Series,N/A
+587,Ali Abo Atwan,Male,,dragoniraqis@gmail.com,Gaming,,All Others,KSA,,KSA,ali_abo_atwan,ali_abo_atwan,,,,DRAGONLORD I Abu Atwan Series,N/A
 588,Ali Al Gofaily,Male,,ideas.sea@gmail.coom,TV Presenter,,All Others,KSA,,KSA,ali.algofaily,,,,,,N/A
 589,Ali Al Hamoudi,Male,,isayarti@gmail.com,Automotive,,All Others,UAE,,UAE,uaesupersport,,,,,Ali Al-Hamoudi On Cars,N/A
-590,Ali Al Meshaal,Male,,alialmeshaal@gmail.com,Lifestyle,Travel,All Others,KSA,,KSA,alialmeshaaal,,alialmeshal,AliAlmeshaal,,Ali Almeshaal / علي المشعل,N/A
+590,Ali Al Meshaal,Male,,alialmeshaal@gmail.com,Lifestyle,Travel,All Others,KSA,,KSA,alialmeshaaal,,alialmeshal,AliAlmeshaal,,,N/A
 591,Ali Al Niyadi,Male,,sahrawi30@hotmail.com,Travel,,All Others,Oman,,Oman,alialniyadi,,,,,Ali Al Niyadi,N/A
 592,Ali Al Saloum,Male,,duroobtv@gmail.com,Media,News,All Others,UAE,,UAE,askaliofficial,,,,,,N/A
 593,Ali Al Sayed,Male,,management@vivadubai.com,Comedy,,All Others,UAE,,UAE,alsayedcomedy,,,,,,N/A
@@ -616,7 +616,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 615,Amany Fawzi,Female,,amany.fawzi@hotmail.com,Fashion,Lifestyle,All Others,,,UAE,amanyfawzi,,,,,,N/A
 616,Amel Al Ali,Female,,amel_alali@hotmail.com,Journalist,Professor,All Others,UAE,,UAE,amel_alali,,,,,,N/A
 617,Amias,Female,,amiasmisa@gmail.com,Beauty,Fashion,All Others,India,,UAE,amias_diaries,,,,,,N/A
-618,Amin Al Mayouf,Male,,m3uuuf@gmail.com,Technology,,All Others,KSA,,KSA,m3uuf,,m3uuf,M3UUF,,أمين المعيوف™,N/A
+618,Amin Al Mayouf,Male,,m3uuuf@gmail.com,Technology,,All Others,KSA,,KSA,m3uuf,,m3uuf,M3UUF,,,N/A
 619,Amin Alord,Male,,amenq8lord@gmail.com,Family,Fashion,All Others,Jordan,,KWT,amen_90,,,,,,N/A
 620,Ammar Al Barakati,Male,,ammar_mbarakati@hotmail.com,Chef,Entrepreneur,All Others,KSA,,KSA,chef.aalbarakati,,,,,,N/A
 621,Amr Mesbah,Male,,DM,Fitness,,All Others,Egypt,,UAE,amr_a.mesbah,,,,,,N/A
@@ -649,12 +649,12 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 648,Aziz Bader,Male,,azizbader@ghaliah.com,Actor,Comedy,All Others,KSA,,KSA,aziz,,theazizbader,,,,N/A
 649,Aziza Razakberdieva,Female,,info@azizarazak.com,Brand Consultant,Career Fulfillment Coach,All Others,Uzbekistan,,UAE,inspirewithaziza,,,,,,N/A
 650,Bader Al Shayji,Male,,DM,Chef,Food,All Others,KWT,,KWT,chefbjs,,,,,,N/A
-651,Bader Saleh,Male,,bidzsaleh@gmail.com,Comedy,Entertainment,All Others,KSA,,KSA,bidzsaleh,,bidzsaleh,,,برنامج بدر اليوتيوبي BadersShow,N/A
+651,Bader Saleh,Male,,bidzsaleh@gmail.com,Comedy,Entertainment,All Others,KSA,,KSA,bidzsaleh,,bidzsaleh,,,,N/A
 652,Balqees Bushakr,Female,,balqeesq879@gmail.com,Beauty,Fashion,All Others,KWT,,KWT,balqees_busakhar,,,,,,N/A
 653,Balqi,Female,,DM,Chef,Food,All Others,KSA,,KSA,balqisweet,,,,,,N/A
 654,Basel Ghazoghli,Male,,baselaughs@gmail.com,Comedy,Entertainment,All Others,Turkey,UK,UAE,baselaughs,baselaughs,,,,,N/A
 655,Bashayer Al Huraibi,Female,,bashayer.huraibi@gmail.com,Beauty,Fashion,All Others,UAE,,UAE,danazvanilla,,,,,,N/A
-656,Basil El Haj,Male,,basilelhaj21@gmail.com,Chef,Food,All Others,Palestine,UK,UK,basil.elhaj,,,,basilelhaj21,Basil ElHaj باسل الحاج,N/A
+656,Basil El Haj,Male,,basilelhaj21@gmail.com,Chef,Food,All Others,Palestine,UK,UK,basil.elhaj,,,,basilelhaj21,,N/A
 657,Basma Al Issa,Female,,basmaalissa@hotmail.com,Beauty,Fashion,All Others,Oman,,Oman,bh.alissa,,,,,,N/A
 658,Bassel Alzaro,Male,,bmwzaro@hotmail.com,Actor,Travel,All Others,Egypt,,UAE,basselalzaro,,,,,,N/A
 659,Bella Tehrani,Female,,bellatehrani22@gmail.com,Beauty,Fashion,All Others,Iran,,UAE,bellatehrani,,,,,,N/A
@@ -662,7 +662,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 661,Bin Kasem,Male,,alkasemabdulrahman@gmail.com,Chef,Food,All Others,KSA,,KSA,binkasem,,,,,,N/A
 662,Bin Suwaileh,Male,,binswelah123@gmail.com,Comedy,,All Others,UAE,,UAE,b9w.e,,,,,,N/A
 663,Blossom,Female,,blossomtj17@gmail.com,Beauty,Fashion,All Others,Iran,,UAE,fashionby.blossom,,,,,,N/A
-664,Bo Salem,Male,,mo.almarri919@gmail.com,Gaming,,All Others,Qatar,,Qatar,bosalem_power,,,,,بوسالم POWER,N/A
+664,Bo Salem,Male,,mo.almarri919@gmail.com,Gaming,,All Others,Qatar,,Qatar,bosalem_power,,,,,,N/A
 665,Camélia Benattia,Female,,camelia@shaunaevents.com,Beauty,Fashion,All Others,France,,UAE,cameliiab,,cameliabenattia,,,,N/A
 666,Carla Otera,Female,,mail@carlaoterostylist.com,Fashion,Lifestyle,All Others,Spain,,UAE,carlastylist,,,,,,N/A
 667,Caroleen,Female,,caroleen.kodsy@gmail.com,Beauty,Fashion,All Others,Lebanon,,Lebanon,caroleenofficial,,,,,,N/A
@@ -703,7 +703,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 702,Donia,Female,,diotis.diaries@yahoo.fr,Beauty,Fashion,All Others,Tunisia,,Tunisia,diotisdiaries,,,,,,N/A
 703,Dounia Sheikh El Ard,Female,,dounia@mydounia.com,Beauty,Fashion,All Others,Syria,,UAE,mydounia,,,,,,N/A
 704,Dozi Dreams,Male,,dozitheartist@gmail.com,Art,Artist,All Others,Iran,,UAE,dozidreams,,,,,,N/A
-705,Dr. Ahmad Jarbou,Male,,LaASKfamily@gmail.com,Dentist,Father,All Others,,,UAE,drahmadjarbou,,,,,The ASK Family l أحمد و سالي,N/A
+705,Dr. Ahmad Jarbou,Male,,LaASKfamily@gmail.com,Dentist,Father,All Others,,,UAE,drahmadjarbou,,,,,,N/A
 706,Dr. Lamees Hamdan,Female,,customercare@shiffa.com,Beauty,,All Others,UAE,,UAE,shiffabeauty,,,,,,N/A
 707,Dr. Maitha Al Hameli,Female,,DM,Entrepreneur,Poet,All Others,UAE,,UAE,maithaalhameli,,,,,,N/A
 708,Dr. Mona Saqr,Female,,saqr.mona@yahoo.com,Banking,Health,All Others,UAE,,UAE,monasaqr,,,,,,N/A
@@ -737,14 +737,14 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 736,Esra Al Hamal,Female,,hello@designeresra.com,Travel,,All Others,KSA,,UK,arabianwanderess,,,,,,N/A
 737,Esther Quek,Female,,info@estherquek.com,Fashion,Travel,All Others,Singapore,,UAE,estherquek,,,,,,N/A
 738,Estube Gaming,Male,,estubegaming@gmail.com,Gaming,,All Others,Egypt,,Egypt,estubegaming,,,,,EstubeGaming,N/A
-739,Eswaratti Mimi,Female,,mimi@esswara.com,Beauty,Fashion,All Others,Morocco,,UAE,eswaratti,,,,Esswara,إسوارة,N/A
+739,Eswaratti Mimi,Female,,mimi@esswara.com,Beauty,Fashion,All Others,Morocco,,UAE,eswaratti,,,,Esswara,,N/A
 740,Fadwa Zidi,Female,,fadwa.zidi@gmail.com,Travel,,All Others,,,UAE,fadwazidi2,,,,,Travel with Fadwa,N/A
 741,Fahad Al Shehi,Male,,DM,Photography,,All Others,UAE,,UAE,fahadalsh7ii,,,,,,N/A
 742,Fahad Alaradi,Male,,DM,Comedy,Lifestyle,All Others,KWT,,KWT,fha_,,,,,,N/A
 743,Fahad Salbiz,Male,,fahadsalbiz@gmail.com,Lifestyle,,All Others,KSA,,KSA,mrfahadsal,fasoleyya,,,,Fahad Sal,N/A
 744,Faisal Al Jerifany,Male,,f9.606.ph@gmail.com,Travel,,All Others,,,KSA,f9_ph,,,,,,N/A
 745,Faisal Al Mahmeed,Male,,info@primesales.co,Sales Expert,,All Others,KWT,,KWT,faisalalmahmeed,,,faisalalmahmeed,,,N/A
-746,Faisal Al Seif,Male,,info@tpprod.com,Technology,,All Others,KSA,,KSA,faisalaalsaif,,faisaltechpills,falsaif,,UpToDate | آب تو ديت,N/A
+746,Faisal Al Seif,Male,,info@tpprod.com,Technology,,All Others,KSA,,KSA,faisalaalsaif,,faisaltechpills,falsaif,,,N/A
 747,Faisal Bin Zarah,Male,,faisal@fbinzarah.com,Photography,,All Others,KSA,,KSA,binzarah,,,,,,N/A
 748,Falcon Packs,Male,,x95792@gmail.com,Gaming,,All Others,Qatar,,Qatar,falconpacks,,,,,FalcoN,N/A
 749,Farah Abdelaziz,Female,,farahabdelaziz24@gmail.com,Fashion,,All Others,Lebanon,,Lebanon,fafiabdelaziz,,,,,,N/A
@@ -788,12 +788,12 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 787,Hamad Al Kaabi,Male,,ham_alkaabi@hotmail.com,News,,All Others,UAE,,UAE,hamadaalkaabi,,,,,,N/A
 788,Hamad Al Kaabi,Male,,DM,News,,All Others,UAE,,UAE,halkaabi80,,,,,,N/A
 789,Hamad Al Qassab,Male,,"arabsnake@gmail,com",Gaming,,All Others,Bahrain,,Bahrain,7amadoz,,,,,Arab Snake,N/A
-790,Hamaky Al Bloushi,Male,,ihmaky@gmail.com,Comedy,,All Others,Oman,,Oman,hmaky128,,,,,Hmaky هماكي,N/A
+790,Hamaky Al Bloushi,Male,,ihmaky@gmail.com,Comedy,,All Others,Oman,,Oman,hmaky128,,,,,,N/A
 791,Hamdan El Bloshi,Male,,hmdan.elbloshi@gmail.com,Music,Singer,All Others,UAE,,UAE,hmdan_elbloshi,,hmaky,,,,N/A
 792,Hamed Al Darour,Male,,hamed.smedia@gmail.com,Automotive,,All Others,Jordan,,UAE,hamedaldaour,,,,,Hamed Al-Daour,N/A
 793,Hamed Ruaab,Male,,hamed.ruaab@gmail.com,TV Presenter,,All Others,UAE,,UAE,hamedruaab,,,,,,N/A
 794,Hameed Al Siddiqi,Male,,alsiddiqi86@gmail.com,Art,Artist,All Others,Qatar,,Qatar,7ameed86,,,,,,N/A
-795,Hamza Hafed,Male,,96k96business@gmail.com,Comedy,Entertainment,All Others,UAE,,UAE,96k96,96k96,mr.h97,,,حمزة حافظ / Hamza Hafed,N/A
+795,Hamza Hafed,Male,,96k96business@gmail.com,Comedy,Entertainment,All Others,UAE,,UAE,96k96,96k96,mr.h97,,,,N/A
 796,Hamza Slim,Male,,bouba@beautiquebybouba.com,Beauty,Makeup Artist,All Others,Lebanon,,Lebanon,bouba,,,,,,N/A
 797,Hana El Alfy,Female,,hanaalfy@hotmail.com,Beauty,,All Others,Egypt,,Egypt,hanaalfy,,,,,,N/A
 798,Hanaa,Female,,DM,Chef,Food,All Others,KWT,,KWT,hanaa.cook,,,,,,N/A
@@ -809,7 +809,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 808,Harriet Stewart,Female,,apollo@idea-associates.com,Fitness,,All Others,UK,,UAE,harrietlstewart,,,,,,N/A
 809,Hasan,Male,,hsnvlogs@gmail.com,Lifestyle,,All Others,Pakistan,UK,UAE,hsnvlogs,,hsnvlogs,,,HSN Vlogs,N/A
 810,Hathim Al Hadi,Male,,hati.alhadi@gmail.com,Travel,Fashion,All Others,Oman,,Oman,hatemalhadii,,hatimalhadi,,,,N/A
-811,Hatoon Kadi,Female,,hakadi@gmail.com,Comedy,Food,All Others,KSA,,KSA,hatoonkadi,,hatoonkadie,,,Noon AlNiswa UTURN نون النسوة يوتيرن,N/A
+811,Hatoon Kadi,Female,,hakadi@gmail.com,Comedy,Food,All Others,KSA,,KSA,hatoonkadi,,hatoonkadie,,,,N/A
 812,Haya Al Samari,Female,,haya.alsamari@gmail.com,Outdoor Adventure,Travel,All Others,KSA,,KSA,mykindofridays,,,,,,N/A
 813,Haya Al Sharhan,Female,,haya@crossfitq8.com,Fitness,Mother,All Others,KWT,,KWT,haya_cfq8,,,,,,N/A
 814,Hayla TV,Female,,hayla@haylatv.com,Lifestyle,Travel,All Others,Syria,,UAE,haylatv,,haylatv,,,Hayla TV,N/A
@@ -866,10 +866,10 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 865,Joy Caasi,Female,,jhoysi@thethrifttrip.com,Lifestyle,Mother,All Others,Philippines,,Philippines,joycaasi,,,,,,N/A
 866,Juliah Hussein,Female,,juliah.management@gmail.com,Fashion,Beauty,All Others,Lebanon,,UAE,juliahoffical,,,,,,N/A
 867,Jumana Saifuddin,Female,,jumana.wajihi@gmail.com,Food,,All Others,India,,UAE,hungrysoulsdxb,,,,,,N/A
-868,Kaj,Male,,info.kajj@gmail.com,Entertainment,Gaming,All Others,Bahrain,,Bahrain,kajj.7,,Kaj,kajj_7,,Kaj . كاج I Kaj Games . كاج قيمز,N/A
+868,Kaj,Male,,info.kajj@gmail.com,Entertainment,Gaming,All Others,Bahrain,,Bahrain,kajj.7,,Kaj,kajj_7,,,N/A
 869,Kamilla Omarzay,Female,,hello@thesnacksociety.com,Chef,Food,All Others,Afghanistan,,UAE,thesnacksociety,,,,,,N/A
 870,Kamiya Jani,Female,,hey@curlytales.com,Food,Travel,All Others,India,,UAE,curly.tales,,,,,,N/A
-871,Kanu Al Kendi,Male,,kanualkendi@gmail.com,Comedy,Entertainment,All Others,UAE,,UAE,kanu7alkendi,,,,,بن صويلح,N/A
+871,Kanu Al Kendi,Male,,kanualkendi@gmail.com,Comedy,Entertainment,All Others,UAE,,UAE,kanu7alkendi,,,,,,N/A
 872,Karen Nicolet,Female,,kcnicolet@gmail.com,Interior,Lifestyle,All Others,,,Qatar,karennicoletphotography,,,,,,N/A
 873,Karl Abi Aad,Male,,duck.the.diet@gmail.com,Food,,All Others,Lebanon,,Lebanon,duck.the.diet,,,,,,N/A
 874,Karol Yammine,Female,,pr@karolyammine.com,Beauty,Fashion,All Others,Lebanon,,UAE,karolyammine,,,,,Karol Yammine,N/A
@@ -883,7 +883,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 882,Keith Fernandez,Male,,DM,Food,,All Others,India,,UAE,excessallareas,,,,,,N/A
 883,Khalaf Zone,Male,,xtiigeir@gmail.com,Entertainment,Horror Movie Reviewer,All Others,KSA,,KSA,Khalafz1,,khalafz1,khalafz1,,Khalaf Zone,N/A
 884,Khaled Abdulla,Male,,dxbkdk@gmail.com,Comedy,Entertainment,All Others,UAE,,UAE,dxbkd,,,,,,N/A
-885,Khaled Al Ghailani,Male,,alfasiluh@gmail.com,Actor,Comedy,All Others,UAE,,UAE,alfasiluh,,alfasiluh,,,الفاصلة,N/A
+885,Khaled Al Ghailani,Male,,alfasiluh@gmail.com,Actor,Comedy,All Others,UAE,,UAE,alfasiluh,,alfasiluh,,,,N/A
 886,Khalid Al Astad,Male,,k.alastad@gmail.com,Art,Photography,All Others,UAE,,UAE,ialastad,,ialastad,,,,N/A
 887,Khalid Al Hammadi,Male,,DM,Photography,Travel,All Others,UAE,,UAE,kalooold,,,,,,N/A
 888,Khalid Al Hammadi,Male,,k72k18@gmail.com,Photography,,All Others,UAE,,UAE,khd_uae,,,khd_uae,,,N/A
@@ -994,9 +994,9 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 993,Mestaka,Female,,‏iafaf2030@gmail.com,Chef,Food,All Others,KSA,,KSA,afofa,,,,,,N/A
 994,Michelle Karam,Female,,info@traveljunkiediary.com,Travel,,All Others,Lebanon,,UAE,traveljunkiediary,,,,,0,N/A
 995,Michelle PoleFitDubai,Female,,michellepolefitdubai@gmail.com,Fitness,,All Others,,,UAE,michelle_polefitdubai,,,,,,N/A
-996,Miled & Melissa,Female/Male,,hello@therahal.com,Travel,,All Others,Lebanon,,UAE,the.rahal,miledandmelissa,,,TheRahhal,The Rahal ميلاد ومليسا,N/A
+996,Miled & Melissa,Female/Male,,hello@therahal.com,Travel,,All Others,Lebanon,,UAE,the.rahal,miledandmelissa,,,TheRahhal,,N/A
 997,Minna,Female,,DM,Food,Travel,All Others,Finland,,UAE,minnahe,,,,,,N/A
-998,Mint Yuri,Female,,kyr910@naver.com,Beauty,Fashion,All Others,Korea,,UAE,mintyuri,,,,,mintyuri민트유리,N/A
+998,Mint Yuri,Female,,kyr910@naver.com,Beauty,Fashion,All Others,Korea,,UAE,mintyuri,,,,,,N/A
 999,Mira Sarris,Female,,sarris.mira@gmail.com,Dentist,Fitness,All Others,,,UAE,_happy.yogi_,,,,,,N/A
 1000,Miriam Abadi,Female,,miriamabadi@maconsultancy.ae,Fashion,,All Others,Germany,Lebanon,UAE,miriam_abadii,,,,,,N/A
 1001,Mister Levier,Female,,le_view@live.com,DJ,Fashion,All Others,,,UAE,mrlevier,,,,,,N/A
@@ -1007,7 +1007,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1006,Moath Alam,Male,,DM,Lifestyle,,All Others,KSA,,KSA,i72mx,,,,,,N/A
 1007,Moe Zein,Male,,info@bwaves.pro,Music,Singer,All Others,Lebanon,,KSA,moezeindtb,moezeindtb,MoeZeindTb,MoeZeindtb,moezeindtb,Moez BlueBook,N/A
 1008,Moeen,Male,,DM,Chef,Food,All Others,Lebanon,,KSA,lebaneseinkhobar,,,,,,N/A
-1009,Mohamad Al Kecheh,Male,,playz.adv@gmail.com,Gaming,Garena Free Fire,All Others,Lebanon,,Lebanon,m7mad_playz,,,,,M7mad Playz محمد بلايز,N/A
+1009,Mohamad Al Kecheh,Male,,playz.adv@gmail.com,Gaming,Garena Free Fire,All Others,Lebanon,,Lebanon,m7mad_playz,,,,,,N/A
 1010,Mohamed Al Hinai,Male,,mohammedalhinaiads@gmail.com,Motivational Speaker,,All Others,Oman,,Oman,m94hinai,,,,,,N/A
 1011,Mohamed Al Kalha,Male,,alkalha_treats@yahoo.com,Chef,Food,All Others,KWT,,KWT,alkalha_treats,,,,,,N/A
 1012,Mohamed Al Sahil,Male,,info@moalsahlimusic.com,Singer,,All Others,KSA,,KSA,moalsahli,,Mooka_Alsahli,,,Mohammed AlSahli,N/A
@@ -1022,7 +1022,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1021,Mohammed Abdullah Al Araimi,Male,,m_3rimi@hotmail.com,Comedy,Lifestyle,All Others,Oman,,USA,m_3rimi,,m_3rimi,,,,N/A
 1022,Mohammed Abdulrahman,Male,,moh.abdulrhman1@gmail.com,Comedy,,All Others,KSA,,KSA,i_mede,,i_mede,,,,N/A
 1023,Mohammed Ahli,Male,,mohdaahli_mohdaahli@hotmail.com,Photography,Travel,All Others,UAE,,UAE,mohdaahli,,,,,,N/A
-1024,Mohammed Al Bulushi,Male,,ieqzphoto@hotmail.com,Lifestyle,Music,All Others,KSA,,KSA,ieqz,,iiEqz,,,iEqz | محمد,N/A
+1024,Mohammed Al Bulushi,Male,,ieqzphoto@hotmail.com,Lifestyle,Music,All Others,KSA,,KSA,ieqz,,iiEqz,,,,N/A
 1025,Mohammed Al Dakhieel,Male,,mohammed.a.aldakhil@gmail.com,Travel,,All Others,KSA,,KSA,mohammed_aldakhieel,,,,,,N/A
 1026,Mohammed Al Hammadi,Male,,alhammadi.mohamed@gmail.com,Journalist,Writer,All Others,UAE,,UAE,mohamed_alhammadi,,,,,,N/A
 1027,Mohammed Al Kaabi,Male,,mohframes@gmail.com,Photography,Videography,All Others,UAE,,UAE,mohframes,,,,,,N/A
@@ -1055,7 +1055,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1054,Muna Busamra,Female,,DM,Journalist,,All Others,UAE,,UAE,munabusamra,,,MunaBusamra,,,N/A
 1055,Musaab Al Muassbi,Male,,musab.mj66@gmail.com,Photography,Travel,All Others,UAE,,UAE,_mj66,,,,,,N/A
 1056,Musaed Al Mutri,Male,,musaed_2020@hotmail.com,Art Director,Fashion,All Others,KWT,,KWT,musaed_1980,,,,,,N/A
-1057,Musalam Al Seiari,Male,,DM,Travel,,All Others,UAE,,UAE,ej2,,v711v,alseiari01,,Busalman مسلم الصيعري بوسلمان,N/A
+1057,Musalam Al Seiari,Male,,DM,Travel,,All Others,UAE,,UAE,ej2,,v711v,alseiari01,,,N/A
 1058,Nabeel Merchant,Male,,nabeel.shabbir@gmail.com,Fitness,Photography,All Others,India,,UAE,lifeofprodigy,,,,,,N/A
 1059,Naccache Eya,Female,,contact.eyanch@gmail.com,Beauty,Fashion,All Others,Tunisia,,Tunisia,eya.naccache,,,,,,N/A
 1060,Nada,Female,,DM,Health,Mother,All Others,KSA,,KSA,nada_moments,,,,,,N/A
@@ -1079,7 +1079,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1078,Nawaf Alabid,Male,,nawaf@dic.io,Athlete,Football,All Others,KSA,,KSA,nawaf.2424.alabid,,n.alabid,,,,N/A
 1079,Nayla Al Khaja,Female,,inquiry@naylaalkhaja.com,Film Director,Writer,All Others,UAE,,UAE,naylaalkhaja,,,,,,N/A
 1080,Nayri Estepania,Female,,info@nayrittastalk.com,Health,Lifestyle,All Others,Armenia,Lebanon,UAE,nayritta,,,,,,N/A
-1081,Naz,Male,,dl_naz@linecorp.com,Entertainment,,All Others,KSA,,KSA,nazkld,,,nazkld,,Naz | ناز,N/A
+1081,Naz,Male,,dl_naz@linecorp.com,Entertainment,,All Others,KSA,,KSA,nazkld,,,nazkld,,,N/A
 1082,Neda Shadisani,Female,,DM,Beauty,Entrepreneur,All Others,,,UAE,nedashadisani,,,,,,N/A
 1083,Nicola Brown,Female,,thelittlebrownblog@gmail.com,Family,Lifestyle,All Others,,,UAE,thelittlebrownblog,,,,,,N/A
 1084,Nicole,Female,,nicole_ontrend@hotmail.com,Fashion,Luxury,All Others,UK,,UAE,nicole_ontrend,,,,,,N/A
@@ -1107,12 +1107,12 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1106,Omar Al Rashood,Male,,sauditraveler1@gmail.com,Travel,,All Others,KSA,,KSA,sauditraveler,,,,,,N/A
 1107,Omar Aziz,Male,,hi@omaraziz.photo,Beauty,Fashion,All Others,KSA,,KSA,omarazizworkshops,,,,,,N/A
 1108,Omar Dossary,Male,,omar_dossary@hotmail.com,Lifestyle,,All Others,KSA,,KSA,omar_dossary,,,,,,N/A
-1109,Omar Zuhair,Male,,omar.zuhair.8@gmail.com,Gaming,,All Others,KSA,,KSA,spookiman8,,spookisnap,,,Spooki | سبوكي,N/A
-1110,Osama Marwah,Male,,osamamarwah@gmail.com,Entertainment,,All Others,Syria,,KSA,ossymarwah,,ossy.marwah,,,Osama Marwah I اسامة مروة,N/A
+1109,Omar Zuhair,Male,,omar.zuhair.8@gmail.com,Gaming,,All Others,KSA,,KSA,spookiman8,,spookisnap,,,,N/A
+1110,Osama Marwah,Male,,osamamarwah@gmail.com,Entertainment,,All Others,Syria,,KSA,ossymarwah,,ossy.marwah,,,,N/A
 1111,Osob,Female,,contact@osobbeauty.com,Beauty,Fashion,All Others,Canada,,Canada,osobbeauty,,,,,,N/A
 1112,Oyac Mike,Male,,frenchrivieracoaching@gmail.com,Father,Fitness,All Others,France,,UAE,coachmikedubai,,,,,,N/A
 1113,Pamela Chelela,Female,,pamelachelala@gmail.com,Beauty,Fashion,All Others,Lebanon,,Lebanon,pamelachelela,,,,,,N/A
-1114,Pamela Koueik,Female,,pamelakoueik@gmail.com,Beauty,Fashion,All Others,Lebanon,,UAE,pamelakoueik,,,,,Pamela Koueik باميلا قويق,N/A
+1114,Pamela Koueik,Female,,pamelakoueik@gmail.com,Beauty,Fashion,All Others,Lebanon,,UAE,pamelakoueik,,,,,,N/A
 1115,Paria Ghorashi,Female,,paria@blowoutandgo.com,Beauty,Entrepreneur,All Others,Norway,,UAE,pariaghorashi,,,,,,N/A
 1116,Paris Smith,Female,,parissmith98@gmail.com,Fashion,Lifestyle,All Others,UK,,USA,p.smth,,,,,,N/A
 1117,Patricia Kallidis,Female,,patrciakallidis24@gmail.com,Fitness,Lifestyle,All Others,,,UAE,patriciakallidis,,,,,,N/A
@@ -1198,8 +1198,8 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1197,Sandra Boghos Letayf,Female,,sandyskitchendxb@gmail.com,Chef,Food,All Others,Lebanon,,UAE,sandyskitchendxb,,,,,,N/A
 1198,Sanin Khilonewala,Male,,DM,Fashion,Food,All Others,India,,UAE,saninkhilonewala,saninsalewala,saninsalewala,,,,N/A
 1199,Sara,Female,,sara@saraindubai.com,Fashion,Lifestyle,All Others,Algeria,,UAE,saraindubai,,,,,,N/A
-1200,Sara Abdel Salam,Female,,DM,Chef,Food,All Others,Egypt,,Egypt,sara.abdel.salam,,,,chefsaraabdelsalam,سارة عبد السلام Sara Abdel Salam,N/A
-1201,Sara Sabry,Female,,info@sarasabry.com,Beauty,Fashion,All Others,Egypt,,Canada,sarasabry,,,sarasabry_,,LifeWizSara | لايف ويذ سارة,N/A
+1200,Sara Abdel Salam,Female,,DM,Chef,Food,All Others,Egypt,,Egypt,sara.abdel.salam,,,,chefsaraabdelsalam,,N/A
+1201,Sara Sabry,Female,,info@sarasabry.com,Beauty,Fashion,All Others,Egypt,,Canada,sarasabry,,,sarasabry_,,,N/A
 1202,Sara Trindade Beato,Female,,info@saraffair.com,Fashion,Fitness,All Others,Portugal,,Germany,saraffair,,,,,,N/A
 1203,Sarah Abul Ela,Female,,sarah.abulela@gmail.com,Beauty,Fashion,All Others,Lebanon,,Lebanon,sabulela,,,,,,N/A
 1204,Sarah Belhasa,Female,,store@studio8fashion.ae,Fashion,,All Others,UAE,,UAE,studio8fashion,,,,,,N/A
@@ -1239,12 +1239,12 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1238,Sulaiman Waleed Radwan,Male,,esaalaam@hotmail.com,Entrepreneur,Travel,All Others,KSA,,KSA,sulaiman.plus,,,,,,N/A
 1239,Sultan Al Ameemi,Male,,DM,Author,,All Others,UAE,,UAE,sultanbuamim,,,,,,N/A
 1240,Sultan Al Jamal,Male,,DM,Lifestyle,Travel,All Others,UAE,,UAE,drsultanaljamal,,sultanaljamal,DrSultanAlJamal,,,N/A
-1241,Sultan Al Shehr,Male,,sultan@momentsa.com,Film Director,Lifestyle,All Others,KSA,,KSA,sultanalshehr1,,,,,moment لحظه,N/A
+1241,Sultan Al Shehr,Male,,sultan@momentsa.com,Film Director,Lifestyle,All Others,KSA,,KSA,sultanalshehr1,,,,,,N/A
 1242,Surabhi Sehgal,Female,,supaintsonplates@gmail.com,Food,Chef,All Others,India,,UAE,supaintsonplates,,,,,,N/A
 1243,Szandrella,Female,,szandrella_dxb@hotmail.com,Entrepreneur,Lifestyle,All Others,Syria,,UAE,szandrella,,,,,,N/A
 1244,Taghred Chandab,Female,,DM,Lifestyle,Mother,All Others,Australia,,UAE,arabianmum,,,,,,N/A
 1245,Tahani Al Qamees,Female,,DM,Chef,Food,All Others,KWT,,KWT,chef_tahani_alqamees,,,,,,N/A
-1246,Taimour Mauge,Female,,DM,Chef,Food,All Others,Jordan,,Jordan,taimourmauge,,,,,Chefman - تيمور الموج,N/A
+1246,Taimour Mauge,Female,,DM,Chef,Food,All Others,Jordan,,Jordan,taimourmauge,,,,,,N/A
 1247,Tala Soubra,Female,,talasoubra@gmail.com,Chef,Food,All Others,Lebanon,,UAE,talasoubra,,,,,,N/A
 1248,Talal Ousley,Female,,talah@talaousley.com,Child Model,Fashion,All Others,KSA,KWT,KWT,talah_ousley09,,talah_ousley09,,,,N/A
 1249,Tam Khan,Male,,DM,Actor,Entrepreneur,All Others,Afghanistan,UK,UAE,tam_khan,,,Tam_Khan,,,N/A
@@ -1304,26 +1304,26 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1303,Abed Fahed,Male,,,Actor,,Celebrities,Syria,,UAE,abed.fahed,,,AbedFahed,,,Campaign
 1304,Abu Music,Male,,,Singer,,Celebrities,Egypt,,Egypt,abumusic,,,,abumusic,Abu music,Galeria
 1305,Ahmed Helmy,Male,,,Actor,,Celebrities,Egypt,,Egypt,ahmedhelmy,,,ahelmy,AhmedHelmy,,Esquire ME
-1306,Ahmed Amin,Male,,,Actor,,Celebrities,Egypt,,Egypt,ahmedsayedamin,,,AhmedAmin,Ahmed Amin أحمد أمين,,Campaign
+1306,Ahmed Amin,Male,,,Actor,,Celebrities,Egypt,,Egypt,ahmedsayedamin,,,AhmedAmin,,,Campaign
 1307,Aimee Sayyah,Female,,,Actress,TV Presenter,Celebrities,Lebanon,,UAE,aimeesayah,,,AimeeSayah,AimeeSayah,,Campaign
 1308,Ali Saleh,Male,,,Athlete,Football,Celebrities,UAE,,UAE,alisaleh.7,,,,,,Email
 1309,Aseel Omran,Female,,,Singer,,Celebrities,KSA,,UAE,aseel,,,Aseel,,Aseel,Campaign
-1310,Balqess Fathi,Female,,,Singer,,Celebrities,UAE,,UAE,balqeesfathi,,,BalqeesFathi,BalqeesOfficial,Balqees | بلقيس,Campaign
+1310,Balqess Fathi,Female,,,Singer,,Celebrities,UAE,,UAE,balqeesfathi,,,BalqeesFathi,BalqeesOfficial,,Campaign
 1311,Dolly Ayash,Female,,,TV Presenter,,Celebrities,Lebanon,,Lebanon,dollyayash,,,,DollyAyashOfficialPage,,Campaign
 1312,Dorra Zarrouk,Female,,,Actress,,Celebrities,Tunisia,,Egypt,dorra_zarrouk,,,dorra_zarrouk,dorrazarrouk,,Campaign
-1313,Eida Al Menhali,Male,,,Singer,,Celebrities,UAE,,UAE,eida1almenhali,,,Eida1Almenhali,,عيضه المنهالي | Eida Al Menhali,Potential Campaign
+1313,Eida Al Menhali,Male,,,Singer,,Celebrities,UAE,,UAE,eida1almenhali,,,Eida1Almenhali,,,Potential Campaign
 1314,Elissa,Female,,,Singer,,Celebrities,Lebanon,,Lebanon,elissazkh,,,elissazkh,ElissaFans,Elissa,Campaign
-1315,Fayez Al Saeed,Male,,,Singer,,Celebrities,UAE,,UAE,fayez_alsaeed,,,FayezOfficial,,Fayez AlSaeed | فايز السعيد,Campaign
+1315,Fayez Al Saeed,Male,,,Singer,,Celebrities,UAE,,UAE,fayez_alsaeed,,,FayezOfficial,,,Campaign
 1316,Haifa Wehbe,Female,,,Singer,,Celebrities,Lebanon,,Lebanon,haifawehbe,,,HaifaWehbe,HaifaWehbe,Haifa Wehbe,Harpers Bazaar
 1317,Hatan Bahbri,Male,,,Athlete,Father,Celebrities,KSA,,KSA,bahbri27,,lastkings-11,bahhbri27,,,Campaign
 1318,Hisham,Male,,,Actor,TV Presenter,Celebrities,KSA,,KSA,hishamstar,,HishamStar,HishamStar,,,Potential Campaign
 1319,Husain Al Moqahwi,Male,,,Athlete,Football,Celebrities,KSA,,KSA,hossuinn11,,hossuinn,,,,Other
-1320,Hussain Al Jassmi,Male,,,Singer,,Celebrities,UAE,,UAE,7sainaljassmi,,,7sainaljassmi,hussainaljassmi,Hussain Al Jassmi | حسين الجسمي,Potential Campaign
+1320,Hussain Al Jassmi,Male,,,Singer,,Celebrities,UAE,,UAE,7sainaljassmi,,,7sainaljassmi,hussainaljassmi,,Potential Campaign
 1321,Joelle Mardinian,Female,,,TV Presenter,,Celebrities,Lebanon,,UAE,joellemardinian,,,JoelleMardinian,JoelleMardinian,Joelle Mardinian,Potential Campaign
-1322,Lojain Omran,Female,,,TV Presenter,,Celebrities,KSA,,UAE,lojain_omran,,Lojain.omran,,,Lojain Omran | لجين عمران,Potential Campaign
+1322,Lojain Omran,Female,,,TV Presenter,,Celebrities,KSA,,UAE,lojain_omran,,Lojain.omran,,,,Potential Campaign
 1323,Mayssa Maghrebi,Female,,,Actress,,Celebrities,Morocco,UAE,UAE,mayssamaghrebi,,only_mayssa,mayssamaghrebi,Mayssa Maghrebi,,Potential Campaign
 1324,Mo Salah,Male,,,Athlete,Football,Celebrities,Egypt,,UK,mosalah,,,MoSalah,momosalah,,Potential Campaign
-1325,Mohamad Al Shehi,Male,,,Singer,,Celebrities,UAE,,UAE,malsh7i,,,mallsh7i,Mohamed Alshehhi - محمد الشحي,Mohamed AlShehhi | محمد الشحي,Potential Campaign
+1325,Mohamad Al Shehi,Male,,,Singer,,Celebrities,UAE,,UAE,malsh7i,,,mallsh7i,,,Potential Campaign
 1326,Mohamed Henedy,Male,,,Actor,,Celebrities,Egypt,,Egypt,henedythereal,,,,,,Campaign
 1327,Mohamed Karim,Male,,,Actor,,Celebrities,Egypt,,Egypt,mk_mohamedkarim,,,mokarimstar,mokarimpage,,ITP Live
 1328,Mohamed Ramadan,Male,,,Actor,Singer,Celebrities,Egypt,,Egypt,mohamedramadanws,mohamedramadanws,,mohamed_ramadan,Ramadan,Mohamed Ramadan,N/A
@@ -1333,12 +1333,12 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1332,Ola Roshdy,Female,,,Actress,Comedian,Celebrities,Egypt,,Egypt,ola.roshdy,,ORoshdy,,Ola Roshdy,Ola Roshdy,Campaign
 1333,Raya Abi Rached,Female,,,TV Presenter,,Celebrities,Lebanon,,UAE,rayaofficial,,,RAYAofficial,RayaOfficial,,Campaign
 1334,Salem Al Dawsari,Male,,,Athlete,Football,Celebrities,KSA,,KSA,29salem,,Salem-29,,,,Other
-1335,Sally Fouad,Female,,,Chef,Food,Celebrities,Egypt,,Egypt,sally_fou2ad,,,,Sally Fouad سالي فؤاد,,Campaign
-1336,Shamma Hamdan,Female,,,Singer,,Celebrities,UAE,,UAE,shamma1hamdan,,,Shamma_Hamdan,,Shamma Hamdan | شمه حمدان,Potential Campaign
+1335,Sally Fouad,Female,,,Chef,Food,Celebrities,Egypt,,Egypt,sally_fou2ad,,,,,,Campaign
+1336,Shamma Hamdan,Female,,,Singer,,Celebrities,UAE,,UAE,shamma1hamdan,,,Shamma_Hamdan,,,Potential Campaign
 1337,Sherine Rida,Female,,,Actress,,Celebrities,Egypt,,Egypt,shereenredaofficial,,,ShereenReda,ShehreenRedaOfficial,,Potential Campaign
 1338,Stephanie Saliba,Female,,,Actress,,Celebrities,Lebanon,,Lebanon,stephaniesalibaofficial,,,stephy_saliba,Stephanie Saliba Official,,We have her contact
 1339,Valerie Abu Chakra,Female,,,Actress,,Celebrities,Lebanon,,Lebanon,valerieabouchacra,,,,valerieabouchacraofficial,,We have her contact
-1340,Wissam Breidy,Male,,,TV Presenter,,Celebrities,Lebanon,,Lebanon,wissambreidy,,Balqees,,BalqeesOfficial,Balqees | بلقيس,Potential Campaign
+1340,Wissam Breidy,Male,,,TV Presenter,,Celebrities,Lebanon,,Lebanon,wissambreidy,,Balqees,,BalqeesOfficial,,Potential Campaign
 1341,Yosra,Female,,,Actress,,Celebrities,Egypt,,Egypt,youssra,,,Youssra,YoussraOfficial,,We have her contact
 1342,Zeina Yazigi,Female,,,TV Presenter,,Celebrities,Syria,,UAE,zeinayazigiofficial,,,zyazigi,yazigizeina,,We have her contact
 1343,Mohamed Al Shehi,Male,,,Artist,Singer,Celebrities,UAE,,UAE,malsh7i,,,,,,N/A
@@ -1396,10 +1396,10 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1395,Salama Mohamed,Female,,salama@humanagement.me,Fashion,Lifestyle,Agencies,UAE,,UAE,salamamohamed,,,,,,HuManagement (Blacklisted)
 1396,Shirine Halwani,Male,,byshirine@humanagement.me,Fashion,Lifestyle,Agencies,Lebanon,,UAE,byshirine,,,,,,HuManagement (Blacklisted)
 1397,Yasmine Sabri,Female,,info@yasminesabri.net,Actress,,Agencies,Egypt,,Egypt,yasmine_sabri,,,,,,HuManagement (Blacklisted)
-1398,Anad Dhoomy,Male,,d7oomy999@diwangroup.com,Entertainment,Gaming,Agencies,KSA,,KSA,d7oomy999_official,,d7oomysnap,d7oomy_999,,d7oomy_999 | دحومي٩٩٩,Diwan
+1398,Anad Dhoomy,Male,,d7oomy999@diwangroup.com,Entertainment,Gaming,Agencies,KSA,,KSA,d7oomy999_official,,d7oomysnap,d7oomy_999,,,Diwan
 1399,Azza Zarour,Female,,azza.zarour@gmail.com,Music,Singer,Agencies,Syria,,UAE,azzazarour,,,,,,Diwan
 1400,Dyler,Male,,dyler@diwangroup.com,Entertainment,Fashion,Agencies,KSA,,KSA,dyl3r,,,,,,Diwan
-1401,Fayhan,Male,,ads@diwangroup.com,Entertainment,Family,Agencies,KSA,,KSA,fehan222,,feehan777,,,عائلة فيحان,Diwan
+1401,Fayhan,Male,,ads@diwangroup.com,Entertainment,Family,Agencies,KSA,,KSA,fehan222,,feehan777,,,,Diwan
 1402,Lojain Omran,Female,,lojain.pr@gmail.com,TV Presenter,,Agencies,KSA,,KSA,lojain_omran,,,,,,Diwan
 1403,Meshari Binsuwaylim,Male,,ozx@diwangroup.com,Entertainment,Gaming,Agencies,KSA,,KSA,itsozx,,,,,Its OZX,Diwan
 1404,Mina Al Sheihkly,Female,,minaalsheikhly@outlook.com,Beauty,Fashion,Agencies,Iraq,,UAE,minalsheikhly,,,,,,Diwan
@@ -1407,7 +1407,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1406,Narins,Female,,naroammara@gmail.com,Beauty,Lifestyle,Agencies,Syria,,Sweden,narins_beauty,,,,,,Diwan
 1407,Noor Stars,Female,,noorstars26@gmail.com,Beauty,Entertainment,Agencies,Iraq,,KSA,noorstars,,,,,,Diwan
 1408,Sherin Amara,Female,,Sherinamara2004@gmail.com,Beauty,Fashion,Agencies,Syria,,Sweden,sherinsbeauty,,,,,,Diwan
-1409,Waled AlGhaber,Male,,walid@diwangroup.com,Comedy,Entertainment,Agencies,KSA,,KSA,go_ne88,,,,,وليد الغابر,Diwan
+1409,Waled AlGhaber,Male,,walid@diwangroup.com,Comedy,Entertainment,Agencies,KSA,,KSA,go_ne88,,,,,,Diwan
 1410,Yousef Ahmed,Male,,yousef@diwangroup.com,Entertainment,,Agencies,KSA,,KSA,yosof_aq,,,,,Yousef Ahmed,Diwan
 1411,Maha Jaafar,Female,,mahaajaafar@gmail.com,Comedy,Dentist,Agencies,Sudan,,UAE,maha1aj,,,,,Maha AJ,Kharabeesh
 1412,Haifa Beseisso,Female,,haifa.beseisso@gmail.com,Travel,,Agencies,Palestine,,UAE,flywithhaifa,,,,,,Kharabeesh
@@ -1423,12 +1423,12 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1422,Sausan Al Kadi,Female,,sausan@dcatchers.com,Beauty,Fashion,Agencies,KSA,,KSA,stylemesausan,,,,,,Dcatchers
 1423,Yara Alnamlah,Female,,yara.makeup5@gmail.com,Beauty,,Agencies,KSA,,KSA,yara.makeup,,,,,,Dcatchers
 1424,Raoum,Female,,sukkari@dcatchers.com,Fitness,Health,Agencies,KSA,,KSA,sukkarilife,,sukkarilife,,,Sukkari Life,Dcatchers
-1425,Baha Mohammad,Male,,C7GAMING@pwr.gg,Gaming,,Agencies,KSA,,KSA,c7gaming1999,,,C7Gaming1999,,C7GAMING - خشب,Power eSport
+1425,Baha Mohammad,Male,,C7GAMING@pwr.gg,Gaming,,Agencies,KSA,,KSA,c7gaming1999,,,C7Gaming1999,,,Power eSport
 1426,Faisal Yjy,Male,,ixYjYx@gmail.com,Gaming,,Agencies,KSA,,KSA,yjyfaisal,,,xYjYx,,xxYjYxx,Power eSport
 1427,Rakanoo,Male,,r4kanoo@gmail.com,Gaming,,Agencies,KSA,,KSA,r4kanoo,,rakanoo,lRAlKAN,,Rakanoo,Power eSport
-1428,Saad Bin Faisal,Male,,sopfix@pwr.gg,Gaming,,Agencies,KSA,,KSA,sopfix,,sopfix,iSopFix,,SopFix l سعد,Power eSport
+1428,Saad Bin Faisal,Male,,sopfix@pwr.gg,Gaming,,Agencies,KSA,,KSA,sopfix,,sopfix,iSopFix,,,Power eSport
 1429,Shong Bong,Male,,SXB@pwr.gg,Gaming,,Agencies,KSA,,KSA,shongxbong,,a7med.mo,SHoNgxBoNgYT,,SHoNgxBoNg,Power eSport
-1430,Swelly,Male,,swelly@pwr.gg,Gaming,,Agencies,KSA,,KSA,i.n9,,hussein_sm,nowe9r,,نويصر/ Swelyy,Power eSport
+1430,Swelly,Male,,swelly@pwr.gg,Gaming,,Agencies,KSA,,KSA,i.n9,,hussein_sm,nowe9r,,,Power eSport
 1431,Amoory,Male,,nikita@bukhashbrothers.ae,Athlete,,Agencies,UAE,,UAE,amoory10,,,,,,Bukhash Brothers
 1432,Anas Bukhash,Male,,anas@anasbukhash.com,Entrepreneur,Speaker,Agencies,UAE,,UAE,anasbukhash,,,,,,Bukhash Brothers
 1433,Aseel Omran,Female,,aseel3omran@gmail.com,Music,Singer,Agencies,KSA,,UAE,aseel,,,,,,Bukhash Brothers
@@ -1493,24 +1493,24 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1492,Karen Mattar,Female,,karenmattar@egoandeast.co,Fitness,,Agencies,Lebanon,,UAE,karenmattar,,,,,,Ego & East
 1493,Karen Wazen,Female,,karenwazen@egoandeast.co,Beauty,Lifestyle,Agencies,Lebanon,,UAE,karenwazenb,,,,,,Ego & East
 1494,Sarah Angius,Female,,sarahangius@egoandeast.co,Beauty,,Agencies,Iraq,,Netherlands,sarahangius,,,,,,Ego & East
-1495,Amy Roko,Female,,amyroko@sandcircus.com,Comedy,Entertainment,Agencies,KSA,,KSA,amyroko,amyroko,amyroko,AmyRoko,,Amy Roko ايمي روكو,Sand Circus
+1495,Amy Roko,Female,,amyroko@sandcircus.com,Comedy,Entertainment,Agencies,KSA,,KSA,amyroko,amyroko,amyroko,AmyRoko,,,Sand Circus
 1496,Hadeel Marei,Female,,hadeel.marei@sandcircus.com,Comedy,Entertainment,Agencies,Egypt,,UAE,hadeelmarei,hadeel1marei,,,,Hadeel Marei,Sand Circus
-1497,Sara Sabry,Female,,sara.sabry@sandcircus.com,Beauty,Fashion,Agencies,Canada,Egypt,KSA,sarasabry,sarasabry_,,sarasabry_,,LifeWizSara | لايف ويذ سارة,Sand Circus
+1497,Sara Sabry,Female,,sara.sabry@sandcircus.com,Beauty,Fashion,Agencies,Canada,Egypt,KSA,sarasabry,sarasabry_,,sarasabry_,,,Sand Circus
 1498,Molham,Female,,molham@sandcircus.com,Music,Rapper,Agencies,KSA,,KSA,molham,molham,molhamofficial,,,Molham مُلهَم,Sand Circus
 1499,Sarah,Female,,itsara.ae@sandcircus.com,Beauty,Fashion,Agencies,KSA,,KSA,itsara.ae,itsara.ae,,,,,Sand Circus
 1500,Sumaya Rida,Female,,DM,Fashion,Lifestyle,Agencies,KSA,,KSA,sumayarida,,,,,,Sand Circus
 1501,Hanoody,Male,,hanody4business@gmail.com,Entertainment,Music,Agencies,KSA,,KSA,hanody_awesome,,,Hanody_Awesome,,HANODY AWESOME !,Galaxy Racer
-1502,Abdallah,Male,,DM,Comedy,Entertainment,Agencies,KSA,,KSA,ad.1,amtopz,,,,توبز TOPZ,Galaxy Racer
+1502,Abdallah,Male,,DM,Comedy,Entertainment,Agencies,KSA,,KSA,ad.1,amtopz,,,,,Galaxy Racer
 1503,Hassan Suleiman,Male,,aboflah1122@gmail.com,Gaming,Call of Duty,Agencies,KSA,,KSA,aboflah_1,,aboflah_1,AboFlah_1,,AboFlah,Galaxy Racer
 1504,Naji Elqaq,Male,,elqaqcontact@gmail.com,Comedy,Entertainment,Agencies,Jordan,,Jordan,elqaq,elqaq,elqaq,,elqaq,Naji Elqaq,Galaxy Racer
 1505,Banderita,Male,,banderitax.ads@gmail.com,Gaming,Variety,Agencies,KSA,,KSA,banderita_x,,,BanderitaX,,BanderitaX,Sudor Sports Gaming
 1506,Abdulrahman Alghofaily,Male,,FFearFFul@sudorteam.com,Gaming,Variety,Agencies,KSA,,KSA,ffearfful,,ffearfful,FFearFFul,,FFearFFul,Sudor Sports Gaming
-1507,Abdul Aziz,Male,,glore19mu@outlook.com,FIFA,Gaming,Agencies,KSA,,KSA,glory19mu,,,Glory19MU,,جلوري GLORY l,Sudor Sports Gaming
-1508,Abu Abed,Male,,3gamings.ads@gmail.com,Gaming,Variety,Agencies,KSA,,KSA,3gamings,,gaming3s,3GamingSA,,3Gaming - أبوعابد,Sudor Sports Gaming
+1507,Abdul Aziz,Male,,glore19mu@outlook.com,FIFA,Gaming,Agencies,KSA,,KSA,glory19mu,,,Glory19MU,,,Sudor Sports Gaming
+1508,Abu Abed,Male,,3gamings.ads@gmail.com,Gaming,Variety,Agencies,KSA,,KSA,3gamings,,gaming3s,3GamingSA,,,Sudor Sports Gaming
 1509,Mohamed,Male,,xsma333ad@gmail.com,Gaming,Variety,Agencies,KSA,,KSA,xsma333,,,xSMA333,,xSMA333,Sudor Sports Gaming
 1510,Baraa,Male,,baraacontact@gmail.com,Entertainment,Gaming,Agencies,KSA,,KSA,braabakrii,,,braabakri,,BARAA,Sudor Sports Gaming
 1511,DRTH,Male,,drthtwitter@gmail.com,Gaming,Variety,Agencies,KSA,,KSA,drth7,,,Drth7,,DRTH,Sudor Sports Gaming
-1512,KHD6,Male,,N/A,Fortnite,Gaming,Agencies,KSA,,KSA,N/A,,,,,KHD6 - كهد,Sudor Sports Gaming
+1512,KHD6,Male,,N/A,Fortnite,Gaming,Agencies,KSA,,KSA,N/A,,,,,,Sudor Sports Gaming
 1513,Ahmad Hossam,Male,,ahmedhossam001@gmail.com,Travel,,Avoid,Egypt,,UAE,ahmedhossam11511,,,,,Ahmed Hossam,Not Co-operative
 1514,Aishwarya Ajit,Female,,aishwarya.ajit.official@gmail.com,Beauty,Fashion,Avoid,India,,UAE,aishwarya.ajit,,,,,Aishwaraya Jit,x ITP Live
 1515,Alanoud Badr,Female,,pr@fozazza.com,Fashion,TV Presenter,Avoid,KSA,Lebanon,UAE,fozaza,,,,,,Not Co-operative
@@ -1562,7 +1562,7 @@ id,Name,Gender,Number,Email,MainVertical,SubVertical,ItpRelationship,Nationality
 1561,Bayan Linjawi,Female,,info@justbayan.com,Lifestyle,,Blacklist,KSA,,UAE,just.bayan,,,,,,x ITP Live
 1562,Cee Karam,Female,,infoceekaram@gmail.com,Fashion,,Blacklist,Lebanon,,UAE,ceekaram,,,,,,Email
 1563,Cynthia Sam,Female,,cynthia@humanagement.com,Actress,Fashion,Blacklist,Lebanon,,UAE,cynthiasam,,,,,,HuManagement
-1564,Darin Al Bayed,Female,,darin00013@gmail.com,Comedy,Entertainment,Blacklist,KSA,,KSA,darin00013,,,,,دارين البايض Darin Al Bayed OFFICIAL,Adham
+1564,Darin Al Bayed,Female,,darin00013@gmail.com,Comedy,Entertainment,Blacklist,KSA,,KSA,darin00013,,,,,,Adham
 1565,Deema Al Asadi,Female,,deemakawkar@gmail.com,Beauty,Lifestyle,Blacklist,Iraq,,UAE,deemaalasadi,,,,,,HuManagement
 1566,Dima Sheikhly,Female,,dimaalsheikhly@gmail.com,Beauty,Fashion,Blacklist,Iran,,UAE,dimasheikhly,,,,,,Email
 1567,Dina Al Sharif,Female,,dinalsharif@gmail.com,Beauty,Lifestyle,Blacklist,Palestine,,UAE,dinalsharif,,,,,,HuManagement
