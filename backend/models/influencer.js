@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: null
     },
     Number: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.STRING(50),
       defaultValue: null
     },
     Email: {
