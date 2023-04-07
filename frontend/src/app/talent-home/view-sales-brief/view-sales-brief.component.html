@@ -11,9 +11,11 @@
           {{ this.brief.data.CampaignName }}
         </div>
         <div class="card-body">
-          <p class="card-text">ID: {{ brief.data.id }}</p>
-          <p class="card-text">Agency: {{ brief.data.Agency }}</p>
-          <p class="card-text">Client: {{ brief.data.Client }}</p>
+          <div class="row">
+            <p class="card-text">Agency: {{ brief.data.Agency }}</p>
+            <p class="card-text">Client: {{ brief.data.Client }}</p>
+          </div>
+
           <p class="card-text">Client Industry: {{ brief.data.ClientIndustry }}</p>
           <p class="card-text">Campaign Overview: {{ brief.data.CampaignOverview }}</p>
           <p class="card-text">Campaign Objective: {{ brief.data.CampaignObjective }}</p>
@@ -21,6 +23,35 @@
           <p class="card-text">Number of Recommendations: {{ brief.data.NumberofRecommendations }}</p>
           <p class="card-text">Currency: {{ brief.data.Currency }}</p>
           <p class="card-text">Budget: {{ brief.data.Budget }}</p>
+          <p class="card-text">Campaign Start Date: {{ brief.data.CampaignStartDate | date }}</p>
+          <p class="card-text">Campaign End Date: {{ brief.data.CampaignEndDate | date }}</p>
+          <p class="card-text">Deadline For Recommendations: {{ brief.data.DeadlineForRecommendations }}</p>
+          <p class="card-text">Campaign Message Phase One: {{ brief.data.CampaignMessagePhaseOne }}</p>
+          <p class="card-text">Campaign Message Phase Two: {{ brief.data.CampaignMessagePhaseTwo }}</p>
+          <p class="card-text">Campaign Message Phase Three: {{ brief.data.CampaignMessagePhaseThree }}</p>
+          <p class="card-text">Content Deliverables: {{ brief.data.ContentDeliverables }}</p>
+          <p class="card-text">Brand Exclusivity Duration in Days: {{ brief.data.BrandExclusivityDurationinDays }}</p>
+          <p class="card-text">Video Production: <span *ngIf="brief.data.VideoProduction == 1"> Yes </span> <span *ngIf="brief.data.VideoProduction == 0"> No</span></p>
+          <p class="card-text">Video Editing: <span *ngIf="brief.data.VideoEditing == 1"> Yes </span> <span *ngIf="brief.data.VideoEditing == 0"> No</span></p>
+          <p class="card-text">Influencer Age Range: {{ brief.data.InfluencerAgeRange }}</p>
+          <p class="card-text">Influencer Location: {{ brief.data.InfluencerLocation }}</p>
+          <p class="card-text">Influencer Nationality: {{ brief.data.InfluencerNationality }}</p>
+          <p class="card-text">Influencer Gender: {{ brief.data.InfluencerGender }}</p>.
+          <p class="card-text">Similar Profile Link: {{ brief.data.SimilarProfileLink }}</p>
+          <p class="card-text">Influencer Interest: {{ brief.data.InfluencerInterest }}</p>
+          <p class="card-text">Influencer Number Of Followers: {{ brief.data.InfluencerNumberOfFollowers }}</p>
+          <p class="card-text">Note For Number Of Followers: {{ brief.data.NoteForNumberOfFollowers }}</p>
+          <p class="card-text">Audience Location: {{ brief.data.AudienceLocation }}</p>
+          <p class="card-text">Audience Nationality: {{ brief.data.AudienceNationality }}</p>
+          <p class="card-text">Audience Gender: {{ brief.data.AudienceGender }}</p>
+          <p class="card-text">Audience Interest: {{ brief.data.AudienceInterest }}</p>
+          <p class="card-text">Confirmed Influencer Handles: {{ brief.data.ConfirmedInfluencerHandles }}</p>
+          <p class="card-text">Previous Brand Ambassadors Name: {{ brief.data.PreviousBrandAmbassadorsName }}</p>
+
+
+
+
+
           <p class="card-text">Created by ID: {{ brief.data.CreatedbyID }}</p>
           <p class="card-text">Viewed by Talent:<span *ngIf="brief.data.ViewedByTalent == 1"> Yes </span> <span *ngIf="brief.data.ViewedByTalent == 0"> No</span></p>
           <p class="card-text">Ready: {{ brief.data.Ready }}</p>

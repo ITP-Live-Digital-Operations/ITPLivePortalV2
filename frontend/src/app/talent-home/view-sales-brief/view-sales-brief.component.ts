@@ -42,7 +42,7 @@ export class ViewSalesBriefComponent implements OnInit{
     this.activatedRoute.params.subscribe( params => {
       this.id = params['id']
       this.salesService.getSalesBrief(this.id).subscribe((data: any) => {
-
+        console.log(data);
         this.brief = data;
 
 

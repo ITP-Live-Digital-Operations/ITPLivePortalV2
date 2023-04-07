@@ -33,3 +33,8 @@ body {
   max-width: auto;
   margin: 0 auto;
 }
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -464,3 +464,8 @@ export const deliverables ={
   Facebook: ['Facebook posts', 'Facebook videos', 'Facebook partnerships and collaborations'],
   Youtube: ['Youtube videos', 'Youtube partnerships and collaborations']
 }
+
+export const arabCountries= ["Algeria", "Bahrain", "Eygpt", "Iraq", "Jordan", "Kuwait", "Lebanon", "Libya", "Morocco", "Oman", "Qatar", "SaudiArabia", "Syria", "Tunisia", "UAE"]
+
+
+
