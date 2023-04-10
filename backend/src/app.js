@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
-const msal = require('@azure/msal-node');
+/* const msal = require('@azure/msal-node'); */
 
 
 
@@ -36,7 +36,7 @@ app.use(cors({
 }
 ));
 
-const msalConfig = {
+/* const msalConfig = {
   auth: {
     clientId: 'cc55790a-85af-4585-8380-27647cb3a361',
     authority: 'https://login.microsoftonline.com/5f865142-0d0d-438b-92fe-96e73f712ad1',
@@ -52,10 +52,10 @@ const msalConfig = {
     },
   },
 };
+ */
+/* const msalClient = new msal.ConfidentialClientApplication(msalConfig); */
 
-const msalClient = new msal.ConfidentialClientApplication(msalConfig);
-
-async function getAccessToken() {
+/* async function getAccessToken() {
   const tokenRequest = {
     scopes: ['https://analysis.windows.net/powerbi/api/.default'],
   };
@@ -67,7 +67,7 @@ async function getAccessToken() {
     console.error('Error acquiring token', error);
     throw error;
   }
-}
+} */
 
 app.get('/api/powerbi/token', async (req, res) => {
   try {
