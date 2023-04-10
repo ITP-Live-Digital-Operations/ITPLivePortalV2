@@ -13,16 +13,12 @@ export class InfluencerRatingComponent implements OnInit {
 
   ngOnInit(): void {
     this.influencerForm = this.fb.group({
-      authenticity: ['', Validators.required],
-      engagement: ['', Validators.required],
-      transparency: ['', Validators.required],
-      relevance: ['', Validators.required],
-      consistency: ['', Validators.required],
+      responseRate: ['', Validators.required],
+      contentQuality: ['', Validators.required],
       creativity: ['', Validators.required],
-      influence: ['', Validators.required],
-      trustworthiness: ['', Validators.required],
-      responsiveness: ['', Validators.required],
-      personality: ['', Validators.required],
+      flexibility: ['', Validators.required],
+      campaignPerformance: ['', Validators.required],
+
       notes: ['', Validators.maxLength(500)]
     });
   }
@@ -40,44 +36,27 @@ export class InfluencerRatingComponent implements OnInit {
     window.history.back();
   }
 
-  handleClickAuthenticity(index : number) {
-    this.influencerForm.controls['authenticity'].setValue(index);
+  handleClickResponseRate(index : number) {
+    this.influencerForm.controls['responseRate'].setValue(index);
   }
 
-  handleClickEngagement(index : number) {
-    this.influencerForm.controls['engagement'].setValue(index);
+  handleClickContentQuality(index : number) {
+    this.influencerForm.controls['contentQuality'].setValue(index);
   }
-  handleClickTransparency(index : number) {
-    this.influencerForm.controls['transparency'].setValue(index);
-  }
-
-  handleClickRelevance(index : number) {
-    this.influencerForm.controls['relevance'].setValue(index);
-  }
-
-  handleClickConsistency(index : number) {
-    this.influencerForm.controls['consistency'].setValue(index);
-  }
-
   handleClickCreativity(index : number) {
     this.influencerForm.controls['creativity'].setValue(index);
   }
 
-  handleClickInfluence(index : number) {
-    this.influencerForm.controls['influence'].setValue(index);
+  handleClickFlexibility(index : number) {
+    this.influencerForm.controls['flexibility'].setValue(index);
   }
 
-  handleClickTrustworthiness(index : number) {
-    this.influencerForm.controls['trustworthiness'].setValue(index);
+  handleClickCampaignPerformance(index : number) {
+    this.influencerForm.controls['campaignPerformance'].setValue(index);
   }
 
-  handleClickResponsiveness(index : number) {
-    this.influencerForm.controls['responsiveness'].setValue(index);
-  }
 
-  handleClickPersonality(index : number) {
-    this.influencerForm.controls['personality'].setValue(index);
-  }
+
 
 
 
