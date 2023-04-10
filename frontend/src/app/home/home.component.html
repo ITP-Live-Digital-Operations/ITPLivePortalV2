@@ -38,7 +38,7 @@
 
 <mat-sidenav-container>
   <mat-sidenav mode="side" opened #sidenav="matSidenav">
-    <!-- <img class="avatar mat-elevation-z8" src="../../assets/IMG_5891.jpg" /> -->
+    <img *ngIf="userID == 14" class="avatar mat-elevation-z8" src="../../assets/ahmadbashour.jpg" />
 
     <h4>{{userName}} <!-- {{userID}} --></h4>
     <H5 >{{userRole | uppercase}}  </H5>

@@ -15,4 +15,11 @@ export class DataService {
   exportSeeds(){
     return this.http.get(`${this.dataApiURL}/export-seeds`)
   }
+
+  accessToken(){
+    
+    return this.http.get(`${environment.apiUrl}/powerbi/token`)
+  }
 }
+
+

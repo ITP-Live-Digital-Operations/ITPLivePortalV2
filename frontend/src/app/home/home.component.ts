@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   msg: any;
   talentHeadNotificationCount: any;
   talentEmployeeNotificationCount: any;
-
+  
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 

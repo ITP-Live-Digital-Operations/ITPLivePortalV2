@@ -10,6 +10,8 @@ import * as alertify from 'alertifyjs'
 import { MatDialog } from '@angular/material/dialog';
 import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
 
+import * as pbi from 'powerbi-client';
+import { DataService } from 'src/app/core/Services/data.service';
 
 
 @Component({
@@ -20,7 +22,8 @@ import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
 export class InfluencersComponent implements OnInit {
   dataSource: any;
   UserDetails: any;
-
+  accessToken: any
+  private powerBiClient!: pbi.service.Service;
 
 
 
@@ -38,11 +41,15 @@ export class InfluencersComponent implements OnInit {
 
 
 
-  constructor(private service: InfluencerService, private route: Router, private dialog: MatDialog) {}
+  constructor(private service: InfluencerService, private route: Router, private dialog: MatDialog, private dataService: DataService) {}
 
 
   ngOnInit(): void {
     this.GetAllInfluencers();
+
+    this.powerBiClient = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
+    this.getAccessToken();
+
 
   }
 
@@ -106,6 +113,35 @@ export class InfluencersComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'Action'];
+
+
+  getAccessToken(){
+      this.dataService.accessToken().subscribe((response: any) => {
+        console.log(response.accessToken);
+
+        this.accessToken= response.accessToken
+        this.embedReport( this.accessToken, 'c28ad2fc-34a1-40f3-b2e1-87a769a4eaca', '312b092b-23a6-4061-8881-b2486ee44a96' );
+      })
+    }
+
+  embedReport(accessToken: string, reportId: string, groupId: string): void {
+    const reportContainer = <HTMLElement>document.getElementById('reportContainer');
+
+    const embedConfig: pbi.models.IEmbedConfiguration = {
+      type: 'report',
+      id: reportId,
+      groupId: groupId,
+      accessToken: accessToken,
+      embedUrl: `https://app.powerbi.com/reportEmbed?reportId=${reportId}&groupId=${groupId}/ReportSection`,
+      settings: {
+        filterPaneEnabled: false,
+        navContentPaneEnabled: false
+      }
+    };
+
+    this.powerBiClient.embed(reportContainer, embedConfig);
+  }
+
 }
 
 

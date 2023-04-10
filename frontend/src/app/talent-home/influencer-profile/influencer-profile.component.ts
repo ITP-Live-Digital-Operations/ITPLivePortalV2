@@ -19,7 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class InfluencerProfileComponent implements OnInit{
   id: any;
   influencerData : any;
-
+  influencerRating: any;
   dataSource: any;
   UserDetails: any;
 
@@ -34,6 +34,7 @@ export class InfluencerProfileComponent implements OnInit{
       this.id = params['id']
       this.GetInfluencerData(this.id)
       this.GetLogs(this.id)
+      this.GetInfluencerRating(this.id)
 
     })
   }
@@ -43,6 +44,12 @@ export class InfluencerProfileComponent implements OnInit{
         this.influencerData = item;
 
     })}
+
+  GetInfluencerRating(inputdata: any) {
+    return this.service.getAverageInfluencerRating(inputdata).subscribe((item) => {
+        this.influencerRating = item;
+    })
+  }
 
   backButton() {
     /* this.route.navigate(['home/talent/forms']) */

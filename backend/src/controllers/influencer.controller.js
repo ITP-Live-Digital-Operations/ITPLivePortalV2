@@ -155,4 +155,26 @@ exports.createInfluencerRating =  (req, res) => {
     });
 }
 
+exports.getAverageInfluencerRating = (req, res) => {
+    const influencerId = Number(req.params.id);
+    InfluencerRating.findAll({
+         where: { influencer_id: influencerId },
+         attributes: ['responseRate', 'contentQuality', 'creativity', 'flexibility', 'campaignPerformance' ]
+         })
+        .then(data => {
+            let sum = 0;
+            data.forEach(element => {
+                sum = sum + element.responseRate + element.contentQuality + element.creativity + element.flexibility + element.campaignPerformance;
+            });
+            let average = sum / (data.length * 5);
+            res.status(200).send({ average });
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: "error",
+                message: err.message
+            });
+        });
+}
+
 

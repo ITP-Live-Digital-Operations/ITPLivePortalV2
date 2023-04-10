@@ -60,4 +60,8 @@ export class InfluencerService{
   createInfluencerRating(inputdata:any){
     return this.http.post(`${this.influencerApiURL}/createInfluencerRating`, inputdata)
   }
+
+  getAverageInfluencerRating(inputdata:any){
+    return this.http.get(`${this.influencerApiURL}/getAverageInfluecerRating/${inputdata}`)
+  }
 }

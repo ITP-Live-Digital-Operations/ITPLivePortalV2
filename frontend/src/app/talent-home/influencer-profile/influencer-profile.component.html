@@ -10,9 +10,10 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <h2 class="my-3">{{this.influencerData.data.Name}}</h2>
+            <h1 class="my-3">{{this.influencerData.data.Name}}</h1>
             <p class="text-muted mb-1">{{this.influencerData.data.Gender}}</p>
             <p class="text-muted mb-4">{{this.influencerData.data.Number}}</p>
+            <H2 class="text-muted mb-4">ITP rating score: {{influencerRating.average}} </H2>
             <button mat-raised-button color="primary" (click)="editInfluencer(this.influencerData.data.id)">Edit</button> |
             <button mat-raised-button color="accent" (click)="rateInfluencer(this.influencerData.data.id)">Review</button>
 

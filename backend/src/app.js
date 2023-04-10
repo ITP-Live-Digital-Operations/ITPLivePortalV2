@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
+const msal = require('@azure/msal-node');
 
 
 
@@ -35,43 +36,51 @@ app.use(cors({
 }
 ));
 
-
-
-
-/*
-
- {
-       
-app.use(helmet.hsts({ maxAge: 31536000 }));
-app.use(helmet());
-app.use(helmet({
-    contentSecurityPolicy:  directives: {
-          defaultSrc: ["'self'", 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js'],
-          connectSrc: ["'self'", 'http://localhost:3000/api/v1/users/login',  
-          'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js']
-        }
+const msalConfig = {
+  auth: {
+    clientId: 'cc55790a-85af-4585-8380-27647cb3a361',
+    authority: 'https://login.microsoftonline.com/5f865142-0d0d-438b-92fe-96e73f712ad1',
+    clientSecret: 'myf8Q~Wsibhvh0gEB6Pjz_cZPgiy9JDStLyeNbTn',
+  },
+  system: {
+    loggerOptions: {
+      loggerCallback(loglevel, message, containsPii) {
+        console.log(message);
       },
-    
-    referrerPolicy: { policy: 'no-referrer' },
-    featurePolicy: {
-      features: {
-        payment: ['self'],
-      },
+      piiLoggingEnabled: false,
+      logLevel: msal.LogLevel.Info,
     },
-    expectCt: { enforce: true, maxAge: 123 },
-    hsts: { maxAge: 31536000, includeSubDomains: true },
-    originAgentCluster: 'origin-keyed',
-  }));
-app.use(helmet.hidePoweredBy({ setTo: 'PHP 8.2.0'}));
-app.use(helmet.xssFilter({ setOnOldIE: true }));
-app.use(helmet.noSniff({ nosniff: true }));
-app.use(helmet.frameguard({ action: 'DENY' })); */
-/* app.use(csp({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000"]
-    }
-  })); */
+  },
+};
+
+const msalClient = new msal.ConfidentialClientApplication(msalConfig);
+
+async function getAccessToken() {
+  const tokenRequest = {
+    scopes: ['https://analysis.windows.net/powerbi/api/.default'],
+  };
+
+  try {
+    const response = await msalClient.acquireTokenByClientCredential(tokenRequest);
+    return response.accessToken;
+  } catch (error) {
+    console.error('Error acquiring token', error);
+    throw error;
+  }
+}
+
+app.get('/api/powerbi/token', async (req, res) => {
+  try {
+    const accessToken = await getAccessToken();
+    res.json({ accessToken : accessToken });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
+
 
 app.use(helmet.contentSecurityPolicy({
     directives: {
