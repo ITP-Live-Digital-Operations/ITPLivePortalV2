@@ -36,9 +36,13 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      parentId: {
+      parentId:{
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       hash: {
         type: DataTypes.STRING,

@@ -8,33 +8,29 @@ import { environment} from '../../../environments/environment.development'
 })
 export class SalesService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Cache-Control': 'max-age=600', // set the cache time-to-live to 60 seconds
-    }),
-  };
+  
 
   constructor(private http: HttpClient) { }
 
   salesApiURL = environment.apiUrl + '/v1/salesbriefs'
- 
+
 
   createBrief(inputdata:any){
     return this.http.post(`${this.salesApiURL}/createSalesBrief`, inputdata)
   }
 
   getSalesBriefsNotViewedByTalent(){
-    return this.http.get(`${this.salesApiURL}/getSalesBriefsNotViewedByTalent`, this.httpOptions)
+    return this.http.get(`${this.salesApiURL}/getSalesBriefsNotViewedByTalent`, )
   }
   getAllBriefs(){
-    return this.http.get(`${this.salesApiURL}/getAllSalesBriefs`, this.httpOptions)
+    return this.http.get(`${this.salesApiURL}/getAllSalesBriefs`)
   }
   viewedByTalent(id:any){
     return this.http.get(`${this.salesApiURL}/viewedByTalent/${id}`)
   }
 
   getSalesBrief(id:any){
-    return this.http.get(`${this.salesApiURL}/getSalesBrief/${id}`, this.httpOptions)
+    return this.http.get(`${this.salesApiURL}/getSalesBrief/${id}` )
   }
 
   assignSalesBrief(inputdata:any){

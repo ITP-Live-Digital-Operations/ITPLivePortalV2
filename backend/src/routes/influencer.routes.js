@@ -25,4 +25,7 @@ router.route('/getInfluencerNames')
 router.route('/getInfluencerIdsandNames')
     .get(asyncHandler(influencerController.getInfluencerIdsandNames));
 
+router.route('/createInfluencerRating')
+   .post(asyncHandler(influencerController.createInfluencerRating)); 
+
 module.exports = router;

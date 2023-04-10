@@ -23,9 +23,9 @@
     </mat-form-field>
     <mat-form-field  appearance="outline" style="width: 33%; height: 10%; padding-left: 2%;">
       <mat-label> Contact Filter </mat-label>
-      <mat-select placeholder="Campaign Filter" (selectionChange)="applyFilter2($event.value)">
+      <mat-select placeholder="Contact Filter" (selectionChange)="applyFilter3($event.value)">
         <mat-option value="">All</mat-option>
-        <mat-option *ngFor="let option of campaigns" [value]="option">{{ option }}</mat-option>
+        <mat-option *ngFor="let option of talentUserNames" [value]="option">{{ option.name }}</mat-option>
       </mat-select>
     </mat-form-field>
     </div>

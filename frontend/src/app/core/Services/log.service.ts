@@ -9,11 +9,7 @@ import { environment} from '../../../environments/environment.development'
 })
 export class LogService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Cache-Control': 'max-age=600', // set the cache time-to-live to 60 seconds
-    }),
-  };
+  
 
 
   constructor(private http: HttpClient) { }

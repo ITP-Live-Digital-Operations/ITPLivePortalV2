@@ -9,8 +9,21 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      logId: {
-        type: DataTypes.INTEGER
+      logID: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'logs',
+          key: 'id'
+        }
+      },
+      packageID: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'package',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

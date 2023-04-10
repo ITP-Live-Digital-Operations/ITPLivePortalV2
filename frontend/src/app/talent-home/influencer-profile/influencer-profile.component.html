@@ -28,44 +28,74 @@
                 <p class="mb-0">Followers</p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <a *ngIf="this.influencerData.data.InstagramLink" href="{{this.influencerData.data.InstagramLink}}"  target="_blank">
-                  <i class="bi bi-instagram" style="font-size: 2rem; color: orangered" ></i>
-                </a>
+                <ng-container *ngIf="influencerData.data.InstagramLink">
+                  <a href="{{ influencerData.data.InstagramLink }}" target="_blank">
+                    <i class="bi bi-instagram" style="font-size: 2rem; color: orangered"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.InstagramLink">
+                  <i class="bi bi-instagram" style="font-size: 2rem; color: orangered"></i>
+                </ng-container>
                 <p class="mb-0">{{this.influencerData.data.InstagramHandle}}</p>
                 <p class="mb-0">{{this.influencerData.data.InstagramFollowers}}</p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <a *ngIf="this.influencerData.data.TiktokLink" href="{{this.influencerData.data.TiktokLink}}" target="_blank">
-                  <i class="bi bi-tiktok" style="font-size: 2rem; color: purple" ></i>
-                </a>
+                <ng-container *ngIf="influencerData.data.TiktokLink">
+                  <a href="{{ influencerData.data.TiktokLink }}" target="_blank">
+                    <i class="bi bi-tiktok" style="font-size: 2rem; color: purple"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.TiktokLink">
+                  <i class="bi bi-tiktok" style="font-size: 2rem; color: purple"></i>
+                </ng-container>
                 <p class="mb-0">{{this.influencerData.data.TiktokHandle}}</p>
                 <p class="mb-0">{{this.influencerData.data.TiktokFollowers}}</p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <a *ngIf="this.influencerData.data.FacebookLink" href="{{this.influencerData.data.FacebookLink}}" target="_blank">
-                  <i class="bi bi-facebook" style="font-size: 2rem;" ></i>
-                </a>
+                <ng-container *ngIf="influencerData.data.FacebookLink">
+                  <a href="{{ influencerData.data.FacebookLink }}" target="_blank">
+                    <i class="bi bi-facebook" style="font-size: 2rem;"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.FacebookLink">
+                  <i class="bi bi-facebook" style="font-size: 2rem;"></i>
+                </ng-container>
                 <p class="mb-0">{{this.influencerData.data.FacebookHandle}}</p>
                 <p class="mb-0">{{this.influencerData.data.FacebookFollowers}}</p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <a *ngIf="this.influencerData.data.SnapchatLink" href="{{this.influencerData.data.SnapchatLink}}" target="_blank">
-                  <i class="bi bi-snapchat" style="font-size: 2rem; color: yellow" ></i>
-                </a>
+                <ng-container *ngIf="influencerData.data.SnapchatLink">
+                  <a href="{{ influencerData.data.SnapchatLink }}" target="_blank">
+                    <i class="bi bi-snapchat" style="font-size: 2rem; color: yellow"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.SnapchatLink">
+                  <i class="bi bi-snapchat" style="font-size: 2rem; color: yellow"></i>
+                </ng-container>
                 <p class="mb-0">{{this.influencerData.data.SnapchatHandle}}</p>
                 <p class="mb-0">{{this.influencerData.data.SnapchatFollowers}}</p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <a *ngIf="this.influencerData.data.TwitterLink" href="{{this.influencerData.data.TwitterLink}}" target="_blank">
-                  <i class="bi bi-twitter" style="font-size: 2rem;" ></i>
-                </a>
+                <ng-container *ngIf="influencerData.data.TwitterLink">
+                  <a href="{{ influencerData.data.TwitterLink }}" target="_blank">
+                    <i class="bi bi-twitter" style="font-size: 2rem;"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.TwitterLink">
+                  <i class="bi bi-twitter" style="font-size: 2rem;"></i>
+                </ng-container>
                 <p class="mb-0">{{this.influencerData.data.TwitterHandle}}</p>
                 <p class="mb-0">{{this.influencerData.data.TwitterFollowers}}</p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <a *ngIf="this.influencerData.data.YoutubeLink" href="{{this.influencerData.data.YoutubeLink}}" target="_blank">
-                  <i class="bi bi-youtube" style="font-size: 2rem; color: red" ></i>
-                </a>
+                <ng-container *ngIf="influencerData.data.YoutubeLink">
+                  <a href="{{ influencerData.data.YoutubeLink }}" target="_blank">
+                    <i class="bi bi-youtube" style="font-size: 2rem; color: red"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.YoutubeLink">
+                  <i class="bi bi-youtube" style="font-size: 2rem; color: red"></i>
+                </ng-container>
                 <p class="mb-0">{{this.influencerData.data.YoutubeHandle}}</p>
                 <p class="mb-0">{{this.influencerData.data.YoutubeFollowers}}</p>
               </li>

@@ -10,7 +10,7 @@ const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.p
 const modelsDir = path.join(__dirname, '../models');
 
 
-modelFiles = ['user.js', 'influencer.js', 'celebrity.js', 'logs.js', 'package.js', 'log_package.js', 'salesbrief.js', 'task.js']
+modelFiles = ['user.js', 'influencer.js', 'celebrity.js', 'logs.js', 'package.js', 'log_package.js', 'salesbrief.js', 'task.js', 'influencerrating.js']
 
 
 async function exportData() {

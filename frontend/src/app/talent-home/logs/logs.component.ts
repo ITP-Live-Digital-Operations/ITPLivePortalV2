@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { LogService } from 'src/app/core/Services/log.service';
 import { InfluencerService } from 'src/app/core/Services/influencer.service';
 import { LogModel } from 'src/app/Models/LogModel';
+import { UserService } from 'src/app/core/Services/user.service';
 
 @Component({
   selector: 'app-logs',
@@ -18,7 +19,7 @@ export class LogsComponent implements OnInit {
   UserDetails: any;
   influencers: any;
   campaigns: any[] = []
-
+  talentUserNames: any;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
   @ViewChild(MatSort, { static: true }) sort !: MatSort;
@@ -39,12 +40,13 @@ export class LogsComponent implements OnInit {
     }
   }
 
-  constructor(private service: LogService, private influencerService: InfluencerService, private route: Router,) { }
+  constructor(private service: LogService, private influencerService: InfluencerService, private route: Router, private userService : UserService) { }
 
   ngOnInit(): void {
 
     this.GetAllLogs();
     this.GetInfluencerNames();
+    this.GetUserNames();
   }
 
   GetAllLogs() {
@@ -62,6 +64,12 @@ export class LogsComponent implements OnInit {
 
 
       this.influencers = item;
+    })
+  }
+
+  GetUserNames() {
+    this.userService. getTalentUserIdNames().subscribe((item) => {
+      this.talentUserNames = item;
     })
   }
 
@@ -92,6 +100,17 @@ export class LogsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  applyFilter3(filterValue: string) {
+    if (!filterValue) {
+      filterValue = '';
+    }
+
+    this.dataSource.filterPredicate = (data: LogModel, filter: string) => {
+      return data.Campaign.trim().toLowerCase() === filter;
+    };
+
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   backButton() {
     window.history.back();

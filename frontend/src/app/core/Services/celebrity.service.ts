@@ -9,11 +9,7 @@ import { environment} from '../../../environments/environment.development'
 })
 export class CelebrityService {
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Cache-Control': 'max-age=600', // set the cache time-to-live to 60 seconds
-    }),
-  };
+
   constructor(private http:HttpClient){}
 
 
@@ -24,7 +20,7 @@ export class CelebrityService {
   }
 
   getCelebrities():Observable<InfluencerModel[]>{
-    return this.http.get<InfluencerModel[]>(`${this.celebrityApiURL}/getCelebrities`, this.httpOptions)
+    return this.http.get<InfluencerModel[]>(`${this.celebrityApiURL}/getCelebrities`)
   }
 
   deleteCelebrity(inputdata:any){
@@ -32,7 +28,7 @@ export class CelebrityService {
   }
 
   getCelebrity(inputdata:any):Observable<InfluencerModel>{
-    return this.http.get<InfluencerModel>(`${this.celebrityApiURL}/getCelebrity/${inputdata}`, this.httpOptions)
+    return this.http.get<InfluencerModel>(`${this.celebrityApiURL}/getCelebrity/${inputdata}`)
   }
 
   updateCelebrity(inputdata:any, id:any){

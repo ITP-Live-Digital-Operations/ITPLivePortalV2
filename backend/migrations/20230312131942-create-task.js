@@ -40,7 +40,8 @@ module.exports = {
       },
       status: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        defaultValue: 'Not Started'
       },
       weight: {
         type: DataTypes.INTEGER,

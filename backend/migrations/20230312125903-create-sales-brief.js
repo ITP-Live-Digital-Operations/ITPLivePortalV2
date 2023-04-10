@@ -14,43 +14,139 @@ module.exports = {
       },
       Agency: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        defaultValue: null
       },
       Client: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        defaultValue: null
       },
       ClientIndustry: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        defaultValue: null
       },
       CampaignName: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        defaultValue: null
       },
       CampaignOverview: {
         type: DataTypes.TEXT,
-        allowNull: false
+        defaultValue: null
       },
       CampaignObjective: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        defaultValue: null
       },
       CampaignObjectiveDetails: {
         type: DataTypes.TEXT,
-        allowNull: false
+        defaultValue: null
       },
       NumberofRecommendations: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        defaultValue: null
       },
       Currency: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        defaultValue: null
       },
       Budget: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
+        defaultValue: null
+      },
+      CampaignStartDate: {
+        type: DataTypes.DATEONLY,
+        defaultValue: null
+      },
+      CampaignEndDate: {
+        type: DataTypes.DATEONLY,
+        defaultValue: null
+      },
+      DeadlineForRecommendations: {
+        type: DataTypes.DATEONLY,
+        defaultValue: null
+      },
+      CampaignMessagePhaseOne: {
+        type: DataTypes.TEXT,
+        defaultValue: null
+      },
+      CampaignMessagePhaseTwo: {
+        type: DataTypes.TEXT,
+        defaultValue: null
+      },
+      CampaignMessagePhaseThree: {
+        type: DataTypes.TEXT,
+        defaultValue: null
+      },
+      ContentDeliverables: {
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      BrandExclusivityDurationinDays: {
+        type: DataTypes.INTEGER,
+        defaultValue: null
+      },
+      VideoProduction: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      VideoEditing: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      InfluencerAgeRange: {
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      InfluencerLocation: { 
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      InfluencerNationality: {
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      InfluencerGender:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      SimilarProfileLink:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      InfluencerInterest:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      InfluencerNumberOfFollowers:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      NoteForNumberOfFollowers:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      AudienceLocation:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      AudienceNationality:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      AudienceGender:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      AudienceInterest:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      } ,
+      ConfirmedInfluencerHandles:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      PreviousBrandAmbassadorsName:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
       },
       CreatedbyID: {
         type: DataTypes.INTEGER,
@@ -62,7 +158,8 @@ module.exports = {
       },
       ViewedByTalent: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false
       },
       Ready: {
         type: DataTypes.BOOLEAN,

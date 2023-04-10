@@ -63,7 +63,7 @@
     <mat-icon>assignment</mat-icon>
     <span >Tasks</span>
 </button>
-<div *ngIf=" userRole === 'superadmin' && userPrivilege_level > 9">
+<div *ngIf=" userPrivilege_level > 8">
   <button mat-button class="menu-button"  routerLink="admin/forms">
     <mat-icon>home</mat-icon>
     <span>Admin forms</span>
@@ -73,7 +73,7 @@
       <mat-icon>assignment</mat-icon>
       <span>Register User</span>
   </button>
-  <button mat-button class="menu-button"  (click)="exportSeeds()">
+  <button *ngIf=" userPrivilege_level > 9" mat-button class="menu-button"  (click)="exportSeeds()">
     <mat-icon>import_export</mat-icon>
     <span>Export Seeds</span>
 </button>

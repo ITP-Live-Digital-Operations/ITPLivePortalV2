@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Influencer.belongsTo(models.User, {foreignKey: 'updatedBy', as: 'user'})
       Influencer.hasMany(models.Logs, {foreignKey: 'influencerID', as: 'influencer'})
+      Influencer.hasMany(models.InfluencerRating, {foreignKey: 'influencer_id', as: 'influencerID'})
     }
 
   }

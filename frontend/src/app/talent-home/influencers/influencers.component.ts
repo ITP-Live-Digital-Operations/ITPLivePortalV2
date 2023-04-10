@@ -101,7 +101,9 @@ export class InfluencersComponent implements OnInit {
     window.history.back();
   }
 
-
+  newInfluencer(){
+    this.route.navigate([`home/talent/newInfluencer`])
+  }
 
   displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'Action'];
 }

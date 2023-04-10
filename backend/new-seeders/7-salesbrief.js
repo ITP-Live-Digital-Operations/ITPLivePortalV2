@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('salesbrief', [{"id":1,"Agency":"itp live ","Client":"hp","ClientIndustry":"Tech","CampaignName":"Hp Ram ","CampaignOverview":"1 month ","CampaignObjective":"Awareness","CampaignObjectiveDetails":"`awareness","NumberofRecommendations":10,"Currency":"AED","Budget":"200000.00","CreatedbyID":16,"ViewedByTalent":true,"Ready":false,"createdAt":"2023-03-16 12:59:58","updatedAt":"2023-03-16 13:00:11"}], {});
+    await queryInterface.bulkInsert('salesbrief', [{"id":1,"Agency":"itp live ","Client":"hp","ClientIndustry":"Tech","CampaignName":"Hp Ram ","CampaignOverview":"1 month ","CampaignObjective":"Awareness","CampaignObjectiveDetails":"`awareness","NumberofRecommendations":10,"Currency":"AED","Budget":"200000.00","CampaignStartDate":null,"CampaignEndDate":null,"DeadlineForRecommendations":null,"CampaignMessagePhaseOne":null,"CampaignMessagePhaseTwo":null,"CampaignMessagePhaseThree":null,"ContentDeliverables":null,"BrandExclusivityDurationinDays":null,"VideoProduction":false,"VideoEditing":false,"InfluencerAgeRange":null,"InfluencerLocation":null,"InfluencerNationality":null,"InfluencerGender":null,"SimilarProfileLink":null,"InfluencerInterest":null,"InfluencerNumberOfFollowers":null,"NoteForNumberOfFollowers":null,"AudienceLocation":null,"AudienceNationality":null,"AudienceGender":null,"AudienceInterest":null,"ConfirmedInfluencerHandles":null,"PreviousBrandAmbassadorsName":null,"CreatedbyID":16,"ViewedByTalent":true,"Ready":false,"createdAt":"2023-03-16 14:59:58","updatedAt":"2023-03-16 15:00:11"}], {});
   },
 
   down: async (queryInterface, Sequelize) => {

@@ -234,8 +234,12 @@ module.exports = {
         defaultValue: null
       },
       updatedBy: {
-        type: DataTypes.STRING(50),
-        allowNull: false
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

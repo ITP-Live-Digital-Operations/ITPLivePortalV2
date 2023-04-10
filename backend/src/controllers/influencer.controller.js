@@ -1,5 +1,6 @@
 const  models  = require('../../models');
 const Influencer = models.Influencer;
+const InfluencerRating = models.InfluencerRating;
 
 exports.createInfluencer =  (req, res) => {
     const influencer = req.body;
@@ -135,6 +136,23 @@ exports.getInfluencerNames = (req, res) => {
                 message: err.message
             });
         });
+}
+
+
+exports.createInfluencerRating =  (req, res) => {
+    const influencerRating = req.body;
+    InfluencerRating.create(influencerRating)
+    .then(data => {
+        res.status(200).send({
+            status: "success",
+        });
+    })
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    });
 }
 
 
