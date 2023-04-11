@@ -64,4 +64,9 @@ export class InfluencerService{
   getAverageInfluencerRating(inputdata:any){
     return this.http.get(`${this.influencerApiURL}/getAverageInfluecerRating/${inputdata}`)
   }
+
+  getInfluencerRatings(inputdata:any){
+    return this.http.get(`${this.influencerApiURL}/getInfluencerRatings/${inputdata}`)
+  }
+  
 }

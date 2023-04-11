@@ -4,3 +4,11 @@
   overflow-x: hidden;
   margin-left: 10px;
 }
+
+
+.table-container{
+  padding-top: 15%;
+  overflow-y: scroll;
+  max-height: auto;
+
+}

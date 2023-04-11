@@ -1,6 +1,7 @@
 const  models  = require('../../models');
 const Influencer = models.Influencer;
 const InfluencerRating = models.InfluencerRating;
+const User = models.User;
 
 exports.createInfluencer =  (req, res) => {
     const influencer = req.body;
@@ -19,41 +20,7 @@ exports.createInfluencer =  (req, res) => {
 }
 
 exports.getInfluencers =  (req, res) => {
- /* const page = parseInt(req.query.page) || 1;
- const limit = parseInt(req.query.limit) || 10;
-
-    Influencer.findAndCountAll({
-        where: { Status: "Active" },
-        limit: limit,
-        offset: (page - 1) * limit
-    
-    })
-    .then( (result) => {  
-         const totalPages = Math.ceil(result.count / limit);
-        console.log({
-            totalPages: totalPages,
-            currentPage: page,
-            perPage: limit,
-            totalItems: result.count
-        });
-         res.status(200).send({
-            data: result.rows,
-            meta: {
-                totalPages: totalPages,
-                currentPage: page,
-                perPage: limit,
-                totalItems: result.count
-            }
-        });
-    })
-    .catch(err => {
-        res.status(500).send({
-            status: "error",
-            message: err.message
-        });
-    }); */
-
-    Influencer.findAll({ where: { Status: "Active" }})
+   Influencer.findAll({ where: { Status: "Active" }})
     .then(data => {
         res.status(200).send(data);
     })
@@ -168,6 +135,27 @@ exports.getAverageInfluencerRating = (req, res) => {
             });
             let average = sum / (data.length * 5);
             res.status(200).send({ average });
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: "error",
+                message: err.message
+            });
+        });
+}
+
+exports.getInfluencerRating = (req, res) => {
+    const influencerId = Number(req.params.id);
+    InfluencerRating.findAll({ 
+        where: { influencer_id: influencerId },
+        include: [{
+            model: User,
+            as: 'userID',
+            attributes: ['name']
+        }]
+    })
+        .then(data => {
+            res.status(200).send({data });
         })
         .catch(err => {
             res.status(500).send({

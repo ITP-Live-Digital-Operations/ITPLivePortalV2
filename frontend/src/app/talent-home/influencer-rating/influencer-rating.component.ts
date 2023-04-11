@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { InfluencerService } from 'src/app/core/Services/influencer.service';
 import { UserService } from 'src/app/core/Services/user.service';
 import * as alertify from 'alertifyjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-influencer-rating',
   templateUrl: './influencer-rating.component.html',
@@ -14,7 +17,27 @@ export class InfluencerRatingComponent implements OnInit {
   influencerName: any;
   influencerID: any;
   data: any;
+  influenceRatings: any;
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator !: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort !: MatSort;
+  @ViewChild(MatTable) table!: MatTable<any>;
+
+
+
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private userService: UserService, private influencerService: InfluencerService ){ }
+
+  GetInfluencerRatings(id: any) {
+    return this.influencerService.getInfluencerRatings(id).subscribe((item) => {
+      console.log(item);
+
+      this.influenceRatings = item;
+
+      this.dataSource = new MatTableDataSource(this.influenceRatings.data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
+  }
 
   ngOnInit(): void {
     this.influencerForm = this.fb.group({
@@ -29,8 +52,17 @@ export class InfluencerRatingComponent implements OnInit {
 
 
     this.influencerID = this.route.snapshot.paramMap.get('id');
+    this.GetInfluencerRatings(this.influencerID);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
 
   }
+
+
+
+  displayedColumns: string[] = ['responseRate', 'contentQuality', 'creativity', 'flexibility', 'campaignPerformance', 'notes', 'name', 'createdAt'];
 
   onRatingClicked(event: any, fieldName: string): void {
     const rating = parseInt(event.target.dataset.rating, 10);
@@ -69,6 +101,7 @@ export class InfluencerRatingComponent implements OnInit {
   handleClickCampaignPerformance(index : number) {
     this.influencerForm.controls['campaignPerformance'].setValue(index);
   }
+
 
 
 

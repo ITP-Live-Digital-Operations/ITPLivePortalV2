@@ -29,7 +29,7 @@ export class LogsComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.extractColumnData()
-  }
+  } 
 
   extractColumnData(): void {
     const renderedData = this.table['_data'];

@@ -31,4 +31,6 @@ router.route('/createInfluencerRating')
 router.route('/getAverageInfluecerRating/:id')
     .get(asyncHandler(influencerController.getAverageInfluencerRating));
 
+router.route('/getInfluencerRatings/:id')
+    .get(asyncHandler(influencerController.getInfluencerRating));
 module.exports = router;
