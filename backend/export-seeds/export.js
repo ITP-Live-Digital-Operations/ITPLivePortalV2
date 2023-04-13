@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { Sequelize } = require('sequelize');
-const dbConfig = require('../config/config.json').production;
+const dbConfig = require('../config/config.json').development;
 const moment = require('moment');
 
 const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, dbConfig);
@@ -22,8 +22,9 @@ async function exportData() {
 
   const seedDir = path.join(__dirname, '..', 'new-seeders');
  
-  let counter = 0; 
+  let counter = 1000; 
   for (const file of modelFiles) {
+    
     counter++;
     const modelFn = require(path.join(modelsDir, file));
     
