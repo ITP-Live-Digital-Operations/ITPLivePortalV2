@@ -20,6 +20,7 @@ import { MaterialModule } from 'src/app/material-module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
 import { StarRatingComponent } from '../partial/star-rating/star-rating.component';
+import { TimeFormComponent } from './time-form/time-form.component';
 
 
 
@@ -41,7 +42,8 @@ import { StarRatingComponent } from '../partial/star-rating/star-rating.componen
     ViewSalesBriefComponent,
     ViewTaskComponent,
     InfluencerRatingComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    TimeFormComponent
 
   ],
   imports: [

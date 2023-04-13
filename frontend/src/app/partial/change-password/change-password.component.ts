@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/Services/user.service';
-
+import * as alertify from 'alertifyjs';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -43,7 +43,16 @@ export class ChangePasswordComponent implements OnInit {
 
     this.authService.changePassword({ oldPassword: this.changePasswordForm.value.oldPassword, newPassword: this.changePasswordForm.value.newPassword, id: this.authService.getID() })
     .subscribe((response: any) => {
-        console.log(response);
+      if(response.status == 'success'){
+        alertify.success("Password changed successfully")
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+
+      }
+      else{
+        alertify.error("Error error changing password")
+      }
 
     });
 

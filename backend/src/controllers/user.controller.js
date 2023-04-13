@@ -1,5 +1,6 @@
 const  models  = require('../../models');
 const User = models.User;
+const TimeForm = models.TimeForm;
 const { generate: generateToken } = require('../utils/token');
 const crypto = require('crypto');
 const cryptojs = require('crypto-js');
@@ -122,4 +123,40 @@ exports.changePassword =  (req, res) => {
             res.status(401).json({ message: 'Invalid credentials' });
         }
     })
+};
+
+
+exports.addTimeForm =  (req, res) => {
+    const { user_id, Date, Agency, Client, MainTaskType, ExtraNotes, TimeSpentInHours } = req.body;
+    TimeForm.create({user_id: user_id, Date: Date, Agency: Agency, Client: Client, MainTaskType: MainTaskType,
+        ExtraNotes: ExtraNotes, TimeSpentInHours: TimeSpentInHours}).then(
+        (timeform) => { 
+            
+            res.status(200).send(
+                {
+                    status: 'success',
+                }
+            );
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: "error",
+                message: err.message
+            });
+        } 
+        );
+
+    
+}
+
+exports.getTimeFormsById =  (req, res) => {
+    TimeForm.findAll({where: {user_id: req.params.id}}).then(timeform => {
+    res.status(200).send(timeform);
+    }).catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
 };

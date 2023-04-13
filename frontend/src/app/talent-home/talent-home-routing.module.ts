@@ -18,6 +18,7 @@ import { AuthGuard } from '../core/Guards/auth.guard';
 import { AccessDeniedComponent } from '../access-denied/access-denied.component';
 import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
 import { ChangePasswordComponent } from '../partial/change-password/change-password.component';
+import { TimeFormComponent } from './time-form/time-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'forms', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'tasksFromTalentHead', component: TasksFromTalentHeadComponent},
   { path: 'viewTask/:id', component: ViewTaskComponent},
   { path: 'influencer-rating/:id', component: InfluencerRatingComponent},
+  { path: 'newTimeForm', component: TimeFormComponent},
   { path: 'changePassword', component:ChangePasswordComponent , canActivate: [AuthGuard]},
 
   { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] }

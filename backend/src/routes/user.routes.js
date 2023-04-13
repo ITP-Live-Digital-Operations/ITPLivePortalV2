@@ -20,5 +20,9 @@ router.route('/getTalentUserIdNames')
 router.route('/changePassword')
     .patch(asyncHandler(userController.changePassword));
     
+router.route('/addTimeForm')
+    .post(asyncHandler(userController.addTimeForm));
 
+router.route('/getTimeFormsById/:id')
+    .get(asyncHandler(userController.getTimeFormsById));
 module.exports = router;

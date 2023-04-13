@@ -469,3 +469,9 @@ export const arabCountries= ["Algeria", "Bahrain", "Eygpt", "Iraq", "Jordan", "K
 
 
 
+export const agencies= ["Apparel Group", "Bridges", "Fear McQueen", "MindField", "Magnolia", "Misk", "Veyron", "ITP Live"]
+
+export const MainTaskType = ["Research", "Preparing Presentation", "Create a budget sheet", "Communicate with Sales", "Communicate with influencers", "Meeting", "Certificates",
+ "Giving Training", "Getting Trained", "Technical Issues" ]
+
+export const timeSpent = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16]

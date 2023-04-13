@@ -94,7 +94,7 @@ export class NewInfluencerComponent {
       Notes: ['',],
     })
 
-  }
+  } 
 
   backButton(){
     window.history.back();

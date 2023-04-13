@@ -44,7 +44,13 @@ export class UserService {
     return this.http.patch(`${this.authApiURL}/changePassword`, inputdata)
   }
 
+  addTimeForm(inputdata:any){
+    return this.http.post(`${this.authApiURL}/addTimeForm`, inputdata)
+  }
 
+  getTimeFormsById(inputdata:any){
+    return this.http.get(`${this.authApiURL}/getTimeFormsById/${inputdata}`)
+  }
 
   getID(){
     const token = this.getToken();

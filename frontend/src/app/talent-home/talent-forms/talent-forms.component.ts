@@ -43,6 +43,10 @@ export class TalentFormsComponent {
     this.router.navigate(['home/talent/logs'])
   }
 
+  redirectToNewTimeForm(){
+    this.router.navigate(['home/talent/newTimeForm'])
+  }
+
   getPrivilegeLevel(){
     var token = localStorage.getItem('token');
 

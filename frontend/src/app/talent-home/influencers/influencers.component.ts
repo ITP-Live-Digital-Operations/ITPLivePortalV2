@@ -48,7 +48,7 @@ export class InfluencersComponent implements OnInit {
     this.GetAllInfluencers();
 
     this.powerBiClient = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
-    this.getAccessToken();
+   /*  this.getAccessToken(); */
 
 
   }
