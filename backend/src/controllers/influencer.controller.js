@@ -1,3 +1,4 @@
+const { Sequelize } = require('sequelize');
 const  models  = require('../../models');
 const Influencer = models.Influencer;
 const InfluencerRating = models.InfluencerRating;
@@ -166,3 +167,68 @@ exports.getInfluencerRating = (req, res) => {
 }
 
 
+exports.getGenders = (req, res) => {
+    Influencer.findAll({ 
+        attributes : [
+            [Sequelize.fn('DISTINCT', Sequelize.col('gender')), 'genders']
+        ]
+    })
+        .then(data => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: "error",
+                message: err.message
+            });
+        });
+}
+
+exports.getVerticals = (req, res) => {
+    Influencer.findAll({ attributes : [
+        [Sequelize.fn('DISTINCT', Sequelize.col('mainVertical')), 'verticals']
+    ]})
+        .then(data => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: "error",
+                message: err.message
+            });
+        });
+}
+
+exports.getLocations = (req, res) => {
+    Influencer.findAll({ attributes :[
+        [Sequelize.fn('DISTINCT', Sequelize.col('countryLocation')), 'locations']
+    ]})
+        .then(data => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: "error",
+                message: err.message
+            });
+        });
+}
+
+
+
+
+
+
+
+
+
+   /*  Influencer.findAll({ attributes: ['id','name'] })
+    .then(data => {
+        res.status(200).send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }); */

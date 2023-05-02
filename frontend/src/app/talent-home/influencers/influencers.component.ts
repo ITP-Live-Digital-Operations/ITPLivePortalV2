@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { InfluencerModel } from 'src/app/Models/InfluencerModel';
 import { InfluencerService, PaginatedInfluencers } from 'src/app/core/Services/influencer.service';
@@ -22,7 +22,10 @@ import { DataService } from 'src/app/core/Services/data.service';
 export class InfluencersComponent implements OnInit {
   dataSource: any;
   UserDetails: any;
-  accessToken: any
+  accessToken: any;
+  verticals: any[] = [];
+  locations: any[] = [];
+  genders: any[] = [];
   private powerBiClient!: pbi.service.Service;
 
 
@@ -32,11 +35,13 @@ export class InfluencersComponent implements OnInit {
 
   @ViewChild(MatSort) sort !: MatSort;
 
+  @ViewChild(MatTable) table!: MatTable<any>;
 
   ngAfterViewInit() {
     if (this.sort && this.dataSource){
     this.dataSource.sort = this.sort;
     }
+    this.extractColumnData();
   }
 
 
@@ -49,9 +54,48 @@ export class InfluencersComponent implements OnInit {
 
     this.powerBiClient = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
    /*  this.getAccessToken(); */
-
+    this.getGenders();
+    this.getLocations();
+    this.getVerticals();
 
   }
+
+  extractColumnData(): void {
+    const renderedData = this.table['_data'];
+
+    for (let i = 0; i < renderedData.length; i++) {
+      const row = renderedData[i];
+      this.genders.push(row.Gender);
+      this.locations.push(row.CountryLocation);
+      this.verticals.push(row.MainVertical);
+
+
+    }
+
+  }
+
+  getGenders() {
+    this.service.getGenders().subscribe((response: any) => {
+      console.log(response);
+
+      this.genders = response;
+    })
+  }
+
+  getLocations() {
+    this.service.getLocations().subscribe((response: any) => {
+      this.locations = response;
+    })
+  }
+
+  getVerticals() {
+    this.service.getVerticals().subscribe((response: any) => {
+      this.verticals = response;
+    })
+  }
+
+
+
 
   GetAllInfluencers() {
     this.service.getInfluencers().subscribe((response: PaginatedInfluencers) => {
@@ -100,6 +144,8 @@ export class InfluencersComponent implements OnInit {
     })
   }
 
+
+
   onRowClicked(row: any) {
     this.route.navigate([`home/talent/influencerProfile/${row.id}`])
   }
@@ -142,6 +188,46 @@ export class InfluencersComponent implements OnInit {
     this.powerBiClient.embed(reportContainer, embedConfig);
   }
 
+
+  applyFilter1(filterValue: string) {
+    if (!filterValue) {
+      filterValue = '';
+    }
+
+    this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
+      return data.Gender.trim().toLowerCase() === filter;
+    };
+
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilter2(filterValue: string) {
+    if (!filterValue) {
+      filterValue = '';
+    }
+
+    this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
+      return data.CountryLocation.trim().toLowerCase() === filter;
+    };
+
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilter3(filterValue: string) {
+    if (!filterValue) {
+      filterValue = '';
+    }
+
+    this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
+      return data.MainVertical.trim().toLowerCase() === filter;
+    };
+
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }
+
+
+
 
 

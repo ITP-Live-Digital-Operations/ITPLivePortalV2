@@ -68,5 +68,18 @@ export class InfluencerService{
   getInfluencerRatings(inputdata:any){
     return this.http.get(`${this.influencerApiURL}/getInfluencerRatings/${inputdata}`)
   }
-  
+
+  getGenders(){
+    return this.http.get(`${this.influencerApiURL}/getGenders`)
+  }
+
+  getLocations(){
+    return this.http.get(`${this.influencerApiURL}/getLocations`)
+  }
+
+  getVerticals(){
+    return this.http.get(`${this.influencerApiURL}/getVerticals`)
+  }
+
+
 }

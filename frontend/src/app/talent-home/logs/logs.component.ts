@@ -14,7 +14,7 @@ import { UserService } from 'src/app/core/Services/user.service';
   styleUrls: ['./logs.component.css']
 })
 export class LogsComponent implements OnInit {
-
+ 
   dataSource: any;
   UserDetails: any;
   influencers: any;
@@ -29,7 +29,7 @@ export class LogsComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.extractColumnData()
-  } 
+  }
 
   extractColumnData(): void {
     const renderedData = this.table['_data'];

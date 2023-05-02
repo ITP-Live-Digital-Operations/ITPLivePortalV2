@@ -33,4 +33,15 @@ router.route('/getAverageInfluecerRating/:id')
 
 router.route('/getInfluencerRatings/:id')
     .get(asyncHandler(influencerController.getInfluencerRating));
+
+router.route('/getGenders')
+    .get(asyncHandler(influencerController.getGenders));
+
+router.route('/getVerticals')
+    .get(asyncHandler(influencerController.getVerticals));
+
+router.route('/getLocations')
+    .get(asyncHandler(influencerController.getLocations));
+
+
 module.exports = router;

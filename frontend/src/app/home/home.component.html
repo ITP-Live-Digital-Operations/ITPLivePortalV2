@@ -6,9 +6,11 @@
     </button>
     <span>ITP Live Portal</span>
     <span class="spacer"></span>
-    <a mat-icon-button *ngIf="userRole === 'talent' || 'superadmin' " routerLink="talent/influencers">
+    <div *ngIf="userRole == 'talent' || userRole == 'admin' || userRole == 'superadmin' ">
+    <a mat-icon-button  routerLink="talent/influencers">
     <mat-icon class="icon">search</mat-icon>
     </a>
+    </div>
 
     <div *ngIf=" userRole === 'talent' && userPrivilege_level > 7 ">
       <a mat-icon-button  routerLink="talent/briefsFromSales" >
@@ -40,7 +42,7 @@
   <mat-sidenav mode="side" opened #sidenav="matSidenav">
     <img *ngIf="userID == 14" class="avatar mat-elevation-z8" src="../../assets/ahmadbashour.jpg" />
 
-    <h4>{{userName}} <!-- {{userID}} --></h4>
+    <h4>{{userName}}</h4>
     <H5 >{{userRole | uppercase}}  </H5>
     <p class="designation"></p>
 

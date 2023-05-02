@@ -142,8 +142,7 @@ export const countries = [
   "Kazakhstan",
   "Kenya",
   "Kiribati",
-
-
+  "KSA",
   "Kuwait",
   "Kyrgyzstan",
   "Lao People's Democratic Republic",
@@ -221,7 +220,7 @@ export const countries = [
   "Samoa",
   "San Marino",
   "Sao Tome and Principe",
-  "Saudi Arabia",
+
   "Senegal",
   "Serbia",
   "Seychelles",
@@ -260,10 +259,10 @@ export const countries = [
   "Tuvalu",
   "Uganda",
   "Ukraine",
-  "United Arab Emirates",
-  "United Kingdom",
+  "UAE",
+  "UK",
   "United States Minor Outlying Islands",
-  "United States of America",
+  "USA",
   "Uruguay",
   "Uzbekistan",
   "Vanuatu",
