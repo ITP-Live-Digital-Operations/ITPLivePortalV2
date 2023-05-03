@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SalesService } from 'src/app/core/Services/sales.service';
@@ -6,6 +6,8 @@ import { TaskService } from 'src/app/core/Services/task.service';
 import { UserService } from 'src/app/core/Services/user.service';
 import * as alertify from 'alertifyjs';
 import { Location } from '@angular/common';
+import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-view-sales-brief',
@@ -13,8 +15,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./view-sales-brief.component.css']
 })
 export class ViewSalesBriefComponent implements OnInit{
+  dataSource: any;
 
-  brief: any = {};
+  brief: any;
   id: any;
   date: any
   originalDate: any
@@ -26,7 +29,6 @@ export class ViewSalesBriefComponent implements OnInit{
 
   constructor(private salesService: SalesService, private activatedRoute:  ActivatedRoute, private formBuilder: FormBuilder, private userService: UserService, private taskService: TaskService, private location: Location) {
     this.assignForm = this.formBuilder.group({
-      Employee: ['', Validators.required],
       Weight: ['', Validators.required],
     });
   }
@@ -34,6 +36,7 @@ export class ViewSalesBriefComponent implements OnInit{
   ngOnInit(): void {
     this.loadBriefData();
     this.loadTalentNames();
+    this.getTalentTaskWeights();
     this.refresh();
   }
 
@@ -42,7 +45,6 @@ export class ViewSalesBriefComponent implements OnInit{
     this.activatedRoute.params.subscribe( params => {
       this.id = params['id']
       this.salesService.getSalesBrief(this.id).subscribe((data: any) => {
-        console.log(data);
         this.brief = data;
 
 
@@ -55,17 +57,14 @@ export class ViewSalesBriefComponent implements OnInit{
   loadTalentNames(){
 
     this.userService.getTalentUserIdNames().subscribe((data: any) => {
-      console.log(data);
 
       this.talentEmployees = data;
 
     });
   }
 
-  assign(){
+  assign(id: any){
     if(this.assignForm.valid){
-    console.log({assigned_by: this.userService.getID() , assigned_to : this.assignForm.value.Employee, brief_id : this.brief.data.id, weight:  this.assignForm.value.Weight});
-
     this.taskService.createTask({assigned_by: this.userService.getID() , assigned_to : this.assignForm.value.Employee, brief_id : this.brief.data.id, weight: this.assignForm.value.Weight}).subscribe((data: any) => {
         alertify.success('Task Assigned');
     });
@@ -86,5 +85,22 @@ export class ViewSalesBriefComponent implements OnInit{
     }
   }
 
+
+  displayedColumns: string[] = ['id', 'name', 'totalWeight', 'Action'];
+
+  @ViewChild(MatSort, { static: true }) sort !: MatSort;
+
+  @ViewChild(MatTable) table!: MatTable<any>;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+
+  }
+
+  getTalentTaskWeights(){
+      this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
+        this.dataSource = data.usersWithTasks
+      });
+  }
 
 }

@@ -38,3 +38,16 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+
+
+.table-container{
+  padding-top: 15%;
+  overflow-y: hidden;
+  max-height: auto;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+table{
+  width: 100%;
+}

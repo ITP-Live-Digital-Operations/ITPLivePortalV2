@@ -18,4 +18,6 @@ router.route('/updateStatus')
 router.route('/updateStatusToComplete')
     .post(asyncHandler(TaskController.updateStatusToComplete));
 
+router.route('/getUsersAndTaskWeights')
+    .get(asyncHandler(TaskController.getUsersAndTaskWeights));
 module.exports = router;

@@ -1,5 +1,7 @@
 const model = require('../../models')
+const Sequelize = require('sequelize');
 const Task = model.Task
+const User = model.User
 const { Op } = require('sequelize');
 
 
@@ -104,4 +106,63 @@ exports.updateStatusToComplete = (req, res) => {
         });
     }
     )
-}
+} 
+
+exports.getUsersAndTaskWeights = (req, res) => {
+    User.findAll({
+        where: {
+            role: 'talent',
+            privilege_level: { [Op.lt]: 8 }
+        },
+      attributes: ['id',
+       'name',
+         [Sequelize.fn('SUM', Sequelize.col('assigned_to.weight')), 'totalWeight']
+    ],
+      include: [
+        {
+          model: Task,
+          as: 'assigned_to',
+          attributes: [],
+          where: {
+            status: {
+              [Op.or]: ['Not Started', 'In Progress']
+            }
+            
+          },
+          required: false,
+        }
+      ],
+      group: ['user.id', 'user.name'],
+      raw: true,
+      order: [['id', 'ASC']],
+      logging: console.log
+    })
+    .then((users) => {
+        const usersWithTasks = users.map((user) => ({
+          id: user.id,
+          name: user.name,
+          totalWeight: user.totalWeight || 0
+        }));
+        res.status(200).json({ usersWithTasks });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).json({ message: err.message });
+      });
+  };
+      /* .then(users => {
+        const results = users.map(users => {
+            
+          
+            id: users.id,
+            name: users.name,
+            totalWeight: users['assigned_to.weight'] || 0
+        }));
+          res.status(200).json(users);
+        })
+      .catch(error => {
+        console.error(error);
+        res.status(500).json({ message: error.message });
+      });
+  }; */
+

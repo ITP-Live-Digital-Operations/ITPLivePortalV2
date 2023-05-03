@@ -7,7 +7,7 @@ import { environment} from '../../../environments/environment.development'
 })
 export class TaskService {
 
-  
+
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +30,10 @@ export class TaskService {
 
   updateStatus(inputdata:any){
     return this.http.post(`${this.taskApiURL}/updateStatus`, inputdata)
+  }
+
+  getUsersAndTaskWeights(){
+    return this.http.get(`${this.taskApiURL}/getUsersAndTaskWeights`)
   }
 
 }
