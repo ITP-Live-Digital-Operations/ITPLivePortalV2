@@ -43,5 +43,6 @@ router.route('/getVerticals')
 router.route('/getLocations')
     .get(asyncHandler(influencerController.getLocations));
 
-
+router.route('/getNationalities')
+    .get(asyncHandler(influencerController.getNationalities));
 module.exports = router;

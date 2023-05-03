@@ -81,5 +81,9 @@ export class InfluencerService{
     return this.http.get(`${this.influencerApiURL}/getVerticals`)
   }
 
+  getNationalities(){
+    return this.http.get(`${this.influencerApiURL}/getNationalities`)
+  }
+  
 
 }

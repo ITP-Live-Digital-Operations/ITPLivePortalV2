@@ -26,6 +26,7 @@ export class InfluencersComponent implements OnInit {
   verticals: any[] = [];
   locations: any[] = [];
   genders: any[] = [];
+  nationalities: any[] = [];
   private powerBiClient!: pbi.service.Service;
 
 
@@ -57,6 +58,7 @@ export class InfluencersComponent implements OnInit {
     this.getGenders();
     this.getLocations();
     this.getVerticals();
+    this.getNationalities();
 
   }
 
@@ -68,6 +70,7 @@ export class InfluencersComponent implements OnInit {
       this.genders.push(row.Gender);
       this.locations.push(row.CountryLocation);
       this.verticals.push(row.MainVertical);
+      this.nationalities.push(row.Nationality);
 
 
     }
@@ -76,24 +79,34 @@ export class InfluencersComponent implements OnInit {
 
   getGenders() {
     this.service.getGenders().subscribe((response: any) => {
-      console.log(response);
 
-      this.genders = response;
+      this.genders = response.map((obj: { genders: any; }) => obj.genders)
+                              .filter( (str: string) => str !== '')
+
+
     })
   }
 
   getLocations() {
     this.service.getLocations().subscribe((response: any) => {
-      this.locations = response;
+      this.locations = response.map((obj: { locations: any; }) => obj.locations)
+                                .filter( (str: string) => str !== '')
     })
   }
 
   getVerticals() {
     this.service.getVerticals().subscribe((response: any) => {
-      this.verticals = response;
+      this.verticals = response.map((obj: { verticals: any; }) => obj.verticals)
+                                .filter( (str: string) => str !== '')
     })
   }
 
+  getNationalities() {
+    this.service.getNationalities().subscribe((response: any) => {
+      this.nationalities = response.map((obj: { nationalities: any; }) => obj.nationalities)
+                                .filter( (str: string) => str !== '')
+    })
+  }
 
 
 
@@ -223,6 +236,19 @@ export class InfluencersComponent implements OnInit {
     };
 
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilter4(filterValue: string) {
+    if (!filterValue) {
+      filterValue = '';
+    }
+
+    this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
+      return data.Nationality.trim().toLowerCase() === filter;
+    };
+
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
   }
 
 }

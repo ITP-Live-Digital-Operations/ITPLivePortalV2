@@ -1,7 +1,7 @@
 <div class="form-container">
 <div style="position: relative;">
 <div class="search-container">
-  <button mat-raised-button  class="back-button"color="primary" style="height: 3rem" (click)="backButton()">
+  <button mat-raised-button  class="back-button"color="primary" style="height: 3rem; width: 10%" (click)="backButton()">
     <mat-icon>arrow_back</mat-icon>
     BACK
   </button>
@@ -9,29 +9,38 @@
     <input #searchInput matInput (keyup)="applyFilter(searchInput.value)" placeholder="Search">
   </mat-form-field>
 
-  <button mat-raised-button  class="back-button"color="primary" style="height: 3rem"  (click)="newInfluencer()">
+  <button mat-raised-button  class="back-button"color="primary" style="height: 3rem;  width: 10%"  (click)="newInfluencer()">
     <mat-icon>add_circle_outline</mat-icon>
     New Influencer
   </button>
-  <mat-form-field  appearance="outline" style="width: 33%; height: 10%;">
+
+  <mat-form-field  appearance="outline" style="width: 25%; height: 10%;">
     <mat-label> Gender Filter</mat-label>
     <mat-select placeholder="Gender Filter" (selectionChange)="applyFilter1($event.value)">
       <mat-option value="">All</mat-option>
-      <mat-option *ngFor="let option of genders" [value]="option.genders">{{ option.genders }}</mat-option>
+      <mat-option *ngFor="let option of genders" [value]="option">{{ option }}</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field  appearance="outline" style="width: 33%; height: 10%; padding-left: 2%;">
+  <mat-form-field  appearance="outline" style="width: 25%; height: 10%; padding-left: 2%;">
     <mat-label> Location Filter </mat-label>
     <mat-select placeholder="Location Filter" (selectionChange)="applyFilter2($event.value)">
       <mat-option value="">All</mat-option>
-      <mat-option *ngFor="let option of locations" [value]="option.locations">{{ option.locations }}</mat-option>
+      <mat-option *ngFor="let option of locations" [value]="option">{{ option }}</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field  appearance="outline" style="width: 33%; height: 10%; padding-left: 2%;">
+  <mat-form-field  appearance="outline" style="width: 25%; height: 10%; padding-left: 2%;">
     <mat-label> Main Vertical Filter </mat-label>
     <mat-select placeholder="Main Vertical Filter" (selectionChange)="applyFilter3($event.value)">
       <mat-option value="">All</mat-option>
-      <mat-option *ngFor="let option of verticals" [value]="option.verticals">{{ option.verticals }}</mat-option>
+      <mat-option *ngFor="let option of verticals" [value]="option">{{ option }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  appearance="outline" style="width: 25%; height: 10%; padding-left: 2%;">
+    <mat-label> Nationality Filter </mat-label>
+    <mat-select placeholder="Nationality Filter" (selectionChange)="applyFilter4($event.value)">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let option of nationalities" [value]="option">{{ option }}</mat-option>
     </mat-select>
   </mat-form-field>
 
