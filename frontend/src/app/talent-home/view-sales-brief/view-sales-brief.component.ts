@@ -117,10 +117,12 @@ export class ViewSalesBriefComponent implements OnInit{
     if (this.fileToUpload) {
       this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
         (data) => {
-          console.log('File uploaded successfully');
+          alertify.success('File uploaded successfully');
+          
         },
         (error) => {
-          console.log('File upload error:', error);
+          alertify.error('File upload error');
+
         }
       );
     }
