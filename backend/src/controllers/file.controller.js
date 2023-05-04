@@ -45,6 +45,7 @@ exports.downloadFile = (req, res) => {
         const file = `${__dirname}/../../uploads/${data.filename}`;
         res.download(file);
     }).catch(err => {
+        console.log(err);
         res.status(500).send({
             status: 'fail',
             message: err.message
