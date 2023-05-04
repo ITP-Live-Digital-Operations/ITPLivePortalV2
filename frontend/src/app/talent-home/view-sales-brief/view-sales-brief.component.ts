@@ -8,6 +8,7 @@ import * as alertify from 'alertifyjs';
 import { Location } from '@angular/common';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { FileService } from 'src/app/core/Services/file.service';
 
 @Component({
   selector: 'app-view-sales-brief',
@@ -27,7 +28,7 @@ export class ViewSalesBriefComponent implements OnInit{
   privilege_level = this.userService.getPrivilegeLevel();
   assignForm : FormGroup;
 
-  constructor(private salesService: SalesService, private activatedRoute:  ActivatedRoute, private formBuilder: FormBuilder, private userService: UserService, private taskService: TaskService, private location: Location) {
+  constructor(private fileService: FileService ,private salesService: SalesService, private activatedRoute:  ActivatedRoute, private formBuilder: FormBuilder, private userService: UserService, private taskService: TaskService, private location: Location) {
     this.assignForm = this.formBuilder.group({
       Weight: ['', Validators.required],
     });
@@ -101,6 +102,28 @@ export class ViewSalesBriefComponent implements OnInit{
       this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
         this.dataSource = data.usersWithTasks
       });
+  }
+
+
+  fileToUpload: File | null = null;
+
+  handleFileInput(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+    this.fileToUpload = files.item(0);
+  }
+
+  uploadFile(): void {
+    if (this.fileToUpload) {
+      this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
+        (data) => {
+          console.log('File uploaded successfully');
+        },
+        (error) => {
+          console.log('File upload error:', error);
+        }
+      );
+    }
   }
 
 }

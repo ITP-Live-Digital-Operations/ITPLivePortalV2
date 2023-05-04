@@ -60,25 +60,6 @@
       </div>
     </div>
     <div class="col-sm-4" style="margin-top: 2%;" *ngIf=" role === 'talent' && privilege_level > 7">
-
-      <!-- <form [formGroup]="assignForm" (ngSubmit)="assign()" autocomplete="off" >
-        <div class="form-group">
-          <mat-form-field appearance="outline">
-            <mat-label>Talent Employee </mat-label>
-            <mat-select formControlName="Employee" required>
-              <mat-option *ngFor="let item of talentEmployees" [value]="item.id">{{item.name}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Weight:</mat-label>
-            <mat-select formControlName="Weight">
-              <mat-option *ngFor="let num of [1,2,3,4,5,6,7,8,9,10]" [value]="num">{{num}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <button type="submit" class="btn btn-primary" >Assign</button>
-      </form> -->
-
       <form [formGroup]="assignForm" (ngSubmit)="assign(id)" autocomplete="off" >
         <div class="form-group">
           <mat-form-field appearance="outline">
@@ -123,6 +104,19 @@
     </form>
 
     </div>
-    <div class="col-sm-4" style="margin-top: 2%; width: 40%;" *ngIf=" role === 'talent' && privilege_level < 7"> <button  mat-raised-button>Task Done</button></div>
+    <div class="col-sm-4" style="margin-top: 2%; width: 40%;" *ngIf=" role === 'talent' && privilege_level < 7">
+      <div>
+        <h2>Upload Excel File</h2>
+        <input  type="file" (change)="handleFileInput($event)" />
+        <button mat-raised-button color="primary" (click)="uploadFile()">Upload</button>
+      </div>
+      <hr>
+      <div>
+        <h2>Upload Powerpoint </h2>
+        <input  type="file" (change)="handleFileInput($event)" />
+        <button mat-raised-button color="primary" (click)="uploadFile()">Upload</button>
+      </div>
+
+    </div>
   </div>
 </div>

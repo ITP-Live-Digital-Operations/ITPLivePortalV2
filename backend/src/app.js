@@ -22,6 +22,9 @@ const TaskRoutes = require('./routes/task.routes');
 
 const exportRoutes = require('./routes/export-seeds.routes');
 const webHookRoutes = require('./routes/webhook.routes');
+const fileRoutes = require('./routes/file.routes');
+
+
 
 const app = express();
 
@@ -36,38 +39,6 @@ app.use(cors({
 }
 ));
 
-/* const msalConfig = {
-  auth: {
-    clientId: 'cc55790a-85af-4585-8380-27647cb3a361',
-    authority: 'https://login.microsoftonline.com/5f865142-0d0d-438b-92fe-96e73f712ad1',
-    clientSecret: 'myf8Q~Wsibhvh0gEB6Pjz_cZPgiy9JDStLyeNbTn',
-  },
-  system: {
-    loggerOptions: {
-      loggerCallback(loglevel, message, containsPii) {
-        console.log(message);
-      },
-      piiLoggingEnabled: false,
-      logLevel: msal.LogLevel.Info,
-    },
-  },
-};
- */
-/* const msalClient = new msal.ConfidentialClientApplication(msalConfig); */
-
-/* async function getAccessToken() {
-  const tokenRequest = {
-    scopes: ['https://analysis.windows.net/powerbi/api/.default'],
-  };
-
-  try {
-    const response = await msalClient.acquireTokenByClientCredential(tokenRequest);
-    return response.accessToken;
-  } catch (error) {
-    console.error('Error acquiring token', error);
-    throw error;
-  }
-} */
 
 app.get('/api/powerbi/token', async (req, res) => {
   try {
@@ -99,8 +70,10 @@ app.use('/api/v1/logs', authHandler, logRoutes);
 app.use('/api/v1/salesbriefs', authHandler, salesBriefRoutes);
 app.use('/api/v1/tasks', authHandler, TaskRoutes); 
 
+
 console.log('Backend started 1')
 
+app.use('/api/v1/files', authHandler, fileRoutes);
 app.use('/api/v1/webhooks', webHookRoutes);
 
 console.log('Backend started 2');

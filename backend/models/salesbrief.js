@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       SalesBrief.belongsTo(models.User, {foreignKey: 'CreatedbyID', as: 'user'})
       SalesBrief.belongsTo(models.Task, { foreignKey: 'id', as: 'task'})
+      SalesBrief.hasMany(models.File, { foreignKey: 'brief_id', as: 'files' });
     }
   }
   SalesBrief.init({
