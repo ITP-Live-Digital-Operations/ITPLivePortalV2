@@ -132,7 +132,7 @@ exports.getUsersAndTaskWeights = (req, res) => {
           required: false,
         }
       ],
-      group: ['users.id', 'users.name'],
+      group: ['User.id', 'User.name'],
       raw: true,
       order: [['id', 'ASC']],
       logging: console.log
