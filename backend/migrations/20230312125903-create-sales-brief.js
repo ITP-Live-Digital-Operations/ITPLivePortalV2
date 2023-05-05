@@ -164,6 +164,10 @@ module.exports = {
           key: 'id'
         }
       },
+      Assigned: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
       CreatedbyID: {
         type: DataTypes.INTEGER,
         allowNull: false,

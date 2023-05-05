@@ -175,7 +175,10 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-
+    assigned: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     CreatedbyID: {
       type: DataTypes.INTEGER,
       allowNull: false,

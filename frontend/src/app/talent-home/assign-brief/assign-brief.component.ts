@@ -18,7 +18,7 @@ dataSource: any;
 
 brief: any
 brief_id: any
-
+assigned : any ;
 user_id = this.userService.getID();
 role = this.userService.getRole();
 privilege = this.userService.getPrivilegeLevel();
@@ -44,6 +44,7 @@ loadBriefData(){
     this.salesService.getSalesBriefWithFiles(this.brief_id).subscribe((data: any) => {
 
       this.brief = data;
+      this.assigned = data.data.Assigned
     });
   })
 }

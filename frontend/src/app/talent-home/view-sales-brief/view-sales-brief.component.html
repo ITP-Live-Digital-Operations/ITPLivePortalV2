@@ -60,6 +60,7 @@
     </div>
 
     <div class="col-sm-4" style="margin-top: 2%; width: 40%;">
+      <div></div>
       <div>
         <table class="my-table" >
           <tr>
@@ -86,7 +87,7 @@
             <td *ngIf="presentation">  {{presentation.filename}}  </td> <td *ngIf="!presentation" >  </td>
             <td *ngIf="presentation">  {{presentation.createdAt | date }}</td> <td *ngIf="!presentation"></td>
             <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id)"> Download</button> </td> <td *ngIf="!presentation"></td>
-           
+
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
             <td>  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td>
           </tr>

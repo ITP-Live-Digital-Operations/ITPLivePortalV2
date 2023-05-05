@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'celebrities', component: CelebritiesComponent},
   { path: 'celebrityProfile/:id', component: CelebrityProfileComponent},
   { path: 'briefsFromSales', component: BriefsFromSalesComponent},
-  { path: 'assingBrief/:id', component: AssignBriefComponent},
+  { path: 'assignBrief/:id', component: AssignBriefComponent},
   { path: 'viewSalesBrief/:id', component: ViewSalesBriefComponent},
   { path: 'tasksFromTalentHead', component: TasksFromTalentHeadComponent},
   { path: 'viewTask/:id', component: ViewTaskComponent},

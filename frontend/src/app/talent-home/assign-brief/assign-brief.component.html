@@ -59,7 +59,7 @@
     </div>
     </div>
 
-    <div class="col-sm-4" style="margin-top: 2%;">
+    <div class="col-sm-4" style="margin-top: 2%;" *ngIf="!assigned">
       <form [formGroup]="assignForm"  autocomplete="off" >
         <div class="form-group">
           <mat-form-field appearance="outline">
@@ -102,6 +102,10 @@
         </table>
       </div>
     </form>
+    </div>
+
+    <div class="col-sm-4" style="margin-top: 2%;" *ngIf="!assigned">
+      <p> assigned </p>
     </div>
 
   </div>
