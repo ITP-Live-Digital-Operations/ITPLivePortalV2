@@ -44,5 +44,9 @@ export class SalesService {
   getSalesBriefWithFiles(id:any){
     return this.http.get(`${this.salesApiURL}/getSalesBriefWithFiles/${id}`)
   }
-  
+
+  updateAssignedStatus(id:any){
+    return this.http.get(`${this.salesApiURL}/updateAssignedStatus/${id}`)
+  }
+
 }

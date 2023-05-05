@@ -28,6 +28,7 @@ exports.getBirefsNotViewedByTalent = (req, res) => {
             data: numRows
         });
     }).catch(err => {
+        console.log(err);
         res.status(500).send({
             message:
                 err.message || "Some error occurred while retrieving SalesBriefs."
@@ -134,3 +135,22 @@ exports.getSalesBriefWithFiles = (req, res) => {
         });
     });
 }
+
+exports.updateAssignedStatus = (req, res) => {
+    SalesBrief.update({assigned: 1}, {
+        where: {
+            id: req.params.id
+        }
+    }).then( data => {
+        res.status(200).send({
+            status: "success",
+            data: data
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving SalesBriefs."
+        });
+    });
+}
+

@@ -5,7 +5,7 @@
   </button>
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
     <div class="card p-4">
       <div class="card-header bg-dark text-light">
         {{ this.brief.data.CampaignName }}
@@ -104,9 +104,47 @@
     </form>
     </div>
 
-    <div class="col-sm-4" style="margin-top: 2%;" *ngIf="!assigned">
-      <p> assigned </p>
+    <div class="col-sm-6" style="margin-top: 2%;" *ngIf="assigned">
+      <h2> Assigned to: </h2>
+      <div>
+        <table class="my-table" >
+          <tr>
+            <th class="centered"> File Type</th>
+            <th class="centered" > File Name</th>
+            <th class="centered" > Uploaded On</th>
+            <th class="centered" > Download </th>
+            <th class="centered"> Choose File</th>
+            <th class="centered"> Upload </th>
+            <th class="centered"> Action </th>
+          </tr>
+
+          <tr>
+            <td> Excel Sheet</td>
+            <td *ngIf="budgetSheet" > {{budgetSheet.filename}} </td> <td *ngIf="!budgetSheet" >  </td>
+            <td *ngIf="budgetSheet">  {{budgetSheet.createdAt | date}}</td> <td *ngIf="!budgetSheet"></td>
+            <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
+
+            <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
+            <td>  <button mat-raised-button color="primary" (click)="uploadFileXlsx()">Upload</button> </td>
+            <td> <button mat-raised-button color="primary" style="width: 100%"> Approve </button> <button mat-raised-button color="accent" style="margin-top: 2%; width: 100%"> Decline</button></td>
+          </tr>
+
+          <tr>
+            <td> Presentation </td>
+            <td *ngIf="presentation">  {{presentation.filename}}  </td> <td *ngIf="!presentation" >  </td>
+            <td *ngIf="presentation">  {{presentation.createdAt | date }}</td> <td *ngIf="!presentation"></td>
+            <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id)"> Download</button> </td> <td *ngIf="!presentation"></td>
+
+            <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
+            <td>  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td>
+            <td> <button mat-raised-button color="primary" style="width: 100%"> Approve </button> <button mat-raised-button color="accent" style="margin-top: 2%; width: 100%"> Decline</button></td>
+          </tr>
+
+        </table>
+
+
     </div>
+  </div>
 
   </div>
 </div>
