@@ -10,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { FileService } from 'src/app/core/Services/file.service';
 
+
 @Component({
   selector: 'app-view-sales-brief',
   templateUrl: './view-sales-brief.component.html',
@@ -23,6 +24,12 @@ export class ViewSalesBriefComponent implements OnInit{
   date: any
   originalDate: any
   talentEmployees: any;
+
+  budgetSheetId: any;
+  budgetSheet: any;
+  presentationId: any;
+  presentation: any;
+
   user_id = this.userService.getID();
   role = this.userService.getRole();
   privilege_level = this.userService.getPrivilegeLevel();
@@ -36,21 +43,27 @@ export class ViewSalesBriefComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadBriefData();
-    this.loadTalentNames();
+    if(this.privilege_level > 7){
     this.getTalentTaskWeights();
+    }
     this.refresh();
+
   }
 
 
   loadBriefData() {
     this.activatedRoute.params.subscribe( params => {
       this.id = params['id']
-      this.salesService.getSalesBrief(this.id).subscribe((data: any) => {
+      this.salesService.getSalesBriefWithFiles(this.id).subscribe((data: any) => {
+
         this.brief = data;
+        this.budgetSheetId = data.data.BudgetSheetId
+
+        this.getBudgetSheet(this.budgetSheetId);
 
 
-        /* this.originalDate = new Date(this.brief.date).toDateString();
-        this.date = new Intl.DateTimeFormat('en-US', this.options).format(this.originalDate); */
+        this.presentationId = data.data.PresentationId
+        this.getPresentation(this.presentationId);
       });
     })
   }
@@ -131,5 +144,37 @@ export class ViewSalesBriefComponent implements OnInit{
       );
     }
   }
+
+
+  downloadFilePPTX(id: number){
+    this.fileService.downloadFile(id).subscribe((data: any) => {
+      const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
+  }
+
+  downloadFilexlsx(id: number){
+    this.fileService.downloadFile(id).subscribe((data: any) => {
+      const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
+  }
+
+
+  getBudgetSheet(id: number){
+    this.fileService.getFile(id).subscribe((data: any) => {
+        this.budgetSheet = data.data;
+    });
+  }
+
+  getPresentation(id: number){
+    this.fileService.getFile(id).subscribe((data: any) => {
+        this.presentation = data.data;
+    });
+  }
+
+
 
 }

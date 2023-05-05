@@ -8,7 +8,7 @@ import { environment} from '../../../environments/environment.development'
 })
 export class SalesService {
 
-  
+
 
   constructor(private http: HttpClient) { }
 
@@ -40,4 +40,9 @@ export class SalesService {
   getSalesBriefIdbyTaskId(id:any){
     return this.http.get(`${this.salesApiURL}/getSalesBriefIdbyTaskId/${id}`)
   }
+
+  getSalesBriefWithFiles(id:any){
+    return this.http.get(`${this.salesApiURL}/getSalesBriefWithFiles/${id}`)
+  }
+  
 }

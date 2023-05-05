@@ -109,3 +109,28 @@ exports.getSalesBriefIdByTaskId = (req, res) => {
     }
     );
 }
+
+exports.getSalesBriefWithFiles = (req, res) => {
+    SalesBrief.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [
+            {
+                model: models.File,
+                required: false,
+                as: 'files',
+            }
+        ]
+    }).then(data => {
+        res.status(200).send({
+            status: "success",
+            data: data
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving SalesBriefs."
+        });
+    });
+}

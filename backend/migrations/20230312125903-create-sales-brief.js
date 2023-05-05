@@ -148,6 +148,22 @@ module.exports = {
         type: DataTypes.STRING(255),
         defaultValue: null
       },
+      BudgetSheetId: {
+        type: DataTypes.INTEGER,
+        defaultValue: null,
+        references: {
+          model: 'file',
+          key: 'id'
+        }
+      },
+      PresentationId : {
+        type: DataTypes.INTEGER,
+        defaultValue: null,
+        references: {
+          model: 'file',
+          key: 'id'
+        }
+      },
       CreatedbyID: {
         type: DataTypes.INTEGER,
         allowNull: false,

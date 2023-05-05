@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
 import { StarRatingComponent } from '../partial/star-rating/star-rating.component';
 import { TimeFormComponent } from './time-form/time-form.component';
+import { MimeTransformPipe } from 'src/app/pipes/mime-transform.pipe';
 
 
 
@@ -43,7 +44,8 @@ import { TimeFormComponent } from './time-form/time-form.component';
     ViewTaskComponent,
     InfluencerRatingComponent,
     StarRatingComponent,
-    TimeFormComponent
+    TimeFormComponent,
+    MimeTransformPipe
 
   ],
   imports: [

@@ -28,4 +28,8 @@ export class FileService {
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
   }
+
+  getFile(id: number): Observable<any> {
+    return this.http.get(`${this.fileApiUrl}/getFileById/${id}`);
+  }
 }

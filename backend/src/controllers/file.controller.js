@@ -52,3 +52,21 @@ exports.downloadFile = (req, res) => {
         });
     });
 }
+
+exports.getFileById = (req, res) => {
+    const id = req.params.id;
+    File.findByPk(id).then(data => {
+        res.status(200).send({
+            status: 'success',
+            data: data
+        });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).send({
+            status: 'fail',
+            message: err.message
+        });
+    });
+}
+
+

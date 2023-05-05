@@ -106,16 +106,33 @@
     </div>
     <div class="col-sm-4" style="margin-top: 2%; width: 40%;" *ngIf=" role === 'talent' && privilege_level < 7">
       <div>
-        <h2>Upload Excel File</h2>
-        <input  type="file" (change)="handleFileInput($event)" />
-        <button mat-raised-button color="primary" (click)="uploadFile()">Upload</button>
-      </div>
-      <hr>
-      <div>
-        <h2>Upload Powerpoint </h2>
-        <input  type="file" (change)="handleFileInput($event)" />
-        <button mat-raised-button color="primary" (click)="uploadFile()">Upload</button>
-      </div>
+        <table class="my-table" >
+          <tr>
+            <th class="centered"> File Type</th>
+            <th class="centered" *ngIf="budgetSheet || presentation"> File Name</th>
+            <th class="centered" *ngIf="budgetSheet || presentation"> Download </th>
+            <th class="centered"> Choose File</th>
+            <th class="centered"> Upload </th>
+
+          </tr>
+          <tr>
+            <td> Excel Sheet</td>
+            <td *ngIf="budgetSheet" > {{budgetSheet.filename}} </td>
+            <td *ngIf="budgetSheet || presentation"> <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id)"> Download</button> </td>
+            <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
+            <td>  <button mat-raised-button color="primary" (click)="uploadFile()">Upload</button> </td>
+          </tr>
+
+          <tr>
+            <td> Presentation </td>
+            <td *ngIf="presentation">  {{presentation.filename}} </td>
+            <td *ngIf="budgetSheet || presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id)"> Download</button> </td>
+            <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
+            <td>  <button mat-raised-button color="primary" (click)="uploadFile()">Upload</button></td>
+          </tr>
+
+        </table>
+
 
     </div>
   </div>

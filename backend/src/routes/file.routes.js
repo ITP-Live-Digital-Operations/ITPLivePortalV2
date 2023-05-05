@@ -9,7 +9,8 @@ router.route('/download/:id')
 router.route('/upload') 
        .post(asyncHandler(fileController.uploadFile));
 
-       
+router.route('/getFileById/:id')
+       .get(asyncHandler(fileController.getFileById));       
 
 
 module.exports = router;
