@@ -167,7 +167,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    PresentationId : {
+    PresentationId  : {
       type: DataTypes.INTEGER,
       defaultValue: null,
       references: {

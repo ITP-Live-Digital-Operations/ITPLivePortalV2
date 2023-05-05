@@ -55,10 +55,10 @@ export class BriefsFromSalesComponent implements OnInit {
     this.salesService.viewedByTalent(id).subscribe((data:any)=>{
       console.log(data)
     })
-    this.route.navigate([`home/talent/viewSalesBrief/${id}`]);
+    this.route.navigate([`home/talent/assingBrief/${id}`]);
   }
 
-
+ 
 
 
 }

@@ -48,6 +48,10 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
+    fileType: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     tableName: 'file',

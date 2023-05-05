@@ -19,6 +19,7 @@ import { AccessDeniedComponent } from '../access-denied/access-denied.component'
 import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
 import { ChangePasswordComponent } from '../partial/change-password/change-password.component';
 import { TimeFormComponent } from './time-form/time-form.component';
+import { AssignBriefComponent } from './assign-brief/assign-brief.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'forms', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'celebrities', component: CelebritiesComponent},
   { path: 'celebrityProfile/:id', component: CelebrityProfileComponent},
   { path: 'briefsFromSales', component: BriefsFromSalesComponent},
+  { path: 'assingBrief/:id', component: AssignBriefComponent},
   { path: 'viewSalesBrief/:id', component: ViewSalesBriefComponent},
   { path: 'tasksFromTalentHead', component: TasksFromTalentHeadComponent},
   { path: 'viewTask/:id', component: ViewTaskComponent},

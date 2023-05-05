@@ -21,9 +21,7 @@ export class ViewSalesBriefComponent implements OnInit{
 
   brief: any;
   id: any;
-  date: any
-  originalDate: any
-  talentEmployees: any;
+
 
   budgetSheetId: any;
   budgetSheet: any;
@@ -43,9 +41,6 @@ export class ViewSalesBriefComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadBriefData();
-    if(this.privilege_level > 7){
-    this.getTalentTaskWeights();
-    }
     this.refresh();
 
   }
@@ -68,22 +63,6 @@ export class ViewSalesBriefComponent implements OnInit{
     })
   }
 
-  loadTalentNames(){
-
-    this.userService.getTalentUserIdNames().subscribe((data: any) => {
-
-      this.talentEmployees = data;
-
-    });
-  }
-
-  assign(id: any){
-    if(this.assignForm.valid){
-    this.taskService.createTask({assigned_by: this.userService.getID() , assigned_to : this.assignForm.value.Employee, brief_id : this.brief.data.id, weight: this.assignForm.value.Weight}).subscribe((data: any) => {
-        alertify.success('Task Assigned');
-    });
-  }
-    }
 
   backButton(){
     window.history.back();
@@ -100,24 +79,6 @@ export class ViewSalesBriefComponent implements OnInit{
   }
 
 
-  displayedColumns: string[] = ['id', 'name', 'totalWeight', 'Action'];
-
-  @ViewChild(MatSort, { static: true }) sort !: MatSort;
-
-  @ViewChild(MatTable) table!: MatTable<any>;
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-
-  }
-
-  getTalentTaskWeights(){
-      this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
-        this.dataSource = data.usersWithTasks
-      });
-  }
-
-
   fileToUpload: File | null = null;
 
   handleFileInput(event: Event): void {
@@ -126,14 +87,15 @@ export class ViewSalesBriefComponent implements OnInit{
     this.fileToUpload = files.item(0);
   }
 
-  uploadFile(): void {
+  uploadFileXlsx(): void {
+    if( this.fileToUpload?.type != "sheet"){
     if (this.fileToUpload) {
       this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
         (data) => {
           console.log(data);
 
           alertify.success('File uploaded successfully');
-
+          window.location.reload();
         },
         (error) => {
           console.log(error);
@@ -142,8 +104,35 @@ export class ViewSalesBriefComponent implements OnInit{
 
         }
       );
+    }}
+    else{
+      alertify.error('Wrong file type');
     }
   }
+
+  uploadFilePPTX(): void {
+    if( this.fileToUpload?.type != "presentation"){
+      if (this.fileToUpload) {
+        this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
+          (data) => {
+            console.log(data);
+
+            alertify.success('File uploaded successfully');
+            window.location.reload();
+          },
+          (error) => {
+            console.log(error);
+
+            alertify.error('File upload error');
+
+          }
+        );
+      }}
+      else{
+        alertify.error('Wrong file type');
+      }
+    }
+
 
 
   downloadFilePPTX(id: number){

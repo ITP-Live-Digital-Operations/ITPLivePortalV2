@@ -22,6 +22,7 @@ import { InfluencerRatingComponent } from './influencer-rating/influencer-rating
 import { StarRatingComponent } from '../partial/star-rating/star-rating.component';
 import { TimeFormComponent } from './time-form/time-form.component';
 import { MimeTransformPipe } from 'src/app/pipes/mime-transform.pipe';
+import { AssignBriefComponent } from './assign-brief/assign-brief.component';
 
 
 
@@ -45,7 +46,8 @@ import { MimeTransformPipe } from 'src/app/pipes/mime-transform.pipe';
     InfluencerRatingComponent,
     StarRatingComponent,
     TimeFormComponent,
-    MimeTransformPipe
+    MimeTransformPipe,
+    AssignBriefComponent
 
   ],
   imports: [

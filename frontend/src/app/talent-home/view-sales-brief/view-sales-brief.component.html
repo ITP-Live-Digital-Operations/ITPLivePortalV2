@@ -15,7 +15,6 @@
             <p class="card-text">Agency: {{ brief.data.Agency }}</p>
             <p class="card-text">Client: {{ brief.data.Client }}</p>
           </div>
-
           <p class="card-text">Client Industry: {{ brief.data.ClientIndustry }}</p>
           <p class="card-text">Campaign Overview: {{ brief.data.CampaignOverview }}</p>
           <p class="card-text">Campaign Objective: {{ brief.data.CampaignObjective }}</p>
@@ -59,76 +58,37 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4" style="margin-top: 2%;" *ngIf=" role === 'talent' && privilege_level > 7">
-      <form [formGroup]="assignForm" (ngSubmit)="assign(id)" autocomplete="off" >
-        <div class="form-group">
-          <mat-form-field appearance="outline">
-            <mat-label>Weight</mat-label>
-            <mat-select formControlName="Weight">
-              <mat-option *ngFor="let num of [1,2,3,4,5,6,7,8,9,10]" [value]="num">{{num}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
 
-
-      <div class="table-container">
-        <table mat-table  #table [dataSource]="dataSource" matSort>
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-          </ng-container>
-
-
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-          </ng-container>
-
-
-          <ng-container matColumnDef="totalWeight">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Weight </th>
-            <td mat-cell *matCellDef="let element"> {{element.totalWeight}} </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
-
-          <ng-container matColumnDef="Action" >
-            <th mat-header-cell *matHeaderCellDef sticky> Action  </th>
-            <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary" (click)="assign(element.id)"> Assign</button>
-            </td>
-          </ng-container>
-
-        </table>
-      </div>
-    </form>
-
-    </div>
-    <div class="col-sm-4" style="margin-top: 2%; width: 40%;" *ngIf=" role === 'talent' && privilege_level < 7">
+    <div class="col-sm-4" style="margin-top: 2%; width: 40%;">
       <div>
         <table class="my-table" >
           <tr>
             <th class="centered"> File Type</th>
-            <th class="centered" *ngIf="budgetSheet || presentation"> File Name</th>
-            <th class="centered" *ngIf="budgetSheet || presentation"> Download </th>
+            <th class="centered" > File Name</th>
+            <th class="centered" > Uploaded On</th>
+            <th class="centered" > Download </th>
             <th class="centered"> Choose File</th>
             <th class="centered"> Upload </th>
-
           </tr>
+
           <tr>
             <td> Excel Sheet</td>
-            <td *ngIf="budgetSheet" > {{budgetSheet.filename}} </td>
-            <td *ngIf="budgetSheet || presentation"> <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id)"> Download</button> </td>
+            <td *ngIf="budgetSheet" > {{budgetSheet.filename}} </td> <td *ngIf="!budgetSheet" >  </td>
+            <td *ngIf="budgetSheet">  {{budgetSheet.createdAt | date}}</td> <td *ngIf="!budgetSheet"></td>
+            <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
+
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td>  <button mat-raised-button color="primary" (click)="uploadFile()">Upload</button> </td>
+            <td>  <button mat-raised-button color="primary" (click)="uploadFileXlsx()">Upload</button> </td>
           </tr>
 
           <tr>
             <td> Presentation </td>
-            <td *ngIf="presentation">  {{presentation.filename}} </td>
-            <td *ngIf="budgetSheet || presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id)"> Download</button> </td>
+            <td *ngIf="presentation">  {{presentation.filename}}  </td> <td *ngIf="!presentation" >  </td>
+            <td *ngIf="presentation">  {{presentation.createdAt | date }}</td> <td *ngIf="!presentation"></td>
+            <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id)"> Download</button> </td> <td *ngIf="!presentation"></td>
+           
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td>  <button mat-raised-button color="primary" (click)="uploadFile()">Upload</button></td>
+            <td>  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td>
           </tr>
 
         </table>

@@ -1,0 +1,109 @@
+<div class="container py-5">
+  <button mat-raised-button  style="margin-bottom: 1%; margin-left: 1%"class="back-button"color="primary"  (click)="backButton()">
+    <mat-icon>arrow_back</mat-icon>
+    BACK
+  </button>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+    <div class="card p-4">
+      <div class="card-header bg-dark text-light">
+        {{ this.brief.data.CampaignName }}
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <p class="card-text">Agency: {{ brief.data.Agency }}</p>
+          <p class="card-text">Client: {{ brief.data.Client }}</p>
+        </div>
+        <p class="card-text">Client Industry: {{ brief.data.ClientIndustry }}</p>
+        <p class="card-text">Campaign Overview: {{ brief.data.CampaignOverview }}</p>
+        <p class="card-text">Campaign Objective: {{ brief.data.CampaignObjective }}</p>
+        <p class="card-text">Campaign Objective Details: {{ brief.data.CampaignObjectiveDetails }}</p>
+        <p class="card-text">Number of Recommendations: {{ brief.data.NumberofRecommendations }}</p>
+        <p class="card-text">Currency: {{ brief.data.Currency }}</p>
+        <p class="card-text">Budget: {{ brief.data.Budget }}</p>
+        <p class="card-text">Campaign Start Date: {{ brief.data.CampaignStartDate | date }}</p>
+        <p class="card-text">Campaign End Date: {{ brief.data.CampaignEndDate | date }}</p>
+        <p class="card-text">Deadline For Recommendations: {{ brief.data.DeadlineForRecommendations }}</p>
+        <p class="card-text">Campaign Message Phase One: {{ brief.data.CampaignMessagePhaseOne }}</p>
+        <p class="card-text">Campaign Message Phase Two: {{ brief.data.CampaignMessagePhaseTwo }}</p>
+        <p class="card-text">Campaign Message Phase Three: {{ brief.data.CampaignMessagePhaseThree }}</p>
+        <p class="card-text">Content Deliverables: {{ brief.data.ContentDeliverables }}</p>
+        <p class="card-text">Brand Exclusivity Duration in Days: {{ brief.data.BrandExclusivityDurationinDays }}</p>
+        <p class="card-text">Video Production: <span *ngIf="brief.data.VideoProduction == 1"> Yes </span> <span *ngIf="brief.data.VideoProduction == 0"> No</span></p>
+        <p class="card-text">Video Editing: <span *ngIf="brief.data.VideoEditing == 1"> Yes </span> <span *ngIf="brief.data.VideoEditing == 0"> No</span></p>
+        <p class="card-text">Influencer Age Range: {{ brief.data.InfluencerAgeRange }}</p>
+        <p class="card-text">Influencer Location: {{ brief.data.InfluencerLocation }}</p>
+        <p class="card-text">Influencer Nationality: {{ brief.data.InfluencerNationality }}</p>
+        <p class="card-text">Influencer Gender: {{ brief.data.InfluencerGender }}</p>.
+        <p class="card-text">Similar Profile Link: {{ brief.data.SimilarProfileLink }}</p>
+        <p class="card-text">Influencer Interest: {{ brief.data.InfluencerInterest }}</p>
+        <p class="card-text">Influencer Number Of Followers: {{ brief.data.InfluencerNumberOfFollowers }}</p>
+        <p class="card-text">Note For Number Of Followers: {{ brief.data.NoteForNumberOfFollowers }}</p>
+        <p class="card-text">Audience Location: {{ brief.data.AudienceLocation }}</p>
+        <p class="card-text">Audience Nationality: {{ brief.data.AudienceNationality }}</p>
+        <p class="card-text">Audience Gender: {{ brief.data.AudienceGender }}</p>
+        <p class="card-text">Audience Interest: {{ brief.data.AudienceInterest }}</p>
+        <p class="card-text">Confirmed Influencer Handles: {{ brief.data.ConfirmedInfluencerHandles }}</p>
+        <p class="card-text">Previous Brand Ambassadors Name: {{ brief.data.PreviousBrandAmbassadorsName }}</p>
+
+
+
+
+
+        <p class="card-text">Created by ID: {{ brief.data.CreatedbyID }}</p>
+        <p class="card-text">Viewed by Talent:<span *ngIf="brief.data.ViewedByTalent == 1"> Yes </span> <span *ngIf="brief.data.ViewedByTalent == 0"> No</span></p>
+        <p class="card-text">Ready: {{ brief.data.Ready }}</p>
+        <p class="card-text">Created At: {{ brief.data.createdAt | date }}</p>
+      </div>
+    </div>
+    </div>
+
+    <div class="col-sm-4" style="margin-top: 2%;">
+      <form [formGroup]="assignForm"  autocomplete="off" >
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Weight</mat-label>
+            <mat-select formControlName="Weight">
+              <mat-option *ngFor="let num of [1,2,3,4,5,6,7,8,9,10]" [value]="num">{{num}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+      <div class="table-container">
+        <table mat-table  #table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="totalWeight">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Weight </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalWeight}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+          <ng-container matColumnDef="Action" >
+            <th mat-header-cell *matHeaderCellDef sticky> Action  </th>
+            <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" (click)="assign(element.id)"> Assign</button>
+            </td>
+          </ng-container>
+
+        </table>
+      </div>
+    </form>
+    </div>
+
+  </div>
+</div>
+</div>

@@ -27,6 +27,10 @@ module.exports = {
           model: 'salesbrief',
           key: 'id'
         }
+      },
+       fileType: {
+          type: DataTypes.STRING,
+          allowNull: false
       },  
       uploaded_by: {
         type: DataTypes.INTEGER,
