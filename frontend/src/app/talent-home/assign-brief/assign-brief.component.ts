@@ -138,7 +138,7 @@ backButton(){
     }
   }
 
-  uploadFilePPTX(): void {
+  uploadFilePPTX(): void { 
     if( this.fileToUpload?.type == "application/vnd.openxmlformats-officedocument.presentationml.presentation"){
       if (this.fileToUpload) {
         this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
