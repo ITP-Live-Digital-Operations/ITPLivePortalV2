@@ -31,10 +31,16 @@ role = this.userService.getRole();
 privilege = this.userService.getPrivilegeLevel();
 
 assignForm : FormGroup;
+approveForm : FormGroup;
 
 constructor(private fileService : FileService ,private salesService : SalesService, private activatedRoute : ActivatedRoute, private userService : UserService,private formBuilder: FormBuilder, private taskService : TaskService) {
   this.assignForm = this.formBuilder.group({
     Weight: ['', Validators.required],
+  });
+
+  this.approveForm = this.formBuilder.group({
+    BudgetNotes : [''],
+    PresentationNotes : [''],
   });
  }
 
@@ -110,7 +116,7 @@ backButton(){
   }
 
   uploadFileXlsx(): void {
-    if( this.fileToUpload?.type != "sheet"){
+    if( this.fileToUpload?.type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"){
     if (this.fileToUpload) {
       this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
         (data) => {
@@ -133,7 +139,7 @@ backButton(){
   }
 
   uploadFilePPTX(): void {
-    if( this.fileToUpload?.type != "presentation"){
+    if( this.fileToUpload?.type == "application/vnd.openxmlformats-officedocument.presentationml.presentation"){
       if (this.fileToUpload) {
         this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
           (data) => {

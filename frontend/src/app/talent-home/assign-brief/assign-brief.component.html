@@ -115,6 +115,7 @@
             <th class="centered" > Download </th>
             <th class="centered"> Choose File</th>
             <th class="centered"> Upload </th>
+            <th class="centered"> Notes </th>
             <th class="centered"> Action </th>
           </tr>
 
@@ -126,6 +127,7 @@
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
             <td>  <button mat-raised-button color="primary" (click)="uploadFileXlsx()">Upload</button> </td>
+            <td> <textarea matInput placeholder="" formControlName="BudgetNotes" style="border: none;" ></textarea> </td>
             <td> <button mat-raised-button color="primary" style="width: 100%"> Approve </button> <button mat-raised-button color="accent" style="margin-top: 2%; width: 100%"> Decline</button></td>
           </tr>
 
@@ -137,6 +139,7 @@
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
             <td>  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td>
+            <td> <textarea matInput placeholder="" formControlName="PresentationNotes" style="border: none;" ></textarea> </td>
             <td> <button mat-raised-button color="primary" style="width: 100%"> Approve </button> <button mat-raised-button color="accent" style="margin-top: 2%; width: 100%"> Decline</button></td>
           </tr>
 
