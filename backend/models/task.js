@@ -51,7 +51,6 @@ module.exports = (sequelize, DataTypes) => {
     deadline : {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW
     },
     created_at: {
       type: DataTypes.DATE,
