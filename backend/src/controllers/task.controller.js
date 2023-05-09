@@ -2,7 +2,9 @@ const model = require('../../models')
 const Sequelize = require('sequelize');
 const Task = model.Task
 const User = model.User
+const SalesBrief = model.SalesBrief
 const { Op } = require('sequelize');
+
 
 
 
@@ -48,7 +50,7 @@ exports.getUserTasks = (req, res) => {
         },
         include: [
             {
-                model: model.SalesBrief,
+                model: SalesBrief,
                 required: true,
                 as: 'Brief',
                 
@@ -150,19 +152,23 @@ exports.getUsersAndTaskWeights = (req, res) => {
         res.status(500).json({ message: err.message });
       });
   };
-      /* .then(users => {
-        const results = users.map(users => {
-            
-          
-            id: users.id,
-            name: users.name,
-            totalWeight: users['assigned_to.weight'] || 0
-        }));
-          res.status(200).json(users);
-        })
-      .catch(error => {
-        console.error(error);
-        res.status(500).json({ message: error.message });
-      });
-  }; */
+     
+  exports.getTaskByBriefId = (req, res) => {
+    Task.findAll({
+        where: {
+            brief_id: req.params.id
+        }
+    }).then(data => {
+        res.status(200).send({
+            status: "success",
+            data: data
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving Tasks."
+        });
+    });
+}
+
 

@@ -90,5 +90,9 @@ export class UserService {
     return this.http.get(`${this.authApiURL}/getAllUsers`)
   }
 
+  getUserNameById(inputdata:any){
+    return this.http.get(`${this.authApiURL}/getUserNameById/${inputdata}`)
+  }
+
 
 }

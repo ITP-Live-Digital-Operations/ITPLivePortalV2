@@ -79,19 +79,12 @@
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1 ></mat-datepicker>
         </mat-form-field>
- 
+
         <mat-form-field appearance="outline">
           <mat-label>Campaign End Date</mat-label>
           <input matInput [matDatepicker]="picker2" formControlName="CampaignEndDate" />
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Deadline for Recommendations</mat-label>
-          <input matInput [matDatepicker]="picker3" formControlName="DeadlineForRecommendations" />
-          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-          <mat-datepicker #picker3></mat-datepicker>
         </mat-form-field>
 
       </div>

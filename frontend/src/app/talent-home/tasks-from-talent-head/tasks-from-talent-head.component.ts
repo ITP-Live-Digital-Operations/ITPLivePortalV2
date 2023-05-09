@@ -40,6 +40,8 @@ export class TasksFromTalentHeadComponent {
 
   getMyTasks(id:any){
     this.taskService.getMyTasks(id).subscribe((data:any)=>{
+      console.log(data);
+
       this.briefDetails = data;
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
       this.dataSource.paginator = this.paginator;
@@ -60,7 +62,7 @@ export class TasksFromTalentHeadComponent {
 
 
     this.taskService.updateStatus({ assigned_to : this.userID, id: id}).subscribe((data:any)=>{
-      
+
     })
   }
 

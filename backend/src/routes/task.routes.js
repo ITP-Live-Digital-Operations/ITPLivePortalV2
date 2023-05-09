@@ -20,4 +20,9 @@ router.route('/updateStatusToComplete')
 
 router.route('/getUsersAndTaskWeights')
     .get(asyncHandler(TaskController.getUsersAndTaskWeights));
+
+router.route('/getTaskByBriefId/:id')
+    .get(asyncHandler(TaskController.getTaskByBriefId));
+
+    
 module.exports = router;

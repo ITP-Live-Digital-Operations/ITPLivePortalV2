@@ -25,4 +25,7 @@ router.route('/addTimeForm')
 
 router.route('/getTimeFormsById/:id')
     .get(asyncHandler(userController.getTimeFormsById));
+
+router.route('/getUserNameById/:id')
+    .get(asyncHandler(userController.getUserNameById));
 module.exports = router;

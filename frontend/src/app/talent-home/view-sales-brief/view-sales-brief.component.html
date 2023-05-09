@@ -1,9 +1,10 @@
-<div class="container py-5">
+<div style="position: relative;">
+<div class="search-container">
   <button mat-raised-button  style="margin-bottom: 1%; margin-left: 1%"class="back-button"color="primary"  (click)="backButton()">
     <mat-icon>arrow_back</mat-icon>
     BACK
   </button>
-<div class="container">
+</div>
   <div class="row">
     <div class="col-sm-4">
       <div class="card p-4">
@@ -11,10 +12,8 @@
           {{ this.brief.data.CampaignName }}
         </div>
         <div class="card-body">
-          <div class="row">
-            <p class="card-text">Agency: {{ brief.data.Agency }}</p>
-            <p class="card-text">Client: {{ brief.data.Client }}</p>
-          </div>
+          <p class="card-text">Agency: {{ brief.data.Agency }}</p>
+          <p class="card-text">Client: {{ brief.data.Client }}</p>
           <p class="card-text">Client Industry: {{ brief.data.ClientIndustry }}</p>
           <p class="card-text">Campaign Overview: {{ brief.data.CampaignOverview }}</p>
           <p class="card-text">Campaign Objective: {{ brief.data.CampaignObjective }}</p>
@@ -46,11 +45,6 @@
           <p class="card-text">Audience Interest: {{ brief.data.AudienceInterest }}</p>
           <p class="card-text">Confirmed Influencer Handles: {{ brief.data.ConfirmedInfluencerHandles }}</p>
           <p class="card-text">Previous Brand Ambassadors Name: {{ brief.data.PreviousBrandAmbassadorsName }}</p>
-
-
-
-
-
           <p class="card-text">Created by ID: {{ brief.data.CreatedbyID }}</p>
           <p class="card-text">Viewed by Talent:<span *ngIf="brief.data.ViewedByTalent == 1"> Yes </span> <span *ngIf="brief.data.ViewedByTalent == 0"> No</span></p>
           <p class="card-text">Ready: {{ brief.data.Ready }}</p>
@@ -59,8 +53,7 @@
       </div>
     </div>
 
-    <div class="col-sm-4" style="margin-top: 2%; width: 40%;">
-      
+    <div class="col-sm-6">
       <div>
         <table class="my-table" >
           <tr>
@@ -74,7 +67,7 @@
 
           <tr>
             <td> Excel Sheet</td>
-            <td *ngIf="budgetSheet" > {{budgetSheet.filename}} </td> <td *ngIf="!budgetSheet" >  </td>
+            <td *ngIf="budgetSheet" > {{budgetSheet.originalname}} </td> <td *ngIf="!budgetSheet" >  </td>
             <td *ngIf="budgetSheet">  {{budgetSheet.createdAt | date}}</td> <td *ngIf="!budgetSheet"></td>
             <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
 
@@ -84,7 +77,7 @@
 
           <tr>
             <td> Presentation </td>
-            <td *ngIf="presentation">  {{presentation.filename}}  </td> <td *ngIf="!presentation" >  </td>
+            <td *ngIf="presentation">  {{presentation.originalname}}  </td> <td *ngIf="!presentation" >  </td>
             <td *ngIf="presentation">  {{presentation.createdAt | date }}</td> <td *ngIf="!presentation"></td>
             <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id)"> Download</button> </td> <td *ngIf="!presentation"></td>
 
@@ -95,6 +88,7 @@
         </table>
 
 
-    </div>
+
   </div>
+</div>
 </div>

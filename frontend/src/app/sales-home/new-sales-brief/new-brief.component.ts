@@ -38,7 +38,6 @@ export class NewBriefComponent {
       Budget: [''],
       CampaignStartDate: [''],
       CampaignEndDate: [''],
-      DeadlineForRecommendations: [''],
       CampaignMessagePhaseOne: [''],
       CampaignMessagePhaseTwo: [''],
       CampaignMessagePhaseThree: [''],
@@ -216,7 +215,7 @@ export class NewBriefComponent {
       AudienceLocation: this.processFormGroups(this.newSalesBriefForm.get('AudienceLocation')),
       AudienceNationality: this.processFormGroups(this.newSalesBriefForm.get('AudienceNationality')),
       AudienceInterest: this.processFormGroups(this.newSalesBriefForm.get('AudienceInterest')),
-      
+
       Ready: false,
       ViewedByTalent: false,
     };

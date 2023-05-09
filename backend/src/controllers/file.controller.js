@@ -74,8 +74,9 @@ exports.uploadFile = (req, res) => {
 exports.downloadFile = (req, res) => {
     const id = req.params.id;
     File.findByPk(id).then(data => {
+        const filename = data.originalname
         const file = `${__dirname}/../../uploads/${data.filename}`;
-        res.download(file);
+        res.download(file, filename);
     }).catch(err => {
         console.log(err);
         res.status(500).send({

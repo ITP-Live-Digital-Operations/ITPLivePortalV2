@@ -16,6 +16,7 @@ import { FileService } from 'src/app/core/Services/file.service';
 })
 export class AssignBriefComponent implements OnInit {
 dataSource: any;
+exec : any;
 
 brief: any
 brief_id: any
@@ -36,6 +37,7 @@ approveForm : FormGroup;
 constructor(private fileService : FileService ,private salesService : SalesService, private activatedRoute : ActivatedRoute, private userService : UserService,private formBuilder: FormBuilder, private taskService : TaskService) {
   this.assignForm = this.formBuilder.group({
     Weight: ['', Validators.required],
+    Deadline: ['', Validators.required],
   });
 
   this.approveForm = this.formBuilder.group({
@@ -79,7 +81,7 @@ getTalentTaskWeights(){
 
 assign(id: any){
   if(this.assignForm.valid){
-  this.taskService.createTask({assigned_by: this.userService.getID() , assigned_to : id, brief_id : this.brief.data.id, weight: this.assignForm.value.Weight}).subscribe((data: any) => {
+  this.taskService.createTask({assigned_by: this.userService.getID() , assigned_to : id, brief_id : this.brief.data.id, weight: this.assignForm.value.Weight, deadline : this.assignForm.value.Deadline }).subscribe((data: any) => {
       alertify.success('Task Assigned');
   });
   this.salesService.updateAssignedStatus(this.brief.data.id).subscribe((data: any) => {
@@ -120,7 +122,7 @@ backButton(){
     if (this.fileToUpload) {
       this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
         (data) => {
-          
+
 
           alertify.success('File uploaded successfully');
           window.location.reload();

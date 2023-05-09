@@ -71,10 +71,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       defaultValue: null
     },
-    DeadlineForRecommendations: {
-      type: DataTypes.DATEONLY,
-      defaultValue: null
-    },
     CampaignMessagePhaseOne: {
       type: DataTypes.TEXT,
       defaultValue: null

@@ -160,3 +160,17 @@ exports.getTimeFormsById =  (req, res) => {
     }
     );
 };
+
+
+exports.getUserNameById =  (req, res) => {
+    User.findByPk(req.params.id).then(user => {
+    res.status(200).send(user.name);
+    }).catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+};
+

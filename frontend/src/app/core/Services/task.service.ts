@@ -36,4 +36,8 @@ export class TaskService {
     return this.http.get(`${this.taskApiURL}/getUsersAndTaskWeights`)
   }
 
+  getTaskByBriefId(inputdata:any){
+    return this.http.get(`${this.taskApiURL}/getTaskByBriefId/${inputdata}`)
+  }
+
 }
