@@ -8,6 +8,8 @@ table {
 
 }
 
+
+
 .table-container{
   padding-top: 8%;
   overflow-y: scroll;
@@ -22,6 +24,16 @@ table {
   position: absolute; top: 5; left: 0; right: 0; z-index: 1;
   background-color: white;
 }
+
+
+
+
+
+
+
+
+
+
 
 .mat-mdc-row .mat-mdc-cell {
   border-bottom: 1px solid transparent;

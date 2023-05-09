@@ -27,18 +27,16 @@ export class BriefsFromSalesComponent implements OnInit {
   }
 
 
-
   backButton() {
     window.history.back();
   }
 
-  displayedColumns: string[] =  ['Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'ViewedByTalent', 'Action' ];
+  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'ViewedByTalent', 'Action' ];
 
   getAllBriefs(){
     this.salesService.getAllBriefs().subscribe((data:any)=>{
-      this.briefDetails = data
 
-
+      this.briefDetails = data;
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -50,7 +48,6 @@ export class BriefsFromSalesComponent implements OnInit {
   }
 
   viewedTask(id: any){
-    console.log(id);
 
     this.salesService.viewedByTalent(id).subscribe((data:any)=>{
       console.log(data)

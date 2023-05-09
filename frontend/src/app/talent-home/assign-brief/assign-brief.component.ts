@@ -120,13 +120,13 @@ backButton(){
     if (this.fileToUpload) {
       this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
         (data) => {
-          console.log(data);
+          
 
           alertify.success('File uploaded successfully');
           window.location.reload();
         },
         (error) => {
-          console.log(error);
+
 
           alertify.error('File upload error');
 
@@ -138,18 +138,18 @@ backButton(){
     }
   }
 
-  uploadFilePPTX(): void { 
+  uploadFilePPTX(): void {
     if( this.fileToUpload?.type == "application/vnd.openxmlformats-officedocument.presentationml.presentation"){
       if (this.fileToUpload) {
         this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
           (data) => {
-            console.log(data);
+
 
             alertify.success('File uploaded successfully');
             window.location.reload();
           },
           (error) => {
-            console.log(error);
+
 
             alertify.error('File upload error');
 

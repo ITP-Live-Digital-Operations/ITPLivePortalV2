@@ -168,6 +168,10 @@ module.exports = {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       },
+      Status: {
+        type: DataTypes.STRING(255),
+        defaultValue: 'Active'
+      },
       CreatedbyID: {
         type: DataTypes.INTEGER,
         allowNull: false,

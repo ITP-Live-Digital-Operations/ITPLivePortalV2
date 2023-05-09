@@ -27,4 +27,6 @@ router.route('/getSalesBriefWithFiles/:id')
 router.route('/updateAssignedStatus/:id')
     .get(asyncHandler(salesBriefController.updateAssignedStatus))
 
+router.route('/updateStatus/:id')
+    .get(asyncHandler(salesBriefController.updateStatus))
 module.exports = router;

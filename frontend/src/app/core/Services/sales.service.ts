@@ -22,9 +22,11 @@ export class SalesService {
   getSalesBriefsNotViewedByTalent(){
     return this.http.get(`${this.salesApiURL}/getSalesBriefsNotViewedByTalent`, )
   }
+
   getAllBriefs(){
     return this.http.get(`${this.salesApiURL}/getAllSalesBriefs`)
   }
+
   viewedByTalent(id:any){
     return this.http.get(`${this.salesApiURL}/viewedByTalent/${id}`)
   }
@@ -49,4 +51,9 @@ export class SalesService {
     return this.http.get(`${this.salesApiURL}/updateAssignedStatus/${id}`)
   }
 
+  updateStatus(id:any){
+    return this.http.get(`${this.salesApiURL}/updateStatus/${id}`)
+  }
+
+  
 }

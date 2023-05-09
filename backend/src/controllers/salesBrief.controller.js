@@ -154,3 +154,21 @@ exports.updateAssignedStatus = (req, res) => {
     });
 }
 
+exports.updateStatus = (req, res) => {
+    SalesBrief.update({status: req.body.status}, {
+        where: {
+            id: req.params.id
+        }
+    }).then( data => {
+        res.status(200).send({
+            status: "success",
+            data: data
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving SalesBriefs."
+        });
+    });
+}
+

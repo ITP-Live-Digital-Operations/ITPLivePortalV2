@@ -15,6 +15,7 @@ export class LoginPageComponent implements OnInit{
   data: any;
 
   ngOnInit(): void {
+    
     localStorage.clear();
   }
 
