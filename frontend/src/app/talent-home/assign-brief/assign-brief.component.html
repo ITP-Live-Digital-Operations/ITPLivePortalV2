@@ -126,7 +126,7 @@
             <td> Excel Sheet</td>
             <td *ngIf="budgetSheet" > {{budgetSheet.originalname}} </td> <td *ngIf="!budgetSheet" >  </td>
             <td *ngIf="budgetSheet">  {{budgetSheet.createdAt | date}}</td> <td *ngIf="!budgetSheet"></td>
-            <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
+            <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
             <td>  <button mat-raised-button color="primary" (click)="uploadFileXlsx()">Upload</button> </td>
@@ -138,7 +138,7 @@
             <td> Presentation </td>
             <td *ngIf="presentation">  {{presentation.originalname}}  </td> <td *ngIf="!presentation" >  </td>
             <td *ngIf="presentation">  {{presentation.createdAt | date }}</td> <td *ngIf="!presentation"></td>
-            <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id)"> Download</button> </td> <td *ngIf="!presentation"></td>
+            <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id, presentation.originalname)"> Download</button> </td> <td *ngIf="!presentation"></td>
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
             <td>  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Observable, tap } from 'rxjs';
+import { saveAs } from 'file-saver';
 import { environment} from '../../../environments/environment.development';
 
 @Injectable({
@@ -22,11 +22,18 @@ export class FileService {
     return this.http.post(`${this.fileApiUrl}/upload`, formData);
   }
 
-  downloadFile(id: number): Observable<any> {
+  downloadFile(id: number, filename: string): Observable<any> {
     return this.http.get(`${this.fileApiUrl}/download/${id}`, {
       responseType: 'blob',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
-    });
+    }).pipe(
+      tap(
+        data => {
+          saveAs(data, filename);
+        },
+        error => console.log(error)
+      )
+    )
   }
 
   getFile(id: number): Observable<any> {

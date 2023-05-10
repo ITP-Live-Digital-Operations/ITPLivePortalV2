@@ -135,16 +135,16 @@ export class ViewSalesBriefComponent implements OnInit{
 
 
 
-  downloadFilePPTX(id: number){
-    this.fileService.downloadFile(id).subscribe((data: any) => {
+  downloadFilePPTX(id: number, filename: string){
+    this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
       const url = window.URL.createObjectURL(blob);
       window.open(url);
     });
   }
 
-  downloadFilexlsx(id: number){
-    this.fileService.downloadFile(id).subscribe((data: any) => {
+  downloadFilexlsx(id: number, filename: string){
+    this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
       const url = window.URL.createObjectURL(blob);
       window.open(url);

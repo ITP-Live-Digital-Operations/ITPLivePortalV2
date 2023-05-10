@@ -3,7 +3,7 @@ const upload = require('../../config/multerConfig');
 const models = require('../../models');
 const File = models.File;
 const SalesBrief = models.SalesBrief;
-
+const path = require('path');
 
 
 exports.uploadFile = (req, res) => {
@@ -74,9 +74,10 @@ exports.uploadFile = (req, res) => {
 exports.downloadFile = (req, res) => {
     const id = req.params.id;
     File.findByPk(id).then(data => {
-        const filename = data.originalname
-        const file = `${__dirname}/../../uploads/${data.filename}`;
-        res.download(file, filename);
+        console.log(`file name: ${data.originalname}`)
+        const file = path.resolve(__dirname, '../../uploads/', data.filename);
+        console.log(`file path: ${file}`);
+        res.sendFile(file);
     }).catch(err => {
         console.log(err);
         res.status(500).send({
