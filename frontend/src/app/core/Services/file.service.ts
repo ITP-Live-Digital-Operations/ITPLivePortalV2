@@ -27,7 +27,7 @@ export class FileService {
       responseType: 'blob',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     }).pipe(
-      tap(
+      tap( 
         data => {
           saveAs(data, filename);
         },
