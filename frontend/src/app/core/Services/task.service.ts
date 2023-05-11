@@ -40,4 +40,12 @@ export class TaskService {
     return this.http.get(`${this.taskApiURL}/getTaskByBriefId/${inputdata}`)
   }
 
+  deactivateTask(id:any){
+    return this.http.get(`${this.taskApiURL}/deactivateTask/${id}`)
+  }
+
+  activateTask(id:any){
+    return this.http.get(`${this.taskApiURL}/activateTask/${id}`)
+  }
+
 }

@@ -87,7 +87,7 @@
             <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id,presentation.originalname)"> Download</button> </td> <td *ngIf="!presentation"></td>
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td *ngIf="!presentationApproved">  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td> 
+            <td *ngIf="!presentationApproved">  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td>
 
             <td *ngIf="presentation"> {{presentationApproved | boolean: 'Approved':'Not Approved' }} </td> <td *ngIf="!presentation"></td>
             <td *ngIf="!presentationApproved"> {{presentationNotes}}</td>  <td *ngIf="presentationApproved"> Send to Sales </td><td *ngIf="!presentation"></td>

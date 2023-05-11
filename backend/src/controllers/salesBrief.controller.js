@@ -209,3 +209,22 @@ exports.getBriefByCreatedbyId = (req, res) => {
     });
 }
 
+exports.changeStatus = (req, res) => {
+    console.log(req.body.status);
+    SalesBrief.update({Status: req.body.status}, {
+        where: {
+            id: req.params.id
+        }
+    }).then( data => {
+        res.status(200).send({
+            status: "success",
+            
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message
+        });
+    });
+}
+

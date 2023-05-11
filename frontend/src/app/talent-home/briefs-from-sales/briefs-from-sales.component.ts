@@ -31,7 +31,7 @@ export class BriefsFromSalesComponent implements OnInit {
     window.history.back();
   }
 
-  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'ViewedByTalent', 'Action' ];
+  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'ViewedByTalent','Status', 'Action'  ];
 
   getAllBriefs(){
     this.salesService.getAllBriefs().subscribe((data:any)=>{

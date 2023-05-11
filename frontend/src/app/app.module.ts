@@ -21,8 +21,9 @@ import { CoreModule } from './core/core.module';
 import { LoginModule } from './login/login.module';
 import { TalentHomeModule } from './talent-home/talent-home.module';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
-import { StarRatingComponent } from './partial/star-rating/star-rating.component';
+
 import { ChangePasswordComponent } from './partial/change-password/change-password.component';
+
 
 
 
@@ -36,7 +37,8 @@ import { ChangePasswordComponent } from './partial/change-password/change-passwo
     StatusComponent,
     AccessDeniedComponent,
     ChangePasswordComponent,
-   
+
+
 
 
   ],

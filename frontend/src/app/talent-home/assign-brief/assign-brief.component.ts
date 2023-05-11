@@ -241,4 +241,26 @@ backButton(){
   );
 }
 
+deactivateBrief(){
+  this.salesService.changeStatus(this.brief_id, {status: 'InActive'}).subscribe((data1: any) => {
+    alertify.success('Brief Deactivated');
+
+      this.taskService.deactivateTask(this.brief_id).subscribe((data2: any) => {
+        alertify.success('Task Deactivated');
+        window.location.reload();
+    });
+  });
+}
+
+activateBrief(){
+  this.salesService.changeStatus(this.brief_id, {status: 'Active' } ).subscribe((data1: any) => {
+    alertify.success('Brief Activated');
+
+    this.taskService.activateTask(this.brief_id).subscribe((data2: any) => {
+      alertify.success('Task Activated');
+      window.location.reload();
+    });
+  });
+}
+
 }

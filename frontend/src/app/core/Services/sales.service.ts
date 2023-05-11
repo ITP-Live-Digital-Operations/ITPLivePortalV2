@@ -64,5 +64,9 @@ export class SalesService {
     return this.http.get(`${this.salesApiURL}/getBriefByCreatedbyId/${id}`)
   }
 
-  
+  changeStatus(id:any, inputdata :any){
+    return this.http.post(`${this.salesApiURL}/changeStatus/${id}`, inputdata)
+  }
+
+
 }

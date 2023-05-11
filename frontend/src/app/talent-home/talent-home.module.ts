@@ -24,6 +24,8 @@ import { TimeFormComponent } from './time-form/time-form.component';
 import { MimeTransformPipe } from 'src/app/pipes/mime-transform.pipe';
 import { AssignBriefComponent } from './assign-brief/assign-brief.component';
 import { BooleanPipe } from '../pipes/boolean.pipe';
+import { ColorChangePipe } from '../pipes/color-change.pipe';
+import { TalentTasksComponent } from './talent-tasks/talent-tasks.component';
 
 
 
@@ -49,7 +51,9 @@ import { BooleanPipe } from '../pipes/boolean.pipe';
     TimeFormComponent,
     MimeTransformPipe,
     AssignBriefComponent,
-    BooleanPipe
+    BooleanPipe,
+    ColorChangePipe,
+    TalentTasksComponent
 
   ],
   imports: [

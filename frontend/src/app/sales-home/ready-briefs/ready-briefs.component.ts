@@ -12,7 +12,7 @@ import { UserService } from 'src/app/core/Services/user.service';
 })
 export class ReadyBriefsComponent implements OnInit {
 
-
+ 
   dataSource: any;
   briefs: any;
   user_id = this.userService.getID();

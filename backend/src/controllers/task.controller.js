@@ -170,5 +170,41 @@ exports.getUsersAndTaskWeights = (req, res) => {
         });
     });
 }
+ 
+
+exports.deactivateTask = (req, res) => {
+    Task.update(
+        { status: 'Deactivated' },
+        { where: { brief_id : req.params.id } }
+    ).then(data => {
+        res.status(200).send({
+            status: 'success',
+        })
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while updating the Task."
+        });
+    }
+    )
+}
 
 
+exports.activateTask = (req, res) => {
+    Task.update(
+        { status: 'In progress' },
+        { where: { brief_id : req.params.id } }
+    ).then(data => {
+        res.status(200).send({
+            status: 'success',
+        })
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while updating the Task."
+        });
+    }
+    )
+}

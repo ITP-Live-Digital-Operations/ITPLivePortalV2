@@ -20,6 +20,7 @@ import { InfluencerRatingComponent } from './influencer-rating/influencer-rating
 import { ChangePasswordComponent } from '../partial/change-password/change-password.component';
 import { TimeFormComponent } from './time-form/time-form.component';
 import { AssignBriefComponent } from './assign-brief/assign-brief.component';
+import { TalentTasksComponent } from './talent-tasks/talent-tasks.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'forms', pathMatch: 'full' },
@@ -38,6 +39,8 @@ const routes: Routes = [
   { path: 'tasksFromTalentHead', component: TasksFromTalentHeadComponent},
   { path: 'viewTask/:id', component: ViewTaskComponent},
   { path: 'influencer-rating/:id', component: InfluencerRatingComponent},
+  { path: 'talentTasks', component: TalentTasksComponent},
+
   { path: 'newTimeForm', component: TimeFormComponent},
   { path: 'changePassword', component:ChangePasswordComponent , canActivate: [AuthGuard]},
 

@@ -24,5 +24,9 @@ router.route('/getUsersAndTaskWeights')
 router.route('/getTaskByBriefId/:id')
     .get(asyncHandler(TaskController.getTaskByBriefId));
 
-    
-module.exports = router;
+router.route('/deactivateTask/:id')
+    .get(asyncHandler(TaskController.deactivateTask));
+
+router.route('/activateTask/:id')
+    .get(asyncHandler(TaskController.activateTask));
+module.exports = router; 
