@@ -148,17 +148,17 @@ export class ViewSalesBriefComponent implements OnInit{
 
   downloadFilePPTX(id: number, filename: string){
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
-      const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
+      /* const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
       const url = window.URL.createObjectURL(blob);
-      window.open(url);
+      window.open(url); */
     });
   }
 
   downloadFilexlsx(id: number, filename: string){
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
-      const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+     /*  const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
       const url = window.URL.createObjectURL(blob);
-      window.open(url);
+      window.open(url); */
     });
   }
 
@@ -195,7 +195,7 @@ export class ViewSalesBriefComponent implements OnInit{
         alertify.error('Error');
       }
 
-      
+
     });
   }
 

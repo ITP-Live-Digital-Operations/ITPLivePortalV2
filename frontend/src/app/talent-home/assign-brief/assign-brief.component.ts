@@ -16,6 +16,7 @@ import { FileService } from 'src/app/core/Services/file.service';
 })
 export class AssignBriefComponent implements OnInit {
 dataSource: any;
+
 task: any;
 exec : any;
 execId : any;

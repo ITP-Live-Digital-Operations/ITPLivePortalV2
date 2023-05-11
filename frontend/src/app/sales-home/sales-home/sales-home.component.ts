@@ -16,4 +16,8 @@ export class SalesHomeComponent {
   redirectToSalesBrief(){
     this.router.navigate(['home/sales/newSalesBrief'])
   }
+
+  redirectReadyBriefs(){
+    this.router.navigate(['home/sales/readyBriefs'])
+  }
 }

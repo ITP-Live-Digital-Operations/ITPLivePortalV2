@@ -14,7 +14,7 @@ import { UserService } from 'src/app/core/Services/user.service';
   styleUrls: ['./logs.component.css']
 })
 export class LogsComponent implements OnInit {
- 
+
   dataSource: any;
   UserDetails: any;
   influencers: any;

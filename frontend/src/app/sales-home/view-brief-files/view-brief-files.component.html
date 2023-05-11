@@ -1,0 +1,43 @@
+<div style="position: relative;">
+
+<div class="search-container">
+  <button mat-raised-button  style="margin-bottom: 1%; margin-left: 1%"class="back-button"color="primary"  (click)="backButton()">
+    <mat-icon>arrow_back</mat-icon>
+    BACK
+  </button>
+</div>
+<div class="row">
+    <div class="col-m-8">
+<table class="my-table">
+
+  <tr>
+    <th class="centered"> File Type </th>
+    <th class="centered"> File Name </th>
+    <th class="centered" > Download </th>
+  </tr>
+
+  <tr>
+    <td> Excel Sheet</td>
+    <td *ngIf="budgetSheet" > {{budgetSheet.originalname}} </td> <td *ngIf="!budgetSheet" >  </td>
+    <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
+  </tr>
+
+  <tr>
+    <td> Presentation </td>
+    <td *ngIf="presentation">  {{presentation.originalname}}  </td> <td *ngIf="!presentation" >  </td>
+    <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id,presentation.originalname)"> Download</button> </td> <td *ngIf="!presentation"></td>
+  </tr>
+</table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
