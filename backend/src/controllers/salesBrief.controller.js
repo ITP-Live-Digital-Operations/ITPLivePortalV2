@@ -193,7 +193,8 @@ exports.salesBriefReady = (req, res) => {
 exports.getBriefByCreatedbyId = (req, res) => {
     SalesBrief.findAll({
         where: {
-            CreatedbyID : req.params.id
+            CreatedbyID : req.params.id,
+            Ready : 1
         }
     }).then( data => {
         res.status(200).send({
