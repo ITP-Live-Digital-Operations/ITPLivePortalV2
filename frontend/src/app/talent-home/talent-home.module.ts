@@ -23,6 +23,7 @@ import { StarRatingComponent } from '../partial/star-rating/star-rating.componen
 import { TimeFormComponent } from './time-form/time-form.component';
 import { MimeTransformPipe } from 'src/app/pipes/mime-transform.pipe';
 import { AssignBriefComponent } from './assign-brief/assign-brief.component';
+import { BooleanPipe } from '../pipes/boolean.pipe';
 
 
 
@@ -47,7 +48,8 @@ import { AssignBriefComponent } from './assign-brief/assign-brief.component';
     StarRatingComponent,
     TimeFormComponent,
     MimeTransformPipe,
-    AssignBriefComponent
+    AssignBriefComponent,
+    BooleanPipe
 
   ],
   imports: [

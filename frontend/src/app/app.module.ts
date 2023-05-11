@@ -28,6 +28,7 @@ import { ChangePasswordComponent } from './partial/change-password/change-passwo
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { ChangePasswordComponent } from './partial/change-password/change-passwo
     StatusComponent,
     AccessDeniedComponent,
     ChangePasswordComponent,
+   
 
 
   ],

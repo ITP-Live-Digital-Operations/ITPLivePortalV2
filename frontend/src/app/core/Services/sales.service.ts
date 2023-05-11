@@ -55,5 +55,14 @@ export class SalesService {
     return this.http.get(`${this.salesApiURL}/updateStatus/${id}`)
   }
 
+  salesBriefReady(id:any){
+    return this.http.get(`${this.salesApiURL}/salesBriefReady/${id}`)
+  }
+
+
+  getBriefByCreatedbyId(id:any){
+    return this.http.get(`${this.salesApiURL}/getBriefByCreatedbyId/${id}`)
+  }
+
   
 }

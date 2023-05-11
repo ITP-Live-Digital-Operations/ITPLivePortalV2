@@ -29,4 +29,10 @@ router.route('/updateAssignedStatus/:id')
 
 router.route('/updateStatus/:id')
     .get(asyncHandler(salesBriefController.updateStatus))
+
+router.route('/salesBriefReady/:id')
+    .get(asyncHandler(salesBriefController.salesBriefReady))
+
+router.route('/getBriefByCreatedbyId/:id')
+    .get(asyncHandler(salesBriefController.getBriefByCreatedbyId))
 module.exports = router;

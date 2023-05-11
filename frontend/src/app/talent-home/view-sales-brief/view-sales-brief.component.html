@@ -63,6 +63,8 @@
             <th class="centered" > Download </th>
             <th class="centered"> Choose File</th>
             <th class="centered"> Upload </th>
+            <th class="centered"> Status  </th>
+            <th class="centered"> Notes </th>
           </tr>
 
           <tr>
@@ -72,7 +74,10 @@
             <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td>  <button mat-raised-button color="primary" (click)="uploadFileXlsx()">Upload</button> </td>
+            <td *ngIf="!budgetApproved">  <button mat-raised-button color="primary" (click)="uploadFileXlsx()">Upload</button> </td> <td *ngIf="budgetApproved"> Approved </td>
+
+            <td *ngIf="budgetSheet"> {{ budgetApproved | boolean: 'Approved':'Not Approved' }} </td> <td *ngIf="!budgetSheet"></td>
+            <td *ngIf="!budgetApproved"> {{budgetNotes}}</td> <td *ngIf="budgetApproved"> Send to Sales </td>  <td *ngIf="!budgetSheet"></td>
           </tr>
 
           <tr>
@@ -82,13 +87,16 @@
             <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id,presentation.originalname)"> Download</button> </td> <td *ngIf="!presentation"></td>
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td>  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td>
+            <td *ngIf="!presentationApproved">  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td> 
+
+            <td *ngIf="presentation"> {{presentationApproved | boolean: 'Approved':'Not Approved' }} </td> <td *ngIf="!presentation"></td>
+            <td *ngIf="!presentationApproved"> {{presentationNotes}}</td>  <td *ngIf="presentationApproved"> Send to Sales </td><td *ngIf="!presentation"></td>
           </tr>
 
         </table>
 
 
-
+        <button *ngIf="budgetApproved && presentationApproved" mat-raised-button color="primary" (click)="salesBriefReady()"> Send to Sales </button>
   </div>
 </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SalesService } from 'src/app/core/Services/sales.service';
@@ -16,7 +16,9 @@ import { FileService } from 'src/app/core/Services/file.service';
 })
 export class AssignBriefComponent implements OnInit {
 dataSource: any;
+task: any;
 exec : any;
+execId : any;
 
 brief: any
 brief_id: any
@@ -26,13 +28,15 @@ budgetSheet: any;
 presentationId: any;
 presentation: any;
 
+budgetApproved = false;
+presentationApproved = false;
+
 assigned : any ;
 user_id = this.userService.getID();
 role = this.userService.getRole();
 privilege = this.userService.getPrivilegeLevel();
 
 assignForm : FormGroup;
-approveForm : FormGroup;
 
 constructor(private fileService : FileService ,private salesService : SalesService, private activatedRoute : ActivatedRoute, private userService : UserService,private formBuilder: FormBuilder, private taskService : TaskService) {
   this.assignForm = this.formBuilder.group({
@@ -40,16 +44,17 @@ constructor(private fileService : FileService ,private salesService : SalesServi
     Deadline: ['', Validators.required],
   });
 
-  this.approveForm = this.formBuilder.group({
-    BudgetNotes : [''],
-    PresentationNotes : [''],
-  });
+
  }
 
 
 ngOnInit(): void {
   this.loadBriefData();
   this.getTalentTaskWeights();
+  this.getTask(this.brief_id);
+
+
+
 }
 
 
@@ -57,7 +62,6 @@ loadBriefData(){
   this.activatedRoute.params.subscribe( params => {
     this.brief_id = params['id']
     this.salesService.getSalesBriefWithFiles(this.brief_id).subscribe((data: any) => {
-      console.log(data);
 
       this.brief = data;
       this.assigned = data.data.assigned
@@ -66,9 +70,9 @@ loadBriefData(){
 
       this.getBudgetSheet(this.budgetSheetId);
 
-
       this.presentationId = data.data.PresentationId
       this.getPresentation(this.presentationId);
+
     });
   })
 }
@@ -92,6 +96,10 @@ assign(id: any){
 }
 
 displayedColumns: string[] = ['id', 'name', 'totalWeight', 'Action'];
+
+
+@ViewChild('budgetNotes') budgetNotes!: ElementRef;
+@ViewChild('presentationNotes') presentationNotes!: ElementRef;
 
 @ViewChild(MatSort, { static: true }) sort !: MatSort;
 
@@ -185,12 +193,51 @@ backButton(){
   getBudgetSheet(id: number){
     this.fileService.getFile(id).subscribe((data: any) => {
         this.budgetSheet = data.data;
+        this.budgetApproved = this.budgetSheet.approved
     });
   }
 
   getPresentation(id: number){
     this.fileService.getFile(id).subscribe((data: any) => {
         this.presentation = data.data;
+        this.presentationApproved = this.presentation.approved
     });
   }
+
+  getTask(id: number){
+    this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
+        this.task = data.data[0];
+        this.execId = data.data[0].assigned_to;
+    this.userService.getUserNameById(this.execId).subscribe((data: any) => {
+      this.exec = data.name;
+    }
+    )}
+    );
+  };
+
+
+  approve(id: number){
+    this.fileService.approveFile(id).subscribe((data: any) => {
+      alertify.success('File approved successfully');
+      window.location.reload();
+    }
+    );
+  }
+
+  declineBudget(){
+    this.fileService.addNotes(this.budgetSheetId, this.budgetNotes.nativeElement.value ).subscribe((data: any) => {
+      alertify.success('Notes Added Successfully');
+      window.location.reload();
+    }
+    );
+  }
+
+  declinePresentation(){
+    this.fileService.addNotes(this.presentationId, this.presentationNotes.nativeElement.value ).subscribe((data: any) => {
+      alertify.success('Notes Added Successfully');
+      window.location.reload();
+  }
+  );
+}
+
 }

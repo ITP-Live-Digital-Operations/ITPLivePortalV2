@@ -27,7 +27,7 @@ export class FileService {
       responseType: 'blob',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     }).pipe(
-      tap( 
+      tap(
         data => {
           saveAs(data, filename);
         },
@@ -38,5 +38,13 @@ export class FileService {
 
   getFile(id: number): Observable<any> {
     return this.http.get(`${this.fileApiUrl}/getFileById/${id}`);
+  }
+
+  approveFile(id: number): Observable<any> {
+    return this.http.get(`${this.fileApiUrl}/approveFile/${id}`, {});
+  }
+
+  addNotes(id: number, notes: string): Observable<any> {
+    return this.http.post(`${this.fileApiUrl}/addNotes/${id}`, {notes});
   }
 }

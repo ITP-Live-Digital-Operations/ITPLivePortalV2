@@ -28,6 +28,12 @@ export class ViewSalesBriefComponent implements OnInit{
   presentationId: any;
   presentation: any;
 
+  budgetApproved = false;
+  budgetNotes = '';
+
+  presentationApproved = false;
+  presentationNotes = '';
+
   user_id = this.userService.getID();
   role = this.userService.getRole();
   privilege_level = this.userService.getPrivilegeLevel();
@@ -43,6 +49,10 @@ export class ViewSalesBriefComponent implements OnInit{
     this.loadBriefData();
     this.refresh();
 
+
+   /*  this.budgetApproved = this.budgetSheet.approved
+    this.presentationApproved = this.presentation.approved */
+
   }
 
 
@@ -55,6 +65,7 @@ export class ViewSalesBriefComponent implements OnInit{
         this.budgetSheetId = data.data.BudgetSheetId
 
         this.getBudgetSheet(this.budgetSheetId);
+
 
 
         this.presentationId = data.data.PresentationId
@@ -154,16 +165,38 @@ export class ViewSalesBriefComponent implements OnInit{
 
   getBudgetSheet(id: number){
     this.fileService.getFile(id).subscribe((data: any) => {
+
         this.budgetSheet = data.data;
+        console.log(this.budgetSheet);
+
+        this.budgetApproved = this.budgetSheet.approved
+        this.budgetNotes = this.budgetSheet.notes
+
     });
   }
 
   getPresentation(id: number){
     this.fileService.getFile(id).subscribe((data: any) => {
+
         this.presentation = data.data;
+        this.presentationApproved = this.presentation.approved
+        this.presentationNotes = this.presentation.notes
+
     });
   }
 
+  salesBriefReady(){
+    this.salesService.salesBriefReady(this.id).subscribe((data: any) => {
+      console.log("ready data", data);
+      if( data.status == "success"){
+      alertify.success('Sales Brief is ready');
+      }
+      else{
+        alertify.error('Error');
+      }
 
+      
+    });
+  }
 
 }

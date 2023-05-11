@@ -51,6 +51,15 @@ module.exports = (sequelize, DataTypes) => {
     fileType: {
       type: DataTypes.STRING,
       allowNull: false
+    }, 
+    approved: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    notes: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     sequelize,

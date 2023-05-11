@@ -107,8 +107,9 @@
     </form>
     </div>
 
-    <div class="col-sm-6" style="margin-top: 2%;" *ngIf="assigned">
-      <h2> Assigned to: </h2>
+    <div class="col-sm-6" *ngIf="assigned">
+      <h2> Deadline: {{ task.deadline | date}}  </h2>
+      <h2> Assigned to: {{ exec }} </h2>
       <div>
         <table class="my-table" >
           <tr>
@@ -125,25 +126,31 @@
           <tr>
             <td> Excel Sheet</td>
             <td *ngIf="budgetSheet" > {{budgetSheet.originalname}} </td> <td *ngIf="!budgetSheet" >  </td>
-            <td *ngIf="budgetSheet">  {{budgetSheet.createdAt | date}}</td> <td *ngIf="!budgetSheet"></td>
+            <td *ngIf="budgetSheet">  {{budgetSheet.createdAt | date}} </td> <td *ngIf="!budgetSheet"></td>
             <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td>  <button mat-raised-button color="primary" (click)="uploadFileXlsx()">Upload</button> </td>
-            <td> <textarea matInput placeholder="" formControlName="BudgetNotes" style="border: none;" ></textarea> </td>
-            <td> <button mat-raised-button color="primary" style="width: 100%"> Approve </button> <button mat-raised-button color="accent" style="margin-top: 2%; width: 100%"> Decline</button></td>
+            <td  *ngIf="!budgetApproved" >  <button mat-raised-button color="primary" (click)="uploadFileXlsx()">Upload</button> </td> <td *ngIf="budgetApproved"> Approved </td>
+
+            <td> <textarea matInput id="budgetNotes"  style="border: none;"  #budgetNotes></textarea> </td>
+            <td *ngIf="budgetApproved" > Approved </td> <td *ngIf="!budgetApproved"> <button mat-raised-button color="primary" style="width: 100%" (click)="approve(budgetSheet.id)"> Approve </button> <button mat-raised-button color="accent" style="margin-top: 2%; width: 100%" (click)="declineBudget()"> Decline</button></td>
+
           </tr>
+
 
           <tr>
             <td> Presentation </td>
             <td *ngIf="presentation">  {{presentation.originalname}}  </td> <td *ngIf="!presentation" >  </td>
-            <td *ngIf="presentation">  {{presentation.createdAt | date }}</td> <td *ngIf="!presentation"></td>
+            <td *ngIf="presentation">  {{presentation.createdAt | date }}</td> <td *ngIf="!presentation"> </td>
             <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id, presentation.originalname)"> Download</button> </td> <td *ngIf="!presentation"></td>
 
-            <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td>  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td>
-            <td> <textarea matInput placeholder="" formControlName="PresentationNotes" style="border: none;" ></textarea> </td>
-            <td> <button mat-raised-button color="primary" style="width: 100%"> Approve </button> <button mat-raised-button color="accent" style="margin-top: 2%; width: 100%"> Decline</button></td>
+            <td > <input  type="file" (change)="handleFileInput($event)" /> </td>
+            <td *ngIf="!presentationApproved">  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td>
+
+
+            <td> <textarea matInput id="presentationNotes" style="border: none;" #presentationNotes></textarea> </td>
+            <td *ngIf="presentationApproved"> Approved </td><td *ngIf="!presentationApproved"> <button mat-raised-button color="primary" style="width: 100%" (click)="approve(presentation.id)"> Approve </button> <button mat-raised-button color="accent" style="margin-top: 2%; width: 100%" (click)="declinePresentation()"> Decline</button></td>
+
           </tr>
 
         </table>

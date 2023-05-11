@@ -103,4 +103,39 @@ exports.getFileById = (req, res) => {
     });
 }
 
+exports.approveFile = (req, res) => {
+    const id = req.params.id;
+    File.update({ approved: true }, {
+        where: { id: id }
+    }).then( data => {
+        res.status(200).send({
+            status: 'success'
+        });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).send({
+            status: 'fail',
+            message: err.message
+        });
+    });
+}
+
+
+exports.addNotes = (req, res) => {
+    const id = req.params.id;
+    const notes = req.body.notes;
+    File.update({ notes: notes }, {
+        where: { id: id }
+    }).then( data => {
+        res.status(200).send({
+            status: 'success'
+        });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).send({
+            status: 'fail',
+            message: err.message
+        });
+    });
+}
 
