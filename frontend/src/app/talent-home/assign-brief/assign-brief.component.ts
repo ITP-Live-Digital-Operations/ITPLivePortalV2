@@ -128,7 +128,6 @@ backButton(){
 
   uploadFileXlsx(): void {
     if( this.fileToUpload?.type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"){
-    if (this.fileToUpload) {
       this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
         (data) => {
 
@@ -143,7 +142,7 @@ backButton(){
 
         }
       );
-    }}
+    }
     else{
       alertify.error('Wrong file type');
     }
@@ -151,7 +150,6 @@ backButton(){
 
   uploadFilePPTX(): void {
     if( this.fileToUpload?.type == "application/vnd.openxmlformats-officedocument.presentationml.presentation"){
-      if (this.fileToUpload) {
         this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
           (data) => {
 
@@ -161,12 +159,13 @@ backButton(){
           },
           (error) => {
 
+              console.log(error);
 
             alertify.error('File upload error');
 
           }
         );
-      }}
+      }
       else{
         alertify.error('Wrong file type');
       }
