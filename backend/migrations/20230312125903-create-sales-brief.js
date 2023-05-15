@@ -185,6 +185,11 @@ module.exports = {
         type: DataTypes.BOOLEAN,
         allowNull: false
       },
+      ResultsViewed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
       
       created_at: {
         allowNull: false,

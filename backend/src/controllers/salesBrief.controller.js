@@ -175,7 +175,8 @@ exports.updateStatus = (req, res) => {
 exports.salesBriefReady = (req, res) => {
     SalesBrief.update({Ready: 1}, {
         where: {
-            id: req.params.id
+            id: req.params.id,
+            ResultsViewed: 0
         }
     }).then( data => {
         res.status(200).send({
@@ -228,3 +229,41 @@ exports.changeStatus = (req, res) => {
     });
 }
 
+
+exports.getUserReadyBriefs = (req, res) => {
+    SalesBrief.count({
+        where: {
+            Ready : 1, 
+            CreatedbyID : req.params.id, 
+            ResultsViewed : 0
+        }
+    }).then( data => {
+        res.status(200).send({
+            status: "success",
+            data: data
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message
+        });
+    });
+}
+
+exports.viewBriefBySales = (req, res) => {
+    SalesBrief.update({ResultsViewed: 1}, {
+        where: {
+            id: req.params.id
+        }
+    }).then( data => {
+        res.status(200).send({
+            status: "success",
+            
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message
+        });
+    });
+}

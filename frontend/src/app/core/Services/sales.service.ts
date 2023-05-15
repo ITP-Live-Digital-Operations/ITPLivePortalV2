@@ -68,5 +68,13 @@ export class SalesService {
     return this.http.post(`${this.salesApiURL}/changeStatus/${id}`, inputdata)
   }
 
+  getUserReadyBriefs(id:any){
+    return this.http.get(`${this.salesApiURL}/getUserReadyBriefs/${id}`)
+  }
 
+  viewBriefBySales(id:any){
+    return this.http.get(`${this.salesApiURL}/viewBriefBySales/${id}`)
+  }
+
+  
 }

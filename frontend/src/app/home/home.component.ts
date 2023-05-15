@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit {
   msg: any;
   talentHeadNotificationCount: any;
   talentEmployeeNotificationCount: any;
-  
+  salesNotificationCount: any;
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
@@ -84,7 +85,19 @@ export class HomeComponent implements OnInit {
         })
       }
     }
+    else if (this.userRole == 'sales') {
+      this.salesService.getUserReadyBriefs(load).subscribe(item => {
+        console.log(item);
+
+        this.ngZone.run(() => {
+          this.salesNotificationCount = item;
+          this.cdr.detectChanges();
+        });
+      });
+    }
     this.refresh();
+
+
   }
 
   redirectToTalentForms() {

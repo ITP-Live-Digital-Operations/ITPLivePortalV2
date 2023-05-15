@@ -12,7 +12,7 @@ import { UserService } from 'src/app/core/Services/user.service';
 })
 export class ReadyBriefsComponent implements OnInit {
 
- 
+
   dataSource: any;
   briefs: any;
   user_id = this.userService.getID();
@@ -48,6 +48,9 @@ export class ReadyBriefsComponent implements OnInit {
   }
 
   viewFiles(id:any){
+    this.salesService.viewBriefBySales(id).subscribe((res:any)=>{
+
+    })
     this.router.navigate([`/home/sales/view-files/${id}`]);
   }
 
@@ -56,3 +59,5 @@ export class ReadyBriefsComponent implements OnInit {
   }
 
 }
+
+

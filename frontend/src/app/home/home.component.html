@@ -27,6 +27,13 @@
       </a>
     </div>
 
+    <div *ngIf="userRole == 'sales'">
+      <a mat-icon-button  routerLink="sales/readyBriefs">
+      <span class="icon-spacer"></span>
+      <mat-icon class="icon">notifications</mat-icon>
+      <span *ngIf="salesNotificationCount.data > 0 " class="notification-mark">  </span>
+      </a>
+    </div>
     <span class="icon-spacer"></span>
     <a mat-icon-button routerLink="talent/changePassword">
     <mat-icon class="icon">account_circle</mat-icon>

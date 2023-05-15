@@ -187,7 +187,7 @@ export class ViewSalesBriefComponent implements OnInit{
 
   salesBriefReady(){
     this.salesService.salesBriefReady(this.id).subscribe((data: any) => {
-      console.log("ready data", data);
+      
       if( data.status == "success"){
       alertify.success('Sales Brief is ready');
       }
