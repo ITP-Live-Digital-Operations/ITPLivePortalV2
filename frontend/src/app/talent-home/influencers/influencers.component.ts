@@ -21,7 +21,7 @@ import { DataService } from 'src/app/core/Services/data.service';
 })
 export class InfluencersComponent implements OnInit {
   dataSource: any;
-  UserDetails: any;
+  UserDetails: any; 
   accessToken: any;
   verticals: any[] = [];
   locations: any[] = [];

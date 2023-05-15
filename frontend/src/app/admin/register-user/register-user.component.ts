@@ -13,6 +13,9 @@ export class RegisterUserComponent implements OnInit {
   users: any;
   data: any;
   userForm: FormGroup;
+  roles = ['sales', 'talent', 'campaign']
+  privilege_level = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.userForm = this.fb.group({
@@ -27,7 +30,7 @@ export class RegisterUserComponent implements OnInit {
 
   ngOnInit(): void {
       this.userService.getAllUsers().subscribe((data) => {
-      
+
 
       this.users = data;
     });

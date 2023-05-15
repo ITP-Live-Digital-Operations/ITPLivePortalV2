@@ -94,5 +94,10 @@ export class UserService {
     return this.http.get(`${this.authApiURL}/getUserNameById/${inputdata}`)
   }
 
+  updateUser(inputdata:any, id:any){
+    return this.http.patch(`${this.authApiURL}/updateUser/${id}`, inputdata)
+  }
+
+  
 
 }

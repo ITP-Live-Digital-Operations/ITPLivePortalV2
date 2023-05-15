@@ -20,6 +20,8 @@ export class LogsComponent implements OnInit {
   influencers: any;
   campaigns: any[] = []
   talentUserNames: any;
+
+  
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
   @ViewChild(MatSort, { static: true }) sort !: MatSort;

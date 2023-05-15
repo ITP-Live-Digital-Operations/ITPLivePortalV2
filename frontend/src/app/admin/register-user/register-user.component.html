@@ -31,15 +31,18 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Role</mat-label>
-    <input matInput formControlName="role" required>
-    <mat-error>Please enter a role</mat-error>
+    <mat-select formControlName="role" required>
+    <mat-option *ngFor="let option of roles" [value]="option">{{option}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Privilege Level</mat-label>
-    <input matInput formControlName="privilege_level" type="number" required>
-    <mat-error>Please enter a privilege level</mat-error>
+    <mat-label>Privelege Level</mat-label>
+    <mat-select formControlName="privilege_level" required>
+      <mat-option *ngFor="let option of privilege_level" [value]="option">{{option}}</mat-option>
+      </mat-select>
   </mat-form-field>
+  
   <mat-form-field appearance="outline">
     <mat-label>Parent ID</mat-label>
         <mat-select formControlName="parentId">

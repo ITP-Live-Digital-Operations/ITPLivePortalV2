@@ -26,19 +26,7 @@ export class AdminFormsComponent implements OnInit {
     this.router.navigate(['home/sales/forms'])
   }
 
-  redirectToNewLog(){
-    this.router.navigate(['home/talent/newLog'])
-  }
-
-  redirectToNewCelebrity(){
-    this.router.navigate(['home/talent/newCelebrity'])
-  }
-
-  redirectToCelebrities(){
-    this.router.navigate(['home/talent/celebrities'])
-  }
-
-  redirectToLogs(){
-    this.router.navigate(['home/talent/logs'])
+  redirectToUserManagement(){
+    this.router.navigate(['home/admin/user-management'])
   }
 }

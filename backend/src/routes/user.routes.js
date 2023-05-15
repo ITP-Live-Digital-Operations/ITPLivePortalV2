@@ -28,4 +28,7 @@ router.route('/getTimeFormsById/:id')
 
 router.route('/getUserNameById/:id')
     .get(asyncHandler(userController.getUserNameById));
+
+router.route('/updateUser/:id')
+    .patch(asyncHandler(userController.updateUser));
 module.exports = router;
