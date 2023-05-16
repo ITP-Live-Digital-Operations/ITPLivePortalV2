@@ -96,10 +96,13 @@
 </div>
   <mat-divider></mat-divider>
 
-  <button mat-button class="menu-button">
+
+  <div *ngIf=" userRole === 'sales'">
+  <button mat-button class="menu-button" routerLink="sales/sales-user-guide">
       <mat-icon>help</mat-icon>
       <span>Help</span>
   </button>
+</div>
   </mat-sidenav>
   <mat-sidenav-content>
       <div class="d-flex content mat-elevation-z8" class="router-container">

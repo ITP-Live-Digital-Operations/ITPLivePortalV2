@@ -9,6 +9,7 @@ import { ReadyBriefsComponent } from './ready-briefs/ready-briefs.component';
 import { ViewBriefFilesComponent } from './view-brief-files/view-brief-files.component';
 import { ViewSentBriefsComponent } from './view-sent-briefs/view-sent-briefs.component';
 import { ViewSentBriefComponent } from './view-sent-brief/view-sent-brief.component';
+import { SalesUserGuideComponent } from './sales-user-guide/sales-user-guide.component';
 
 
 
@@ -19,7 +20,8 @@ import { ViewSentBriefComponent } from './view-sent-brief/view-sent-brief.compon
     ReadyBriefsComponent,
     ViewBriefFilesComponent,
     ViewSentBriefsComponent,
-    ViewSentBriefComponent
+    ViewSentBriefComponent,
+    SalesUserGuideComponent
   ],
   imports: [
     CommonModule,
