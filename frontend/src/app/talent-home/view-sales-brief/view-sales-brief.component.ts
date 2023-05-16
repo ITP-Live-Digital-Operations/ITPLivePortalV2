@@ -183,7 +183,7 @@ export class ViewSalesBriefComponent implements OnInit{
     });
   }
 
-  getPresentation(id: number){
+  getPresentation(id: number){    
     this.fileService.getFile(id).subscribe((data: any) => {
 
         this.presentation = data.data;
