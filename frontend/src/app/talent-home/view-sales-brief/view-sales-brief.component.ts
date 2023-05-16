@@ -216,7 +216,7 @@ export class ViewSalesBriefComponent implements OnInit{
 
     });
 
-    this.taskService.updateStatusToComplete(this.task).subscribe((data: any) => {
+    this.taskService.updateStatusToComplete(this.task.id).subscribe((data: any) => {
 
         if( data){
         alertify.success('Task is completed');
