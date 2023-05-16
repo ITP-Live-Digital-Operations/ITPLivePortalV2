@@ -22,6 +22,8 @@ export class ViewSalesBriefComponent implements OnInit{
   brief: any;
   id: any;
 
+  task: any;
+
   salesperson: any;
 
   budgetSheetId: any;
@@ -63,6 +65,7 @@ export class ViewSalesBriefComponent implements OnInit{
       this.salesService.getSalesBriefWithFiles(this.id).subscribe((data: any) => {
 
         this.brief = data;
+        this.getTask(this.id);
 
         this.getSalesPerson(this.brief.data.CreatedbyID);
         this.budgetSheetId = data.data.BudgetSheetId
@@ -82,6 +85,13 @@ export class ViewSalesBriefComponent implements OnInit{
     this.userService.getUserNameById(id).subscribe((data: any) => {
       this.salesperson = data.name
 
+    });
+  }
+
+  getTask(id: number){
+    this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
+      this.task = data
+      console.log("task" + this.task)
     });
   }
 
@@ -183,7 +193,7 @@ export class ViewSalesBriefComponent implements OnInit{
     });
   }
 
-  getPresentation(id: number){    
+  getPresentation(id: number){
     this.fileService.getFile(id).subscribe((data: any) => {
 
         this.presentation = data.data;
@@ -205,6 +215,16 @@ export class ViewSalesBriefComponent implements OnInit{
 
 
     });
+
+    this.taskService.updateStatusToComplete(this.task).subscribe((data: any) => {
+
+        if( data){
+        alertify.success('Task is completed');
+        }
+        else{
+          alertify.error('Error');
+        }
+      })
   }
 
 }

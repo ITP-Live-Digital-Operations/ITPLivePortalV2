@@ -48,4 +48,9 @@ export class TaskService {
     return this.http.get(`${this.taskApiURL}/activateTask/${id}`)
   }
 
+  updateStatusToComplete(id:any){
+    return this.http.get(`${this.taskApiURL}/updateStatusToComplete/${id}`)
+  }
+  
+
 }
