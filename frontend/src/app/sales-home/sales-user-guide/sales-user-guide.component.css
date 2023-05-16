@@ -1,5 +1,5 @@
 .guide-container {
-  max-width: auto;
+  max-width: 100%;
   margin: auto;
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -7,6 +7,8 @@
   background: #fff;
   box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
   margin-top: 5%;
+  display: flex;
+  flex-direction: column;
 }
 
 .guide-container h1 {
@@ -26,9 +28,8 @@
 .guide-container p {
   margin-top: 3%;
   line-height: 1.5;
-  color: #666;
+  color: #000000;
   margin-bottom: 10px;
 }
-
 
 
