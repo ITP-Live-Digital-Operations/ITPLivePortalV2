@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SalesService } from 'src/app/core/Services/sales.service';
 import { UserService } from 'src/app/core/Services/user.service';
@@ -36,7 +37,9 @@ export class ReadyBriefsComponent implements OnInit {
       console.log(res);
 
       this.briefs = res;
-      this.dataSource = this.briefs.data;
+      this.dataSource = new MatTableDataSource(this.briefs.data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
 
     })
   }

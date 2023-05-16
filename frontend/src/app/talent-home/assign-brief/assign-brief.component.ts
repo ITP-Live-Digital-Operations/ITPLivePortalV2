@@ -18,11 +18,14 @@ export class AssignBriefComponent implements OnInit {
 dataSource: any;
 
 task: any;
+
 exec : any;
 execId : any;
 
 brief: any
 brief_id: any
+
+salesperson: any;
 
 budgetSheetId: any;
 budgetSheet: any;
@@ -64,8 +67,11 @@ loadBriefData(){
     this.brief_id = params['id']
     this.salesService.getSalesBriefWithFiles(this.brief_id).subscribe((data: any) => {
 
+
       this.brief = data;
       this.assigned = data.data.assigned
+
+      this.getSalesPerson(data.data.CreatedbyID);
 
       this.budgetSheetId = data.data.BudgetSheetId
 
@@ -76,6 +82,13 @@ loadBriefData(){
 
     });
   })
+}
+
+getSalesPerson(id: number){
+  this.userService.getUserNameById(id).subscribe((data: any) => {
+    this.salesperson = data.name
+    console.log("salesperson: " + this.salesperson);
+  });
 }
 
 getTalentTaskWeights(){
@@ -209,7 +222,7 @@ backButton(){
         this.task = data.data[0];
         this.execId = data.data[0].assigned_to;
     this.userService.getUserNameById(this.execId).subscribe((data: any) => {
-      this.exec = data.name;
+            this.exec = data.name;
     }
     )}
     );

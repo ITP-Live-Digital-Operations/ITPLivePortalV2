@@ -44,4 +44,10 @@ router.route('/getUserReadyBriefs/:id')
 
 router.route('/viewBriefBySales/:id')
     .get(asyncHandler(salesBriefController.viewBriefBySales))
+
+router.route('/viewMyBriefs/:id')
+    .get(asyncHandler(salesBriefController.viewMyBriefs))
+
+router.route('/updateBrief/:id')
+    .patch(asyncHandler(salesBriefController.updateBrief))
 module.exports = router;

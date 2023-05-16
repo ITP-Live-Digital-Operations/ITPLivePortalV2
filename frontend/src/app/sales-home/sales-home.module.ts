@@ -7,6 +7,8 @@ import { SalesHomeComponent } from './sales-home/sales-home.component';
 import { NewBriefComponent } from './new-sales-brief/new-brief.component';
 import { ReadyBriefsComponent } from './ready-briefs/ready-briefs.component';
 import { ViewBriefFilesComponent } from './view-brief-files/view-brief-files.component';
+import { ViewSentBriefsComponent } from './view-sent-briefs/view-sent-briefs.component';
+import { ViewSentBriefComponent } from './view-sent-brief/view-sent-brief.component';
 
 
 
@@ -15,7 +17,9 @@ import { ViewBriefFilesComponent } from './view-brief-files/view-brief-files.com
     NewBriefComponent,
     SalesHomeComponent,
     ReadyBriefsComponent,
-    ViewBriefFilesComponent
+    ViewBriefFilesComponent,
+    ViewSentBriefsComponent,
+    ViewSentBriefComponent
   ],
   imports: [
     CommonModule,

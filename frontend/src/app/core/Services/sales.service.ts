@@ -76,5 +76,12 @@ export class SalesService {
     return this.http.get(`${this.salesApiURL}/viewBriefBySales/${id}`)
   }
 
-  
+  viewMyBriefs(id:any){
+    return this.http.get(`${this.salesApiURL}/viewMyBriefs/${id}`)
+  }
+
+  updateBrief(id:any, inputdata :any){
+    return this.http.patch(`${this.salesApiURL}/updateBrief/${id}`, inputdata)
+  }
+
 }

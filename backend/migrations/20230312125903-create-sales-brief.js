@@ -120,6 +120,10 @@ module.exports = {
         type: DataTypes.STRING(255),
         defaultValue: null
       },
+      AudienceAgeRange:{
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
       AudienceLocation:{
         type: DataTypes.STRING(255),
         defaultValue: null

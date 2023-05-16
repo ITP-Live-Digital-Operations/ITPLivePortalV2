@@ -20,4 +20,10 @@ export class SalesHomeComponent {
   redirectReadyBriefs(){
     this.router.navigate(['home/sales/readyBriefs'])
   }
+
+  redirectSentBriefs(){
+    this.router.navigate(['home/sales/sentBriefs'])
+  }
+
+  
 }

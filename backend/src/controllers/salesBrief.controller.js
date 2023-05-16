@@ -267,3 +267,39 @@ exports.viewBriefBySales = (req, res) => {
         });
     });
 }
+
+
+exports.viewMyBriefs = (req, res) => {
+    SalesBrief.findAll({
+        where: {
+            CreatedbyID : req.params.id
+        }
+    }).then( data => {
+        res.status(200).send({
+            status: "success",
+            data: data
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message
+        });
+    });
+}
+
+exports.updateBrief = (req, res) => {
+    SalesBrief.update(req.body, { where: { id: req.params.id } }).then(
+        (data) => {
+            res.status(200).send({
+                status: "success",
+            });
+        }
+    )
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+}

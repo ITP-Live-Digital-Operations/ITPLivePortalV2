@@ -22,6 +22,7 @@ export class ViewSalesBriefComponent implements OnInit{
   brief: any;
   id: any;
 
+  salesperson: any;
 
   budgetSheetId: any;
   budgetSheet: any;
@@ -62,7 +63,10 @@ export class ViewSalesBriefComponent implements OnInit{
       this.salesService.getSalesBriefWithFiles(this.id).subscribe((data: any) => {
 
         this.brief = data;
+
+        this.getSalesPerson(this.brief.data.CreatedbyID);
         this.budgetSheetId = data.data.BudgetSheetId
+
 
         this.getBudgetSheet(this.budgetSheetId);
 
@@ -74,6 +78,12 @@ export class ViewSalesBriefComponent implements OnInit{
     })
   }
 
+  getSalesPerson(id: number){
+    this.userService.getUserNameById(id).subscribe((data: any) => {
+      this.salesperson = data.name
+
+    });
+  }
 
   backButton(){
     window.history.back();
@@ -103,13 +113,13 @@ export class ViewSalesBriefComponent implements OnInit{
     if (this.fileToUpload) {
       this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
         (data) => {
-          console.log(data);
+
 
           alertify.success('File uploaded successfully');
           window.location.reload();
         },
         (error) => {
-          console.log(error);
+
 
           alertify.error('File upload error');
 
@@ -126,13 +136,13 @@ export class ViewSalesBriefComponent implements OnInit{
       if (this.fileToUpload) {
         this.fileService.uploadFile(this.fileToUpload, this.brief.data.id, this.user_id ).subscribe(
           (data) => {
-            console.log(data);
+
 
             alertify.success('File uploaded successfully');
             window.location.reload();
           },
           (error) => {
-            console.log(error);
+
 
             alertify.error('File upload error');
 
@@ -167,8 +177,6 @@ export class ViewSalesBriefComponent implements OnInit{
     this.fileService.getFile(id).subscribe((data: any) => {
 
         this.budgetSheet = data.data;
-        console.log(this.budgetSheet);
-
         this.budgetApproved = this.budgetSheet.approved
         this.budgetNotes = this.budgetSheet.notes
 
@@ -187,7 +195,7 @@ export class ViewSalesBriefComponent implements OnInit{
 
   salesBriefReady(){
     this.salesService.salesBriefReady(this.id).subscribe((data: any) => {
-      
+
       if( data.status == "success"){
       alertify.success('Sales Brief is ready');
       }

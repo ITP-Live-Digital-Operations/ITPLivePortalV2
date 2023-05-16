@@ -4,8 +4,8 @@
       <mat-icon>arrow_back</mat-icon>
       BACK
     </button>
-  </div> 
-
+  </div>
+ 
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort>
 
@@ -30,14 +30,14 @@
       </ng-container>
 
       <ng-container matColumnDef="UpdatedAt">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Updated At </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Edited </th>
         <td mat-cell *matCellDef="let element"> {{element.updatedAt | date}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Action" >
         <th mat-header-cell *matHeaderCellDef> Action  </th>
         <td mat-cell *matCellDef="let element">
-        <button mat-raised-button color="primary" (click)="viewFiles(element.id)" > View </button>
+        <button mat-raised-button color="primary" (click)="viewBrief(element.id)" > View </button>
         </td>
       </ng-container>
 
@@ -54,4 +54,6 @@
                 aria-label="Select page">
   </mat-paginator>
   </div>
+
+
 </div>

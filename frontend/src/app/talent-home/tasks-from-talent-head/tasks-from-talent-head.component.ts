@@ -55,12 +55,10 @@ export class TasksFromTalentHeadComponent {
   }
 
   viewedTask(id:any){
+    console.log(id);
+    const brief = id -1;
 
-
-    if(this.briefDetails.data[0].status === 'Not Started'){
-
-
-
+    if(this.briefDetails.data[brief].status === 'Not Started'){
     this.taskService.updateStatus({ assigned_to : this.userID, id: id}).subscribe((data:any)=>{
 
     })

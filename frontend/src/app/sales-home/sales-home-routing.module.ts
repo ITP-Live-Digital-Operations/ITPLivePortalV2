@@ -7,6 +7,8 @@ import { AccessDeniedComponent } from '../access-denied/access-denied.component'
 import { AuthGuard } from '../core/Guards/auth.guard';
 import { ReadyBriefsComponent } from './ready-briefs/ready-briefs.component';
 import { ViewBriefFilesComponent } from './view-brief-files/view-brief-files.component';
+import { ViewSentBriefsComponent } from './view-sent-briefs/view-sent-briefs.component';
+import { ViewSentBriefComponent } from './view-sent-brief/view-sent-brief.component';
 
 
 
@@ -15,6 +17,10 @@ const routes: Routes = [
   { path: 'newSalesBrief', component: NewBriefComponent},
   { path: 'readyBriefs', component: ReadyBriefsComponent},
   { path: 'view-files/:id', component: ViewBriefFilesComponent},
+  { path: 'sentBriefs', component: ViewSentBriefsComponent},
+  { path: 'sentBrief/:id', component: ViewSentBriefComponent},
+
+  
 
   { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] }
 ]
