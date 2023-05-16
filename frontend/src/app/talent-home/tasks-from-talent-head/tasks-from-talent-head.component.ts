@@ -40,7 +40,7 @@ export class TasksFromTalentHeadComponent {
 
   getMyTasks(id:any){
     this.taskService.getMyTasks(id).subscribe((data:any)=>{
-      console.log(data);
+
 
       this.briefDetails = data;
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
@@ -58,11 +58,11 @@ export class TasksFromTalentHeadComponent {
     console.log(id);
     const brief = id -1;
 
-    if(this.briefDetails.data[brief].status === 'Not Started'){
+
     this.taskService.updateStatus({ assigned_to : this.userID, id: id}).subscribe((data:any)=>{
 
     })
-  }
+  
 
     /* we need to get the brief_id from task. task id is in the function  */
     this.salesService.getSalesBriefIdbyTaskId(id).subscribe((data:any)=>{
