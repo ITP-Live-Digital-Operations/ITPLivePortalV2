@@ -35,7 +35,7 @@
         <p class="card-text">Video Production: <span *ngIf="brief.data.VideoProduction == 1"> Yes </span> <span *ngIf="brief.data.VideoProduction == 0"> No</span></p>
         <p class="card-text">Video Editing: <span *ngIf="brief.data.VideoEditing == 1"> Yes </span> <span *ngIf="brief.data.VideoEditing == 0"> No</span></p>
         <hr>
-        <p class="card-text">Influencer Age Range: {{ brief.data.InfluencerAgeRange }}</p>
+        <p class="card-text">Influencer Age Range: {{ brief.data.InfluencerAgeRange | ageGroup }}</p>
         <p class="card-text">Influencer Location: {{ brief.data.InfluencerLocation }}</p>
         <p class="card-text">Influencer Nationality: {{ brief.data.InfluencerNationality }}</p>
         <p class="card-text">Influencer Gender: {{ brief.data.InfluencerGender }}</p>
@@ -43,7 +43,7 @@
         <p class="card-text">Influencer Interest: {{ brief.data.InfluencerInterest }}</p>
         <p class="card-text">Influencer Number Of Followers: {{ brief.data.InfluencerNumberOfFollowers }}</p>
         <p class="card-text">Note For Number Of Followers: {{ brief.data.NoteForNumberOfFollowers }}</p>
-        <p class="card-text">Audience Age Range: {{ brief.data.AudienceAgeRange }}</p>
+        <p class="card-text">Audience Age Range: {{ brief.data.AudienceAgeRange | ageGroup}}</p>
         <p class="card-text">Audience Location: {{ brief.data.AudienceLocation }}</p>
         <p class="card-text">Audience Nationality: {{ brief.data.AudienceNationality }}</p>
         <p class="card-text">Audience Gender: {{ brief.data.AudienceGender }}</p>

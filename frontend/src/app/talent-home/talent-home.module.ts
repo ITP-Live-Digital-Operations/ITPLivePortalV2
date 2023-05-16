@@ -27,6 +27,7 @@ import { BooleanPipe } from '../pipes/boolean.pipe';
 import { ColorChangePipe } from '../pipes/color-change.pipe';
 import { TalentTasksComponent } from './talent-tasks/talent-tasks.component';
 import { TalentUserGuideComponent } from './talent-user-guide/talent-user-guide.component';
+import { AgeGroupPipe } from '../pipes/age-group.pipe';
 
 
 
@@ -55,7 +56,8 @@ import { TalentUserGuideComponent } from './talent-user-guide/talent-user-guide.
     BooleanPipe,
     ColorChangePipe,
     TalentTasksComponent,
-    TalentUserGuideComponent
+    TalentUserGuideComponent,
+    AgeGroupPipe,
 
   ],
   imports: [
