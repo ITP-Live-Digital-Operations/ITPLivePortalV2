@@ -26,6 +26,7 @@ import { AssignBriefComponent } from './assign-brief/assign-brief.component';
 import { BooleanPipe } from '../pipes/boolean.pipe';
 import { ColorChangePipe } from '../pipes/color-change.pipe';
 import { TalentTasksComponent } from './talent-tasks/talent-tasks.component';
+import { TalentUserGuideComponent } from './talent-user-guide/talent-user-guide.component';
 
 
 
@@ -53,7 +54,8 @@ import { TalentTasksComponent } from './talent-tasks/talent-tasks.component';
     AssignBriefComponent,
     BooleanPipe,
     ColorChangePipe,
-    TalentTasksComponent
+    TalentTasksComponent,
+    TalentUserGuideComponent
 
   ],
   imports: [

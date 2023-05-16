@@ -1,0 +1,88 @@
+<div class="guide-container">
+
+  <h1>Talent Section User Guide</h1>
+  <p>This guide will help you understand and navigate the Sales section of our web application, designed specifically for our talent employees.</p>
+
+  <mat-tab-group>
+    <mat-tab label="Influencers">
+      <mat-card>
+        <mat-card-header>
+        <mat-card-title>  This is the primary database for all influencers and celebrities connected to your organization. </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>1-<a href="home/talent/influencers">Searching:</a> The search bar can find any attribute in the influencer profile. You can enter a name, a location, a gender, or any other attribute to find matching influencers. The search function is designed to be flexible and comprehensive.</p>
+        <p>2-<a href="home/talent/newInfluencer">Adding a New Influencer:</a> The "New Influencer" button opens a new page where you can create a new influencer profile. You'll be able to enter all relevant information, such as name, location, gender, main vertical, and nationality.</p>
+        <p>3-Filters: The main filters are designed to help you narrow down your search results. You can filter by Gender, Location, Main Vertical, and Nationality to quickly find influencers that meet specific criteria.</p>
+        <p>4-Editing and Deleting:  Each influencer's profile can be edited or deleted as needed. Click the "Edit" button to make changes to the profile, or the "Delete" button to permanently remove the profile from the database.</p>
+        <p>5-Influencer Profile: Clicking on an influencer's name will take you to their detailed profile. Here you can see all the information related to that influencer, and you can also edit this information if needed.</p>
+        <p>6- Review an influencer: Clicking on the review button on the influencer profile will take you to a page where you can review the influencers performance on 5 categories. These reviews will be saved to the influencer profile and the aggregated score of all reviews will be shown on the main profile page.</p>
+        <p>7- <a href="home/talent/logs"> Rate Logs:</a> The Rate Logs section provides a historical record of rates associated with each influencer. The "Add Log" button allows you to create a new rate log for that influencer.</p>
+      </mat-card-content>
+      </mat-card>
+    </mat-tab>
+
+
+    <mat-tab label="Rate Logs">
+      <mat-card>
+        <mat-card-header>
+        <mat-card-title>  This is a record of all the rate logs for each influencer. </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>1- <a href="home/talent/logs">Viewing Logs:  </a> The page displays a complete history of all rate logs. Each log entry includes the influencer's name, the rate, and the date of the log.</p>
+        <p>2-Searching and Filtering Logs: If you need to find a specific log or set of logs, you can use the search bar and filters. You can search for a specific influencer's logs, or filter logs by date, rate, or other criteria.</p>
+        <p>3- <a href="home/talent/newLog"> Creating a Log: </a> To create a new log, select the influencer from a dropdown list, enter the new rate, and the current date will be automatically recorded. Once you've entered all the information, click the "Save" button to create the log. </p>
+      </mat-card-content>
+      </mat-card>
+
+    </mat-tab>
+
+    <mat-tab label="Timeforms">
+      <mat-card>
+        <mat-card-header>
+        <mat-card-title>  Time forms are used to track the time spent on a specific task. </mat-card-title>
+      </mat-card-header>
+      </mat-card>
+
+    </mat-tab>
+
+    <mat-tab *ngIf="userPl >7 " label="Talent Head Specifics">
+      <mat-card>
+
+      <mat-card-content>
+        <p>1- Sales Brief Notification: When a new sales brief is created, a notification will be sent to the Talent Head's dashboard. This notification includes the name of the sales person who created the brief, a summary of the brief, and a link to view the full brief.</p>
+        <p>2-Assigning Tasks: The Talent Head has the ability to assign tasks to Talent Executives. They can assign a weight to each task (which represents the task's complexity or time requirement) and set a deadline for the task to be completed. The Talent Head can also specify which Talent Executive is responsible for each task.</p>
+        <p>3-Task Management: Tasks can be activated or deactivated by the Talent Head. When a task is deactivated, its weight is subtracted from the total weight of the Talent Executive's current tasks. This allows the Talent Head to effectively manage the workload of each Talent Executive. </p>
+      </mat-card-content>
+      </mat-card>
+
+    </mat-tab>
+
+    <mat-tab *ngIf="userPl < 8" label=" Talent Executive Specifics">
+      <mat-card>
+      <mat-card-content>
+        <h2>1- Notifications: </h2>
+        <p>As a Talent Executive, you will receive notifications when the Talent Head assigns you a task. Check your notifications regularly to stay updated.</p>
+        <p>Notifications will appear in a dedicated section of your dashboard. Click on each notification to see the details of the task assigned to you.</p>
+        <h2>2-Tasks and Sales Briefs: </h2>
+        <p> Each task you are assigned will be related to a sales brief.</p>
+        <p> Viewing Tasks: You can view your assigned tasks in the "Tasks" section. Each task will include the associated sales brief, the task's weight, and the deadline for completion.</p>
+        <p>Understanding Sales Briefs: Click on a task to view the associated sales brief. The brief will include the requirements for the task, including any files that need to be created or updated. </p>
+        <h2>3- Completing Tasks</h2>
+        <p>You are responsible for completing each assigned task by the given deadline.</p>
+        <p> Working on Tasks: To start working on a task, click on it in the "Tasks" section. You'll be taken to a page where you can view the sales brief and complete the task requirements.</p>
+        <p>Creating and Uploading Files: For each task, you may need to create a budget sheet and a presentation. Once these files are complete, upload them to the web application. Each file will be reviewed by the Talent Head.</p>
+        <p>Waiting for Approval: After you've uploaded your files, the Talent Head will review them. They may approve the files, or they may decline them and provide a note with feedback. If a file is declined, review the feedback, make the necessary updates, and upload the revised file.</p>
+        <p>Finalizing Tasks: Once both files for a task have been approved, you can finalize the task. Click the "Finalize" button to send the files back to the sales person who created the brief.</p>
+        <H2>4- Task Completion and Weight Management</H2>
+        <p>Completing a task reduces your total task weight.</p>
+        <p> Understanding Task Weight: Each task has a weight, which represents its complexity or time requirement. Your total task weight is the sum of the weights of all your current tasks.</p>
+        <p>Completing Tasks: When you finalize a task, its weight is subtracted from your total task weight. This means that your total task weight decreases as you complete tasks. </p>
+      </mat-card-content>
+      </mat-card>
+
+
+    </mat-tab>
+  </mat-tab-group>
+  <h2 style="margin-top: 5%;"> Reminder </h2>
+  <p >Remember, as a Talent Executive, your primary responsibilities are to complete your assigned tasks on time, create high-quality work, and communicate effectively with the Talent Head and other team members. Always check your notifications and stay updated on your tasks and their deadlines.. Your actual usage may vary depending on your specific needs and the exact functionalities of the application. Always refer back to this documentation if you're unsure about how to proceed.</p>
+</div>

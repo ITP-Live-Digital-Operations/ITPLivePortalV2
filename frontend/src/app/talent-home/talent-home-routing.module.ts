@@ -21,6 +21,7 @@ import { ChangePasswordComponent } from '../partial/change-password/change-passw
 import { TimeFormComponent } from './time-form/time-form.component';
 import { AssignBriefComponent } from './assign-brief/assign-brief.component';
 import { TalentTasksComponent } from './talent-tasks/talent-tasks.component';
+import { TalentUserGuideComponent } from './talent-user-guide/talent-user-guide.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'forms', pathMatch: 'full' },
@@ -40,7 +41,7 @@ const routes: Routes = [
   { path: 'viewTask/:id', component: ViewTaskComponent},
   { path: 'influencer-rating/:id', component: InfluencerRatingComponent},
   { path: 'talentTasks', component: TalentTasksComponent},
-
+  { path: 'talent-user-guide', component: TalentUserGuideComponent},
   { path: 'newTimeForm', component: TimeFormComponent},
   { path: 'changePassword', component:ChangePasswordComponent , canActivate: [AuthGuard]},
 

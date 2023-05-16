@@ -103,6 +103,12 @@
       <span>Help</span>
   </button>
 </div>
+<div *ngIf=" userRole === 'talent'">
+  <button mat-button class="menu-button" routerLink="talent/talent-user-guide">
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+  </button>
+</div>
   </mat-sidenav>
   <mat-sidenav-content>
       <div class="d-flex content mat-elevation-z8" class="router-container">
