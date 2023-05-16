@@ -193,7 +193,7 @@ exports.deactivateTask = (req, res) => {
 
 exports.activateTask = (req, res) => {
     Task.update(
-        { status: 'In progress' },
+        { status: 'In Progress' },
         { where: { brief_id : req.params.id } }
     ).then(data => {
         res.status(200).send({

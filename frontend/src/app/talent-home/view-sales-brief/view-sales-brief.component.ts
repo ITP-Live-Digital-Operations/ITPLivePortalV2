@@ -65,7 +65,11 @@ export class ViewSalesBriefComponent implements OnInit{
       this.salesService.getSalesBriefWithFiles(this.id).subscribe((data: any) => {
 
         this.brief = data;
-        this.getTask(this.id);
+
+
+
+        this.getTask(this.brief.data.id)
+
 
         this.getSalesPerson(this.brief.data.CreatedbyID);
         this.budgetSheetId = data.data.BudgetSheetId
@@ -88,10 +92,11 @@ export class ViewSalesBriefComponent implements OnInit{
     });
   }
 
-  getTask(id: number){
+  getTask(id : number){
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
-      this.task = data
-      console.log("task" + this.task)
+      console.log(data.data[0]);
+      this.task = data.data[0]
+
     });
   }
 
