@@ -109,6 +109,14 @@
       <span>Help</span>
   </button>
 </div>
+<div *ngIf=" userRole === 'admin'">
+  <button mat-button class="menu-button" routerLink="admin/admin-user-guide">
+      <mat-icon>help</mat-icon>
+      <span> Help</span>
+  </button>
+
+
+</div>
   </mat-sidenav>
   <mat-sidenav-content>
       <div class="d-flex content mat-elevation-z8" class="router-container">
