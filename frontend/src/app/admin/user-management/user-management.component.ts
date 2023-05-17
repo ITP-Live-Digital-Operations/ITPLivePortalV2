@@ -16,6 +16,7 @@ export class UserManagementComponent implements OnInit{
   users: any;
   dataSource: any;
 
+  userpl =  this.userService.getPrivilegeLevel();
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort !: MatSort;
@@ -31,6 +32,7 @@ export class UserManagementComponent implements OnInit{
   ngOnInit(): void {
     this.getUsers();
 
+    
   }
 
 
@@ -59,8 +61,13 @@ newUser() {
 displayedColumns: string[] = ['id', 'name', 'email', 'role', 'privilege_level'];
 
 onRowClicked(row: any) {
+
+
+  if (this.userpl == 10){
   this.router.navigate([`home/admin/edit-user/${row.id}`])
 }
+}
+
 
 backButton() {
     window.history.back();
