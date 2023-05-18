@@ -18,7 +18,12 @@ export class NewBriefComponent {
   currencies: string[] = currencies;
   arabCountries: string[] = arabCountries;
 
-
+  showInfo1 = false;
+  showInfo2 = false;
+  showInfo3 = false;
+  showInfo4 = false;
+  showInfo5 = false;
+  
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,

@@ -452,7 +452,7 @@ export const platforms = ['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Faceboo
 
 export const clientIndustries = ["Beauty", "Lifestyle", "Sports", "Food", "Gaming", "Business", "Travel", "Comedy", "Celebrities", "Health", "Nutrition", "Bodybuilding", "Humanitarian", "Automotives", "Tech", "Furniture", "Shopping", "NGO"]
 
-export const campaignobjectives = ['Awareness', 'Traffic', 'Conversions']
+export const campaignobjectives = ['Awareness', 'Traffic', 'Conversions', 'Brand Awareness', 'Product Launch', 'Audience Engagement', 'User-Generated Content', 'Drive Traffic to Websites', 'Brand Social Media Followers & Presence', 'Sales Consideration', 'Footfall', 'Brand Association ', 'Other' ]
 
 
 export const deliverables ={

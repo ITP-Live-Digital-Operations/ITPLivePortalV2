@@ -202,10 +202,30 @@
       <div class="row">
 
         <div formGroupName="InfluencerNumberOfFollowers" class="checkbox-container" style="flex: 0.5">
+          <div class="hoverable-text" (mouseover)="showInfo1=true" (mouseout)="showInfo1=false">
           <mat-checkbox formControlName="Nano"> Nano</mat-checkbox>
+          <div *ngIf="showInfo1" class="info-box">
+            Less than 10,000 followers
+          </div>
+        </div>
+        <div class="hoverable-text" (mouseover)="showInfo2=true" (mouseout)="showInfo2=false">
           <mat-checkbox formControlName="Micro"> Micro</mat-checkbox>
+          <div *ngIf="showInfo2" class="info-box">
+            Between 10,000 and 100,000 followers
+          </div>
+        </div>
+        <div class="hoverable-text" (mouseover)="showInfo3=true" (mouseout)="showInfo3=false">
           <mat-checkbox formControlName="Macro"> Macro </mat-checkbox>
+          <div *ngIf="showInfo3" class="info-box">
+            Between 100,000 and 1,000,000 followers
+          </div>
+        </div>
+        <div class="hoverable-text" (mouseover)="showInfo4=true" (mouseout)="showInfo4=false">
           <mat-checkbox formControlName="Mega"> Mega </mat-checkbox>
+          <div *ngIf="showInfo4" class="info-box">
+            More than 1,000,000 followers
+          </div>
+        </div>
           <mat-checkbox formControlName="Celebrity"> Celebrity</mat-checkbox>
         </div>
         <div style="flex: 1;">
@@ -262,7 +282,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <hr> 
+      <hr>
       <div class="row">
         <h2> Audience Interest </h2>
         <div formGroupName="AudienceInterest" class="checkbox-container">

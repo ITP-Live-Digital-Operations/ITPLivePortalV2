@@ -50,3 +50,24 @@ mat-raised-button {
   width: 8px;
   height: 8px;
 }
+
+
+
+
+.hoverable-text {
+  position: relative;
+  display: inline-block;
+}
+
+.info-box {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 1;
+}
+
+.hoverable-text:hover .info-box {
+  display: block;
+}
