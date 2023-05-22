@@ -6,7 +6,7 @@
   </div>
 
   <div class="form-container">
-    <h1 style="align-content: center; margin-left: 34%; font-size: 300%; margin-top: 2%; margin-bottom: 3%;"> Sales Brief Form</h1>
+    <h1 style="align-content: center; margin-left: 34%; font-size: 300%; margin-top: 2%; margin-bottom: 3%;">New Sales Brief</h1>
     <form [formGroup]="newSalesBriefForm" (ngSubmit)="createSalesBrief()" autocomplete="off">
       <div class="row">
         <mat-form-field appearance="outline">
@@ -131,9 +131,9 @@
         <hr>
         <h2> Video  </h2>
         <div class="checkbox-container">
-        <mat-checkbox formControlName="VideoProduction">Video Production</mat-checkbox>
+        <mat-checkbox formControlName="VideoProduction">Production</mat-checkbox>
 
-        <mat-checkbox formControlName="VideoEditing">Video Editing</mat-checkbox>
+        <mat-checkbox formControlName="VideoEditing">Editing</mat-checkbox>
       </div>
       </div>
       <hr>
@@ -301,7 +301,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" style="width: 50rem">
-          <mat-label>Previous Brand Ambassadors Name </mat-label>
+          <mat-label>Previous Influncer Partners </mat-label>
           <input matInput type="text" formControlName="PreviousBrandAmbassadorsName" autocomplete="off"  />
         </mat-form-field>
       </div>

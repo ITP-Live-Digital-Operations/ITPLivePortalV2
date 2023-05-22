@@ -6,7 +6,7 @@
     BACK
   </button>
   <mat-form-field appearance="outline" style="width: 75%; height: 10%; padding-left: 2%; padding-right: 2%;">
-    <input #searchInput matInput (keyup)="applyFilter(searchInput.value)" placeholder="Search">
+    <input #searchInput matInput (keyup)="applyFilterSearch(searchInput.value)" placeholder="Search">
   </mat-form-field>
 
   <button mat-raised-button  class="back-button"color="primary" style="height: 3rem;  width: 10%"  (click)="newInfluencer()">

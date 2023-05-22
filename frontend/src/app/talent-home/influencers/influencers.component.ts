@@ -21,7 +21,7 @@ import { DataService } from 'src/app/core/Services/data.service';
 })
 export class InfluencersComponent implements OnInit {
   dataSource: any;
-  UserDetails: any; 
+  UserDetails: any;
   accessToken: any;
   verticals: any[] = [];
   locations: any[] = [];
@@ -29,7 +29,12 @@ export class InfluencersComponent implements OnInit {
   nationalities: any[] = [];
   private powerBiClient!: pbi.service.Service;
 
-
+  filterCriteria: any = {
+    gender: '',
+    location: '',
+    vertical: '',
+    nationality: ''
+  };
 
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -132,7 +137,7 @@ export class InfluencersComponent implements OnInit {
     this.GetAllInfluencers();
   }
 
-  applyFilter(filterValue: string) {
+  applyFilterSearch(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -201,53 +206,35 @@ export class InfluencersComponent implements OnInit {
     this.powerBiClient.embed(reportContainer, embedConfig);
   }
 
-
-  applyFilter1(filterValue: string) {
-    if (!filterValue) {
-      filterValue = '';
-    }
-
+  applyFilter() {
     this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
-      return data.Gender.trim().toLowerCase() === filter;
+      return (!this.filterCriteria.gender || data.Gender.trim().toLowerCase() === this.filterCriteria.gender) &&
+        (!this.filterCriteria.location || data.CountryLocation.trim().toLowerCase() === this.filterCriteria.location) &&
+        (!this.filterCriteria.vertical || data.MainVertical.trim().toLowerCase() === this.filterCriteria.vertical) &&
+        (!this.filterCriteria.nationality || data.Nationality.trim().toLowerCase() === this.filterCriteria.nationality);
     };
 
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = JSON.stringify(this.filterCriteria);
+  }
+
+  applyFilter1(filterValue: string) {
+    this.filterCriteria.gender = filterValue.trim().toLowerCase();
+    this.applyFilter();
   }
 
   applyFilter2(filterValue: string) {
-    if (!filterValue) {
-      filterValue = '';
-    }
-
-    this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
-      return data.CountryLocation.trim().toLowerCase() === filter;
-    };
-
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filterCriteria.location = filterValue.trim().toLowerCase();
+    this.applyFilter();
   }
 
   applyFilter3(filterValue: string) {
-    if (!filterValue) {
-      filterValue = '';
-    }
-
-    this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
-      return data.MainVertical.trim().toLowerCase() === filter;
-    };
-
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filterCriteria.vertical = filterValue.trim().toLowerCase();
+    this.applyFilter();
   }
 
   applyFilter4(filterValue: string) {
-    if (!filterValue) {
-      filterValue = '';
-    }
-
-    this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
-      return data.Nationality.trim().toLowerCase() === filter;
-    };
-
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.filterCriteria.nationality = filterValue.trim().toLowerCase();
+    this.applyFilter();
 
   }
 
