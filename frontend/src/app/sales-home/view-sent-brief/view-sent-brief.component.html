@@ -8,7 +8,7 @@
 <div class="form-container">
   <div *ngIf="briefData.data.assigned">
   <h1> Assigned to: {{assigned_user.name}}</h1>
-  <h2> Deadline fro brief completion : {{ taskData.data[0].deadline | date }}</h2>
+  <h2> Deadline for brief completion : {{ taskData.data[0].deadline | date }}</h2>
 </div>
 <div *ngIf="!briefData.data.assigned">
   <h1> Not Assigned yet.</h1>
