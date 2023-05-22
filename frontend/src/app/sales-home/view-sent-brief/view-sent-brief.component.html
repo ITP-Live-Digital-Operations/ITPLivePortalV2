@@ -271,7 +271,17 @@
     </div>
     <hr>
     <div class="row">
-      <h2> Audience Interest </h2>
+      <h2> Audience Primary Interest </h2>
+      <div formGroupName="AudienceInterest" class="checkbox-container">
+
+        <mat-checkbox *ngFor="let option of clientIndustries" [formControlName]="option"> {{option}}</mat-checkbox>
+
+
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <h2> Audience Secondary Interest </h2>
       <div formGroupName="AudienceInterest" class="checkbox-container">
 
         <mat-checkbox *ngFor="let option of clientIndustries" [formControlName]="option"> {{option}}</mat-checkbox>
