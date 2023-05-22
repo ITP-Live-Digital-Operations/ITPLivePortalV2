@@ -76,7 +76,7 @@ export class ViewSentBriefComponent implements OnInit {
     InfluencerLocation: new FormGroup({
       Algeria: new FormControl(false),
       Bahrain: new FormControl(false),
-      Eygpt: new FormControl(false),
+      Egypt: new FormControl(false),
       Iraq: new FormControl(false),
       Jordan: new FormControl(false),
       Kuwait: new FormControl(false),
@@ -93,7 +93,7 @@ export class ViewSentBriefComponent implements OnInit {
     InfluencerNationality: new FormGroup({
       Algeria: new FormControl(false),
       Bahrain: new FormControl(false),
-      Eygpt: new FormControl(false),
+      Egypt: new FormControl(false),
       Iraq: new FormControl(false),
       Jordan: new FormControl(false),
       Kuwait: new FormControl(false),
@@ -148,7 +148,7 @@ export class ViewSentBriefComponent implements OnInit {
     AudienceLocation: new FormGroup({
       Algeria: new FormControl(false),
       Bahrain: new FormControl(false),
-      Eygpt: new FormControl(false),
+      Egypt: new FormControl(false),
       Iraq: new FormControl(false),
       Jordan: new FormControl(false),
       Kuwait: new FormControl(false),
@@ -166,7 +166,7 @@ export class ViewSentBriefComponent implements OnInit {
     AudienceNationality: new FormGroup({
       Algeria: new FormControl(false),
       Bahrain: new FormControl(false),
-      Eygpt: new FormControl(false),
+      Egypt: new FormControl(false),
       Iraq: new FormControl(false),
       Jordan: new FormControl(false),
       Kuwait: new FormControl(false),
@@ -294,7 +294,7 @@ export class ViewSentBriefComponent implements OnInit {
             InfluencerLocation : new FormGroup({
               Algeria : new FormControl(this.briefData.data.InfluencerLocation.includes('Algeria')),
               Bahrain : new FormControl(this.briefData.data.InfluencerLocation.includes('Bahrain')),
-              Eygpt : new FormControl(this.briefData.data.InfluencerLocation.includes('Eygpt')),
+              Egypt : new FormControl(this.briefData.data.InfluencerLocation.includes('Eygpt')),
               Iraq : new FormControl(this.briefData.data.InfluencerLocation.includes('Iraq')),
               Jordan : new FormControl(this.briefData.data.InfluencerLocation.includes('Jordan')),
               Kuwait : new FormControl(this.briefData.data.InfluencerLocation.includes('Kuwait')),
@@ -311,7 +311,7 @@ export class ViewSentBriefComponent implements OnInit {
             InfluencerNationality : new FormGroup({
               Algeria : new FormControl(this.briefData.data.InfluencerNationality.includes('Algeria')),
               Bahrain : new FormControl(this.briefData.data.InfluencerNationality.includes('Bahrain')),
-              Eygpt : new FormControl(this.briefData.data.InfluencerNationality.includes('Eygpt')),
+              Egypt : new FormControl(this.briefData.data.InfluencerNationality.includes('Eygpt')),
               Iraq : new FormControl(this.briefData.data.InfluencerNationality.includes('Iraq')),
               Jordan : new FormControl(this.briefData.data.InfluencerNationality.includes('Jordan')),
               Kuwait : new FormControl(this.briefData.data.InfluencerNationality.includes('Kuwait')),
@@ -365,7 +365,7 @@ export class ViewSentBriefComponent implements OnInit {
             AudienceLocation : new FormGroup({
               Algeria : new FormControl(this.briefData.data.AudienceLocation.includes('Algeria')),
               Bahrain : new FormControl(this.briefData.data.AudienceLocation.includes('Bahrain')),
-              Eygpt : new FormControl(this.briefData.data.AudienceLocation.includes('Eygpt')),
+              Egypt : new FormControl(this.briefData.data.AudienceLocation.includes('Eygpt')),
               Iraq : new FormControl(this.briefData.data.AudienceLocation.includes('Iraq')),
               Jordan : new FormControl(this.briefData.data.AudienceLocation.includes('Jordan')),
               Kuwait : new FormControl(this.briefData.data.AudienceLocation.includes('Kuwait')),
@@ -382,7 +382,7 @@ export class ViewSentBriefComponent implements OnInit {
             AudienceNationality : new FormGroup({
               Algeria : new FormControl(this.briefData.data.AudienceNationality.includes('Algeria')),
               Bahrain : new FormControl(this.briefData.data.AudienceNationality.includes('Bahrain')),
-              Eygpt : new FormControl(this.briefData.data.AudienceNationality.includes('Eygpt')),
+              Egypt : new FormControl(this.briefData.data.AudienceNationality.includes('Eygpt')),
               Iraq : new FormControl(this.briefData.data.AudienceNationality.includes('Iraq')),
               Jordan : new FormControl(this.briefData.data.AudienceNationality.includes('Jordan')),
               Kuwait : new FormControl(this.briefData.data.AudienceNationality.includes('Kuwait')),

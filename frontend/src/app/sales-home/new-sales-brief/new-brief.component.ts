@@ -23,7 +23,7 @@ export class NewBriefComponent {
   showInfo3 = false;
   showInfo4 = false;
   showInfo5 = false;
-  
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -69,7 +69,7 @@ export class NewBriefComponent {
     InfluencerLocation: new FormGroup({
       Algeria: new FormControl(false),
       Bahrain: new FormControl(false),
-      Eygpt: new FormControl(false),
+      Egypt: new FormControl(false),
       Iraq: new FormControl(false),
       Jordan: new FormControl(false),
       Kuwait: new FormControl(false),
@@ -86,7 +86,7 @@ export class NewBriefComponent {
     InfluencerNationality: new FormGroup({
       Algeria: new FormControl(false),
       Bahrain: new FormControl(false),
-      Eygpt: new FormControl(false),
+      Egypt: new FormControl(false),
       Iraq: new FormControl(false),
       Jordan: new FormControl(false),
       Kuwait: new FormControl(false),
@@ -141,7 +141,7 @@ export class NewBriefComponent {
     AudienceLocation: new FormGroup({
       Algeria: new FormControl(false),
       Bahrain: new FormControl(false),
-      Eygpt: new FormControl(false),
+      Egypt: new FormControl(false),
       Iraq: new FormControl(false),
       Jordan: new FormControl(false),
       Kuwait: new FormControl(false),
@@ -159,7 +159,7 @@ export class NewBriefComponent {
     AudienceNationality: new FormGroup({
       Algeria: new FormControl(false),
       Bahrain: new FormControl(false),
-      Eygpt: new FormControl(false),
+      Egypt: new FormControl(false),
       Iraq: new FormControl(false),
       Jordan: new FormControl(false),
       Kuwait: new FormControl(false),

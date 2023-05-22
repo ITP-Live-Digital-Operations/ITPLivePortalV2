@@ -21,7 +21,7 @@ export class LogsComponent implements OnInit {
   campaigns: any[] = []
   talentUserNames: any;
 
-  
+
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
   @ViewChild(MatSort, { static: true }) sort !: MatSort;

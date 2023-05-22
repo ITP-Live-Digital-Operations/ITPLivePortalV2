@@ -464,7 +464,7 @@ export const deliverables ={
   Youtube: ['Youtube videos', 'Youtube partnerships and collaborations']
 }
 
-export const arabCountries= ["Algeria", "Bahrain", "Eygpt", "Iraq", "Jordan", "Kuwait", "Lebanon", "Libya", "Morocco", "Oman", "Qatar", "SaudiArabia", "Syria", "Tunisia", "UAE"]
+export const arabCountries= ["Algeria", "Bahrain", "Egypt", "Iraq", "Jordan", "Kuwait", "Lebanon", "Libya", "Morocco", "Oman", "Qatar", "SaudiArabia", "Syria", "Tunisia", "UAE"]
 
 
 
@@ -474,3 +474,4 @@ export const MainTaskType = ["Research", "Preparing Presentation", "Create a bud
  "Giving Training", "Getting Trained", "Technical Issues" ]
 
 export const timeSpent = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16]
+

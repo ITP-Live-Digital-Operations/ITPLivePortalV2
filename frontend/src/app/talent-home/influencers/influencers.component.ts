@@ -87,6 +87,7 @@ export class InfluencersComponent implements OnInit {
 
       this.genders = response.map((obj: { genders: any; }) => obj.genders)
                               .filter( (str: string) => str !== '')
+                              .sort();
 
 
     })
@@ -96,6 +97,7 @@ export class InfluencersComponent implements OnInit {
     this.service.getLocations().subscribe((response: any) => {
       this.locations = response.map((obj: { locations: any; }) => obj.locations)
                                 .filter( (str: string) => str !== '')
+                                .sort();
     })
   }
 
@@ -103,6 +105,7 @@ export class InfluencersComponent implements OnInit {
     this.service.getVerticals().subscribe((response: any) => {
       this.verticals = response.map((obj: { verticals: any; }) => obj.verticals)
                                 .filter( (str: string) => str !== '')
+                                .sort();
     })
   }
 
@@ -110,6 +113,7 @@ export class InfluencersComponent implements OnInit {
     this.service.getNationalities().subscribe((response: any) => {
       this.nationalities = response.map((obj: { nationalities: any; }) => obj.nationalities)
                                 .filter( (str: string) => str !== '')
+                                .sort();
     })
   }
 
