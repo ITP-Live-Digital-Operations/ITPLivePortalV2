@@ -10,6 +10,7 @@ import { ViewBriefFilesComponent } from './view-brief-files/view-brief-files.com
 import { ViewSentBriefsComponent } from './view-sent-briefs/view-sent-briefs.component';
 import { ViewSentBriefComponent } from './view-sent-brief/view-sent-brief.component';
 import { SalesUserGuideComponent } from './sales-user-guide/sales-user-guide.component';
+import { ChangePasswordComponent } from '../partial/change-password/change-password.component';
 
 
 
@@ -21,7 +22,7 @@ const routes: Routes = [
   { path: 'sentBriefs', component: ViewSentBriefsComponent},
   { path: 'sentBrief/:id', component: ViewSentBriefComponent},
   { path: 'sales-user-guide', component: SalesUserGuideComponent},
-
+  { path:'changePassword', component: ChangePasswordComponent},
 
   { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] }
 ]

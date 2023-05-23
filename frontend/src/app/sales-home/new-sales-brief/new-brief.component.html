@@ -311,11 +311,42 @@
           <input matInput type="text" formControlName="PreviousBrandAmbassadorsName" autocomplete="off"  />
         </mat-form-field>
       </div>
+      <hr>
+      <div class="row">
+        <mat-form-field appearance="outline" style="width: 50rem">
+          <mat-label>ITP Office Location</mat-label>
+          <mat-select >
+            <mat-option  value="Male"> UAE </mat-option>
+            <mat-option  value="Female"> KSA </mat-option>
+            <mat-option  value="Both"> India</mat-option>
+            <mat-option  value="Both"> Lebanon </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 50rem">
+          <mat-label>KPIs </mat-label>
+          <input matInput type="text" autocomplete="off"  />
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <div class="checkbox-container">
+          <mat-label>Strategy required</mat-label>
+          <mat-checkbox > </mat-checkbox>
 
 
+          <mat-label>Concept required</mat-label>
+          <mat-checkbox > </mat-checkbox>
+
+          <mat-label>Event required</mat-label>
+          <mat-checkbox > </mat-checkbox>
+
+          <mat-label>Performance Marketing required</mat-label>
+          <mat-checkbox > </mat-checkbox>
+        </div>
+      </div>
 
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="!newSalesBriefForm.valid" style="margin-bottom: 2%;">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!newSalesBriefForm.valid" style="margin-bottom: 2%; margin-top: 2%;">
         Submit Brief Form
       </button>
 
