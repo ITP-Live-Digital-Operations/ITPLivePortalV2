@@ -32,7 +32,7 @@ export class UserManagementComponent implements OnInit{
   ngOnInit(): void {
     this.getUsers();
 
-    
+
   }
 
 
@@ -58,7 +58,7 @@ newUser() {
   this.router.navigate(['home/admin/register-user'])
 }
 
-displayedColumns: string[] = ['id', 'name', 'email', 'role', 'privilege_level'];
+displayedColumns: string[] = ['id', 'name', 'email', 'role', 'privilege_level', 'login_count'];
 
 onRowClicked(row: any) {
 

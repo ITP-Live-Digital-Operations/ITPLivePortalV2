@@ -40,6 +40,7 @@ exports.login = (req, res) => {
     }
     if (comparePassword(password, user.password, user.hash)) {
         const token = generateToken( user.id, user.name, user.role, user.privilege_level);
+        user.update({ loginCount: user.loginCount + 1 });
         return res.status(200).send({
             status: 'success',
             data: { token, role: user.role }

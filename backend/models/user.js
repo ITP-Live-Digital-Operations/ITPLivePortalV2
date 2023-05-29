@@ -71,6 +71,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    loginCount:{
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE
