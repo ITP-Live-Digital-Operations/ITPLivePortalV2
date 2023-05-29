@@ -11,7 +11,7 @@
       <mat-label> Influencer Filter</mat-label>
       <mat-select placeholder="Influencer Filter" (selectionChange)="applyFilter1($event.value)">
         <mat-option value="">All</mat-option>
-        <mat-option *ngFor="let option of influencers" [value]="option.name">{{ option.name }}</mat-option>
+        <mat-option *ngFor="let option of influencers" [value]="option.name">{{ option.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field  appearance="outline" style="width: 33%; height: 10%; padding-left: 2%;">

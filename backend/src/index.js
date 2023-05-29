@@ -23,7 +23,7 @@ app.get('*', (req, res) => {
 app.listen( {port: PORT}, async () => {
 try{
     logger.info(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-    console.log('Backend started up');
+/*     console.log('Backend started up');
     await db.sequelize.sync({ force: true });
     const seedersPath = path.join(__dirname, '../new-seeders');
     const seederFiles = await fs.promises.readdir(seedersPath);
@@ -35,7 +35,7 @@ try{
             console.log(`Seeder ${file} ran successfully`);
         }
     }
-    console.log('All seeders ran successfully');
+    console.log('All seeders ran successfully'); */
     await sequelize.authenticate();
     logger.info('Database Connected');
       }catch(err){
