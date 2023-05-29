@@ -58,7 +58,7 @@ newUser() {
   this.router.navigate(['home/admin/register-user'])
 }
 
-displayedColumns: string[] = ['id', 'name', 'email', 'role', 'privilege_level', 'login_count'];
+displayedColumns: string[] = ['id', 'name', 'email', 'role', 'privilege_level', 'loginCount'];
 
 onRowClicked(row: any) {
 
