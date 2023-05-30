@@ -27,7 +27,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   }
 
   private handleError(err: HttpEvent<any>): Observable<any> {
-    if (err instanceof HttpErrorResponse && err.status === 666) {
+    if (err instanceof HttpErrorResponse && err.status === 401) {
       // JWT expired, go to login
       this.zone.run(() => this.router.navigate(['/login']));
   }

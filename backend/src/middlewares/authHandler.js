@@ -12,7 +12,7 @@ function authMiddleware(req, res, next) {
     req.user = decoded.id; // add the decoded user object to the request object
     next(); // call the next middleware or controller function
   } catch (err) {
-    return res.status(666).send( {message : 'Invalid token'});
+    return res.status(401).send( {message : 'Invalid token'});
   }
 }
 
