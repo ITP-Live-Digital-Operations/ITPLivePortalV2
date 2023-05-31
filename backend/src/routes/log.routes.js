@@ -12,5 +12,8 @@ router.route('/getLogs')
 router.route('/getInfluencerLogs/:id')
     .get(authHandler, asyncHandler(LogController.getInfluencerLogs));
 
+router.route('/deleteLog/:id')
+    .delete(authHandler, asyncHandler(LogController.deleteLog));
+
 
 module.exports = router;

@@ -100,7 +100,7 @@
     <th mat-header-cell *matHeaderCellDef sticky> Edit | Delete  </th>
     <td mat-cell *matCellDef="let element">
     <button mat-raised-button color="primary" (click)="editInfluencer(element.id)"><mat-icon>edit</mat-icon></button> |
-    <button mat-raised-button color="warn" (click)="deleteInfluencer(element.id)"><mat-icon>delete</mat-icon></button>
+    <button *ngIf="userRole == 'superadmin'" mat-raised-button color="warn" (click)="deleteInfluencer(element.id)"><mat-icon>delete</mat-icon></button>
     </td>
   </ng-container>
 

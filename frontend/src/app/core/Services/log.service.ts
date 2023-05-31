@@ -9,7 +9,7 @@ import { environment} from '../../../environments/environment.development'
 })
 export class LogService {
 
-  
+
 
 
   constructor(private http: HttpClient) { }
@@ -26,5 +26,9 @@ export class LogService {
 
   getInfluencerLogs(inputdata:any):Observable<LogModel>{
     return this.http.get<LogModel>(`${this.logApiURL}/getInfluencerLogs/${inputdata}`)
+  }
+
+  deleteLog(inputdata:any){
+    return this.http.delete(`${this.logApiURL}/deleteLog/${inputdata}`)
   }
 }

@@ -8,6 +8,7 @@ const db = require('../../models');
 const { QueryTypes } = require('sequelize');
 
 
+
 exports.create = (req, res) => {
   let logID;
   let packageID;
@@ -50,7 +51,7 @@ exports.create = (req, res) => {
 
 exports.getLogs = (req, res) => {
   db.sequelize.query(`
-  SELECT DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date, 
+  SELECT logs.id, DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date, 
   users.name AS Contact, 
   influencer.Name AS Influencer,
   logs.campaign AS Campaign, 
@@ -79,38 +80,12 @@ exports.getLogs = (req, res) => {
         err.message || "Some error occurred while retrieving logs."
     });
   })
-
-
-
-  /* Log.findAll({
-    attributes: [
-        [sequelize.fn('DATE_FORMAT', sequelize.col('logs.datecreated'), '%d-%m-%Y'), 'Date'],
-        ['users.name', 'Contact'],
-        ['influencer.Name', 'Influencer'],
-        ['logs.campaign', 'Campaign'],
-        ['package.platform', 'Platform'],
-        ['package.deliverable', 'Deliverable'],
-        ['logs.currency', 'Currency'],
-        ['logs.rate', 'Rate'],
-        ['logs.notes', 'Notes'],
-        ['logs.time_to_reply', 'Time_to_reply'],
-    ],
-    include: [
-        { model: User, attributes: [] },
-        { model: Influencer, attributes: [] },
-        { model: Log_package, include: [{ model: Package, attributes: [] }] },
-    ],
-        
-      }).then(logs => {
-        console.log(logs)
-        res.status(200).send(logs);
-      }); */
 }
 
 exports.getInfluencerLogs = (req, res) => {
   const id = req.params.id;
   db.sequelize.query(`
-  SELECT  DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date,
+  SELECT logs.id, DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date,
   users.name AS Contact, 
   influencer.Name AS Influencer,
   logs.campaign AS Campaign, 
@@ -140,43 +115,49 @@ exports.getInfluencerLogs = (req, res) => {
         err.message || "Some error occurred while retrieving logs."
     });
   })
+}
 
+exports.deleteLog = (req, res) => {
+  const id = req.params.id;
 
-  
-  /*   Log.findAll({
-        attributes: [
-          [sequelize.fn('DATE_FORMAT', sequelize.col('logs.datecreated'), '%d-%m-%Y'), 'Date'],
-          [sequelize.col('users.name'), 'Contact'],
-          [sequelize.col('influencer.Name'), 'Influencer'],
-          [sequelize.col('logs.campaign'), 'Campaign'],
-          [sequelize.col('package.platform'), 'Platform'],
-          [sequelize.col('package.deliverable'), 'Deliverable'],
-          [sequelize.col('logs.currency'), 'Currency'],
-          [sequelize.col('logs.rate'), 'Rate'],
-          [sequelize.col('logs.notes'), 'Notes'],
-          [sequelize.col('logs.time_to_reply'), 'Time_to_reply']
-        ],
-        include: [
-          {
-            model: User,
-            attributes: [],
-            where: { id: sequelize.col('logs.userID') }
-          },
-          {
-            model: Influencer,
-            attributes: [],
-            where: { ID: sequelize.col('logs.influencerID') }
-          },
-          {
-            model: Log_package,
-            attributes: [],
-            where: { logID: sequelize.col('logs.id') },
-            include: [{ model: Package, attributes: [] }]
-          }
-        ],
-        where: { influencerID: req.params.id }
-      }).then(logs => {
-        res.status(200).send(logs);
+  Log.sequelize.transaction((t) => {
+
+    // First, find all related log_packages
+    return Log_package.findAll({ where: { logID: id } }, { transaction: t })
+        .then(log_packages => {
+
+            // Then delete all related packages
+            const packageDeletes = log_packages.map(log_package => {
+                return Package.destroy({ where: { id: log_package.packageID } }, { transaction: t });
+            });
+
+            // Wait for all packages to be deleted
+            return Promise.all(packageDeletes)
+                .then(() => {
+                    // Now, we can delete all related log_packages
+                    const logPackageDeletes = log_packages.map(log_package => {
+                        return Log_package.destroy({ where: { id: log_package.id } }, { transaction: t });
+                    });
+
+                    // Wait for all log_packages to be deleted
+                    return Promise.all(logPackageDeletes);
+                });
+        })
+        .then(() => {
+            // Now, we can delete the log
+            return Log.destroy({ where: { id: id } }, { transaction: t });
         });
-         */
+})
+.then(() => {
+    // If the execution reaches this line, no errors were thrown.
+    // We can commit the transaction.
+    res.status(200).send({ status: "success" });
+})
+.catch((error) => {
+    // If the execution reaches this line, an error was thrown.
+    // We rollback the transaction.
+    console.error(error);
+    res.status(500).send({ status: "failure", error: error });
+});
+
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InfluencerService } from 'src/app/core/Services/influencer.service';
-import { genders, languages, verticals, countries, nationalities } from 'src/assets/influencer-form-arrays';
+import { genders, languages, verticals, countries, nationalities, itprelatioship } from 'src/assets/influencer-form-arrays';
 import * as alertify from 'alertifyjs';
 import { UserService } from 'src/app/core/Services/user.service';
 
@@ -20,7 +20,7 @@ export class NewInfluencerComponent {
   verticals = verticals;
   countries = countries;
   nationalities = nationalities;
-
+  itprelatioship = itprelatioship
   constructor(private formBuilder: FormBuilder, private service: InfluencerService, private route: Router, private userService: UserService) {
     this.newInfluencerForm = this.formBuilder.group({
       Name: ['', [Validators.required]],
@@ -94,7 +94,7 @@ export class NewInfluencerComponent {
       Notes: ['',],
     })
 
-  } 
+  }
 
   backButton(){
     window.history.back();

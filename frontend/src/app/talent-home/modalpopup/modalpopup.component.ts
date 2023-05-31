@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InfluencerService } from 'src/app/core/Services/influencer.service';
-import { genders, languages, verticals, countries , nationalities} from 'src/assets/influencer-form-arrays';
+import { genders, languages, verticals, countries , nationalities, itprelatioship} from 'src/assets/influencer-form-arrays';
 import * as alertify from 'alertifyjs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -20,6 +20,7 @@ export class ModalpopupComponent implements OnInit {
   verticals = verticals;
   countries = countries;
   nationalities = nationalities;
+  itprelatioship = itprelatioship
   influencerData: any;
 
   constructor(private formBuilder: FormBuilder, private service: InfluencerService, private route: Router, @Inject(MAT_DIALOG_DATA) public source: any, private dialogRef: MatDialogRef<ModalpopupComponent>) {

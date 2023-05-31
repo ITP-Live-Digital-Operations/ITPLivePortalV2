@@ -12,6 +12,7 @@ import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
 
 import * as pbi from 'powerbi-client';
 import { DataService } from 'src/app/core/Services/data.service';
+import { UserService } from 'src/app/core/Services/user.service';
 
 
 @Component({
@@ -27,6 +28,8 @@ export class InfluencersComponent implements OnInit {
   locations: any[] = [];
   genders: any[] = [];
   nationalities: any[] = [];
+
+  userRole = this.userService.getRole();
   private powerBiClient!: pbi.service.Service;
 
   filterCriteria: any = {
@@ -52,7 +55,7 @@ export class InfluencersComponent implements OnInit {
 
 
 
-  constructor(private service: InfluencerService, private route: Router, private dialog: MatDialog, private dataService: DataService) {}
+  constructor(private service: InfluencerService, private route: Router, private dialog: MatDialog, private dataService: DataService, private userService : UserService) {}
 
 
   ngOnInit(): void {

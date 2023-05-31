@@ -2,7 +2,7 @@
 <button mat-raised-button  color="primary"  (click)="backButton()">
   <mat-icon>arrow_back</mat-icon>
   BACK
-</button> 
+</button>
 </div>
 
 <div class="form-container">
@@ -128,7 +128,10 @@
 
     <mat-form-field appearance="outline">
       <mat-label>ITP Relationship</mat-label>
-      <input matInput type="text" formControlName="ItpRelationship" autocomplete="off" />
+      <mat-select formControlName="ItpRelationship">
+        <mat-option *ngFor="let country of itprelatioship" [value]="country">{{country}}</mat-option>
+      </mat-select>
+
       <mat-error *ngIf="
           newInfluencerForm.controls['ItpRelationship'].invalid &&
           newInfluencerForm.controls['ItpRelationship'].touched

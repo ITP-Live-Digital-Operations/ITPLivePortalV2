@@ -7,6 +7,7 @@ import { LogService } from 'src/app/core/Services/log.service';
 import { InfluencerService } from 'src/app/core/Services/influencer.service';
 import { LogModel } from 'src/app/Models/LogModel';
 import { UserService } from 'src/app/core/Services/user.service';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-logs',
@@ -21,7 +22,7 @@ export class LogsComponent implements OnInit {
   campaigns: any[] = []
   talentUserNames: any;
 
-
+  userRole = this.userService.getRole();
   @ViewChild(MatPaginator) paginator !: MatPaginator;
 
   @ViewChild(MatSort, { static: true }) sort !: MatSort;
@@ -49,6 +50,9 @@ export class LogsComponent implements OnInit {
     this.GetAllLogs();
     this.GetInfluencerNames();
     this.GetUserNames();
+    if( this.userRole == 'superadmin'){
+      this.displayedColumns.push('Action')
+    }
   }
 
   GetAllLogs() {
@@ -118,6 +122,14 @@ export class LogsComponent implements OnInit {
     window.history.back();
   }
 
-  displayedColumns: string[] = ['Influencer', 'Campaign', 'Platform', 'Deliverable', 'Currency', 'Rate', 'Contact', 'Date'];
+  deleteLog(id: any) {
+    alertify.confirm("Remove Log", "Do you want to remove this Log ?", () => {
+    this.service.deleteLog(id).subscribe((item) => {
+      this.GetAllLogs();
+      alertify.success('Influencer Deleted.')
+    })
+  }, function(){})
+  }
 
+   displayedColumns: string[] = ['Influencer', 'Campaign', 'Platform', 'Deliverable', 'Currency', 'Rate', 'Contact', 'Date']
 }
