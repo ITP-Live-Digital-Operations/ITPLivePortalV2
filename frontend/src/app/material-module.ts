@@ -22,7 +22,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @NgModule({
   exports: [
     MatInputModule,
@@ -45,7 +45,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatMenuModule,
     MatNativeDateModule,
     MatTabsModule,
-
+    MatAutocompleteModule
 
 
 

@@ -23,9 +23,9 @@ app.get('*', (req, res) => {
 app.listen( {port: PORT}, async () => {
 try{
     logger.info(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-/*     console.log('Backend started up');
-    await db.sequelize.sync({ force: true });
-    const seedersPath = path.join(__dirname, '../new-seeders');
+/*     console.log('Backend started up'); */
+   await db.sequelize.sync({ alter: true });
+/*   const seedersPath = path.join(__dirname, '../new-seeders');
     const seederFiles = await fs.promises.readdir(seedersPath);
 
     for ( const file of seederFiles ) {

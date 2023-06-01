@@ -99,5 +99,40 @@
 
         <button *ngIf="budgetApproved && presentationApproved" mat-raised-button color="primary" (click)="salesBriefReady()"> Send to Sales </button>
   </div>
+  <form [formGroup]="influencersForm">
+    <table class="my-table" >
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Followers</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr formArrayName="rows" *ngFor="let row of rows.controls; index as i;">
+          <td [formGroupName]="i">
+            <input formControlName="id" readonly/>
+          </td>
+          <td [formGroupName]="i">
+            <input formControlName="name" />
+          </td>
+          <td [formGroupName]="i">
+            <input formControlName="email" />
+          </td>
+          <td [formGroupName]="i">
+            <input formControlName="followers" />
+          </td>
+          <td>
+            <button mat-raised-button color="accent" (click)="removeRow(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button mat-raised-button (click)="openDialog()">Add Influencer</button>
+  </form>
 </div>
+
+
 </div>

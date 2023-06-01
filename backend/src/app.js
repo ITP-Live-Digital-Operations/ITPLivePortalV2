@@ -23,7 +23,7 @@ const TaskRoutes = require('./routes/task.routes');
 const exportRoutes = require('./routes/export-seeds.routes');
 const webHookRoutes = require('./routes/webhook.routes');
 const fileRoutes = require('./routes/file.routes');
-
+const NotificationRoutes = require('./routes/notification.routes');
 
 
 const app = express();
@@ -69,14 +69,13 @@ app.use('/api/v1/celebrities', authHandler, celebrityRoutes);
 app.use('/api/v1/logs', authHandler, logRoutes);
 app.use('/api/v1/salesbriefs', authHandler, salesBriefRoutes);
 app.use('/api/v1/tasks', authHandler, TaskRoutes); 
-
-
-console.log('Backend started 1')
-
 app.use('/api/v1/files', authHandler, fileRoutes);
+
+app.use('/api/v1/notifications', authHandler, NotificationRoutes)
+
 app.use('/api/v1/webhooks', webHookRoutes);
 
-console.log('Backend started 2');
+console.log('Backend started');
 app.use('/api/v1/seeds', exportRoutes);
 
 

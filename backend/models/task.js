@@ -65,7 +65,15 @@ module.exports = (sequelize, DataTypes) => {
     weight: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
+    progress: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    priority: {
+      type: DataTypes.INTEGER,
+      defaultValue: 10,
+    },
   }, {
     sequelize,
     tableName: 'task',

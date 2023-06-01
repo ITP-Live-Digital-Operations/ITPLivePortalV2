@@ -51,6 +51,14 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false
       },
+      progress: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
+      priority: {
+        type: DataTypes.INTEGER,
+        defaultValue: 10,
+      },
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE

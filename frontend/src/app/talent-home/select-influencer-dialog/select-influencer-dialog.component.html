@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Select an Influencer</h1>
+    <mat-dialog-content>
+      <mat-form-field>
+        <input type="text" placeholder="Search Influencer" aria-label="Search" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let influencer of filteredInfluencers | async" [value]="influencer" (click)="onSelect(influencer)">
+            {{influencer.Name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </mat-dialog-content>

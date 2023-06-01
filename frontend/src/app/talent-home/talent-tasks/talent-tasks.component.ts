@@ -28,5 +28,5 @@ export class TalentTasksComponent implements OnInit {
     });
   }
 
-  displayedColumns: string[] = ['id', 'name', 'totalWeight'];
+  displayedColumns: string[] = ['name', 'totalWeight'];
 }

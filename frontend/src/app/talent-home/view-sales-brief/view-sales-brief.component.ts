@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SalesService } from 'src/app/core/Services/sales.service';
 import { TaskService } from 'src/app/core/Services/task.service';
@@ -9,7 +9,9 @@ import { Location } from '@angular/common';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { FileService } from 'src/app/core/Services/file.service';
-
+import { InfluencerModel } from 'src/app/Models/InfluencerModel';
+import { MatDialog } from '@angular/material/dialog';
+import { SelectInfluencerDialogComponent } from '../select-influencer-dialog/select-influencer-dialog.component';
 
 @Component({
   selector: 'app-view-sales-brief',
@@ -42,20 +44,50 @@ export class ViewSalesBriefComponent implements OnInit{
   privilege_level = this.userService.getPrivilegeLevel();
   assignForm : FormGroup;
 
-  constructor(private fileService: FileService ,private salesService: SalesService, private activatedRoute:  ActivatedRoute, private formBuilder: FormBuilder, private userService: UserService, private taskService: TaskService, private location: Location) {
+  public influencersForm : FormGroup;
+  public influencers : InfluencerModel[] = [];
+
+  constructor(private fileService: FileService ,public dialog: MatDialog, private salesService: SalesService, private activatedRoute:  ActivatedRoute, private formBuilder: FormBuilder, private userService: UserService, private taskService: TaskService, private location: Location) {
     this.assignForm = this.formBuilder.group({
       Weight: ['', Validators.required],
     });
+
+    this.influencersForm = this.formBuilder.group({
+      rows : this.formBuilder.array([])
+    });
+  }
+
+  get rows(): FormArray {
+    return this.influencersForm.get('rows') as FormArray;
+  }
+
+  addRow(influencer: InfluencerModel): void {
+    const row = this.formBuilder.group({
+      id: [influencer.id],
+      name: [influencer.Name],
+      email: [influencer.Email],
+      followers: [influencer.Number],
+    });
+    this.rows.push(row);
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SelectInfluencerDialogComponent);
+
+    dialogRef.afterClosed().subscribe((selectedInfluencer: InfluencerModel) => {
+      if (selectedInfluencer) {
+        this.addRow(selectedInfluencer);
+      }
+    });
+  }
+
+  removeRow(index: number): void {
+    this.rows.removeAt(index);
   }
 
   ngOnInit(): void {
     this.loadBriefData();
     this.refresh();
-
-
-   /*  this.budgetApproved = this.budgetSheet.approved
-    this.presentationApproved = this.presentation.approved */
-
   }
 
 
