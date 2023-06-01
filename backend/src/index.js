@@ -34,7 +34,7 @@ try{
             await seeder.up(db.sequelize.getQueryInterface(), db.Sequelize);
             console.log(`Seeder ${file} ran successfully`);
         }
-    }
+    } 
     console.log('All seeders ran successfully'); */
     await sequelize.authenticate();
     logger.info('Database Connected');
