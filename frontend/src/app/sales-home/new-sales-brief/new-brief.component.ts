@@ -145,6 +145,7 @@ export class NewBriefComponent {
       (briefid) => {
 
         alertify.success('Sales brief created successfully');
+        console.log(this.newSalesBriefForm.get('ItpDepartment')?.value);
 
         if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'Originals' || this.newSalesBriefForm.get('ItpDepartment')?.value == 'UAE'){
           let id = 23;
@@ -159,7 +160,7 @@ export class NewBriefComponent {
         }
 
 
-        this.router.navigate(['home/sales/forms']);
+        /* this.router.navigate(['home/sales/forms']); */
 
 
       },

@@ -46,7 +46,7 @@ export class NotificationPopupComponent {
   } else {
     date = created_at;
   }
-    date.setHours(date.getHours() - 2);
+    date.setHours(date.getHours() );
     const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
     let interval = Math.floor(seconds / 31536000);
 

@@ -143,8 +143,7 @@ exports.updateAssignedStatus = (req, res) => {
         }
     }).then( data => {
         res.status(200).send({
-            status: "success",
-            data: data
+            id : data.id 
         });
     }).catch(err => {
         res.status(500).send({

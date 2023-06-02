@@ -39,10 +39,7 @@ button {
   /* Styling the button */
   position: absolute;
   right: 0;
-  bottom: 0;
-  width: 30%;
-  overflow-y: hidden;
   margin-bottom: 2%;
-  margin-right: 2%;
+  margin-right: 4%;
 }
 

@@ -6,11 +6,11 @@
 </div>
 
 <div class="form-container">
-  <div *ngIf="briefData.data.assigned">
+  <div *ngIf="salesBrief.assigned == true">
   <h1> Assigned to: {{assigned_user.name}}</h1>
   <h2> Deadline for brief completion : {{ taskData.data[0].deadline | date }}</h2>
 </div>
-<div *ngIf="!briefData.data.assigned">
+<div *ngIf="salesBrief.assigned == false">
   <h1> Not Assigned yet.</h1>
 </div>
   <h1 style="align-content: center; margin-left: 34%; font-size: 300%; margin-top: 2%; margin-bottom: 3%;"> Sales Brief Form</h1>
@@ -328,10 +328,10 @@
       <mat-form-field appearance="outline" style="width: 50rem">
         <mat-label>ITP Department</mat-label>
         <mat-select formControlName="ItpDepartment"  required="true">
-          <mat-option  value="Male"> UAE </mat-option>
-          <mat-option  value="Female"> KSA </mat-option>
-          <mat-option  value="Both"> Originals</mat-option>
-          <mat-option  value="Both"> Gaming </mat-option>
+          <mat-option  value="UAE"> UAE </mat-option>
+          <mat-option  value="KSA"> KSA </mat-option>
+          <mat-option  value="Originals"> Originals</mat-option>
+          <mat-option  value="Gaming"> Gaming </mat-option>
         </mat-select>
       </mat-form-field>
 

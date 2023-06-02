@@ -30,7 +30,7 @@ exports.getNotifications = (req, res) => {
             user_id: id
         },
         order: [
-            ['createdAt', 'ASC']
+            ['createdAt', 'DESC']
         ]
     }).then((data) => {
         res.status(200).json({

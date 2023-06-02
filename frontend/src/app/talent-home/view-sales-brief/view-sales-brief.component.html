@@ -19,12 +19,12 @@
           <p class="card-text">Campaign Overview: {{ brief.data.CampaignOverview }}</p>
           <p class="card-text">Campaign Objective: {{ brief.data.CampaignObjective }}</p>
           <p class="card-text">Campaign Objective Details: {{ brief.data.CampaignObjectiveDetails }}</p>
+          <hr>
           <p class="card-text">Number of Recommendations: {{ brief.data.NumberofRecommendations }}</p>
           <p class="card-text">Currency: {{ brief.data.Currency }}</p>
           <p class="card-text">Budget: {{ brief.data.Budget }}</p>
           <p class="card-text">Campaign Start Date: {{ brief.data.CampaignStartDate | date }}</p>
           <p class="card-text">Campaign End Date: {{ brief.data.CampaignEndDate | date }}</p>
-          <p class="card-text">Deadline For Recommendations: {{ brief.data.DeadlineForRecommendations }}</p>
           <p class="card-text">Campaign Message Phase One: {{ brief.data.CampaignMessagePhaseOne }}</p>
           <p class="card-text">Campaign Message Phase Two: {{ brief.data.CampaignMessagePhaseTwo }}</p>
           <p class="card-text">Campaign Message Phase Three: {{ brief.data.CampaignMessagePhaseThree }}</p>
@@ -32,24 +32,25 @@
           <p class="card-text">Brand Exclusivity Duration in Days: {{ brief.data.BrandExclusivityDurationinDays }}</p>
           <p class="card-text">Video Production: <span *ngIf="brief.data.VideoProduction == 1"> Yes </span> <span *ngIf="brief.data.VideoProduction == 0"> No</span></p>
           <p class="card-text">Video Editing: <span *ngIf="brief.data.VideoEditing == 1"> Yes </span> <span *ngIf="brief.data.VideoEditing == 0"> No</span></p>
-          <p class="card-text">Influencer Age Range: {{ brief.data.InfluencerAgeRange }}</p>
+          <hr>
+          <p class="card-text">Influencer Age Range: {{ brief.data.InfluencerAgeRange | ageGroup }}</p>
           <p class="card-text">Influencer Location: {{ brief.data.InfluencerLocation }}</p>
           <p class="card-text">Influencer Nationality: {{ brief.data.InfluencerNationality }}</p>
-          <p class="card-text">Influencer Gender: {{ brief.data.InfluencerGender }}</p>.
+          <p class="card-text">Influencer Gender: {{ brief.data.InfluencerGender }}</p>
           <p class="card-text">Similar Profile Link: {{ brief.data.SimilarProfileLink }}</p>
           <p class="card-text">Influencer Interest: {{ brief.data.InfluencerInterest }}</p>
           <p class="card-text">Influencer Number Of Followers: {{ brief.data.InfluencerNumberOfFollowers }}</p>
           <p class="card-text">Note For Number Of Followers: {{ brief.data.NoteForNumberOfFollowers }}</p>
+          <hr>
+          <p class="card-text">Audience Age Range: {{ brief.data.AudienceAgeRange | ageGroup}}</p>
           <p class="card-text">Audience Location: {{ brief.data.AudienceLocation }}</p>
           <p class="card-text">Audience Nationality: {{ brief.data.AudienceNationality }}</p>
           <p class="card-text">Audience Gender: {{ brief.data.AudienceGender }}</p>
           <p class="card-text">Audience Interest: {{ brief.data.AudienceInterest }}</p>
           <p class="card-text">Confirmed Influencer Handles: {{ brief.data.ConfirmedInfluencerHandles }}</p>
           <p class="card-text">Previous Brand Ambassadors Name: {{ brief.data.PreviousBrandAmbassadorsName }}</p>
-          <p class="card-text">Created by ID: {{ brief.data.CreatedbyID }}</p>
-          <p class="card-text">Viewed by Talent:<span *ngIf="brief.data.ViewedByTalent == 1"> Yes </span> <span *ngIf="brief.data.ViewedByTalent == 0"> No</span></p>
-          <p class="card-text">Ready: {{ brief.data.Ready }}</p>
           <p class="card-text">Created At: {{ brief.data.createdAt | date }}</p>
+          <p class="card-text">Updated At: {{ brief.data.updatedAt | date }}</p>
         </div>
       </div>
     </div>
@@ -116,7 +117,7 @@
             <input formControlName="id" readonly/>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="name" />
+            <input formControlName="name" readonly/>
           </td>
           <td [formGroupName]="i">
             <input formControlName="email" />

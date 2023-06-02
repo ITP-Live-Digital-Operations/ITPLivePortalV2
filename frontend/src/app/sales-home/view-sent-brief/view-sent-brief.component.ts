@@ -18,6 +18,7 @@ import {
 } from 'src/assets/influencer-form-arrays';
 import * as alertify from 'alertifyjs';
 import { TaskService } from 'src/app/core/Services/task.service';
+import { NotificationService } from 'src/app/core/Services/notification.service';
 @Component({
   selector: 'app-view-sent-brief',
   templateUrl: './view-sent-brief.component.html',
@@ -55,7 +56,8 @@ export class ViewSentBriefComponent implements OnInit {
     private salesService: SalesService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private notificationService: NotificationService
   ) {
     this.newSalesBriefForm = this.formBuilder.group({
       Agency: ['', [Validators.required]],
@@ -193,7 +195,31 @@ export class ViewSentBriefComponent implements OnInit {
     console.log({ CreatedbyID: createdByUserId, ...salesBrief });
 
     this.salesService.updateBrief(this.briefId, salesBrief).subscribe(
-      () => {
+      (briefid) => {
+
+        if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'Originals' || this.newSalesBriefForm.get('ItpDepartment')?.value == 'UAE'){
+          let id = 23;
+          let input = { message : 'Sales Brief ' + salesBrief.CampaignName + ' has been edited', link: `/home/talent/assignBrief/${this.briefId}`}
+          this.notificationService.createNotification( id, input).subscribe( () => {})
+          if(this.assigned_user != null){
+            let input1 = { message : 'Sales Brief ' + salesBrief.CampaignName + ' has been edited', link: `/home/talent/viewSalesBrief/${this.briefId}`}
+            this.notificationService.createNotification( this.assigned_user.id, input1).subscribe( () => {})
+          }
+        }
+        else if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'KSA' || this.newSalesBriefForm.get('ItpDepartment')?.value == 'Gaming' ){
+          let id = 15;
+          let input = { message : 'Sales Brief ' + salesBrief.CampaignName + ' has been edited', link: `/home/talent/assignBrief/${this.briefId}`}
+
+          this.notificationService.createNotification( id, input).subscribe( () => {})
+
+          if(this.assigned_user != null){
+            let input2 = { message : 'Sales Brief ' + salesBrief.CampaignName + ' has been edited', link: `/home/talent/viewSalesBrief/${this.briefId}`}
+            this.notificationService.createNotification( this.assigned_user.id, input2).subscribe( () => {})
+          }
+        }
+
+
+
         alertify.success('Sales brief edited successfully');
         this.router.navigate(['home/sales/forms']);
       },
@@ -216,9 +242,19 @@ export class ViewSentBriefComponent implements OnInit {
     this.salesService.getSalesBrief(this.briefId).subscribe((brief) => {
       this.briefData = brief;
 
-      console.log('brief data: ', this.briefData.data);
+      console.log('brief data: ', this.briefData);
       this.salesBrief = this.briefData.data;
+      if( this.salesBrief.assigned ){
+        this.taskService.getTaskByBriefId(this.briefId).subscribe( (task) => {
+          this.taskData = task;
+          console.log('task data: ', this.taskData.data[0]);
 
+          this.userService.getUserByID(this.taskData.data[0].assigned_to).subscribe( (user) => {
+            this.assigned_user = user;
+          }
+          )
+        })
+      }
       if (typeof this.salesBrief.ContentDeliverables === 'string') {
         this.salesBrief.ContentDeliverables =
           this.salesBrief.ContentDeliverables !== ''
