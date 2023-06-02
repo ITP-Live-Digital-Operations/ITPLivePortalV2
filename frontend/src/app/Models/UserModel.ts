@@ -7,6 +7,7 @@ export interface UserModel {
   status: string,
   privilege_level: number,
   parentId: number,
+  loginCount : number,
 }
 
 

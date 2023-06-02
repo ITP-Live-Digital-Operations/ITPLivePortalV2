@@ -6,7 +6,7 @@ exports.create =  (req, res) => {
     SalesBrief.create(req.body)
         .then(data => {
             res.status(201).send({
-                status: "success",  
+                id : data.id 
             });
         })
         .catch(err => {

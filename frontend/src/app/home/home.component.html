@@ -12,22 +12,42 @@
     </a>
     </div>
 
-    <div *ngIf=" userRole === 'talent' && userPrivilege_level > 7 ">
-      <a mat-icon-button  routerLink="talent/briefsFromSales" >
+
+    <div class="notification-container">
+      <div class="notification-icon" (click)="toggleNotificationBox()">
+        <span class="notification-dot" *ngIf="notificationCount.data > 0"></span>
+      </div>
+      </div>
+
+
+
+
+    <!-- <div class="notification-icon" (click)="toggleNotificationBox()">
+      <span class="notification-dot" *ngIf="notificationCount.data > 0"></span>
+    </div>
+    <div class="notification-box" *ngIf="showNotificationBox">
+      <div *ngFor="let notification of notifications$ | async">
+        <p>{{notification.message}}</p>
+        <small>{{timeSince(notification.createdAt)}} ago</small>
+      </div>
+
+      <button (click)="clearNotifications()">Clear</button>
+    </div> -->
+
+    <!-- <div >
       <span class="icon-spacer"></span>
       <mat-icon class="icon">notifications</mat-icon>
-      <span *ngIf="talentHeadNotificationCount.data > 0 " class="notification-mark"></span>
-      </a>
-    </div>
-    <div *ngIf="userRole == 'talent' && userPrivilege_level < 7 ">
+      <span *ngIf="notificationCount > 0 " class="notification-mark"></span>
+    </div> -->
+   <!--  <div *ngIf="userRole == 'talent' && userPrivilege_level < 7 ">
       <a mat-icon-button  routerLink="talent/tasksFromTalentHead">
       <span class="icon-spacer"></span>
       <mat-icon class="icon">notifications</mat-icon>
-      <span *ngIf="talentEmployeeNotificationCount.data > 0 " class="notification-mark">  </span>
+      <span *ngIf="" class="notification-mark">  </span>
       </a>
-    </div>
+    </div> -->
 
-    <div *ngIf="userRole == 'sales'">
+  <!--   <div *ngIf="userRole == 'sales'">
       <a mat-icon-button  routerLink="sales/readyBriefs">
       <span class="icon-spacer"></span>
       <mat-icon class="icon">notifications</mat-icon>
@@ -41,7 +61,7 @@
 
     <a  *ngIf="userRole == 'sales'" mat-icon-button routerLink="sales/changePassword">
       <mat-icon class="icon">account_circle</mat-icon>
-      </a>
+      </a> -->
 
     <span class="icon-spacer"></span>
     <a mat-icon-button href="login">
@@ -52,10 +72,10 @@
 
 <mat-sidenav-container>
   <mat-sidenav mode="side" opened #sidenav="matSidenav">
-    <img *ngIf="userID == 14" class="avatar mat-elevation-z8" src="../../assets/ahmadbashour.jpg" />
-    <img *ngIf="userID == 29" class="avatar mat-elevation-z8" src="../../assets/kerem.jpeg" />
-    <img *ngIf="userID == 15" class="avatar mat-elevation-z8" src="../../assets/rachelle.png" />
-    <img *ngIf="userID == 18" class="avatar mat-elevation-z8" src="../../assets/remy.png" />
+    <img *ngIf="userId == 14" class="avatar mat-elevation-z8" src="../../assets/ahmadbashour.jpg" />
+    <img *ngIf="userId == 29" class="avatar mat-elevation-z8" src="../../assets/kerem.jpeg" />
+    <img *ngIf="userId == 15" class="avatar mat-elevation-z8" src="../../assets/rachelle.png" />
+    <img *ngIf="userId == 18" class="avatar mat-elevation-z8" src="../../assets/remy.png" />
 
     <h4>{{userName}}</h4>
     <H5 >{{userRole | uppercase}}  </H5>

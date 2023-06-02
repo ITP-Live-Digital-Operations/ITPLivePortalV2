@@ -117,30 +117,26 @@
 
     <div class="row">
       <h2> Content Deliverables </h2>
-      <div formGroupName="ContentDeliverables" class="checkbox-container">
+        <mat-form-field appearance="outline">
+          <mat-label> Platforms </mat-label>
+          <mat-select formControlName="ContentDeliverables" multiple>
+            <mat-option *ngFor="let option of briefPlatforms" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-        <mat-checkbox formControlName="Instagram"> Instagram</mat-checkbox>
-        <mat-checkbox formControlName="SnapChat"> SnapChat</mat-checkbox>
-        <mat-checkbox formControlName="TikTok"> TikTok</mat-checkbox>
-        <mat-checkbox formControlName="YouTube"> YouTube</mat-checkbox>
-        <mat-checkbox formControlName="Facebook"> Facebook</mat-checkbox>
-        <mat-checkbox formControlName="Twitter"> Twitter</mat-checkbox>
-        <mat-checkbox formControlName="Linkedin"> Linkedin</mat-checkbox>
-        <mat-checkbox formControlName="Twitch"> Twitch</mat-checkbox>
+        <mat-form-field appearance="outline">
+          <mat-label>Brand Exclusivity Duration in Days</mat-label>
+          <input matInput type="number" formControlName="BrandExclusivityDurationinDays" autocomplete="off" />
+        </mat-form-field>
       </div>
-      <hr>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Brand Exclusivity Duration in Days</mat-label>
-        <input matInput type="number" formControlName="BrandExclusivityDurationinDays" autocomplete="off" />
-      </mat-form-field>
-
-      <hr>
+    <div>
       <h2> Video  </h2>
       <div class="checkbox-container">
-      <mat-checkbox formControlName="VideoProduction">Video Production</mat-checkbox>
+      <mat-checkbox formControlName="VideoProduction">Production</mat-checkbox>
 
-      <mat-checkbox formControlName="VideoEditing">Video Editing</mat-checkbox>
+      <mat-checkbox formControlName="VideoEditing">Editing</mat-checkbox>
     </div>
     </div>
     <hr>
@@ -158,24 +154,34 @@
     </div>
     <hr>
     <div class="row">
-      <h2> Influencer Location </h2>
-      <div formGroupName="InfluencerLocation" class="checkbox-container">
+      <h2> Influencer Location, Nationality, Gender, and Interests</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Influencer Location</mat-label>
+        <mat-select formControlName="InfluencerLocation" multiple>
+          <mat-option *ngFor="let option of countries" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        <mat-checkbox *ngFor="let option of arabCountries" [formControlName]="option"> {{option}}</mat-checkbox>
+      <mat-form-field appearance="outline">
+        <mat-label>Influencer Nationality</mat-label>
+        <mat-select formControlName="InfluencerNationality" multiple>
+          <mat-option *ngFor="let option of countries" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Influencer Interests</mat-label>
+        <mat-select formControlName="InfluencerInterest" multiple>
+          <mat-option *ngFor="let option of clientIndustries" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <hr>
-    <div class="row">
-      <h2> Influencer Nationality </h2>
-      <div formGroupName="InfluencerNationality" class="checkbox-container">
-
-        <mat-checkbox *ngFor="let option of arabCountries" [formControlName]="option"> {{option}}</mat-checkbox>
-
-
-      </div>
-    </div>
-    <hr>
 
     <div class="row">
       <mat-form-field appearance="outline">
@@ -195,24 +201,35 @@
     </div>
 
     <hr>
+
+
     <div class="row">
-      <h2> Influencer Interest </h2>
-      <div formGroupName="InfluencerInterest" class="checkbox-container">
-
-        <mat-checkbox *ngFor="let option of clientIndustries" [formControlName]="option"> {{option}}</mat-checkbox>
-
-
-      </div>
-    </div>
-    <hr>
-    <h2> Number of Followers</h2>
-    <div class="row">
-
+      <h2> Number of Followers</h2>
       <div formGroupName="InfluencerNumberOfFollowers" class="checkbox-container" style="flex: 0.5">
+        <div class="hoverable-text" (mouseover)="showInfo1=true" (mouseout)="showInfo1=false">
         <mat-checkbox formControlName="Nano"> Nano</mat-checkbox>
+        <div *ngIf="showInfo1" class="info-box">
+          Less than 10,000 followers
+        </div>
+      </div>
+      <div class="hoverable-text" (mouseover)="showInfo2=true" (mouseout)="showInfo2=false">
         <mat-checkbox formControlName="Micro"> Micro</mat-checkbox>
+        <div *ngIf="showInfo2" class="info-box">
+          Between 10,000 and 100,000 followers
+        </div>
+      </div>
+      <div class="hoverable-text" (mouseover)="showInfo3=true" (mouseout)="showInfo3=false">
         <mat-checkbox formControlName="Macro"> Macro </mat-checkbox>
+        <div *ngIf="showInfo3" class="info-box">
+          Between 100,000 and 1,000,000 followers
+        </div>
+      </div>
+      <div class="hoverable-text" (mouseover)="showInfo4=true" (mouseout)="showInfo4=false">
         <mat-checkbox formControlName="Mega"> Mega </mat-checkbox>
+        <div *ngIf="showInfo4" class="info-box">
+          More than 1,000,000 followers
+        </div>
+      </div>
         <mat-checkbox formControlName="Celebrity"> Celebrity</mat-checkbox>
       </div>
       <div style="flex: 1;">
@@ -239,27 +256,25 @@
     <hr>
 
     <div class="row">
-      <h2> Audience Location </h2>
-      <div formGroupName="AudienceLocation" class="checkbox-container">
+      <h2> Audience Location, Nationality and Gender </h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Audience Location</mat-label>
+        <mat-select formControlName="AudienceLocation" multiple>
+          <mat-option *ngFor="let option of countries" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        <mat-checkbox *ngFor="let option of arabCountries" [formControlName]="option"> {{option}}</mat-checkbox>
+      <mat-form-field appearance="outline">
+        <mat-label>Audience Nationality</mat-label>
+        <mat-select formControlName="AudienceNationality" multiple>
+          <mat-option *ngFor="let option of countries" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      </div>
-    </div>
-    <hr>
-
-    <div class="row">
-      <h2> Audience Nationality </h2>
-      <div formGroupName="AudienceNationality" class="checkbox-container">
-
-        <mat-checkbox *ngFor="let option of arabCountries" [formControlName]="option"> {{option}}</mat-checkbox>
-
-
-      </div>
-    </div>
-    <hr>
-
-    <div class="row">
       <mat-form-field appearance="outline">
         <mat-label> Audience Gender</mat-label>
         <mat-select formControlName="AudienceGender">
@@ -269,40 +284,79 @@
         </mat-select>
       </mat-form-field>
     </div>
+
+
     <hr>
     <div class="row">
-      <h2> Audience Primary Interest </h2>
-      <div formGroupName="AudienceInterest" class="checkbox-container">
+      <h2> Audience Primary and Seconadry Interest </h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Primary Audience Interest</mat-label>
+        <mat-select formControlName="PrimaryAudienceInterest" multiple>
+          <mat-option *ngFor="let option of clientIndustries" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        <mat-checkbox *ngFor="let option of clientIndustries" [formControlName]="option"> {{option}}</mat-checkbox>
+      <mat-form-field appearance="outline">
+        <mat-label>Secondary Audience Interest</mat-label>
+        <mat-select formControlName="SecondaryAudienceInterest" multiple>
+          <mat-option *ngFor="let option of clientIndustries" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-
-      </div>
     </div>
-    <hr>
-    <div class="row">
-      <h2> Audience Secondary Interest </h2>
-      <div formGroupName="AudienceInterest" class="checkbox-container">
 
-        <mat-checkbox *ngFor="let option of clientIndustries" [formControlName]="option"> {{option}}</mat-checkbox>
-
-
-      </div>
-    </div>
     <hr>
 
     <div class="row">
+      <h2> Confirmed and Previous Influencers </h2>
       <mat-form-field appearance="outline" style="width: 50rem">
         <mat-label>Confirmed Influencers Handles </mat-label>
         <input matInput type="text" formControlName="ConfirmedInfluencerHandles" autocomplete="off"  />
       </mat-form-field>
 
       <mat-form-field appearance="outline" style="width: 50rem">
-        <mat-label>Previous Brand Ambassadors Name </mat-label>
+        <mat-label>Previous Influncer Partners </mat-label>
         <input matInput type="text" formControlName="PreviousBrandAmbassadorsName" autocomplete="off"  />
       </mat-form-field>
     </div>
+    <hr>
+    <div class="row">
+      <mat-form-field appearance="outline" style="width: 50rem">
+        <mat-label>ITP Department</mat-label>
+        <mat-select formControlName="ItpDepartment"  required="true">
+          <mat-option  value="Male"> UAE </mat-option>
+          <mat-option  value="Female"> KSA </mat-option>
+          <mat-option  value="Both"> Originals</mat-option>
+          <mat-option  value="Both"> Gaming </mat-option>
+        </mat-select>
+      </mat-form-field>
 
+      <mat-form-field appearance="outline" style="width: 50rem">
+        <mat-label>KPIs </mat-label>
+        <input matInput type="text" formControlName="KPIs" autocomplete="off"  />
+      </mat-form-field>
+
+    </div>
+    <div class="row">
+      <div class="checkbox-container">
+        <div class="checkbox-container">
+          <mat-checkbox formControlName="Strategy">Strategy required</mat-checkbox>
+
+          <mat-checkbox formControlName="Concept">Concept required</mat-checkbox>
+
+          <mat-checkbox formControlName="Event">Event required</mat-checkbox>
+
+          <mat-checkbox formControlName="Performance">Performance Marketing required</mat-checkbox>
+        </div>
+
+
+
+      </div>
+    </div>
 
 
 

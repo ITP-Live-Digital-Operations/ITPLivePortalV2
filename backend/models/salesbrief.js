@@ -147,10 +147,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       defaultValue: null
     },
-    AudienceInterest:{
+    PrimaryAudienceInterest:{
       type: DataTypes.STRING(255),
       defaultValue: null
     } ,
+    SecondaryAudienceInterest:{
+      type: DataTypes.STRING(255),
+      defaultValue: null
+    },
     ConfirmedInfluencerHandles:{
       type: DataTypes.STRING(255),
       defaultValue: null
@@ -158,6 +162,22 @@ module.exports = (sequelize, DataTypes) => {
     PreviousBrandAmbassadorsName:{
       type: DataTypes.STRING(255),
       defaultValue: null
+    },
+    Strategy:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    Concept:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    Event:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    Performance :{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     },
     BudgetSheetId: {
       type: DataTypes.INTEGER,
@@ -175,9 +195,17 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
+    ItpDepartment: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
     assigned: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    KPIs: {
+      type: DataTypes.STRING(255),
+      defaultValue: null
     },
     Status: {
       type: DataTypes.STRING(255),
@@ -205,6 +233,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false
     },
+
     
   }, {
     sequelize,

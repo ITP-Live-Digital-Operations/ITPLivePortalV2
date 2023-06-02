@@ -9,6 +9,12 @@ import { TaskService } from '../core/Services/task.service';
 import { Location } from '@angular/common';
 import { DataService } from '../core/Services/data.service';
 import * as alertify from 'alertifyjs';
+import { UserService } from '../core/Services/user.service';
+import { UserModel } from '../Models/UserModel';
+import { NotificationService } from '../core/Services/notification.service';
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { NotificationPopupComponent } from '../partial/notification-popup/notification-popup.component';
 
 @Component({
   selector: 'app-home',
@@ -16,25 +22,45 @@ import * as alertify from 'alertifyjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  parts: any;
-  payload: any;
-  userID: any;
   userName: any;
   userRole: any;
   userPrivilege_level: any;
-  token: any;
+  user : any ;
 
-  menu: any;
   msg: any;
-  talentHeadNotificationCount: any;
-  talentEmployeeNotificationCount: any;
-  salesNotificationCount: any;
+
+
+  notifications$: any;
+  notificationCount : any;
+  userId = this.userService.getID();
+
+  showNotificationBox: boolean = false;
+
+  showModal = false;
+
+  onModalClose() {
+    this.showModal = false;
+  }
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver, private router: Router, private salesService: SalesService,
-     private taskService: TaskService, private location: Location,  private cdr: ChangeDetectorRef, private dataService : DataService, private ngZone: NgZone) { }
+  constructor(private observer: BreakpointObserver, private router: Router, private notificationService : NotificationService, public dialog: MatDialog,
+     private taskService: TaskService, private location: Location,  private cdr: ChangeDetectorRef, private dataService : DataService, private userService : UserService) {
+      this.userService.getUserByID(this.userId).subscribe((res) => {
+        this.user = res;
+        this.userName = this.user.name;
+        this.userRole = this.user.role;
+        this.userPrivilege_level = this.user.privilege_level;
+
+        })
+        this.notificationService.getUnreadNotificationCountByUserId(this.userId).subscribe((res) => {
+              this.notificationCount = res;
+
+              console.log("res " +this.notificationCount.data);
+
+        })
+      }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -49,56 +75,27 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.token = localStorage.getItem('token');
-
-    // Check if the token exists and starts with "Bearer "
-    if (this.token && this.token.startsWith("Bearer ")) {
-      // Extract the JWT from the "Bearer" token string
-      var jwt = this.token.substring(7);
-
-      this.parts = jwt.split('.');
-      this.payload = JSON.parse(atob(this.parts[1]));
-      this.userID = parseInt(this.payload.id);
-      this.userName = this.payload.name;
-      this.userRole = this.payload.role;
-      this.userPrivilege_level = this.payload.privilege_level;
-    }
-
-    const load =  this.userID
-
-
-    if (this.userRole == 'talent') {
-      if (this.userPrivilege_level > 7) {
-        this.salesService.getSalesBriefsNotViewedByTalent().subscribe(item => {
-          this.ngZone.run(() => {
-            this.talentHeadNotificationCount = item;
-            this.cdr.detectChanges();
-          });
-        })
-      }
-      else {
-        this.taskService.getUnfinishedTasks(load).subscribe(item => {
-          this.ngZone.run(() => {
-            this.talentEmployeeNotificationCount = item;
-            this.cdr.detectChanges();
-          });
-        })
-      }
-    }
-    else if (this.userRole == 'sales') {
-      this.salesService.getUserReadyBriefs(load).subscribe(item => {
-        console.log(item);
-
-        this.ngZone.run(() => {
-          this.salesNotificationCount = item;
-          this.cdr.detectChanges();
-        });
-      });
-    }
-    this.refresh();
 
 
   }
+
+
+  toggleNotificationBox() {
+   this.dialog.open(NotificationPopupComponent,{
+      width: '500px',
+      height: '500px',
+      data: {
+        userId: this.userId}
+   })
+
+  }
+
+
+
+
+ 
+
+
 
   redirectToTalentForms() {
     this.router.navigate(['home/talent/forms'])

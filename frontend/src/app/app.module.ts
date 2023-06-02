@@ -23,6 +23,7 @@ import { TalentHomeModule } from './talent-home/talent-home.module';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 import { ChangePasswordComponent } from './partial/change-password/change-password.component';
+import { NotificationPopupComponent } from './partial/notification-popup/notification-popup.component';
 
 
 
@@ -38,6 +39,7 @@ import { ChangePasswordComponent } from './partial/change-password/change-passwo
     StatusComponent,
     AccessDeniedComponent,
     ChangePasswordComponent,
+    NotificationPopupComponent,
 
 
 

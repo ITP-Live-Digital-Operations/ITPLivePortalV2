@@ -477,3 +477,6 @@ export const timeSpent = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7
 
 export const itprelatioship =
 ['Exclusive', 'Friends', 'Circle', 'Avoid List', 'Black List', 'New']
+
+
+export const briefPlatforms = ['Instagram', 'SnapChat', 'TikTok', 'YouTube', 'Facebook', 'Twitter', 'Linkedin', 'Twitch']

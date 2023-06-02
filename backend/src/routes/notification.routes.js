@@ -14,9 +14,12 @@ router.route('/getUnreadNotifications/:id')
             .get(asyncHandler(NotificationController.getUnreadNotifications));
 
 router.route('/updateNotification/:id')
-            .patch(asyncHandler(NotificationController.updateNotification));
+            .get(asyncHandler(NotificationController.updateNotification));
 
+router.route('/getNotificationById/:id')    
+            .get(asyncHandler(NotificationController.getNotificationById));
 
-
+router.route('/getUnreadNotificationCountByUserId/:id')
+            .get(asyncHandler(NotificationController.getUnreadNotificationCountByUserId));
 
 module.exports = router;

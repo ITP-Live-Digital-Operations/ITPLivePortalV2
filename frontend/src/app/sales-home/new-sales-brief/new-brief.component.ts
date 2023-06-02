@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
+import { NotificationService } from 'src/app/core/Services/notification.service';
 import { SalesService } from 'src/app/core/Services/sales.service';
 import { UserService } from 'src/app/core/Services/user.service';
-import { campaignobjectives, clientIndustries, currencies, arabCountries } from 'src/assets/influencer-form-arrays';
+import { campaignobjectives, clientIndustries, currencies, arabCountries, briefPlatforms, countries } from 'src/assets/influencer-form-arrays';
 
 @Component({
   selector: 'app-new-brief',
@@ -17,6 +18,10 @@ export class NewBriefComponent {
   campaignobjectives: string[] = campaignobjectives;
   currencies: string[] = currencies;
   arabCountries: string[] = arabCountries;
+  briefPlatforms : string[] = briefPlatforms
+  countries : string[] = countries
+
+  newBrief: any;
 
   showInfo1 = false;
   showInfo2 = false;
@@ -28,7 +33,8 @@ export class NewBriefComponent {
     private router: Router,
     private formBuilder: FormBuilder,
     private salesService: SalesService,
-    private userService: UserService
+    private userService: UserService,
+    private notificationService: NotificationService
   ) {
     this.newSalesBriefForm = this.formBuilder.group({
       Agency: ['', [Validators.required]],
@@ -46,16 +52,7 @@ export class NewBriefComponent {
       CampaignMessagePhaseOne: [''],
       CampaignMessagePhaseTwo: [''],
       CampaignMessagePhaseThree: [''],
-      ContentDeliverables: new FormGroup({
-        Instagram: new FormControl(false),
-        Facebook: new FormControl(false),
-        Twitter: new FormControl(false),
-        YouTube: new FormControl(false),
-        TikTok: new FormControl(false),
-        SnapChat: new FormControl(false),
-        Linkedin: new FormControl(false),
-        Twitch: new FormControl(false),
-      }),
+      ContentDeliverables: [''],
       BrandExclusivityDurationinDays: ['', [Validators.required]],
       VideoProduction: new FormControl(false),
       VideoEditing : new FormControl(false),
@@ -66,62 +63,11 @@ export class NewBriefComponent {
         AgeGroup4: new FormControl(false),
         AgeGroup5: new FormControl(false),
     }),
-    InfluencerLocation: new FormGroup({
-      Algeria: new FormControl(false),
-      Bahrain: new FormControl(false),
-      Egypt: new FormControl(false),
-      Iraq: new FormControl(false),
-      Jordan: new FormControl(false),
-      Kuwait: new FormControl(false),
-      Lebanon: new FormControl(false),
-      Libya: new FormControl(false),
-      Morocco: new FormControl(false),
-      Oman: new FormControl(false),
-      Qatar: new FormControl(false),
-      SaudiArabia: new FormControl(false),
-      Syria: new FormControl(false),
-      Tunisia: new FormControl(false),
-      UAE: new FormControl(false),
-  }),
-    InfluencerNationality: new FormGroup({
-      Algeria: new FormControl(false),
-      Bahrain: new FormControl(false),
-      Egypt: new FormControl(false),
-      Iraq: new FormControl(false),
-      Jordan: new FormControl(false),
-      Kuwait: new FormControl(false),
-      Lebanon: new FormControl(false),
-      Libya: new FormControl(false),
-      Morocco: new FormControl(false),
-      Oman: new FormControl(false),
-      Qatar: new FormControl(false),
-      SaudiArabia: new FormControl(false),
-      Syria: new FormControl(false),
-      Tunisia: new FormControl(false),
-      UAE: new FormControl(false),
-    }),
+    InfluencerLocation: [''],
+    InfluencerNationality: [''],
     InfluencerGender: [''],
     SimilarProfileLink: [''],
-    InfluencerInterest: new FormGroup({
-      Beauty: new FormControl(false),
-      Lifestyle: new FormControl(false),
-      Sports: new FormControl(false),
-      Food: new FormControl(false),
-      Gaming: new FormControl(false),
-      Business: new FormControl(false),
-      Travel: new FormControl(false),
-      Comedy: new FormControl(false),
-      Celebrities: new FormControl(false),
-      Health: new FormControl(false),
-      Nutrition: new FormControl(false),
-      Bodybuilding: new FormControl(false),
-      Humanitarian: new FormControl(false),
-      Automotives: new FormControl(false),
-      Tech: new FormControl(false),
-      Furniture: new FormControl(false),
-      Shopping: new FormControl(false),
-      NGO: new FormControl(false),
-    }),
+    InfluencerInterest: [''],
     InfluencerNumberOfFollowers: new FormGroup({
       Nano: new FormControl(false),
       Micro: new FormControl(false),
@@ -138,88 +84,57 @@ export class NewBriefComponent {
       AgeGroup5: new FormControl(false),
     }),
 
-    AudienceLocation: new FormGroup({
-      Algeria: new FormControl(false),
-      Bahrain: new FormControl(false),
-      Egypt: new FormControl(false),
-      Iraq: new FormControl(false),
-      Jordan: new FormControl(false),
-      Kuwait: new FormControl(false),
-      Lebanon: new FormControl(false),
-      Libya: new FormControl(false),
-      Morocco: new FormControl(false),
-      Oman: new FormControl(false),
-      Qatar: new FormControl(false),
-      SaudiArabia: new FormControl(false),
-      Syria: new FormControl(false),
-      Tunisia: new FormControl(false),
-      UAE: new FormControl(false),
-    }),
+    AudienceLocation: [''],
 
-    AudienceNationality: new FormGroup({
-      Algeria: new FormControl(false),
-      Bahrain: new FormControl(false),
-      Egypt: new FormControl(false),
-      Iraq: new FormControl(false),
-      Jordan: new FormControl(false),
-      Kuwait: new FormControl(false),
-      Lebanon: new FormControl(false),
-      Libya: new FormControl(false),
-      Morocco: new FormControl(false),
-      Oman: new FormControl(false),
-      Qatar: new FormControl(false),
-      SaudiArabia: new FormControl(false),
-      Syria: new FormControl(false),
-      Tunisia: new FormControl(false),
-      UAE: new FormControl(false),
-    }),
+    AudienceNationality: [''],
 
     AudienceGender: [''],
-    AudienceInterest: new FormGroup({
-      Beauty: new FormControl(false),
-      Lifestyle: new FormControl(false),
-      Sports: new FormControl(false),
-      Food: new FormControl(false),
-      Gaming: new FormControl(false),
-      Business: new FormControl(false),
-      Travel: new FormControl(false),
-      Comedy: new FormControl(false),
-      Celebrities: new FormControl(false),
-      Health: new FormControl(false),
-      Nutrition: new FormControl(false),
-      Bodybuilding: new FormControl(false),
-      Humanitarian: new FormControl(false),
-      Automotives: new FormControl(false),
-      Tech: new FormControl(false),
-      Furniture: new FormControl(false),
-      Shopping: new FormControl(false),
-      NGO: new FormControl(false),
-    }),
+    PrimaryAudienceInterest: [''],
+
+    SecondaryAudienceInterest: [''],
 
     ConfirmedInfluencerHandles: [''],
     PreviousBrandAmbassadorsName: [''],
 
+    Performance : new FormControl(false),
+    Event : new FormControl(false),
+    Concept : new FormControl(false),
+    Strategy : new FormControl(false),
 
-
+    ItpDepartment: [''],
+    KPIs  : [''],
     });
   }
 
 
 
   createSalesBrief() {
+
+
+    let contentDeliverablesValue = this.newSalesBriefForm.get('ContentDeliverables')!.value;
+    let influencerLocationValue = this.newSalesBriefForm.get('InfluencerLocation')!.value;
+    let influencerNationalityValue = this.newSalesBriefForm.get('InfluencerNationality')!.value;
+    let influencerInterestValue = this.newSalesBriefForm.get('InfluencerInterest')!.value;
+    let audienceLocationValue = this.newSalesBriefForm.get('AudienceLocation')!.value;
+    let audienceNationalityValue = this.newSalesBriefForm.get('AudienceNationality')!.value;
+    let primaryAudienceInterestValue = this.newSalesBriefForm.get('PrimaryAudienceInterest')!.value;
+    let secondaryAudienceInterestValue = this.newSalesBriefForm.get('SecondaryAudienceInterest')!.value;
+
     const createdByUserId = this.userService.getID();
     const salesBrief = {
       ...this.newSalesBriefForm.value,
-      ContentDeliverables: this.processFormGroups(this.newSalesBriefForm.get('ContentDeliverables')),
+
+      ContentDeliverables: Array.isArray(contentDeliverablesValue) ? contentDeliverablesValue.join(', ') : '',
       InfluencerAgeRange: this.processFormGroups(this.newSalesBriefForm.get('InfluencerAgeRange')),
-      InfluencerLocation: this.processFormGroups(this.newSalesBriefForm.get('InfluencerLocation')),
-      InfluencerNationality: this.processFormGroups(this.newSalesBriefForm.get('InfluencerNationality')),
-      InfluencerInterest: this.processFormGroups(this.newSalesBriefForm.get('InfluencerInterest')),
+      InfluencerLocation: Array.isArray(influencerLocationValue) ? influencerLocationValue.join(', ') : '',
+      InfluencerNationality: Array.isArray(influencerNationalityValue) ? influencerNationalityValue.join(', ') : '',
+      InfluencerInterest: Array.isArray(influencerInterestValue) ? influencerInterestValue.join(', ') : '',
       InfluencerNumberOfFollowers: this.processFormGroups(this.newSalesBriefForm.get('InfluencerNumberOfFollowers')),
       AudienceAgeRange: this.processFormGroups(this.newSalesBriefForm.get('AudienceAgeRange')),
-      AudienceLocation: this.processFormGroups(this.newSalesBriefForm.get('AudienceLocation')),
-      AudienceNationality: this.processFormGroups(this.newSalesBriefForm.get('AudienceNationality')),
-      AudienceInterest: this.processFormGroups(this.newSalesBriefForm.get('AudienceInterest')),
+      AudienceLocation: Array.isArray(audienceLocationValue) ? audienceLocationValue.join(', ') : '',
+      AudienceNationality: Array.isArray(audienceNationalityValue) ? audienceNationalityValue.join(', ') : '',
+      PrimaryAudienceInterest: Array.isArray(primaryAudienceInterestValue) ? primaryAudienceInterestValue.join(', ') : '',
+      SecondaryAudienceInterest: Array.isArray(secondaryAudienceInterestValue) ? secondaryAudienceInterestValue.join(', ') : '',
 
       Ready: false,
       ViewedByTalent: false,
@@ -227,16 +142,36 @@ export class NewBriefComponent {
     console.log( {CreatedbyID: createdByUserId, ...salesBrief });
 
     this.salesService.createBrief({ CreatedbyID: createdByUserId, ...salesBrief }).subscribe(
-      () => {
+      (briefid) => {
+
         alertify.success('Sales brief created successfully');
+
+        if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'Originals' || this.newSalesBriefForm.get('ItpDepartment')?.value == 'UAE'){
+          let id = 23;
+          let input = { message : 'New Sales Brief has been created', link: `/home/talent/assignBrief/${briefid}`}
+          this.notificationService.createNotification( id, input).subscribe( () => {})
+        }
+        else if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'KSA' || this.newSalesBriefForm.get('ItpDepartment')?.value == 'Gaming' ){
+          let id = 15;
+          let input = { message : 'New Sales Brief has been created', link: `/home/talent/assignBrief/${briefid}`}
+
+          this.notificationService.createNotification( id, input).subscribe( () => {})
+        }
+
+
         this.router.navigate(['home/sales/forms']);
+
+
       },
       (error) => {
         console.error('An error occurred while creating the sales brief: ', error);
         alertify.error('An error occurred while creating the sales brief');
         // Display a user-friendly error message to the user.
       }
+
     );
+
+
   }
 
   navigateToForms() {
@@ -251,7 +186,7 @@ export class NewBriefComponent {
         trueValues.push(key);
       }
     });
-    return trueValues.join(', ');
+    return trueValues.length > 0 ? trueValues.join(', ') : 'None';
   }
 }
 
