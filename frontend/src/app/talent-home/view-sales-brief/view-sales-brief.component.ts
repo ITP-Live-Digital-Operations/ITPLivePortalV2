@@ -55,7 +55,7 @@ export class ViewSalesBriefComponent implements OnInit {
   progressForm: FormGroup;
   public influencersForm: FormGroup;
   public influencers: InfluencerModel[] = [];
-
+  platforms = ['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Facebook', 'Youtube'];
   constructor(
     private fileService: FileService,
     public dialog: MatDialog,
@@ -87,10 +87,14 @@ export class ViewSalesBriefComponent implements OnInit {
     const row = this.formBuilder.group({
       id: [influencer.id],
       name: [influencer.Name],
-      email: [influencer.Email],
-      followers: [influencer.Number],
+      platform: [''],
+      socialLink: [''],
+      followers: [''],
+      deliverables: [''],
+      estimatedBudget: [''],
     });
     this.rows.push(row);
+    this.influencers.push(influencer);
   }
 
   openDialog(): void {
@@ -101,6 +105,99 @@ export class ViewSalesBriefComponent implements OnInit {
         this.addRow(selectedInfluencer);
       }
     });
+  }
+
+  updateFields(i: number, event: any): void {
+    const chosenPlatform = event.target.value;
+    const row = this.rows.at(i) as FormGroup;
+
+    if (i >= this.influencers.length || !this.influencers[i]) {
+      console.error('No influencer exists at this index.');
+      return;
+    }
+
+    if (chosenPlatform === 'Instagram') {
+      const instagramLink = this.influencers[i].InstagramLink;
+      const instagramFollowers = this.influencers[i].InstagramFollowers;
+
+      // Ensure these properties exist on the influencer object
+      if (instagramLink && instagramFollowers) {
+        row.get('socialLink')?.setValue(instagramLink);
+        row.get('followers')?.setValue(instagramFollowers);
+      } else {
+        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
+      }
+    }
+
+    if (chosenPlatform === 'Tiktok') {
+      const TiktokLink = this.influencers[i].TiktokLink;
+      const TiktokFollowers = this.influencers[i].TiktokFollowers;
+
+      // Ensure these properties exist on the influencer object
+      if (TiktokLink && TiktokFollowers) {
+        row.get('socialLink')?.setValue(TiktokLink);
+        row.get('followers')?.setValue(TiktokFollowers);
+      } else {
+        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
+      }
+    }
+
+    if (chosenPlatform === 'Snapchat') {
+      const SnapchatLink = this.influencers[i].SnapchatLink;
+      const SnapchatFollowers = this.influencers[i].SnapchatFollowers;
+
+      // Ensure these properties exist on the influencer object
+      if (SnapchatLink && SnapchatFollowers) {
+        row.get('socialLink')?.setValue(SnapchatLink);
+        row.get('followers')?.setValue(SnapchatFollowers);
+      } else {
+        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
+      }
+    }
+
+    if (chosenPlatform === 'Twitter') {
+      const TwitterLink = this.influencers[i].TwitterLink;
+      const TwitterFollowers = this.influencers[i].TwitterFollowers;
+
+      // Ensure these properties exist on the influencer object
+      if (TwitterLink && TwitterFollowers) {
+        row.get('socialLink')?.setValue(TwitterLink);
+        row.get('followers')?.setValue(TwitterFollowers);
+      } else {
+        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
+      }
+    }
+
+    if (chosenPlatform === 'Facebook') {
+      const FacebookLink = this.influencers[i].FacebookLink;
+      const FacebookFollowers = this.influencers[i].FacebookFollowers;
+
+      // Ensure these properties exist on the influencer object
+      if (FacebookLink && FacebookFollowers) {
+        row.get('socialLink')?.setValue(FacebookLink);
+        row.get('followers')?.setValue(FacebookFollowers);
+      } else {
+        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
+      }
+    }
+
+    if (chosenPlatform === 'Youtube') {
+      const YoutubeLink = this.influencers[i].YoutubeLink;
+      const YoutubeFollowers = this.influencers[i].YoutubeFollowers;
+
+      // Ensure these properties exist on the influencer object
+      if (YoutubeLink && YoutubeFollowers) {
+        row.get('socialLink')?.setValue(YoutubeLink);
+        row.get('followers')?.setValue(YoutubeFollowers);
+      } else {
+        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
+      }
+    }
+    
+
+
+
+
   }
 
   removeRow(index: number): void {

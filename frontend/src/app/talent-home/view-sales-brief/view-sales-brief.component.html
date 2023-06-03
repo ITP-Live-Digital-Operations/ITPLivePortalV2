@@ -119,28 +119,43 @@
     <table class="my-table" >
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Followers</th>
-          <th>Actions</th>
+        <th style="width: 5%;">ID</th>
+        <th style="width: 10%;">Name</th>
+        <th style="width: 15%;">Platform</th>
+        <th style="width: 15%;">Social Link</th>
+        <th style="width: 10%;">Followers</th>
+        <th style="width: 15%;">Deliverables</th>
+        <th style="width: 15%;">Estimated Budget</th>
+        <th style="width: 15%;">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr formArrayName="rows" *ngFor="let row of rows.controls; index as i;">
           <td [formGroupName]="i">
-            <input formControlName="id" readonly/>
+            <input formControlName="id" readonly class="no-border" />
           </td>
           <td [formGroupName]="i">
-            <input formControlName="name" readonly/>
+            <input formControlName="name" readonly class="no-border"/>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="email" />
+            <select formControlName="platform" (change)="updateFields(i, $event)" class="no-border">
+              <option *ngFor="let platform of platforms" [value]="platform">{{platform}}</option>
+            </select>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="followers" />
+            <input formControlName="socialLink" readonly class="no-border"/>
           </td>
-          <td>
+          <td [formGroupName]="i">
+            <input formControlName="followers" readonly class="no-border " />
+          </td>
+          <td [formGroupName]="i">
+            <input formControlName="deliverables"  class="no-border"/>
+          </td>
+          <td [formGroupName]="i">
+            <input formControlName="estimatedBudget" class="no-border"/>
+          </td>
+
+          <td style="width: 5%;">
             <button mat-raised-button color="accent" (click)="removeRow(i)">Delete</button>
           </td>
         </tr>

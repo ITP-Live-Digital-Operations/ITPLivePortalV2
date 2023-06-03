@@ -55,6 +55,11 @@ table{
   width: 100%;
 }
 
+.no-border {
+  border: none;
+  resize: horizontal;
+}
+
 
 
 .my-table {
@@ -76,11 +81,13 @@ table{
 .my-table td {
   padding: 10px;
   border: 1px solid #ddd;
+  width: auto;
 }
 
 
 .my-table th.centered {
   text-align: center;
+  width: auto;
 }
 
 .search-container
