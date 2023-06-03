@@ -29,4 +29,7 @@ router.route('/deactivateTask/:id')
 
 router.route('/activateTask/:id')
     .get(asyncHandler(TaskController.activateTask));
+
+router.route('/updateProgress/:id')
+    .post(asyncHandler(TaskController.updateProgress));
 module.exports = router; 

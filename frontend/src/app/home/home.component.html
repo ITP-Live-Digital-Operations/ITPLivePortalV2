@@ -19,50 +19,6 @@
       </div>
     </div>
 
-
-
-
-    <!-- <div class="notification-icon" (click)="toggleNotificationBox()">
-      <span class="notification-dot" *ngIf="notificationCount.data > 0"></span>
-    </div>
-    <div class="notification-box" *ngIf="showNotificationBox">
-      <div *ngFor="let notification of notifications$ | async">
-        <p>{{notification.message}}</p>
-        <small>{{timeSince(notification.createdAt)}} ago</small>
-      </div>
-
-      <button (click)="clearNotifications()">Clear</button>
-    </div> -->
-
-    <!-- <div >
-      <span class="icon-spacer"></span>
-      <mat-icon class="icon">notifications</mat-icon>
-      <span *ngIf="notificationCount > 0 " class="notification-mark"></span>
-    </div> -->
-   <!--  <div *ngIf="userRole == 'talent' && userPrivilege_level < 7 ">
-      <a mat-icon-button  routerLink="talent/tasksFromTalentHead">
-      <span class="icon-spacer"></span>
-      <mat-icon class="icon">notifications</mat-icon>
-      <span *ngIf="" class="notification-mark">  </span>
-      </a>
-    </div> -->
-
-  <!--   <div *ngIf="userRole == 'sales'">
-      <a mat-icon-button  routerLink="sales/readyBriefs">
-      <span class="icon-spacer"></span>
-      <mat-icon class="icon">notifications</mat-icon>
-      <span *ngIf="salesNotificationCount.data > 0 " class="notification-mark">  </span>
-      </a>
-    </div>
-    <span  class="icon-spacer"></span>
-    <a  *ngIf="userRole == 'talent'" mat-icon-button routerLink="talent/changePassword">
-    <mat-icon class="icon">account_circle</mat-icon>
-    </a>
-
-    <a  *ngIf="userRole == 'sales'" mat-icon-button routerLink="sales/changePassword">
-      <mat-icon class="icon">account_circle</mat-icon>
-      </a> -->
-
     <span class="icon-spacer"></span>
     <a mat-icon-button href="login">
       <mat-icon>logout</mat-icon>
@@ -90,7 +46,7 @@
   <button *ngIf="userRole === 'sales'" mat-button class="menu-button" (click)="redirectToSalesForms()">
     <mat-icon>home</mat-icon>
     <span>Sales Forms</span>
-</button>
+  </button>
 
   <button mat-button class="menu-button" *ngIf=" userRole === 'talent' && userPrivilege_level > 7 " routerLink="talent/briefsFromSales">
       <mat-icon>assignment</mat-icon>
@@ -99,11 +55,17 @@
   <button mat-button class="menu-button" *ngIf=" userRole === 'talent' && userPrivilege_level > 7 " routerLink="talent/talentTasks">
     <mat-icon>supervisor_account</mat-icon>
     <span > Talent Tasks </span>
-</button>
+  </button>
+  <button mat-button class="menu-button" *ngIf=" userRole === 'talent' && userPrivilege_level < 7 " routerLink="talent/all-Briefs">
+    <mat-icon>list_alt</mat-icon>
+    <span >All Briefs</span>
+  </button>
   <button mat-button class="menu-button" *ngIf=" userRole === 'talent' && userPrivilege_level < 7 " routerLink="talent/tasksFromTalentHead">
     <mat-icon>assignment</mat-icon>
     <span >Tasks</span>
-</button>
+  </button>
+
+
 <div *ngIf=" userPrivilege_level > 8">
   <button mat-button class="menu-button"  routerLink="admin/forms">
     <mat-icon>home</mat-icon>
@@ -117,9 +79,10 @@
   <button *ngIf=" userPrivilege_level > 9" mat-button class="menu-button"  (click)="exportSeeds()">
     <mat-icon>import_export</mat-icon>
     <span>Export Seeds</span>
-</button>
+  </button>
 </div>
-  <mat-divider></mat-divider>
+
+<mat-divider></mat-divider>
 
 
   <div *ngIf=" userRole === 'sales'">

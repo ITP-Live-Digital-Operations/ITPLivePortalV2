@@ -36,7 +36,7 @@ export class TasksFromTalentHeadComponent {
     window.history.back();
   }
 
-  displayedColumns: string[] =  ['Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'status', 'Action' ];
+  displayedColumns: string[] =  ['deadline','status', 'weight', 'createdAt', 'progress', 'Action' ];
 
   getMyTasks(id:any){
     this.taskService.getMyTasks(id).subscribe((data:any)=>{
@@ -62,7 +62,7 @@ export class TasksFromTalentHeadComponent {
     this.taskService.updateStatus({ assigned_to : this.userID, id: id}).subscribe((data:any)=>{
 
     })
-  
+
 
     /* we need to get the brief_id from task. task id is in the function  */
     this.salesService.getSalesBriefIdbyTaskId(id).subscribe((data:any)=>{

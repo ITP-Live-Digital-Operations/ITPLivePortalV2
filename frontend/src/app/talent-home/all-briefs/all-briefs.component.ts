@@ -4,15 +4,14 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SalesService } from 'src/app/core/Services/sales.service';
-import { Location } from '@angular/common';
-
 
 @Component({
-  selector: 'app-briefs-from-sales',
-  templateUrl: './briefs-from-sales.component.html',
-  styleUrls: ['./briefs-from-sales.component.css']
+  selector: 'app-all-briefs',
+  templateUrl: './all-briefs.component.html',
+  styleUrls: ['./all-briefs.component.css']
 })
-export class BriefsFromSalesComponent implements OnInit {
+export class AllBriefsComponent implements OnInit {
+
   briefDetails: any;
   dataSource: any;
 
@@ -20,21 +19,15 @@ export class BriefsFromSalesComponent implements OnInit {
 
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor(private salesService : SalesService, private route: Router, private location: Location) { }
+ constructor(private salesService : SalesService, private route : Router){}
 
   ngOnInit(): void {
-    this.getAllBriefs()
+    this.getAllBriefs();
   }
 
-  
-  backButton() {
-    window.history.back();
-  }
-
-  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'ViewedByTalent','Status', 'Action'];
 
   getAllBriefs(){
-    this.salesService.getAllBriefs().subscribe((data:any)=>{
+    this.salesService.getAllAssignedBriefs().subscribe((data:any)=>{
 
       this.briefDetails = data;
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
@@ -43,22 +36,25 @@ export class BriefsFromSalesComponent implements OnInit {
   })
   }
 
+
+
+  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'ViewedByTalent','Status', 'Action'];
+
   onRowClicked(row: any) {
     this.viewedTask(row.id);
   }
 
   viewedTask(id: any){
-
     this.salesService.viewedByTalent(id).subscribe((data:any)=>{
       console.log(data)
     })
-    this.route.navigate([`home/talent/assignBrief/${id}`]);
+    this.route.navigate([`home/talent/viewSalesBrief/${id}`]);
   }
 
 
+  backButton() {
+    window.history.back();
+  }
 
 
 }
-
-
-

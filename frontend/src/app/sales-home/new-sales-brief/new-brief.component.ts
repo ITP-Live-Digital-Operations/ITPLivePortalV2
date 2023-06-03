@@ -22,12 +22,16 @@ export class NewBriefComponent {
   countries : string[] = countries
 
   newBrief: any;
-
+  newBriefId: any;
   showInfo1 = false;
   showInfo2 = false;
   showInfo3 = false;
   showInfo4 = false;
   showInfo5 = false;
+
+  userId = this.userService.getID();
+  userName :  any;
+
 
   constructor(
     private router: Router,
@@ -36,6 +40,11 @@ export class NewBriefComponent {
     private userService: UserService,
     private notificationService: NotificationService
   ) {
+
+    this.userService.getUserNameById(this.userId).subscribe((res) => {
+      this.userName = res;
+    });
+
     this.newSalesBriefForm = this.formBuilder.group({
       Agency: ['', [Validators.required]],
       Client: ['', [Validators.required]],
@@ -143,24 +152,24 @@ export class NewBriefComponent {
 
     this.salesService.createBrief({ CreatedbyID: createdByUserId, ...salesBrief }).subscribe(
       (briefid) => {
-
+        this.newBriefId = briefid
         alertify.success('Sales brief created successfully');
         console.log(this.newSalesBriefForm.get('ItpDepartment')?.value);
 
         if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'Originals' || this.newSalesBriefForm.get('ItpDepartment')?.value == 'UAE'){
           let id = 23;
-          let input = { message : 'New Sales Brief has been created', link: `/home/talent/assignBrief/${briefid}`}
+          let input = { message : 'New Sales Brief has been created by ' + this.userName.name , link: `/home/talent/assignBrief/${this.newBriefId.id}`}
           this.notificationService.createNotification( id, input).subscribe( () => {})
         }
         else if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'KSA' || this.newSalesBriefForm.get('ItpDepartment')?.value == 'Gaming' ){
           let id = 15;
-          let input = { message : 'New Sales Brief has been created', link: `/home/talent/assignBrief/${briefid}`}
+          let input = { message : 'New Sales Brief has been created by ' + this.userName.name, link: `/home/talent/assignBrief/${this.newBriefId.id}`}
 
           this.notificationService.createNotification( id, input).subscribe( () => {})
         }
 
 
-        /* this.router.navigate(['home/sales/forms']); */
+        this.router.navigate(['home/sales/forms']);
 
 
       },

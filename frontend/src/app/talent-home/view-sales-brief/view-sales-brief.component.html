@@ -7,6 +7,7 @@
 </div>
   <div class="row">
     <h1> Sales Person : {{salesperson}}</h1>
+    <h2> Assigned to : {{assignedUser}}</h2>
     <div class="col-sm-4">
       <div class="card p-4">
         <div class="card-header bg-dark text-light">
@@ -56,6 +57,19 @@
     </div>
 
     <div class="col-sm-6">
+      <div *ngIf="user_id === task.assigned_to">
+        <form [formGroup]="progressForm" autocomplete="off">
+          <div class="form-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Progress</mat-label>
+              <mat-select formControlName="Progress">
+                <mat-option *ngFor="let num of [0,1,2,3,4,5,6,7,8,9,10]" [value]="num">{{num}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="primary" (click)="submitProgress()"> Change Progress </button>
+        </form>
+      </div>
       <div>
         <table class="my-table" >
           <tr>
@@ -76,7 +90,7 @@
             <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td *ngIf="!budgetApproved">  <button mat-raised-button color="primary" (click)="uploadFileXlsx()">Upload</button> </td> <td *ngIf="budgetApproved"> Approved </td>
+            <td *ngIf="!budgetApproved">  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFileXlsx()">Upload</button> </td> <td *ngIf="budgetApproved"> Approved </td>
 
             <td *ngIf="budgetSheet"> {{ budgetApproved | boolean: 'Approved':'Not Approved' }} </td> <td *ngIf="!budgetSheet"></td>
             <td *ngIf="!budgetApproved"> {{budgetNotes}}</td> <td *ngIf="budgetApproved"> Send to Sales </td>  <td *ngIf="!budgetSheet"></td>
@@ -89,7 +103,7 @@
             <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id,presentation.originalname)"> Download</button> </td> <td *ngIf="!presentation"></td>
 
             <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td *ngIf="!presentationApproved">  <button mat-raised-button color="primary" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td>
+            <td *ngIf="!presentationApproved">  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td>
 
             <td *ngIf="presentation"> {{presentationApproved | boolean: 'Approved':'Not Approved' }} </td> <td *ngIf="!presentation"></td>
             <td *ngIf="!presentationApproved"> {{presentationNotes}}</td>  <td *ngIf="presentationApproved"> Send to Sales </td><td *ngIf="!presentation"></td>
@@ -100,6 +114,7 @@
 
         <button *ngIf="budgetApproved && presentationApproved" mat-raised-button color="primary" (click)="salesBriefReady()"> Send to Sales </button>
   </div>
+  <div *ngIf="user_id === task.assigned_to">
   <form [formGroup]="influencersForm">
     <table class="my-table" >
       <thead>
@@ -133,6 +148,7 @@
     </table>
     <button mat-raised-button (click)="openDialog()">Add Influencer</button>
   </form>
+</div>
 </div>
 
 

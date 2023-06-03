@@ -51,6 +51,8 @@ export class TaskService {
   updateStatusToComplete(id:any){
     return this.http.get(`${this.taskApiURL}/updateStatusToComplete/${id}`)
   }
-  
 
+  updateProgress(id : any, input : any){
+    return this.http.post(`${this.taskApiURL}/updateProgress/${id}`, input)
+  }
 }

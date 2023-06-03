@@ -52,6 +52,28 @@ exports.getAllBriefs = (req, res) => {
         });
 }
 
+exports.getAllAssignedBriefs = (req, res) => {
+    SalesBrief.findAll({
+        where: {
+            assigned: 1
+        }
+    })
+        .then(data => {
+            res.status(200).send({
+                status: "success",
+                data: data
+            });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving SalesBriefs."
+            });
+        });
+}
+
+
+
+
 exports.ViewedByTalent = (req, res) => {
     SalesBrief.update({ViewedByTalent: 1}, {
         where: {

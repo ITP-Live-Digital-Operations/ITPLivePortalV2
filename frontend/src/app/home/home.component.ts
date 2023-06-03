@@ -56,9 +56,6 @@ export class HomeComponent implements OnInit {
         })
         this.notificationService.getUnreadNotificationCountByUserId(this.userId).subscribe((res) => {
               this.notificationCount = res;
-
-              console.log("res " +this.notificationCount.data);
-
         })
       }
 
@@ -93,7 +90,7 @@ export class HomeComponent implements OnInit {
 
 
 
- 
+
 
 
 

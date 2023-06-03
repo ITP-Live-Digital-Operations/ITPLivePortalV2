@@ -12,6 +12,9 @@ router.route('/getSalesBriefsNotViewedByTalent')
 router.route('/getAllSalesBriefs')
     .get(asyncHandler(salesBriefController.getAllBriefs));
 
+router.route('/getAllAssignedBriefs')
+    .get(asyncHandler(salesBriefController.getAllAssignedBriefs));
+
 router.route('/viewedByTalent/:id')
     .get(asyncHandler(salesBriefController.ViewedByTalent))
 

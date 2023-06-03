@@ -27,6 +27,10 @@ export class SalesService {
     return this.http.get(`${this.salesApiURL}/getAllSalesBriefs`)
   }
 
+  getAllAssignedBriefs(){
+    return this.http.get(`${this.salesApiURL}/getAllAssignedBriefs`)
+  }
+
   viewedByTalent(id:any){
     return this.http.get(`${this.salesApiURL}/viewedByTalent/${id}`)
   }

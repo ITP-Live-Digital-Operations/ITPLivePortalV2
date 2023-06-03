@@ -29,6 +29,7 @@ import { TalentTasksComponent } from './talent-tasks/talent-tasks.component';
 import { TalentUserGuideComponent } from './talent-user-guide/talent-user-guide.component';
 import { AgeGroupPipe } from '../pipes/age-group.pipe';
 import { SelectInfluencerDialogComponent } from './select-influencer-dialog/select-influencer-dialog.component';
+import { AllBriefsComponent } from './all-briefs/all-briefs.component';
 
 
 
@@ -60,6 +61,7 @@ import { SelectInfluencerDialogComponent } from './select-influencer-dialog/sele
     TalentUserGuideComponent,
     AgeGroupPipe,
     SelectInfluencerDialogComponent,
+    AllBriefsComponent,
 
   ],
   imports: [

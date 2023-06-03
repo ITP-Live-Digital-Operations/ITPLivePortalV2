@@ -48,14 +48,6 @@ exports.getUserTasks = (req, res) => {
         where: {
             assigned_to: req.params.id
         },
-        include: [
-            {
-                model: SalesBrief,
-                required: true,
-                as: 'Brief',
-                
-            }
-        ]
     }).then(data => {
         
         res.status(200).send({
@@ -208,3 +200,26 @@ exports.activateTask = (req, res) => {
     }
     )
 }
+
+
+exports.updateProgress = (req, res) => {
+    const id = req.params.id;
+    const { progress } = req.body;
+    Task.update(
+        { progress: progress },
+        { where: { id: id } }
+    ).then(data => {
+        res.status(200).send({
+            status: 'success',
+        })
+    }
+    )
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while updating the Task."
+        });
+    }
+    )
+}
+
