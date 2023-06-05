@@ -71,7 +71,7 @@ exports.uploadFile = (req, res) => {
             message: err.message
             });
         });
-        }
+        }   
     });
     };
 
