@@ -143,10 +143,10 @@
             </select>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="socialLink" readonly class="no-border"/>
+            <input formControlName="socialLink"  class="no-border"/>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="followers" readonly class="no-border " />
+            <input formControlName="followers"  class="no-border " />
           </td>
           <td [formGroupName]="i">
             <input formControlName="deliverables"  class="no-border"/>
@@ -162,6 +162,7 @@
       </tbody>
     </table>
     <button mat-raised-button (click)="openDialog()">Add Influencer</button>
+    <button mat-raised-button style="margin-left: 2%;" color="primary" (click)="submitTable()">Submit</button>
   </form>
 </div>
 </div>

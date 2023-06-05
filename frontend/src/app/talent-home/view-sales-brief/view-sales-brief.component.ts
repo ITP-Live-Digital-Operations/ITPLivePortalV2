@@ -18,8 +18,8 @@ import { FileService } from 'src/app/core/Services/file.service';
 import { InfluencerModel } from 'src/app/Models/InfluencerModel';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectInfluencerDialogComponent } from '../select-influencer-dialog/select-influencer-dialog.component';
-
-
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-view-sales-brief',
   templateUrl: './view-sales-brief.component.html',
@@ -54,7 +54,7 @@ export class ViewSalesBriefComponent implements OnInit {
   assignForm: FormGroup;
   progressForm: FormGroup;
   public influencersForm: FormGroup;
-  public influencers: InfluencerModel[] = [];
+  influencers: InfluencerModel[] = [];
   platforms = ['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Facebook', 'Youtube'];
   constructor(
     private fileService: FileService,
@@ -124,8 +124,6 @@ export class ViewSalesBriefComponent implements OnInit {
       if (instagramLink && instagramFollowers) {
         row.get('socialLink')?.setValue(instagramLink);
         row.get('followers')?.setValue(instagramFollowers);
-      } else {
-        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
       }
     }
 
@@ -137,8 +135,6 @@ export class ViewSalesBriefComponent implements OnInit {
       if (TiktokLink && TiktokFollowers) {
         row.get('socialLink')?.setValue(TiktokLink);
         row.get('followers')?.setValue(TiktokFollowers);
-      } else {
-        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
       }
     }
 
@@ -150,8 +146,6 @@ export class ViewSalesBriefComponent implements OnInit {
       if (SnapchatLink && SnapchatFollowers) {
         row.get('socialLink')?.setValue(SnapchatLink);
         row.get('followers')?.setValue(SnapchatFollowers);
-      } else {
-        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
       }
     }
 
@@ -163,8 +157,6 @@ export class ViewSalesBriefComponent implements OnInit {
       if (TwitterLink && TwitterFollowers) {
         row.get('socialLink')?.setValue(TwitterLink);
         row.get('followers')?.setValue(TwitterFollowers);
-      } else {
-        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
       }
     }
 
@@ -176,8 +168,6 @@ export class ViewSalesBriefComponent implements OnInit {
       if (FacebookLink && FacebookFollowers) {
         row.get('socialLink')?.setValue(FacebookLink);
         row.get('followers')?.setValue(FacebookFollowers);
-      } else {
-        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
       }
     }
 
@@ -189,20 +179,53 @@ export class ViewSalesBriefComponent implements OnInit {
       if (YoutubeLink && YoutubeFollowers) {
         row.get('socialLink')?.setValue(YoutubeLink);
         row.get('followers')?.setValue(YoutubeFollowers);
-      } else {
-        console.error('Influencer object does not have InstagramLink or InstagramFollowers properties.');
       }
     }
-    
-
-
-
 
   }
 
   removeRow(index: number): void {
     this.rows.removeAt(index);
   }
+
+  submitTable(){
+    let tableData: any[] = [];
+
+    this.influencersForm.value.rows.forEach(((rowGroup: any) => {
+      tableData.push(rowGroup);
+    }));
+    console.log("Table Data: ", tableData);
+
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(tableData);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+    const data: Blob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+
+    // Create a File object from the Blob
+    const fileName = this.brief.data.CampaignName +"- BudgetSheet" + new Date().getTime() + '.xlsx';
+    const fileTable: File = new File([data], fileName);
+
+    saveAs(fileTable);
+
+
+    // Now upload the file
+    this.fileService.uploadFile( fileTable , this.brief.data.id, this.user_id).subscribe(
+        (data) => {
+            alertify.success('Excel file created and uploaded successfully');
+            window.location.reload();
+        },
+        (error) => {
+            alertify.error('Excel file creation and upload error');
+        }
+    );
+
+
+  }
+
+
+
+
 
   ngOnInit(): void {
     this.loadBriefData();

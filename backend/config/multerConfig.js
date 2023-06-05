@@ -11,12 +11,10 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  if (
-    file.mimetype ===
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
-    file.mimetype ===
-      'application/vnd.openxmlformats-officedocument.presentationml.presentation'
-  ) {
+  console.log("filter");
+  const ext = file.originalname.split('.').pop();
+  console.log(ext);
+  if (ext === 'xlsx' || ext === 'pptx') {
     cb(null, true);
   } else {
     cb(null, false);

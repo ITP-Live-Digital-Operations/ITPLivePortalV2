@@ -19,6 +19,11 @@ exports.uploadFile = (req, res) => {
         const userId = Number(req.body.uploaded_by);
 
         let fileType;
+        console.log(file.mimetype)
+        const ext = file.originalname.split('.').pop();
+        if (ext === 'xlsx'){
+            fileType = 'sheet';
+        }
         if (file.mimetype.includes('sheet')) {  
             fileType = 'sheet';
         } else if (file.mimetype.includes('presentation')) {
