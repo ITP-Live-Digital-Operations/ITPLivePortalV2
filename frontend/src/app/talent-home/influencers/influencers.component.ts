@@ -10,7 +10,7 @@ import * as alertify from 'alertifyjs'
 import { MatDialog } from '@angular/material/dialog';
 import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
 
-import * as pbi from 'powerbi-client';
+
 import { DataService } from 'src/app/core/Services/data.service';
 import { UserService } from 'src/app/core/Services/user.service';
 
@@ -30,7 +30,7 @@ export class InfluencersComponent implements OnInit {
   nationalities: any[] = [];
 
   userRole = this.userService.getRole();
-  private powerBiClient!: pbi.service.Service;
+
 
   filterCriteria: any = {
     gender: '',
@@ -60,8 +60,6 @@ export class InfluencersComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetAllInfluencers();
-
-    this.powerBiClient = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
    /*  this.getAccessToken(); */
     this.getGenders();
     this.getLocations();
@@ -186,32 +184,6 @@ export class InfluencersComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'Action'];
 
 
-  getAccessToken(){
-      this.dataService.accessToken().subscribe((response: any) => {
-        console.log(response.accessToken);
-
-        this.accessToken= response.accessToken
-        this.embedReport( this.accessToken, 'c28ad2fc-34a1-40f3-b2e1-87a769a4eaca', '312b092b-23a6-4061-8881-b2486ee44a96' );
-      })
-    }
-
-  embedReport(accessToken: string, reportId: string, groupId: string): void {
-    const reportContainer = <HTMLElement>document.getElementById('reportContainer');
-
-    const embedConfig: pbi.models.IEmbedConfiguration = {
-      type: 'report',
-      id: reportId,
-      groupId: groupId,
-      accessToken: accessToken,
-      embedUrl: `https://app.powerbi.com/reportEmbed?reportId=${reportId}&groupId=${groupId}/ReportSection`,
-      settings: {
-        filterPaneEnabled: false,
-        navContentPaneEnabled: false
-      }
-    };
-
-    this.powerBiClient.embed(reportContainer, embedConfig);
-  }
 
   applyFilter() {
     this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
