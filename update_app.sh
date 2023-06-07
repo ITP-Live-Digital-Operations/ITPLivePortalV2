@@ -9,7 +9,7 @@ git fetch origin
 git reset --hard origin/main
 
 # Navigate to the frontend directory
-cd frontend
+cd frontend  
 
 # Install frontend dependencies
 npm install
