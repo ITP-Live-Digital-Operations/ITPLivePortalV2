@@ -144,3 +144,17 @@ exports.addNotes = (req, res) => {
     });
 }
 
+exports.sendFile = (req, res) => {
+    const id = req.params.id;
+    File.findByPk(id).then(data => {
+        const file = path.resolve(__dirname, '../../uploads/', data.filename);
+        res.sendFile(file);
+    }).catch(err => {
+        console.log(err);
+        res.status(500).send({
+            status: 'fail',
+            message: err.message
+        });
+    });
+}
+

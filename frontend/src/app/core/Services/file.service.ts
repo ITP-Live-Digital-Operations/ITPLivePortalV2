@@ -36,6 +36,13 @@ export class FileService {
     )
   }
 
+  getFilesById(id: number): Observable<any> {
+    return this.http.get(`${this.fileApiUrl}/sendFile/${id}`, {
+      responseType: 'arraybuffer',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    })
+  }
+
   getFile(id: number): Observable<any> {
     return this.http.get(`${this.fileApiUrl}/getFileById/${id}`);
   }

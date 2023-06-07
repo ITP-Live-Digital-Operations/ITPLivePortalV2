@@ -51,6 +51,8 @@ export class ViewSalesBriefComponent implements OnInit {
   user_id = this.userService.getID();
   role = this.userService.getRole();
   privilege_level = this.userService.getPrivilegeLevel();
+
+  budgetdata: any;
   assignForm: FormGroup;
   progressForm: FormGroup;
   public influencersForm: FormGroup;
@@ -66,6 +68,7 @@ export class ViewSalesBriefComponent implements OnInit {
     private taskService: TaskService,
     private location: Location
   ) {
+
     this.assignForm = this.formBuilder.group({
       Weight: ['', Validators.required],
     });
@@ -79,19 +82,27 @@ export class ViewSalesBriefComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    this.loadBriefData();
+    this.refresh();
+
+
+
+  }
+
   get rows(): FormArray {
     return this.influencersForm.get('rows') as FormArray;
   }
 
-  addRow(influencer: InfluencerModel): void {
+  addRow(influencer: any): void {
     const row = this.formBuilder.group({
       id: [influencer.id],
       name: [influencer.Name],
-      platform: [''],
-      socialLink: [''],
-      followers: [''],
-      deliverables: [''],
-      estimatedBudget: [''],
+      platform: [influencer.platform],
+      socialLink: [influencer.socialLink],
+      followers: [influencer.followers],
+      deliverables: [influencer.deliverables],
+      estimatedBudget: [influencer.estimatedBudget],
     });
     this.rows.push(row);
     this.influencers.push(influencer);
@@ -227,10 +238,7 @@ export class ViewSalesBriefComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-    this.loadBriefData();
-    this.refresh();
-  }
+
 
   loadBriefData() {
     this.activatedRoute.params.subscribe((params) => {
@@ -245,8 +253,10 @@ export class ViewSalesBriefComponent implements OnInit {
           this.getSalesPerson(this.brief.data.CreatedbyID);
           this.budgetSheetId = data.data.BudgetSheetId;
 
+          if (this.budgetSheetId){
           this.getBudgetSheet(this.budgetSheetId);
 
+          }
           this.presentationId = data.data.PresentationId;
           this.getPresentation(this.presentationId);
         });
@@ -356,6 +366,31 @@ export class ViewSalesBriefComponent implements OnInit {
       this.budgetSheet = data.data;
       this.budgetApproved = this.budgetSheet.approved;
       this.budgetNotes = this.budgetSheet.notes;
+
+      this.fileService.getFilesById(id).subscribe((data: any) => {
+        const excelFile = data
+        const workbook = XLSX.read(new Uint8Array(excelFile), {type: 'array'});
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        this.budgetdata = XLSX.utils.sheet_to_json(worksheet, {header: 1});
+        console.log(this.budgetdata);
+        for(let i = 1; i < this.budgetdata.length; i++) {
+          let influencer = {
+            id: this.budgetdata[i][0],
+            Name: this.budgetdata[i][1],
+            platform: this.budgetdata[i][2],
+            socialLink: this.budgetdata[i][3],
+            followers: this.budgetdata[i][4],
+            deliverables: this.budgetdata[i][5],
+            estimatedBudget: this.budgetdata[i][6],
+          };
+          this.addRow(influencer);
+        }
+
+
+
+      })
+
     });
   }
 

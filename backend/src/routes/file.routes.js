@@ -18,4 +18,6 @@ router.route('/approveFile/:id')
 router.route('/addNotes/:id')
        .post(asyncHandler(fileController.addNotes));
 
+router.route('/sendFile/:id')
+      .get(asyncHandler(fileController.sendFile));
 module.exports = router;
