@@ -119,43 +119,52 @@
     <table class="my-table" >
       <thead>
         <tr>
-        <th style="width: 5%;">ID</th>
-        <th style="width: 10%;">Name</th>
-        <th style="width: 15%;">Platform</th>
-        <th style="width: 15%;">Social Link</th>
+        <th style="width: 5%;">Nb</th>
+        <th style="width: 5%;">Name</th>
+        <th style="width: 10%;">Platform</th>
+        <th style="width: 10%;">Social Link</th>
         <th style="width: 10%;">Followers</th>
-        <th style="width: 15%;">Deliverables</th>
-        <th style="width: 15%;">Estimated Budget</th>
-        <th style="width: 15%;">Action</th>
+        <th style="width: 20%;">Deliverables</th>
+        <th style="width: 10%">Currency</th>
+        <th style="width: 20%;">Estimated Budget</th>
+        <th style="width: 10%;">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr formArrayName="rows" *ngFor="let row of rows.controls; index as i;">
           <td [formGroupName]="i">
-            <input formControlName="id" readonly class="no-border" />
+            <input formControlName="nb" readonly class="no-border"/>
           </td>
           <td [formGroupName]="i">
             <input formControlName="name" readonly class="no-border"/>
           </td>
+
           <td [formGroupName]="i">
-            <select formControlName="platform" (change)="updateFields(i, $event)" class="no-border">
+            <select formControlName="platform" (change)="updateFields(i, $event)">
+
               <option *ngFor="let platform of platforms" [value]="platform">{{platform}}</option>
             </select>
           </td>
+
           <td [formGroupName]="i">
             <input formControlName="socialLink"  class="no-border"/>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="followers"  class="no-border " />
+            <input formControlName="followers"   class="no-border"/>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="deliverables"  class="no-border"/>
+            <textarea formControlName="deliverables" class="no-border"> </textarea>
+          </td>
+          <td [formGroupName]="i">
+            <select formControlName="currency"  class="no-border">
+              <option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
+            </select>
           </td>
           <td [formGroupName]="i">
             <input formControlName="estimatedBudget" class="no-border"/>
           </td>
 
-          <td style="width: 5%;">
+          <td>
             <button mat-raised-button color="accent" (click)="removeRow(i)">Delete</button>
           </td>
         </tr>

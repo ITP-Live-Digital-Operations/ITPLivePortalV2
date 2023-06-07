@@ -57,7 +57,9 @@ export class ViewSalesBriefComponent implements OnInit {
   progressForm: FormGroup;
   public influencersForm: FormGroup;
   influencers: InfluencerModel[] = [];
-  platforms = ['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Facebook', 'Youtube'];
+
+  platforms : any
+  currencies : any
   constructor(
     private fileService: FileService,
     public dialog: MatDialog,
@@ -86,6 +88,9 @@ export class ViewSalesBriefComponent implements OnInit {
     this.loadBriefData();
     this.refresh();
 
+     this.platforms = ['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Facebook', 'Youtube'];
+    this.currencies = ['SAR', 'AED']
+
 
 
   }
@@ -96,12 +101,13 @@ export class ViewSalesBriefComponent implements OnInit {
 
   addRow(influencer: any): void {
     const row = this.formBuilder.group({
-      id: [influencer.id],
+      nb: [this.influencers.length + 1],
       name: [influencer.Name],
       platform: [influencer.platform],
       socialLink: [influencer.socialLink],
       followers: [influencer.followers],
       deliverables: [influencer.deliverables],
+      currency: [influencer.currency],
       estimatedBudget: [influencer.estimatedBudget],
     });
     this.rows.push(row);
@@ -119,6 +125,7 @@ export class ViewSalesBriefComponent implements OnInit {
   }
 
   updateFields(i: number, event: any): void {
+
     const chosenPlatform = event.target.value;
     const row = this.rows.at(i) as FormGroup;
 
@@ -382,7 +389,8 @@ export class ViewSalesBriefComponent implements OnInit {
             socialLink: this.budgetdata[i][3],
             followers: this.budgetdata[i][4],
             deliverables: this.budgetdata[i][5],
-            estimatedBudget: this.budgetdata[i][6],
+            currency: this.budgetdata[i][6],
+            estimatedBudget: this.budgetdata[i][7],
           };
           this.addRow(influencer);
         }
