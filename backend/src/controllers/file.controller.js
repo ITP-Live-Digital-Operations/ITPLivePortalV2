@@ -4,6 +4,11 @@ const models = require('../../models');
 const File = models.File;
 const SalesBrief = models.SalesBrief;
 const path = require('path');
+const fs = require('fs');
+
+const ExcelJS = require('exceljs');
+
+
 
 
 exports.uploadFile = (req, res) => {
@@ -19,7 +24,7 @@ exports.uploadFile = (req, res) => {
         const userId = Number(req.body.uploaded_by);
 
         let fileType;
-        console.log(file.mimetype)
+        
         const ext = file.originalname.split('.').pop();
         if (ext === 'xlsx'){
             fileType = 'sheet';
@@ -53,6 +58,7 @@ exports.uploadFile = (req, res) => {
             }).then( data => {
                 res.status(201).send({
                     status: 'success'
+                    
                   });
             }).catch(err => {
                 res.status(500).send({
@@ -62,7 +68,8 @@ exports.uploadFile = (req, res) => {
             });
             }
             res.status(201).send({
-            status: 'success'
+            status: 'success',
+            fileData: fileData
             });
         }).catch(err => {
             console.log(err);
@@ -75,6 +82,73 @@ exports.uploadFile = (req, res) => {
     });
     };
 
+    exports.uploadTable = async (req, res, next) => {
+        console.log(req.body.table);
+        const briefId = Number(req.body.brief_id);
+        const userId = Number(req.body.uploaded_by);
+        const fileName = req.body.fileName;
+        const tableData = req.body.table;
+        
+
+        const workbook = new ExcelJS.Workbook();
+    
+        // Load the template workbook
+        const templatePath = path.resolve(__dirname, '../utils/template-budget-sheet.xlsx');
+        await workbook.xlsx.readFile(templatePath);
+        console.log(workbook.worksheets.map(ws => ws.name));
+        // Get the Template worksheet
+        templateWorksheet = workbook.getWorksheet('Template');
+        templateWorksheet.getCell('A1').value = "ITP Live x " + fileName;
+        // Get the Data worksheet
+        const dataWorksheet = workbook.getWorksheet('Data');
+        
+        
+        // Assuming 'A1' is the starting cell where you want to write data
+        let startingRow = 1;
+    
+        for(let i = 0; i < tableData.length; i++){
+            
+            let row = tableData[i];
+            let newRow = [];
+        
+            // Push data to newRow considering its type
+            for(let key in row) {
+              let value = row[key];
+        
+              // Depending on the column, you may need to set cell type to number or string
+              if(['col1', 'col5', 'col7'].includes(key)) value = Number(value);
+        
+              newRow.push(value);
+            }
+            dataWorksheet.addRow(newRow);
+          }
+          
+          
+          const filePath = path.resolve(__dirname ,  '../../uploads/'); 
+          const newfileName = fileName + "-" + Date.now() + '.xlsx'; 
+          
+          console.log("filePath " + filePath);
+          console.log("newfileName " + newfileName);
+          console.log("Joined Path " + path.join(filePath, newfileName));
+          await workbook.xlsx.writeFile( path.join(filePath, newfileName), workbook)
+          console.log("file written");
+
+          const buffer =  fs.readFileSync(path.join(filePath, newfileName));
+    
+          req.file = {
+            buffer,
+            originalname: newfileName,
+            filename: newfileName,
+            mimetype: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+          };
+
+          req.body.brief_id = briefId;
+          req.body.uploaded_by = userId;
+          console.log("body" +  JSON.stringify(req.body));
+
+          next();
+       
+};
     
 exports.downloadFile = (req, res) => {
     const id = req.params.id;
@@ -157,4 +231,8 @@ exports.sendFile = (req, res) => {
         });
     });
 }
+
+
+
+
 

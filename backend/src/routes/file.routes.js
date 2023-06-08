@@ -20,4 +20,9 @@ router.route('/addNotes/:id')
 
 router.route('/sendFile/:id')
       .get(asyncHandler(fileController.sendFile));
+
+router.route('/uploadTable')
+       .post(asyncHandler(fileController.uploadTable), asyncHandler(fileController.uploadFile));
+
+
 module.exports = router;

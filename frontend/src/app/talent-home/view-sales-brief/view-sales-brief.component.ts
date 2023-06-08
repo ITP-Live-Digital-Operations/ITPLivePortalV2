@@ -4,6 +4,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  RequiredValidator,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -101,14 +102,14 @@ export class ViewSalesBriefComponent implements OnInit {
 
   addRow(influencer: any): void {
     const row = this.formBuilder.group({
-      nb: [this.influencers.length + 1],
-      name: [influencer.Name],
-      platform: [influencer.platform],
-      socialLink: [influencer.socialLink],
-      followers: [influencer.followers],
-      deliverables: [influencer.deliverables],
-      currency: [influencer.currency],
-      estimatedBudget: [influencer.estimatedBudget],
+      nb: [this.influencers.length + 1, Validators.required],
+      name: [influencer.Name, Validators.required],
+      platform: [influencer.platform, Validators.required],
+      socialLink: [influencer.socialLink, Validators.required],
+      followers: [influencer.followers, Validators.required],
+      deliverables: [influencer.deliverables, Validators.required],
+      currency: [influencer.currency, Validators.required],
+      estimatedBudget: [influencer.estimatedBudget, Validators.required],
     });
     this.rows.push(row);
     this.influencers.push(influencer);
@@ -204,43 +205,35 @@ export class ViewSalesBriefComponent implements OnInit {
 
   removeRow(index: number): void {
     this.rows.removeAt(index);
+    this.influencers.splice(index, 1);
   }
 
-  submitTable(){
+  submitTable() {
     let tableData: any[] = [];
-
     this.influencersForm.value.rows.forEach(((rowGroup: any) => {
       tableData.push(rowGroup);
     }));
-    console.log("Table Data: ", tableData);
 
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(tableData);
-    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.fileService.uploadTable(tableData, this.brief.data.id, this.user_id, this.brief.data.Client).subscribe(
+      (data) => {
 
-    const data: Blob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+          alertify.success('Excel file created and uploaded successfully');
+          this.downloadFilexlsx(data.fileData.id, data.fileData.filename);
+          console.log(data.fileData);
 
-    // Create a File object from the Blob
-    const fileName = this.brief.data.CampaignName +"- BudgetSheet" + new Date().getTime() + '.xlsx';
-    const fileTable: File = new File([data], fileName);
+          setTimeout(() => {
+            window.location.reload()
+          }, 2000);
 
-    saveAs(fileTable);
+      },
+      (error) => {
+        console.log(error);
 
-
-    // Now upload the file
-    this.fileService.uploadFile( fileTable , this.brief.data.id, this.user_id).subscribe(
-        (data) => {
-            alertify.success('Excel file created and uploaded successfully');
-            window.location.reload();
-        },
-        (error) => {
-            alertify.error('Excel file creation and upload error');
-        }
-    );
-
+          alertify.error('Excel file creation and upload error');
+      }
+  );
 
   }
-
 
 
 
@@ -377,11 +370,11 @@ export class ViewSalesBriefComponent implements OnInit {
       this.fileService.getFilesById(id).subscribe((data: any) => {
         const excelFile = data
         const workbook = XLSX.read(new Uint8Array(excelFile), {type: 'array'});
-        const firstSheetName = workbook.SheetNames[0];
+        const firstSheetName = workbook.SheetNames[1];
         const worksheet = workbook.Sheets[firstSheetName];
         this.budgetdata = XLSX.utils.sheet_to_json(worksheet, {header: 1});
         console.log(this.budgetdata);
-        for(let i = 1; i < this.budgetdata.length; i++) {
+        for(let i = 0; i < this.budgetdata.length; i++) {
           let influencer = {
             id: this.budgetdata[i][0],
             Name: this.budgetdata[i][1],

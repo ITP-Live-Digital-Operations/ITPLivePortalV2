@@ -71,16 +71,17 @@
         </form>
       </div>
       <div>
-        <table class="my-table" >
+        <table class="my-table">
+
           <tr>
             <th class="centered"> File Type</th>
             <th class="centered" > File Name</th>
             <th class="centered" > Uploaded On</th>
             <th class="centered" > Download </th>
-            <th class="centered"> Choose File</th>
-            <th class="centered"> Upload </th>
-            <th class="centered"> Status  </th>
-            <th class="centered"> Notes </th>
+            <th class="centered" *ngIf="user_id === task.assigned_to"> Choose File</th>
+            <th class="centered" *ngIf="user_id === task.assigned_to" > Upload </th>
+            <th class="centered" *ngIf="user_id === task.assigned_to" > Delete </th>
+
           </tr>
 
           <tr>
@@ -89,11 +90,9 @@
             <td *ngIf="budgetSheet">  {{budgetSheet.createdAt | date}}</td> <td *ngIf="!budgetSheet"></td>
             <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
 
-            <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td *ngIf="!budgetApproved">  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFileXlsx()">Upload</button> </td> <td *ngIf="budgetApproved"> Approved </td>
-
-            <td *ngIf="budgetSheet"> {{ budgetApproved | boolean: 'Approved':'Not Approved' }} </td> <td *ngIf="!budgetSheet"></td>
-            <td *ngIf="!budgetApproved"> {{budgetNotes}}</td> <td *ngIf="budgetApproved"> Send to Sales </td>  <td *ngIf="!budgetSheet"></td>
+            <td *ngIf="user_id === task.assigned_to"> <input  type="file" (change)="handleFileInput($event)" /> </td>
+            <td *ngIf="user_id === task.assigned_to" >  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFileXlsx()">Upload</button> </td> <td *ngIf="budgetApproved"> Approved </td>
+            <td *ngIf="user_id === task.assigned_to" > <button mat-raised-button color="accent" *ngIf="budgetSheet"> Delete</button></td>
           </tr>
 
           <tr>
@@ -102,11 +101,9 @@
             <td *ngIf="presentation">  {{presentation.createdAt | date }}</td> <td *ngIf="!presentation"></td>
             <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id,presentation.originalname)"> Download</button> </td> <td *ngIf="!presentation"></td>
 
-            <td> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td *ngIf="!presentationApproved">  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td>
-
-            <td *ngIf="presentation"> {{presentationApproved | boolean: 'Approved':'Not Approved' }} </td> <td *ngIf="!presentation"></td>
-            <td *ngIf="!presentationApproved"> {{presentationNotes}}</td>  <td *ngIf="presentationApproved"> Send to Sales </td><td *ngIf="!presentation"></td>
+            <td *ngIf="user_id === task.assigned_to"> <input  type="file" (change)="handleFileInput($event)" /> </td>
+            <td *ngIf="user_id === task.assigned_to" >  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td>
+            <td *ngIf="user_id === task.assigned_to" > <button mat-raised-button color="accent" *ngIf="presentation"> Delete</button></td>
           </tr>
 
         </table>
@@ -114,7 +111,7 @@
 
         <button *ngIf="budgetApproved && presentationApproved" mat-raised-button color="primary" (click)="salesBriefReady()"> Send to Sales </button>
   </div>
-  <div *ngIf="user_id === task.assigned_to">
+  <div >
   <form [formGroup]="influencersForm">
     <table class="my-table" >
       <thead>
@@ -133,45 +130,45 @@
       <tbody>
         <tr formArrayName="rows" *ngFor="let row of rows.controls; index as i;">
           <td [formGroupName]="i">
-            <input formControlName="nb" readonly class="no-border"/>
+            <input formControlName="nb" readonly class="no-border" required/>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="name" readonly class="no-border"/>
+            <input formControlName="name" readonly class="no-border" required/>
           </td>
 
           <td [formGroupName]="i">
-            <select formControlName="platform" (change)="updateFields(i, $event)">
+            <select formControlName="platform" (change)="updateFields(i, $event)" required>
 
               <option *ngFor="let platform of platforms" [value]="platform">{{platform}}</option>
             </select>
           </td>
 
           <td [formGroupName]="i">
-            <input formControlName="socialLink"  class="no-border"/>
+            <input formControlName="socialLink"  class="no-border" required/>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="followers"   class="no-border"/>
+            <input formControlName="followers"   class="no-border" type="number" required/>
           </td>
           <td [formGroupName]="i">
-            <textarea formControlName="deliverables" class="no-border"> </textarea>
+            <textarea formControlName="deliverables" class="no-border" required> </textarea>
           </td>
           <td [formGroupName]="i">
-            <select formControlName="currency"  class="no-border">
-              <option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
+            <select formControlName="currency">
+              <option *ngFor="let currency of currencies" [value]="currency" required>{{currency}}</option>
             </select>
           </td>
           <td [formGroupName]="i">
-            <input formControlName="estimatedBudget" class="no-border"/>
+            <input formControlName="estimatedBudget" class="no-border" required type="number"/>
           </td>
 
           <td>
-            <button mat-raised-button color="accent" (click)="removeRow(i)">Delete</button>
+            <button mat-raised-button color="accent" (click)="removeRow(i)" *ngIf="user_id === task.assigned_to">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <button mat-raised-button (click)="openDialog()">Add Influencer</button>
-    <button mat-raised-button style="margin-left: 2%;" color="primary" (click)="submitTable()">Submit</button>
+    <button mat-raised-button *ngIf="user_id === task.assigned_to" (click)="openDialog()"> Add Influencer</button>
+    <button mat-raised-button *ngIf="user_id === task.assigned_to" style="margin-left: 2%;" color="primary" (click)="submitTable()">Submit</button>
   </form>
 </div>
 </div>

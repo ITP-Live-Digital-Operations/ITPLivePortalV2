@@ -54,4 +54,14 @@ export class FileService {
   addNotes(id: number, notes: string): Observable<any> {
     return this.http.post(`${this.fileApiUrl}/addNotes/${id}`, {notes});
   }
+
+  uploadTable(table : any, brief_id: number, uploaded_by : number, fileName : string): Observable<any> {
+    const body = {
+      table: table,
+      brief_id: brief_id,
+      uploaded_by: uploaded_by,
+      fileName: fileName
+  };
+    return this.http.post(`${this.fileApiUrl}/uploadTable`, body );
+  }
 }
