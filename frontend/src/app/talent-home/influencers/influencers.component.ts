@@ -60,7 +60,7 @@ export class InfluencersComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetAllInfluencers();
-   /*  this.getAccessToken(); */
+   
     this.getGenders();
     this.getLocations();
     this.getVerticals();

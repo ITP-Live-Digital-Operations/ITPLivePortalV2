@@ -23,6 +23,7 @@ import { AssignBriefComponent } from './assign-brief/assign-brief.component';
 import { TalentTasksComponent } from './talent-tasks/talent-tasks.component';
 import { TalentUserGuideComponent } from './talent-user-guide/talent-user-guide.component';
 import { AllBriefsComponent } from './all-briefs/all-briefs.component';
+import { ExecTasksComponent } from './exec-tasks/exec-tasks.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'forms', pathMatch: 'full' },
@@ -46,7 +47,7 @@ const routes: Routes = [
   { path: 'newTimeForm', component: TimeFormComponent},
   { path: 'all-Briefs', component: AllBriefsComponent },
   { path: 'changePassword', component:ChangePasswordComponent , canActivate: [AuthGuard]},
-
+  { path: 'execTasks/:id', component: ExecTasksComponent},
   { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] }
 
 ]

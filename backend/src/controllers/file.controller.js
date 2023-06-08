@@ -82,8 +82,8 @@ exports.uploadFile = (req, res) => {
     });
     };
 
-    exports.uploadTable = async (req, res, next) => {
-        console.log(req.body.table);
+exports.uploadTable = async (req, res, next) => {
+
         const briefId = Number(req.body.brief_id);
         const userId = Number(req.body.uploaded_by);
         const fileName = req.body.fileName;
@@ -95,17 +95,14 @@ exports.uploadFile = (req, res) => {
         // Load the template workbook
         const templatePath = path.resolve(__dirname, '../utils/template-budget-sheet.xlsx');
         await workbook.xlsx.readFile(templatePath);
-        console.log(workbook.worksheets.map(ws => ws.name));
+        
         // Get the Template worksheet
         templateWorksheet = workbook.getWorksheet('Template');
         templateWorksheet.getCell('A1').value = "ITP Live x " + fileName;
         // Get the Data worksheet
         const dataWorksheet = workbook.getWorksheet('Data');
         
-        
-        // Assuming 'A1' is the starting cell where you want to write data
-        let startingRow = 1;
-    
+        // Add data to the Data worksheet
         for(let i = 0; i < tableData.length; i++){
             
             let row = tableData[i];
@@ -127,11 +124,9 @@ exports.uploadFile = (req, res) => {
           const filePath = path.resolve(__dirname ,  '../../uploads/'); 
           const newfileName = fileName + "-" + Date.now() + '.xlsx'; 
           
-          console.log("filePath " + filePath);
-          console.log("newfileName " + newfileName);
-          console.log("Joined Path " + path.join(filePath, newfileName));
+          
           await workbook.xlsx.writeFile( path.join(filePath, newfileName), workbook)
-          console.log("file written");
+          
 
           const buffer =  fs.readFileSync(path.join(filePath, newfileName));
     
@@ -144,7 +139,7 @@ exports.uploadFile = (req, res) => {
 
           req.body.brief_id = briefId;
           req.body.uploaded_by = userId;
-          console.log("body" +  JSON.stringify(req.body));
+          
 
           next();
        
