@@ -215,12 +215,19 @@ export class ViewSalesBriefComponent implements OnInit {
       tableData.push(rowGroup);
     }));
 
+    this.fileService.deleteBudgetSheetFile(this.budgetSheetId).subscribe(
+      (data) => {},
+      (error) => {
+        console.log(error);
+      }
+    );
+
     this.fileService.uploadTable(tableData, this.brief.data.id, this.user_id, this.brief.data.Client).subscribe(
       (data) => {
 
           alertify.success('Excel file created and uploaded successfully');
           this.downloadFilexlsx(data.fileData.id, data.fileData.filename);
-          console.log(data.fileData);
+
 
           setTimeout(() => {
             window.location.reload()
