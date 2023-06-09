@@ -35,7 +35,6 @@ export class ReadyBriefsComponent implements OnInit {
   getReadyBriefs(){
     this.salesService.getBriefByCreatedbyId(this.user_id).subscribe((res:any)=>{
       console.log(res);
-
       this.briefs = res;
       this.dataSource = new MatTableDataSource(this.briefs.data);
       this.dataSource.paginator = this.paginator;

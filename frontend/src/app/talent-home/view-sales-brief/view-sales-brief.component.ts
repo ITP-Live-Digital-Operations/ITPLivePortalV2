@@ -21,6 +21,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SelectInfluencerDialogComponent } from '../select-influencer-dialog/select-influencer-dialog.component';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { NotificationService } from 'src/app/core/Services/notification.service';
 @Component({
   selector: 'app-view-sales-brief',
   templateUrl: './view-sales-brief.component.html',
@@ -70,7 +71,8 @@ export class ViewSalesBriefComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private taskService: TaskService,
-    private location: Location
+    private location: Location,
+    private notificationService : NotificationService
   ) {
 
     this.assignForm = this.formBuilder.group({
@@ -204,6 +206,7 @@ export class ViewSalesBriefComponent implements OnInit {
 
   }
 
+
   removeRow(index: number): void {
     this.rows.removeAt(index);
     this.influencers.splice(index, 1);
@@ -333,10 +336,18 @@ export class ViewSalesBriefComponent implements OnInit {
 
   fileToUpload: File | null = null;
 
-  handleFileInput(event: Event): void {
+  handleFileInputXLSX(event: Event): void {
     const target = event.target as HTMLInputElement;
     const files = target.files as FileList;
     this.fileToUpload = files.item(0);
+    this.uploadFileXlsx();
+  }
+
+  handleFileInputPPTX(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+    this.fileToUpload = files.item(0);
+    this.uploadFilePPTX();
   }
 
   uploadFileXlsx(): void {
@@ -346,6 +357,12 @@ export class ViewSalesBriefComponent implements OnInit {
           .uploadFile(this.fileToUpload, this.brief.data.id, this.user_id)
           .subscribe(
             (data) => {
+              this.fileService.deleteBudgetSheetFile(this.budgetSheetId).subscribe(
+                (data) => {},
+                (error) => {
+                  console.log(error);
+                }
+              );
               alertify.success('File uploaded successfully');
               window.location.reload();
             },
@@ -366,6 +383,14 @@ export class ViewSalesBriefComponent implements OnInit {
           .uploadFile(this.fileToUpload, this.brief.data.id, this.user_id)
           .subscribe(
             (data) => {
+              if(this.presentationId != null){
+              this.fileService.deletePresentationFile(this.presentationId).subscribe(
+                (data) => {},
+                (error) => {
+                  console.log(error);
+                }
+              );
+              }
               alertify.success('File uploaded successfully');
               window.location.reload();
             },
@@ -469,6 +494,10 @@ export class ViewSalesBriefComponent implements OnInit {
   salesBriefReady() {
     this.salesService.salesBriefReady(this.id).subscribe((data: any) => {
       if (data.status == 'success') {
+        let id = this.brief.data.CreatedbyID;
+        let input = { message : "Sales Brief is ready", link : "home/sales/view-files/" + this.brief.data.id}
+        this.notificationService.createNotification(id, input).subscribe( () => {});
+        this.deactivateBrief();
         alertify.success('Sales Brief is ready');
       } else {
         alertify.error('Error');

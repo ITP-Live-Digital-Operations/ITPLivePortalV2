@@ -36,7 +36,7 @@ export class TasksFromTalentHeadComponent {
     window.history.back();
   }
 
-  displayedColumns: string[] =  ['deadline','status', 'weight', 'createdAt', 'progress', 'Action' ];
+  displayedColumns: string[] =  ['deadline','status', 'weight', 'createdAt', 'progress', 'priority' , 'Action' ];
 
   getMyTasks(id:any){
     this.taskService.getMyTasks(id).subscribe((data:any)=>{

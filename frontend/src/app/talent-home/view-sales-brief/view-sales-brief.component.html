@@ -56,9 +56,10 @@
       </div>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <div *ngIf="user_id === task.assigned_to" class="form-container">
         <div class="row">
+          <div class="col-sm-6">
         <form [formGroup]="progressForm" autocomplete="off">
           <div class="form-group">
             <mat-form-field appearance="outline">
@@ -67,56 +68,64 @@
                 <mat-option *ngFor="let num of [0,1,2,3,4,5,6,7,8,9,10]" [value]="num">{{num}}</mat-option>
               </mat-select>
             </mat-form-field>
+            <button style="height: 2em; margin-bottom: 2%; width: 15em;" mat-raised-button color="primary" (click)="submitProgress()"> Update Progress </button>
           </div>
-          <button mat-raised-button color="primary" (click)="submitProgress()"> Change Progress </button>
+
         </form>
-      </div>
-      <div class="row">
-        <div>
-          <h1 *ngIf="brief.data.Status == 'Active'" style="color : green"> Brief Status: {{brief.data.Status}} <button mat-raised-button color="accent" (click)="deactivateBrief()"> Deactivate </button></h1>  <h1 *ngIf="brief.data.Status != 'Active'" style="color : red"> Brief Status: {{brief.data.Status}} <button mat-raised-button color="primary" (click)="activateBrief()"> Activate </button> </h1>
+    </div>
+    <div class="col-sm-6">
+          <h1 *ngIf="brief.data.Status == 'Active'" style="color : green ; font-size: 2em;"> Brief Status: {{brief.data.Status}} <button mat-raised-button style="height: 2em; margin-top: 18%; width: 17em;"  color="accent" (click)="deactivateBrief()"> Deactivate </button> </h1>  <h1 *ngIf="brief.data.Status != 'Active'" style="color : red;" > Brief Status: {{brief.data.Status}} <button mat-raised-button style="height: 2rem; margin-top: 18%; width: 17em;"  color="primary" (click)="activateBrief()"> Activate </button> </h1>
         </div>
       </div>
       </div>
       <div>
         <table class="my-table">
-
           <tr>
             <th class="centered"> File Type</th>
             <th class="centered" > File Name</th>
             <th class="centered" > Uploaded On</th>
             <th class="centered" > Download </th>
             <th class="centered" *ngIf="user_id === task.assigned_to"> Choose File</th>
-            <th class="centered" *ngIf="user_id === task.assigned_to" > Upload </th>
             <th class="centered" *ngIf="user_id === task.assigned_to" > Delete </th>
-
           </tr>
 
           <tr>
             <td> Excel Sheet</td>
-            <td *ngIf="budgetSheet" > {{budgetSheet.originalname}} </td> <td *ngIf="!budgetSheet" >  </td>
+            <td *ngIf="budgetSheet" class="stretch-button" > {{budgetSheet.originalname}} </td> <td *ngIf="!budgetSheet" >  </td>
             <td *ngIf="budgetSheet">  {{budgetSheet.createdAt | date}}</td> <td *ngIf="!budgetSheet"></td>
-            <td *ngIf="budgetSheet" > <button mat-raised-button color="primary" (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
+            <td *ngIf="budgetSheet" > <button mat-raised-button color="primary"  (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"> Download</button> </td> <td *ngIf="!budgetSheet"></td>
 
-            <td *ngIf="user_id === task.assigned_to"> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td *ngIf="user_id === task.assigned_to" >  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFileXlsx()">Upload</button> </td> <td *ngIf="budgetApproved"> Approved </td>
+            <td *ngIf="user_id === task.assigned_to">
+            <input  type="file" (change)="handleFileInputXLSX($event)" style="display: none;" #fileInput/> <button mat-raised-button class="stretch-button"
+              (click)="fileInput.click()" >
+              Choose File
+            </button>
+          </td>
+
             <td *ngIf="user_id === task.assigned_to" > <button mat-raised-button color="accent" (click)="deleteBudgetSheetFile(budgetSheet.id)" *ngIf="budgetSheet"> Delete</button></td>
           </tr>
 
           <tr>
             <td> Presentation </td>
-            <td *ngIf="presentation">  {{presentation.originalname}}  </td> <td *ngIf="!presentation" >  </td>
+            <td *ngIf="presentation" class="stretch-button">  {{presentation.originalname}}  </td> <td *ngIf="!presentation" >  </td>
             <td *ngIf="presentation">  {{presentation.createdAt | date }}</td> <td *ngIf="!presentation"></td>
             <td *ngIf="presentation"> <button mat-raised-button color="primary" (click)="downloadFilePPTX(presentation.id,presentation.originalname)"> Download</button> </td> <td *ngIf="!presentation"></td>
 
-            <td *ngIf="user_id === task.assigned_to"> <input  type="file" (change)="handleFileInput($event)" /> </td>
-            <td *ngIf="user_id === task.assigned_to" >  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td>
+            <td *ngIf="user_id === task.assigned_to">
+              <input  type="file" (change)="handleFileInputPPTX($event)" style="display: none;" #fileInput/> <button mat-raised-button class="stretch-button"
+                (click)="fileInput.click()" >
+                Choose File
+              </button>
+
+            </td>
+
             <td *ngIf="user_id === task.assigned_to" > <button mat-raised-button color="accent" (click)="deletePresentationFile(presentation.id)" *ngIf="presentation"> Delete</button></td>
           </tr>
 
         </table>
 
 
-        <button *ngIf="budgetApproved && presentationApproved" mat-raised-button color="primary" (click)="salesBriefReady()"> Send to Sales </button>
+        <button *ngIf="budgetSheet&& presentation" mat-raised-button color="primary" (click)="salesBriefReady()"> Send to Sales </button>
   </div>
   <div>
   <form [formGroup]="influencersForm">
