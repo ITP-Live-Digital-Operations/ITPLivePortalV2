@@ -227,6 +227,86 @@ exports.sendFile = (req, res) => {
     });
 }
 
+exports.deleteBudgetSheetFile = (req, res) => {
+    const id = req.params.id;
+    SalesBrief.update({ BudgetSheetId: null }, {
+        where: { BudgetSheetId: id }
+    }).then( data => {
+    File.findByPk(id).then(data => {
+        const file = path.resolve(__dirname, '../../uploads/', data.filename);
+        console.log(`file path: ${file}`);
+        fs.unlinkSync(file);
+        File.destroy({
+            where: { id: id }
+        }).then( data => {
+            res.status(200).send({
+                status: 'success'
+            });
+        }).catch(err => {
+            console.log(err);
+            res.status(500).send({
+                status: 'fail',
+                message: err.message
+            });
+        });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).send({
+            status: 'fail',
+            message: err.message
+        });
+    }
+    );
+    }).catch(err => {
+        console.log(err);
+        res.status(500).send({
+            status: 'fail',
+            message: err.message
+        });
+    }
+    );
+}
+
+
+exports.deletePresentationFile = (req, res) => {
+    const id = req.params.id;
+    SalesBrief.update({ PresentationId: null }, {
+        where: { PresentationId: id }
+    }).then( data => {
+    File.findByPk(id).then(data => {
+        const file = path.resolve(__dirname, '../../uploads/', data.filename);
+        fs.unlinkSync(file);
+        File.destroy({
+            where: { id: id }
+        }).then( data => {
+            res.status(200).send({
+                status: 'success'
+            });
+        }).catch(err => {
+            console.log(err);
+            res.status(500).send({
+                status: 'fail',
+                message: err.message
+            });
+        });
+    }).catch(err => {
+        console.log(err);
+        res.status(500).send({
+            status: 'fail',
+            message: err.message
+        });
+    }
+    );
+    }
+    ).catch(err => {
+        console.log(err);
+        res.status(500).send({
+            status: 'fail',
+            message: err.message
+        });
+    }
+    );
+}
 
 
 

@@ -24,5 +24,10 @@ router.route('/sendFile/:id')
 router.route('/uploadTable')
        .post(asyncHandler(fileController.uploadTable), asyncHandler(fileController.uploadFile));
 
+router.route('/deleteBudgetSheetFile/:id')
+       .get(asyncHandler(fileController.deleteBudgetSheetFile));
+
+router.route('/deletePresentationFile/:id')
+       .get(asyncHandler(fileController.deletePresentationFile));
 
 module.exports = router;

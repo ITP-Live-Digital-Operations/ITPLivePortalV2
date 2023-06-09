@@ -48,6 +48,7 @@ export class ViewSalesBriefComponent implements OnInit {
   presentationNotes = '';
 
   assignedUser: any;
+  brief_id : any;
 
   user_id = this.userService.getID();
   role = this.userService.getRole();
@@ -235,7 +236,33 @@ export class ViewSalesBriefComponent implements OnInit {
 
   }
 
+  deactivateBrief() {
+    this.salesService
+      .changeStatus(this.brief_id, { status: 'InActive' })
+      .subscribe((data1: any) => {
+        alertify.success('Brief Deactivated');
 
+        this.taskService
+          .deactivateTask(this.brief_id)
+          .subscribe((data2: any) => {
+            alertify.success('Task Deactivated');
+            window.location.reload();
+          });
+      });
+  }
+
+  activateBrief() {
+    this.salesService
+      .changeStatus(this.brief_id, { status: 'Active' })
+      .subscribe((data1: any) => {
+        alertify.success('Brief Activated');
+
+        this.taskService.activateTask(this.brief_id).subscribe((data2: any) => {
+          alertify.success('Task Activated');
+          window.location.reload();
+        });
+      });
+  }
 
 
 
@@ -249,7 +276,7 @@ export class ViewSalesBriefComponent implements OnInit {
           this.brief = data;
 
           this.getTask(this.brief.data.id);
-
+          this.brief_id = this.brief.data.id;
           this.getSalesPerson(this.brief.data.CreatedbyID);
           this.budgetSheetId = data.data.BudgetSheetId;
 
@@ -359,6 +386,35 @@ export class ViewSalesBriefComponent implements OnInit {
       const url = window.URL.createObjectURL(blob);
       window.open(url); */
     });
+  }
+
+
+  deleteBudgetSheetFile(id: number) {
+    this.fileService.deleteBudgetSheetFile(id).subscribe(
+      (data) => {
+        alertify.success('File deleted successfully');
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      },
+      (error) => {
+        alertify.error('File delete error');
+      }
+    );
+  }
+
+  deletePresentationFile(id: number) {
+    this.fileService.deletePresentationFile(id).subscribe(
+      (data) => {
+        alertify.success('File deleted successfully');
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      },
+      (error) => {
+        alertify.error('File delete error');
+      }
+    );
   }
 
   getBudgetSheet(id: number) {

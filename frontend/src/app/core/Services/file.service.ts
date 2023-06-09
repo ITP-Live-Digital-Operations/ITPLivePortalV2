@@ -64,4 +64,14 @@ export class FileService {
   };
     return this.http.post(`${this.fileApiUrl}/uploadTable`, body );
   }
+
+
+  deletePresentationFile(id: number): Observable<any> {
+    return this.http.get(`${this.fileApiUrl}/deletePresentationFile/${id}`);
+  }
+
+  deleteBudgetSheetFile(id: number): Observable<any> {
+    return this.http.get(`${this.fileApiUrl}/deleteBudgetSheetFile/${id}`);
+  }
+
 }

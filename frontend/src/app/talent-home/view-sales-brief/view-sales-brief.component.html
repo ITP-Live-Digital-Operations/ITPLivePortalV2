@@ -1,6 +1,6 @@
 <div style="position: relative;">
 <div class="search-container">
-  <button mat-raised-button  style="margin-bottom: 1%; margin-left: 1%"class="back-button"color="primary"  (click)="backButton()">
+  <button mat-raised-button  style="margin-bottom: 1%; margin-left: 1%" class="back-button" color="primary"  (click)="backButton()">
     <mat-icon>arrow_back</mat-icon>
     BACK
   </button>
@@ -57,7 +57,8 @@
     </div>
 
     <div class="col-sm-6">
-      <div *ngIf="user_id === task.assigned_to">
+      <div *ngIf="user_id === task.assigned_to" class="form-container">
+        <div class="row">
         <form [formGroup]="progressForm" autocomplete="off">
           <div class="form-group">
             <mat-form-field appearance="outline">
@@ -69,6 +70,12 @@
           </div>
           <button mat-raised-button color="primary" (click)="submitProgress()"> Change Progress </button>
         </form>
+      </div>
+      <div class="row">
+        <div>
+          <h1 *ngIf="brief.data.Status == 'Active'" style="color : green"> Brief Status: {{brief.data.Status}} <button mat-raised-button color="accent" (click)="deactivateBrief()"> Deactivate </button></h1>  <h1 *ngIf="brief.data.Status != 'Active'" style="color : red"> Brief Status: {{brief.data.Status}} <button mat-raised-button color="primary" (click)="activateBrief()"> Activate </button> </h1>
+        </div>
+      </div>
       </div>
       <div>
         <table class="my-table">
@@ -92,7 +99,7 @@
 
             <td *ngIf="user_id === task.assigned_to"> <input  type="file" (change)="handleFileInput($event)" /> </td>
             <td *ngIf="user_id === task.assigned_to" >  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFileXlsx()">Upload</button> </td> <td *ngIf="budgetApproved"> Approved </td>
-            <td *ngIf="user_id === task.assigned_to" > <button mat-raised-button color="accent" *ngIf="budgetSheet"> Delete</button></td>
+            <td *ngIf="user_id === task.assigned_to" > <button mat-raised-button color="accent" (click)="deleteBudgetSheetFile(budgetSheet.id)" *ngIf="budgetSheet"> Delete</button></td>
           </tr>
 
           <tr>
@@ -103,7 +110,7 @@
 
             <td *ngIf="user_id === task.assigned_to"> <input  type="file" (change)="handleFileInput($event)" /> </td>
             <td *ngIf="user_id === task.assigned_to" >  <button mat-raised-button color="primary" *ngIf="user_id === task.assigned_to" (click)="uploadFilePPTX()">Upload</button></td> <td *ngIf="presentationApproved">  Approved </td>
-            <td *ngIf="user_id === task.assigned_to" > <button mat-raised-button color="accent" *ngIf="presentation"> Delete</button></td>
+            <td *ngIf="user_id === task.assigned_to" > <button mat-raised-button color="accent" (click)="deletePresentationFile(presentation.id)" *ngIf="presentation"> Delete</button></td>
           </tr>
 
         </table>
@@ -111,7 +118,7 @@
 
         <button *ngIf="budgetApproved && presentationApproved" mat-raised-button color="primary" (click)="salesBriefReady()"> Send to Sales </button>
   </div>
-  <div >
+  <div>
   <form [formGroup]="influencersForm">
     <table class="my-table" >
       <thead>

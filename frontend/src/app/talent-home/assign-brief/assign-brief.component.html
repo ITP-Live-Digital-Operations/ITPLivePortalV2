@@ -111,7 +111,7 @@
       </div>
     </form>
     </div>
-
+ 
     <div class="col-sm-6" *ngIf="assigned">
       <h1 *ngIf="brief.data.Status == 'Active'" style="color : green"> Brief Status: {{brief.data.Status}} <button mat-raised-button color="accent" (click)="deactivateBrief()"> Deactivate </button></h1>  <h1 *ngIf="brief.data.Status != 'Active'" style="color : red"> Brief Status: {{brief.data.Status}} <button mat-raised-button color="primary" (click)="activateBrief()"> Activate </button> </h1>
 
