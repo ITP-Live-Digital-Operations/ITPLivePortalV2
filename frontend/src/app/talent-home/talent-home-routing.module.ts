@@ -48,6 +48,7 @@ const routes: Routes = [
   { path: 'all-Briefs', component: AllBriefsComponent },
   { path: 'changePassword', component:ChangePasswordComponent , canActivate: [AuthGuard]},
   { path: 'execTasks/:id', component: ExecTasksComponent},
+  
   { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] }
 
 ]

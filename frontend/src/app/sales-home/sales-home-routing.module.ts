@@ -12,6 +12,9 @@ import { ViewSentBriefComponent } from './view-sent-brief/view-sent-brief.compon
 import { SalesUserGuideComponent } from './sales-user-guide/sales-user-guide.component';
 import { ChangePasswordComponent } from '../partial/change-password/change-password.component';
 import { NotificationPopupComponent } from '../partial/notification-popup/notification-popup.component';
+import { SalesHomeModule } from './sales-home.module';
+import { SalesInfluencersComponent } from './sales-influencers/sales-influencers.component';
+import { ShowInfluencersComponent } from '../partial/show-influencers/show-influencers.component';
 
 
 
@@ -25,7 +28,8 @@ const routes: Routes = [
   { path: 'sales-user-guide', component: SalesUserGuideComponent},
   { path:'changePassword', component: ChangePasswordComponent},
   { path: 'notifications', component: NotificationPopupComponent},
-
+  { path: 'influencers', component: ShowInfluencersComponent},
+  { path: 'influencer/:id', component: SalesInfluencersComponent},
   { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] }
 ]
 

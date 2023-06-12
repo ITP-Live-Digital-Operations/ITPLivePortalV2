@@ -11,6 +11,11 @@
     <mat-icon class="icon">search</mat-icon>
     </a>
     </div>
+    <div *ngIf=" userRole == 'sales'">
+      <a mat-icon-button  routerLink="sales/influencers">
+        <mat-icon class="icon">search</mat-icon>
+      </a>
+    </div>
 
 
     <div class="notification-container">

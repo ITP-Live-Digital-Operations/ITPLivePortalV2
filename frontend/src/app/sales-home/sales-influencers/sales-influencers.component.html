@@ -1,0 +1,332 @@
+
+<section style="background-color: #eeecec; position: relative;">
+  <div class="container py-5">
+    <button mat-raised-button  style="margin-bottom: 1%;"class="back-button"color="primary"  (click)="backButton()">
+      <mat-icon>arrow_back</mat-icon>
+      BACK
+    </button>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <h1 class="my-3">{{this.influencerData.data.Name}}</h1>
+            <p class="text-muted mb-1">{{this.influencerData.data.Gender}}</p>
+            <p class="text-muted mb-4">{{this.influencerData.data.Number}}</p>
+            <H2 class="text-muted mb-4">ITP rating score: {{influencerRating.average}} </H2>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">Platform</p>
+                <p class="mb-0">Handle</p>
+                <p class="mb-0">Followers</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <ng-container *ngIf="influencerData.data.InstagramLink">
+                  <a href="{{ influencerData.data.InstagramLink }}" target="_blank">
+                    <i class="bi bi-instagram" style="font-size: 2rem; color: orangered"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.InstagramLink">
+                  <i class="bi bi-instagram" style="font-size: 2rem; color: orangered"></i>
+                </ng-container>
+                <p class="mb-0">{{this.influencerData.data.InstagramHandle}}</p>
+                <p class="mb-0">{{this.influencerData.data.InstagramFollowers}}</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <ng-container *ngIf="influencerData.data.TiktokLink">
+                  <a href="{{ influencerData.data.TiktokLink }}" target="_blank">
+                    <i class="bi bi-tiktok" style="font-size: 2rem; color: purple"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.TiktokLink">
+                  <i class="bi bi-tiktok" style="font-size: 2rem; color: purple"></i>
+                </ng-container>
+                <p class="mb-0">{{this.influencerData.data.TiktokHandle}}</p>
+                <p class="mb-0">{{this.influencerData.data.TiktokFollowers}}</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <ng-container *ngIf="influencerData.data.FacebookLink">
+                  <a href="{{ influencerData.data.FacebookLink }}" target="_blank">
+                    <i class="bi bi-facebook" style="font-size: 2rem;"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.FacebookLink">
+                  <i class="bi bi-facebook" style="font-size: 2rem;"></i>
+                </ng-container>
+                <p class="mb-0">{{this.influencerData.data.FacebookHandle}}</p>
+                <p class="mb-0">{{this.influencerData.data.FacebookFollowers}}</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <ng-container *ngIf="influencerData.data.SnapchatLink">
+                  <a href="{{ influencerData.data.SnapchatLink }}" target="_blank">
+                    <i class="bi bi-snapchat" style="font-size: 2rem; color: yellow"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.SnapchatLink">
+                  <i class="bi bi-snapchat" style="font-size: 2rem; color: yellow"></i>
+                </ng-container>
+                <p class="mb-0">{{this.influencerData.data.SnapchatHandle}}</p>
+                <p class="mb-0">{{this.influencerData.data.SnapchatFollowers}}</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <ng-container *ngIf="influencerData.data.TwitterLink">
+                  <a href="{{ influencerData.data.TwitterLink }}" target="_blank">
+                    <i class="bi bi-twitter" style="font-size: 2rem;"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.TwitterLink">
+                  <i class="bi bi-twitter" style="font-size: 2rem;"></i>
+                </ng-container>
+                <p class="mb-0">{{this.influencerData.data.TwitterHandle}}</p>
+                <p class="mb-0">{{this.influencerData.data.TwitterFollowers}}</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <ng-container *ngIf="influencerData.data.YoutubeLink">
+                  <a href="{{ influencerData.data.YoutubeLink }}" target="_blank">
+                    <i class="bi bi-youtube" style="font-size: 2rem; color: red"></i>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="!influencerData.data.YoutubeLink">
+                  <i class="bi bi-youtube" style="font-size: 2rem; color: red"></i>
+                </ng-container>
+                <p class="mb-0">{{this.influencerData.data.YoutubeHandle}}</p>
+                <p class="mb-0">{{this.influencerData.data.YoutubeFollowers}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{influencerData.data.Email}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Main Content Language</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{influencerData.data.MainContentLanguage}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Main Vertical</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{influencerData.data.MainVertical}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nationality</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{influencerData.data.Nationality}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">ITP Relationship</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{influencerData.data.ItpRelationship}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Location</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{influencerData.data.CountryLocation}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">KSA License</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"*ngIf="influencerData.data.KSALicense == 0">No</p> <p class="text-muted mb-0"*ngIf="influencerData.data.KSALicense == 1">Yes</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">UAE License</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0"*ngIf="influencerData.data.UAELicense == 0">No</p> <p class="text-muted mb-0"*ngIf="influencerData.data.UAELicense == 1">Yes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <p class="mb-4"> Campaign Results </p>
+                <p class="mb-1" style="font-size: .77rem;">Followers</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Reach</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Engagement Rate</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;"> CPE</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">CPM </p>
+                <div class="progress rounded mb-2" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <p class="mb-4"> Statistics</p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p class="mb-0">Followers Percentage</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0">Males: {{influencerData.data.AudienceMalePer}}% Females: {{influencerData.data.AudienceFemalePer}}%</p>
+                  </div>
+                </div>
+
+                <p class="mt-4 mb-1" style="font-size: .77rem;">Female Followers Percentage </p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">UAE Followers</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;">KSA Followers</p>
+                <div class="progress rounded" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <p class="mt-4 mb-1" style="font-size: .77rem;"> Profit </p>
+                <div class="progress rounded mb-2" style="height: 5px;">
+                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Table -->
+    <div style="display: flex;
+    flex-wrap: wrap;
+    margin-top:3%;">
+    <H2>Logs</H2>
+    
+    </div>
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+
+        <ng-container matColumnDef="Influencer">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Influencer </th>
+          <td mat-cell *matCellDef="let element"> {{element.Influencer}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Campaign">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Campaign </th>
+          <td mat-cell *matCellDef="let element"> {{element.Campaign}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Platform">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform </th>
+          <td mat-cell *matCellDef="let element"> {{element.Platform}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Deliverable">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>  Deliverable </th>
+          <td mat-cell *matCellDef="let element"> {{element.Deliverable}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Currency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Currency </th>
+          <td mat-cell *matCellDef="let element"> {{element.Currency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Rate" >
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>  Rate </th>
+          <td mat-cell *matCellDef="let element"> {{element.Rate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Contact" >
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact </th>
+          <td mat-cell *matCellDef="let element"> {{element.Contact}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Date" >
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>  Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.Date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Time_to_reply" >
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>  Reply time </th>
+          <td mat-cell *matCellDef="let element"> {{element.Time_to_reply}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="Action" >
+          <th mat-header-cell *matHeaderCellDef> Action  </th>
+          <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="primary" (click)="editInfluencer(element.ID)">Change</button> |
+          <button mat-raised-button color="warn" (click)="deleteInfluencer(element.ID)">Delete</button>
+          </td>
+        </ng-container> -->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+      </table>
+      <mat-paginator [length]="100"
+                    [pageSize]="5"
+                    [pageSizeOptions]="[3, 5, 10, 25, 100]"
+                    aria-label="Select page">
+      </mat-paginator>
+      </div>
+  </div>
+</section>

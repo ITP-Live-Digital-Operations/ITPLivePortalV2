@@ -24,6 +24,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 import { ChangePasswordComponent } from './partial/change-password/change-password.component';
 import { NotificationPopupComponent } from './partial/notification-popup/notification-popup.component';
+import { ShowInfluencersComponent } from './partial/show-influencers/show-influencers.component';
 
 
 
@@ -40,6 +41,7 @@ import { NotificationPopupComponent } from './partial/notification-popup/notific
     AccessDeniedComponent,
     ChangePasswordComponent,
     NotificationPopupComponent,
+    ShowInfluencersComponent,
 
 
 

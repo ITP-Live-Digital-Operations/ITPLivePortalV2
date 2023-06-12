@@ -25,5 +25,9 @@ export class SalesHomeComponent {
     this.router.navigate(['home/sales/sentBriefs'])
   }
 
-  
+  redirectToInfluencers(){
+    this.router.navigate(['home/sales/influencers'])
+  }
+
+
 }

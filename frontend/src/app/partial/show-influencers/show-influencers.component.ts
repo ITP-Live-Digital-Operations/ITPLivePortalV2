@@ -1,26 +1,22 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { InfluencerModel } from 'src/app/Models/InfluencerModel';
-import { InfluencerService, PaginatedInfluencers } from 'src/app/core/Services/influencer.service';
-
-import { MatSort } from '@angular/material/sort';
-import * as alertify from 'alertifyjs'
-import { MatDialog } from '@angular/material/dialog';
-import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
-
-
 import { DataService } from 'src/app/core/Services/data.service';
+import { InfluencerService, PaginatedInfluencers } from 'src/app/core/Services/influencer.service';
 import { UserService } from 'src/app/core/Services/user.service';
-
+import { ModalpopupComponent } from 'src/app/talent-home/modalpopup/modalpopup.component';
+import * as alertify from 'alertifyjs'
 
 @Component({
-  selector: 'app-influencers',
-  templateUrl: './influencers.component.html',
-  styleUrls: ['./influencers.component.css']
+  selector: 'app-show-influencers',
+  templateUrl: './show-influencers.component.html',
+  styleUrls: ['./show-influencers.component.css']
 })
-export class InfluencersComponent implements OnInit {
+export class ShowInfluencersComponent implements OnInit {
   dataSource: any;
   UserDetails: any;
   accessToken: any;
@@ -174,7 +170,7 @@ export class InfluencersComponent implements OnInit {
 
 
   onRowClicked(row: any) {
-    this.route.navigate([`home/talent/influencerProfile/${row.id}`])
+    this.route.navigate([`home/sales/influencer/${row.id}`])
   }
 
   backButton() {
@@ -185,7 +181,7 @@ export class InfluencersComponent implements OnInit {
     this.route.navigate([`home/talent/newInfluencer`])
   }
 
-  displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'itpAverageRating' ,'Action'];
+  displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'itpAverageRating'];
 
 
 
@@ -230,25 +226,25 @@ export class InfluencersComponent implements OnInit {
 
     switch (platform) {
       case 'Instagram':
-        platformColumns = ['InstagramHandle', 'InstagramFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        platformColumns = ['InstagramHandle', 'InstagramFollowers', 'MainVertical', 'itpAverageRating'];
         break;
       case 'Tiktok':
-        platformColumns = ['TiktokHandle', 'TiktokFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        platformColumns = ['TiktokHandle', 'TiktokFollowers', 'MainVertical', 'itpAverageRating'];
         break;
       case 'Snapchat':
-        platformColumns = ['SnapchatHandle', 'SnapchatFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        platformColumns = ['SnapchatHandle', 'SnapchatFollowers', 'MainVertical', 'itpAverageRating'];
         break;
       case 'Twitter':
-        platformColumns = ['TwitterHandle', 'TwitterFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        platformColumns = ['TwitterHandle', 'TwitterFollowers', 'MainVertical', 'itpAverageRating'];
         break;
       case 'Facebook':
-        platformColumns = ['FacebookHandle', 'FacebookFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        platformColumns = ['FacebookHandle', 'FacebookFollowers', 'MainVertical', 'itpAverageRating'];
         break;
       case 'Youtube':
-        platformColumns = ['YoutubeHandle', 'YoutubeFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        platformColumns = ['YoutubeHandle', 'YoutubeFollowers', 'MainVertical', 'itpAverageRating'];
         break;
       default:
-        platformColumns = ['InstagramHandle', 'InstagramFollowers', 'MainVertical', 'itpAverageRating', 'Action']
+        platformColumns = ['InstagramHandle', 'InstagramFollowers', 'MainVertical', 'itpAverageRating']
         break;
     }
 
@@ -259,8 +255,3 @@ export class InfluencersComponent implements OnInit {
 }
 
 }
-
-
-
-
-
