@@ -84,6 +84,8 @@ export class InfluencerService{
   getNationalities(){
     return this.http.get(`${this.influencerApiURL}/getNationalities`)
   }
-  
 
+  getInfluencersWithRatings():Observable<PaginatedInfluencers>{
+    return this.http.get<PaginatedInfluencers>(`${this.influencerApiURL}/getInfluencersWithRatings`)
+  }
 }

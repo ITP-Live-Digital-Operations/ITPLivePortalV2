@@ -233,17 +233,36 @@ exports.getNationalities = (req, res) => {
 
 
 
-
-
-
-
-   /*  Influencer.findAll({ attributes: ['id','name'] })
-    .then(data => {
-        res.status(200).send(data);
+exports.getAllInfluencersWithAverageRating = (req, res) => {
+    Influencer.findAll({
+        include: [{
+            model: InfluencerRating,
+            as: 'influencerRating',
+            attributes: ['responseRate', 'contentQuality', 'creativity', 'flexibility', 'campaignPerformance' ]
+        }]
     })
-    .catch(err => {
-        res.status(500).send({
-            status: "error",
-            message: err.message
-        });
-    }); */
+        .then(data => {
+            let influencers = [];
+            data.forEach(element => {
+                let sum = 0;
+                element.influencerRating.forEach(rating => {
+                    sum = sum + rating.responseRate + rating.contentQuality + rating.creativity + rating.flexibility + rating.campaignPerformance;
+                });
+                let itpAverageRating = sum / (element.influencerRating.length * 5);
+                influencers.push({ ...element.get(), itpAverageRating });
+            });
+            res.status(200).send({influencers});
+        }
+        )
+        .catch(err => {
+            res.status(500).send({
+                status: "error",
+                message: err.message
+            });
+        }
+        );
+}
+
+
+
+    

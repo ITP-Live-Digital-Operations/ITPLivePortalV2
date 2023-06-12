@@ -57,4 +57,6 @@ export interface InfluencerModel
   Bio: string;
   Notes: string;
   Status: string;
+  influencerRating : Array<String>;
+  itpAverageRating : number;
  }

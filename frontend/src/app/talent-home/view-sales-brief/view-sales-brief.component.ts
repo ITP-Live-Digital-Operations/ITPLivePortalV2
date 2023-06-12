@@ -519,7 +519,7 @@ export class ViewSalesBriefComponent implements OnInit {
 
     console.log("progress", this.progressForm.value.Progress);
 
-    this.taskService.updateProgress(this.task.id, { progress :this.progressForm.value.Progress}).subscribe((data: any) => {});
-    window.location.reload();
+    this.taskService.updateProgress(this.task.id, { progress :this.progressForm.value.Progress}).subscribe((data: any) => { window.location.reload(); });
+
   }
 }

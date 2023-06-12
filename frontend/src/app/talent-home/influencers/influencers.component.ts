@@ -28,6 +28,9 @@ export class InfluencersComponent implements OnInit {
   locations: any[] = [];
   genders: any[] = [];
   nationalities: any[] = [];
+  platforms: any[] = ['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Facebook', 'Youtube'];
+
+  platform: string = 'Instagram';
 
   userRole = this.userService.getRole();
 
@@ -60,7 +63,7 @@ export class InfluencersComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetAllInfluencers();
-   
+
     this.getGenders();
     this.getLocations();
     this.getVerticals();
@@ -121,11 +124,12 @@ export class InfluencersComponent implements OnInit {
 
 
   GetAllInfluencers() {
-    this.service.getInfluencers().subscribe((response: PaginatedInfluencers) => {
+    this.service.getInfluencersWithRatings().subscribe((response: PaginatedInfluencers) => {
 
 
-      this.UserDetails = response;
-      this.dataSource = new MatTableDataSource<InfluencerModel>(this.UserDetails);
+      this.UserDetails = response
+      console.log(this.UserDetails);
+      this.dataSource = new MatTableDataSource<InfluencerModel>(this.UserDetails.influencers);
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -181,7 +185,7 @@ export class InfluencersComponent implements OnInit {
     this.route.navigate([`home/talent/newInfluencer`])
   }
 
-  displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'Action'];
+  displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'itpAverageRating' ,'Action'];
 
 
 
@@ -217,9 +221,46 @@ export class InfluencersComponent implements OnInit {
 
   }
 
+  applyPlatformFilter(platform: string) {
+    this.platform = platform;
+
+    const baseColumns = ['ID', 'Name', 'Gender', 'CountryLocation'];
+
+    let platformColumns = [];
+
+    switch (platform) {
+      case 'Instagram':
+        platformColumns = ['InstagramHandle', 'InstagramFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        break;
+      case 'Tiktok':
+        platformColumns = ['TiktokHandle', 'TiktokFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        break;
+      case 'Snapchat':
+        platformColumns = ['SnapchatHandle', 'SnapchatFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        break;
+      case 'Twitter':
+        platformColumns = ['TwitterHandle', 'TwitterFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        break;
+      case 'Facebook':
+        platformColumns = ['FacebookHandle', 'FacebookFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        break;
+      case 'Youtube':
+        platformColumns = ['YoutubeHandle', 'YoutubeFollowers', 'MainVertical', 'itpAverageRating', 'Action'];
+        break;
+      default:
+        platformColumns = ['InstagramHandle', 'InstagramFollowers', 'MainVertical', 'itpAverageRating', 'Action']
+        break;
+    }
+
+    this.displayedColumns = [...baseColumns, ...platformColumns];
+
+
+
+}
+
 }
 
 
 
 
-
+['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Facebook', 'Youtube'];
