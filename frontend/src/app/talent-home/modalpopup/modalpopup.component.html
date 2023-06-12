@@ -43,13 +43,8 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Email Address</mat-label>
-        <input matInput type="email" formControlName="Email" autocomplete="off" required />
-        <mat-error *ngIf="
-            updateInfluencerForm.controls['Email'].invalid &&
-            updateInfluencerForm.controls['Email'].touched
-          ">
-          Please enter a valid email address.
-        </mat-error>
+        <input matInput type="email" formControlName="Email" autocomplete="off"  />
+
       </mat-form-field>
     </div>
 

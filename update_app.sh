@@ -23,6 +23,6 @@ cd ../backend
 # Install backend dependencies
 npm install
 
-nvm use 16
+nvm use 10
 # Restart the backend application using PM2
 pm2 restart itpliveportal

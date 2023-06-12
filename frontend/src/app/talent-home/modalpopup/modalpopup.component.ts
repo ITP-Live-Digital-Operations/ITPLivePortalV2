@@ -28,7 +28,7 @@ export class ModalpopupComponent implements OnInit {
       Name: ['', [Validators.required]],
       Gender: ['', [Validators.required]],
       Number: ['',],
-      Email: ['', [Validators.email]],
+      Email: [''],
       MainContentLanguage: ['',],
       SubContentLang: ['',],
       MainVertical: ['',],

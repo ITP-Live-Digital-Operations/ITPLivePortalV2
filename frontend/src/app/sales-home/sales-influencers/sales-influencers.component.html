@@ -253,15 +253,11 @@
     flex-wrap: wrap;
     margin-top:3%;">
     <H2>Logs</H2>
-    
     </div>
     <div class="table-container">
       <table mat-table [dataSource]="dataSource" matSort>
-
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-
-
         <ng-container matColumnDef="Influencer">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Influencer </th>
           <td mat-cell *matCellDef="let element"> {{element.Influencer}} </td>
