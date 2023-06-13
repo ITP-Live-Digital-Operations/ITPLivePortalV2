@@ -190,3 +190,20 @@ exports.updateUser =  (req, res) => {
     }
     );
 };
+
+
+exports.resetCount =  (req, res) => {
+    User.update({loginCount: 0}, {where: {id: req.params.id}}).then( (data) => {
+        res.status(200).send({
+            status: "success",
+        });
+    }
+    )
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+}

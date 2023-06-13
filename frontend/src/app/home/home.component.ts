@@ -87,7 +87,9 @@ export class HomeComponent implements OnInit {
 
   }
 
-
+  redirectToSalesBriefs() {
+    this.router.navigate(['home/sales/viewAllSalesBriefs'])
+  }
 
 
 

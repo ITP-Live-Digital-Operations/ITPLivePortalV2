@@ -53,6 +53,11 @@
     <span>Sales Forms</span>
   </button>
 
+  <button *ngIf="userRole === 'sales'" mat-button class="menu-button" (click)="redirectToSalesBriefs()">
+    <mat-icon>home</mat-icon>
+    <span>All Briefs</span>
+  </button>
+
   <button mat-button class="menu-button" *ngIf=" userRole === 'talent' && userPrivilege_level > 7 " routerLink="talent/briefsFromSales">
       <mat-icon>assignment</mat-icon>
       <span >Sales Briefs</span>

@@ -13,7 +13,7 @@ export class EditUserComponent implements OnInit {
   userID: any
   user: any
   data: any
-  
+
   updateUserForm: FormGroup;
   roles = ['admin', 'talent', 'sales', 'campaign', 'superadmin']
   privilege_level = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
@@ -71,6 +71,20 @@ updateUser() {
 
 backButton() {
   window.history.back();
+}
+
+
+resetCount(id:any){
+  this.userService.resetCount(id).subscribe((res:any)=>{
+      if(res){
+        alertify.success("Count reset successfully.")
+
+      }
+      else{
+        alertify.error("Count could not be reset.")
+      }
+
+    })
 }
 
 }

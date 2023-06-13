@@ -126,7 +126,7 @@ export class LogsComponent implements OnInit {
     alertify.confirm("Remove Log", "Do you want to remove this Log ?", () => {
     this.service.deleteLog(id).subscribe((item) => {
       this.GetAllLogs();
-      alertify.success('Influencer Deleted.')
+      alertify.success('Log Deleted.')
     })
   }, function(){})
   }

@@ -33,30 +33,70 @@ button {
 
 
 .logo {
-  font-size: 6em;
+  font-size: 12vh;
   font-weight: bold;
   letter-spacing: 10px;
   position: absolute;
-  top: 50%;
-  left: 55%;
+  top: 60%;
+  left: 42%;
   transform: translate(-50%, -50%);
   width: 80%;
   height: 80%;
   justify-content: center;
   padding-left: 16%;
-  max-width: 100%;
-
-
+  max-width: auto;
 
 }
+@media (max-width: 1400px) {
+  .logo {
+    width: 90%;
+    height: 90%;
+    font-size: 10vh;
+  }
+}
+@media (max-width: 1200px) {
+  .logo {
+    width: 90%;
+    height: 90%;
+    font-size: 10vh;
+  }
+}
 
-
+@media (max-width: 1000px) {
+  .logo {
+    width: 90%;
+    height: 90%;
+    font-size: 9vh;
+  }
+}
 
 @media (max-width: 900px) {
   .logo {
     width: 90%;
     height: 90%;
-    font-size: 50px;
+    font-size: 7vh;
+  }
+}
+@media (max-width: 800px) {
+  .logo {
+    width: 90%;
+    height: 90%;
+    font-size: 6vh;
+  }
+}
+
+@media (max-width: 700px) {
+  .logo {
+    width: 90%;
+    height: 90%;
+    font-size: 5vh;
+  }
+}
+@media (max-width: 600px) {
+  .logo {
+    width: 90%;
+    height: 90%;
+    font-size: 4vh;
   }
 }
 
@@ -64,9 +104,19 @@ button {
   .logo {
     width: 90%;
     height: 90%;
-    font-size: 20px;
+    font-size: 3vh;
   }
 }
+
+@media (max-width: 400px) {
+  .logo {
+    width: 90%;
+    height: 90%;
+    font-size: 2vh;
+  }
+}
+
+
 
 mat-label{
   color: rgba(255, 255, 255, 0.336);

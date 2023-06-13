@@ -223,3 +223,21 @@ exports.updateProgress = (req, res) => {
     )
 }
 
+exports.deleteTask = (req, res) => {
+    const id = req.params.id;
+    Task.destroy({
+        where: { id: id }
+    }).then(data => {
+        res.status(200).send({
+            status: 'success',
+        })
+    }
+    )
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while deleting the Task."
+        });
+    }
+    )
+}

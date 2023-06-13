@@ -81,7 +81,9 @@ exports.updateInfluencer =  (req, res) => {
 }
 
 exports.getInfluencerIdsandNames = (req, res) => {
-    Influencer.findAll({ attributes: ['id', 'name'] })
+    Influencer.findAll({
+        where: { Status: "Active" }, 
+        attributes: ['id', 'name'] })
         .then(data => {
             res.status(200).send(data);
         })
@@ -173,6 +175,22 @@ exports.getGenders = (req, res) => {
             [Sequelize.fn('DISTINCT', Sequelize.col('gender')), 'genders']
         ]
     })
+        .then(data => {
+            res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: "error",
+                message: err.message
+            });
+        });
+}
+
+exports.getCities = (req, res) => {
+    Influencer.findAll({
+         attributes : [
+        [Sequelize.fn('DISTINCT', Sequelize.col('CityLocation')), 'cities']
+    ]})
         .then(data => {
             res.status(200).send(data);
         })

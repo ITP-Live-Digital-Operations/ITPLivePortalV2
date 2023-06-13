@@ -31,4 +31,7 @@ router.route('/getUserNameById/:id')
 
 router.route('/updateUser/:id')
     .patch(asyncHandler(userController.updateUser));
+
+router.route('/resetCount/:id')
+    .get(asyncHandler(userController.resetCount));    
 module.exports = router;

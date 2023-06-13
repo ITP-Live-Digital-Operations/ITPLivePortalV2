@@ -25,6 +25,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ChangePasswordComponent } from './partial/change-password/change-password.component';
 import { NotificationPopupComponent } from './partial/notification-popup/notification-popup.component';
 import { ShowInfluencersComponent } from './partial/show-influencers/show-influencers.component';
+import { UserNamePipePipe } from './pipes/user-name-pipe.pipe';
 
 
 
@@ -42,13 +43,14 @@ import { ShowInfluencersComponent } from './partial/show-influencers/show-influe
     ChangePasswordComponent,
     NotificationPopupComponent,
     ShowInfluencersComponent,
+    
 
 
 
 
 
   ],
-  imports: [ 
+  imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

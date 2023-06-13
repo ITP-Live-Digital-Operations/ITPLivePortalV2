@@ -85,7 +85,13 @@ export class InfluencerService{
     return this.http.get(`${this.influencerApiURL}/getNationalities`)
   }
 
+  getCities(){
+    return this.http.get(`${this.influencerApiURL}/getCities`)
+  }
+
   getInfluencersWithRatings():Observable<PaginatedInfluencers>{
     return this.http.get<PaginatedInfluencers>(`${this.influencerApiURL}/getInfluencersWithRatings`)
   }
+
+
 }

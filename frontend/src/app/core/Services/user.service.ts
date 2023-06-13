@@ -98,6 +98,10 @@ export class UserService {
     return this.http.patch(`${this.authApiURL}/updateUser/${id}`, inputdata)
   }
 
-  
+
+  resetCount(id:any){
+    return this.http.get(`${this.authApiURL}/resetCount/${id}` )
+  }
+
 
 }

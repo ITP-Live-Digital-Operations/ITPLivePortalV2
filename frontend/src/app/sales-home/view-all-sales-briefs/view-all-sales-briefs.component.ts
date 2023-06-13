@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 import { SalesService } from 'src/app/core/Services/sales.service';
 
 @Component({
-  selector: 'app-all-briefs',
-  templateUrl: './all-briefs.component.html',
-  styleUrls: ['./all-briefs.component.css']
+  selector: 'app-view-all-sales-briefs',
+  templateUrl: './view-all-sales-briefs.component.html',
+  styleUrls: ['./view-all-sales-briefs.component.css']
 })
-export class AllBriefsComponent implements OnInit {
+export class ViewAllSalesBriefsComponent implements OnInit {
 
   briefDetails: any;
   dataSource: any;
@@ -27,7 +27,7 @@ export class AllBriefsComponent implements OnInit {
 
 
   getAllBriefs(){
-    this.salesService.getAllAssignedBriefs().subscribe((data:any)=>{
+    this.salesService.getAllBriefs().subscribe((data:any)=>{
 
       this.briefDetails = data;
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
@@ -38,7 +38,7 @@ export class AllBriefsComponent implements OnInit {
 
 
 
-  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations' ,'Status', 'Action'];
+  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations' ,'Status', 'createdBy', 'Action'];
 
   onRowClicked(row: any) {
     this.viewedTask(row.id);
@@ -48,7 +48,7 @@ export class AllBriefsComponent implements OnInit {
     this.salesService.viewedByTalent(id).subscribe((data:any)=>{
       console.log(data)
     })
-    this.route.navigate([`home/talent/viewSalesBrief/${id}`]);
+    this.route.navigate([`home/sales/sentBrief/${id}`]);
   }
 
 
@@ -58,3 +58,4 @@ export class AllBriefsComponent implements OnInit {
 
 
 }
+

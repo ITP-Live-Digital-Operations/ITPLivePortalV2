@@ -11,6 +11,8 @@ import { ViewSentBriefsComponent } from './view-sent-briefs/view-sent-briefs.com
 import { ViewSentBriefComponent } from './view-sent-brief/view-sent-brief.component';
 import { SalesUserGuideComponent } from './sales-user-guide/sales-user-guide.component';
 import { SalesInfluencersComponent } from './sales-influencers/sales-influencers.component';
+import { ViewAllSalesBriefsComponent } from './view-all-sales-briefs/view-all-sales-briefs.component';
+import { UserNamePipePipe } from '../pipes/user-name-pipe.pipe';
 
 
 
@@ -23,7 +25,11 @@ import { SalesInfluencersComponent } from './sales-influencers/sales-influencers
     ViewSentBriefsComponent,
     ViewSentBriefComponent,
     SalesUserGuideComponent,
-    SalesInfluencersComponent
+    SalesInfluencersComponent,
+    ViewAllSalesBriefsComponent,
+    UserNamePipePipe,
+
+    
   ],
   imports: [
     CommonModule,

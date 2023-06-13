@@ -324,3 +324,23 @@ exports.updateBrief = (req, res) => {
     }
     );
 }
+
+exports.deleteBrief = (req, res) => {
+    SalesBrief.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then( data => {
+        res.status(200).send({
+            status: "success",
+            
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message
+        });
+    });
+}
+
+exports.all

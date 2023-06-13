@@ -15,6 +15,7 @@ import { NotificationPopupComponent } from '../partial/notification-popup/notifi
 import { SalesHomeModule } from './sales-home.module';
 import { SalesInfluencersComponent } from './sales-influencers/sales-influencers.component';
 import { ShowInfluencersComponent } from '../partial/show-influencers/show-influencers.component';
+import { ViewAllSalesBriefsComponent } from './view-all-sales-briefs/view-all-sales-briefs.component';
 
 
 
@@ -30,6 +31,9 @@ const routes: Routes = [
   { path: 'notifications', component: NotificationPopupComponent},
   { path: 'influencers', component: ShowInfluencersComponent},
   { path: 'influencer/:id', component: SalesInfluencersComponent},
+  { path: 'viewAllSalesBriefs', component : ViewAllSalesBriefsComponent},
+
+
   { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] }
 ]
 
