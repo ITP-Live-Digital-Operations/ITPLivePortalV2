@@ -253,6 +253,7 @@ exports.getNationalities = (req, res) => {
 
 exports.getAllInfluencersWithAverageRating = (req, res) => {
     Influencer.findAll({
+        where: { Status: "Active" },
         include: [{
             model: InfluencerRating,
             as: 'influencerRating',
