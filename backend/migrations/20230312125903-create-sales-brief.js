@@ -213,6 +213,10 @@ module.exports = {
         type: DataTypes.BOOLEAN,
         allowNull: false
       },
+      Priority: {
+        type: DataTypes.INTEGER,
+        defaultValue: 10
+      },
       ResultsViewed: {
         type: DataTypes.BOOLEAN,
         allowNull: false,

@@ -228,6 +228,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false
     },
+    Priority: {
+      type: DataTypes.INTEGER,
+      defaultValue: 100
+    },
     ResultsViewed: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

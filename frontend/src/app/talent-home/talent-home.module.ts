@@ -31,6 +31,7 @@ import { AgeGroupPipe } from '../pipes/age-group.pipe';
 import { SelectInfluencerDialogComponent } from './select-influencer-dialog/select-influencer-dialog.component';
 import { AllBriefsComponent } from './all-briefs/all-briefs.component';
 import { ExecTasksComponent } from './exec-tasks/exec-tasks.component';
+import { UserNamePipePipe } from '../pipes/user-name-pipe.pipe';
 
 
 
@@ -64,6 +65,8 @@ import { ExecTasksComponent } from './exec-tasks/exec-tasks.component';
     SelectInfluencerDialogComponent,
     AllBriefsComponent,
     ExecTasksComponent,
+    UserNamePipePipe,
+
 
   ],
   imports: [
@@ -71,6 +74,7 @@ import { ExecTasksComponent } from './exec-tasks/exec-tasks.component';
     TalentHomeRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+
   ]
 })
 export class TalentHomeModule { }

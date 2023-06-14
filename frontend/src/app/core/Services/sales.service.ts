@@ -88,4 +88,15 @@ export class SalesService {
     return this.http.patch(`${this.salesApiURL}/updateBrief/${id}`, inputdata)
   }
 
+  getAllActiveBriefs(){
+    return this.http.get(`${this.salesApiURL}/getAllActiveBriefs`)
+  }
+
+  setPriority(id:any, inputdata :any){
+    return this.http.patch(`${this.salesApiURL}/setPriority/${id}`, inputdata)
+  }
+
+  updatePriorities(updatedPriorities: {id: string, newPriority: number}[]){
+    return this.http.patch(`${this.salesApiURL}/updatePriorities`, updatedPriorities);
+  }
 }

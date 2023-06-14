@@ -30,6 +30,7 @@ export class AllBriefsComponent implements OnInit {
     this.salesService.getAllAssignedBriefs().subscribe((data:any)=>{
 
       this.briefDetails = data;
+      this.briefDetails.data.sort((a : any, b : any) => a.Priority - b.Priority);
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -38,7 +39,7 @@ export class AllBriefsComponent implements OnInit {
 
 
 
-  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations' ,'Status', 'Action'];
+  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','CampaignStartDate', 'CampaignObjective', 'Priority' ,'Status', 'Action'];
 
   onRowClicked(row: any) {
     this.viewedTask(row.id);

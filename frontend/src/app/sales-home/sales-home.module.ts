@@ -13,6 +13,7 @@ import { SalesUserGuideComponent } from './sales-user-guide/sales-user-guide.com
 import { SalesInfluencersComponent } from './sales-influencers/sales-influencers.component';
 import { ViewAllSalesBriefsComponent } from './view-all-sales-briefs/view-all-sales-briefs.component';
 import { UserNamePipePipe } from '../pipes/user-name-pipe.pipe';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -29,13 +30,15 @@ import { UserNamePipePipe } from '../pipes/user-name-pipe.pipe';
     ViewAllSalesBriefsComponent,
     UserNamePipePipe,
 
-    
+
+
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     SalesHomeRoutingModule,
+    DragDropModule,
 
 
   ]

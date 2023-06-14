@@ -26,17 +26,19 @@ export class BriefsFromSalesComponent implements OnInit {
     this.getAllBriefs()
   }
 
-  
+
   backButton() {
     window.history.back();
   }
 
-  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'ViewedByTalent','Status', 'Action'];
+  displayedColumns: string[] =  [ 'CampaignName','Agency', 'Client', 'CampaignObjective' ,'CampaignStartDate', 'Priority', 'ViewedByTalent','SubmittedBy', 'Status', 'Action'];
 
   getAllBriefs(){
     this.salesService.getAllBriefs().subscribe((data:any)=>{
 
       this.briefDetails = data;
+      this.briefDetails.data.sort((a : any, b : any) => a.Priority - b.Priority);
+
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

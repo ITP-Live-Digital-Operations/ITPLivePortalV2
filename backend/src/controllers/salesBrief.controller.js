@@ -52,6 +52,24 @@ exports.getAllBriefs = (req, res) => {
         });
 }
 
+exports.getAllActiveBriefs = (req, res) => {
+    SalesBrief.findAll(
+        { where: { Status : 'Active'} }
+    )
+        .then(data => {
+            res.status(200).send({
+                status: "success",
+                data: data
+            });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving SalesBriefs."
+            });
+        });
+}
+
 exports.getAllAssignedBriefs = (req, res) => {
     SalesBrief.findAll({
         where: {
@@ -343,4 +361,50 @@ exports.deleteBrief = (req, res) => {
     });
 }
 
-exports.all
+
+exports.setPriority = (req, res) => {
+    SalesBrief.update({Priority: req.body.priority}, {
+        where: {
+            id: req.params.id
+        }
+    }).then( data => {
+        res.status(200).send({
+            status: "success",
+            
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message
+        });
+    }
+    );
+}
+
+
+
+
+exports.updatePriorities = (req, res) => {
+  const updates = req.body;
+
+  SalesBrief.sequelize.transaction(transaction => 
+    Promise.all(updates.map((item) => {
+      return SalesBrief.update({ Priority: item.newPriority }, {
+        where: { id: item.id },
+        transaction: transaction
+      });
+    }))
+  )
+  .then(() => {
+    res.status(200).send({
+      status: "success",
+      message: "Priorities updated successfully"
+    });
+  })
+  .catch(err => {
+    res.status(500).send({
+      status: "error",
+      message: err.message
+    });
+  });
+};

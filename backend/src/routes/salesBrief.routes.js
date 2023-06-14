@@ -53,4 +53,13 @@ router.route('/viewMyBriefs/:id')
 
 router.route('/updateBrief/:id')
     .patch(asyncHandler(salesBriefController.updateBrief))
+
+router.route('/getAllActiveBriefs')
+    .get(asyncHandler(salesBriefController.getAllActiveBriefs))
+
+router.route('/setPriority/:id')
+    .patch(asyncHandler(salesBriefController.setPriority))
+    
+router.route('/updatePriorities')
+    .patch(asyncHandler(salesBriefController.updatePriorities))
 module.exports = router;
