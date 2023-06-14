@@ -32,6 +32,7 @@ import { SelectInfluencerDialogComponent } from './select-influencer-dialog/sele
 import { AllBriefsComponent } from './all-briefs/all-briefs.component';
 import { ExecTasksComponent } from './exec-tasks/exec-tasks.component';
 import { UserNamePipePipe } from '../pipes/user-name-pipe.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -65,7 +66,7 @@ import { UserNamePipePipe } from '../pipes/user-name-pipe.pipe';
     SelectInfluencerDialogComponent,
     AllBriefsComponent,
     ExecTasksComponent,
-    UserNamePipePipe,
+
 
 
   ],
@@ -74,6 +75,7 @@ import { UserNamePipePipe } from '../pipes/user-name-pipe.pipe';
     TalentHomeRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    SharedModule
 
   ]
 })

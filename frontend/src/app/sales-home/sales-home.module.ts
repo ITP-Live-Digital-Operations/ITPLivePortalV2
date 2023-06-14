@@ -14,6 +14,7 @@ import { SalesInfluencersComponent } from './sales-influencers/sales-influencers
 import { ViewAllSalesBriefsComponent } from './view-all-sales-briefs/view-all-sales-briefs.component';
 import { UserNamePipePipe } from '../pipes/user-name-pipe.pipe';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -28,7 +29,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     SalesUserGuideComponent,
     SalesInfluencersComponent,
     ViewAllSalesBriefsComponent,
-    UserNamePipePipe,
+
 
 
 
@@ -39,6 +40,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     SalesHomeRoutingModule,
     DragDropModule,
+    SharedModule
 
 
   ]
