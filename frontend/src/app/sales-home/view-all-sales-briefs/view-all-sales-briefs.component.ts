@@ -62,7 +62,7 @@ drop(event: CdkDragDrop<string[]>) {
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
 
 
-
+   
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
