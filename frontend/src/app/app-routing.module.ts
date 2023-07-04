@@ -13,10 +13,6 @@ const routes: Routes = [
 
   { path: 'login', component: LoginPageComponent },
 
-  {
-    path: 'EAFC',
-    component: EafcComponent,
-  },
 
 
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
@@ -26,7 +22,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard],
     data: { allowedRoles: ['Talent Head', 'talent', 'admin', 'superadmin'] }
 
-  }, 
+  },
   {
     path: 'sales',
     loadChildren: () => import('./sales-home/sales-home.module').then(m => m.SalesHomeModule),
@@ -44,6 +40,11 @@ const routes: Routes = [
 
 
  },
+
+ {
+  path: 'EAFC',
+  component: EafcComponent,
+},
 
   { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
