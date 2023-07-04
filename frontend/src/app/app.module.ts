@@ -25,6 +25,9 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { ChangePasswordComponent } from './partial/change-password/change-password.component';
 import { NotificationPopupComponent } from './partial/notification-popup/notification-popup.component';
 import { ShowInfluencersComponent } from './partial/show-influencers/show-influencers.component';
+import { ClientProjectsModule } from './client-projects/client-projects.module';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 
 
@@ -46,9 +49,6 @@ import { ShowInfluencersComponent } from './partial/show-influencers/show-influe
 
 
 
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -61,6 +61,9 @@ import { ShowInfluencersComponent } from './partial/show-influencers/show-influe
     CoreModule,
     LoginModule,
     NgxHttpRequestModule.forRoot(),
+    ClientProjectsModule,
+    CarouselModule,
+
 
 
   ],

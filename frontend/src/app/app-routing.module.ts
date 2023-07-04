@@ -7,10 +7,17 @@ import { HomeComponent } from './home/home.component';
 import { StatusComponent } from './status/status.component';
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { EafcComponent } from './client-projects/eafc/eafc.component';
 
 const routes: Routes = [
 
   { path: 'login', component: LoginPageComponent },
+
+  {
+    path: 'EAFC',
+    component: EafcComponent,
+  },
+
 
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
   {
@@ -19,7 +26,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard],
     data: { allowedRoles: ['Talent Head', 'talent', 'admin', 'superadmin'] }
 
-  },
+  }, 
   {
     path: 'sales',
     loadChildren: () => import('./sales-home/sales-home.module').then(m => m.SalesHomeModule),
@@ -42,9 +49,6 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 
   { path: '**', component: StatusComponent, canActivate: [AuthGuard] },
-
-
-
 
 ];
 
