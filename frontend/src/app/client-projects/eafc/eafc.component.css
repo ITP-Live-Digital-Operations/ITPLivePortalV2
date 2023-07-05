@@ -350,6 +350,10 @@ ul a:hover {
   align-content: right;
 }
 
+youtube {
+  width : 40%
+}
+
 
 
 footer {
@@ -370,7 +374,7 @@ footer {
 
 
 .foot {
-  margin: 0;
+  margin: 1;
   border: 1px #fff;
 
 }
