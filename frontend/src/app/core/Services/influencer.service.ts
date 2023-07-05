@@ -15,17 +15,12 @@ export interface PaginatedInfluencers {
   data: InfluencerModel[];
   meta: PaginationMeta;
 }
-
-
-
+ 
 @Injectable({
   providedIn: 'root'
 })
 
 export class InfluencerService{
-
-
-
 
   constructor(private http:HttpClient, ){}
 

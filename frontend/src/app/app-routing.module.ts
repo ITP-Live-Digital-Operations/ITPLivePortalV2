@@ -7,10 +7,13 @@ import { HomeComponent } from './home/home.component';
 import { StatusComponent } from './status/status.component';
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+import { EafcComponent } from './client-projects/eafc/eafc.component';
 
 const routes: Routes = [
 
   { path: 'login', component: LoginPageComponent },
+
+
 
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
   {
@@ -38,13 +41,15 @@ const routes: Routes = [
 
  },
 
+ {
+  path: 'EAFC',
+  component: EafcComponent,
+},
+
   { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 
   { path: '**', component: StatusComponent, canActivate: [AuthGuard] },
-
-
-
 
 ];
 
