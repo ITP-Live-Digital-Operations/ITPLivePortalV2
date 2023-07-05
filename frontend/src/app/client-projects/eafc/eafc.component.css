@@ -284,14 +284,20 @@ ul a:hover {
 }
 
 .twitter {
-  width: 50%;
+  width: 60%;
   max-height: 50%;
   height: auto;
   background-image: url("./assetsEA/ea-assets/Myproject8.jpg");
-
+  background-color: #243447;
   text-align: center;
   align-content: center;
 
+}
+
+.tweets {
+  width : 550px;
+  background-color: #141d26;
+  padding-left: 7%;
 }
 
 .twitter a {
@@ -308,6 +314,7 @@ ul a:hover {
 
 #twitter {
   display: flex;
+  background-color: #141d26;
 }
 
 #twitter img {
@@ -324,7 +331,7 @@ ul a:hover {
 
 .youtube {
   background-image: url("./assetsEA/ea-assets/Myproject8.jpg");
-  width: 50%;
+  width: 60%;
   text-decoration: none;
   font-size: 250px;
   text-align: center;
@@ -338,8 +345,9 @@ ul a:hover {
 
 }
 
-.youtoo youtube {
-  width: 100%
+.youtoo iframe {
+  width: 40%;
+  align-content: right;
 }
 
 
@@ -379,6 +387,7 @@ footer a {
   color: #07F468;
   text-decoration: none;
 }
+
 
 /* iPhone X, XR, 13, 13 Pro Max */
 @media (max-width: 428px) {
