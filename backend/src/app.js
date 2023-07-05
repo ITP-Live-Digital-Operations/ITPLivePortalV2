@@ -55,9 +55,9 @@ app.get('/api/powerbi/token', async (req, res) => {
 
 app.use(helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000", "https://www.youtube.com/", " https://cdn.embedplaylist.com/js/playlist.js", "https://platform.twitter.com/widgets.js"],
-      connectSrc: ["'self'", "https://cdn.jsdelivr.net", 'http://localhost:3000', "https://www.youtube.com/", " https://cdn.embedplaylist.com/js/playlist.js", "https://platform.twitter.com/widgets.js"],
-      scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000", "https://www.youtube.com/", " https://cdn.embedplaylist.com/js/playlist.js", "https://platform.twitter.com/widgets.js"],
+      defaultSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000", "https://www.youtube.com/", " https://cdn.embedplaylist.com/js/playlist.js", "https://platform.twitter.com/widgets.js", " https://platform.twitter.com/widgets/widget_iframe.2b2d73daf636805223fb11d48f3e94f7.html?origin=https%3A%2F%2Fitplive.itpshare.com"],
+      connectSrc: ["'self'", "https://cdn.jsdelivr.net", 'http://localhost:3000', "https://www.youtube.com/", " https://cdn.embedplaylist.com/js/playlist.js", "https://platform.twitter.com/widgets.js", " https://platform.twitter.com/widgets/widget_iframe.2b2d73daf636805223fb11d48f3e94f7.html?origin=https%3A%2F%2Fitplive.itpshare.com"],
+      scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000", "https://www.youtube.com/", " https://cdn.embedplaylist.com/js/playlist.js", "https://platform.twitter.com/widgets.js", " https://platform.twitter.com/widgets/widget_iframe.2b2d73daf636805223fb11d48f3e94f7.html?origin=https%3A%2F%2Fitplive.itpshare.com"],
     }
   }));
 
