@@ -55,9 +55,9 @@ app.get('/api/powerbi/token', async (req, res) => {
 
 app.use(helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000", "https://www.youtube.com/"],
-      connectSrc: ["'self'", "https://cdn.jsdelivr.net", 'http://localhost:3000', "https://www.youtube.com/"],
-      scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000", "https://www.youtube.com/"],
+      defaultSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000", "https://www.youtube.com/", " https://cdn.embedplaylist.com/js/playlist.js", "https://platform.twitter.com/widgets.js"],
+      connectSrc: ["'self'", "https://cdn.jsdelivr.net", 'http://localhost:3000', "https://www.youtube.com/", " https://cdn.embedplaylist.com/js/playlist.js", "https://platform.twitter.com/widgets.js"],
+      scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000", "https://www.youtube.com/", " https://cdn.embedplaylist.com/js/playlist.js", "https://platform.twitter.com/widgets.js"],
     }
   }));
 
