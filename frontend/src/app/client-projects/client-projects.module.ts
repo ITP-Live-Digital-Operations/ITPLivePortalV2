@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClientProjectsRoutingModule } from './client-projects-routing.module';
@@ -27,6 +27,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CarouselModule,
 
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   exports: []
 })
 export class ClientProjectsModule { }

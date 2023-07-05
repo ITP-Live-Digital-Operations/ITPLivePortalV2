@@ -176,6 +176,8 @@ ul a:hover {
   color: #fff; /* adjust color as per your requirements */
   font-size: 60px;
   font-family: Neue;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .video-background p {
@@ -183,11 +185,16 @@ ul a:hover {
   color: #fff; /* adjust color as per your requirements */
   font-size: 30px;
   font-family: Neue;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .video-background a.btn {
   top: 60%; /* adjust these percentages as per your requirements */
   color: #000; /* adjust color as per your requirements */
+  font-size: 25px;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 
@@ -212,9 +219,10 @@ ul a:hover {
   right: 41%;
   padding-bottom: 5%;
   background-image: url("./assetsEA/ea-assets/logo-test.png");
-  width: 302.646px;
+  width: 300px;
   min-height: 251px;
-  transform: scale(0.9);
+  transform: scale(1.2);
+  margin-bottom: 3%;
 
 }
 
@@ -250,7 +258,7 @@ ul a:hover {
 
 }
 
-.socail-name {
+.socail-name  {
   font-size: 100px;
   text-align: center;
   display: flex;
@@ -259,6 +267,11 @@ ul a:hover {
   font-family: Neue;
 
 
+}
+
+.socail-name h1 {
+  font-size: 100px;
+  font-family: Neue;
 }
 
 
@@ -351,7 +364,10 @@ footer {
 .foot {
   margin: 0;
   border: 1px #fff;
+
 }
+
+
 
 footer img {
   width: 130px;
