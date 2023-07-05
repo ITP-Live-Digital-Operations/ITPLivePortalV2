@@ -10,51 +10,64 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { EafcComponent } from './client-projects/eafc/eafc.component';
 
 const routes: Routes = [
-
   { path: 'login', component: LoginPageComponent },
 
-
-
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
   {
-    path: 'talent',
-    loadChildren: () => import('./talent-home/talent-home.module').then(m => m.TalentHomeModule),
-    canActivate: [AuthGuard, RoleGuard],
-    data: { allowedRoles: ['Talent Head', 'talent', 'admin', 'superadmin'] }
-
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'talent',
+        loadChildren: () =>
+          import('./talent-home/talent-home.module').then(
+            (m) => m.TalentHomeModule
+          ),
+        canActivate: [AuthGuard, RoleGuard],
+        data: {
+          allowedRoles: ['Talent Head', 'talent', 'admin', 'superadmin'],
+        },
+      },
+      {
+        path: 'sales',
+        loadChildren: () =>
+          import('./sales-home/sales-home.module').then(
+            (m) => m.SalesHomeModule
+          ),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { allowedRoles: ['Sales Head', 'sales', 'admin', 'superadmin'] },
+      },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('./admin/admin.module').then((m) => m.AdminModule),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { allowedRoles: ['admin', 'superadmin'] },
+      },
+    ],
   },
   {
-    path: 'sales',
-    loadChildren: () => import('./sales-home/sales-home.module').then(m => m.SalesHomeModule),
-    canActivate: [AuthGuard, RoleGuard],
-    data: { allowedRoles: ['Sales Head', 'sales', 'admin', 'superadmin'] }
+    path: 'EAFC',
+    component: EafcComponent,
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canActivate: [AuthGuard, RoleGuard],
-    data: { allowedRoles: ['admin', 'superadmin'] }
+    path: 'eafc',
+    redirectTo: 'EAFC',
+    pathMatch: 'full',
   },
 
-]
-
-
- },
-
- {
-  path: 'EAFC',
-  component: EafcComponent,
-},
-
-  { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  {
+    path: 'access-denied',
+    component: AccessDeniedComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   { path: '**', component: StatusComponent, canActivate: [AuthGuard] },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
