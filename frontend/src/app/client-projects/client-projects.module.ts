@@ -5,8 +5,9 @@ import { ClientProjectsRoutingModule } from './client-projects-routing.module';
 import { EafcComponent } from './eafc/eafc.component';
 
 import { SafePipe } from '../core/pipes/safe.pipe';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
-import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 
 
@@ -24,10 +25,11 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   imports: [
     CommonModule,
     ClientProjectsRoutingModule,
-    CarouselModule,
+    SlickCarouselModule
+
 
   ],
-  schemas: [NO_ERRORS_SCHEMA],
+  schemas: [ NO_ERRORS_SCHEMA ],
   exports: []
 })
 export class ClientProjectsModule { }
