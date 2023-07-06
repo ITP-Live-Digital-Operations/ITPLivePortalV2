@@ -288,7 +288,7 @@ ul a:hover {
   max-height: 50%;
   height: auto;
   background-image: url("./assetsEA/ea-assets/Myproject8.jpg");
-  background-color: #243447;
+  background-color: #161616;
   text-align: center;
   align-content: center;
 
@@ -296,7 +296,7 @@ ul a:hover {
 
 .tweets {
   width : 550px;
-  background-color: #141d26;
+  background-color: #161616;
   padding-left: 7%;
 }
 
@@ -314,7 +314,7 @@ ul a:hover {
 
 #twitter {
   display: flex;
-  background-color: #141d26;
+  background-color: #161616;
 }
 
 #twitter img {
@@ -346,15 +346,19 @@ ul a:hover {
 }
 
 .youtoo iframe {
-  width: 40%;
+  width: 100%;
   align-content: right;
 }
 
 youtube {
-  width : 40%
+  width : 100%
 }
 
-
+.carousel{
+  width : 70%;
+  height: 950px;
+  overflow: hidden;
+}
 
 footer {
   background-color: #252525;
@@ -379,7 +383,14 @@ footer {
 
 }
 
+.slick-prev:before,
+.slick-next:before {
+    color: black;
+}
 
+.slick-dots li button:before {
+    color: black;
+}
 
 footer img {
   width: 130px;

@@ -26,7 +26,7 @@ import { ChangePasswordComponent } from './partial/change-password/change-passwo
 import { NotificationPopupComponent } from './partial/notification-popup/notification-popup.component';
 import { ShowInfluencersComponent } from './partial/show-influencers/show-influencers.component';
 import { ClientProjectsModule } from './client-projects/client-projects.module';
-import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
 
@@ -62,7 +62,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     LoginModule,
     NgxHttpRequestModule.forRoot(),
     ClientProjectsModule,
-    CarouselModule,
+    SlickCarouselModule
 
 
 
