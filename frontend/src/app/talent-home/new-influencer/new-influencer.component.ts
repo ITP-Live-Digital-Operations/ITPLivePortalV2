@@ -82,8 +82,8 @@ export class NewInfluencerComponent {
       AudienceTopCountries3: ['',],
       AudienceTopCountries3Percentage: [],
 
-      KSALicense: ['',],
-      UAELicense: ['',],
+      KSALicense: [],
+      UAELicense: [],
 
       AgencyContactPerson: ['',],
       AgencyNumber: [],

@@ -84,8 +84,8 @@ export class NewCelebrityComponent {
       AudienceTopCountries3: ['',],
       AudienceTopCountries3Percentage: [],
 
-      KSALicense: ['',],
-      UAELicense: ['',],
+      KSALicense: [],
+      UAELicense: [],
 
       AgencyContactPerson: ['',],
       AgencyNumber: [],
