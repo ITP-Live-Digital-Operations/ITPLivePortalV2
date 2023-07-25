@@ -40,27 +40,27 @@ export class NewInfluencerComponent {
       Address: ['',],
 
       InstagramHandle: ['', [Validators.required]],
-      InstagramFollowers: ['',],
+      InstagramFollowers: [],
       InstagramLink: ['',],
 
       TiktokHandle: ['',],
-      TiktokFollowers: ['',],
+      TiktokFollowers: [],
       TiktokLink: ['',],
 
       SnapchatHandle: ['',],
-      SnapchatFollowers: ['',],
+      SnapchatFollowers: [],
       SnapchatLink: ['',],
 
       TwitterHandle: ['',],
-      TwitterFollowers: ['',],
+      TwitterFollowers: [],
       TwitterLink: ['',],
 
       FacebookHandle: ['',],
-      FacebookFollowers: ['',],
+      FacebookFollowers: [],
       FacebookLink: ['',],
 
       YoutubeHandle: ['',],
-      YoutubeFollowers: ['',],
+      YoutubeFollowers: [],
       YoutubeLink: ['',],
 
       AudienceMalePer: ['',],
