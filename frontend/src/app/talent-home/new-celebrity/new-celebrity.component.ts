@@ -42,53 +42,53 @@ export class NewCelebrityComponent {
       Address: ['',],
 
       InstagramHandle: ['', [Validators.required]],
-      InstagramFollowers: ['',],
+      InstagramFollowers: [],
       InstagramLink: ['',],
 
       TiktokHandle: ['',],
-      TiktokFollowers: ['',],
+      TiktokFollowers: [],
       TiktokLink: ['',],
 
       SnapchatHandle: ['',],
-      SnapchatFollowers: ['',],
+      SnapchatFollowers: [],
       SnapchatLink: ['',],
 
       TwitterHandle: ['',],
-      TwitterFollowers: ['',],
+      TwitterFollowers: [],
       TwitterLink: ['',],
 
       FacebookHandle: ['',],
-      FacebookFollowers: ['',],
+      FacebookFollowers: [],
       FacebookLink: ['',],
 
       YoutubeHandle: ['',],
-      YoutubeFollowers: ['',],
+      YoutubeFollowers: [],
       YoutubeLink: ['',],
 
-      AudienceMalePer: ['',],
-      AudienceFemalePer: ['',],
+      AudienceMalePer: [],
+      AudienceFemalePer: [],
 
-      AgeGroup1317: ['',],
-      AgeGroup1824: ['',],
-      AgeGroup2534: ['',],
-      AgeGroup3544: ['',],
-      AgeGroup4554: ['',],
-      AgeGroup55: ['',],
+      AgeGroup1317: [],
+      AgeGroup1824: [],
+      AgeGroup2534: [],
+      AgeGroup3544: [],
+      AgeGroup4554: [],
+      AgeGroup55: [],
 
       AudienceTopCountries1: ['',],
-      AudienceTopCountries1Percentage: ['',],
+      AudienceTopCountries1Percentage: [],
 
       AudienceTopCountries2: ['',],
-      AudienceTopCountries2Percentage: ['',],
+      AudienceTopCountries2Percentage: [],
 
       AudienceTopCountries3: ['',],
-      AudienceTopCountries3Percentage: ['',],
+      AudienceTopCountries3Percentage: [],
 
       KSALicense: ['',],
       UAELicense: ['',],
 
       AgencyContactPerson: ['',],
-      AgencyNumber: ['',],
+      AgencyNumber: [],
       AgencyEmail: ['', [Validators.email]],
 
       PreviousBrands: ['',],

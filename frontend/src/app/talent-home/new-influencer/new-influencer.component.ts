@@ -66,12 +66,12 @@ export class NewInfluencerComponent {
       AudienceMalePer: [],
       AudienceFemalePer: [],
 
-      AgeGroup1317: ['',],
-      AgeGroup1824: ['',],
-      AgeGroup2534: ['',],
-      AgeGroup3544: ['',],
-      AgeGroup4554: ['',],
-      AgeGroup55: ['',],
+      AgeGroup1317: [],
+      AgeGroup1824: [],
+      AgeGroup2534: [],
+      AgeGroup3544: [],
+      AgeGroup4554: [],
+      AgeGroup55: [],
 
       AudienceTopCountries1: ['',],
       AudienceTopCountries1Percentage: [],
