@@ -252,6 +252,6 @@ module.exports = {
     });
   },
   async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable('Celebrities');
+    await queryInterface.dropTable('celebrity');
   }
 };

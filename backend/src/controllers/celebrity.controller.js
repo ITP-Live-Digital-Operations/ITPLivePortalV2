@@ -12,6 +12,7 @@ exports.createCelebrity =  (req, res) => {
         });
     })
     .catch(err => {
+        console.log(err);
         res.status(500).send({
             status: "error",
             message: err.message
