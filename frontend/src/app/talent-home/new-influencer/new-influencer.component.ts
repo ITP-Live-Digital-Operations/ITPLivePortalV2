@@ -63,8 +63,8 @@ export class NewInfluencerComponent {
       YoutubeFollowers: [],
       YoutubeLink: ['',],
 
-      AudienceMalePer: ['',],
-      AudienceFemalePer: ['',],
+      AudienceMalePer: [],
+      AudienceFemalePer: [],
 
       AgeGroup1317: ['',],
       AgeGroup1824: ['',],
@@ -74,19 +74,19 @@ export class NewInfluencerComponent {
       AgeGroup55: ['',],
 
       AudienceTopCountries1: ['',],
-      AudienceTopCountries1Percentage: ['',],
+      AudienceTopCountries1Percentage: [],
 
       AudienceTopCountries2: ['',],
-      AudienceTopCountries2Percentage: ['',],
+      AudienceTopCountries2Percentage: [],
 
       AudienceTopCountries3: ['',],
-      AudienceTopCountries3Percentage: ['',],
+      AudienceTopCountries3Percentage: [],
 
       KSALicense: ['',],
       UAELicense: ['',],
 
       AgencyContactPerson: ['',],
-      AgencyNumber: ['',],
+      AgencyNumber: [],
       AgencyEmail: ['', [Validators.email]],
 
       PreviousBrands: ['',],
