@@ -111,6 +111,7 @@ export class NewBriefComponent {
     Strategy : new FormControl(false),
 
     ItpDepartment: [''],
+    KsaLead: [''],
     KPIs  : [''],
     });
   }
@@ -130,7 +131,10 @@ export class NewBriefComponent {
     let secondaryAudienceInterestValue = this.newSalesBriefForm.get('SecondaryAudienceInterest')!.value;
 
     const createdByUserId = this.userService.getID();
+
+
     const salesBrief = {
+
       ...this.newSalesBriefForm.value,
 
       ContentDeliverables: Array.isArray(contentDeliverablesValue) ? contentDeliverablesValue.join(', ') : '',
@@ -148,7 +152,7 @@ export class NewBriefComponent {
       Ready: false,
       ViewedByTalent: false,
     };
-    console.log( {CreatedbyID: createdByUserId, ...salesBrief });
+
 
     this.salesService.createBrief({ CreatedbyID: createdByUserId, ...salesBrief }).subscribe(
       (briefid) => {
@@ -161,12 +165,23 @@ export class NewBriefComponent {
           let input = { message : 'New Sales Brief has been created by ' + this.userName.name , link: `/home/talent/assignBrief/${this.newBriefId.id}`}
           this.notificationService.createNotification( id, input).subscribe( () => {})
         }
-        else if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'KSA' || this.newSalesBriefForm.get('ItpDepartment')?.value == 'Gaming' ){
+        else if( this.newSalesBriefForm.get('ItpDepartment')?.value == 'Gaming' ){
           let id = 15;
           let input = { message : 'New Sales Brief has been created by ' + this.userName.name, link: `/home/talent/assignBrief/${this.newBriefId.id}`}
 
           this.notificationService.createNotification( id, input).subscribe( () => {})
         }
+        else if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'KSA'){
+
+            let id = Number(this.newSalesBriefForm.get('KsaLead')?.value);
+            let input = { message : 'New Sales Brief has been created by ' + this.userName.name, link: `/home/talent/assignBrief/${this.newBriefId.id}`}
+
+            this.notificationService.createNotification( id, input).subscribe( () => {})
+        }
+
+
+
+
 
 
         this.router.navigate(['home/sales/forms']);

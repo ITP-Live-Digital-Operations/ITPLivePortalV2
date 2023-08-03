@@ -328,6 +328,15 @@
           </mat-select>
         </mat-form-field>
 
+        <mat-form-field *ngIf="this.newSalesBriefForm.get('ItpDepartment')?.value == 'KSA'" appearance="outline" style="width: 50rem">
+          <mat-label> KSA Lead </mat-label>
+          <mat-select formControlName="KsaLead"  required="true">
+            <mat-option  value="15"> Rachelle </mat-option>
+            <mat-option  value="24"> Briksam </mat-option>
+
+          </mat-select>
+        </mat-form-field>
+
         <mat-form-field appearance="outline" style="width: 50rem">
           <mat-label>KPIs </mat-label>
           <input matInput type="text" formControlName="KPIs" autocomplete="off"  />

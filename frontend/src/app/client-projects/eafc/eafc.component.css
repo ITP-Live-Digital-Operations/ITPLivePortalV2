@@ -541,7 +541,8 @@ footer a {
   }
 
   .youtoo youtube {
-    width: auto;
+    width: 600px;
+    height: 600px;
   }
 
 
@@ -625,3 +626,30 @@ footer a {
 
 }
 
+.pole {
+  height : 600px;
+}
+
+
+::ng-deep .slick-prev,
+::ng-deep .slick-next {
+/* font-size: 24px; */
+/* line-height: 1; */
+position: absolute;
+top: 50%;
+/* transform: translateY(-50%); */
+z-index: 1;
+cursor: pointer;
+color: black;
+background-color: lightgray;
+/* padding: 0.1px; */
+border-radius: 100%;
+}
+
+::ng-deep .slick-prev {
+left: 10px;
+}
+
+::ng-deep .slick-next {
+right: 10px;
+}
