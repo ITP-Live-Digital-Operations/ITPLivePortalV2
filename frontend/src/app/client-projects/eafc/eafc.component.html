@@ -80,29 +80,43 @@
   </div>
   </section>
 
-  <section class="youtoo">
+  <section class="youtoo" style=" height : 700px ">
     <div class="youtube">
       <a href="https://twitter.com/EA_ME" class="fa fa-youtube"></a>
     </div>
 
-    <!-- <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
-      <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-        <iframe
-      width="100%"
-      height="850"
-      [src]="slide"
-      title="YouTube video player"
-      frameborder="0"
-      sandbox="allow-scripts allow-same-origin"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
-      </div>
-    </ngx-slick-carousel> -->
+<section style=" width : 40% ; height: 700px">
 
-    <youtube>
+      <div class="pole">
+        <ngx-slick-carousel style=" width: 100%;  height : 100%"
+          class="carousel"
+          #slickModal="slick-carousel"
+          [config]="{
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            arrows: true,
+            dots: false,
+          }"
+        >
+
+       <div ngxSlickItem *ngFor="let videoId of youtubeVideos" class="slide">
+        <iframe
+          [src]="getSafeVideoUrl(videoId)"
+          width="950"
+          height="500px"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+      </ngx-slick-carousel>
+      </div>
+
+    </section>
+
+    <!-- <youtube>
       <div class="elfsight-app-4561dddd-2089-462d-8bc6-20ae7a81d5c6"></div>
-    </youtube>
+    </youtube> -->
   </section >
 
   <!-- Footer -->
