@@ -111,7 +111,7 @@ export class NewBriefComponent {
     Strategy : new FormControl(false),
 
     ItpDepartment: [''],
-    KsaLead: [''],
+    /* KsaLead: [''], */
     KPIs  : [''],
     });
   }
@@ -165,19 +165,19 @@ export class NewBriefComponent {
           let input = { message : 'New Sales Brief has been created by ' + this.userName.name , link: `/home/talent/assignBrief/${this.newBriefId.id}`}
           this.notificationService.createNotification( id, input).subscribe( () => {})
         }
-        else if( this.newSalesBriefForm.get('ItpDepartment')?.value == 'Gaming' ){
+        else if( this.newSalesBriefForm.get('ItpDepartment')?.value == 'KSA' || this.newSalesBriefForm.get('ItpDepartment')?.value == 'Gaming' ){
           let id = 15;
           let input = { message : 'New Sales Brief has been created by ' + this.userName.name, link: `/home/talent/assignBrief/${this.newBriefId.id}`}
 
           this.notificationService.createNotification( id, input).subscribe( () => {})
         }
-        else if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'KSA'){
+        /* else if(this.newSalesBriefForm.get('ItpDepartment')?.value == 'KSA'){
 
             let id = Number(this.newSalesBriefForm.get('KsaLead')?.value);
             let input = { message : 'New Sales Brief has been created by ' + this.userName.name, link: `/home/talent/assignBrief/${this.newBriefId.id}`}
 
             this.notificationService.createNotification( id, input).subscribe( () => {})
-        }
+        } */
 
 
 
