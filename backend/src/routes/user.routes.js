@@ -33,5 +33,10 @@ router.route('/updateUser/:id')
     .patch(asyncHandler(userController.updateUser));
 
 router.route('/resetCount/:id')
-    .get(asyncHandler(userController.resetCount));    
+    .get(asyncHandler(userController.resetCount)); 
+    
+router.route('/resetPassword/:id') 
+    .get(asyncHandler(userController.resetPassword));
+
+
 module.exports = router;

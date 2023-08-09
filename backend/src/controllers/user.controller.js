@@ -208,3 +208,20 @@ exports.resetCount =  (req, res) => {
     }
     );
 }
+
+
+exports.resetPassword =  (req, res) => {
+    id = req.params.id;
+    password = '12345678';
+
+    User.findByPk(id).then(user => {
+        encryptedNewPassword = cryptojs.AES.encrypt(password, user.hash).toString();
+
+        User.update({password: encryptedNewPassword}, {where: {id: id}}).then( (data) => {
+            res.status(200).send({
+                status: "success",
+            });
+        }
+        )
+    })
+}

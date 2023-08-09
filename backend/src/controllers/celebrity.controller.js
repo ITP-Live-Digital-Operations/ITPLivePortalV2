@@ -4,6 +4,7 @@ const decode = require('../utils/token').decode;
 
 
 exports.createCelebrity =  (req, res) => {
+
     const celebrity = req.body;
     Celebrity.create(celebrity)
     .then(data => {
@@ -12,6 +13,7 @@ exports.createCelebrity =  (req, res) => {
         });
     })
     .catch(err => {
+        console.log(err);
         res.status(500).send({
             status: "error",
             message: err.message
