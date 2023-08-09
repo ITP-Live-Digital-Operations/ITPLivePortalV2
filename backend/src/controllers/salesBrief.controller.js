@@ -3,6 +3,8 @@ const SalesBrief = models.SalesBrief;
 const Task = models.Task;
 
 exports.create =  (req, res) => {
+    console.log(req.body);
+    
     SalesBrief.create(req.body)
         .then(data => {
             res.status(201).send({

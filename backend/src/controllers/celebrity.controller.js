@@ -4,6 +4,7 @@ const decode = require('../utils/token').decode;
 
 
 exports.createCelebrity =  (req, res) => {
+
     const celebrity = req.body;
     Celebrity.create(celebrity)
     .then(data => {
