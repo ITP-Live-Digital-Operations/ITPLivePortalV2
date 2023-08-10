@@ -14,6 +14,8 @@ export class UserNamePipePipe implements PipeTransform {
           return 'Ahmad Bashour';
         case 15:
           return 'Rachelle Maksoud';
+        case 16:
+          return 'Sales Testing Account';
         case 18:
           return 'Remy Farah';
         case 19:
@@ -48,12 +50,31 @@ export class UserNamePipePipe implements PipeTransform {
           return 'Max Juby';
         case 34:
           return 'Megan Kemp';
-
-
-
+        case 35:
+          return 'Theresa Dargham';
+        case 36:
+          return 'Farah Hasbany';
+        case 38:
+          return 'Nadine Rifai';
+        case 40:
+          return 'Cynthia Boustani';
+        case 41:
+          return 'Nader Testing';
+        case 43:
+          return 'Ghinwa Bassil';
+        case 50:
+          return 'Aman Dhami';
+        case 51:
+          return 'Clair De Valk';
+        case 52:
+          return 'Ajil Abdulla';
+        case 53:
+          return 'Yazeed Alaqeeli';
+        case 54:
+          return 'Ruqayyah Alsubhi';
 
         default:
-          return 'Unknown User';
+          return 'Check Username Pipe';
       }
 
 
