@@ -410,3 +410,26 @@ exports.updatePriorities = (req, res) => {
     });
   });
 };
+
+
+exports.getAllBriefsWithTask = (req, res) => {
+    SalesBrief.findAll({
+        include: [
+            {
+                model: models.Task,
+                required: false,
+                as: 'task',
+            }
+        ]
+    }).then(data => {
+        res.status(200).send({
+            status: "success",
+            data: data
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving SalesBriefs."
+        });
+    });
+}

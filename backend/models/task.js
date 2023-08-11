@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Task.belongsTo(models.User, {foreignKey: 'assigned_by', as: 'Talent_Head'})
       Task.belongsTo(models.User, {foreignKey: 'assigned_to', as: 'Talent_Employee'})
-      Task.hasOne(models.SalesBrief, {foreignKey: 'id', as: 'Brief'})
+      Task.belongsTo(models.SalesBrief, {foreignKey: 'brief_id', as: 'Brief'})
 
     }
   }
