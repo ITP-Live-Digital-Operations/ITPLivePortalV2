@@ -62,4 +62,7 @@ router.route('/setPriority/:id')
     
 router.route('/updatePriorities')
     .patch(asyncHandler(salesBriefController.updatePriorities))
+
+router.route('/getAllBriefsWithTask')
+    .get(asyncHandler(salesBriefController.getAllBriefsWithTask))
 module.exports = router;

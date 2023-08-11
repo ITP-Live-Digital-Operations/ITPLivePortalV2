@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       SalesBrief.belongsTo(models.User, {foreignKey: 'CreatedbyID', as: 'user'})
-      SalesBrief.belongsTo(models.Task, { foreignKey: 'id', as: 'task'})
+      SalesBrief.hasOne(models.Task, { foreignKey: 'brief_id', as: 'task'})
       SalesBrief.hasMany(models.File, { foreignKey: 'brief_id', as: 'files' });
     }
   }
