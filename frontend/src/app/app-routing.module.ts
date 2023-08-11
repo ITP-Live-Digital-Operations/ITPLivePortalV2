@@ -8,9 +8,14 @@ import { StatusComponent } from './status/status.component';
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { EafcComponent } from './client-projects/eafc/eafc.component';
+import { WelcomeComponent } from './login/welcome/welcome.component';
 
 const routes: Routes = [
+
+
   { path: 'login', component: LoginPageComponent },
+
+  { path: 'welcome', component: WelcomeComponent},
 
   {
     path: 'home',
