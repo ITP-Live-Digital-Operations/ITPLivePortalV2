@@ -156,6 +156,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(250),
       defaultValue: null
     },
+    TwitchHandle: {
+      type: DataTypes.STRING(50),
+      defaultValue: null
+    },
+    TwitchFollowers: {
+      type: DataTypes.INTEGER,
+      defaultValue: null
+    },
+    TwitchLink: {
+      type: DataTypes.STRING(250),
+      defaultValue: null
+    },
+    
     AudienceMalePer: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: null

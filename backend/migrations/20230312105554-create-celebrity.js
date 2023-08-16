@@ -29,15 +29,7 @@ module.exports = {
         type: DataTypes.STRING(50),
         defaultValue: null
       },
-      SubContentLang: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
-      },
       MainVertical: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
-      },
-      SubVertical: {
         type: DataTypes.STRING(50),
         defaultValue: null
       },
@@ -50,10 +42,6 @@ module.exports = {
         defaultValue: null
       },
       Nationality: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
-      },
-      SecondNationality: {
         type: DataTypes.STRING(50),
         defaultValue: null
       },
@@ -141,76 +129,28 @@ module.exports = {
         type: DataTypes.STRING(250),
         defaultValue: null
       },
-      AudienceMalePer: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      AudienceFemalePer: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      AgeGroup1317: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      AgeGroup1824: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      AgeGroup2534: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      AgeGroup3544: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      AgeGroup4554: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      AgeGroup55: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      AudienceTopCountries1: {
+      TwitchHandle: {
         type: DataTypes.STRING(50),
         defaultValue: null
       },
-      AudienceTopCountries1Percentage: {
-        type: DataTypes.DECIMAL(10, 2),
+      TwitchFollowers: {
+        type: DataTypes.INTEGER,
         defaultValue: null
       },
-      AudienceTopCountries2: {
-        type: DataTypes.STRING(50),
+      TwitchLink: {
+        type: DataTypes.STRING(250),
         defaultValue: null
       },
-      AudienceTopCountries2Percentage: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      AudienceTopCountries3: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
-      },
-      AudienceTopCountries3Percentage: {
-        type: DataTypes.DECIMAL(10, 2),
-        defaultValue: null
-      },
-      KSALicense: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: null
-      },
-      UAELicense: {
-        type: DataTypes.BOOLEAN,
+      Agency : {
+        type: DataTypes.STRING(250),
         defaultValue: null
       },
       AgencyContactPerson: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(250),
         defaultValue: null
       },
       AgencyNumber: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         defaultValue: null
       },
       AgencyEmail: {
@@ -219,6 +159,14 @@ module.exports = {
       },
       PreviousBrands: {
         type: DataTypes.TEXT,
+        defaultValue: null
+      },
+      PreviouslyWorkedWith: {
+        type: DataTypes.STRING(250),
+        defaultValue: null
+      },
+      Rating: {
+        type: DataTypes.STRING(50),
         defaultValue: null
       },
       Bio: {
@@ -231,7 +179,7 @@ module.exports = {
       },
       Status: {
         type: DataTypes.STRING(10),
-        defaultValue: null
+        defaultValue: "Active"
       },
       updatedBy: {
         type: DataTypes.INTEGER,

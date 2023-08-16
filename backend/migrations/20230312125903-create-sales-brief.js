@@ -96,12 +96,20 @@ module.exports = {
         type: DataTypes.STRING(255),
         defaultValue: null
       },
+      InfluencerCity: {
+        type: DataTypes.STRING(255),
+        defaultValue: null
+      },
       InfluencerNationality: {
         type: DataTypes.STRING(255),
         defaultValue: null
       },
       InfluencerGender:{
         type: DataTypes.STRING(255),
+        defaultValue: null
+      },
+      InfluencerNotes:{
+        type: DataTypes.TEXT,
         defaultValue: null
       },
       SimilarProfileLink:{

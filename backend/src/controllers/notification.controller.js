@@ -143,3 +143,7 @@ exports.getUnreadNotificationCountByUserId = (req, res) => {
         })
     })
 }
+
+
+exports.deleteAllNotifications = (req, res) => {
+}
