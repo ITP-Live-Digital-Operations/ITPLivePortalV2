@@ -1,58 +1,52 @@
 import { Injectable } from '@angular/core';
-import  { HttpClient, HttpHeaders} from '@angular/common/http'
-import { environment} from '../../../environments/environment.development'
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TaskService {
+  constructor(private http: HttpClient) {}
 
+  taskApiURL = environment.apiUrl + '/v1/tasks';
 
-
-  constructor(private http: HttpClient) { }
-
-  taskApiURL = environment.apiUrl + '/v1/tasks'
-
-
-  createTask(inputdata:any){
-    return this.http.post(`${this.taskApiURL}/createTask`, inputdata)
+  createTask(inputdata: any) {
+    return this.http.post(`${this.taskApiURL}/createTask`, inputdata);
   }
 
-
-  getUnfinishedTasks(inputdata:any){
-    return this.http.get(`${this.taskApiURL}/getUnfinishedTasks/${inputdata}`)
+  getUnfinishedTasks(inputdata: any) {
+    return this.http.get(`${this.taskApiURL}/getUnfinishedTasks/${inputdata}`);
   }
 
-
-  getMyTasks(inputdata:any){
-    return this.http.get(`${this.taskApiURL}/getMyTasks/${inputdata}`)
+  getMyTasks(inputdata: any) {
+    return this.http.get(`${this.taskApiURL}/getMyTasks/${inputdata}`);
   }
 
-  updateStatus(inputdata:any){
-    return this.http.post(`${this.taskApiURL}/updateStatus`, inputdata)
+  updateStatus(inputdata: any) {
+    return this.http.post(`${this.taskApiURL}/updateStatus`, inputdata);
   }
 
-  getUsersAndTaskWeights(){
-    return this.http.get(`${this.taskApiURL}/getUsersAndTaskWeights`)
+  getUsersAndTaskWeights() {
+    return this.http.get(`${this.taskApiURL}/getUsersAndTaskWeights`);
   }
 
-  getTaskByBriefId(inputdata:any){
-    return this.http.get(`${this.taskApiURL}/getTaskByBriefId/${inputdata}`)
+  getTaskByBriefId(inputdata: any) {
+    return this.http.get(`${this.taskApiURL}/getTaskByBriefId/${inputdata}`);
   }
 
-  deactivateTask(id:any){
-    return this.http.get(`${this.taskApiURL}/deactivateTask/${id}`)
+  deactivateTask(id: any) {
+    return this.http.get(`${this.taskApiURL}/deactivateTask/${id}`);
   }
 
-  activateTask(id:any){
-    return this.http.get(`${this.taskApiURL}/activateTask/${id}`)
+  activateTask(id: any) {
+    return this.http.get(`${this.taskApiURL}/activateTask/${id}`);
   }
 
-  updateStatusToComplete(id:any){
-    return this.http.get(`${this.taskApiURL}/updateStatusToComplete/${id}`)
+  updateStatusToComplete(id: any) {
+    return this.http.post(`${this.taskApiURL}/updateStatusToComplete`, id);
   }
 
-  updateProgress(id : any, input : any){
-    return this.http.post(`${this.taskApiURL}/updateProgress/${id}`, input)
+  updateProgress(id: number, input: any) {
+    return this.http.post(`${this.taskApiURL}/updateProgress/${id}`, input);
   }
 }

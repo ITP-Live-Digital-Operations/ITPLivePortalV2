@@ -1,0 +1,79 @@
+<form [formGroup]="form">
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Previous Brands</mat-label>
+      <textarea
+        matInput
+        formControlName="PreviousBrands"
+        rows="2"
+        autocomplete="off"
+      ></textarea>
+      <mat-error
+        *ngIf="
+          form.controls['PreviousBrands'].invalid &&
+          form.controls['PreviousBrands'].touched
+        "
+      >
+        Please enter previous brands.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Biography </mat-label>
+      <textarea
+        matInput
+        formControlName="Bio"
+        rows="2"
+        autocomplete="off"
+      ></textarea>
+      <mat-error
+        *ngIf="
+          form.controls['Bio'].invalid &&
+          form.controls['Bio'].touched
+        "
+      >
+        Please enter previous brands.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Notes </mat-label>
+      <textarea
+        matInput
+        formControlName="Notes"
+        rows="2"
+        autocomplete="off"
+      ></textarea>
+      <mat-error
+        *ngIf="
+          form.controls['Notes'].invalid &&
+          form.controls['Notes'].touched
+        "
+      >
+        Please enter Notes.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" *ngIf="!isCelebrity">
+    <mat-label>Rating</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="Rating"
+      autocomplete="off"
+    />
+    <mat-error
+      *ngIf="
+        form.controls['Rating'].invalid &&
+        form.controls['Rating'].touched
+      "
+    >
+      Please enter a Rating.
+    </mat-error>
+  </mat-form-field>
+</form>

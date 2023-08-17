@@ -1,0 +1,22 @@
+<div class="influencer" *ngIf="celebrityData!= undefined || celebrityData!= null">
+  <div class="container">
+    <app-main [profileData]="celebrityData" [id]="id" > </app-main>
+    <div>
+      <app-table-content [profileData]="celebrityData"></app-table-content>
+      <app-platform-links [profileData]="celebrityData"></app-platform-links>
+    </div>
+    <!-- Main Profile -->
+  </div>
+
+  <!-- Table Content  -->
+  <div class="stats">
+    <app-campaign-results></app-campaign-results>
+    <!-- Campaign Results -->
+    <app-statistics [profileData]="celebrityData"></app-statistics>
+    <!-- Statistics -->
+  </div>
+  <!-- Table -->
+</div> 
+  
+
+    

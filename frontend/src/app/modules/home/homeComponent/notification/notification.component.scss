@@ -1,0 +1,45 @@
+
+.notification-container {
+    /* Ensuring enough space around the container */
+    padding: 20px;
+  }
+  
+  .notification-box {
+    /* Giving some space around each notification box */
+    margin-bottom: 20px;
+  }
+  
+  .notification-box div {
+    /* Adding border and shadow to each notification */
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+  
+  .notification-box a {
+    /* Making the link not appear like a typical link */
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .notification-box a p {
+    /* Aligning the message to the left */
+    text-align: left;
+  }
+  
+  .notification-box a small {
+    /* Aligning the time to the right */
+    text-align: right;
+  }
+  
+  button {
+    /* Styling the button */
+    position: absolute;
+    right: 0;
+    margin-bottom: 2%;
+    margin-right: 4%;
+  }
+    

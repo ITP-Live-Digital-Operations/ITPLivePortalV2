@@ -1,0 +1,49 @@
+<div>
+  <app-person-info [assignedUser]="assignedUser" [salesperson]="salesperson"></app-person-info>
+  <div class="row">
+      <table class="my-table">
+        <tr>
+          <th class="centered">File Type</th>
+          <th class="centered">File Name</th>
+          <th class="centered">Download</th>
+        </tr>
+
+        <tr>
+          <td>Excel Sheet</td>
+          <td *ngIf="budgetSheet">{{ budgetSheet.originalname }}</td>
+          <td *ngIf="!budgetSheet"></td>
+          <td *ngIf="budgetSheet">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="
+                downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)
+              "
+            >
+              Download
+            </button>
+          </td>
+          <td *ngIf="!budgetSheet"></td>
+        </tr>
+
+        <tr>
+          <td>Presentation</td>
+          <td *ngIf="presentation">{{ presentation.originalname }}</td>
+          <td *ngIf="!presentation"></td>
+          <td *ngIf="presentation">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="
+                downloadFilePPTX(presentation.id, presentation.originalname)
+              "
+            >
+              Download
+            </button>
+          </td>
+          <td *ngIf="!presentation"></td>
+        </tr>
+      </table>
+    </div>
+    <app-all-info [brief]="brief"></app-all-info>
+  </div>

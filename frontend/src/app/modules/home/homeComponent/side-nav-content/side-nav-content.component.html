@@ -1,0 +1,111 @@
+<!-- <img
+  *ngIf="userId == 14"
+  class="avatar mat-elevation-z8"
+  src="../../assets/ahmadbashour.jpg"
+/>
+<img
+  *ngIf="userId == 29"
+  class="avatar mat-elevation-z8"
+  src="../../assets/kerem.jpeg"
+/>
+<img
+  *ngIf="userId == 15"
+  class="avatar mat-elevation-z8"
+  src="../../assets/rachelle.png"
+/>
+<img
+  *ngIf="userId == 18"
+  class="avatar mat-elevation-z8"
+  src="../../assets/remy.png"
+/> -->
+<div class="account">
+  <img src="../../../../../assets/white-buttons/account-pic.png">
+  <h4>{{ userName }}</h4>
+  <H5>{{ userRole | uppercase }} </H5>
+  <p class="designation"></p>
+</div>
+
+
+<mat-divider></mat-divider>
+
+<div>
+  <button mat-button class="menu-button" routerLink="/home">
+    <mat-icon>home</mat-icon>
+    <span>Forms</span>
+  </button>
+</div>
+
+<div>
+  <button mat-button class="menu-button" routerLink="main/allBriefs">
+    <mat-icon>chrome_reader_mode</mat-icon>
+    <span>All Briefs</span>
+  </button>
+</div>
+
+<div>
+  <button mat-button class="menu-button" *ngIf="(userRole == 'talent' && pl > 7) || userRole == 'superadmin'"
+    routerLink="talent/head/execTasks">
+    <mat-icon>supervisor_account</mat-icon>
+    <span> Talent Tasks </span>
+  </button>
+</div>
+
+<button mat-button class="menu-button" *ngIf="userRole == 'talent'" routerLink="talent/tasks/{{userId}}">
+  <mat-icon>assignment</mat-icon>
+  <span>Tasks</span>
+</button>
+
+
+<div>
+  <button mat-button class="menu-button" *ngIf="userRole == 'superadmin'" routerLink="admin/register">
+    <mat-icon>assignment</mat-icon>
+    <span>Register User</span>
+  </button>
+
+  <button mat-button class="menu-button" *ngIf="userRole == 'superadmin'" (click)="exportSeeds()">
+    <mat-icon>import_export</mat-icon>
+    <span>Export Seeds</span>
+  </button>
+</div>
+
+<mat-divider></mat-divider>
+
+
+
+<div>
+  <button mat-button class="menu-button"  routerLink="main/editProfile">
+    <mat-icon>account_circle</mat-icon>
+    <span>Profile</span>
+  </button>
+</div>
+
+<div>
+  <button mat-button class="menu-button" *ngIf="userRole == 'sales'" routerLink="main/salesGuide">
+    <mat-icon>help</mat-icon>
+    <span>Help</span>
+  </button>
+</div>
+
+
+<div>
+  <button mat-button class="menu-button" *ngIf="userRole == 'admin' || userRole == 'superadmin'"
+    routerLink="main/adminGuide">
+    <mat-icon>help</mat-icon>
+    <span>Help</span>
+  </button>
+</div>
+
+<div>
+  <button mat-button class="menu-button" *ngIf="userRole == 'talent'" routerLink="main/talentGuide">
+    <mat-icon>help</mat-icon>
+    <span>Help</span>
+  </button>
+</div>
+
+
+<div>
+  <button mat-button class="menu-button"  routerLink="/login">
+    <mat-icon>logout</mat-icon>
+    <span>Log Out</span>
+  </button>
+</div>

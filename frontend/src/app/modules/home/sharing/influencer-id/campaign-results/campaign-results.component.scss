@@ -1,0 +1,22 @@
+
+.container {
+width: fit-content;
+}
+
+.card {
+   width: 580px;
+   background-color: black;
+   padding: 20px;
+   border-radius: 0px;
+   color: white; 
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;}
+
+.progress-bar {
+    background-color:  #3f51b5;
+}
+
+@media (max-width: 1440px), (max-height: 900px) {
+    .card {
+        width: 535px;
+    }
+}

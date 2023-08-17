@@ -1,0 +1,315 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/core/services/notification.service';
+import { SalesService } from 'src/app/core/services/sales.service';
+import { TaskService } from 'src/app/core/services/task.service';
+import { UserService } from 'src/app/core/services/user.service';
+
+@Component({
+  selector: 'app-sent-briefs-id',
+  templateUrl: './sent-briefs-id.component.html',
+  styleUrls: ['./sent-briefs-id.component.scss'],
+})
+
+export class SentBriefsIdComponent {
+  public editForm!: FormGroup;
+  public newBrief: any;
+  public userId = this.userService.getID();
+  public userName: any;
+  private briefId: any;
+  private briefData: any;
+  private taskData: any;
+  private assignedUser: any;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private notificationService: NotificationService,
+    private salesService: SalesService,
+    private activatedRoute: ActivatedRoute,
+    private taskService: TaskService,
+    private router: Router
+  ) {
+    this.userService.getUserNameById(this.userId).subscribe((res) => {
+      this.userName = res;
+    });
+
+    this.loadSalesBriefData();
+
+    this.initializeElements();
+  }
+
+  private initializeElements() {
+    this.editForm = this.formBuilder.group({
+      //BASIC INFORMATION
+      basicInfo: this.formBuilder.group({
+        Agency: ['', [Validators.required]],
+        Client: ['', [Validators.required]],
+        ClientIndustry: ['', [Validators.required]],
+        CampaignName: ['', [Validators.required]],
+        CampaignOverview: [''],
+        CampaignObjective: [''],
+        CampaignObjectiveDetails: [''],
+        NumberofRecommendations: ['', [Validators.required]],
+        Currency: [''],
+        Budget: ['', [Validators.required]],
+      }),
+      //CAMPAIGN OVERVIEW
+      campaignOverview: this.formBuilder.group({
+        CampaignStartDate: ['', [Validators.required]],
+        CampaignEndDate: ['', [Validators.required]],
+        CampaignMessagePhaseOne: [''],
+        CampaignMessagePhaseTwo: [''],
+        CampaignMessagePhaseThree: [''],
+        ContentDeliverables: [''],
+        BrandExclusivityDurationinDays: ['', [Validators.required]],
+        VideoProduction: new FormControl(false),
+        VideoEditing: new FormControl(false),
+      }),
+      //INFLUENCER DETAILS
+      influencerDetails: this.formBuilder.group({
+        InfluencerAgeRange: new FormGroup({
+          AgeGroup1: new FormControl(false),
+          AgeGroup2: new FormControl(false),
+          AgeGroup3: new FormControl(false),
+          AgeGroup4: new FormControl(false),
+          AgeGroup5: new FormControl(false),
+        }),
+        InfluencerLocation: [''],
+        InfluencerCity: [''],
+        InfluencerNationality: [''],
+        InfluencerGender: [''],
+        InfluencerNotes: [''],
+        SimilarProfileLink: [''],
+        InfluencerInterest: [''],
+        InfluencerNumberOfFollowers: new FormGroup({
+          Nano: new FormControl(false),
+          Micro: new FormControl(false),
+          Macro: new FormControl(false),
+          Mega: new FormControl(false),
+          Celebrity: new FormControl(false),
+        }),
+        NoteForNumberOfFollowers: [''],
+      }),
+      //AUDIENCE DETAILS
+      audienceDetails: this.formBuilder.group({
+        AudienceAgeRange: new FormGroup({
+          AgeGroup1: new FormControl(false),
+          AgeGroup2: new FormControl(false),
+          AgeGroup3: new FormControl(false),
+          AgeGroup4: new FormControl(false),
+          AgeGroup5: new FormControl(false),
+        }),
+        AudienceLocation: [''],
+        AudienceNationality: [''],
+        AudienceGender: [''],
+        PrimaryAudienceInterest: [''],
+        SecondaryAudienceInterest: [''],
+      }),
+      //DEPARTMENT DETAILS
+      departmentDetails: this.formBuilder.group({
+        ConfirmedInfluencerHandles: [''],
+        PreviousBrandAmbassadorsName: [''],
+        Performance: new FormControl(false),
+        Event: new FormControl(false),
+        Concept: new FormControl(false),
+        Strategy: new FormControl(false),
+        ItpDepartment: ['', [Validators.required]],
+        KPIs: [''],
+      }),
+    });
+  }
+
+  loadSalesBriefData() {
+    this.activatedRoute.params.subscribe((params) => {
+      this.briefId = params['id'];
+    });
+
+    this.salesService.getSalesBrief(this.briefId).subscribe((brief) => {
+      this.briefData = brief;
+
+      if( this.briefData.data.assigned ){
+        this.taskService.getTaskByBriefId(this.briefId).subscribe( (task) => {
+          this.taskData = task;
+
+          this.userService.getUserByID(this.taskData.data[0].assigned_to).subscribe( (user) => {
+            this.assignedUser = user;
+          }
+          )
+        })
+      }
+
+      const FetchedAgeGroups = this.briefData.data.InfluencerAgeRange?.split(',').map((value: string) => value.trim())
+      const influencerAgeRange = this.editForm.get('influencerDetails.InfluencerAgeRange') as FormGroup;
+
+      FetchedAgeGroups?.forEach((ageGroup: string) => {
+        influencerAgeRange.get(ageGroup)?.setValue(true);
+      });
+
+      const fetchedAgeGroups = this.briefData.data.AudienceAgeRange?.split(',').map((value: string) => value.trim())
+      const audienceAgeRange = this.editForm.get('audienceDetails.AudienceAgeRange') as FormGroup;
+
+      fetchedAgeGroups?.forEach((ageGroup: string) => {
+        audienceAgeRange.get(ageGroup)?.setValue(true);
+      });
+
+      const AFetchedAgeGroups = this.briefData.data.InfluencerNumberOfFollowers?.split(',').map((value: string) => value.trim())
+      const numberOfFollowers = this.editForm.get('influencerDetails.InfluencerNumberOfFollowers') as FormGroup;
+
+      AFetchedAgeGroups?.forEach((ageGroup: string) => {
+        numberOfFollowers.get(ageGroup)?.setValue(true);
+      });
+
+      if (this.briefData.data != null) {
+        this.editForm.patchValue({
+          basicInfo: {
+            Agency: this.briefData.data.Agency,
+            Client: this.briefData.data.Client,
+            ClientIndustry: this.briefData.data.ClientIndustry,
+            CampaignName: this.briefData.data.CampaignName,
+            CampaignOverview: this.briefData.data.CampaignOverview,
+            CampaignObjective: this.briefData.data.CampaignObjective,
+            CampaignObjectiveDetails:
+              this.briefData.data.CampaignObjectiveDetails,
+            NumberofRecommendations:
+              this.briefData.data.NumberofRecommendations,
+            Currency: this.briefData.data.Currency,
+            Budget: this.briefData.data.Budget,
+          },
+          campaignOverview: {
+            CampaignStartDate: this.briefData.data.CampaignStartDate,
+            CampaignEndDate: this.briefData.data.CampaignEndDate,
+            CampaignMessagePhaseOne:
+              this.briefData.data.CampaignMessagePhaseOne,
+            CampaignMessagePhaseTwo:
+              this.briefData.data.CampaignMessagePhaseTwo,
+            CampaignMessagePhaseThree:
+              this.briefData.data.CampaignMessagePhaseThree,
+            ContentDeliverables: this.briefData.data.ContentDeliverables?.split(',').map((value: string) => value.trim()),
+            BrandExclusivityDurationinDays:
+              this.briefData.data.BrandExclusivityDurationinDays,
+            VideoProduction: this.briefData.data.VideoProduction,
+            VideoEditing: this.briefData.data.VideoEditing,
+          },
+          influencerDetails: {
+            InfluencerAgeRange: this.briefData.data.InfluencerAgeRange,
+            InfluencerLocation: this.briefData.data.InfluencerLocation?.split(',').map((value: string) => value.trim()),
+            InfluencerCity: this.briefData.data.InfluencerCity,
+            InfluencerNationality: this.briefData.data.InfluencerNationality?.split(',').map((value: string) => value.trim()),
+            InfluencerGender: this.briefData.data.InfluencerGender,
+            InfluencerNotes: this.briefData.data.InfluencerNotes,
+            SimilarProfileLink: this.briefData.data.SimilarProfileLink,
+            InfluencerInterest: this.briefData.data.InfluencerInterest?.split(',').map((value: string) => value.trim()),
+            InfluencerNumberOfFollowers: this.briefData.data.InfluencerNumberOfFollowers,
+            NoteForNumberOfFollowers:
+              this.briefData.data.NoteForNumberOfFollowers,
+          },
+          audienceDetails: {
+            AudienceAgeRange: this.briefData.data.AudienceAgeRange,
+            AudienceLocation: this.briefData.data.AudienceLocation?.split(',').map((value: string) => value.trim()),
+            AudienceNationality: this.briefData.data.AudienceNationality?.split(',').map((value: string) => value.trim()),
+            AudienceGender: this.briefData.data.AudienceGender,
+            PrimaryAudienceInterest:
+              this.briefData.data.PrimaryAudienceInterest?.split(',').map((value: string) => value.trim()),
+            SecondaryAudienceInterest:
+              this.briefData.data.SecondaryAudienceInterest?.split(',').map((value: string) => value.trim()),
+          },
+          departmentDetails: {
+            ConfirmedInfluencerHandles:
+              this.briefData.data.ConfirmedInfluencerHandles,
+            PreviousBrandAmbassadorsName:
+              this.briefData.data.PreviousBrandAmbassadorsName,
+            Performance: this.briefData.data.Performance,
+            Event: this.briefData.data.Event,
+            Concept: this.briefData.data.Concept,
+            Strategy: this.briefData.data.Strategy,
+            ItpDepartment: this.briefData.data.ItpDepartment,
+            KPIs: this.briefData.data.KPIs,
+          },
+        });
+      }
+    });
+  }
+
+  submitForm() {
+    const itpDepartment = this.editForm.value.departmentDetails.ItpDepartment;
+    const formValues = this.processFormGroups(this.editForm);
+    formValues.CreatedbyID = this.userService.getID();
+    formValues.Ready = false;
+    formValues.ResultsViewed = false;
+
+    this.salesService.updateBrief(this.briefId, formValues).subscribe(
+      (briefid) => {
+
+        if(itpDepartment == 'Originals' || itpDepartment == 'UAE'){
+          let id = 23;
+          let input = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `/home/talent/viewBrief/${this.briefId}`}
+          
+          this.notificationService.createNotification( id, input).subscribe( () => {})
+
+          if(this.assignedUser != null){
+            let input1 = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `/home/talent/viewBrief/${this.briefId}`}
+            this.notificationService.createNotification( this.assignedUser.id, input1).subscribe( () => {})
+          }
+        }
+        else if(itpDepartment == 'KSA' || itpDepartment == 'Gaming' ){
+          let id = 15;
+          let input = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `/home/talent/viewBrief/${this.briefId}`}
+
+          this.notificationService.createNotification( id, input).subscribe( () => {})
+
+          if(this.assignedUser != null){
+            let input2 = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `/home/talent/viewBrief/${this.briefId}`}
+            this.notificationService.createNotification( this.assignedUser.id, input2).subscribe( () => {})
+          }
+        }
+        // alertify.success('Sales brief edited successfully');
+        this.router.navigate(['home/main/forms']);
+      },
+      (error) => {
+        console.error(
+          'An error occurred while editing the sales brief: ',
+          error
+        );
+        // alertify.error('An error occurred while creating the sales brief');
+        // Display a user-friendly error message to the user.
+      }
+    );
+  }
+
+  processFormGroups(formGroup: FormGroup): any {
+    let valuesObject: { [key: string]: any } = {};
+
+    if (formGroup instanceof FormGroup) {
+      Object.keys(formGroup.controls)?.forEach((key) => {
+        const control = formGroup.get(key);
+        console.log(control?.value)
+
+        if (key === 'InfluencerAgeRange' || key === 'AudienceAgeRange') {
+          valuesObject[key] = this.processAgeRangeGroup(control as FormGroup);
+        } else if (control instanceof FormGroup) {
+          valuesObject = {
+            ...valuesObject,
+            ...this.processFormGroups(control),
+          };
+        } else if (control instanceof FormControl) {
+          if (Array.isArray(control?.value)){
+            const lol = (control?.value).map(item => item.toString()).join(', ');
+            valuesObject[key] = lol
+          } else {
+          valuesObject[key] = control?.value;
+          }
+        } 
+      });
+    }
+    return valuesObject;
+  }
+
+  processAgeRangeGroup(group: FormGroup): string {
+    const ageGroups = Object.keys(group.controls)
+      .filter((ageGroupKey) => group.get(ageGroupKey)?.value === true)
+      .join(', ');
+    return ageGroups;
+  }
+}

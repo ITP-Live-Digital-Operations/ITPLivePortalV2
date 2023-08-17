@@ -1,0 +1,65 @@
+
+<mat-toolbar class="mat-elevation-z10">
+  <mat-toolbar-row>
+    <button class="menu" mat-icon-button (click)="toggleSidenav()">
+      <mat-icon *ngIf="!sidenavOpened">menu</mat-icon>
+      <mat-icon *ngIf="sidenavOpened">close</mat-icon>
+    </button>
+    <div class="title">
+      <span class="title-1">ITP |</span><span class="title-2">Portal</span>
+    </div>
+
+
+    <span class="spacer"></span>
+
+    
+    <div class="btn-container">
+    <button mat-icon-button routerLink="main/influencers">
+    <mat-icon class="icon">search</mat-icon>
+    </button>
+    
+
+    <div class="notification-container">
+      <button mat-icon-button class="notification-icon" (click)="toggleNotificationBox()">
+        <span class="notification-dot" *ngIf="notificationCount?.data > 0" ></span>
+        <mat-icon class="icon">notification_important</mat-icon>
+      </button>
+    </div>
+
+    <span class="changePassword-icon"></span>
+    <button mat-icon-button routerLink="/home/main/forms">
+      <mat-icon class="icon">home</mat-icon>
+    </button>
+  </div>
+
+
+    <span class="icon-spacer"></span>
+    <button mat-icon-button routerLink="/login">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<!-- TOP PART    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -->
+
+
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav mode="side" [opened]="sidenavOpened">
+    <app-side-nav-content [userName]="userName" [userId]="userId"></app-side-nav-content>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <div class="d-flex content mat-elevation-z8" class="router-container" [ngClass]="{ 'backgroundColor': backButton}">
+      <div>
+
+        <app-back-button *ngIf="backButton"></app-back-button>
+      </div>
+        <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

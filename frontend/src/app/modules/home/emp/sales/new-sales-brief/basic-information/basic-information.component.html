@@ -1,0 +1,97 @@
+<ng-container [formGroup]="form">
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Agency</mat-label>
+      <input matInput type="text" formControlName="Agency" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Client</mat-label>
+      <input matInput type="text" formControlName="Client" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Client's Industry</mat-label>
+      <mat-select formControlName="ClientIndustry">
+        <mat-option *ngFor="let option of clientIndustries" [value]="option">{{
+          option
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Campaign Name</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="CampaignName"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Campaign Overview</mat-label>
+      <textarea
+        matInput
+        formControlName="CampaignOverview"
+        rows="1"
+        autocomplete="off"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Campaign Objective</mat-label>
+      <mat-select formControlName="CampaignObjective">
+        <mat-option
+          *ngFor="let option of campaignobjectives"
+          [value]="option"
+          >{{ option }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Campaign Objective Details</mat-label>
+      <textarea
+        matInput
+        formControlName="CampaignObjectiveDetails"
+        rows="1"
+        autocomplete="off"
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Number of recommendations</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="NumberofRecommendations"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Currency</mat-label>
+      <mat-select formControlName="Currency">
+        <mat-option *ngFor="let option of currencies" [value]="option">{{
+          option
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Approximate Budget</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="Budget"
+        autocomplete="off"
+      />
+    </mat-form-field>
+  </div>
+</ng-container>

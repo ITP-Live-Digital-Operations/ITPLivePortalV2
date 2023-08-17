@@ -1,0 +1,38 @@
+.content {
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.social {
+
+    padding: 20px;
+    background-color: black;
+    text-align: center;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;}
+
+
+.social li {
+    border-radius: 0px;
+    text-align: center;
+    align-items: center;
+    list-style: none;
+}
+
+.items {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    gap: 50px;
+
+
+
+}
+
+.social p {
+    margin-top: 10px;
+    padding: 2px;
+    font-size: 15px;
+}

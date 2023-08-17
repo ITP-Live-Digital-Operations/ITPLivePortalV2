@@ -1,73 +1,46 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {UserService} from './core/Services/user.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-
+import { AccessDeniedComponent } from './shared/components/access-denied/access-denied.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { MaterialModule } from 'src/app/material-module';
-import { StatusComponent } from './status/status.component';
-import { TokenInterceptorService } from './core/Interceptors/token-interceptor.service';
-
-import { ReactiveFormsModule } from '@angular/forms';
-import {MatNativeDateModule} from '@angular/material/core';
-import { NgxHttpRequestModule } from 'ngx-http-request-cache';
-
-
-import { CoreModule } from './core/core.module';
-import { LoginModule } from './login/login.module';
-
-import { AccessDeniedComponent } from './access-denied/access-denied.component';
-
-import { ChangePasswordComponent } from './partial/change-password/change-password.component';
-import { NotificationPopupComponent } from './partial/notification-popup/notification-popup.component';
-import { ShowInfluencersComponent } from './partial/show-influencers/show-influencers.component';
-import { ClientProjectsModule } from './client-projects/client-projects.module';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
-
-
-
-
-
-
-
-
-
+import { LoginComponent } from './modules/login/login.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MaterialModule } from './common.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { TokenInterceptorService } from './core/services/token-interceptor.service';
+import { UserService } from './core/services/user.service';
+import { LoginCredentialsComponent } from './modules/login/login-credentials/login-credentials.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    StatusComponent,
     AccessDeniedComponent,
-    ChangePasswordComponent,
-    NotificationPopupComponent,
-    ShowInfluencersComponent,
-
-
-
+    NotFoundComponent,
+    LoginComponent,
+    LoginCredentialsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatDialogModule,
     ReactiveFormsModule,
-    MatNativeDateModule,
-    CoreModule,
-    LoginModule,
-    NgxHttpRequestModule.forRoot(),
-    ClientProjectsModule,
-    SlickCarouselModule
-
-
-
+    FormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
   ],
   providers: [{provide:HTTP_INTERCEPTORS, useClass:TokenInterceptorService,multi:true},UserService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

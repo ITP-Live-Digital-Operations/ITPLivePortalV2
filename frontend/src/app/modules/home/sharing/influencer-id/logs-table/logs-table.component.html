@@ -1,0 +1,76 @@
+<div  style="display: flex; flex-wrap: wrap; margin-top: 25px; margin-left: 20px; padding: 30px; align-self: center;">
+  <H2>Logs</H2>
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    
+    style="width: 10%; margin-left: 2%"
+    (click)="
+      redirectToNewLog(profileData?.data.id, profileData?.data.Name)
+    "
+  >
+    Add Log
+  </button>
+</div>
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="Influencer">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer</th>
+      <td mat-cell *matCellDef="let element">{{ element.Influencer }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Campaign">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign</th>
+      <td mat-cell *matCellDef="let element">{{ element.Campaign }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Platform">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Platform</th>
+      <td mat-cell *matCellDef="let element">{{ element.Platform }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Deliverable">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Deliverable</th>
+      <td mat-cell *matCellDef="let element">{{ element.Deliverable }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Currency">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Currency</th>
+      <td mat-cell *matCellDef="let element">{{ element.Currency }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Rate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate</th>
+      <td mat-cell *matCellDef="let element">{{ element.Rate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Contact">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
+      <td mat-cell *matCellDef="let element">{{ element.Contact }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.Date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Time_to_reply">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Reply time</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.Time_to_reply }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [length]="100"
+    [pageSize]="5"
+    [pageSizeOptions]="[3, 5, 10, 25, 100]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

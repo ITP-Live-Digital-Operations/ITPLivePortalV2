@@ -1,0 +1,65 @@
+<form [formGroup]="form">
+<div class="row">
+    <h2>Audience Age Range</h2>
+    <div formGroupName="AudienceAgeRange" class="checkbox-container">
+      <mat-checkbox formControlName="AgeGroup1"> 12 - 17</mat-checkbox>
+      <mat-checkbox formControlName="AgeGroup2"> 18 - 24</mat-checkbox>
+      <mat-checkbox formControlName="AgeGroup3"> 25 - 34</mat-checkbox>
+      <mat-checkbox formControlName="AgeGroup4"> 35 - 49</mat-checkbox>
+      <mat-checkbox formControlName="AgeGroup5"> 50 + </mat-checkbox>
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <h2>Audience Location, Nationality and Gender</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Audience Location</mat-label>
+      <mat-select formControlName="AudienceLocation" multiple>
+        <mat-option *ngFor="let option of countries" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Audience Nationality</mat-label>
+      <mat-select formControlName="AudienceNationality" multiple>
+        <mat-option *ngFor="let option of countries" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label> Audience Gender</mat-label>
+      <mat-select formControlName="AudienceGender">
+        <mat-option value="Male"> Male</mat-option>
+        <mat-option value="Female"> Female</mat-option>
+        <mat-option value="Both"> Both</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <hr />
+  <div class="row">
+    <h2>Audience Primary and Seconadry Interest</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Primary Audience Interest</mat-label>
+      <mat-select formControlName="PrimaryAudienceInterest" multiple>
+        <mat-option *ngFor="let option of clientIndustries" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Secondary Audience Interest</mat-label>
+      <mat-select formControlName="SecondaryAudienceInterest" multiple>
+        <mat-option *ngFor="let option of clientIndustries" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>

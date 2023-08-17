@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 import { environment} from '../../../environments/environment.development';
 
 @Injectable({
@@ -29,7 +29,7 @@ export class FileService {
     }).pipe(
       tap(
         data => {
-          saveAs(data, filename);
+        //   saveAs(data, filename);
         },
         error => console.log(error)
       )

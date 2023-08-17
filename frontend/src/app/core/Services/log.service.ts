@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import  { HttpClient,HttpHeaders} from '@angular/common/http'
-import { LogModel } from '../../Models/LogModel';
+import { LogModel } from '../interfaces/logModel';
 import { Observable } from 'rxjs';
 import { environment} from '../../../environments/environment.development'
 
@@ -9,13 +9,9 @@ import { environment} from '../../../environments/environment.development'
 })
 export class LogService {
 
-
-
-
   constructor(private http: HttpClient) { }
 
   logApiURL = environment.apiUrl + '/v1/logs'
-
 
   addLog(inputdata:any){
     return this.http.post(`${this.logApiURL}/addLog`, inputdata)

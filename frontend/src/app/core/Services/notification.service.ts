@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment} from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Notification } from 'src/app/Models/notification';
+import { Notification } from 'src/app/core/interfaces/notificationModel';
 import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class NotificationService {
 
 notificationApiUrl = environment.apiUrl + '/v1/notifications';

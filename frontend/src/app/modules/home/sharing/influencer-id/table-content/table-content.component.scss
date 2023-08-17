@@ -1,0 +1,30 @@
+.container {
+    width: 100%;
+   
+}
+
+
+.items {
+    color: white;
+    background-color: black;
+    padding: 40px 60px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+}
+
+.list-items {
+    width: 100%;
+    padding: 20px;
+    font-size: 16px;
+    
+}
+
+.item{
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+}
+
+.text {
+    color: #3851da;
+}

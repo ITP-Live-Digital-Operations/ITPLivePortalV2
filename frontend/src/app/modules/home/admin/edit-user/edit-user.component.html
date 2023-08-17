@@ -1,0 +1,106 @@
+<ng-container *ngIf="user">
+<div class="form-container">
+  <form
+    [formGroup]="updateUserForm"
+    (ngSubmit)="updateUser()"
+    autocomplete="off"
+  >
+    <h2>User Id : {{ user.id }}</h2>
+    <h2>Privilege level : {{ user.privilege_level }}</h2>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="name"
+          autocomplete="off"
+          required
+        />
+        <mat-error
+          *ngIf="
+            updateUserForm.controls['name'].invalid &&
+            updateUserForm.controls['name'].touched
+          "
+        >
+          Please enter a name.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          autocomplete="off"
+          required
+        />
+        <mat-error
+          *ngIf="
+            updateUserForm.controls['email'].invalid &&
+            updateUserForm.controls['email'].touched
+          "
+        >
+          Please enter a valid email.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Role </mat-label>
+        <mat-select formControlName="role">
+          <mat-option *ngFor="let option of roles" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            updateUserForm.controls['role'].invalid &&
+            updateUserForm.controls['role'].touched
+          "
+        >
+          Please enter a valid role.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Privelege Level</mat-label>
+        <mat-select formControlName="privilege_level">
+          <mat-option *ngFor="let option of privilege_level" [value]="option">{{
+            option
+          }}</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            updateUserForm.controls['privilege_level'].invalid &&
+            updateUserForm.controls['privilege_level'].touched
+          "
+        >
+          Please enter a valid level.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      style="margin-bottom: 2%"
+      type="submit"
+      [disabled]="!updateUserForm.valid"
+    >
+      Edit User
+    </button>
+  </form>
+</div>
+</ng-container>
+
+<div>
+  <button mat-raised-button color="accent" (click)="resetCount(user.id)">
+    Reset Count for user
+  </button>
+  <hr />
+  <button mat-raised-button color="accent" (click)="resetPassword(user.id)">
+    Reset Password for user
+  </button>
+</div>

@@ -1,39 +1,43 @@
 import { Injectable } from '@angular/core';
-import  { HttpClient, HttpHeaders} from '@angular/common/http'
-import {InfluencerModel} from "../../Models/InfluencerModel"
+import { HttpClient } from '@angular/common/http';
+import { InfluencerModel } from '../interfaces/influencersModel';
 import { Observable } from 'rxjs';
-import { environment} from '../../../environments/environment.development'
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CelebrityService {
+  constructor(private http: HttpClient) {}
 
+  celebrityApiURL = environment.apiUrl + '/v1/celebrities';
 
-  constructor(private http:HttpClient){}
-
-
-  celebrityApiURL = environment.apiUrl + '/v1/celebrities'
-
-  addCelebrity(inputdata:any){
-    return this.http.post(`${this.celebrityApiURL}/createCelebrity`, inputdata)
+  addCelebrity(inputdata: any) {
+    return this.http.post(`${this.celebrityApiURL}/createCelebrity`, inputdata);
   }
 
-  getCelebrities():Observable<InfluencerModel[]>{
-    return this.http.get<InfluencerModel[]>(`${this.celebrityApiURL}/getCelebrities`)
+  getCelebrities(): Observable<InfluencerModel[]> {
+    return this.http.get<InfluencerModel[]>(
+      `${this.celebrityApiURL}/getCelebrities`
+    );
   }
 
-  deleteCelebrity(inputdata:any){
-    return this.http.delete(`${this.celebrityApiURL}/deleteCelebrity/${inputdata}`)
+  deleteCelebrity(inputdata: any) {
+    return this.http.delete(
+      `${this.celebrityApiURL}/deleteCelebrity/${inputdata}`
+    );
   }
 
-  getCelebrity(inputdata:any):Observable<InfluencerModel>{
-    return this.http.get<InfluencerModel>(`${this.celebrityApiURL}/getCelebrity/${inputdata}`)
+  getCelebrity(inputdata: any): Observable<InfluencerModel> {
+    return this.http.get<InfluencerModel>(
+      `${this.celebrityApiURL}/getCelebrity/${inputdata}`
+    );
   }
 
-  updateCelebrity(inputdata:any, id:any){
-    return this.http.patch(`${this.celebrityApiURL}/updateCelebrity/${id}`, inputdata)
+  updateCelebrity(inputdata: any, id: any) {
+    return this.http.patch(
+      `${this.celebrityApiURL}/updateCelebrity/${id}`,
+      inputdata
+    );
   }
-
-
 }

@@ -1,0 +1,54 @@
+<div class="form-container">
+    <form
+      [formGroup]="editInfluencerForm"
+      autocomplete="off"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- GENERAL INFORMATION HERE -->
+      <h2>General Information</h2>
+      <app-general-info formGroupName="generalInfo" [isCelebrity]="isNotCelebrity"></app-general-info>
+      <hr />
+  
+      <!-- SOCIALS HERE -->
+      <h2>Socials</h2>
+      <app-socials formGroupName="socials"></app-socials>
+      <hr />
+  
+      <!-- STATISTICS HERE -->
+      <h2>Statistics</h2>
+      <app-statistics formGroupName="statistics"></app-statistics>
+      <hr />
+  
+      <!-- LICENSES HERE -->
+      <h2>Licenses</h2>
+  
+      <div class="row">
+        <mat-checkbox formControlName="KSALicense">KSA License</mat-checkbox>
+      </div>
+  
+      <div class="row">
+        <mat-checkbox formControlName="UAELicense">UAE License</mat-checkbox>
+      </div>
+  
+      <hr />
+  
+      <!-- AGENCY INFORMATION HERE -->
+      <h2>Agency Information</h2>
+      <app-agency-info formGroupName="agencyInfo" [isCelebrity]="isNotCelebrity"></app-agency-info>
+      <hr />
+  
+      <!-- END OF FORM HERE -->
+      <app-extra-info formGroupName="extraInfo" [isCelebrity]="isNotCelebrity"></app-extra-info>
+  
+      <!-- SUBMIT BUTTON HERE -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!editInfluencerForm.valid"
+      >
+        Edit Influencer
+      </button>
+    </form>
+  </div>
+  

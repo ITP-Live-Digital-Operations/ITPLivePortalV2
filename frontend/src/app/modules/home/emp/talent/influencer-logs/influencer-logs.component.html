@@ -1,0 +1,99 @@
+<div style="position: relative">
+  <div class="row">
+    <mat-form-field appearance="outline" style="width: 90.5%; height: 10%; padding-left: 2%">
+      <input #searchInput matInput (keyup)="applyFilter(searchInput.value)" placeholder="Search" />
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label> Influencer Filter</mat-label>
+      <mat-select placeholder="Influencer Filter" (selectionChange)="applyFilter1($event.value)">
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let option of influencers" [value]="option.name">{{
+          option.name
+          }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label> Campaign Filter </mat-label>
+      <mat-select placeholder="Campaign Filter" (selectionChange)="applyFilter2($event.value)">
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let option of campaigns" [value]="option">{{
+          option
+          }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label> Contact Filter </mat-label>
+      <mat-select placeholder="Contact Filter" (selectionChange)="applyFilter3($event.value)">
+        <mat-option value="">All</mat-option>
+        <mat-option *ngFor="let option of talentUserNames" [value]="option">{{
+          option.name
+          }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="table-container">
+    <table mat-table #table [dataSource]="dataSource" matSort>
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <ng-container matColumnDef="Influencer">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer</th>
+        <td mat-cell *matCellDef="let element">{{ element.Influencer }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Campaign">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign</th>
+        <td mat-cell *matCellDef="let element">{{ element.Campaign }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Platform">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Platform</th>
+        <td mat-cell *matCellDef="let element">{{ element.Platform }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Deliverable">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Deliverable</th>
+        <td mat-cell *matCellDef="let element">{{ element.Deliverable }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Currency">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Currency</th>
+        <td mat-cell *matCellDef="let element">{{ element.Currency }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Rate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate</th>
+        <td mat-cell *matCellDef="let element">{{ element.Rate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Contact">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
+        <td mat-cell *matCellDef="let element">{{ element.Contact }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.Date }}</td>
+      </ng-container>
+
+      <ng-container *ngIf="userRole == 'superadmin'" matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <!-- <button mat-raised-button color="accent" (click)="deleteLog(element.id)">Delete</button> -->
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[3, 5, 10, 25, 100]" aria-label="Select page">
+  </mat-paginator>
+</div>

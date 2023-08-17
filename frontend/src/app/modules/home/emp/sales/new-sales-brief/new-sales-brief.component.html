@@ -1,0 +1,23 @@
+<div class="form-container">
+  <h2 style="align-content: center; margin-left: 34%; font-size: 300%; margin-top: 2%; margin-bottom: 3%;">New Sales Brief</h2>
+  <form [formGroup]="newForm" (ngSubmit)="submitForm()" autocomplete="off">
+
+    <app-basic-information formGroupName="basicInfo"></app-basic-information>
+
+    <app-campaign-overview formGroupName="campaignOverview"></app-campaign-overview>
+
+    <hr />
+
+    <app-influencer-details formGroupName="influencerDetails"></app-influencer-details>
+
+    <hr />
+
+    <app-audience-details formGroupName="audienceDetails"></app-audience-details>
+
+    <hr />
+
+    <app-department-details formGroupName="departmentDetails"></app-department-details>
+    
+    <button mat-raised-button color="primary" type="submit" [disabled]="!newForm.valid" style="margin-bottom: 2%; margin-top: 2%">Submit Brief Form</button>
+  </form>
+</div>

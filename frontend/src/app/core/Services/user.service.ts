@@ -1,58 +1,56 @@
 import { Injectable } from '@angular/core';
-import  { HttpClient, HttpHeaders} from '@angular/common/http'
-import { UserModel } from '../../Models/UserModel';
+import { HttpClient } from '@angular/common/http';
+import { UserModel } from '../interfaces/userModel';
 import { Observable } from 'rxjs';
-import { environment} from '../../../environments/environment.development';
-
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  constructor(private http: HttpClient) {}
 
+  authApiURL = environment.apiUrl + '/v1/users';
 
-  constructor(private http: HttpClient){ }
-
-  authApiURL = environment.apiUrl + '/v1/users'
-
-
-  logIn(inputdata:any){
-    return this.http.post(`${this.authApiURL}/login`, inputdata)
+  logIn(inputdata: any) {
+    return this.http.post(`${this.authApiURL}/login`, inputdata);
   }
 
-  register(inputdata:any){
-    return this.http.post(`${this.authApiURL}/register`, inputdata)
+  register(inputdata: any) {
+    return this.http.post(`${this.authApiURL}/register`, inputdata);
   }
 
-  isLoggedIn(){
-    return localStorage.getItem('token')!=null;
+  isLoggedIn() {
+    return localStorage.getItem('token') != null;
   }
 
-  getToken(){
-    return localStorage.getItem('token')!=null?localStorage.getItem('token'):'';
+  getToken() {
+    return localStorage.getItem('token') != null
+      ? localStorage.getItem('token')
+      : '';
   }
 
-  addUser(inputdata:any){
-    return this.http.post(`${this.authApiURL}/register`, inputdata)
+  addUser(inputdata: any) {
+    return this.http.post(`${this.authApiURL}/register`, inputdata);
   }
 
-  getUserByID(inputdata:any): Observable<UserModel>{
-    return this.http.get<UserModel>(`${this.authApiURL}/getUser/${inputdata}`)
+  getUserByID(inputdata: any): Observable<UserModel> {
+    return this.http.get<UserModel>(`${this.authApiURL}/getUser/${inputdata}`);
   }
 
-  changePassword(inputdata:any){
-    return this.http.patch(`${this.authApiURL}/changePassword`, inputdata)
+  changePassword(inputdata: any) {
+    return this.http.patch(`${this.authApiURL}/changePassword`, inputdata);
   }
 
-  addTimeForm(inputdata:any){
-    return this.http.post(`${this.authApiURL}/addTimeForm`, inputdata)
+  addTimeForm(inputdata: any) {
+    return this.http.post(`${this.authApiURL}/addTimeForm`, inputdata);
   }
 
-  getTimeFormsById(inputdata:any){
-    return this.http.get(`${this.authApiURL}/getTimeFormsById/${inputdata}`)
+  getTimeFormsById(inputdata: any) {
+    return this.http.get(`${this.authApiURL}/getTimeFormsById/${inputdata}`);
   }
 
-  getID(){
+  getID() {
     const token = this.getToken();
     const parts = token!.split('.');
     const payload = JSON.parse(atob(parts[1]));
@@ -60,11 +58,11 @@ export class UserService {
     return userID;
   }
 
-  getTalentUserIdNames(){
-    return this.http.get(`${this.authApiURL}/getTalentUserIdNames`)
+  getTalentUserIdNames() {
+    return this.http.get(`${this.authApiURL}/getTalentUserIdNames`);
   }
 
-  getRole(){
+  getRole() {
     const token = this.getToken();
     const parts = token!.split('.');
     const payload = JSON.parse(atob(parts[1]));
@@ -72,10 +70,10 @@ export class UserService {
     return userRole;
   }
 
-  getPrivilegeLevel(){
+  getPrivilegeLevel() {
     const token = this.getToken();
 
-    if ( token && token.startsWith('Bearer ')) {
+    if (token && token.startsWith('Bearer ')) {
       var jwt = token.substring(7);
       var parts = jwt.split('.');
       var payload = JSON.parse(atob(parts[1]));
@@ -84,24 +82,23 @@ export class UserService {
     return userPrivilege_level;
   }
 
-
-
-  getAllUsers(){
-    return this.http.get(`${this.authApiURL}/getAllUsers`)
+  getAllUsers(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(`${this.authApiURL}/getAllUsers`);
   }
 
-  getUserNameById(inputdata:any){
-    return this.http.get(`${this.authApiURL}/getUserNameById/${inputdata}`)
+  getUserNameById(inputdata: any): Observable<UserModel> {
+    return this.http.get<UserModel>(`${this.authApiURL}/getUserNameById/${inputdata}`);
   }
 
-  updateUser(inputdata:any, id:any){
-    return this.http.patch(`${this.authApiURL}/updateUser/${id}`, inputdata)
+  updateUser(inputdata: any, id: any) {
+    return this.http.patch(`${this.authApiURL}/updateUser/${id}`, inputdata);
   }
 
-
-  resetCount(id:any){
-    return this.http.get(`${this.authApiURL}/resetCount/${id}` )
+  resetCount(id: any) {
+    return this.http.get(`${this.authApiURL}/resetCount/${id}`);
   }
 
-
+  resetPassword(id :any) {
+    return this.http.get(`${this.authApiURL}/resetPassword/${id}`);
+  }
 }

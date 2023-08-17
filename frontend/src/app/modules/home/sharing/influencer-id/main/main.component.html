@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="card-body">
+    <h1 class="name">{{ this.profileData?.data.Name }}</h1>
+    <p>{{ this.profileData?.data.Gender }}</p>
+    <p>{{ this.profileData?.data.Number }}</p>
+
+    <div class="rating" *ngIf="isReviewVisible">
+      <h1>ITP Rating:</h1><h1 class="number"> {{ influencerRating?.average }}</h1>
+      <button mat-raised-button color="accent" (click)="rateInfluencer()">
+
+        Review
+      </button>
+    </div>
+  </div>
+</div>

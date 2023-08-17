@@ -1,0 +1,121 @@
+<table class="my-table">
+    <tr>
+      <th class="centered">File Type</th>
+      <th class="centered">File Name</th>
+      <th class="centered">Uploaded On</th>
+      <th class="centered">Download</th>
+      <th class="centered" *ngIf="userId === task?.assigned_to">
+        Choose File
+      </th>
+      <th class="centered" *ngIf="userId === task?.assigned_to">
+        Delete
+      </th>
+    </tr>
+
+    <tr>
+      <td>Excel Sheet</td>
+      <td *ngIf="budgetSheet" class="stretch-button">
+        {{ budgetSheet.originalname }}
+      </td>
+      <td *ngIf="!budgetSheet"></td>
+      <td *ngIf="budgetSheet">{{ budgetSheet.createdAt | date }}</td>
+      <td *ngIf="!budgetSheet"></td>
+      <td *ngIf="budgetSheet">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="
+            downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)
+          "
+        >
+          Download
+        </button>
+      </td>
+      <td *ngIf="!budgetSheet"></td>
+
+      <td *ngIf="userId === task?.assigned_to">
+        <input
+          type="file"
+          (change)="handleFileInputXLSX($event)"
+          style="display: none"
+          #fileInput
+        />
+        <button
+          mat-raised-button
+          class="stretch-button"
+          (click)="fileInput.click()"
+        >
+          Choose File
+        </button>
+      </td>
+
+      <td *ngIf="userId === task?.assigned_to">
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="deleteBudgetSheetFile(budgetSheet.id)"
+          *ngIf="budgetSheet"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Presentation</td>
+      <td *ngIf="presentation" class="stretch-button">
+        {{ presentation.originalname }}
+      </td>
+      <td *ngIf="!presentation"></td>
+      <td *ngIf="presentation">{{ presentation.createdAt | date }}</td>
+      <td *ngIf="!presentation"></td>
+      <td *ngIf="presentation">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="
+            downloadFilePPTX(presentation.id, presentation.originalname)
+          "
+        >
+          Download
+        </button>
+      </td>
+      <td *ngIf="!presentation"></td>
+
+      <td *ngIf="userId === task?.assigned_to">
+        <input
+          type="file"
+          (change)="handleFileInputPPTX($event)"
+          style="display: none"
+          #fileInput
+        />
+        <button
+          mat-raised-button
+          class="stretch-button"
+          (click)="fileInput.click()"
+        >
+          Choose File
+        </button>
+      </td>
+
+      <td *ngIf="userId === task?.assigned_to">
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="deletePresentationFile(presentation.id)"
+          *ngIf="presentation"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <button
+    *ngIf="budgetSheet && presentation || userId === task?.assigned_to"
+    mat-raised-button
+    color="primary"
+    (click)="salesBriefReady()"
+  >
+    Send to Sales
+  </button>

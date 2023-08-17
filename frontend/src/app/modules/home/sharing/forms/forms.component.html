@@ -1,0 +1,62 @@
+<div class="container">
+
+    <h1 class="title"></h1>
+    <div class="btn d-flex flex-row align-items-center flex-wrap" style="border-color: transparent;">
+
+    <button 
+    mat-raised-button *ngIf="userRole=='superadmin'" routerLink="{{path['userManagement']}}">
+    <img src="../../../../../assets/white-buttons/admin-forms.png">
+    <p>User Management</p>
+    </button>
+    <button
+    mat-raised-button *ngIf="userRole=='talent' || userRole=='sales' || userRole=='superadmin'" routerLink="{{path['influencers']}}">
+        <img src="../../../../../assets/white-buttons/Inlfuencer.png">
+        <p>Influencer</p>
+    </button>
+    <button
+    mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="/home/talent/new/influencer">
+        <img src="../../../../../assets/white-buttons/new-influencer.png">
+        <p>New Influencer</p>
+    </button>
+    <button mat-raised-button *ngIf="(userRole == 'talent' && pl > 7) || userRole == 'superadmin'" routerLink="/home/talent/head/celebrities">
+        <img src="../../../../../assets/white-buttons/celebrities.png">
+        <p>Celebrities</p>
+    </button>
+    <button  mat-raised-button *ngIf="(userRole == 'talent' && pl > 7) || userRole == 'superadmin'" routerLink="/home/talent/new/celebrity">
+        <img src="../../../../../assets/white-buttons/new-celebrities.png">
+        <p>New Celebrity</p>
+    </button>
+    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="/home/talent/logs">
+        <img src="../../../../../assets/white-buttons/rate-log.png">
+        <p>Rate Logs</p>
+    </button>
+    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="/home/talent/new/rateLog">
+        <img src="../../../../../assets/white-buttons/new-rate-log.png">
+        <p>New Rate Log</p>
+    </button>
+    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="/home/talent/new/timeForm">
+        <img src="../../../../../assets/white-buttons/time log.png">
+        <p>Time Form</p>
+    </button>
+
+    <button 
+    mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="/home/sales/newBrief">
+    <img src="../../../../../assets/white-buttons/new-sales-brief.png">
+    <p>New Sales Brief</p>
+    </button>
+    <button 
+    mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="/home/sales/readyBriefs">
+    <img src="../../../../../assets/white-buttons/all-brief.png">
+    <p>Ready Briefs</p>
+    </button>
+    <button 
+    mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="/home/sales/sentBriefs">
+    <img src="../../../../../assets/white-buttons/sent-brief.png">
+    <p>Sent Briefs</p>
+    </button>
+
+   
+
+
+    </div>
+</div>

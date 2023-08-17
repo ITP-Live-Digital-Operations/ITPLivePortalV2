@@ -1,0 +1,158 @@
+<div class="form-container">
+  <form [formGroup]="influencerForm" (ngSubmit)="onSubmit()">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Response Rate</td>
+          <td>
+            <span class="star-rating">
+              <app-star-rating
+                (onClick)="handleClickResponseRate($event)"
+              ></app-star-rating>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>Content Quality</td>
+          <td>
+            <span class="star-rating">
+              <app-star-rating
+                (onClick)="handleClickContentQuality($event)"
+              ></app-star-rating>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>Creativity</td>
+          <td>
+            <span class="star-rating">
+              <app-star-rating
+                (onClick)="handleClickCreativity($event)"
+              ></app-star-rating>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>Flexibility</td>
+          <td>
+            <span class="star-rating">
+              <app-star-rating
+                (onClick)="handleClickFlexibility($event)"
+              ></app-star-rating>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>Campaign Performance</td>
+          <td>
+            <span class="star-rating">
+              <app-star-rating
+                (onClick)="handleClickCampaignPerformance($event)"
+              ></app-star-rating>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>Notes</td>
+          <td>
+            <mat-form-field>
+              <textarea
+                formControlName="notes"
+                matInput
+                placeholder="Notes"
+              ></textarea>
+              <mat-hint align="end"
+                >{{
+                  influencerForm.get("notes")?.value?.length || 0
+                }}/500</mat-hint
+              >
+            </mat-form-field>
+          </td>
+        </tr>
+        <button
+          mat-raised-button
+          type="submit"
+          style="margin-top: 2%"
+          [disabled]="influencerForm.invalid"
+        >
+          Submit
+        </button>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+<div class="table-container">
+  <table mat-table #table [dataSource]="dataSource" matSort>
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="responseRate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Response Rate</th>
+      <td mat-cell *matCellDef="let element">{{ element.responseRate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="contentQuality">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Content Quality</th>
+      <td mat-cell *matCellDef="let element">{{ element.contentQuality }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="creativity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Creativity</th>
+      <td mat-cell *matCellDef="let element">{{ element.creativity }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="flexibility">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Flexibility</th>
+      <td mat-cell *matCellDef="let element">{{ element.flexibility }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="campaignPerformance">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Campaign Performance
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.campaignPerformance }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="notes">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Notes</th>
+      <td mat-cell *matCellDef="let element">{{ element.notes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Reviewed By</th>
+      <td mat-cell *matCellDef="let element">{{ element.userID.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.createdAt | date }}</td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="Action" >
+        <th mat-header-cell *matHeaderCellDef> Action  </th>
+        <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="editInfluencer(element.ID)">Change</button> |
+        <button mat-raised-button color="warn" (click)="deleteInfluencer(element.ID)">Delete</button>
+        </td>
+      </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [length]="100"
+    [pageSize]="5"
+    [pageSizeOptions]="[3, 5, 10, 25, 100]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+</div>

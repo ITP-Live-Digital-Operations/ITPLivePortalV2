@@ -1,0 +1,268 @@
+<form [formGroup]="form" autocomplete="off">
+<div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Audience Male Percentage</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AudienceMalePer"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AudienceMalePer'].invalid &&
+          form.controls['AudienceMalePer'].touched
+        "
+      >
+        Please enter Audience Male Percentage.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Audience Female Percentage</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AudienceFemalePer"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AudienceFemalePer'].invalid &&
+          form.controls['AudienceFemalePer'].touched
+        "
+      >
+        Please enter Audience Female Percentage.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <h3>Age Groups Followers Percentages</h3>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>13-17 </mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AgeGroup1317"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AgeGroup1317'].invalid &&
+          form.controls['AgeGroup1317'].touched
+        "
+      >
+        Please enter Age Group Percentage.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>18-24 </mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AgeGroup1824"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AgeGroup1824'].invalid &&
+          form.controls['AgeGroup1824'].touched
+        "
+      >
+        Please enter Age Group Percentage.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>25-34</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AgeGroup2534"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AgeGroup2534'].invalid &&
+          form.controls['AgeGroup2534'].touched
+        "
+      >
+        Please enter Age Group Percentage.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>35-44</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AgeGroup3544"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AgeGroup3544'].invalid &&
+          form.controls['AgeGroup3544'].touched
+        "
+      >
+        Please enter Age Group Percentage.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>45-54</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AgeGroup4554"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AgeGroup4554'].invalid &&
+          form.controls['AgeGroup4554'].touched
+        "
+      >
+        Please enter Age Group Percentage.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>55+ </mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AgeGroup55"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AgeGroup55'].invalid &&
+          form.controls['AgeGroup55'].touched
+        "
+      >
+        Please enter Age Group Percentage.
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <h3>Audience Top Countries and Percentages</h3>
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Country 1</mat-label>
+      <mat-select formControlName="AudienceTopCountries1">
+        <mat-option *ngFor="let country of countries" [value]="country">{{
+          country
+        }}</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          form.controls['AudienceTopCountries1'].invalid &&
+          form.controls['AudienceTopCountries1'].touched
+        "
+      >
+        Please select a Country.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Followers Percentage in Country 1 </mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AudienceTopCountries1Percentage"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AudienceTopCountries1Percentage']
+            .invalid &&
+          form.controls['AudienceTopCountries1Percentage']
+            .touched
+        "
+      >
+        Please enter Percentage.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Country 2</mat-label>
+      <mat-select formControlName="AudienceTopCountries2">
+        <mat-option *ngFor="let country of countries" [value]="country">{{
+          country
+        }}</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          form.controls['AudienceTopCountries2'].invalid &&
+          form.controls['AudienceTopCountries2'].touched
+        "
+      >
+        Please select a Country.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Followers Percentage in Country 2 </mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AudienceTopCountries2Percentage"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AudienceTopCountries2Percentage']
+            .invalid &&
+          form.controls['AudienceTopCountries2Percentage']
+            .touched
+        "
+      >
+        Please enter Percentage.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Country 3</mat-label>
+      <mat-select formControlName="AudienceTopCountries3">
+        <mat-option *ngFor="let country of countries" [value]="country">{{
+          country
+        }}</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          form.controls['AudienceTopCountries3'].invalid &&
+          form.controls['AudienceTopCountries3'].touched
+        "
+      >
+        Please select a Country.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Followers Percentage in Country 3 </mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="AudienceTopCountries3Percentage"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AudienceTopCountries3Percentage']
+            .invalid &&
+          form.controls['AudienceTopCountries3Percentage']
+            .touched
+        "
+      >
+        Please enter Percentage.
+      </mat-error>
+    </mat-form-field>
+  </div>
+</form>

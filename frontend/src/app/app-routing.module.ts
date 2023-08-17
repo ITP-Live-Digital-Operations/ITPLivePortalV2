@@ -1,78 +1,54 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/Guards/auth.guard';
-import { RoleGuard } from './core/Guards/role.guard';
-
-import { HomeComponent } from './home/home.component';
-import { StatusComponent } from './status/status.component';
-import { LoginPageComponent } from './login/login-page/login-page.component';
-import { AccessDeniedComponent } from './access-denied/access-denied.component';
-import { EafcComponent } from './client-projects/eafc/eafc.component';
-import { WelcomeComponent } from './login/welcome/welcome.component';
+import { LoginComponent } from './modules/login/login.component';
+import { HomeComponent } from './modules/home/homeComponent/home.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { LoginCredentialsComponent } from './modules/login/login-credentials/login-credentials.component';
 
 const routes: Routes = [
-
-
-  { path: 'login', component: LoginPageComponent },
-
-  { path: 'welcome', component: WelcomeComponent},
-
+  {
+    path: 'welcome',
+    component: LoginComponent,
+  },
+  {
+    path: 'login',
+    component: LoginCredentialsComponent
+  },
   {
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'talent',
+        path: '',
         loadChildren: () =>
-          import('./talent-home/talent-home.module').then(
-            (m) => m.TalentHomeModule
+          import('./modules/home/home.module').then(
+            (m) => m.HomeModule
           ),
-        canActivate: [AuthGuard, RoleGuard],
-        data: {
-          allowedRoles: ['Talent Head', 'talent', 'admin', 'superadmin'],
-        },
-      },
+      }
+    ]
+  },
+  {
+    path: 'site',
+    children: [
       {
-        path: 'sales',
-        loadChildren: () =>
-          import('./sales-home/sales-home.module').then(
-            (m) => m.SalesHomeModule
-          ),
-        canActivate: [AuthGuard, RoleGuard],
-        data: { allowedRoles: ['Sales Head', 'sales', 'admin', 'superadmin'] },
-      },
-      {
-        path: 'admin',
-        loadChildren: () =>
-          import('./admin/admin.module').then((m) => m.AdminModule),
-        canActivate: [AuthGuard, RoleGuard],
-        data: { allowedRoles: ['admin', 'superadmin'] },
-      },
-    ],
+        path: '',
+        loadChildren: () => import('./shared/components/shared.module').then(
+          (m) => m.SharedModule
+        )
+      }
+    ]
   },
   {
-    path: 'EAFC',
-    component: EafcComponent,
-  },
-  {
-    path: 'eafc',
-    redirectTo: 'EAFC',
-    pathMatch: 'full',
-  },
-
-  {
-    path: 'access-denied',
-    component: AccessDeniedComponent,
-    canActivate: [AuthGuard],
-  },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-
-  { path: '**', component: StatusComponent, canActivate: [AuthGuard] },
+    path: '**',
+    redirectTo: 'welcome',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+
+export class AppRoutingModule { }

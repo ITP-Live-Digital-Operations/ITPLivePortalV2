@@ -1,0 +1,87 @@
+<form [formGroup]="form">
+<div class="row">
+  <mat-form-field appearance="outline">
+    <mat-label>Campaign Launch Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker1"
+      formControlName="CampaignStartDate"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Campaign End Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker2"
+      formControlName="CampaignEndDate"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div class="row">
+  <mat-form-field appearance="outline">
+    <mat-label>Campaign Message Phase 1</mat-label>
+    <textarea
+      matInput
+      formControlName="CampaignMessagePhaseOne"
+      rows="1"
+      autocomplete="off"
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Campaign Message Phase 2</mat-label>
+    <textarea
+      matInput
+      formControlName="CampaignMessagePhaseTwo"
+      rows="1"
+      autocomplete="off"
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Campaign Message Phase 3</mat-label>
+    <textarea
+      matInput
+      formControlName="CampaignMessagePhaseThree"
+      rows="1"
+      autocomplete="off"
+    ></textarea>
+  </mat-form-field>
+</div>
+
+<div class="row">
+  <h2>Content Deliverables</h2>
+  <mat-form-field appearance="outline">
+    <mat-label> Platforms </mat-label>
+    <mat-select formControlName="ContentDeliverables" multiple>
+      <mat-option *ngFor="let option of briefPlatforms" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Brand Exclusivity Duration in Days</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="BrandExclusivityDurationinDays"
+      autocomplete="off"
+    />
+  </mat-form-field>
+</div>
+<div>
+  <h2>Video</h2>
+  <div class="checkbox-container">
+    <mat-checkbox formControlName="VideoProduction">Production</mat-checkbox>
+
+    <mat-checkbox formControlName="VideoEditing">Editing</mat-checkbox>
+  </div>
+</div>
+</form>

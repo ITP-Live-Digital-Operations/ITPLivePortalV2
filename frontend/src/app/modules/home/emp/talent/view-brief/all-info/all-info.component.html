@@ -1,0 +1,109 @@
+<div class="card-header bg-dark text-light">
+  {{ this.brief?.data?.CampaignName }}
+</div>
+
+    <div class="card p-4">
+      <h2>1. Campaign Information:</h2>
+
+      <p class="words">Agency: {{ brief?.data?.Agency }}</p>
+      <p class="words">Client: {{ brief?.data?.Client }}</p>
+      <p class="words">Client Industry: {{ brief?.data?.ClientIndustry }}</p>
+      <p class="words">Campaign Overview: {{ brief?.data?.CampaignOverview }}</p>
+      <p class="words">
+        Campaign Objective: {{ brief?.data?.CampaignObjective }}
+      </p>
+      <p class="words">
+        Campaign Objective Details: {{ brief?.data?.CampaignObjectiveDetails }}
+      </p>
+
+      <h2>2. Campaign Details:</h2>
+
+      <p class="words">
+        Number of Recommendations: {{ brief?.data?.NumberofRecommendations }}
+      </p>
+      <p class="words">Currency: {{ brief?.data?.Currency }}</p>
+      <p class="words">Budget: {{ brief?.data?.Budget }}</p>
+      <p class="words">
+        Campaign Start Date: {{ brief?.data?.CampaignStartDate | date }}
+      </p>
+      <p class="words">
+        Campaign End Date: {{ brief?.data?.CampaignEndDate | date }}
+      </p>
+      <p class="words">
+        Campaign Message Phase One:{{ brief?.data?.CampaignMessagePhaseOne }}
+      </p>
+      <p class="words">
+        Campaign Message Phase Two:{{ brief?.data?.CampaignMessagePhaseTwo }}
+      </p>
+      <p class="words">
+        Campaign Message Phase Three:{{ brief?.data?.CampaignMessagePhaseThree }}
+      </p>
+      <p class="words">
+        Content Deliverables: {{ brief?.data?.ContentDeliverables }}
+      </p>
+      <p class="words">
+        Brand Exclusivity Duration in Days:{{
+          brief?.data?.BrandExclusivityDurationinDays
+        }}
+      </p>
+      <p class="words">
+        Video Production:
+        <span *ngIf="brief?.data?.VideoProduction == 1"> Yes </span>
+        <span *ngIf="brief?.data?.VideoProduction == 0"> No</span>
+      </p>
+      <p class="words">
+        Video Editing:
+        <span *ngIf="brief?.data?.VideoEditing == 1"> Yes </span>
+        <span *ngIf="brief?.data?.VideoEditing == 0"> No</span>
+      </p>
+      <h2>3. Influencer Information:</h2>
+
+      <p class="words" *ngIf="brief?.data?.InfluencerAgeRange != undefined">
+        Influencer Age Range:{{ brief?.data?.InfluencerAgeRange | ageGroup }}
+      </p>
+      <p class="words">
+        Influencer Location: {{ brief?.data?.InfluencerLocation }}
+      </p>
+      <p class="words">
+        Influencer Nationality: {{ brief?.data?.InfluencerNationality }}
+      </p>
+      <p class="words">Influencer Gender: {{ brief?.data?.InfluencerGender }}</p>
+      <p class="words">
+        Similar Profile Link: {{ brief?.data?.SimilarProfileLink }}
+      </p>
+      <p class="words">
+        Influencer Interest: {{ brief?.data?.InfluencerInterest }}
+      </p>
+      <p class="words">
+        Influencer Number Of Followers:{{
+          brief?.data?.InfluencerNumberOfFollowers
+        }}
+      </p>
+      <p class="words">
+        Note For Number Of Followers:{{ brief?.data?.NoteForNumberOfFollowers }}
+      </p>
+
+      <h2>4. Audience Information:</h2>
+
+      <p class="words" *ngIf="brief?.data?.AudienceAgeRange != undefined">
+        Audience Age Range: {{ brief?.data?.AudienceAgeRange | ageGroup }}
+      </p>
+      <p class="words">Audience Location: {{ brief?.data?.AudienceLocation }}</p>
+      <p class="words">
+        Audience Nationality: {{ brief?.data?.AudienceNationality }}
+      </p>
+      <p class="words">Audience Gender: {{ brief?.data?.AudienceGender }}</p>
+      <p class="words">Audience Interest: {{ brief?.data?.AudienceInterest }}</p>
+      <p class="words">
+        Confirmed Influencer Handles:{{
+          brief?.data?.ConfirmedInfluencerHandles
+        }}
+      </p>
+      <p class="words">
+        Previous Brand Ambassadors Name:{{
+          brief?.data?.PreviousBrandAmbassadorsName
+        }}
+      </p>
+      <p class="words">Created At: {{ brief?.data?.createdAt | date }}</p>
+      <p class="words">Updated At: {{ brief?.data?.updatedAt | date }}</p>
+  </div>

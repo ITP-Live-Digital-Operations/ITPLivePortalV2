@@ -1,0 +1,46 @@
+<div style="position: relative">
+  <div class="row">
+    <div class="row">
+      <app-person-info [assignedUser]="assignedUser" [salesperson]="salesperson" [task]="task"></app-person-info>
+      <div class="col-sm-4">
+        <div class="card p-4" *ngIf="assignedUser_id == user_id || privilege_level > 7" >
+          <form [formGroup]="progressForm" (ngSubmit)="submitForm()" autocomplete="off">
+            <app-update-activate (submitEvent)="submitForm()" [brief]="brief" [brief_id]="brief_id"></app-update-activate>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="privilege_level > 7 && !assigned">
+      <app-assign-task 
+      [dataSource]="dataSource" 
+      [brief]="brief"
+      [brief_id]="brief_id"
+      ></app-assign-task>
+    </div>
+
+    <app-sheets-brief 
+    *ngIf="assigned"
+    [userId]="user_id" 
+    [brief]="brief"
+    [brief_id]="brief_id" 
+    [presentation]="presentation" 
+    [budgetSheet]="budgetSheet" 
+    [budgetSheetId]="budgetSheetId" 
+    [presentationId]="presentationId"
+    [task]="task"
+    [id]="id">
+    </app-sheets-brief>
+
+    <app-main-table 
+    *ngIf="assigned"
+    [user_id]="user_id" 
+    [task]="task" 
+    [brief]="brief"
+    [budgetSheetId]="budgetSheetId"
+    [id]="id"
+    ></app-main-table>
+
+    <app-all-info [brief]="brief"></app-all-info>
+  </div>
+</div>

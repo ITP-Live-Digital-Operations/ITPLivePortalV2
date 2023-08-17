@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="items d-flex">
+    <div class="list-items">
+      
+      <div class="item">
+        <p>Email:</p>
+        <p class="text">{{ profileData?.data.Email }}</p>
+      </div>
+
+      <div class="item">
+        <p>Main Content Language:</p>
+        <p class="text">{{ profileData?.data.MainContentLanguage }}</p>
+      </div>
+
+      <div class="item">
+        <p>Main Vertical:</p>
+        <p class="text">
+          {{ profileData?.data.MainVertical }}</p>
+      </div>
+
+      <div class="item">
+        <p>Nationality:</p>
+        <p class="text">{{ profileData?.data.Nationality }}
+        </p>
+      </div>
+    </div>
+
+    <div class="list-items">
+      <div class="item">
+        <p>ITP Relationship:</p>
+        <p class="text">{{ profileData?.data.ItpRelationship }}</p>
+      </div>
+
+      <div class="item">
+        <p>Location:</p>
+        <p class="text">{{ profileData?.data.CountryLocation }}</p>
+      </div>
+
+      <div class="item">
+        <p>KSA License:</p>
+      </div>
+      <div>
+        <p class="text" *ngIf="profileData?.data.KSALicense == 0">
+          No
+        </p>
+        <p class="text" *ngIf="profileData?.data.KSALicense == 1">
+          Yes
+        </p>
+      </div>
+
+      <div>
+        <p>UAE License:</p>
+      </div>
+      <div>
+        <p class="text" *ngIf="profileData?.data.UAELicense == 0">
+          No
+        </p>
+        <p class="text" *ngIf="profileData?.data.UAELicense == 1">
+          Yes
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</div>

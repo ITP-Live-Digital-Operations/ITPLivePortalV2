@@ -1,0 +1,34 @@
+  table {
+    max-height: auto;
+    justify-content: center;
+  }
+
+  .table-container {
+    padding: 20px 70px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  h2 {
+    margin-top: 10px!important;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+  }
+  
+  /* customize the scroll bar thumb */
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+  }
+  
+  /* customize the scroll bar thumb on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  
+  /* customize the scroll bar width and height */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }

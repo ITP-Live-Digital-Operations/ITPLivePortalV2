@@ -1,0 +1,140 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+@import 'ngx-toastr/toastr';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+.back_button {
+    padding-bottom: 2%; 
+    padding-left: 1%; 
+    padding-top: 1%
+  }
+  
+.filter {
+  width: 20%; 
+  height: 10%; 
+  padding-left: 1%;
+}
+
+.mat-mdc-paginator-container {
+  background-color: #3f51b5!important;
+  color: white;
+  justify-content: center!important;
+}
+
+.mat-mdc-select {
+  color: white!important;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mat-mdc-raised-button {
+  margin-top: 1%;
+  border-radius: 0px!important;
+  
+}
+
+
+.form-container {
+  max-height: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.mat-mdc-text-field-wrapper{
+  border-radius: 0px!important;
+  border: thin solid rgba(255, 255, 255, 0.401);
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  cursor: pointer;
+  color: white;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+
+.mat-mdc-header-cell  {
+  font-size: 16px!important;
+  border-bottom: thin solid white!important;
+
+  color: white!important;
+}
+
+.mdc-text-field__input {
+  color: rgba(255, 255, 255, 0.87)!important;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: rgba(255, 255, 255, 0.756);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+mat-form-field {
+  flex: 1;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+
+
+h2 {
+  color: white !important;
+}
+
+h3 {
+  color: white;
+}
+
+hr {
+  color: white;
+}
+
+.mat-mdc-table {
+  background-color: black!important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(32, 32, 32);
+}
+
+/* customize the scroll bar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+/* customize the scroll bar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* customize the scroll bar width and height */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #FFFFFFC1!important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #FFFFFFC1!important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #FFFFFFC1!important;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #FFFFFFC1!important;
+}

@@ -4,22 +4,22 @@ import { environment} from '../../../environments/environment.development';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  dataApiURL = environment.apiUrl + '/v1/seeds'
+  dataApiURL = environment.apiUrl + '/v1/seeds';
 
   exportSeeds(){
-    return this.http.get(`${this.dataApiURL}/export-seeds`)
+    return this.http.get(`${this.dataApiURL}/export-seeds`);
   }
 
   accessToken(){
-    
-    return this.http.get(`${environment.apiUrl}/powerbi/token`)
+    return this.http.get(`${environment.apiUrl}/powerbi/token`);
   }
+
 }
 
 

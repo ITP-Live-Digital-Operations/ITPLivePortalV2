@@ -1,0 +1,68 @@
+.container {
+  max-width: 100%;
+
+}
+
+.container .btn {
+  gap: 10px;
+  cursor: default;
+  border: 0px solid;
+  margin-left: 120px;
+}
+
+.container p {
+  margin-top: 20px;
+  color: white;
+  font-size: medium;
+}
+
+button[mat-raised-button] {
+  top: 50px;
+  width: 300px;
+  height: 300px;
+  // margin-bottom: 15px;
+  background-color: #000000;
+  border-radius: 0px;
+  transition:  500ms;
+  border-bottom: 3px solid #3f51b5;
+  box-shadow: rgba(0, 0, 0, 0.388) 0px 10px 10px;
+ 
+}
+
+.title {
+  font-size: 8vh;
+  color: white;
+} 
+
+button[mat-raised-button]:hover {
+  transition: 200ms;
+  z-index: 2;
+  border-bottom: 15px solid #3f51b5;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  
+}
+
+img {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+
+@media (max-width: 1440px), (max-height: 900px) {
+  button[mat-raised-button]{
+      width: 220px;
+      height: 220px;
+  }
+
+  img {
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .container .btn {
+    margin-left: 80px;
+  }
+}
