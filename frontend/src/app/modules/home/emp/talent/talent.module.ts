@@ -16,7 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     InfluencerLogsComponent,
-    PersonTasksComponent,
+    PersonTasksComponent, 
     InfluencerRatingComponent,
   ],
   imports: [
@@ -28,7 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     SharingModule,
     MatDialogModule,
-    
+
   ],
 })
 export class TalentModule {}
