@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CelebrityService } from 'src/app/core/services/celebrity.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-new-celebrity',
@@ -20,6 +16,7 @@ export class NewCelebrityComponent {
   newCelebrityForm!: FormGroup;
   data: any;
   isCelebrity: boolean = false;
+  public path = PATH;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -100,7 +97,7 @@ export class NewCelebrityComponent {
       this.data = res;
       if (this.data.status === 'success') {
         this.toastrService.success('Celebrity Added Successfully');
-        this.route.navigate(['home/talent/head/celebrities']);
+        this.route.navigate([this.path['celebrities']]);
       } else {
         this.toastrService.warning('Celebrity Not Added');
       }

@@ -5,7 +5,7 @@
     (ngSubmit)="onSubmit()"
   >
     <!-- GENERAL INFORMATION HERE -->
-
+    
     <h2>General Information</h2>
     <app-general-info formGroupName="generalInfo" [isCelebrity]="isNotCelebrity"></app-general-info>
     <hr />
@@ -24,11 +24,11 @@
     <h2>Licenses</h2>
 
     <div class="row">
-      <mat-checkbox formControlName="KSALicense" >KSA License</mat-checkbox>
+      <mat-checkbox formControlName="KSALicense">KSA License</mat-checkbox>
     </div>
 
     <div class="row">
-      <mat-checkbox  formControlName="UAELicense" class="label">UAE License</mat-checkbox>
+      <mat-checkbox  formControlName="UAELicense">UAE License</mat-checkbox>
     </div>
 
     <hr />
@@ -40,8 +40,8 @@
 
     <!-- END OF FORM HERE -->
 
-
-
+  
+  
 
     <app-extra-info formGroupName="extraInfo" [isCelebrity]="isNotCelebrity"></app-extra-info>
 

@@ -6,12 +6,20 @@ body {
 
 /* Style the card */
 .card {
-  background-color: #fff;
+  background-color: #000000;
   border: none;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-width: 100%;
+  border-radius: 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px;
+  border-bottom: 3px solid #3f51b5;
+  max-width: 40%;
+}
+
+.status {
+  display: flex;
+  justify-content: space-evenly;
+
+  
 }
 
 /* Style the card header */

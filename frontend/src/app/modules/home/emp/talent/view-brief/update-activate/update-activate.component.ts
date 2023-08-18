@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ControlContainer, FormGroup, FormGroupDirective } from '@angular/forms';
+import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
 import { UserService } from 'src/app/core/services/user.service';

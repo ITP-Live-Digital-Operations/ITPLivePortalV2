@@ -10,7 +10,7 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 })
 export class FormsComponent {
 
-  path = PATH;
+  public path = PATH;
 
   pl: number = 0;
   userRole: string = '';

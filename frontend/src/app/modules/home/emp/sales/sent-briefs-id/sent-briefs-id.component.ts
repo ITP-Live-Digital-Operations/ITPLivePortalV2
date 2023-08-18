@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/core/services/notification.service'
 import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-sent-briefs-id',
@@ -21,6 +22,7 @@ export class SentBriefsIdComponent {
   private briefData: any;
   private taskData: any;
   private assignedUser: any;
+  public path = PATH;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -244,28 +246,28 @@ export class SentBriefsIdComponent {
 
         if(itpDepartment == 'Originals' || itpDepartment == 'UAE'){
           let id = 23;
-          let input = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `/home/talent/viewBrief/${this.briefId}`}
+          let input = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `${this.path['viewBrief'] + this.briefId}`}
           
           this.notificationService.createNotification( id, input).subscribe( () => {})
 
           if(this.assignedUser != null){
-            let input1 = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `/home/talent/viewBrief/${this.briefId}`}
+            let input1 = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `${this.path['viewBrief'] + this.briefId}`}
             this.notificationService.createNotification( this.assignedUser.id, input1).subscribe( () => {})
           }
         }
         else if(itpDepartment == 'KSA' || itpDepartment == 'Gaming' ){
           let id = 15;
-          let input = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `/home/talent/viewBrief/${this.briefId}`}
+          let input = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `${this.path['viewBrief'] + this.briefId}`}
 
           this.notificationService.createNotification( id, input).subscribe( () => {})
 
           if(this.assignedUser != null){
-            let input2 = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `/home/talent/viewBrief/${this.briefId}`}
+            let input2 = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `${this.path['viewBrief'] + this.briefId}`}
             this.notificationService.createNotification( this.assignedUser.id, input2).subscribe( () => {})
           }
         }
         // alertify.success('Sales brief edited successfully');
-        this.router.navigate(['home/main/forms']);
+        this.router.navigate([this.path['forms']]);
       },
       (error) => {
         console.error(

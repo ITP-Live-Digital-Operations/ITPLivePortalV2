@@ -3,7 +3,7 @@
       <th class="centered">File Type</th>
       <th class="centered">File Name</th>
       <th class="centered">Uploaded On</th>
-      <th class="centered">Download</th>
+      <th class="down">Download</th>
       <th class="centered" *ngIf="userId === task?.assigned_to">
         Choose File
       </th>
@@ -21,14 +21,14 @@
       <td *ngIf="budgetSheet">{{ budgetSheet.createdAt | date }}</td>
       <td *ngIf="!budgetSheet"></td>
       <td *ngIf="budgetSheet">
-        <button
-          mat-raised-button
+        <button class="icon-btn"
+        
           color="primary"
           (click)="
             downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)
           "
         >
-          Download
+        <mat-icon>get_app</mat-icon>
         </button>
       </td>
       <td *ngIf="!budgetSheet"></td>
@@ -70,14 +70,14 @@
       <td *ngIf="presentation">{{ presentation.createdAt | date }}</td>
       <td *ngIf="!presentation"></td>
       <td *ngIf="presentation">
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="
-            downloadFilePPTX(presentation.id, presentation.originalname)
-          "
-        >
-          Download
+        <button 
+        class="icon-btn"
+        color="primary"
+        (click)="
+          downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)
+        "
+      >
+      <mat-icon>get_app</mat-icon>
         </button>
       </td>
       <td *ngIf="!presentation"></td>

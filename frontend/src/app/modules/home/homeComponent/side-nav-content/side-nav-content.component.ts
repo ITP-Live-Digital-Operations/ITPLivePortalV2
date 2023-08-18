@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-side-nav-content',
@@ -8,6 +9,9 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./side-nav-content.component.scss'],
 })
 export class SideNavContentComponent {
+
+  public path = PATH;
+
   msg: any;
 
   pl: number = 0;

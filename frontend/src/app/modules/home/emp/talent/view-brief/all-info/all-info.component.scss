@@ -1,16 +1,17 @@
+.card-header {
+  background: rgb(58,82,212)!important;
+  background: linear-gradient(180deg, rgba(58,82,212,1) 10%, rgba(37,60,190,1) 100%)!important;
+  padding: 20px;
+  font-size: larger;
+}
+
+.card {
+    background-color: black;
+    border-radius: 0px;
+    border-bottom: 3px solid rgb(58,82,212);
+}
+
 .words{
     padding-left: 10%;
-    color: black;
-}
-
-h2 {
-  color: black!important;
-}
-
-
-.card-header
-{
-  font-size: 300%;
-  margin : 1%;
-  padding : 1%;
+    color: white;
 }

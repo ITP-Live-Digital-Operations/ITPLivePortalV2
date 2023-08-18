@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { InfluencerIdComponent } from '../influencer-id.component';
 import { MatDialogRef } from '@angular/material/dialog';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-logs-table',
@@ -14,6 +15,8 @@ export class LogsTableComponent {
   @Input() UserDetails: any;
   @Input() profileData: any;
 
+  public path = PATH;
+
   constructor(private router: Router, private dialogRef: MatDialogRef<InfluencerIdComponent>) {}
 
   redirectToNewLog(id: any, name: any) {
@@ -21,7 +24,7 @@ export class LogsTableComponent {
 
     sessionStorage.setItem('influencerData', JSON.stringify(data));
     this.dialogRef.close();
-    this.router.navigate(['home/talent/new/rateLog']);
+    this.router.navigate([this.path['newRateLog']]);
   }
 
   displayedColumns: string[] = [

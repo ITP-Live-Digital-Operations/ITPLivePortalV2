@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SalesService } from 'src/app/core/services/sales.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-sent-briefs',
@@ -11,6 +12,8 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./sent-briefs.component.scss'],
 })
 export class SentBriefsComponent {
+
+  public path = PATH;
   dataSource: any;
   user_id = this.userService.getID();
 

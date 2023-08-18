@@ -64,7 +64,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
         <tr
           mat-row
-          routerLink="/home/admin/edit/{{row.id}}"
+          routerLink="{{path['editUser'] + row.id}}"
           *matRowDef="let row; columns: displayedColumns"
           sticky
         ></tr>

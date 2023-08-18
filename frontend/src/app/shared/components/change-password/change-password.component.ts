@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -18,7 +17,6 @@ export class ChangePasswordComponent {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
   ) {
     this.changePasswordForm = this.formBuilder.group(
       {
@@ -29,8 +27,6 @@ export class ChangePasswordComponent {
       { validator: this.matchPassword.bind(this) }
     );
   }
-
-  ngOnInit(): void {}
 
   matchPassword(group: FormGroup) {
     const newPassword = group.get('newPassword')?.value;

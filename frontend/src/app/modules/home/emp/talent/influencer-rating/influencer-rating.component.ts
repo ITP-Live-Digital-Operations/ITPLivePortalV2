@@ -87,7 +87,6 @@ export class InfluencerRatingComponent {
         this.data = item;
         if (this.data.status == 'success') {
           this.toastrService.success('Rating Added Successfully');
-          // alertify.success('Rating Added Successfully');
         }
       });
   }

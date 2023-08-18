@@ -6,6 +6,7 @@ import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { LogService } from 'src/app/core/services/log.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { currencies, platforms } from 'src/assets/influencer-form-arrays';
+import { PATH } from 'src/app/core/constant/routes.constants';
 // import * as alertifyjs from 'alertifyjs';
 
 @Component({
@@ -14,6 +15,7 @@ import { currencies, platforms } from 'src/assets/influencer-form-arrays';
   styleUrls: ['./new-rate-log.component.scss'],
 })
 export class NewRateLogComponent {
+
   form: FormGroup;
   logForm: FormGroup;
   userID: any;
@@ -24,6 +26,8 @@ export class NewRateLogComponent {
   platforms = platforms;
   influencerData: any;
   submitted = false;
+
+  public path = PATH;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -66,7 +70,6 @@ export class NewRateLogComponent {
   }
 
   addFields() {
-    const index = this.fields.length;
     const fields = this.formBuilder.group({
       Platform: ['', Validators.required],
       Deliverable: ['', Validators.required],
@@ -94,7 +97,7 @@ export class NewRateLogComponent {
         this.data = item;
         if (this.data.status === "success") {
           this.toastrService.success('Log Added Successfully');
-          this.route.navigate(['home/talent/logs'])
+          this.route.navigate([this.path['rateLogs']])
         }
         else {
           this.toastrService.error('Error! Please Try Again');
@@ -172,9 +175,5 @@ export class NewRateLogComponent {
     } else {
       deliverableControl?.clearValidators();
     }
-  }
-
-  backButton() {
-    window.history.back();
   }
 }

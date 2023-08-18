@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-new-influencer',
@@ -15,6 +16,7 @@ export class NewInfluencerComponent {
   newInfluencerForm!: FormGroup;
   data: any;
   isNotCelebrity: boolean = true;
+  public path = PATH;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -116,7 +118,7 @@ export class NewInfluencerComponent {
     this.service.addInfluencer({ ...formValues }).subscribe((res) => {
       this.data = res;
       if (this.data.status === 'success') {
-        this.route.navigate(['home/main/influencers']);
+        this.route.navigate([this.path['influencers']]);
         this.toastrService.success('Influencer Added Successfully');
       } else {
         this.toastrService.warning('Influencer Not Added');

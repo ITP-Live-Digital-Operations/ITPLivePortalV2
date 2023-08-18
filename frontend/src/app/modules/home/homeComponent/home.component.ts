@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { NotificationComponent } from '../homeComponent/notification/notificatio
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/core/services/user.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,9 @@ import { NotificationService } from 'src/app/core/services/notification.service'
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+
+  public path = PATH;
+
   userName: string = '';
   userRole: string = '';
   userPrivilege_level: number = 0;

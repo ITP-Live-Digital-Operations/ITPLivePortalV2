@@ -87,14 +87,7 @@ export class AllBriefsComponent {
       );
 
       // Send updated priorities to the backend
-      this.salesService.updatePriorities(updatedPriorities).subscribe(
-        (response) => {
-          console.log('Priorities updated successfully:', response);
-        },
-        (error) => {
-          console.error('Error updating priorities:', error);
-        }
-      );
+      this.salesService.updatePriorities(updatedPriorities).subscribe();
 
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
       this.dataSource.paginator = this.paginator;

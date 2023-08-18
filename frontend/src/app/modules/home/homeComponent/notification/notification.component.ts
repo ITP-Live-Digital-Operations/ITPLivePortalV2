@@ -34,7 +34,6 @@ export class NotificationComponent {
     this.notificationService
       .getNotificationsByUserId(this.source.userId)
       .subscribe((res) => {
-        console.log(res);
         this.notifications = res;
       });
 

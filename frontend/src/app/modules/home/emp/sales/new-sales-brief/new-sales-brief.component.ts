@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SalesService } from 'src/app/core/services/sales.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-sales-brief',
@@ -15,12 +17,14 @@ export class NewSalesBriefComponent {
   public newBrief: any;
   public userId = this.userService.getID();
   public userName: any;
+  public path = PATH;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private notificationService: NotificationService,
-    private salesService: SalesService
+    private salesService: SalesService,
+    private router: Router
   ) {
     this.userService.getUserNameById(this.userId).subscribe((res) => {
       this.userName = res;
@@ -124,7 +128,7 @@ export class NewSalesBriefComponent {
         let id = 23;
         let input = {
           message: 'New Sales Brief has been created by ' + this.userName.name,
-          link: `/home/talent/viewBrief/${this.newBrief.id}`,
+          link: `${this.path['viewBrief'] + this.newBrief.id}`,
         };
         this.notificationService
           .createNotification(id, input)
@@ -133,7 +137,7 @@ export class NewSalesBriefComponent {
         let id = 15;
         let input = {
           message: 'New Sales Brief has been created by ' + this.userName.name,
-          link: `/home/talent/viewBrief/${this.newBrief.id}`,
+          link: `${this.path['viewBrief'] + this.newBrief.id}`,
         };
 
         this.notificationService
@@ -141,6 +145,7 @@ export class NewSalesBriefComponent {
           .subscribe(() => {});
       }
     });
+    this.router.navigate([this.path['forms']]);
   }
 
   processFormGroups(formGroup: FormGroup): any {

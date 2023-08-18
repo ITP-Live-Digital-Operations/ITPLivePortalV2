@@ -1,9 +1,9 @@
 <div style="position: relative">
   <div class="row">
-    <div class="row">
-      <app-person-info [assignedUser]="assignedUser" [salesperson]="salesperson" [task]="task"></app-person-info>
-      <div class="col-sm-4">
-        <div class="card p-4" *ngIf="assignedUser_id == user_id || privilege_level > 7" >
+    <div class="status">
+      <app-person-info style="align-self: center;" [assignedUser]="assignedUser" [salesperson]="salesperson" [task]="task"></app-person-info>
+      <div class="card">
+        <div *ngIf="assignedUser_id == user_id || privilege_level > 7" >
           <form [formGroup]="progressForm" (ngSubmit)="submitForm()" autocomplete="off">
             <app-update-activate (submitEvent)="submitForm()" [brief]="brief" [brief_id]="brief_id"></app-update-activate>
           </form>

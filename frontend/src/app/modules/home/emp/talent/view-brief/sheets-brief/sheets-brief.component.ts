@@ -5,6 +5,7 @@ import { FileService } from 'src/app/core/services/file.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-sheets-brief',
@@ -40,6 +41,8 @@ export class SheetsBriefComponent {
   @Input()
   id!: number;
 
+  public path = PATH;
+
   fileToUpload: File | null = null;
   influencers: InfluencerModel[] = [];
 
@@ -56,7 +59,7 @@ export class SheetsBriefComponent {
         let id = this.brief?.data.CreatedbyID;
         let input = {
           message: 'Sales Brief is ready',
-          link: `/home/sales/readyBriefs/${this.brief?.data.id}`,
+          link: `${this.path['readyBriefs'] + this.brief?.data.id}`,
         };
         this.notificationService
           .createNotification(id, input)
@@ -205,7 +208,7 @@ export class SheetsBriefComponent {
           .deactivateTask(this.brief_id)
           .subscribe((data2: any) => {
             // alertify.success('Task Deactivated');
-            // window.location.reload();
+            window.location.reload();
           });
       });
   }

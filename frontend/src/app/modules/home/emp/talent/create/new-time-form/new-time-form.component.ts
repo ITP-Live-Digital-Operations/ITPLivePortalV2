@@ -11,12 +11,14 @@ import { agencies, MainTaskType, timeSpent } from 'src/assets/influencer-form-ar
 })
 
 export class NewTimeFormComponent {
+
   newTalentTimeForm: FormGroup;
   name!: string;
   userId!: number;
   agencies = agencies;
   mainTaskType = MainTaskType;
   timeSpent = timeSpent;
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService
@@ -37,6 +39,7 @@ export class NewTimeFormComponent {
       this.name = response.name;
     });
   }
+
   onSubmit() {
     this.userService
       .addTimeForm({ user_id: this.userId, ...this.newTalentTimeForm.value })
@@ -51,9 +54,5 @@ export class NewTimeFormComponent {
         //   alertify.error("Error adding time form")
         // }
       });
-  }
-
-  backButton() {
-    window.history.back();
   }
 }

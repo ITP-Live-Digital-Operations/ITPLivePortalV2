@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
-import { NotificationsComponent } from './notifications/notifications.component';
 import { MaterialModule } from 'src/app/common.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -10,7 +9,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 
 @NgModule({
   declarations: [
-    NotificationsComponent,
     ChangePasswordComponent
   ],
   imports: [
@@ -19,6 +17,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     MaterialModule,
     ReactiveFormsModule
   ],
-  exports: [NotificationsComponent]
+  exports: []
 })
 export class SharedModule { }

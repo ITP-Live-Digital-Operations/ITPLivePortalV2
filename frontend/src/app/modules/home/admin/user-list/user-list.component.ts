@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-user-list',
@@ -11,6 +11,8 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent {
+
+  public path = PATH;
   users: any;
   dataSource: any;
 
@@ -20,13 +22,9 @@ export class UserListComponent {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getUsers();
-  }
-
-  ngOnDestroy(): void {
     this.getUsers();
   }
 
@@ -51,8 +49,4 @@ export class UserListComponent {
     'privilege_level',
     'loginCount',
   ];
-
-  backButton() {
-    window.history.back();
-  }
 }

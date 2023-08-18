@@ -4,6 +4,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { ROLES, PRIVILEGE_LEVEL } from 'src/app/core/constant/values.constants'
 // import * as alertify from 'alertifyjs';
 import { Router } from '@angular/router';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-register-user',
@@ -12,6 +13,8 @@ import { Router } from '@angular/router';
 })
 
 export class RegisterUserComponent implements OnInit {
+
+  public path = PATH;
   users: any;
   data: any;
   roles = ROLES;
@@ -52,7 +55,7 @@ export class RegisterUserComponent implements OnInit {
             // alertify.success('User added successfully');
           }
         });
-      this.router.navigate(['home/admin/forms']);
+      this.router.navigate([this.path['forms']]);
     } else {
       // Show error message to user
     }
@@ -62,9 +65,5 @@ export class RegisterUserComponent implements OnInit {
     this.userService.getAllUsers().subscribe((data) => {
       this.users = data;
     });
-  }
-
-  backButton() {
-    window.history.back();
   }
 }

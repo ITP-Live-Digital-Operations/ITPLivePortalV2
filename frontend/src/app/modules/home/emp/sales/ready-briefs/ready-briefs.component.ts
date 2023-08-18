@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SalesService } from 'src/app/core/services/sales.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-ready-briefs',
@@ -12,6 +13,8 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./ready-briefs.component.scss'],
 })
 export class ReadyBriefsComponent {
+
+  public path = PATH;
   dataSource: any;
   briefs: any;
   user_id = this.userService.getID();
@@ -52,6 +55,6 @@ export class ReadyBriefsComponent {
 
   viewFiles(id: any) {
     this.salesService.viewBriefBySales(id).subscribe((res: any) => {});
-    this.router.navigate([`/home/sales/readyBriefs/${id}`]);
+    this.router.navigate([`${this.path['readyBriefs'] + id}`]);
   }
 }

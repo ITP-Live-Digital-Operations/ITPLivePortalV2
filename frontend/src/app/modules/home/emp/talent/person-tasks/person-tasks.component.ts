@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-person-tasks',
@@ -13,6 +14,8 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./person-tasks.component.scss'],
 })
 export class PersonTasksComponent {
+
+  public path = PATH;
   briefDetails: any;
   dataSource: any;
   userID: any;
@@ -76,7 +79,7 @@ export class PersonTasksComponent {
     }
 
     this.salesService.getSalesBriefIdbyTaskId(id).subscribe((data: any) => {
-      this.route.navigate([`home/talent/viewBrief/${data.data.brief_id}`]);
+      this.route.navigate([`${this.path['viewBrief'] + data.data.brief_id}`]);
     });
   }
 }

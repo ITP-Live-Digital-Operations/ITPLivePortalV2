@@ -7,6 +7,7 @@ import { NotificationService } from 'src/app/core/services/notification.service'
 import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-assign-task',
@@ -28,6 +29,8 @@ export class AssignTaskComponent {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   @ViewChild(MatTable) table!: MatTable<any>;
+
+  public path = PATH;
 
   salespersonId: any;
   assignForm!: FormGroup;
@@ -65,7 +68,7 @@ export class AssignTaskComponent {
         });
       let input1 = {
         message: 'Sales Brief has been assigned ',
-        link: `/home/sales/sentBrief/${this.brief.data.id}`,
+        link: `${this.path['sentBriefs'] + this.brief.data.id}`,
       };
       this.notificationService
         .createNotification(this.salespersonId, input1)
@@ -73,7 +76,7 @@ export class AssignTaskComponent {
 
       let input2 = {
         message: 'A task has been assigned to you. ',
-        link: `/home/talent/viewBrief/${this.brief.data.id}`,
+        link: `${this.path['viewBrief'] + this.brief.data.id}`,
       };
       this.notificationService
         .createNotification(id, input2)

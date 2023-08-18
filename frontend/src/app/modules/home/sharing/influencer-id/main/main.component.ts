@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { InfluencerIdComponent } from '../influencer-id.component';
-import { Subscription, filter } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-main',
@@ -22,6 +23,8 @@ export class MainComponent {
 
   @Input() 
   isReviewVisible: any;
+
+  public path = PATH;
   
   private routerSubscription!: Subscription;
 
@@ -31,7 +34,7 @@ export class MainComponent {
     ) { }
 
   rateInfluencer() {
-    this.router.navigate([`/home/talent/influencerRating/${this.id}`]);
+    this.router.navigate([`${this.path['influencerRating'] + this.id}`]);
     this.dialogRef.close();
   }
 

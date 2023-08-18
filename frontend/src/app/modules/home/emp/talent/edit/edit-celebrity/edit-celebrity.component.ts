@@ -1,10 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CelebrityService } from 'src/app/core/services/celebrity.service';
-import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-edit-celebrity',
@@ -12,6 +10,7 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./edit-celebrity.component.scss']
 })
 export class EditCelebrityComponent {
+
   editCelebrityForm!: FormGroup;
   data: any;
   celebrityData: any
