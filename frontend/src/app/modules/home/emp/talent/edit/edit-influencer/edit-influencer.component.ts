@@ -11,10 +11,10 @@ import { InfluencerService } from 'src/app/core/services/influencer.service';
 })
 export class EditInfluencerComponent {
 
-  editInfluencerForm!: FormGroup;
-  influencerData: any;
-  data: any;
-  isNotCelebrity: boolean = true;
+  public editInfluencerForm!: FormGroup;
+  private influencerData: any;
+  private data: any;
+  public isNotCelebrity: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +27,7 @@ export class EditInfluencerComponent {
     this.GetInfluencerData(this.source.id);
   }
 
-  private initializeElements() {
+  private initializeElements(): void {
     this.editInfluencerForm = this.formBuilder.group({
       generalInfo: this.formBuilder.group({
         Name: ['', [Validators.required]],
@@ -110,8 +110,8 @@ export class EditInfluencerComponent {
     });
   }
 
-  GetInfluencerData(inputdata: any) {
-    return this.service.getInfluencer(inputdata).subscribe((item) => {
+  private GetInfluencerData(inputdata: any): void {
+    this.service.getInfluencer(inputdata).subscribe((item) => {
       this.influencerData = item;
       if (this.influencerData.data != null) {
         this.editInfluencerForm.setValue(
@@ -204,21 +204,21 @@ export class EditInfluencerComponent {
     })
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     const formValues = this.processFormGroups(this.editInfluencerForm);
     this.service.updateInfluencer( formValues, this.source.id ).subscribe((res) => {
       this.data = res;
       if (this.data.status === 'success') {
         this.dialogRef.close();
-        this.toastrService.success('Influencer Edited Successfully');
+        this.toastrService.success('Influencer Edited Successfully!');
       }
       else {
-        this.toastrService.error('Error! Please Try Again');
+        this.toastrService.error('Error! Please Try Again!');
       }
     });
   }
 
-  processFormGroups(formGroup: FormGroup): any {
+  private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
 
     if (formGroup instanceof FormGroup) {

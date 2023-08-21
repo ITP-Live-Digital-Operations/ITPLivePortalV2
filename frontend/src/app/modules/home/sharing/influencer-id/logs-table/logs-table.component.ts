@@ -10,22 +10,20 @@ import { PATH } from 'src/app/core/constant/routes.constants';
   styleUrls: ['./logs-table.component.scss'],
 })
 export class LogsTableComponent {
-  @Input() id: number = 0;
-  @Input() dataSource: any;
-  @Input() UserDetails: any;
-  @Input() profileData: any;
 
-  public path = PATH;
+  @Input() 
+  id: number = 0;
 
-  constructor(private router: Router, private dialogRef: MatDialogRef<InfluencerIdComponent>) {}
+  @Input() 
+  dataSource: any;
 
-  redirectToNewLog(id: any, name: any) {
-    const data = { id: id, name: name };
+  @Input() 
+  UserDetails: any;
 
-    sessionStorage.setItem('influencerData', JSON.stringify(data));
-    this.dialogRef.close();
-    this.router.navigate([this.path['newRateLog']]);
-  }
+  @Input() 
+  profileData: any;
+
+  private path = PATH;
 
   displayedColumns: string[] = [
     'Influencer',
@@ -38,4 +36,14 @@ export class LogsTableComponent {
     'Time_to_reply',
     'Date',
   ];
+
+  constructor(private router: Router, private dialogRef: MatDialogRef<InfluencerIdComponent>) {}
+
+  public redirectToNewLog(id: number, name: string): void {
+    const data = { id: id, name: name };
+
+    sessionStorage.setItem('influencerData', JSON.stringify(data));
+    this.dialogRef.close();
+    this.router.navigate([this.path['newRateLog']]);
+  }
 }

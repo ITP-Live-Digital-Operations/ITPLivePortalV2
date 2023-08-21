@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
 import { agencies, MainTaskType, timeSpent } from 'src/assets/influencer-form-arrays';
-// import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-new-time-form',
@@ -12,16 +12,17 @@ import { agencies, MainTaskType, timeSpent } from 'src/assets/influencer-form-ar
 
 export class NewTimeFormComponent {
 
-  newTalentTimeForm: FormGroup;
+  public newTalentTimeForm: FormGroup;
   name!: string;
   userId!: number;
-  agencies = agencies;
-  mainTaskType = MainTaskType;
-  timeSpent = timeSpent;
+  public agencies = agencies;
+  public mainTaskType = MainTaskType;
+  public timeSpent = timeSpent;
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private toastrService: ToastrService
   ) {
     this.newTalentTimeForm = this.formBuilder.group({
       Date: [''],
@@ -40,19 +41,19 @@ export class NewTimeFormComponent {
     });
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     this.userService
       .addTimeForm({ user_id: this.userId, ...this.newTalentTimeForm.value })
       .subscribe((response: any) => {
         if (response.status == 'success') {
-          // alertify.success("Time form added successfully")
+          this.toastrService.success("Time form added successfully!")
           setTimeout(() => {
             window.location.reload();
           }, 2000);
         }
-        // else{
-        //   alertify.error("Error adding time form")
-        // }
+        else{
+          this.toastrService.error("Error adding time form!")
+        }
       });
   }
 }

@@ -5,6 +5,7 @@ import { ROLES, PRIVILEGE_LEVEL } from 'src/app/core/constant/values.constants'
 // import * as alertify from 'alertifyjs';
 import { Router } from '@angular/router';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register-user',
@@ -15,16 +16,17 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 export class RegisterUserComponent implements OnInit {
 
   public path = PATH;
-  users: any;
-  data: any;
-  roles = ROLES;
-  privilege_level = PRIVILEGE_LEVEL;
-  userForm: FormGroup;
+  public users: any;
+  private data: any;
+  public roles = ROLES;
+  public privilege_level = PRIVILEGE_LEVEL;
+  public userForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -42,28 +44,20 @@ export class RegisterUserComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     if (this.userForm.valid) {
-      // Submit form data to backend
-      console.log(this.userForm.value);
 
       this.userService
         .register({ ...this.userForm.value, status: 'Active' })
         .subscribe((item) => {
           this.data = item;
           if (this.data.status == 'successs') {
-            // alertify.success('User added successfully');
+            this.toastrService.success('User added successfully!');
           }
         });
       this.router.navigate([this.path['forms']]);
     } else {
-      // Show error message to user
+      this.toastrService.warning('User was not added!');
     }
-  }
-
-  ngOnDestroy(): void {
-    this.userService.getAllUsers().subscribe((data) => {
-      this.users = data;
-    });
   }
 }

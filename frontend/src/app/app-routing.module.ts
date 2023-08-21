@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './modules/login/login.component';
+import { WelcomeComponent } from './modules/login/welcome.component';
 import { HomeComponent } from './modules/home/homeComponent/home.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { LoginCredentialsComponent } from './modules/login/login-credentials/login-credentials.component';
@@ -8,7 +8,7 @@ import { LoginCredentialsComponent } from './modules/login/login-credentials/log
 const routes: Routes = [
   {
     path: 'welcome',
-    component: LoginComponent,
+    component: WelcomeComponent,
   },
   {
     path: 'login',

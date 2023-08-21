@@ -14,16 +14,27 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./influencer-rating.component.scss'],
 })
 export class InfluencerRatingComponent {
-  influencerForm: FormGroup;
-  influencerName: any;
-  influencerID: any;
-  data: any;
-  influenceRatings: any;
-  dataSource: any;
+
+  public influencerForm: FormGroup;
+  private influencerID: any;
+  private data: any;
+  private influenceRatings: any;
+  public dataSource: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
+
+  displayedColumns: string[] = [
+    'responseRate',
+    'contentQuality',
+    'creativity',
+    'flexibility',
+    'campaignPerformance',
+    'notes',
+    'name',
+    'createdAt',
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,40 +54,26 @@ export class InfluencerRatingComponent {
     });
   }
 
-  GetInfluencerRatings(id: any) {
-    return this.influencerService.getInfluencerRatings(id).subscribe((item) => {
-      console.log(item);
+  ngOnInit(): void {
+    this.influencerID = this.route.snapshot.paramMap.get('id');
+    this.GetInfluencerRatings(this.influencerID);
+  }
 
+  private GetInfluencerRatings(id: any): void {
+    this.influencerService.getInfluencerRatings(id).subscribe((item) => {
       this.influenceRatings = item;
-
       this.dataSource = new MatTableDataSource(this.influenceRatings.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
 
-  ngOnInit(): void {
-    this.influencerID = this.route.snapshot.paramMap.get('id');
-    this.GetInfluencerRatings(this.influencerID);
-  }
-
-  displayedColumns: string[] = [
-    'responseRate',
-    'contentQuality',
-    'creativity',
-    'flexibility',
-    'campaignPerformance',
-    'notes',
-    'name',
-    'createdAt',
-  ];
-
-  onRatingClicked(event: any, fieldName: string): void {
+  public onRatingClicked(event: any, fieldName: string): void {
     const rating = parseInt(event.target.dataset.rating, 10);
     this.influencerForm.controls[fieldName].setValue(rating);
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     this.influencerService
       .createInfluencerRating({
         influencer_id: this.influencerID,
@@ -86,27 +83,27 @@ export class InfluencerRatingComponent {
       .subscribe((item) => {
         this.data = item;
         if (this.data.status == 'success') {
-          this.toastrService.success('Rating Added Successfully');
+          this.toastrService.success('Rating Added Successfully!');
         }
       });
   }
 
-  handleClickResponseRate(index: number) {
+  public handleClickResponseRate(index: number): void {
     this.influencerForm.controls['responseRate'].setValue(index);
   }
 
-  handleClickContentQuality(index: number) {
+  public handleClickContentQuality(index: number): void {
     this.influencerForm.controls['contentQuality'].setValue(index);
   }
-  handleClickCreativity(index: number) {
+  public handleClickCreativity(index: number): void {
     this.influencerForm.controls['creativity'].setValue(index);
   }
 
-  handleClickFlexibility(index: number) {
+  public handleClickFlexibility(index: number): void {
     this.influencerForm.controls['flexibility'].setValue(index);
   }
 
-  handleClickCampaignPerformance(index: number) {
+  public handleClickCampaignPerformance(index: number): void {
     this.influencerForm.controls['campaignPerformance'].setValue(index);
   }
 }

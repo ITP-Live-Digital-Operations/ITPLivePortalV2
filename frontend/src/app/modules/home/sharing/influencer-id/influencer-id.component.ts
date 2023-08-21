@@ -14,12 +14,12 @@ import { LogModel } from 'src/app/core/interfaces/logModel';
 })
 export class InfluencerIdComponent {
 
-  id: number = this.source.id;
-  influencerData: any;
-  influencerRating: any;
-  dataSource: any;
-  UserDetails: any;
-  isReviewVisible: boolean = true;
+  public id: number = this.source.id;
+  public influencerData: any;
+  public influencerRating: any;
+  public dataSource: any;
+  public UserDetails: any;
+  public isReviewVisible: boolean = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -37,19 +37,19 @@ export class InfluencerIdComponent {
       this.GetInfluencerRating(this.source.id);
   }
 
-  GetInfluencerData(inputdata: any) {
-    return this.service.getInfluencer(inputdata).subscribe((item) => {
+  private GetInfluencerData(inputdata: any): void {
+    this.service.getInfluencer(inputdata).subscribe((item) => {
       this.influencerData = item;
     });
   }
 
-  GetInfluencerRating(inputdata: any) {
-    return this.service.getAverageInfluencerRating(inputdata).subscribe((item) => {
+  private GetInfluencerRating(inputdata: any): void {
+    this.service.getAverageInfluencerRating(inputdata).subscribe((item) => {
       this.influencerRating = item;
       });
   }
 
-  GetLogs(id: any) {
+  private GetLogs(id: number): void {
     this.logService.getInfluencerLogs(id).subscribe((item) => {
       this.UserDetails = item;
       this.dataSource = new MatTableDataSource<LogModel>(this.UserDetails);

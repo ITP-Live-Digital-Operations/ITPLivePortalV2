@@ -14,11 +14,11 @@ export class ExtraInfoComponent {
   @Input()
   isCelebrity!: boolean;
 
-  form!: FormGroup;
+  public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective){ }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
   }
 

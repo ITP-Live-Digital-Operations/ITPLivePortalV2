@@ -8,9 +8,8 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class TalentGuideComponent {
 
+  public userPl = this.userService.getPrivilegeLevel();
+
   constructor(private userService: UserService){}
-  
-  userRole = this.userService.getRole();
-  userPl = this.userService.getPrivilegeLevel();
 
 }

@@ -56,8 +56,8 @@ body {
   .no-border {
     border: none;
     resize: horizontal;
-    background-color: #fff;
-    border-color: #fff;
+    background: rgb(32,32,32);
+    border: 1px solid white;
     width: auto;
   }
   
@@ -75,8 +75,7 @@ body {
   }
   
   .my-table th {
-    background: rgb(58,82,212)!important;
-  background: linear-gradient(180deg, rgba(58,82,212,1) 10%, rgba(37,60,190,1) 100%)!important;
+    background-color: #3f51b5;
     color: white;
     font-weight: bold;
     padding: 10px;
@@ -107,9 +106,20 @@ body {
     z-index: 1;
   }
   
+  input {
+    background-color: #343a40;
+    color: white;
+  }
+  
   .stretch-button {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .icon-btn {
+    color: rgb(223, 42, 42);
+    margin-left: 3px;
+    margin-top: 10px;
   }
   

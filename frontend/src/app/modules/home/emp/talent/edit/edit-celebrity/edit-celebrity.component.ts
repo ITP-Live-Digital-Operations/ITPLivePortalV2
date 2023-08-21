@@ -11,10 +11,10 @@ import { CelebrityService } from 'src/app/core/services/celebrity.service';
 })
 export class EditCelebrityComponent {
 
-  editCelebrityForm!: FormGroup;
-  data: any;
-  celebrityData: any
-  isCelebrity: boolean = false;
+  public editCelebrityForm!: FormGroup;
+  private data: any;
+  private celebrityData: any
+  public isCelebrity: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +27,7 @@ export class EditCelebrityComponent {
     this.GetInfluencerData(this.source.id)
   }
 
-  private initializeElements() {
+  private initializeElements(): void {
     this.editCelebrityForm = this.formBuilder.group({
       generalInfo: this.formBuilder.group({
         Name: ['', [Validators.required]],
@@ -88,8 +88,8 @@ export class EditCelebrityComponent {
     });
   }
 
-  GetInfluencerData(inputdata: any) {
-    return this.service.getCelebrity(inputdata).subscribe((item) => {
+  private GetInfluencerData(inputdata: any): void {
+    this.service.getCelebrity(inputdata).subscribe((item) => {
       this.celebrityData = item;
       if (this.celebrityData.data != null) {
         this.editCelebrityForm.setValue(
@@ -157,22 +157,22 @@ export class EditCelebrityComponent {
     })
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     const formValues = this.processFormGroups(this.editCelebrityForm);
 
     this.service.updateCelebrity(formValues, this.source.id).subscribe((res) => {
       this.data = res;
       if (this.data.status === 'success') {
         this.dialogRef.close();
-        this.toastrService.success('Influencer Edited Successfully');
+        this.toastrService.success('Influencer Edited Successfully!');
       }
       else {
-        this.toastrService.error('Error! Please Try Again');
+        this.toastrService.error('Error! Please Try Again!');
       }
     });
   }
 
-  processFormGroups(formGroup: FormGroup): any {
+  private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
 
     if (formGroup instanceof FormGroup) {

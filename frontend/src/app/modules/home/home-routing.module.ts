@@ -68,7 +68,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: "/site/notFound",
     pathMatch: 'full'
   },
   {

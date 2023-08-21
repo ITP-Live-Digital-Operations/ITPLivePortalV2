@@ -19,11 +19,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 }
 
 .mat-mdc-paginator-container {
-  background: rgba(37,60,190,1)!important;
-
+  background-color: #3f51b5;
   color: white;
   justify-content: center!important;
 }
+
 
 .mat-mdc-select {
   color: white!important;
@@ -40,6 +40,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
   
 }
 
+.mat-expansion-indicator::after {
+  color: white!important;
+}
 
 .form-container {
   max-height: auto;
@@ -62,8 +65,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 }
 
 .mdc-data-table__header-row {
-  background: rgb(58,82,212)!important;
-  background: linear-gradient(180deg, rgba(58,82,212,1) 10%, rgba(37,60,190,1) 100%)!important;
+  background-color: #3f51b5!important;
 }
 
 

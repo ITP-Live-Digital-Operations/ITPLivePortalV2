@@ -75,8 +75,6 @@
     </div>
     <div class="table-container">
       <table mat-table [dataSource]="dataSource" matSort>
-        <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
 
         <ng-container matColumnDef="ID">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -247,6 +245,10 @@
             </button>
             <button class="icon-btn"  (click)="viewInfluencer(element.id)"><mat-icon>remove_red_eye</mat-icon>
 
+            </button>
+
+            <button *ngIf="userRole == 'superadmin'" mat-raised-button color="warn" (click)="deleteInfluencer(element.id)">
+              Delete
             </button>
               
           </td>

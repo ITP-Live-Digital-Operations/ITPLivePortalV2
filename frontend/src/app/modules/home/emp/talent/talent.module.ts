@@ -20,7 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     InfluencerRatingComponent,
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
     TalentRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
@@ -28,7 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     SharingModule,
     MatDialogModule,
-
+    
   ],
 })
 export class TalentModule {}

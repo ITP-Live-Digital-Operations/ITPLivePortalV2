@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class TableContentComponent {
 
-  @Input() profileData: any;
+  @Input() 
+  profileData: any;
 
 }

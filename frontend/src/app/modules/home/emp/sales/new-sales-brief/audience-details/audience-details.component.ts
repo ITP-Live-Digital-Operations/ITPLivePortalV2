@@ -9,12 +9,13 @@ import { clientIndustries, countries } from 'src/assets/influencer-form-arrays';
 })
 export class AudienceDetailsComponent {
   
-  countries: string[] = countries;
-  clientIndustries: string[] = clientIndustries;
+  public countries: string[] = countries;
+  public clientIndustries: string[] = clientIndustries;
 
-  @Input() formGroupName: string = '';
+  @Input() 
+  formGroupName: string = '';
 
-  form!: FormGroup;
+  public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective){ }
 

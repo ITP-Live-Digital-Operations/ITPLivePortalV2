@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { PersonTasksComponent } from './person-tasks/person-tasks.component';
 import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
 import { InfluencerLogsComponent } from './influencer-logs/influencer-logs.component';
+import { PATH } from 'src/app/core/constant/routes.constants';
+
+let path = PATH;
 
 const routes: Routes = [
   {
@@ -67,7 +70,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home/main/forms',
+    redirectTo: `${path['forms']}`,
     pathMatch: 'full'
   },
   {

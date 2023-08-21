@@ -15,9 +15,18 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 export class ReadyBriefsComponent {
 
   public path = PATH;
-  dataSource: any;
-  briefs: any;
-  user_id = this.userService.getID();
+  public dataSource: any;
+  private briefs: any;
+  private user_id = this.userService.getID();
+
+  displayedColumns: string[] = [
+    'CampaignName',
+    'Agency',
+    'Client',
+    'CreatedAt',
+    'UpdatedAt',
+    'Action',
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -33,16 +42,7 @@ export class ReadyBriefsComponent {
     this.getReadyBriefs();
   }
 
-  displayedColumns: string[] = [
-    'CampaignName',
-    'Agency',
-    'Client',
-    'CreatedAt',
-    'UpdatedAt',
-    'Action',
-  ];
-
-  getReadyBriefs() {
+  private getReadyBriefs(): void {
     this.salesService
       .getBriefByCreatedbyId(this.user_id)
       .subscribe((res: any) => {
@@ -53,7 +53,7 @@ export class ReadyBriefsComponent {
       });
   }
 
-  viewFiles(id: any) {
+  public viewFiles(id: number): void {
     this.salesService.viewBriefBySales(id).subscribe((res: any) => {});
     this.router.navigate([`${this.path['readyBriefs'] + id}`]);
   }

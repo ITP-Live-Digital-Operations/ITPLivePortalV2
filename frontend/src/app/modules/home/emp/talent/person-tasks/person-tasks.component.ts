@@ -16,12 +16,11 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 export class PersonTasksComponent {
 
   public path = PATH;
-  briefDetails: any;
-  dataSource: any;
-  userID: any;
-  id: any;
-
-  privilegeLevel!: number;
+  private briefDetails: any;
+  public dataSource: any;
+  private userID: any;
+  private id: any;
+  private privilegeLevel!: number;
 
   displayedColumns: string[] = [
     'deadline',
@@ -62,7 +61,7 @@ export class PersonTasksComponent {
     }
   }
 
-  getMyTasks(id: any) {
+  private getMyTasks(id: any): void {
     this.taskService.getMyTasks(id).subscribe((data: any) => {
       this.briefDetails = data;
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
@@ -71,7 +70,7 @@ export class PersonTasksComponent {
     });
   }
 
-  viewedTask(id: any) {
+  public viewedTask(id: any): void {
     if (this.privilegeLevel < 7) {
       this.taskService
         .updateStatus({ assigned_to: this.userID, id: id })

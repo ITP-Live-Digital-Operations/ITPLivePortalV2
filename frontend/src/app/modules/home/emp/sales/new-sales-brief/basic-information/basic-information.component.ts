@@ -9,13 +9,14 @@ import { campaignobjectives, clientIndustries, currencies } from 'src/assets/inf
 })
 export class BasicInformationComponent {
   
-  clientIndustries: string[] = clientIndustries;
-  campaignobjectives: string[] = campaignobjectives;
-  currencies: string[] = currencies;
+  public clientIndustries: string[] = clientIndustries;
+  public campaignobjectives: string[] = campaignobjectives;
+  public currencies: string[] = currencies;
 
-  @Input() formGroupName: string = '';
+  @Input() 
+  formGroupName: string = '';
 
-  form!: FormGroup;
+  public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective){  }
 

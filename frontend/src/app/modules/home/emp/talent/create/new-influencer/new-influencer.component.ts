@@ -13,9 +13,9 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 })
 export class NewInfluencerComponent {
 
-  newInfluencerForm!: FormGroup;
-  data: any;
-  isNotCelebrity: boolean = true;
+  public newInfluencerForm!: FormGroup;
+  private data: any;
+  public isNotCelebrity: boolean = true;
   public path = PATH;
 
   constructor(
@@ -28,7 +28,7 @@ export class NewInfluencerComponent {
     this.initializeElements();
   }
 
-  private initializeElements() {
+  private initializeElements(): void {
     this.newInfluencerForm = this.formBuilder.group({
       generalInfo: this.formBuilder.group({
         Name: ['', [Validators.required]],
@@ -111,7 +111,7 @@ export class NewInfluencerComponent {
     });
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     const formValues = this.processFormGroups(this.newInfluencerForm);
     formValues.updatedBy = this.userService.getID();
 
@@ -119,14 +119,14 @@ export class NewInfluencerComponent {
       this.data = res;
       if (this.data.status === 'success') {
         this.route.navigate([this.path['influencers']]);
-        this.toastrService.success('Influencer Added Successfully');
+        this.toastrService.success('Influencer Added Successfully!');
       } else {
-        this.toastrService.warning('Influencer Not Added');
+        this.toastrService.warning('Influencer Not Added!');
       }
     });
   }
 
-  processFormGroups(formGroup: FormGroup): any {
+  private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
 
     if (formGroup instanceof FormGroup) {

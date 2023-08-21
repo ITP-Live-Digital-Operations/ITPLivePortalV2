@@ -7,9 +7,11 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./department-details.component.scss']
 })
 export class DepartmentDetailsComponent {
-  @Input() formGroupName: string = '';
+  
+  @Input() 
+  formGroupName: string = '';
 
-  form!: FormGroup;
+  public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective){ }
 

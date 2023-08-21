@@ -18,14 +18,14 @@ import { InfluencerIdComponent } from '../influencer-id/influencer-id.component'
   styleUrls: ['./influencers.component.scss'],
 })
 export class InfluencersComponent {
-  dataSource: any;
-  UserDetails: any;
-  accessToken: string = '';
-  verticals: string[] = [];
-  locations: string[] = [];
-  genders: string[] = [];
-  nationalities: string[] = [];
-  cities: string[] = [];
+
+  public dataSource: any;
+  private UserDetails: any;
+  public verticals: string[] = [];
+  public locations: string[] = [];
+  public genders: string[] = [];
+  public nationalities: string[] = [];
+  public cities: string[] = [];
 
   platforms: any[] = [
     'Instagram',
@@ -44,22 +44,27 @@ export class InfluencersComponent {
     nationalities: '',
   };
 
-  platform: string = 'Instagram';
+  displayedColumns: string[] = [
+    'ID',
+    'Name',
+    'Gender',
+    'InstagramHandle',
+    'InstagramFollowers',
+    'CountryLocation',
+    'MainVertical',
+    'itpAverageRating',
+    'Action',
+  ];
 
-  userRole = this.userService.getRole();
+  public platform: string = 'Instagram';
+
+  public userRole = this.userService.getRole();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
 
   @ViewChild(MatTable) table!: MatTable<any>;
-
-  ngAfterViewInit() {
-    if (this.sort && this.dataSource) {
-      this.dataSource.sort = this.sort;
-    }
-    this.extractColumnData();
-  }
 
   constructor(
     private influencerService: InfluencerService,
@@ -76,7 +81,14 @@ export class InfluencersComponent {
     this.getCities();
   }
 
-  extractColumnData(): void {
+  ngAfterViewInit() {
+    if (this.sort && this.dataSource) {
+      this.dataSource.sort = this.sort;
+    }
+    this.extractColumnData();
+  }
+
+  private extractColumnData(): void {
     const renderedData = this.table['_data'];
 
     for (let i = 0; i < renderedData?.length; i++) {
@@ -88,7 +100,7 @@ export class InfluencersComponent {
     }
   }
 
-  getGenders() {
+  private getGenders(): void {
     this.influencerService.getGenders().subscribe((response: any) => {
       this.genders = response
         .map((obj: { genders: any }) => obj.genders)
@@ -97,7 +109,7 @@ export class InfluencersComponent {
     });
   }
 
-  getLocations() {
+  private getLocations(): void {
     this.influencerService.getLocations().subscribe((response: any) => {
       this.locations = response
         .map((obj: { locations: any }) => obj.locations)
@@ -106,7 +118,7 @@ export class InfluencersComponent {
     });
   }
 
-  getVerticals() {
+  private getVerticals(): void {
     this.influencerService.getVerticals().subscribe((response: any) => {
       this.verticals = response
         .map((obj: { verticals: any }) => obj.verticals)
@@ -115,7 +127,7 @@ export class InfluencersComponent {
     });
   }
 
-  getNationalities() {
+  private getNationalities(): void {
     this.influencerService.getNationalities().subscribe((response: any) => {
       this.nationalities = response
         .map((obj: { nationalities: any }) => obj.nationalities)
@@ -124,7 +136,7 @@ export class InfluencersComponent {
     });
   }
 
-  getCities() {
+  private getCities(): void {
     this.influencerService.getCities().subscribe((response: any) => {
       this.cities = response
         .map((obj: { cities: any }) => obj.cities)
@@ -133,7 +145,7 @@ export class InfluencersComponent {
     });
   }
 
-  getInfluencers() {
+  private getInfluencers(): void {
     this.influencerService
       .getInfluencersWithRatings()
       .subscribe((response: PaginatedInfluencers) => {
@@ -149,7 +161,7 @@ export class InfluencersComponent {
       });
   }
 
-  updateFilterDropdowns() {
+  private updateFilterDropdowns(): void {
     const renderedData = this.dataSource.filteredData || [];
 
     this.genders = [
@@ -173,22 +185,22 @@ export class InfluencersComponent {
     // ... Add other filters as needed
   }
 
-  onPageChange(event: any): void {
+  public onPageChange(event: any): void {
     this.getInfluencers();
   }
 
-  applyFilterSearch(filterValue: string) {
+  public applyFilterSearch(filterValue: string): void {
     this.filterCriteria.search = filterValue.trim().toLowerCase();
     this.applyFilter();
   }
 
-  deleteInfluencer(inputdata: any) {
+  public deleteInfluencer(inputdata: any): void {
     this.influencerService.deleteInfluencer(inputdata).subscribe((item) => {
       this.getInfluencers();
     });
   }
 
-  editInfluencer(inputdata: any) {
+  public editInfluencer(inputdata: any): void {
     this.dialog?.open(EditInfluencerComponent, {
       width: '90%',
       height: '80%',
@@ -200,7 +212,7 @@ export class InfluencersComponent {
     });
   }
 
-  viewInfluencer(inputdata: any) {
+  public viewInfluencer(inputdata: any): void {
     this.dialog?.open(InfluencerIdComponent, {
       width: '90%',
       height: '80%',
@@ -211,10 +223,8 @@ export class InfluencersComponent {
       },
     });
   }
-
-
-
-  applyFilter() {
+  
+  public applyFilter(): void {
     this.dataSource.filterPredicate = (
       data: InfluencerModel,
       filter: string
@@ -248,44 +258,32 @@ export class InfluencersComponent {
     this.updateFilterDropdowns();
   }
 
-  applyFilter1(filterValue: string) {
+  public applyFilter1(filterValue: string): void {
     this.filterCriteria.gender = filterValue.trim().toLowerCase();
     this.applyFilter();
   }
 
-  applyFilter2(filterValue: string) {
+  public applyFilter2(filterValue: string): void {
     this.filterCriteria.location = filterValue.trim().toLowerCase();
     this.applyFilter();
   }
 
-  applyFilter3(filterValue: string) {
+  public applyFilter3(filterValue: string): void {
     this.filterCriteria.vertical = filterValue.trim().toLowerCase();
     this.applyFilter();
   }
 
-  applyFilter4(filterValue: string) {
+  public applyFilter4(filterValue: string): void {
     this.filterCriteria.nationalities = filterValue.trim().toLowerCase();
     this.applyFilter();
   }
 
-  applyFilter5(filterValue: string) {
+  public applyFilter5(filterValue: string): void {
     this.filterCriteria.city = filterValue.trim().toLowerCase();
     this.applyFilter();
   }
-
-  displayedColumns: string[] = [
-    'ID',
-    'Name',
-    'Gender',
-    'InstagramHandle',
-    'InstagramFollowers',
-    'CountryLocation',
-    'MainVertical',
-    'itpAverageRating',
-    'Action',
-  ];
   
-  applyPlatformFilter(platform: string) {
+  public applyPlatformFilter(platform: string): void {
     this.platform = platform;
 
     const baseColumns = ['ID', 'Name', 'Gender', 'CountryLocation'];

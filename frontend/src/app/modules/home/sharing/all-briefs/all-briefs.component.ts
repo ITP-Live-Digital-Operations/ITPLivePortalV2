@@ -6,8 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SalesService } from 'src/app/core/services/sales.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { UserService } from 'src/app/core/services/user.service';
-import { TaskModel } from 'src/app/core/interfaces/task.Model';
-import { TaskService } from 'src/app/core/services/task.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-all-briefs',
@@ -15,42 +14,13 @@ import { TaskService } from 'src/app/core/services/task.service';
   styleUrls: ['./all-briefs.component.scss'],
 })
 export class AllBriefsComponent {
-  briefDetails: any;
-  dataSource: any;
-  users: any = {};
 
-
-  id: any;
-  task!: TaskModel;
-
-  assignedUser!: String;
-
-  userRole: string = '';
-  privilegeLevel: number = this.userService.getPrivilegeLevel();
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(
-    private salesService: SalesService,
-    private userService: UserService,
-    private route: Router,
-    private taskService: TaskService,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.userRole = this.userService.getRole();
-  }
-
-  ngOnInit(): void {
-    this.getAllBriefs();
-
-    this.userService.getAllUsers().subscribe(data => {
-      data.forEach(user => {
-        this.users[user.id] = user.name;  // Assuming the user object has 'id' and 'name' properties
-      });
-    });
-  }
+  private path = PATH;
+  private briefDetails: any;
+  public dataSource: any;
+  private users: any = {};
+  private id: any;
+  public userRole: string = this.userService.getRole();
 
   displayedColumns: string[] = [
     'Status',
@@ -66,7 +36,28 @@ export class AllBriefsComponent {
     'Action',
   ];
 
-  getAllBriefs() {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(
+    private salesService: SalesService,
+    private userService: UserService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {
+    this.getAllBriefs();
+
+    this.userService.getAllUsers().subscribe(data => {
+      data.forEach(user => {
+        this.users[user.id] = user.name;
+      });
+    });
+  }
+
+  private getAllBriefs(): void {
     this.salesService.getAllBriefsWithTask().subscribe((data: any) => {
       this.briefDetails = data;
       this.briefDetails.data.sort((a: any, b: any) => {
@@ -98,25 +89,20 @@ export class AllBriefsComponent {
       this.id = params['id'];
       this.salesService
         .getSalesBriefWithFiles(this.id)
-        .subscribe((data: any) => {
-          this.taskService.getTaskByBriefId(this.id).subscribe((data: any) => {
-            this.task = data.data[0];
-
-          });
-        });
+        .subscribe((data: any) => { });
     });
   }
 
-  viewedTask(id: any) {
+  public viewedTask(id: number): void {
     this.salesService.viewedByTalent(id).subscribe((data: any) => {});
     if (this.userRole == 'sales') {
-      this.route.navigate([`home/sales/sentBriefs/${id}`]);
+      this.router.navigate([`${this.path['sentBriefs'] + id}`]);
     } else {
-      this.route.navigate([`home/talent/viewBrief/${id}`]);
+      this.router.navigate([`${this.path['viewBrief'] + id}`]);
     }
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  public drop(event: CdkDragDrop<string[]>): void {
     {
       moveItemInArray(
         this.dataSource.data,
@@ -143,7 +129,7 @@ export class AllBriefsComponent {
     }
   }
 
-  getUsername(id: number){
+  public getUsername(id: number): string {
     return this.users[id] || 'Not Assigned';
   }
 

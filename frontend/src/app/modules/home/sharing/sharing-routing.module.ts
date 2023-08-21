@@ -4,7 +4,6 @@ import { FormsComponent } from './forms/forms.component';
 import { AllBriefsComponent } from './all-briefs/all-briefs.component';
 import { InfluencersComponent } from './influencers/influencers.component';
 import { InfluencerIdComponent } from './influencer-id/influencer-id.component';
-import { NotFoundComponent } from 'src/app/shared/components/not-found/not-found.component';
 import { AdminGuideComponent } from './userGuides/admin-guide/admin-guide.component';
 import { TalentGuideComponent } from './userGuides/talent-guide/talent-guide.component';
 import { SalesGuideComponent } from './userGuides/sales-guide/sales-guide.component';
@@ -50,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent,
+    redirectTo: '/site/notFound',
     pathMatch: 'full'
   }
 ];

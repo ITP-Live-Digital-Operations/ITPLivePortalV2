@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class PlatformLinksComponent {
 
-  @Input() profileData: any;
+  @Input() 
+  profileData: any;
 
 } 

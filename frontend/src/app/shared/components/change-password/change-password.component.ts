@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -9,14 +10,15 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class ChangePasswordComponent {
 
-  changePasswordForm: FormGroup;
-  passwordMatchError: boolean = false;
-  passwordChangeSuccess: boolean = false;
-  passwordChangeError: boolean = false;
+  public changePasswordForm: FormGroup;
+  public passwordMatchError: boolean = false;
+  public passwordChangeSuccess: boolean = false;
+  public passwordChangeError: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private toastrService: ToastrService
   ) {
     this.changePasswordForm = this.formBuilder.group(
       {
@@ -28,7 +30,7 @@ export class ChangePasswordComponent {
     );
   }
 
-  matchPassword(group: FormGroup) {
+  private matchPassword(group: FormGroup): any {
     const newPassword = group.get('newPassword')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
 
@@ -37,11 +39,7 @@ export class ChangePasswordComponent {
     return this.passwordMatchError ? { passwordMismatch: true } : null;
   }
 
-  onSubmit() {
-    console.log({
-      ...this.changePasswordForm.value,
-      id: this.userService.getID(),
-    });
+  public onSubmit(): void {
 
     this.userService
       .changePassword({
@@ -51,12 +49,12 @@ export class ChangePasswordComponent {
       })
       .subscribe((response: any) => {
         if (response.status == 'success') {
-          // alertify.success('Password changed successfully');
+          this.toastrService.success('Password changed successfully');
           setTimeout(() => {
             window.location.reload();
           }, 2000);
         } else {
-          // alertify.error('Error error changing password');
+          this.toastrService.error('Error error changing password');
         }
       });
   }

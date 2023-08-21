@@ -13,10 +13,17 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 export class UserListComponent {
 
   public path = PATH;
-  users: any;
-  dataSource: any;
+  private users: any;
+  public dataSource: any;
 
-  userpl = this.userService.getPrivilegeLevel();
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'email',
+    'role',
+    'privilege_level',
+    'loginCount',
+  ];
 
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -28,7 +35,7 @@ export class UserListComponent {
     this.getUsers();
   }
 
-  getUsers() {
+  getUsers(): void {
     this.userService.getAllUsers().subscribe((response) => {
       this.users = response;
       this.dataSource = new MatTableDataSource(this.users);
@@ -37,16 +44,7 @@ export class UserListComponent {
     });
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  displayedColumns: string[] = [
-    'id',
-    'name',
-    'email',
-    'role',
-    'privilege_level',
-    'loginCount',
-  ];
 }

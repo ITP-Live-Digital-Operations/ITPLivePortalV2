@@ -8,11 +8,13 @@ import { briefPlatforms } from 'src/assets/influencer-form-arrays';
   styleUrls: ['./campaign-overview.component.scss']
 })
 export class CampaignOverviewComponent {
-  briefPlatforms: string[] = briefPlatforms;
 
-  @Input() formGroupName: string = '';
+  public briefPlatforms: string[] = briefPlatforms;
 
-  form!: FormGroup;
+  @Input() 
+  formGroupName: string = '';
+
+  public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective){ }
 

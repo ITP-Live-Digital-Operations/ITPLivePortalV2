@@ -9,16 +9,16 @@ import { countries } from 'src/assets/influencer-form-arrays';
 })
 export class StatisticsComponent {
 
-  countries = countries;
+  public countries = countries;
 
   @Input()
   formGroupName: string = '';
 
-  form!: FormGroup;
+  public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective){ }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
   }
 }

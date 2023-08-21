@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { PATH } from 'src/app/core/constant/routes.constants';
+
+let path = PATH;
 
 const routes: Routes = [
   {
@@ -19,12 +22,13 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home/main/forms',
+    redirectTo: `${path['forms']}`,
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: '/site/notFound'
+    redirectTo: '/site/notFound',
+    pathMatch: 'full'
   }
 ];
 

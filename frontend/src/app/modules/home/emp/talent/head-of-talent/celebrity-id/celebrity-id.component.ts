@@ -8,9 +8,10 @@ import { CelebrityService } from 'src/app/core/services/celebrity.service';
   styleUrls: ['./celebrity-id.component.scss'],
 })
 export class CelebrityIdComponent {
-  id: number = 0;
-  celebrityData: any;
-  isReviewVisible: boolean = false;
+
+  public id: number = 0;
+  public celebrityData: any;
+  public isReviewVisible: boolean = false;
 
   constructor(
     private service: CelebrityService,
@@ -21,8 +22,8 @@ export class CelebrityIdComponent {
     this.GetCelebrityData(this.source.id);
   }
 
-  GetCelebrityData(inputdata: any) {
-    return this.service.getCelebrity(inputdata).subscribe((item) => {
+  private GetCelebrityData(inputdata: any): void {
+    this.service.getCelebrity(inputdata).subscribe((item) => {
       this.celebrityData = item;
     });
   }

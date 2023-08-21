@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { PRIVILEGE_LEVEL, ROLES } from 'src/app/core/constant/values.constants';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -10,18 +11,20 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./edit-user.component.scss'],
 })
 export class EditUserComponent {
-  userID!: number;
-  user: any;
-  data: any;
-  roles = ROLES;
-  privilege_level = PRIVILEGE_LEVEL;
 
-  updateUserForm: FormGroup;
+  private userID!: number;
+  public user: any;
+  private data: any;
+
+  public roles = ROLES;
+  public privilege_level = PRIVILEGE_LEVEL;
+  public updateUserForm: FormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastrService: ToastrService
   ) {
     this.updateUserForm = this.formBuilder.group({
       name: [''],
@@ -35,7 +38,7 @@ export class EditUserComponent {
     this.loadUserData();
   }
 
-  loadUserData() {
+  private loadUserData(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.userID = params['id'];
     });
@@ -53,42 +56,38 @@ export class EditUserComponent {
     });
   }
 
-  updateUser() {
+  public updateUser(): void {
     this.userService
       .updateUser(this.updateUserForm.value, this.userID)
       .subscribe((res: any) => {
         this.data = res;
         if (this.data.status === 'success') {
-          // alertify.success('Influencer updated successfully.');
+          this.toastrService.success('Influencer updated successfully!');
           window.location.reload();
         } else {
-          // alertify.error('Influencer was not updated');
+          this.toastrService.error('Influencer was not updated!');
         }
       });
   }
 
-  resetCount(id: any) {
+  public resetCount(id: number): void {
     this.userService.resetCount(id).subscribe((res: any) => {
       if (res) {
-        // alertify.success('Count reset successfully.');
+        this.toastrService.success('Count reset successfully!');
       } else {
-        // alertify.error('Count could not be reset.');
+        this.toastrService.error('Count could not be reset!');
       }
     });
   }
 
-  resetPassword(id: any) {
+  public resetPassword(id: number): void {
     this.userService.resetPassword(id).subscribe((res: any) => {
       if (res) {
-        console.log(res);
+        this.toastrService.success('Password changed successfully!');
       } else {
-        console.log("error")
+        this.toastrService.error('Password did not change!');
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    this.loadUserData();
   }
 
 }

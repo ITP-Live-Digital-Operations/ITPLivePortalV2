@@ -4,10 +4,10 @@
       <th class="centered">File Name</th>
       <th class="centered">Uploaded On</th>
       <th class="down">Download</th>
-      <th class="centered" *ngIf="userId === task?.assigned_to">
+      <th class="down" *ngIf="userId === task?.assigned_to">
         Choose File
       </th>
-      <th class="centered" *ngIf="userId === task?.assigned_to">
+      <th class="down" *ngIf="userId === task?.assigned_to">
         Delete
       </th>
     </tr>
@@ -51,12 +51,11 @@
 
       <td *ngIf="userId === task?.assigned_to">
         <button
-          mat-raised-button
-          color="accent"
+          class="icon-btn-del"
           (click)="deleteBudgetSheetFile(budgetSheet.id)"
           *ngIf="budgetSheet"
         >
-          Delete
+        <mat-icon>delete</mat-icon>
         </button>
       </td>
     </tr>
@@ -100,19 +99,18 @@
 
       <td *ngIf="userId === task?.assigned_to">
         <button
-          mat-raised-button
-          color="accent"
+          class="icon-btn-del"
           (click)="deletePresentationFile(presentation.id)"
           *ngIf="presentation"
         >
-          Delete
+        <mat-icon>delete</mat-icon>
         </button>
       </td>
     </tr>
   </table>
 
   <button
-    *ngIf="budgetSheet && presentation || userId === task?.assigned_to"
+    *ngIf="budgetSheet && presentation && userId === task?.assigned_to"
     mat-raised-button
     color="primary"
     (click)="salesBriefReady()"

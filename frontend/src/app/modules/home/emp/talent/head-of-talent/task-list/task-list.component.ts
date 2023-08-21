@@ -10,7 +10,7 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 export class TaskListComponent {
 
   public path = PATH;
-  dataSource: any;
+  public dataSource: any;
 
   displayedColumns: string[] = ['name', 'totalWeight', 'action'];
 
@@ -20,7 +20,7 @@ export class TaskListComponent {
     this.getTalentTaskWeights();
   }
 
-  getTalentTaskWeights() {
+  private getTalentTaskWeights(): void {
     this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
       this.dataSource = data.usersWithTasks;
     });

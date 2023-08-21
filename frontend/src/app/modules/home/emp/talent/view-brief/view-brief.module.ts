@@ -13,6 +13,7 @@ import { SelectInfluencerDialogComponent } from './select-influencer-dialog/sele
 import { MatDialogModule } from '@angular/material/dialog';
 import { PersonInfoComponent } from './person-info/person-info.component';
 import { AssignTaskComponent } from './assign-task/assign-task.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AssignTaskComponent } from './assign-task/assign-task.component';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
   exports: [
     AllInfoComponent,

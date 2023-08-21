@@ -11,28 +11,27 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 export class FormsComponent {
 
   public path = PATH;
+  public privilegeLevel!: number;
+  public userRole!: string;
 
-  pl: number = 0;
-  userRole: string = '';
-
-  constructor(private userService: UserService, private router: Router){ }
+  constructor(private userService: UserService){ }
 
   ngOnInit(){
     this.getRole();
     this.getPrivilegeLevel();
   }
 
-  getRole(){
+  private getRole(): void { 
     this.userRole = this.userService.getRole();
   }
 
-  getPrivilegeLevel(){
+  private getPrivilegeLevel(): void {
     var token = localStorage.getItem('token');
     if (token && token.startsWith("Bearer ")) {
       var jwt = token.substring(7);
       var parts = jwt.split('.');
       var payload = JSON.parse(atob(parts[1]));
-      this.pl = payload.privilege_level;
+      this.privilegeLevel = payload.privilege_level;
     }
   }
 }

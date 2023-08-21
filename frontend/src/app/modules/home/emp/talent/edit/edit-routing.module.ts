@@ -19,7 +19,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/site/notFound'
+    redirectTo: '/site/notFound',
+    pathMatch: 'full'
   }
 ];
 

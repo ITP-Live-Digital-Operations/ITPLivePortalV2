@@ -17,23 +17,18 @@ export class HomeComponent {
 
   public path = PATH;
 
-  userName: string = '';
-  userRole: string = '';
-  userPrivilege_level: number = 0;
-  user: any;
+  public userName!: string;
+  public userRole!: string;
+  public privilegeLevel!: number;
+  private user: any;
 
-  backButton: boolean = false;
+  public backButton: boolean = false;
+  public sidenavOpened: boolean = true;
 
-  sidenavOpened: boolean = true;
-
-  notifications$: any;
-  notificationCount: any;
-  userId = this.userService.getID();
-
-  showNotificationBox: boolean = false;
+  public notificationCount: any;
+  public userId = this.userService.getID();
 
   private routerSubscription!: Subscription;
-
 
   constructor(
     public dialog: MatDialog,
@@ -46,7 +41,7 @@ export class HomeComponent {
       this.user = res;
       this.userName = res.name;
       this.userRole = this.user.role;
-      this.userPrivilege_level = this.user.privilege_level;
+      this.privilegeLevel = this.user.privilege_level;
 
       this.notificationService.getUnreadNotificationCountByUserId(this.userId).subscribe((res) => {
         this.notificationCount = res;
@@ -82,7 +77,7 @@ export class HomeComponent {
     }
   }
 
-  toggleNotificationBox() {
+  public toggleNotificationBox(): void {
     this.dialog.open(NotificationComponent, {
       width: '500px',
       height: '500px',
@@ -92,7 +87,7 @@ export class HomeComponent {
     });
   }
 
-  toggleSidenav() {
+  public toggleSidenav(): void {
     this.sidenavOpened = !this.sidenavOpened;
   }
 }

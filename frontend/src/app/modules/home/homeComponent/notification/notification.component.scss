@@ -24,7 +24,13 @@
     display: flex;
     justify-content: space-between;
   }
-  
+  .mat-mdc-dialog-container {
+    background-color: rgba(32,32,32)!important;
+  }
+
+  .notification-box {
+    background-color: black;
+  }
   .notification-box a p {
     /* Aligning the message to the left */
     text-align: left;

@@ -18,34 +18,27 @@ import { MainTableComponent } from './main-table/main-table.component';
 
 export class ViewBriefComponent {
 
-  budgetApproved = false;
-  budgetNotes = '';
-  budgetData: any;
+  public dataSource: any;
+  public brief: any;
+  public id: any;
+  public task!: TaskModel;
+  public salesperson: any;
+  private budgetData: any;
 
-  presentationApproved = false;
-  presentationNotes = '';
+  public budgetSheetId!: number;
+  public presentationId!: number;
+  public budgetSheet: any;
+  public presentation: any;
 
-  dataSource: any;
-  brief: any;
-  id: any;
-  task!: TaskModel;
-  salesperson: any;
+  public assignedUser: any;
+  public assignedUser_id: any;
+  public assigned!: boolean;
+  public brief_id: any;
 
-  budgetSheetId!: number;
-  presentationId!: number;
+  public user_id = this.userService.getID();
+  public privilege_level = this.userService.getPrivilegeLevel();
 
-  budgetSheet: any;
-  presentation: any;
-
-  assignedUser: any;
-  assignedUser_id: any;
-  assigned!: boolean;
-  brief_id: any;
-
-  user_id = this.userService.getID();
-  privilege_level = this.userService.getPrivilegeLevel();
-
-  progressForm: FormGroup;
+  public progressForm: FormGroup;
 
   @ViewChild(MainTableComponent) mainComponent!: MainTableComponent;
 
@@ -69,7 +62,6 @@ export class ViewBriefComponent {
   }
 
   public submitForm(): void {
-    console.log('progress', this.progressForm.value.Progress);
 
     this.taskService
       .updateProgress(this.task?.id, {
@@ -80,7 +72,7 @@ export class ViewBriefComponent {
       });
   }
 
-  loadBriefData() {
+  private loadBriefData(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'];
       this.salesService
@@ -104,11 +96,9 @@ export class ViewBriefComponent {
     });
   }
 
-  getBudgetSheet(id: number) {
+  private getBudgetSheet(id: number): void {
     this.fileService.getFile(id).subscribe((data: any) => {
       this.budgetSheet = data.data;
-      this.budgetApproved = this.budgetSheet.approved;
-      this.budgetNotes = this.budgetSheet.notes;
 
       this.fileService.getFilesById(id).subscribe((data: any) => {
         const excelFile = data
@@ -133,21 +123,19 @@ export class ViewBriefComponent {
     });
   }
 
-  getPresentation(id: number) {
+  private getPresentation(id: number): void {
     this.fileService.getFile(id).subscribe((data: any) => {
       this.presentation = data.data;
-      this.presentationApproved = this.presentation?.approved;
-      this.presentationNotes = this.presentation?.notes;
     });
   }
 
-  getSalesPerson(id: number) {
+  private getSalesPerson(id: number): void {
     this.userService.getUserNameById(id).subscribe((data: any) => {
       this.salesperson = data.name;
     });
   }
 
-  getTask(id: number) {
+  private getTask(id: number): void {
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
       this.task = data.data[0];
       this.progressForm.setControl(
@@ -163,7 +151,7 @@ export class ViewBriefComponent {
     });
   }
 
-  refresh(): void {
+  private refresh(): void {
     const refreshFlag = localStorage.getItem('refreshed-after-sales-brief');
 
     if (!refreshFlag) {

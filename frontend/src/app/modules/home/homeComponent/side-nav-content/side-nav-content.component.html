@@ -43,7 +43,7 @@
 </div>
 
 <div>
-  <button mat-button class="menu-button" *ngIf="(userRole == 'talent' && pl > 7) || userRole == 'superadmin'"
+  <button mat-button class="menu-button" *ngIf="(userRole == 'talent' && privilegeLevel > 7) || userRole == 'superadmin'"
     routerLink="{{path['talentTasks']}}">
     <mat-icon>supervisor_account</mat-icon>
     <span> Talent Tasks </span>

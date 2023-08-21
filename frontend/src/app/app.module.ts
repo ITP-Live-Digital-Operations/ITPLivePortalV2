@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AccessDeniedComponent } from './shared/components/access-denied/access-denied.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './modules/login/login.component';
+import { WelcomeComponent } from './modules/login/welcome.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MaterialModule } from './common.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ import { LoginCredentialsComponent } from './modules/login/login-credentials/log
     AppComponent,
     AccessDeniedComponent,
     NotFoundComponent,
-    LoginComponent,
+    WelcomeComponent,
     LoginCredentialsComponent,
   ],
   imports: [

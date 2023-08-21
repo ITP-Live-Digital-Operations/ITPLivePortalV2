@@ -78,7 +78,7 @@
         <button class="icon-btn"  (click)="viewCelebrity(element.id)">
           <mat-icon>remove_red_eye</mat-icon>
         </button>
-        <!-- <button mat-raised-button color="warn" (click)="deleteCelebrity(element.id)">Delete</button> -->
+        <button *ngIf="userRole == 'superadmin'" mat-raised-button color="warn" (click)="deleteCelebrity(element.id)">Delete</button>
         </td>
       </ng-container>
    

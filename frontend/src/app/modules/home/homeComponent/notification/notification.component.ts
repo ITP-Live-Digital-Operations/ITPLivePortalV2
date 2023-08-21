@@ -2,7 +2,6 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/core/services/notification.service';
-import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-notification',
@@ -10,23 +9,12 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./notification.component.scss'],
 })
 export class NotificationComponent {
-  notifications: any;
+
+  public notifications: any;
 
   @Output() closeModal: EventEmitter<any> = new EventEmitter();
 
-  user: any;
-  userName: string = '';
-  userPrivilege_level: number = 0;
-
-  onClose() {
-    this.dialogRef.close();
-  }
-
-  userId = this.userService.getID();
-  userRole = this.userService.getRole();
-
   constructor(
-    private userService: UserService,
     private notificationService: NotificationService,
     private dialogRef: DialogRef<NotificationComponent>,
     @Inject(MAT_DIALOG_DATA) public source: any
@@ -36,22 +24,19 @@ export class NotificationComponent {
       .subscribe((res) => {
         this.notifications = res;
       });
-
-    this.userService.getUserByID(this.userId).subscribe((res) => {
-      this.user = res;
-      this.userName = this.user.userName;
-      this.userRole = this.user.role;
-      this.userPrivilege_level = this.user.privilege_level;
-    });
   }
 
-  updateNotificationStatus(notificationId: any) {
+  public onClose() : void{
+    this.dialogRef.close();
+  }
+
+  public updateNotificationStatus(notificationId: number): void {
     this.notificationService
       .updateNotificationStatus(notificationId)
       .subscribe((res) => {});
   }
 
-  timeSince(created_at: string | Date) {
+  public timeSince(created_at: string | Date): string {
     let date: Date;
 
     if (typeof created_at === 'string') {

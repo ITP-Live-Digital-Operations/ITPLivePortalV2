@@ -11,18 +11,19 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./ready-briefs-id.component.scss'],
 })
 export class ReadyBriefsIdComponent {
-  brief_id: any;
-  brief: any;
-  budgetSheetId: any;
-  presentationId: any;
 
-  salesperson: any;
-  assignedUser: any;
-  task: any;
+  private brief_id: any;
+  public brief: any;
+  private task: any;
 
-  budgetSheet: any;
-  presentation: any;
+  private budgetSheetId: any;
+  private presentationId: any;
+  public budgetSheet: any;
+  public presentation: any;
 
+  public salesperson: any;
+  public assignedUser: any;
+  
   constructor(
     private activatedRoute: ActivatedRoute,
     private fileService: FileService,
@@ -35,7 +36,7 @@ export class ReadyBriefsIdComponent {
     this.loadFiles();
   }
 
-  loadFiles() {
+  private loadFiles(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.brief_id = params['id'];
       this.salesService.getSalesBrief(this.brief_id).subscribe((res: any) => {
@@ -60,13 +61,13 @@ export class ReadyBriefsIdComponent {
       
   }
 
-  getSalesPerson(id: number) {
+  private getSalesPerson(id: number): void {
     this.userService.getUserNameById(id).subscribe((data: any) => {
       this.salesperson = data.name;
     });
   }
 
-  getAssignedUser(id: number) {
+  private getAssignedUser(id: number): void {
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
       this.task = data.data[0];
       this.userService
@@ -77,19 +78,19 @@ export class ReadyBriefsIdComponent {
     });
   }
 
-  getBudgetSheet(id: number) {
+  private getBudgetSheet(id: number): void {
     this.fileService.getFile(id).subscribe((data: any) => {
       this.budgetSheet = data.data;
     });
   }
 
-  getPresentation(id: number) {
+  private getPresentation(id: number): void {
     this.fileService.getFile(id).subscribe((data: any) => {
       this.presentation = data.data;
     });
   }
 
-  downloadFilePPTX(id: number, filename: string) {
+  public downloadFilePPTX(id: number, filename: string): void {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
       const url = window.URL.createObjectURL(blob);
@@ -97,7 +98,7 @@ export class ReadyBriefsIdComponent {
     });
   }
 
-  downloadFilexlsx(id: number, filename: string) {
+  public downloadFilexlsx(id: number, filename: string): void {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
       const url = window.URL.createObjectURL(blob);

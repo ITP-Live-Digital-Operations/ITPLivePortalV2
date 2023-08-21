@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { clientIndustries, countries } from 'src/assets/influencer-form-arrays';
 
@@ -9,25 +9,23 @@ import { clientIndustries, countries } from 'src/assets/influencer-form-arrays';
 })
 export class InfluencerDetailsComponent {
   
-  clientIndustries: string[] = clientIndustries;
-  countries: string[] = countries;
+  public clientIndustries: string[] = clientIndustries;
+  public countries: string[] = countries;
 
-  showInfo1 = false;
-  showInfo2 = false;
-  showInfo3 = false;
-  showInfo4 = false;
-  showInfo5 = false;
+  public showInfo1 = false;
+  public showInfo2 = false;
+  public showInfo3 = false;
+  public showInfo4 = false;
+  public showInfo5 = false;
 
   @Input()
   formGroupName: string = '';
 
-  form!: FormGroup;
+  public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective){ }
 
   ngOnInit() {
     this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
   }
-
-
 }

@@ -6,6 +6,7 @@ import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sent-briefs-id',
@@ -14,15 +15,18 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 })
 
 export class SentBriefsIdComponent {
+
   public editForm!: FormGroup;
-  public newBrief: any;
-  public userId = this.userService.getID();
-  public userName: any;
+  public path = PATH;
+  
   private briefId: any;
   private briefData: any;
+  public newBrief: any;
   private taskData: any;
+  
+  public userId = this.userService.getID();
+  public userName: any;
   private assignedUser: any;
-  public path = PATH;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +35,8 @@ export class SentBriefsIdComponent {
     private salesService: SalesService,
     private activatedRoute: ActivatedRoute,
     private taskService: TaskService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     this.userService.getUserNameById(this.userId).subscribe((res) => {
       this.userName = res;
@@ -42,7 +47,7 @@ export class SentBriefsIdComponent {
     this.initializeElements();
   }
 
-  private initializeElements() {
+  private initializeElements(): void {
     this.editForm = this.formBuilder.group({
       //BASIC INFORMATION
       basicInfo: this.formBuilder.group({
@@ -123,7 +128,7 @@ export class SentBriefsIdComponent {
     });
   }
 
-  loadSalesBriefData() {
+  private loadSalesBriefData(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.briefId = params['id'];
     });
@@ -234,7 +239,7 @@ export class SentBriefsIdComponent {
     });
   }
 
-  submitForm() {
+  public submitForm(): void {
     const itpDepartment = this.editForm.value.departmentDetails.ItpDepartment;
     const formValues = this.processFormGroups(this.editForm);
     formValues.CreatedbyID = this.userService.getID();
@@ -266,21 +271,16 @@ export class SentBriefsIdComponent {
             this.notificationService.createNotification( this.assignedUser.id, input2).subscribe( () => {})
           }
         }
-        // alertify.success('Sales brief edited successfully');
+        this.toastrService.success('Sales brief edited successfully');
         this.router.navigate([this.path['forms']]);
       },
       (error) => {
-        console.error(
-          'An error occurred while editing the sales brief: ',
-          error
-        );
-        // alertify.error('An error occurred while creating the sales brief');
-        // Display a user-friendly error message to the user.
+        this.toastrService.error('An error occurred while creating the sales brief');
       }
     );
   }
 
-  processFormGroups(formGroup: FormGroup): any {
+  private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
 
     if (formGroup instanceof FormGroup) {
@@ -308,7 +308,7 @@ export class SentBriefsIdComponent {
     return valuesObject;
   }
 
-  processAgeRangeGroup(group: FormGroup): string {
+  private processAgeRangeGroup(group: FormGroup): string {
     const ageGroups = Object.keys(group.controls)
       .filter((ageGroupKey) => group.get(ageGroupKey)?.value === true)
       .join(', ');

@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/core/services/notification.service'
 import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sheets-brief',
@@ -43,17 +44,17 @@ export class SheetsBriefComponent {
 
   public path = PATH;
 
-  fileToUpload: File | null = null;
-  influencers: InfluencerModel[] = [];
+  private fileToUpload: File | null = null;
 
   constructor(
     private fileService: FileService,
     private salesService: SalesService,
     private notificationService: NotificationService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private toastrService: ToastrService
   ) { }
 
-  salesBriefReady() {
+  public salesBriefReady(): void {
     this.salesService.salesBriefReady(this.id).subscribe((data: any) => { 
       if (data?.status == 'success') {
         let id = this.brief?.data.CreatedbyID;
@@ -65,9 +66,9 @@ export class SheetsBriefComponent {
           .createNotification(id, input)
           .subscribe(() => {});
         this.deactivateBrief();
-        // alertify.success('Sales Brief is ready');
+        this.toastrService.success('Sales Brief is ready!');
       } else {
-        // alertify.error('Error');
+        this.toastrService.error('Error!');
       }
     });
 
@@ -75,28 +76,28 @@ export class SheetsBriefComponent {
       .updateStatusToComplete({ id: this.task.id, assigned_to : this.task.assigned_to})
       .subscribe((data: any) => {
         if (data) {
-          // alertify.success('Task is completed');
+          this.toastrService.success('Task is completed!');
         } else {
-          // alertify.error('Error');
+          this.toastrService.error('Error!');
         }
       });
   }
 
-  handleFileInputXLSX(event: Event): void {
+  public handleFileInputXLSX(event: Event): void {
     const target = event.target as HTMLInputElement;
     const files = target.files as FileList;
     this.fileToUpload = files.item(0);
     this.uploadFileXlsx();
   }
 
-  handleFileInputPPTX(event: Event): void {
+  public handleFileInputPPTX(event: Event): void {
     const target = event.target as HTMLInputElement;
     const files = target.files as FileList;
     this.fileToUpload = files.item(0);
     this.uploadFilePPTX();
   }
 
-  uploadFileXlsx(): void {
+  private uploadFileXlsx(): void {
     if (this.fileToUpload?.type != 'sheet') {
       if (this.fileToUpload) {
         this.fileService
@@ -111,20 +112,20 @@ export class SheetsBriefComponent {
                     console.log(error);
                   }
                 );
-              // alertify.success('File uploaded successfully');
+              this.toastrService.success('File uploaded successfully!');
               window.location.reload();
             },
             (error) => {
-              // alertify.error('File upload error');
+              this.toastrService.error('File upload error!');
             }
           );
       }
     } else {
-      // alertify.error('Wrong file type');
+      this.toastrService.error('Wrong file type!');
     }
   }
 
-  uploadFilePPTX(): void {
+  private uploadFilePPTX(): void {
     if (this.fileToUpload?.type != 'presentation') {
       if (this.fileToUpload) {
         this.fileService
@@ -141,20 +142,20 @@ export class SheetsBriefComponent {
                     }
                   );
               }
-              // alertify.success('File uploaded successfully');
+              this.toastrService.success('File uploaded successfully!');
               window.location.reload();
             },
             (error) => {
-              // alertify.error('File upload error');
+              this.toastrService.error('File upload error!');
             }
           );
       }
     } else {
-      // alertify.error('Wrong file type');
+      this.toastrService.error('Wrong file type!');
     }
   }
 
-  downloadFilePPTX(id: number, filename: string) {
+  public downloadFilePPTX(id: number, filename: string): void {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
       const url = window.URL.createObjectURL(blob);
@@ -162,7 +163,7 @@ export class SheetsBriefComponent {
     });
   }
 
-  downloadFilexlsx(id: number, filename: string) {
+  public downloadFilexlsx(id: number, filename: string): void {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
       const url = window.URL.createObjectURL(blob);
@@ -170,44 +171,44 @@ export class SheetsBriefComponent {
     });
   }
 
-  deleteBudgetSheetFile(id: number) {
+  public deleteBudgetSheetFile(id: number): void {
     this.fileService.deleteBudgetSheetFile(id).subscribe(
       (data) => {
-        // alertify.success('File deleted successfully');
+        this.toastrService.success('File deleted successfully!');
         setTimeout(() => {
           window.location.reload();
         }, 2000);
       },
       (error) => {
-        // alertify.error('File delete error');
+        this.toastrService.error('File delete error!');
       }
     );
   }
 
-  deletePresentationFile(id: number) {
+  public deletePresentationFile(id: number): void {
     this.fileService.deletePresentationFile(id).subscribe(
       (data) => {
-        // alertify.success('File deleted successfully');
+        this.toastrService.success('File deleted successfully');
         setTimeout(() => {
           window.location.reload();
         }, 2000);
       },
       (error) => {
-        // alertify.error('File delete error');
+        this.toastrService.error('File delete error');
       }
     );
   }
 
-  deactivateBrief() {
+  private deactivateBrief(): void {
     this.salesService
       .changeStatus(this.brief_id, { status: 'InActive' })
       .subscribe((data1: any) => {
-        // alertify.success('Brief Deactivated');
+        this.toastrService.success('Brief Deactivated');
 
         this.taskService
           .deactivateTask(this.brief_id)
           .subscribe((data2: any) => {
-            // alertify.success('Task Deactivated');
+            this.toastrService.success('Task Deactivated');
             window.location.reload();
           });
       });

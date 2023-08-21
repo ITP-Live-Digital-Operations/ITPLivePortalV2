@@ -7,7 +7,6 @@ import { LogService } from 'src/app/core/services/log.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { currencies, platforms } from 'src/assets/influencer-form-arrays';
 import { PATH } from 'src/app/core/constant/routes.constants';
-// import * as alertifyjs from 'alertifyjs';
 
 @Component({
   selector: 'app-new-rate-log',
@@ -16,16 +15,15 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 })
 export class NewRateLogComponent {
 
-  form: FormGroup;
-  logForm: FormGroup;
-  userID: any;
-  data: any;
-  currencies = currencies;
-  influencers: any;
+  public form: FormGroup;
+  public logForm: FormGroup;
+  private data: any;
+  public currencies = currencies;
+  public platforms = platforms;
+  public influencers: any;
 
-  platforms = platforms;
-  influencerData: any;
-  submitted = false;
+  private influencerData: any;
+  private submitted = false;
 
   public path = PATH;
 
@@ -65,11 +63,11 @@ export class NewRateLogComponent {
     }
   }
 
-  get fields(): FormArray {
+  public get fields(): FormArray {
     return this.form.get('fields') as FormArray;
   }
 
-  addFields() {
+  public addFields(): void {
     const fields = this.formBuilder.group({
       Platform: ['', Validators.required],
       Deliverable: ['', Validators.required],
@@ -78,13 +76,13 @@ export class NewRateLogComponent {
     this.fields.push(fields);
   }
 
-  getInfluencers() {
-    return this.service.getInfluencerNames().subscribe((item) => {
+  private getInfluencers(): void {
+    this.service.getInfluencerNames().subscribe((item) => {
       this.influencers = item;
     });
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     if (this.submitted) {
       return;
     }
@@ -96,11 +94,11 @@ export class NewRateLogComponent {
       this.logService.addLog(inputData).subscribe(item => {
         this.data = item;
         if (this.data.status === "success") {
-          this.toastrService.success('Log Added Successfully');
+          this.toastrService.success('Log Added Successfully!');
           this.route.navigate([this.path['rateLogs']])
         }
         else {
-          this.toastrService.error('Error! Please Try Again');
+          this.toastrService.error('Error! Please Try Again!');
         }
 
       })
@@ -110,7 +108,7 @@ export class NewRateLogComponent {
     }, 1000);
   }
 
-  getAvailableDeliverables(platformIndex: number): string[] {
+  public getAvailableDeliverables(platformIndex: number): string[] {
     const platform = this.fields.controls[platformIndex].get('Platform')?.value;
     switch (platform) {
       case 'Instagram':
@@ -164,7 +162,7 @@ export class NewRateLogComponent {
     }
   }
 
-  onPlatformChange(platformIndex: number): void {
+  public onPlatformChange(platformIndex: number): void {
     const platform = this.fields.controls[platformIndex].get('Platform')?.value;
     const deliverableControl =
       this.fields.controls[platformIndex].get('Deliverable');

@@ -5,6 +5,9 @@ import { ReadyBriefsIdComponent } from './ready-briefs-id/ready-briefs-id.compon
 import { ReadyBriefsComponent } from './ready-briefs/ready-briefs.component';
 import { SentBriefsComponent } from './sent-briefs/sent-briefs.component';
 import { SentBriefsIdComponent } from './sent-briefs-id/sent-briefs-id.component';
+import { PATH } from 'src/app/core/constant/routes.constants';
+
+let path = PATH;
 
 const routes: Routes = [
   {
@@ -12,7 +15,7 @@ const routes: Routes = [
     component: NewSalesBriefComponent
   },
   {
-    path: 'readyBriefs', //   personal / executive    tasks
+    path: 'readyBriefs',
     component: ReadyBriefsComponent
   },
   {
@@ -29,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/home/main/forms',
+    redirectTo: `${path['forms']}`,
     pathMatch: 'full'
   },
   {

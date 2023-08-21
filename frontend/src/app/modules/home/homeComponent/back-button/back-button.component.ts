@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./back-button.component.scss']
 })
 export class BackButtonComponent {
-  backButton() {
+
+  public backButton(): void {
     window.history.back();
   }
+
 }

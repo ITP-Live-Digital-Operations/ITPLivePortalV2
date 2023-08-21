@@ -16,6 +16,16 @@ const routes: Routes = [
   {
     path: 'changePassword',
     component: ChangePasswordComponent
+  },
+  {
+    path: '',
+    redirectTo: "/site/notFound",
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/site/notFound',
+    pathMatch: 'full'
   }
 ];
 

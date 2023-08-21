@@ -5,6 +5,7 @@ import { FileService } from 'src/app/core/services/file.service';
 import { SelectInfluencerDialogComponent } from '../select-influencer-dialog/select-influencer-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskModel } from 'src/app/core/interfaces/task.Model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-main-table',
@@ -29,9 +30,10 @@ export class MainTableComponent {
   @Input()
   id!: number;
 
-  influencers: InfluencerModel[] = [];
-  form: FormGroup;
-  influencersArray!: FormArray;
+  private influencers: InfluencerModel[] = [];
+  public form: FormGroup;
+  public influencersArray!: FormArray;
+
   platforms = [
     'Instagram',
     'Tiktok',
@@ -46,13 +48,14 @@ export class MainTableComponent {
     private formBuilder: FormBuilder,
     private fileService: FileService,
     private dialog: MatDialog,
+    private toastrService: ToastrService
   ) {
     this.form = this.formBuilder.group({
       rows: this.formBuilder.array([]),
     });
   }
 
-  public submitTable() {
+  public submitTable(): void {
     let tableData: any[] = [];
     this.form.value.rows.forEach((rowGroup: any) => {
       tableData.push(rowGroup);
@@ -74,7 +77,7 @@ export class MainTableComponent {
       )
       .subscribe(
         (data) => {
-          // alertify.success('Excel file created and uploaded successfully');
+          this.toastrService.success('Excel file created and uploaded successfully');
           this.downloadFilexlsx(data.fileData.id, data.fileData.filename);
 
           setTimeout(() => {
@@ -82,14 +85,12 @@ export class MainTableComponent {
           }, 2000);
         },
         (error) => {
-          console.log(error);
-
-          // alertify.error('Excel file creation and upload error');
+          this.toastrService.error('Excel file creation and upload error');
         }
       );
   }
 
-  downloadFilexlsx(id: number, filename: string) {
+  private downloadFilexlsx(id: number, filename: string): void {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
       const url = window.URL.createObjectURL(blob);
@@ -97,7 +98,7 @@ export class MainTableComponent {
     });
   }
 
-  addRow(influencer: any): void {
+  public addRow(influencer: any): void {
     const row = this.formBuilder.group({
       nb: [this.influencers.length + 1, Validators.required],
       name: [influencer.Name, Validators.required],
@@ -112,16 +113,16 @@ export class MainTableComponent {
     this.influencers.push(influencer);
   }
 
-  removeRow(index: number): void {
+  public removeRow(index: number): void {
     this.rows.removeAt(index);
     this.influencers.splice(index, 1);
   }
 
-  get rows(): FormArray {
+  public get rows(): FormArray {
     return this.form.get('rows') as FormArray;
   }
 
-  openDialog(): void {
+  public openDialog(): void {
     const dialogRef = this.dialog.open(SelectInfluencerDialogComponent);
 
     dialogRef.afterClosed().subscribe((selectedInfluencer: InfluencerModel) => {
@@ -131,7 +132,7 @@ export class MainTableComponent {
     });
   }
 
-  updateFields(i: number, event: any): void {
+  public updateFields(i: number, event: any): void {
     const chosenPlatform = event.target.value;
     const row = this.rows.at(i) as FormGroup;
 

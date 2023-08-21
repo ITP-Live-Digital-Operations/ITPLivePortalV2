@@ -8,6 +8,7 @@ import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-assign-task',
@@ -31,9 +32,8 @@ export class AssignTaskComponent {
   @ViewChild(MatTable) table!: MatTable<any>;
 
   public path = PATH;
-
-  salespersonId: any;
-  assignForm!: FormGroup;
+  private salespersonId: any;
+  public assignForm!: FormGroup;
 
   displayedColumns: string[] = ['id', 'name', 'totalWeight', 'Action'];
 
@@ -43,7 +43,8 @@ export class AssignTaskComponent {
     private notificationService: NotificationService,
     private salesService: SalesService,
     private fileService: FileService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastrService: ToastrService
   ) { 
     this.assignForm = this.formBuilder.group({
       Weight: ['', Validators.required],
@@ -53,7 +54,7 @@ export class AssignTaskComponent {
     this.getTalentTaskWeights()
   }
 
-  assign(id: any) {
+  public assign(id: number): void {
     if (this.assignForm.valid) {
       this.taskService
         .createTask({
@@ -64,7 +65,7 @@ export class AssignTaskComponent {
           deadline: this.assignForm.value.Deadline,
         })
         .subscribe((data: any) => {
-          // alertify.success('Task Assigned');
+          this.toastrService.success('Task Assigned!');
         });
       let input1 = {
         message: 'Sales Brief has been assigned ',
@@ -85,20 +86,13 @@ export class AssignTaskComponent {
       this.salesService
         .updateAssignedStatus(this.brief.data.id)
         .subscribe((data: any) => {
-          // alertify.success('Brief Assigned');
+          this.toastrService.success('Brief Assigned');
           window.location.reload();
         });
     }
   }
 
-  approve(id: number) {
-    this.fileService.approveFile(id).subscribe((data: any) => {
-      // alertify.success('File approved successfully');
-      window.location.reload();
-    });
-  }
-
-  getTalentTaskWeights() {
+  private getTalentTaskWeights(): void {
     this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
       this.dataSource = data.usersWithTasks;
     });

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
-import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-side-nav-content',
@@ -12,10 +12,11 @@ export class SideNavContentComponent {
 
   public path = PATH;
 
-  msg: any;
+  @Input()
+  privilegeLevel!: number;
 
-  pl: number = 0;
-  userRole: string = '';
+  @Input()
+  userRole!: string;
 
   @Input()
   userName!: string;
@@ -25,22 +26,17 @@ export class SideNavContentComponent {
 
   constructor(
     private dataService: DataService,
-    private userService: UserService
+    private toastrService: ToastrService
   ) { }
 
-  ngOnInit() {
-    this.userRole = this.userService.getRole();
-    this.pl = this.userService.getPrivilegeLevel();
-  }
-
-  exportSeeds() {
+  public exportSeeds(): void {
     this.dataService.exportSeeds().subscribe((res) => {
-      this.msg = res;
+      const msg: any = res;
 
-      if (this.msg.message == 'Script executed successfully!') {
-        // alertify.success('Seeds exported successfully!');
+      if (msg.message == 'Script executed successfully!') {
+        this.toastrService.success('Seeds exported successfully!');
       } else {
-        // alertify.error('Seeds export failed!');
+        this.toastrService.error('Seeds export failed!');
       }
     });
   }

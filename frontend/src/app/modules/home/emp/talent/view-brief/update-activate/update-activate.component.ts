@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -10,7 +11,6 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./update-activate.component.scss'],
 })
 export class UpdateActivateComponent {
-  user_id = this.userService.getID();
 
   @Input()
   brief: any;
@@ -18,49 +18,49 @@ export class UpdateActivateComponent {
   @Input()
   brief_id: any;
 
-  form!: FormGroup;
+  public form!: FormGroup;
 
   @Output() 
   submitEvent = new EventEmitter<void>();
 
   constructor(
-    private userService: UserService,
     private salesService: SalesService,
     private taskService: TaskService,
-    private rootFormGroup: FormGroupDirective
+    private rootFormGroup: FormGroupDirective,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.form = this.rootFormGroup.control;
   }
 
-  emitSubmit() {
+  public emitSubmit(): void {
     this.submitEvent.emit();
   }
 
-  deactivateBrief() {
+  public deactivateBrief(): void {
     this.salesService
       .changeStatus(this.brief_id, { status: 'InActive' })
       .subscribe((data1: any) => {
-        // alertify.success('Brief Deactivated');
+        this.toastrService.success('Brief Deactivated');
 
         this.taskService
           .deactivateTask(this.brief_id)
           .subscribe((data2: any) => {
-            // alertify.success('Task Deactivated');
+            this.toastrService.success('Task Deactivated');
             window.location.reload();
           });
       });
   }
 
-  activateBrief() {
+  public activateBrief(): void {
     this.salesService
       .changeStatus(this.brief_id, { status: 'Active' })
       .subscribe((data1: any) => {
-        // alertify.success('Brief Activated');
+        this.toastrService.success('Brief Activated');
 
         this.taskService.activateTask(this.brief_id).subscribe((data2: any) => {
-          // alertify.success('Task Activated');
+          this.toastrService.success('Task Activated');
           window.location.reload();
         });
       });

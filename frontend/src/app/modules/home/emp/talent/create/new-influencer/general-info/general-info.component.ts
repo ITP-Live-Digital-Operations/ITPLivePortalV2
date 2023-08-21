@@ -16,12 +16,12 @@ import {
 })
 export class GeneralInfoComponent {
   
-  genders: string[] = genders;
-  languages: string[] = languages;
-  verticals: string[] = verticals;
-  countries: string[] = countries;
-  nationalities: string[] = nationalities;
-  itprelatioship: string[] = itprelatioship;
+  public genders: string[] = genders;
+  public languages: string[] = languages;
+  public verticals: string[] = verticals;
+  public countries: string[] = countries;
+  public nationalities: string[] = nationalities;
+  public itprelatioship: string[] = itprelatioship;
 
   @Input()
   formGroupName: string = '';
@@ -29,11 +29,11 @@ export class GeneralInfoComponent {
   @Input()
   isCelebrity!: boolean;
 
-  form!: FormGroup;
+  public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective){ }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
   }
 

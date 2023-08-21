@@ -8,6 +8,7 @@ import { TaskModel } from 'src/app/core/interfaces/task.Model';
 })
 
 export class PersonInfoComponent {
+
   @Input()
   assignedUser: any;
 
@@ -16,4 +17,5 @@ export class PersonInfoComponent {
 
   @Input()
   task!: TaskModel;
+  
 }

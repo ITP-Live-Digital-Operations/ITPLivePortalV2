@@ -21,36 +21,38 @@ import {
     '[class.readonly]': 'readonly',
   },
 })
-export class StarRatingComponent implements OnChanges {
-  _rating!: number;
+export class StarRatingComponent {
 
-  @Input() rating: number | undefined;
-  @Input() readonly!: boolean;
+  public _rating!: number;
 
-  @Output() onClick: EventEmitter<number> = new EventEmitter();
-  @Output() onView: EventEmitter<any> = new EventEmitter();
+  @Input() 
+  rating: number | undefined;
 
-  @ViewChildren('star') private startItems!: QueryList<ElementRef>;
+  @Input() 
+  readonly!: boolean;
 
-  constructor() {}
+  @Output() 
+  onClick: EventEmitter<number> = new EventEmitter();
 
-  ngOnChanges(changes: SimpleChanges) {
-    this._rating = this.rating || 0;
-  }
+  @Output() 
+  onView: EventEmitter<any> = new EventEmitter();
 
-  _onClick(index: number) {
+  @ViewChildren('star') 
+  private startItems!: QueryList<ElementRef>;
+
+  public _onClick(index: number): void {
     this._rating = index;
 
     this.onClick.emit(index);
   }
 
-  _clear() {
+  public _clear(): void {
     this._rating = 0;
 
     this.onClick.emit();
   }
 
-  _onHover(index: number) {
+  public _onHover(index: number): void {
     this.startItems.forEach((element: ElementRef, i: number) => {
       if (i + 1 <= index && (!this._rating || i + 1 > this._rating)) {
         element.nativeElement.classList.add('active');
@@ -58,7 +60,7 @@ export class StarRatingComponent implements OnChanges {
     });
   }
 
-  _onHoverOut(index: number) {
+  public _onHoverOut(index: number): void {
     this.startItems.forEach((element: ElementRef, i: number) => {
       if (i + 1 <= index && (!this._rating || i + 1 > this._rating)) {
         element.nativeElement.classList.remove('active');

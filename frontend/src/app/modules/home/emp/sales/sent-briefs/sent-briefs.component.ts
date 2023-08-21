@@ -14,8 +14,17 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 export class SentBriefsComponent {
 
   public path = PATH;
-  dataSource: any;
-  user_id = this.userService.getID();
+  public dataSource: any;
+  private user_id = this.userService.getID();
+
+  displayedColumns: string[] = [
+    'CampaignName',
+    'Agency',
+    'Client',
+    'CreatedAt',
+    'UpdatedAt',
+    'Action',
+  ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -30,20 +39,11 @@ export class SentBriefsComponent {
     this.getSentBriefs();
   }
 
-  getSentBriefs() {
+  private getSentBriefs(): void {
     this.salesService.viewMyBriefs(this.user_id).subscribe((data: any) => {
       this.dataSource = new MatTableDataSource(data.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
-
-  displayedColumns: string[] = [
-    'CampaignName',
-    'Agency',
-    'Client',
-    'CreatedAt',
-    'UpdatedAt',
-    'Action',
-  ];
 }

@@ -6,5 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./campaign-results.component.scss']
 })
 export class CampaignResultsComponent {
-  @Input() profileData: any;
+
+  @Input() 
+  profileData: any;
+  
 }

@@ -10,8 +10,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login-credentials.component.scss']
 })
 export class LoginCredentialsComponent implements OnInit {
-  loginForm: FormGroup;
-  data: any;
+
+  public loginForm: FormGroup;
+  private data: any;
 
   ngOnInit(): void {
     localStorage.clear();
@@ -28,7 +29,8 @@ export class LoginCredentialsComponent implements OnInit {
       password: ['', [Validators.required]],
     });
   }
-  onSubmit() {
+
+  public onSubmit(): void {
     this.service.logIn(this.loginForm.value).subscribe(
       (res) => {
         this.data = res;

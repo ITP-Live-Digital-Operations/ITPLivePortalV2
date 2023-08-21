@@ -6,12 +6,12 @@ body {
 
 /* Style the card */
 .card {
-  background-color: #000000;
+  background-color: transparent;
   border: none;
   border-radius: 0px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
   padding: 10px;
-  border-bottom: 3px solid #3f51b5;
+  
   max-width: 40%;
 }
 
@@ -121,3 +121,5 @@ table {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+

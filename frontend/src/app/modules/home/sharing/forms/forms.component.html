@@ -18,11 +18,11 @@
         <img src="../../../../../assets/white-buttons/new-influencer.png">
         <p>New Influencer</p>
     </button>
-    <button mat-raised-button *ngIf="(userRole == 'talent' && pl > 7) || userRole == 'superadmin'" routerLink="{{path['celebrities']}}">
+    <button mat-raised-button *ngIf="(userRole == 'talent' && privilegeLevel > 7) || userRole == 'superadmin'" routerLink="{{path['celebrities']}}">
         <img src="../../../../../assets/white-buttons/celebrities.png">
         <p>Celebrities</p>
     </button>
-    <button  mat-raised-button *ngIf="(userRole == 'talent' && pl > 7) || userRole == 'superadmin'" routerLink="{{path['newCelebrity']}}">
+    <button  mat-raised-button *ngIf="(userRole == 'talent' && privilegeLevel > 7) || userRole == 'superadmin'" routerLink="{{path['newCelebrity']}}">
         <img src="../../../../../assets/white-buttons/new-celebrities.png">
         <p>New Celebrity</p>
     </button>

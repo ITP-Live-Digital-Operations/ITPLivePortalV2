@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -9,16 +10,18 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent {
-  userID!: number;
-  user: any;
-  data: any;
 
-  updateProfile: FormGroup;
+  private userID!: number;
+  private user: any;
+  private data: any;
+
+  public updateProfile: FormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastrService: ToastrService
   ) {
     this.updateProfile = this.formBuilder.group({
       name: [''],
@@ -32,7 +35,7 @@ export class EditProfileComponent {
     this.loadUserData();
   }
 
-  loadUserData() {
+  private loadUserData(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.userID = params['id'];
     });
@@ -48,21 +51,17 @@ export class EditProfileComponent {
     });
   }
 
-  updateUser() {
+  public updateUser(): void {
     this.userService
       .updateUser(this.updateProfile.value, this.userID)
       .subscribe((res: any) => {
         this.data = res;
         if (this.data.status === 'success') {
-          // alertify.success('Influencer updated successfully.');
+          this.toastrService.success('Influencer updated successfully!');
           window.location.reload();
         } else {
-          // alertify.error('Influencer was not updated');
+          this.toastrService.error('Influencer was not updated!');
         }
       });
-  }
-
-  ngOnDestroy(): void {
-    this.loadUserData();
   }
 }
