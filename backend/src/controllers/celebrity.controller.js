@@ -1,13 +1,15 @@
+
 const  models  = require('../../models');
 const Celebrity = models.Celebrity;
 const decode = require('../utils/token').decode;
 
 
 exports.createCelebrity =  (req, res) => {
-
+    console.log(req.body);
     const celebrity = req.body;
     Celebrity.create(celebrity)
     .then(data => {
+        console.log(data);
         res.status(200).send({
             status: "success",
         });
