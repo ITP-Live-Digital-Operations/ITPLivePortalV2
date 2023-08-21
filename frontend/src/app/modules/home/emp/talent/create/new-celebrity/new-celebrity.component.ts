@@ -116,7 +116,11 @@ export class NewCelebrityComponent {
             ...this.processFormGroups(control),
           };
         } else if (control instanceof FormControl) {
+          if(control.value === ''){
+            valuesObject[key] = 'null';
+          }else {
           valuesObject[key] = control.value;
+          }
         }
       });
     }

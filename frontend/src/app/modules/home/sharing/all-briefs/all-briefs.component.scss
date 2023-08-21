@@ -1,24 +1,50 @@
 table {
   width: 100%;
 }
-
 .warn {
   background-color: red;
   color: white;
 }
-
 .table-container {
   padding-top: 1%;
   overflow-y: scroll;
   max-height: auto;
 }
-
 .mat-mdc-row .mat-mdc-cell {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
   cursor: pointer;
 }
-
 .mat-mdc-row:hover .mat-mdc-cell {
   border-color: currentColor;
+}
+
+
+.btn-green{
+  background-color: green;
+  color : white;
+}
+
+
+.legend-section {
+  margin-top: 1%;
+  margin-right: 0.5%;
+  width: 11%; // Width of the legend. Adjust as needed.
+  float: left; // Float to the right.
+
+  .legend-table {
+    width: 100%; // Take up the full width of the legend section.
+    border-collapse: collapse;
+
+    td{
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .color-chip {
+      height: 20px;
+      width: 20px;
+      border: 1px solid #000;
+    }
+  }
 }

@@ -21,18 +21,19 @@ export class AllBriefsComponent {
   private users: any = {};
   private id: any;
   public userRole: string = this.userService.getRole();
+  public privilegeLevel: number = this.userService.getPrivilegeLevel();
+  private userId: number = this.userService.getID();
 
   displayedColumns: string[] = [
-    'Status',
     'CampaignName',
     'Agency',
     'Client',
     'CampaignObjective',
-    'CampaignStartDate',
+    'TaskDeadline',
     'Priority',
-    'ViewedByTalent',
-    'SubmittedBy',
-    'AssignedTo',
+    'Weight',
+    'Sales',
+    'Talent',
     'Action',
   ];
 
@@ -44,7 +45,7 @@ export class AllBriefsComponent {
     private salesService: SalesService,
     private userService: UserService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -94,7 +95,7 @@ export class AllBriefsComponent {
   }
 
   public viewedTask(id: number): void {
-    this.salesService.viewedByTalent(id).subscribe((data: any) => {});
+      this.salesService.viewedByTalent(id).subscribe((data: any) => {});
     if (this.userRole == 'sales') {
       this.router.navigate([`${this.path['sentBriefs'] + id}`]);
     } else {
@@ -109,7 +110,7 @@ export class AllBriefsComponent {
         event.previousIndex,
         event.currentIndex
       );
-      
+
       const updatedPriorities = this.dataSource.data.map(
         (item: any, index: any) => {
           return { id: item.id, newPriority: index + 1 };
@@ -132,5 +133,14 @@ export class AllBriefsComponent {
   public getUsername(id: number): string {
     return this.users[id] || 'Not Assigned';
   }
+
+  displayedColumns1: string[] = ['color', 'meaning'];
+  colorLegend = [
+    {color: 'green', meaning: 'Not Assigned'},
+    {color: 'blue', meaning: 'Assigned'},
+    {color: 'red', meaning: 'In Active'},
+
+
+  ];
 
 }
