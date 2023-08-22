@@ -15,7 +15,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     CommonModule,
     SharedRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: []
 })

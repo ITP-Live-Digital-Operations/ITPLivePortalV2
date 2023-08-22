@@ -5,16 +5,19 @@ import { ToastrService } from 'ngx-toastr';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+
 @Component({
   selector: 'app-new-influencer',
   templateUrl: './new-influencer.component.html',
   styleUrls: ['./new-influencer.component.scss'],
 })
 export class NewInfluencerComponent {
-  public newInfluencerForm!: FormGroup;
+
+  protected newInfluencerForm!: FormGroup;
   private data: any;
-  public isNotCelebrity: boolean = true;
-  public path = PATH;
+  protected isNotCelebrity: boolean = true;
+  protected path = PATH;
+
   constructor(
     private formBuilder: FormBuilder,
     private service: InfluencerService,
@@ -24,8 +27,10 @@ export class NewInfluencerComponent {
   ) {
     this.initializeElements();
   }
+
   private initializeElements(): void {
     this.newInfluencerForm = this.formBuilder.group({
+      //GENERAL INFO
       generalInfo: this.formBuilder.group({
         Name: ['', [Validators.required]],
         Gender: ['', [Validators.required]],
@@ -43,52 +48,67 @@ export class NewInfluencerComponent {
         CityLocation: [''],
         Address: [''],
       }),
+      //SOCIALS
       socials: this.formBuilder.group({
-        InstagramHandle: ['', [Validators.required]],
+        InstagramHandle: [''],
         InstagramFollowers: [''],
         InstagramLink: [''],
+
         TiktokHandle: [''],
         TiktokFollowers: [''],
         TiktokLink: [''],
+
         SnapchatHandle: [''],
         SnapchatFollowers: [''],
         SnapchatLink: [''],
+
         TwitterHandle: [''],
         TwitterFollowers: [''],
         TwitterLink: [''],
+
         FacebookHandle: [''],
         FacebookFollowers: [''],
         FacebookLink: [''],
+
         YoutubeHandle: [''],
         YoutubeFollowers: [''],
         YoutubeLink: [''],
+
         TwitchHandle: [''],
         TwitchFollowers: [''],
         TwitchLink: [''],
       }),
+      //STATISTICS
       statistics: this.formBuilder.group({
         AudienceMalePer: [''],
         AudienceFemalePer: [''],
+
         AgeGroup1317: [''],
         AgeGroup1824: [''],
         AgeGroup2534: [''],
         AgeGroup3544: [''],
         AgeGroup4554: [''],
         AgeGroup55: [''],
+
         AudienceTopCountries1: [''],
         AudienceTopCountries1Percentage: [''],
+
         AudienceTopCountries2: [''],
         AudienceTopCountries2Percentage: [''],
+
         AudienceTopCountries3: [''],
         AudienceTopCountries3Percentage: [''],
       }),
+      //LICENSES
       KSALicense: [''],
       UAELicense: [''],
+      //AGENCY INFO
       agencyInfo: this.formBuilder.group({
         AgencyContactPerson: [''],
         AgencyNumber: [''],
         AgencyEmail: ['', [Validators.email]],
       }),
+      //EXTRA INFO
       extraInfo: this.formBuilder.group({
         PreviousBrands: [''],
         Bio: [''],
@@ -96,10 +116,13 @@ export class NewInfluencerComponent {
       }),
     });
   }
-  public onSubmit(): void {
+
+  protected onSubmit(): void {
     const formValues = this.processFormGroups(this.newInfluencerForm);
     formValues.updatedBy = this.userService.getID();
+
     console.log(formValues);
+
     this.service.addInfluencer({ ...formValues }).subscribe((res) => {
       this.data = res;
       if (this.data.status === 'success') {
@@ -110,8 +133,10 @@ export class NewInfluencerComponent {
       }
     });
   }
+
   private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
+
     if (formGroup instanceof FormGroup) {
       Object.keys(formGroup.controls).forEach((key) => {
         const control = formGroup.get(key);
@@ -121,12 +146,11 @@ export class NewInfluencerComponent {
             ...this.processFormGroups(control),
           };
         } else if (control instanceof FormControl) {
-          if(control.value === ''){
-            valuesObject[key] = 'null';
-          }
-          else {
+            if (key.endsWith('Followers') || key.endsWith('Number')){
+              valuesObject[key] = null;
+            } else {
             valuesObject[key] = control.value;
-          }
+            }
         }
       });
     }

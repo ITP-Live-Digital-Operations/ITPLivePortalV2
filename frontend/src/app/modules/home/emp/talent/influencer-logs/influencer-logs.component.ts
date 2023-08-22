@@ -15,12 +15,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class InfluencerLogsComponent implements OnInit {
 
-  public dataSource: any;
-  public UserDetails: any;
-  public influencers: any;
-  public campaigns: string[] = [];
-  public talentUserNames: any;
-  public userRole = this.userService.getRole();
+  protected dataSource: any;
+  protected UserDetails: any;
+  protected influencers: any;
+  protected campaigns: string[] = [];
+  protected talentUserNames: any;
+  protected userRole = this.userService.getRole();
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -35,7 +35,7 @@ export class InfluencerLogsComponent implements OnInit {
     'Deliverable',
     'Currency',
     'Rate',
-    'Contact',
+    'Talent',
     'Date',
   ];
 
@@ -89,11 +89,11 @@ export class InfluencerLogsComponent implements OnInit {
     });
   }
 
-  public applyFilter(filterValue: string): void {
+  protected applyFilter(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public applyFilter1(filterValue: string): void {
+  protected applyFilter1(filterValue: string): void {
     if (!filterValue) {
       filterValue = '';
     }
@@ -105,7 +105,7 @@ export class InfluencerLogsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public applyFilter2(filterValue: string): void {
+  protected applyFilter2(filterValue: string): void {
     if (!filterValue) {
       filterValue = '';
     }
@@ -117,7 +117,7 @@ export class InfluencerLogsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public applyFilter3(filterValue: string): void {
+  protected applyFilter3(filterValue: string): void {
     if (!filterValue) {
       filterValue = '';
     }
@@ -129,7 +129,7 @@ export class InfluencerLogsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public deleteLog(id: any): void {
+  protected deleteLog(id: any): void {
     this.service.deleteLog(id).subscribe((item) => {
       this.GetAllLogs();
       this.toastrService.success('Log Deleted.')

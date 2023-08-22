@@ -84,6 +84,10 @@ export class HomeComponent {
       data: {
         userId: this.userId,
       },
+      position: {
+        top: '3%',
+        right: '7%',
+      },
     });
   }
 

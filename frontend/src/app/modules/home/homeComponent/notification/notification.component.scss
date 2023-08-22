@@ -2,6 +2,7 @@
 .notification-container {
     /* Ensuring enough space around the container */
     padding: 20px;
+    border-radius: 0px;
   }
   
   .notification-box {
@@ -20,32 +21,37 @@
   .notification-box a {
     /* Making the link not appear like a typical link */
     text-decoration: none;
-    color: inherit;
+    color: white;
     display: flex;
     justify-content: space-between;
   }
   .mat-mdc-dialog-container {
-    background-color: rgba(32,32,32)!important;
+    background-color: transparent!important;
   }
 
+ 
+
   .notification-box {
-    background-color: black;
+    background-color: transparent;
   }
   .notification-box a p {
     /* Aligning the message to the left */
     text-align: left;
+    color: white;
   }
   
   .notification-box a small {
     /* Aligning the time to the right */
     text-align: right;
+    color: white;
   }
   
   button {
     /* Styling the button */
-    position: absolute;
-    right: 0;
+    background-color: transparent;
+    border: 0px solid;
     margin-bottom: 2%;
-    margin-right: 4%;
+    margin-left: 94%;
+    color: red;
   }
     

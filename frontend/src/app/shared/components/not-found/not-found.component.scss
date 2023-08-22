@@ -1,0 +1,20 @@
+.not-found{
+  display: flex;
+  align-items: center; /* Vertically align the image */
+  justify-content: center; /* Horizontally align the image */
+  height: 100vh; /* 100% of the viewport height */
+  width: 100vw; /* 100% of the viewport width */
+  background: rgb(3,3,3);
+  background: radial-gradient(circle, rgb(1, 1, 1) 25%, rgba(0,9,41,1) 65%, rgba(8,36,119,1) 100%);
+}
+
+.not-found img{
+  max-height: 100%;
+  max-width: 100%;
+  cursor: pointer;
+
+}
+
+/* .not-found img:hover{
+
+} */

@@ -18,27 +18,27 @@ import { MainTableComponent } from './main-table/main-table.component';
 
 export class ViewBriefComponent {
 
-  public dataSource: any;
-  public brief: any;
-  public id: any;
-  public task!: TaskModel;
-  public salesperson: any;
+  protected dataSource: any;
+  protected brief: any;
+  protected id: any;
+  protected task!: TaskModel;
+  protected salesperson: any;
   private budgetData: any;
 
-  public budgetSheetId!: number;
-  public presentationId!: number;
-  public budgetSheet: any;
-  public presentation: any;
+  protected budgetSheetId!: number;
+  protected presentationId!: number;
+  protected budgetSheet: any;
+  protected presentation: any;
 
-  public assignedUser: any;
-  public assignedUser_id: any;
-  public assigned!: boolean;
-  public brief_id: any;
+  protected assignedUser: any;
+  protected assignedUser_id: any;
+  protected assigned!: boolean;
+  protected brief_id: any;
 
-  public user_id = this.userService.getID();
-  public privilege_level = this.userService.getPrivilegeLevel();
+  protected user_id = this.userService.getID();
+  protected privilege_level = this.userService.getPrivilegeLevel();
 
-  public progressForm: FormGroup;
+  protected progressForm: FormGroup;
 
   @ViewChild(MainTableComponent) mainComponent!: MainTableComponent;
 
@@ -61,7 +61,7 @@ export class ViewBriefComponent {
     this.refresh();
   }
 
-  public submitForm(): void {
+  protected submitForm(): void {
 
     this.taskService
       .updateProgress(this.task?.id, {

@@ -77,6 +77,7 @@
             *ngIf="element.task?.assigned_to === null"
             mat-raised-button
             class="btn-green"
+            (click)="viewedTask(element.id)"
           >
             View
           </button>

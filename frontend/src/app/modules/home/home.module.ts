@@ -11,6 +11,8 @@ import { SharedModule } from 'src/app/shared/components/shared.module';
 import { BackButtonComponent } from './homeComponent/back-button/back-button.component';
 import { NotificationComponent } from './homeComponent/notification/notification.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     FormsModule,
     SharedModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ],
 })
 export class HomeModule {}

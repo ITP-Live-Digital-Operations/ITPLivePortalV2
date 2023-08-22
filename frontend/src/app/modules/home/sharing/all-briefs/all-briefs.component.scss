@@ -28,6 +28,7 @@ table {
 
 .legend-section {
   margin-top: 1%;
+  padding-bottom: 2%;
   margin-right: 0.5%;
   width: 11%; // Width of the legend. Adjust as needed.
   float: left; // Float to the right.
@@ -36,7 +37,7 @@ table {
     width: 100%; // Take up the full width of the legend section.
     border-collapse: collapse;
 
-    td{
+    td {
       text-align: center;
       vertical-align: middle;
     }

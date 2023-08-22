@@ -11,6 +11,7 @@ table {
 .table-container {
   max-height: auto;
   overflow-y: hidden;
+
  
 }
 
@@ -31,7 +32,7 @@ table {
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(28, 28, 28);
   position: sticky;
 }
 
@@ -41,13 +42,10 @@ table {
   max-height: auto;
   overflow-y: hidden;
   overflow-x: hidden;
-  margin-left: 10px;
-  background-color: black!important;
+  
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(0, 0, 0, 0.15) 0px 0px 0px 1px;
 }
-
-
-
-.row {
+  .row {
   display: flex;
   flex-wrap: wrap;
 }

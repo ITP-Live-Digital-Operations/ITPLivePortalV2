@@ -13,10 +13,10 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 })
 export class NewCelebrityComponent {
 
-  public newCelebrityForm!: FormGroup;
+  protected newCelebrityForm!: FormGroup;
   private data: any;
-  public isCelebrity: boolean = false;
-  public path = PATH;
+  protected isCelebrity: boolean = false;
+  protected path = PATH;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -89,7 +89,7 @@ export class NewCelebrityComponent {
     });
   }
 
-  public onSubmit(): void {
+  protected onSubmit(): void {
     const formValues = this.processFormGroups(this.newCelebrityForm);
     formValues.updatedBy = this.userService.getID();
 
@@ -116,15 +116,14 @@ export class NewCelebrityComponent {
             ...this.processFormGroups(control),
           };
         } else if (control instanceof FormControl) {
-          if(control.value === ''){
-            valuesObject[key] = 'null';
-          }else {
-          valuesObject[key] = control.value;
-          }
+            if (key.endsWith('Followers') || key.endsWith('Number')){
+              valuesObject[key] = null;
+            } else {
+            valuesObject[key] = control.value;
+            }
         }
       });
     }
-
     return valuesObject;
   }
 }

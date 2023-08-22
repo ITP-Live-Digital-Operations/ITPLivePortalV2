@@ -1,26 +1,25 @@
 .influencer {
-  background-color: rgb(32, 32, 32);
   border-radius: 0px;
-  justify-content: center;
 }
 
 .container {
  display: flex;
- justify-content: center;
- padding: 100px 40px;
+justify-content: space-around;
+ background-color: rgb(35, 35, 35);
+ 
 }
 
 .platform{
-  width: 100%;
+  margin-top: 70px;
   justify-content: center;
 
 
 }
 
-.stats {
-  display: flex;
-  width: 100%;
-  justify-content: center;
+
+
+.mat-mdc-tab-group  {
+  background-color: rgb(28,28,28);
 }
 
 .row{

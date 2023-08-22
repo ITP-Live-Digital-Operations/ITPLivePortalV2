@@ -31,9 +31,9 @@ export class AssignTaskComponent {
 
   @ViewChild(MatTable) table!: MatTable<any>;
 
-  public path = PATH;
+  protected path = PATH;
   private salespersonId: any;
-  public assignForm!: FormGroup;
+  protected assignForm!: FormGroup;
 
   displayedColumns: string[] = ['id', 'name', 'totalWeight', 'Action'];
 
@@ -54,7 +54,7 @@ export class AssignTaskComponent {
     this.getTalentTaskWeights()
   }
 
-  public assign(id: number): void {
+  protected assign(id: number): void {
     if (this.assignForm.valid) {
       this.taskService
         .createTask({
@@ -95,6 +95,7 @@ export class AssignTaskComponent {
   private getTalentTaskWeights(): void {
     this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
       this.dataSource = data.usersWithTasks;
+      this.dataSource.push({id: 15, name: 'Rachelle Maksoud', totalWeight: 10})
     });
   }
 }

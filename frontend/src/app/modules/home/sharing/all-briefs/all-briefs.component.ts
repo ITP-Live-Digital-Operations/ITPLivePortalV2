@@ -22,7 +22,6 @@ export class AllBriefsComponent {
   private id: any;
   public userRole: string = this.userService.getRole();
   public privilegeLevel: number = this.userService.getPrivilegeLevel();
-  private userId: number = this.userService.getID();
 
   displayedColumns: string[] = [
     'CampaignName',
@@ -35,6 +34,12 @@ export class AllBriefsComponent {
     'Sales',
     'Talent',
     'Action',
+  ];
+  displayedColumns1: string[] = ['color', 'meaning'];
+  colorLegend = [
+    {color: 'green', meaning: 'Not Assigned'},
+    {color: 'blue', meaning: 'Assigned'},
+    {color: 'red', meaning: 'In Active'},
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -133,14 +138,5 @@ export class AllBriefsComponent {
   public getUsername(id: number): string {
     return this.users[id] || 'Not Assigned';
   }
-
-  displayedColumns1: string[] = ['color', 'meaning'];
-  colorLegend = [
-    {color: 'green', meaning: 'Not Assigned'},
-    {color: 'blue', meaning: 'Assigned'},
-    {color: 'red', meaning: 'In Active'},
-
-
-  ];
 
 }

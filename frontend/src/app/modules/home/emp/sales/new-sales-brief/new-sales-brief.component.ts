@@ -6,17 +6,21 @@ import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-new-sales-brief',
   templateUrl: './new-sales-brief.component.html',
   styleUrls: ['./new-sales-brief.component.scss'],
 })
+
 export class NewSalesBriefComponent {
+
   public newForm!: FormGroup;
   private newBrief: any;
   private userId = this.userService.getID();
   private userName: any;
   public path = PATH;
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
@@ -28,8 +32,10 @@ export class NewSalesBriefComponent {
     this.userService.getUserNameById(this.userId).subscribe((res) => {
       this.userName = res;
     });
+
     this.initializeElements();
   }
+
   private initializeElements(): void {
     this.newForm = this.formBuilder.group({
       //BASIC INFORMATION
@@ -110,13 +116,16 @@ export class NewSalesBriefComponent {
       }),
     });
   }
+
   public submitForm(): void {
     const itpDepartment = this.newForm.value.departmentDetails.ItpDepartment;
+
     const formValues = this.processFormGroups(this.newForm);
     formValues.CreatedbyID = this.userService.getID();
     formValues.Ready = false;
     formValues.ResultsViewed = false;
-    
+    console.log(formValues);
+
     this.salesService.createBrief({ ...formValues }).subscribe((brief) => {
       this.newBrief = brief;
       if (itpDepartment == 'Originals' || itpDepartment == 'UAE') {
@@ -134,6 +143,7 @@ export class NewSalesBriefComponent {
           message: 'New Sales Brief has been created by ' + this.userName.name,
           link: `${this.path['viewBrief'] + this.newBrief.id}`,
         };
+
         this.notificationService
           .createNotification(id, input)
           .subscribe(() => {});
@@ -142,12 +152,15 @@ export class NewSalesBriefComponent {
     this.toastrService.success('Brief submitted successfully!');
     this.router.navigate([this.path['forms']]);
   }
+
   private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
+
     if (formGroup instanceof FormGroup) {
       Object.keys(formGroup.controls)?.forEach((key) => {
         const control = formGroup.get(key);
         console.log(control?.value)
+
         if (key === 'InfluencerAgeRange' || key === 'AudienceAgeRange') {
           valuesObject[key] = this.processAgeRangeGroup(control as FormGroup);
         } else if (control instanceof FormGroup) {
@@ -162,11 +175,12 @@ export class NewSalesBriefComponent {
           } else {
           valuesObject[key] = control?.value;
           }
-        }
+        } 
       });
     }
     return valuesObject;
   }
+
   private processAgeRangeGroup(group: FormGroup): string {
     const ageGroups = Object.keys(group.controls)
       .filter((ageGroupKey) => group.get(ageGroupKey)?.value === true)
