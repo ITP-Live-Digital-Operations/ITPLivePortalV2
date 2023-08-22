@@ -7,7 +7,7 @@ import { LoginCredentialsComponent } from './modules/login/login-credentials/log
 
 const routes: Routes = [
   {
-    path: 'welcome',
+    path:             'welcome',
     component: WelcomeComponent,
   },
   {
