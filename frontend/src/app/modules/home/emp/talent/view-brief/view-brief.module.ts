@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PersonInfoComponent } from './person-info/person-info.component';
 import { AssignTaskComponent } from './assign-task/assign-task.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SharingModule } from '../../../sharing/sharing.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    MatExpansionModule
+    MatExpansionModule,
+    SharingModule
   ],
   exports: [
     AllInfoComponent,

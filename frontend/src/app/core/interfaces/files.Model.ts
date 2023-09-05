@@ -11,3 +11,8 @@ export interface fileModel {
   createdAt: string;
   updatedAt: string;
 }
+
+
+export interface FileWithProgress extends File {
+  progress: number;
+}

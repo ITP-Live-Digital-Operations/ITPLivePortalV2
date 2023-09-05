@@ -1,27 +1,43 @@
 .influencer {
-  background-color: rgb(32, 32, 32);
   border-radius: 0px;
-  justify-content: center;
 }
 
 .container {
  display: flex;
- justify-content: center;
- padding: 50px 20px;
+justify-content: space-evenly;
+ background-color: #232C30;
+ align-items: center;
+ padding: 20px;
+ 
 }
 
 .platform{
-  width: 100%;
+  
   justify-content: center;
 
 
 }
 
-.stats {
-  display: flex;
-  width: 100%;
-  justify-content: center;
+
+
+.mat-mdc-tab-group  {
+  background-color: #2C393F;
+  --mdc-tab-indicator-active-indicator-color: #4789A1;
+  --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
+  --mat-tab-header-pagination-icon-color: #000;
+  --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-active-label-text-color: #4789A1;
+  --mat-tab-header-active-ripple-color: #4789A1;
+  --mat-tab-header-inactive-ripple-color: #4789A1;
+  --mat-tab-header-inactive-focus-label-text-color: #4789A1;
+  --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-active-focus-label-text-color: #4789A1;
+  --mat-tab-header-active-hover-label-text-color: #4789A1;
+  --mat-tab-header-active-focus-indicator-color: #4789A1;
+  --mat-tab-header-active-hover-indicator-color: #4789A1;
 }
+
+
 
 .row{
   background-color: grey;

@@ -1,36 +1,59 @@
 .guide-container {
-    max-width: 100%;
-    margin: auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
-    margin-top: 1%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .guide-container h1 {
-    font-size: 2em;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
-  
-  .guide-container h2 {
-    font-size: 1.5em;
-    color: #333;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .guide-container p {
-    margin-top: 3%;
-    line-height: 1.5;
-    color: #000000;
-    margin-bottom: 10px;
-  }
-  
-  
-  
+  max-width: 100%;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border-radius: 0px;
+  background: #232C30;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 1%;
+  display: flex;
+  color: white;
+  flex-direction: column;
+
+}
+
+.guide-container h1 {
+  font-size: 2em;
+  color: white;
+  margin-bottom: 20px;
+
+  font-weight: bold;
+}
+
+.guide-container h2 {
+  font-size: 1.5em;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.guide-container p {
+  margin-top: 3%;
+  line-height: 1.5;
+  color: white;
+  ;
+  margin-bottom: 10px;
+}
+
+
+.mat-mdc-card {
+  background-color: #2C393F;
+}
+
+.mat-mdc-tab-group {
+  background-color: #2C393F;
+  --mdc-tab-indicator-active-indicator-color: #4789A1;
+  --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
+  --mat-tab-header-pagination-icon-color: #000;
+  --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-active-label-text-color: #4789A1;
+  --mat-tab-header-active-ripple-color: #4789A1;
+  --mat-tab-header-inactive-ripple-color: #4789A1;
+  --mat-tab-header-inactive-focus-label-text-color: #4789A1;
+  --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-active-focus-label-text-color: #4789A1;
+  --mat-tab-header-active-hover-label-text-color: #4789A1;
+  --mat-tab-header-active-focus-indicator-color: #4789A1;
+  --mat-tab-header-active-hover-indicator-color: #4789A1;
+}

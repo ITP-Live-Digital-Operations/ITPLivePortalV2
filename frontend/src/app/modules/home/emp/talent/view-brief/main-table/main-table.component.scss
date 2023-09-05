@@ -3,7 +3,7 @@ body {
     font-family: "Helvetica Neue", sans-serif;
     font-size: 16px;
   }
-  
+
   /* Style the card */
   .card {
     background-color: #fff;
@@ -12,7 +12,14 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
   }
-  
+  .form-container{
+    margin: 2%;
+  }
+
+  ::ng-deep .mat-mdc-form-field{
+    margin-top: 1%;
+  }
+
   /* Style the card header */
   .card-header {
     background-color: #343a40;
@@ -22,25 +29,25 @@ body {
     padding: 10px 20px;
     text-align: center;
   }
-  
+
   /* Style the card text */
   .card-text {
     margin-bottom: 10px;
   }
-  
+
   /* Style the container */
   .container {
     max-width: auto;
     margin: 0 auto;
   }
-  
+
   .row {
     display: flex;
     flex-wrap: wrap;
     padding-top: 1%;
     padding-left: 1%;
   }
-  
+
   .table-container {
     padding-top: 15%;
     overflow-y: hidden;
@@ -48,11 +55,11 @@ body {
     width: 100%;
     overflow-x: hidden;
   }
-  
+
   table {
     width: 100%;
   }
-  
+
   .no-border {
     border: none;
     resize: horizontal;
@@ -60,41 +67,43 @@ body {
     border: 1px solid white;
     width: auto;
   }
-  
+
   .form-container {
     max-height: auto;
     overflow-y: hidden;
     overflow-x: hidden;
   }
-  
+
   .my-table {
+    width: fit-content;
     width: 100%;
-    border-collapse: collapse;
     margin-bottom: 20px;
     margin-top: 5%;
+    overflow-x: auto;
+
   }
-  
+
   .my-table th {
-    background-color: #3f51b5;
+    background-color: #4789A1;
     color: white;
     font-weight: bold;
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid white;
-    
+
   }
-  
+
   .my-table td {
     padding: 10px;
     border: 1px solid #ddd;
     width: auto;
   }
-  
+
   .my-table th.centered {
     text-align: center;
     width: auto;
   }
-  
+
   .search-container {
     padding-top: 2%;
     padding-bottom: 2%;
@@ -105,12 +114,12 @@ body {
     right: 0;
     z-index: 1;
   }
-  
+
   input {
     background-color: #343a40;
     color: white;
   }
-  
+
   .stretch-button {
     white-space: nowrap;
     overflow: hidden;
@@ -122,4 +131,17 @@ body {
     margin-left: 3px;
     margin-top: 10px;
   }
-  
+
+  .submit {
+    background-color: #4789A1;
+    color: white;
+  }
+
+  .submit:disabled{
+    background-color: #4789A1;
+    color: white;
+    opacity: 0.3;
+  }
+
+
+

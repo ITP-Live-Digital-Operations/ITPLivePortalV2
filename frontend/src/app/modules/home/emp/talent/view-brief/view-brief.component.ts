@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SalesService } from 'src/app/core/services/sales.service';
@@ -30,6 +30,9 @@ export class ViewBriefComponent {
   protected budgetSheet: any;
   protected presentation: any;
 
+  protected pdfId!: number;
+  protected pdf: any;
+
   protected assignedUser: any;
   protected assignedUser_id: any;
   protected assigned!: boolean;
@@ -50,6 +53,7 @@ export class ViewBriefComponent {
     private userService: UserService,
     private taskService: TaskService,
     private location: Location,
+    private cdRef: ChangeDetectorRef,
   ) {
     this.progressForm = this.formBuilder.group({
       Progress: ['', Validators.required],
@@ -72,26 +76,45 @@ export class ViewBriefComponent {
       });
   }
 
-  private loadBriefData(): void {
+  public reloadParent($event: any): void {
+
+    if ($event){
+
+    this.loadBriefData();
+
+    this.cdRef.detectChanges();
+    }
+  }
+
+  public loadBriefData(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'];
       this.salesService
         .getSalesBriefWithFiles(this.id)
         .subscribe((data: any) => {
+          console.log(data);
           this.brief = data;
           this.assigned = data.data.assigned;
 
           this.getTask(this.brief.data.id);
           this.brief_id = this.brief.data.id;
           this.getSalesPerson(this.brief.data.CreatedbyID);
-          this.budgetSheetId = data.data.BudgetSheetId;
 
+          this.budgetSheetId = data.data.BudgetSheetId;
           if (this.budgetSheetId){
           this.getBudgetSheet(this.budgetSheetId);
 
           }
           this.presentationId = data.data.PresentationId;
+          if (this.presentationId){
           this.getPresentation(this.presentationId);
+          }
+
+          this.pdfId = data.data.PdfId;
+          if (this.pdfId){
+          this.getPDF(this.pdfId);
+          }
+
         });
     });
   }
@@ -117,7 +140,7 @@ export class ViewBriefComponent {
             currency: this.budgetData[i][6],
             estimatedBudget: this.budgetData[i][7],
           };
-          this.mainComponent.addRow(influencer);
+          this.mainComponent?.addRow(influencer);
         }
       })
     });
@@ -126,6 +149,12 @@ export class ViewBriefComponent {
   private getPresentation(id: number): void {
     this.fileService.getFile(id).subscribe((data: any) => {
       this.presentation = data.data;
+    });
+  }
+
+  private getPDF(id: number): void {
+    this.fileService.getFile(id).subscribe((data: any) => {
+      this.pdf = data.data;
     });
   }
 

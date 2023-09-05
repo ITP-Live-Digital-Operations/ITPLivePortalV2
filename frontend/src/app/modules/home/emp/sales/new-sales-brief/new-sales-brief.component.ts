@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SalesService } from 'src/app/core/services/sales.service';
@@ -6,7 +6,9 @@ import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { FileService } from 'src/app/core/services/file.service';
+import { Observable } from 'rxjs';
+import { Department } from 'src/app/core/constant/values.constants';
 @Component({
   selector: 'app-new-sales-brief',
   templateUrl: './new-sales-brief.component.html',
@@ -16,10 +18,24 @@ import { ToastrService } from 'ngx-toastr';
 export class NewSalesBriefComponent {
 
   public newForm!: FormGroup;
+  public fileFrom!: FormGroup;
   private newBrief: any;
   private userId = this.userService.getID();
   private userName: any;
   public path = PATH;
+
+  private headOfKSA : number  = 15;
+  private headofUAE : number  = 23;
+
+  currentFile?: File;
+  progress = 0;
+  message = '';
+
+  filesToUpload : File[] = []
+
+  fileName = 'Select File';
+  fileInfos?: Observable<any>;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +43,8 @@ export class NewSalesBriefComponent {
     private notificationService: NotificationService,
     private salesService: SalesService,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private fileService: FileService,
   ) {
     this.userService.getUserNameById(this.userId).subscribe((res) => {
       this.userName = res;
@@ -114,7 +131,11 @@ export class NewSalesBriefComponent {
         ItpDepartment: ['', [Validators.required]],
         KPIs: [''],
       }),
+      //Upload Files
+
     });
+
+
   }
 
   public submitForm(): void {
@@ -124,12 +145,16 @@ export class NewSalesBriefComponent {
     formValues.CreatedbyID = this.userService.getID();
     formValues.Ready = false;
     formValues.ResultsViewed = false;
-    console.log(formValues);
+
 
     this.salesService.createBrief({ ...formValues }).subscribe((brief) => {
       this.newBrief = brief;
+
+      this.uploadFiles(this.newBrief.id);
+
       if (itpDepartment == 'Originals' || itpDepartment == 'UAE') {
-        let id = 23;
+        // Zineb will be notified usually 
+        let id = this.headofUAE;
         let input = {
           message: 'New Sales Brief has been created by ' + this.userName.name,
           link: `${this.path['viewBrief'] + this.newBrief.id}`,
@@ -138,7 +163,8 @@ export class NewSalesBriefComponent {
           .createNotification(id, input)
           .subscribe((notification) => {});
       } else if (itpDepartment == 'KSA' || itpDepartment == 'Gaming') {
-        let id = 15;
+        // Rachelle will be notified usually
+        let id = this.headOfKSA;
         let input = {
           message: 'New Sales Brief has been created by ' + this.userName.name,
           link: `${this.path['viewBrief'] + this.newBrief.id}`,
@@ -149,6 +175,7 @@ export class NewSalesBriefComponent {
           .subscribe(() => {});
       }
     });
+
     this.toastrService.success('Brief submitted successfully!');
     this.router.navigate([this.path['forms']]);
   }
@@ -161,7 +188,7 @@ export class NewSalesBriefComponent {
         const control = formGroup.get(key);
         console.log(control?.value)
 
-        if (key === 'InfluencerAgeRange' || key === 'AudienceAgeRange') {
+        if (key === 'InfluencerAgeRange' || key === 'AudienceAgeRange' || key === 'InfluencerNumberOfFollowers') {
           valuesObject[key] = this.processAgeRangeGroup(control as FormGroup);
         } else if (control instanceof FormGroup) {
           valuesObject = {
@@ -175,7 +202,7 @@ export class NewSalesBriefComponent {
           } else {
           valuesObject[key] = control?.value;
           }
-        } 
+        }
       });
     }
     return valuesObject;
@@ -187,4 +214,25 @@ export class NewSalesBriefComponent {
       .join(', ');
     return ageGroups;
   }
+
+  transferedFiles(files: File[]): void {
+    this.filesToUpload = files;
+  }
+
+  uploadFiles(briefId : number): void {
+    for(let i = 0; i < this.filesToUpload.length; i++){
+      this.fileService.uploadFile(this.filesToUpload[i], briefId , this.userId, Department['SALES']).subscribe(
+        (event: any) => {
+          console.log(event);
+            this.toastrService.success(this.filesToUpload[i].name+ ' uploaded successfully!');
+      },
+      (err: any) => {
+        console.log(err);
+        this.progress = 0;
+        this.toastrService.error('Could not upload the file:' + this.filesToUpload[i].name);
+      }
+        );
+    }
+  }
+
 }

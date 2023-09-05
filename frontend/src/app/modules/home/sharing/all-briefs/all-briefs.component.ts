@@ -7,6 +7,8 @@ import { SalesService } from 'src/app/core/services/sales.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 
 @Component({
   selector: 'app-all-briefs',
@@ -22,8 +24,10 @@ export class AllBriefsComponent {
   private id: any;
   public userRole: string = this.userService.getRole();
   public privilegeLevel: number = this.userService.getPrivilegeLevel();
+  public userId : number = this.userService.getID();
 
   displayedColumns: string[] = [
+    'id',
     'CampaignName',
     'Agency',
     'Client',
@@ -37,6 +41,7 @@ export class AllBriefsComponent {
   ];
   displayedColumns1: string[] = ['color', 'meaning'];
   colorLegend = [
+    { color : 'none', meaning: 'All'},
     {color: 'green', meaning: 'Not Assigned'},
     {color: 'blue', meaning: 'Assigned'},
     {color: 'red', meaning: 'In Active'},
@@ -51,6 +56,8 @@ export class AllBriefsComponent {
     private userService: UserService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService,
+    private dialogService: ConfirmationDialogService
   ) { }
 
   ngOnInit(): void {
@@ -87,6 +94,19 @@ export class AllBriefsComponent {
       this.salesService.updatePriorities(updatedPriorities).subscribe();
 
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
+      this.dataSource.filterPredicate = (data: any, filter: string) => {
+        // This assumes that each data row has a 'Status' property.
+        if( filter === 'Not Assigned'){
+          return data.assigned == 0;
+        }
+        if (filter === 'Active') {
+          return data.Status === filter && data.assigned == 1;
+        }
+        if (filter === 'all') {
+          return true;
+        }
+        return data.Status === filter;
+    };
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -107,6 +127,9 @@ export class AllBriefsComponent {
       this.router.navigate([`${this.path['viewBrief'] + id}`]);
     }
   }
+
+
+
 
   public drop(event: CdkDragDrop<string[]>): void {
     {
@@ -134,6 +157,33 @@ export class AllBriefsComponent {
       );
     }
   }
+
+  public deleteBrief(inputdata: any): void {
+    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
+      .subscribe(result => {
+        if (result === true) {
+
+          this.salesService.deleteBrief(inputdata).subscribe(() => {
+            this.toastrService.success('Deleted Successfully!');
+            this.getAllBriefs();
+          });
+        }
+      });
+  }
+
+  applyFilter(color: string) {
+    if(color === 'green') {
+        this.dataSource.filter = 'Not Assigned';
+    } else if(color === 'blue') {
+        this.dataSource.filter = 'Active';
+    } else if(color === 'red') {
+        this.dataSource.filter = 'InActive';
+    } else if (color === 'none'){
+        this.dataSource.filter = 'all';
+    }
+}
+
+
 
   public getUsername(id: number): string {
     return this.users[id] || 'Not Assigned';

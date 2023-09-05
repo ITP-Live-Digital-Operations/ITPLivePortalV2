@@ -100,4 +100,11 @@ export class SalesService {
   getAllBriefsWithTask() {
     return this.http.get(`${this.salesApiURL}/getAllBriefsWithTask`);
   }
+
+  deleteBrief(inputdata: any) {
+    return this.http.delete(
+      `${this.salesApiURL}/deleteBrief/${inputdata}`
+    );
+  }
+
 }

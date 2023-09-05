@@ -3,10 +3,8 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
   QueryList,
-  SimpleChanges,
   ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
@@ -22,22 +20,22 @@ import {
   },
 })
 export class StarRatingComponent {
-
+  
   public _rating!: number;
 
-  @Input() 
+  @Input()
   rating: number | undefined;
 
-  @Input() 
+  @Input()
   readonly!: boolean;
 
-  @Output() 
+  @Output()
   onClick: EventEmitter<number> = new EventEmitter();
 
-  @Output() 
+  @Output()
   onView: EventEmitter<any> = new EventEmitter();
 
-  @ViewChildren('star') 
+  @ViewChildren('star')
   private startItems!: QueryList<ElementRef>;
 
   public _onClick(index: number): void {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/core/services/notification.service';
@@ -7,6 +7,12 @@ import { TaskService } from 'src/app/core/services/task.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { ToastrService } from 'ngx-toastr';
+import { FileService } from 'src/app/core/services/file.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
+import { Department } from 'src/app/core/constant/values.constants';
 
 @Component({
   selector: 'app-sent-briefs-id',
@@ -18,15 +24,18 @@ export class SentBriefsIdComponent {
 
   public editForm!: FormGroup;
   public path = PATH;
-  
+
   private briefId: any;
   private briefData: any;
   public newBrief: any;
   private taskData: any;
-  
+
   public userId = this.userService.getID();
   public userName: any;
   private assignedUser: any;
+
+  filesToUpload : File[] = []
+  dataSource: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,7 +45,9 @@ export class SentBriefsIdComponent {
     private activatedRoute: ActivatedRoute,
     private taskService: TaskService,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private fileService: FileService,
+    private dialogService: ConfirmationDialogService,
   ) {
     this.userService.getUserNameById(this.userId).subscribe((res) => {
       this.userName = res;
@@ -45,6 +56,8 @@ export class SentBriefsIdComponent {
     this.loadSalesBriefData();
 
     this.initializeElements();
+
+    this.getSalesFiles();
   }
 
   private initializeElements(): void {
@@ -249,10 +262,12 @@ export class SentBriefsIdComponent {
     this.salesService.updateBrief(this.briefId, formValues).subscribe(
       (briefid) => {
 
+        this.uploadFiles(this.briefId);
+
         if(itpDepartment == 'Originals' || itpDepartment == 'UAE'){
           let id = 23;
           let input = { message : 'Sales Brief ' + formValues.CampaignName + ' has been edited', link: `${this.path['viewBrief'] + this.briefId}`}
-          
+
           this.notificationService.createNotification( id, input).subscribe( () => {})
 
           if(this.assignedUser != null){
@@ -288,7 +303,7 @@ export class SentBriefsIdComponent {
         const control = formGroup.get(key);
         console.log(control?.value)
 
-        if (key === 'InfluencerAgeRange' || key === 'AudienceAgeRange') {
+        if (key === 'InfluencerAgeRange' || key === 'AudienceAgeRange' || key === 'InfluencerNumberOfFollowers') {
           valuesObject[key] = this.processAgeRangeGroup(control as FormGroup);
         } else if (control instanceof FormGroup) {
           valuesObject = {
@@ -302,7 +317,7 @@ export class SentBriefsIdComponent {
           } else {
           valuesObject[key] = control?.value;
           }
-        } 
+        }
       });
     }
     return valuesObject;
@@ -313,5 +328,59 @@ export class SentBriefsIdComponent {
       .filter((ageGroupKey) => group.get(ageGroupKey)?.value === true)
       .join(', ');
     return ageGroups;
+  }
+
+
+
+  displayedColumns: string[] = [
+    'id',
+    'originalname',
+    'fileType',
+    'action',
+  ];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  private getSalesFiles() {
+    this.fileService.getSalesBriefFiles(this.briefId).subscribe(data => {
+      console.log(data);
+      this.dataSource = new MatTableDataSource(data.data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+   protected deleteFile(id: number): void {
+    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
+      .subscribe(result => {
+        if (result === true) {
+            this.fileService.deleteFile(id).subscribe(() => {
+              this.toastrService.success('File deleted successfully!');
+              this.getSalesFiles();
+            });
+          }
+        });
+   }
+
+   transferedFiles(files: File[]): void {
+    this.filesToUpload = files;
+  }
+
+  uploadFiles(briefId : number): void {
+    for(let i = 0; i < this.filesToUpload.length; i++){
+      this.fileService.uploadFile(this.filesToUpload[i], briefId , this.userId, Department['SALES']).subscribe(
+        (event: any) => {
+          console.log(event);
+            this.toastrService.success(this.filesToUpload[i].name+ ' uploaded successfully!');
+      },
+      (err: any) => {
+        console.log(err);
+
+        this.toastrService.error('Could not upload the file:' + this.filesToUpload[i].name);
+      }
+        );
+    }
   }
 }

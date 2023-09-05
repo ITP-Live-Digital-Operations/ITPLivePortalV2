@@ -8,6 +8,7 @@
     padding: 20px;
     text-align: center;
     color: white;
+    background-color: #2C393F;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
     
@@ -24,8 +25,9 @@
     display: flex;
     text-align: center;
     width: 100%;
-    padding: 10px;
-    gap: 50px;
+    padding: 20px;
+    gap: 30px;
+   flex-grow: 1;
 
 
 

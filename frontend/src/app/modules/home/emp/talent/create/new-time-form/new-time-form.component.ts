@@ -13,8 +13,8 @@ import { agencies, MainTaskType, timeSpent } from 'src/assets/influencer-form-ar
 export class NewTimeFormComponent {
 
   public newTalentTimeForm: FormGroup;
-  name!: string;
-  userId!: number;
+  public name!: string;
+  private userId!: number;
   public agencies = agencies;
   public mainTaskType = MainTaskType;
   public timeSpent = timeSpent;

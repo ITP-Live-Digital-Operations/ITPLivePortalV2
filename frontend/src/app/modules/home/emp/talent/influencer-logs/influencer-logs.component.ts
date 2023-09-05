@@ -7,6 +7,8 @@ import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { LogModel } from 'src/app/core/interfaces/logModel';
 import { UserService } from 'src/app/core/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-influencer-logs',
@@ -21,6 +23,7 @@ export class InfluencerLogsComponent implements OnInit {
   protected campaigns: string[] = [];
   protected talentUserNames: any;
   protected userRole = this.userService.getRole();
+  public path = PATH;
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -43,7 +46,8 @@ export class InfluencerLogsComponent implements OnInit {
     private service: LogService,
     private influencerService: InfluencerService,
     private userService: UserService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private dialogService: ConfirmationDialogService
   ) {}
 
   ngAfterViewInit() {
@@ -130,9 +134,15 @@ export class InfluencerLogsComponent implements OnInit {
   }
 
   protected deleteLog(id: any): void {
-    this.service.deleteLog(id).subscribe((item) => {
-      this.GetAllLogs();
-      this.toastrService.success('Log Deleted.')
-    });
+    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
+      .subscribe(result => {
+        if (result === true) {
+          this.toastrService.success('Deleted Successfully!');
+          this.service.deleteLog(id).subscribe((item) => {
+            this.GetAllLogs();
+          });
+        }
+      });
+    
   }
 }

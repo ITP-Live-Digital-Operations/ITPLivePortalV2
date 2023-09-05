@@ -1,6 +1,7 @@
 <div>
   <app-person-info [assignedUser]="assignedUser" [salesperson]="salesperson"></app-person-info>
   <div class="row">
+
       <table class="my-table">
         <tr>
           <th class="centered">File Type</th>
@@ -15,7 +16,6 @@
           <td *ngIf="budgetSheet">
             <button
               mat-raised-button
-              color="primary"
               (click)="
                 downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)
               "
@@ -33,9 +33,25 @@
           <td *ngIf="presentation">
             <button
               mat-raised-button
-              color="primary"
               (click)="
                 downloadFilePPTX(presentation.id, presentation.originalname)
+              "
+            >
+              Download
+            </button>
+          </td>
+          <td *ngIf="!presentation"></td>
+        </tr>
+
+        <tr>
+          <td>PDF File</td>
+          <td *ngIf="pdf">{{ pdf.originalname }}</td>
+          <td *ngIf="!pdf"></td>
+          <td *ngIf="pdf">
+            <button
+              mat-raised-button
+              (click)="
+                downloadFilePDF(pdf.id, pdf.originalname)
               "
             >
               Download

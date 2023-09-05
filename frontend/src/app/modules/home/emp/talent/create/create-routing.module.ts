@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NewInfluencerComponent } from './new-influencer/new-influencer.component';
 import { NewTimeFormComponent } from './new-time-form/new-time-form.component';
-import { NewRateLogComponent } from './new-rate-log/new-rate-log.component';
+import { NewRateLogComponent } from './rate-logs/new-rate-log/new-rate-log.component';
 import { NewCelebrityComponent } from './new-celebrity/new-celebrity.component';
+import { RateLogsComponent } from './rate-logs/rate-logs.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'rateLog',
-    component: NewRateLogComponent
+    component: RateLogsComponent
   },
   {
     path: 'timeForm',

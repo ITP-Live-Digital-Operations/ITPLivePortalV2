@@ -24,8 +24,8 @@ import {MatTabsModule} from '@angular/material/tabs';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MaterialModule,
     HttpClientModule,
+    MaterialModule,
     FormsModule,
     SharedModule,
     MatDialogModule,

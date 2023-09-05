@@ -2,7 +2,7 @@
   {{ this.brief?.data?.CampaignName }}
 </div>
 
-<div class="card p-4">
+<div class="card">
 
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
@@ -126,5 +126,50 @@
     </p>
     <p class="words">Created At: {{ brief?.data?.createdAt | date }}</p>
     <p class="words">Updated At: {{ brief?.data?.updatedAt | date }}</p>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        5. Associated Files:
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="table-container">
+      <table mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="originalname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>File Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.originalname }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fileType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Type </th>
+          <td mat-cell *matCellDef="let element">{{ element.fileType }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Download</th>
+          <td mat-cell *matCellDef="let element"> <mat-icon (click)="downloadFile(element.id, element.mimetype)"> download </mat-icon></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          sticky
+        ></tr>
+      </table>
+      <mat-paginator
+        [length]="dataSource?.data.length"
+        [pageSize]="15"
+        [pageSizeOptions]="[3, 5, 10, 25, 100]"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
   </mat-expansion-panel>
 </div>

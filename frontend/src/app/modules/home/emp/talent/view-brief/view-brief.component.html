@@ -12,35 +12,31 @@
     </div>
 
     <div *ngIf="privilege_level > 7 && !assigned">
-      <app-assign-task 
-      [dataSource]="dataSource" 
+      <app-assign-task
+      [dataSource]="dataSource"
       [brief]="brief"
       [brief_id]="brief_id"
       ></app-assign-task>
     </div>
 
-    <app-main-table 
-    *ngIf="assigned"
-    [user_id]="user_id" 
-    [task]="task" 
-    [brief]="brief"
-    [budgetSheetId]="budgetSheetId"
-    [id]="id"
-    ></app-main-table>
-
     <app-all-info [brief]="brief"></app-all-info>
 
-    <app-sheets-brief 
+    <app-sheets-brief
+    (childEvent)="reloadParent($event)"
     *ngIf="assigned"
-    [userId]="user_id" 
+    [userId]="user_id"
     [brief]="brief"
-    [brief_id]="brief_id" 
-    [presentation]="presentation" 
-    [budgetSheet]="budgetSheet" 
-    [budgetSheetId]="budgetSheetId" 
+    [brief_id]="brief_id"
+    [presentation]="presentation"
+    [budgetSheet]="budgetSheet"
+    [budgetSheetId]="budgetSheetId"
     [presentationId]="presentationId"
+    [pdfId]="pdfId"
+    [pdf]="pdf"
     [task]="task"
     [id]="id">
     </app-sheets-brief>
+
+
   </div>
 </div>

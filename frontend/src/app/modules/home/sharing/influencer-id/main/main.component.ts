@@ -19,19 +19,4 @@ export class MainComponent {
 
   @Input() 
   influencerRating: any;
-
-  @Input() 
-  isReviewVisible: any;
-
-  private path = PATH;
-
-  constructor(
-    private router: Router,
-    private dialogRef: MatDialogRef<InfluencerIdComponent>
-    ) { }
-
-  rateInfluencer() {
-    this.router.navigate([`${this.path['influencerRating'] + this.id}`]);
-    this.dialogRef.close();
-  }
 }

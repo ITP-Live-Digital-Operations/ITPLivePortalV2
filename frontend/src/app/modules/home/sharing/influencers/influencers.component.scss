@@ -11,9 +11,8 @@ table {
 .table-container {
   max-height: auto;
   overflow-y: hidden;
-
- 
 }
+
 
 
 .searchInput {
@@ -26,14 +25,33 @@ table {
 }
 
 .search-container {
-  padding-top: 2%;
-  padding-left: 1%;
-  top: 5;
+  display: flex;
+ 
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: rgb(28, 28, 28);
   position: sticky;
+}
+
+.mat-expansion-panel{
+  margin-top: 12px;
+  background-color: transparent;
+  border-radius: 0px;
+  box-shadow: 0px 0px 0px 0px;
+  
+
+}
+
+.mat-expansion-panel-header {
+  border-bottom: 1px solid white;
+ background-color: #2C393F;
+ width: min-content;
+ margin-bottom: 10px;
+ 
+}
+
+.mat-expansion-panel-header-title{
+  color: white;
 }
 
 
@@ -42,8 +60,6 @@ table {
   max-height: auto;
   overflow-y: hidden;
   overflow-x: hidden;
-  
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(0, 0, 0, 0.15) 0px 0px 0px 1px;
 }
   .row {
   display: flex;

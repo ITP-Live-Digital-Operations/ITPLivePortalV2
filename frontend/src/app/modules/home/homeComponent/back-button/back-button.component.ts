@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class BackButtonComponent {
 
   public backButton(): void {
+    sessionStorage.removeItem('influencerData');
     window.history.back();
   }
 

@@ -11,6 +11,8 @@ import { UserService } from 'src/app/core/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditInfluencerComponent } from '../../emp/talent/edit/edit-influencer/edit-influencer.component';
 import { InfluencerIdComponent } from '../influencer-id/influencer-id.component';
+import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 
 @Component({
   selector: 'app-influencers',
@@ -69,7 +71,9 @@ export class InfluencersComponent {
   constructor(
     private influencerService: InfluencerService,
     private userService: UserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastrService: ToastrService,
+    private dialogService: ConfirmationDialogService
   ) {}
 
   ngOnInit(): void {
@@ -195,9 +199,15 @@ export class InfluencersComponent {
   }
 
   public deleteInfluencer(inputdata: any): void {
-    this.influencerService.deleteInfluencer(inputdata).subscribe((item) => {
-      this.getInfluencers();
-    });
+    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
+      .subscribe(result => {
+        if (result === true) {
+          this.toastrService.success('Deleted Successfully!');
+          this.influencerService.deleteInfluencer(inputdata).subscribe((item) => {
+            this.getInfluencers();
+          });
+        }
+      });
   }
 
   public editInfluencer(inputdata: any): void {

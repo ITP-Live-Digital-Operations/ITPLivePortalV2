@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PRIVILEGE_LEVEL, ROLES } from 'src/app/core/constant/values.constants';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -24,7 +25,8 @@ export class EditUserComponent {
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private dialogService: ConfirmationDialogService
   ) {
     this.updateUserForm = this.formBuilder.group({
       name: [''],
@@ -71,23 +73,26 @@ export class EditUserComponent {
   }
 
   public resetCount(id: number): void {
-    this.userService.resetCount(id).subscribe((res: any) => {
-      if (res) {
-        this.toastrService.success('Count reset successfully!');
-      } else {
-        this.toastrService.error('Count could not be reset!');
-      }
-    });
+    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to reset coount?')
+      .subscribe(result => {
+        if (result === true) {
+          this.userService.resetCount(id).subscribe((res: any) => {
+            this.toastrService.success('Count Reset Successfully!'); 
+          });
+        }
+      });
   }
 
   public resetPassword(id: number): void {
-    this.userService.resetPassword(id).subscribe((res: any) => {
-      if (res) {
-        this.toastrService.success('Password changed successfully!');
-      } else {
-        this.toastrService.error('Password did not change!');
-      }
-    });
+    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to reset password?')
+      .subscribe(result => {
+        if (result === true) {
+          this.userService.resetPassword(id).subscribe((res: any) => { 
+            this.toastrService.success('Password Reset Successfully!'); 
+          });
+        }
+      });
+   
   }
 
 }

@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   exports: [
@@ -47,6 +48,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTabsModule,
     MatAutocompleteModule,
     MatChipsModule,
+    MatProgressBarModule,
+
   ],
 })
 export class MaterialModule {}

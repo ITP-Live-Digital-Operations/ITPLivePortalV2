@@ -1,16 +1,16 @@
 <ng-container [formGroup]="form">
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Agency</mat-label>
       <input matInput type="text" formControlName="Agency" autocomplete="off" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Client</mat-label>
       <input matInput type="text" formControlName="Client" autocomplete="off" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Client's Industry</mat-label>
       <mat-select formControlName="ClientIndustry">
         <mat-option *ngFor="let option of clientIndustries" [value]="option">{{
@@ -21,7 +21,7 @@
   </div>
 
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Campaign Name</mat-label>
       <input
         matInput
@@ -31,7 +31,7 @@
       />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Campaign Overview</mat-label>
       <textarea
         matInput
@@ -42,7 +42,7 @@
     </mat-form-field>
   </div>
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Campaign Objective</mat-label>
       <mat-select formControlName="CampaignObjective">
         <mat-option
@@ -53,7 +53,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Campaign Objective Details</mat-label>
       <textarea
         matInput
@@ -65,7 +65,7 @@
   </div>
 
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Number of recommendations</mat-label>
       <input
         matInput
@@ -75,7 +75,7 @@
       />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Currency</mat-label>
       <mat-select formControlName="Currency">
         <mat-option *ngFor="let option of currencies" [value]="option">{{
@@ -84,7 +84,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Approximate Budget</mat-label>
       <input
         matInput

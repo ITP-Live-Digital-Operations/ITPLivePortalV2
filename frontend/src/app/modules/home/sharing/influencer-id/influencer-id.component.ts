@@ -19,7 +19,6 @@ export class InfluencerIdComponent {
   public influencerRating: any;
   public dataSource: any;
   public UserDetails: any;
-  public isReviewVisible: boolean = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

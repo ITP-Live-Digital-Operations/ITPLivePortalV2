@@ -1,0 +1,21 @@
+h1 {
+    text-align: center;
+    font-size: 300%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    color: white;
+}
+
+.warn {
+  background-color: red;
+  color: white;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}

@@ -28,24 +28,21 @@ table {
 
 .legend-section {
   margin-top: 1%;
-  padding-bottom: 2%;
-  margin-right: 0.5%;
-  width: 11%; // Width of the legend. Adjust as needed.
-  float: left; // Float to the right.
+  padding-bottom: 1%;
+  width: 35%; // Width of the legend. Adjust as needed.
+  display: flex;
 
   .legend-table {
-    width: 100%; // Take up the full width of the legend section.
-    border-collapse: collapse;
+    display: flex;
 
-    td {
-      text-align: center;
-      vertical-align: middle;
+    td{
+      padding-top: 5%;
     }
 
     .color-chip {
       height: 20px;
       width: 20px;
-      border: 1px solid #000;
+
     }
   }
 }

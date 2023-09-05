@@ -1,0 +1,9 @@
+<div class="confirmation-dialog">
+    <h1>{{ data.title }}</h1>
+    <p>{{ data.message }}</p>
+    <div class="space">
+        <button mat-raised-button color="transparent" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="warn" (click)="onConfirm()">Delete</button>       
+    </div>
+</div>
+  

@@ -9,11 +9,13 @@ import { SocialsComponent } from './new-influencer/socials/socials.component';
 import { StatisticsComponent } from './new-influencer/statistics/statistics.component';
 import { AgencyInfoComponent } from './new-influencer/agency-info/agency-info.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NewRateLogComponent } from './new-rate-log/new-rate-log.component';
+import { NewRateLogComponent } from './rate-logs/new-rate-log/new-rate-log.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewTimeFormComponent } from './new-time-form/new-time-form.component';
 import { ExtraInfoComponent } from './new-influencer/extra-info/extra-info.component';
 import { NewCelebrityComponent } from './new-celebrity/new-celebrity.component';
+import { SingleInfluencerLogsComponent } from './rate-logs/single-influencer-logs/single-influencer-logs.component';
+import { RateLogsComponent } from './rate-logs/rate-logs.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { NewCelebrityComponent } from './new-celebrity/new-celebrity.component';
     NewTimeFormComponent,
     ExtraInfoComponent,
     NewCelebrityComponent,
+    SingleInfluencerLogsComponent,
+    RateLogsComponent
   ],
   imports: [
     CommonModule,

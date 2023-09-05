@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InfluencerModel } from 'src/app/core/interfaces/influencersModel';
 import { FileService } from 'src/app/core/services/file.service';
 import { SelectInfluencerDialogComponent } from '../select-influencer-dialog/select-influencer-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TaskModel } from 'src/app/core/interfaces/task.Model';
 import { ToastrService } from 'ngx-toastr';
+import { Department } from 'src/app/core/constant/values.constants';
 
 @Component({
   selector: 'app-main-table',
@@ -16,20 +17,23 @@ import { ToastrService } from 'ngx-toastr';
 export class MainTableComponent {
 
   @Input()
-  task!: TaskModel;
+  task: TaskModel = this.source.task;
 
   @Input()
-  user_id!: number;
+  user_id: number = this.source.userId;
 
   @Input()
   budgetSheetId!: number;
 
   @Input()
-  brief: any;
+  brief: any = this.source.brief;
 
   @Input()
-  id!: number;
+  id: number = this.source.id;
 
+
+
+  fileName = '';
   private influencers: InfluencerModel[] = [];
   public form: FormGroup;
   public influencersArray!: FormArray;
@@ -48,11 +52,16 @@ export class MainTableComponent {
     private formBuilder: FormBuilder,
     private fileService: FileService,
     private dialog: MatDialog,
-    private toastrService: ToastrService
+    private dialogRef: MatDialogRef<MainTableComponent>,
+    private toastrService: ToastrService,
+    @Inject(MAT_DIALOG_DATA) public source: any,
   ) {
     this.form = this.formBuilder.group({
       rows: this.formBuilder.array([]),
+      fileName : ['', Validators.required],
     });
+
+
   }
 
   public submitTable(): void {
@@ -61,31 +70,40 @@ export class MainTableComponent {
       tableData.push(rowGroup);
     });
 
+
+    this.fileName = this.form.value.fileName;
+
+    if(this.budgetSheetId != null){
     this.fileService.deleteBudgetSheetFile(this.budgetSheetId).subscribe(
-      (data) => {},
+      (data) => {
+        console.log(data);
+      },
       (error) => {
         console.log(error);
       }
     );
+    }
 
     this.fileService
       .uploadTable(
         tableData,
         this.brief.data.id,
         this.user_id,
-        this.brief.data.Client
+        this.fileName,
+        Department.TALENT
       )
       .subscribe(
         (data) => {
-          this.toastrService.success('Excel file created and uploaded successfully');
-          this.downloadFilexlsx(data.fileData.id, data.fileData.filename);
+          console.log(data);
 
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
+          this.toastrService.success('Excel file created and uploaded successfully!');
+
+          this.downloadFilexlsx(data.data.id, data.data.fileName);
+
+          this.dialogRef.close(true);
         },
         (error) => {
-          this.toastrService.error('Excel file creation and upload error');
+          this.toastrService.error('Excel file creation and upload error!');
         }
       );
   }

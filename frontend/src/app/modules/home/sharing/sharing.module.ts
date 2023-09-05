@@ -24,7 +24,11 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import { UserNamePipe } from 'src/app/shared/pipes/user-name.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { RateCardComponent } from './influencer-id/rate-card/rate-card.component';
+import { UploadFilesComponent } from './upload-files/upload-files.component';
+import { ProgressLoaderComponent } from './upload-files/progress-loader/progress-loader.component';
+import { DndDirective } from './dnd.directive';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     StatisticsComponent,
     LogsTableComponent,
     StarRatingComponent,
-    UserNamePipe
+    UserNamePipe,
+    RateCardComponent,
+    UploadFilesComponent,
+    ProgressLoaderComponent,
+    DndDirective
   ],
   imports: [
     CommonModule,
@@ -54,8 +62,19 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     SharedModule,
     MatDialogModule,
-    DragDropModule
+    DragDropModule,
+    MatExpansionModule
   ],
-  exports: [StarRatingComponent, MainComponent, CampaignResultsComponent, PlatformLinksComponent, StatisticsComponent, TableContentComponent, UserNamePipe]
+  exports: [
+    StarRatingComponent,
+    MainComponent,
+    CampaignResultsComponent,
+    PlatformLinksComponent,
+    StatisticsComponent,
+    TableContentComponent,
+    UserNamePipe,
+    RateCardComponent,
+    UploadFilesComponent,
+  ],
 })
-export class SharingModule { }
+export class SharingModule {}

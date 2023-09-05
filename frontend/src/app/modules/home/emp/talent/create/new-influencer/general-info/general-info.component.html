@@ -1,6 +1,6 @@
 <form [formGroup]="form" autocomplete="off">
   <div class="row">
-    <mat-form-field appearance="outline" >
+    <mat-form-field  >
         <mat-label>Name</mat-label>
         <input
           matInput
@@ -19,7 +19,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Gender</mat-label>
         <mat-select formControlName="Gender">
           <mat-option *ngFor="let option of genders" [value]="option">{{
@@ -36,7 +36,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Phone Number</mat-label>
         <input
           matInput
@@ -54,7 +54,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Email Address</mat-label>
         <input
           matInput
@@ -75,7 +75,7 @@
     </div>
 
     <div class="row">
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Main Content Language</mat-label>
         <mat-select formControlName="MainContentLanguage">
           <mat-option *ngFor="let language of languages" [value]="language">{{
@@ -92,7 +92,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" *ngIf="isCelebrity">
+      <mat-form-field  *ngIf="isCelebrity">
         <mat-label>Sub Content Language</mat-label>
         <mat-select formControlName="SubContentLang">
           <mat-option *ngFor="let language of languages" [value]="language">{{
@@ -109,7 +109,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Main Vertical</mat-label>
         <mat-select formControlName="MainVertical">
           <mat-option *ngFor="let vertical of verticals" [value]="vertical">{{
@@ -126,7 +126,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" *ngIf="isCelebrity">
+      <mat-form-field  *ngIf="isCelebrity">
         <mat-label>Sub Vertical</mat-label>
         <mat-select formControlName="SubVertical">
           <mat-option *ngFor="let vertical of verticals" [value]="vertical">{{
@@ -145,7 +145,7 @@
     </div>
 
     <div class="row">
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Occupation</mat-label>
         <input
           matInput
@@ -163,7 +163,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>ITP Relationship</mat-label>
         <mat-select formControlName="ItpRelationship">
           <mat-option
@@ -183,7 +183,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Nationality</mat-label>
         <mat-select formControlName="Nationality">
           <mat-option *ngFor="let country of nationalities" [value]="country">{{
@@ -200,7 +200,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" *ngIf="isCelebrity">
+      <mat-form-field  *ngIf="isCelebrity">
         <mat-label>Second Nationality</mat-label>
         <mat-select formControlName="SecondNationality">
           <mat-option *ngFor="let country of nationalities" [value]="country">{{
@@ -218,7 +218,7 @@
       </mat-form-field>
     </div>
     <div class="row">
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Location</mat-label>
         <mat-select formControlName="CountryLocation">
           <mat-option *ngFor="let country of countries" [value]="country">{{
@@ -235,7 +235,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>City</mat-label>
         <input
           matInput
@@ -253,7 +253,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field >
         <mat-label>Address</mat-label>
         <input
           matInput

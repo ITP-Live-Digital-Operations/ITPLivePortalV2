@@ -9,6 +9,7 @@ import { EditCelebrityComponent } from '../../edit/edit-celebrity/edit-celebrity
 import { CelebrityIdComponent } from '../celebrity-id/celebrity-id.component';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 
 @Component({
   selector: 'app-celebrities-list',
@@ -19,6 +20,8 @@ export class CelebritiesListComponent {
 
   public dataSource: any;
   public UserDetails: any;
+
+  
 
   public userRole = this.userService.getRole();
 
@@ -41,7 +44,8 @@ export class CelebritiesListComponent {
     private service: CelebrityService,
     private dialog: MatDialog,
     private toastrService: ToastrService,
-    private userService: UserService
+    private userService: UserService,
+    private dialogService: ConfirmationDialogService
   ) {}
 
   ngOnInit(): void {
@@ -64,10 +68,15 @@ export class CelebritiesListComponent {
   }
 
   public deleteCelebrity(inputdata: any): void {
-    this.service.deleteCelebrity(inputdata).subscribe((item) => {
-      this.GetAllCelebrities();
-      this.toastrService.success('Celebrity Deleted!');
-    });
+    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
+      .subscribe(result => {
+        if (result === true) {
+          this.toastrService.success('Deleted Successfully!');
+          this.service.deleteCelebrity(inputdata).subscribe((item) => {
+            this.GetAllCelebrities();
+          });
+        }
+      });
   }
 
   public editCelebrity(inputdata: any): void {

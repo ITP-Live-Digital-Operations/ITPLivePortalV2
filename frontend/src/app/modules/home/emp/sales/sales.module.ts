@@ -16,6 +16,8 @@ import { AudienceDetailsComponent } from './new-sales-brief/audience-details/aud
 import { DepartmentDetailsComponent } from './new-sales-brief/department-details/department-details.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ViewBriefModule } from '../talent/view-brief/view-brief.module';
+import { UploadFilesComponent } from '../../sharing/upload-files/upload-files.component';
+import { SharingModule } from '../../sharing/sharing.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { ViewBriefModule } from '../talent/view-brief/view-brief.module';
     CampaignOverviewComponent,
     InfluencerDetailsComponent,
     AudienceDetailsComponent,
-    DepartmentDetailsComponent
+    DepartmentDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { ViewBriefModule } from '../talent/view-brief/view-brief.module';
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    ViewBriefModule
+    ViewBriefModule,
+    SharingModule,
   ],
 })
 export class SalesModule {}

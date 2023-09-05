@@ -1,9 +1,9 @@
 <div class="form-container">
   <!-- *ngIf="user_id === task?.assigned_to" -->
-  <div class="row">
+  <div>
     <form [formGroup]="form" autocomplete="off">
       <div class="form-group">
-        <mat-form-field appearance="outline">
+        <mat-form-field>
           <mat-label>Progress</mat-label>
           <mat-select formControlName="Progress">
             <mat-option
@@ -16,7 +16,7 @@
         <button
           style="height: 2em; margin-bottom: 2%; width: 15em"
           mat-raised-button
-          color="primary"
+          
           (click)="emitSubmit()">
           Update Progress
         </button>
@@ -24,12 +24,12 @@
     </form>
     <h1
       *ngIf="brief?.data.Status == 'Active'"
-      style="color: green; font-size: 2em"
+      style="color: green; font-size: 2em; margin-top: 10%;"
     >
       Brief Status: {{ brief?.data.Status }}
       <button
         mat-raised-button
-        style="height: 2em; margin-top: 18%; width: 17em; background-color: red; color: white;"
+        style="height: 2em; margin-top: 5%; width: 17em; background-color: red; color: white;"
        
         (click)="deactivateBrief()"
       >

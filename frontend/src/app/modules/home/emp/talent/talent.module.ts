@@ -9,9 +9,8 @@ import { InfluencerLogsComponent } from './influencer-logs/influencer-logs.compo
 import { PersonTasksComponent } from './person-tasks/person-tasks.component';
 import { SharingModule } from '../../sharing/sharing.module';
 import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
-import { EditModule } from './edit/edit.module';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     SharingModule,
     MatDialogModule,
-    
+    MatExpansionModule
   ],
 })
 export class TalentModule {}

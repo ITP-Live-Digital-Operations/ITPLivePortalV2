@@ -5,15 +5,15 @@
   justify-content: left;
   font-size: 1.5vh;
   color: white !important;
-  transition: 100ms;
+  transition: 200ms;
   border-radius: 0px;
-  border-top: 1px solid rgb(10,10,10);
+  border-top: 1px solid #2c393f54;
 
 }
 
 .menu-button:hover {
-  background-color: rgb(5,5,5);
-   transition: 100ms;
+  background-color: #ffffff2a;
+   transition: 200ms;
  }
 
 .log-menu-button {
@@ -23,28 +23,25 @@
   justify-content: left;
   font-size: 1.5vh;
   color: white !important;
-  transition: 100ms;
+  transition: 200ms;
   border-radius: 0px;
   margin-top: 20%;
-  border-top: 1px solid rgb(10,10,10);
-  border-bottom: 1px solid rgb(10,10,10);
+  border-top: 1px solid #2c393f54;
+  border-bottom: 1px solid #2c393f54;
 }
 
 .log-menu-button:hover {
-  background-color: rgb(5,5,5);
-   transition: 100ms;
+  background-color: #ffffff2a;
+   transition: 200ms;
  }
 
 mat-icon {
-  color: #3f51b5;
+  color: white;
 }
 
 
 
-mat-divider {
-  margin: 15px;
-  background-color: rgb(0, 0, 0);
-}
+
 
 .account img {
   width: 100px;

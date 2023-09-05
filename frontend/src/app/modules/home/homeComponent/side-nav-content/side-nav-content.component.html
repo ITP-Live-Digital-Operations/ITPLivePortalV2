@@ -26,7 +26,6 @@
 </div>
 
 
-<mat-divider></mat-divider>
 
 <div>
   <button mat-button class="menu-button" routerLink="{{path['forms']}}">
@@ -80,7 +79,7 @@
 </div>
 
 <div>
-  <button mat-button class="menu-button" *ngIf="userRole == 'sales'" routerLink="{{path['salesGuide']}}">
+  <button mat-button style="border-bottom: 1px solid #2c393f54;" class="menu-button" *ngIf="userRole == 'sales'" routerLink="{{path['salesGuide']}}">
     <mat-icon>help</mat-icon>
     <span>Help</span>
   </button>
@@ -88,7 +87,7 @@
 
 
 <div>
-  <button mat-button class="menu-button" *ngIf="userRole == 'admin' || userRole == 'superadmin'"
+  <button mat-button style="border-bottom: 1px solid #2c393f54;" class="menu-button" *ngIf="userRole == 'admin' || userRole == 'superadmin'"
     routerLink="{{path['salesGuide']}}">
     <mat-icon>help</mat-icon>
     <span>Help</span>
@@ -96,7 +95,7 @@
 </div>
 
 <div>
-  <button mat-button style="border-bottom: 1px solid rgb(10,10,10);" class="menu-button" *ngIf="userRole == 'talent'" routerLink="{{path['talentGuide']}}">
+  <button mat-button style="border-bottom: 1px solid #2c393f54;" class="menu-button" *ngIf="userRole == 'talent'" routerLink="{{path['talentGuide']}}">
     <mat-icon>help</mat-icon>
     <span>Help</span>
   </button>

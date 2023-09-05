@@ -1,6 +1,6 @@
 <form [formGroup]="form" autocomplete="off">
 <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Audience Male Percentage</mat-label>
       <input
         matInput
@@ -18,7 +18,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Audience Female Percentage</mat-label>
       <input
         matInput
@@ -40,7 +40,7 @@
   <h3>Age Groups Followers Percentages</h3>
 
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>13-17 </mat-label>
       <input
         matInput
@@ -58,7 +58,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>18-24 </mat-label>
       <input
         matInput
@@ -76,7 +76,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>25-34</mat-label>
       <input
         matInput
@@ -94,7 +94,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>35-44</mat-label>
       <input
         matInput
@@ -112,7 +112,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>45-54</mat-label>
       <input
         matInput
@@ -130,7 +130,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>55+ </mat-label>
       <input
         matInput
@@ -150,7 +150,7 @@
   </div>
   <h3>Audience Top Countries and Percentages</h3>
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Country 1</mat-label>
       <mat-select formControlName="AudienceTopCountries1">
         <mat-option *ngFor="let country of countries" [value]="country">{{
@@ -167,7 +167,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Followers Percentage in Country 1 </mat-label>
       <input
         matInput
@@ -189,7 +189,7 @@
   </div>
 
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Country 2</mat-label>
       <mat-select formControlName="AudienceTopCountries2">
         <mat-option *ngFor="let country of countries" [value]="country">{{
@@ -206,7 +206,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Followers Percentage in Country 2 </mat-label>
       <input
         matInput
@@ -228,7 +228,7 @@
   </div>
 
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Country 3</mat-label>
       <mat-select formControlName="AudienceTopCountries3">
         <mat-option *ngFor="let country of countries" [value]="country">{{
@@ -245,7 +245,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Followers Percentage in Country 3 </mat-label>
       <input
         matInput

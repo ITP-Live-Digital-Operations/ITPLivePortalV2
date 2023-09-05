@@ -1,6 +1,6 @@
 <form [formGroup]="form">
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Previous Brands</mat-label>
       <textarea
         matInput
@@ -20,7 +20,7 @@
   </div>
 
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Biography </mat-label>
       <textarea
         matInput
@@ -40,7 +40,7 @@
   </div>
 
   <div class="row">
-    <mat-form-field appearance="outline">
+    <mat-form-field>
       <mat-label>Notes </mat-label>
       <textarea
         matInput
@@ -59,7 +59,7 @@
     </mat-form-field>
   </div>
 
-  <mat-form-field appearance="outline" *ngIf="!isCelebrity">
+  <mat-form-field *ngIf="!isCelebrity">
     <mat-label>Rating</mat-label>
     <input
       matInput

@@ -14,15 +14,19 @@ export class FileService {
 
   constructor(private http: HttpClient) { }
 
-  uploadFile(file: File, brief_id: number, uploaded_by : number): Observable<any> {
+  uploadFile(file: File, brief_id: number, uploaded_by : number, departmentId : number): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     formData.append('brief_id', String(brief_id));
     formData.append('uploaded_by', String(uploaded_by));
-    return this.http.post(`${this.fileApiUrl}/upload`, formData);
+    formData.append('department', String(departmentId));
+    return this.http.post(`${this.fileApiUrl}/upload`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
   }
 
-  downloadFile(id: number, filename: string): Observable<any> {
+  downloadFile(id: number, filename?: string): Observable<any> {
     return this.http.get(`${this.fileApiUrl}/download/${id}`, {
       responseType: 'blob',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
@@ -55,12 +59,14 @@ export class FileService {
     return this.http.post(`${this.fileApiUrl}/addNotes/${id}`, {notes});
   }
 
-  uploadTable(table : any, brief_id: number, uploaded_by : number, fileName : string): Observable<any> {
+  uploadTable(table : any, brief_id: number, uploaded_by : number, fileName : string, departmentId : number): Observable<any> {
     const body = {
       table: table,
       brief_id: brief_id,
       uploaded_by: uploaded_by,
-      fileName: fileName
+      fileName: fileName,
+      department: departmentId
+
   };
     return this.http.post(`${this.fileApiUrl}/uploadTable`, body );
   }
@@ -73,5 +79,19 @@ export class FileService {
   deleteBudgetSheetFile(id: number): Observable<any> {
     return this.http.get(`${this.fileApiUrl}/deleteBudgetSheetFile/${id}`);
   }
+
+  deletePDFFile(id: number): Observable<any> {
+    return this.http.get(`${this.fileApiUrl}/deletePDFFile/${id}`);
+  }
+
+  getSalesBriefFiles(id: number): Observable<any> {
+    return this.http.get(`${this.fileApiUrl}/getSalesBriefFiles/${id}`);
+  }
+
+  deleteFile(id: number): Observable<any> {
+    return this.http.get(`${this.fileApiUrl}/deleteFile/${id}`);
+  }
+
+
 
 }

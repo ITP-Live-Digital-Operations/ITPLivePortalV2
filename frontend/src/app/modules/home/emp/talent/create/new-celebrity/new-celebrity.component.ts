@@ -116,7 +116,7 @@ export class NewCelebrityComponent {
             ...this.processFormGroups(control),
           };
         } else if (control instanceof FormControl) {
-            if (key.endsWith('Followers') || key.endsWith('Number')){
+            if (key.endsWith('Followers') || key.endsWith('Number') && control.value === null){
               valuesObject[key] = null;
             } else {
             valuesObject[key] = control.value;

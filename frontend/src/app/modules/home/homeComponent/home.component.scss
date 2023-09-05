@@ -3,7 +3,7 @@ mat-toolbar {
 }
 
 mat-toolbar-row {
-  background-color: rgb(35,35,35);
+  background-color: #232C30;
   display: flex;
 }
 
@@ -11,16 +11,16 @@ mat-sidenav {
   position: fixed;
   width: 200px;
   border-right: none;
-  background: black;
+  background: rgb(71,137,161);
+  background: linear-gradient(180deg, rgba(71,137,161,1) 55%, rgba(30,110,139,1) 90%);
   color: white;
   // border-radius: 10px;
- 
   text-align: center;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 .mat-mdc-icon-button {
-  color: #3f51b5 !important;
+  color: #ffffff !important;
 }
 
 
@@ -55,8 +55,9 @@ mat-sidenav {
 
 mat-sidenav-container {
   height: calc(100vh - 64px);
-  background: rgb(35,35,35);
-  background: linear-gradient(180deg, rgba(35,35,35,1) 0%, rgba(35,35,35,1) 90%, rgb(1, 1, 1) 100%);
+  background: #232C30;
+  // background: rgb(35,35,35);
+  // background: linear-gradient(180deg, rgba(35,35,35,1) 0%, rgba(35,35,35,1) 90%, rgb(1, 1, 1) 100%);
 
 
 }

@@ -6,7 +6,7 @@
   >
     <h2>Time Form: {{ name }}</h2>
     <div class="row">
-      <mat-form-field appearance="outline">
+      <mat-form-field>
         <mat-label> Date </mat-label>
         <input
           matInput
@@ -21,7 +21,7 @@
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field>
         <mat-label>Agency</mat-label>
         <mat-select formControlName="Agency" required>
           <mat-option *ngFor="let option of agencies" [value]="option">{{
@@ -32,7 +32,7 @@
     </div>
 
     <div class="row">
-      <mat-form-field appearance="outline">
+      <mat-form-field>
         <mat-label>Client</mat-label>
         <input
           matInput
@@ -43,7 +43,7 @@
         />
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field>
         <mat-label>Main Task Type</mat-label>
         <mat-select formControlName="MainTaskType" required>
           <mat-option *ngFor="let option of mainTaskType" [value]="option">{{
@@ -54,7 +54,7 @@
     </div>
 
     <div class="row">
-      <mat-form-field appearance="outline">
+      <mat-form-field>
         <mat-label>Extra Notes</mat-label>
         <input
           matInput
@@ -64,7 +64,7 @@
         />
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field>
         <mat-label>Time Spent In Hours</mat-label>
         <mat-select formControlName="TimeSpentInHours" required>
           <mat-option *ngFor="let option of timeSpent" [value]="option">{{

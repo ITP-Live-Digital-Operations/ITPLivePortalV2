@@ -1,5 +1,5 @@
 .card-header {
-  background-color: #3f51b5;
+  background-color: #4789A1;
   padding: 20px;
   font-size: larger;
   color: white;
@@ -7,10 +7,11 @@
 }
 
 .card {
-    background-color: rgb(28, 28, 28);
+    background-color: transparent;
     border-radius: 0px;
-    border-bottom: 3px solid rgb(58,82,212);
+    border-bottom: 3px solid white;
     text-align: left;
+    border: 0px;
 }
 
 .words{
@@ -20,17 +21,15 @@
 
 .mat-expansion-panel{
   margin: 10px;
-  background-color: rgb(28, 28, 28);
+  background-color: #2C393F;
   border-radius: 0px;
 
 }
 
 .mat-expansion-panel-header {
- border-bottom: 1px solid #3f51b5;
- background-color: rgb(28,28,28);
- box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
- 
-
+ border-bottom: 1px solid #4789A1;
+ background-color: #2C393F;
+ box-shadow: 0px 0px 0px 0px ;
 }
 
 .mat-expansion-panel-header-title{
@@ -38,4 +37,43 @@
 }
 
 
+.my-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.my-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  max-width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.my-table th.centered {
+  background-color: #4789A1;
+  max-width: 100%;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 1%;
+  padding-left: 1%;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.table-container{
+  margin: 2%;
+}
 

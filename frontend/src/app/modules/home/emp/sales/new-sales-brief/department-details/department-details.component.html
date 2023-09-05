@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <div class="row">
     <h2>Confirmed and Previous Influencers</h2>
-    <mat-form-field appearance="outline" style="width: 50rem">
+    <mat-form-field style="width: 50rem">
       <mat-label>Confirmed Influencers Handles </mat-label>
       <input
         matInput
@@ -11,7 +11,7 @@
       />
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 50rem">
+    <mat-form-field style="width: 50rem">
       <mat-label>Previous Influncer Partners </mat-label>
       <input
         matInput
@@ -23,7 +23,7 @@
   </div>
   <hr />
   <div class="row">
-    <mat-form-field appearance="outline" style="width: 50rem">
+    <mat-form-field style="width: 50rem">
       <mat-label>ITP Department</mat-label>
       <mat-select formControlName="ItpDepartment">
         <mat-option value="UAE"> UAE </mat-option>
@@ -33,7 +33,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" style="width: 50rem">
+    <mat-form-field style="width: 50rem">
       <mat-label>KPIs</mat-label>
       <input matInput type="text" formControlName="KPIs" autocomplete="off" />
     </mat-form-field>
@@ -41,13 +41,13 @@
   <div class="row">
     <div class="checkbox-container">
       <div class="checkbox-container">
-        <mat-checkbox formControlName="Strategy">Strategy required</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="Strategy">Strategy required</mat-checkbox>
 
-        <mat-checkbox formControlName="Concept">Concept required</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="Concept">Concept required</mat-checkbox>
 
-        <mat-checkbox formControlName="Event">Event required</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="Event">Event required</mat-checkbox>
 
-        <mat-checkbox formControlName="Performance"
+        <mat-checkbox color="primary" formControlName="Performance"
           >Performance Marketing required</mat-checkbox
         >
       </div>

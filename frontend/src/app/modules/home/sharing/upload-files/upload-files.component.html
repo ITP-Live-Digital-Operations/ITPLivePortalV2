@@ -1,0 +1,26 @@
+
+<div class="container" appDnd (fileDropped)="onFileDropped($event)">
+	<input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" accept=".xls,.xlsx,.pdf,.doc,.docx,.ppt,.pptx"/>
+	<img src="../../../../../assets/img/dnd/ic-upload-file.svg" alt="">
+	<h3>Drag and drop file here</h3>
+	<h3>or</h3>
+	<label  for="fileDropRef">Browse for file</label>
+</div>
+<div class="files-list">
+	<div class="single-file" *ngFor="let file of files; let i = index">
+    <img src="../../../../../assets/img/dnd/ic-file.svg" alt="" style=" height: 100%;">
+		<div class="info">
+			<h4 class="name">
+				{{ file.name }}
+			</h4>
+			<p class="size">
+				{{ formatBytes(file.size) }}
+			</p>
+      <app-progress-loader [progress]="file!.progress"></app-progress-loader>
+		</div>
+
+		<div class="delete" (click)="deleteFile(i)">
+			<img src="../../../../../assets/img/dnd/ic-delete-file.svg" alt="">
+		</div>
+	</div>
+</div>
