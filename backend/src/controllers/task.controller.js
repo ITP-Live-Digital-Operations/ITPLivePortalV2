@@ -106,7 +106,7 @@ exports.getUsersAndTaskWeights = (req, res) => {
     User.findAll({
         where: {
             role: 'talent',
-            privilege_level: { [Op.lt]: 8 }
+            privilege_level: { [Op.lt]: 9 }
         },
       attributes: ['id',
        'name',

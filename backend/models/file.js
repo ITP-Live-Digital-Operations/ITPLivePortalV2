@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      File.belongsTo(models.SalesBrief, { foreignKey: 'brief_id', as: 'Brief' });
+      File.belongsTo(models.SalesBrief, { foreignKey: 'brief_id', as: 'Brief', onDelete: 'CASCADE' });
       File.belongsTo(models.User, { foreignKey: 'uploaded_by', as: 'uploaded by' });  
     }
   }
@@ -51,16 +51,11 @@ module.exports = (sequelize, DataTypes) => {
     fileType: {
       type: DataTypes.STRING,
       allowNull: false
-    }, 
-    approved: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
     },
-    notes: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    }
+    department: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
   }, {
     sequelize,
     tableName: 'file',

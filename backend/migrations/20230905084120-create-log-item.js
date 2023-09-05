@@ -1,11 +1,8 @@
 'use strict';
-
-const { DataTypes } = require('sequelize');
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Database) {
-    await queryInterface.createTable('package', {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('logItem', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -22,27 +19,35 @@ module.exports = {
       },
       platform: {
         type: DataTypes.STRING(50),
-        allowNull: true
+        allowNull: false
       },
       deliverable: {
         type: DataTypes.STRING(50),
-        allowNull: true
+        allowNull: false
       },
       quantity: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
+      },
+      currency: {
+        type: DataTypes.STRING(20),
+        allowNull: false
+      },
+      rate: {
+        type: DataTypes.DECIMAL(10,2),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: Sequelize.DATE
       }
     });
   },
-  async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable('package');
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('logItem');
   }
 };

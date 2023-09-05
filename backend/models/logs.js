@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Logs.belongsTo(models.User, {foreignKey: 'userID'})
       Logs.belongsTo(models.Influencer, {foreignKey: 'influencerID'})
-      Logs.hasMany(models.Log_package, {foreignKey: 'logID', as: 'logPackages'})
+      Logs.hasMany(models.logItem, { foreignKey: 'logID', as: 'logItems', onDelete: 'CASCADE'});
+      Logs.hasMany(models.Package, { foreignKey: 'logID', as: 'packages', onDelete: 'CASCADE'});
+     
 
     }
   }
@@ -40,18 +42,15 @@ module.exports = (sequelize, DataTypes) => {
         key: 'ID'
       }
     },
+    type: {
+      type: DataTypes.STRING(20),
+      allowNull: false
+    },
     campaign: {
       type: DataTypes.STRING(100),
       allowNull: false
     },
-    currency: {
-      type: DataTypes.STRING(20),
-      allowNull: false
-    },
-    rate: {
-      type: DataTypes.DECIMAL(10,2),
-      allowNull: false
-    },
+
     datecreated: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -64,7 +63,17 @@ module.exports = (sequelize, DataTypes) => {
     time_to_reply: {
       type: DataTypes.STRING(255),
       allowNull: false
-    }
+    },
+    // Only for package type logs
+    currency: {
+      type: DataTypes.STRING(20),
+      allowNull: true
+    },
+    rate: {
+      type: DataTypes.DECIMAL(10,2),
+      allowNull: true 
+    },
+    // Only for package type logs
   }, {
     sequelize,
     tableName: 'logs',

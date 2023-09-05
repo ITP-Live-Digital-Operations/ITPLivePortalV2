@@ -163,6 +163,9 @@ exports.getSalesBriefWithFiles = (req, res) => {
                 model: models.File,
                 required: false,
                 as: 'files',
+                where : {
+                    department : 2
+                }
             }
         ]
     }).then(data => {
@@ -356,6 +359,7 @@ exports.deleteBrief = (req, res) => {
             
         });
     }).catch(err => {
+        console.log(err);
         res.status(500).send({
             message:
                 err.message

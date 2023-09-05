@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Package.hasMany(models.Log_package, {foreignKey: 'packageID', as: 'log_package'})
+      Package.belongsTo(models.Logs, {foreignKey: 'logID'})
+   
       
     }
   }
@@ -22,6 +23,14 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
+    logID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'logs',
+        key: 'id'
+      }
+    },
     platform: {
       type: DataTypes.STRING(50),
       allowNull: true
@@ -29,7 +38,11 @@ module.exports = (sequelize, DataTypes) => {
     deliverable: {
       type: DataTypes.STRING(50),
       allowNull: true
-    }
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
   }, {
     sequelize,
     tableName: 'package',

@@ -1,7 +1,7 @@
 const models = require('../../models');
 const Log = models.Logs;
 const Package = models.Package;
-const Log_package = models.Log_package;
+const logItem = models.logItem;
 const User = models.User;
 const Influencer = models.Influencer;
 const db = require('../../models');
@@ -9,7 +9,7 @@ const { QueryTypes } = require('sequelize');
 
 
 
-exports.create = (req, res) => {
+/* exports.create = (req, res) => {
   let logID;
   let packageID;
 
@@ -47,9 +47,125 @@ exports.create = (req, res) => {
     }
   })
 
+} */
+
+exports.create = (req, res) => {
+  try{
+    const { UserID, InfluencerID, Campaign, type, Time_to_reply, Notes, Currency, Rate, rateLogItems, packageItems } = req.body
+    
+    Log.create({
+      userID: UserID,
+      influencerID: InfluencerID,
+      campaign: Campaign,
+      type: type,
+      time_to_reply: Time_to_reply,
+      notes: Notes,
+      currency: Currency,
+      rate: Rate
+    }).then(log => {
+      const logID = log.id
+
+      if (type === 'single' && rateLogItems.length > 0) {
+        logItem.bulkCreate(rateLogItems.map(item => {
+          return { 
+          platform :item.Platform,
+          deliverable : item.Deliverable,
+          quantity : item.Quantity,
+          currency : item.Currency,
+          rate : item.Rate,
+          logID : logID,
+         } })).then(() => {
+          res.status(201).send({
+            status: "success",
+          })
+        })
+      }
+      else if (type === 'package' && packageItems.length > 0) {
+        Package.bulkCreate(packageItems.map(item => { 
+          return {platform :item.Platform,
+          deliverable : item.Deliverable,
+          quantity : item.Quantity,
+          logID : logID,
+          }
+         })).then(() => {
+          res.status(201).send({
+            status: "success",
+          })
+        })
+      }
+      res.status(201).send({
+        status: "success",
+        message: "Logs created successfully"
+    })
+    })
+  } catch (err) {
+    console.log(err)
+    res.status(500).send({
+        message:
+            err.message || "Some error occurred while creating the Logs."
+    });
+  }
+}
+
+exports.getInfluencerLogs = (req, res) => {
+  const id = req.params.id;
+  try{
+  Log.findOne({
+    where : {id: id},
+    include: [ { model: logItem, as: 'logItems' }, { model: Package, as: 'packages' } ]
+  }).then(log => {
+    if(!log){
+      return res.status(404).send({
+        message: "Log not found"
+      })
+    }
+    res.status(200).send(log)
+  })
+} catch (err) {
+  res.status(500).send({
+      message:
+          err.message || "Some error occurred while retrieving logs."
+  });
+}
 }
 
 exports.getLogs = (req, res) => {
+  try{
+  Log.findAll({
+    include: [ { model: logItem, as: 'logItems' }, { model: Package, as: 'packages' } ]
+  }).then(logs => {
+    res.status(200).send(logs)
+  })
+} catch (err) {
+  res.status(500).send({
+      message:
+          err.message || "Some error occurred while retrieving logs."
+  });
+}
+}
+
+exports.deleteLog = (req, res) => {
+  const id = req.params.id;
+  try{
+  Log.destroy({
+    where: {id: id}
+  }).then(() => {
+    res.status(200).send({
+      status: "success",
+      message: "Log deleted successfully"
+    })
+  })
+} catch (err) {
+  res.status(500).send({
+      message:
+          err.message || "Some error occurred while deleting the log."
+  });
+}
+}
+
+
+
+/* exports.getLogs = (req, res) => {
   db.sequelize.query(`
   SELECT logs.id, DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date, 
   users.name AS Contact, 
@@ -80,9 +196,9 @@ exports.getLogs = (req, res) => {
         err.message || "Some error occurred while retrieving logs."
     });
   })
-}
+} */
 
-exports.getInfluencerLogs = (req, res) => {
+/* exports.getInfluencerLogs = (req, res) => {
   const id = req.params.id;
   db.sequelize.query(`
   SELECT logs.id, DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date,
@@ -115,9 +231,9 @@ exports.getInfluencerLogs = (req, res) => {
         err.message || "Some error occurred while retrieving logs."
     });
   })
-}
+} */
 
-exports.deleteLog = (req, res) => {
+/* exports.deleteLog = (req, res) => {
   const id = req.params.id;
 
   Log.sequelize.transaction((t) => {
@@ -160,4 +276,4 @@ exports.deleteLog = (req, res) => {
     res.status(500).send({ status: "failure", error: error });
 });
 
-}
+} */

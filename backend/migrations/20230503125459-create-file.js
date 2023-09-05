@@ -32,14 +32,9 @@ module.exports = {
           type: DataTypes.STRING,
           allowNull: false
       },
-      approved: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-      },
-      notes: {
-        type: DataTypes.TEXT,
-        allowNull: true
+      department: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
       uploaded_by: {
         type: DataTypes.INTEGER,

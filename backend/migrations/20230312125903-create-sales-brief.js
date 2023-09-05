@@ -181,15 +181,28 @@ module.exports = {
         defaultValue: null,
         references: {
           model: 'file',
-          key: 'id'
+          key: 'id',
+          onDelete: 'CASCADE'
         }
       },
+
       PresentationId : {
         type: DataTypes.INTEGER,
         defaultValue: null,
         references: {
           model: 'file',
-          key: 'id'
+          key: 'id',
+          onDelete: 'CASCADE'
+        }
+      },
+
+      PdfId : {
+        type: DataTypes.INTEGER,
+        defaultValue: null,
+        references: {
+          model: 'file',
+          key: 'id',
+          onDelete: 'CASCADE'
         }
       },
       assigned: {

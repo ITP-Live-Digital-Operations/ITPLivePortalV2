@@ -11,10 +11,10 @@ router.route('/upload')
 
 router.route('/getFileById/:id')
        .get(asyncHandler(fileController.getFileById)); 
-             
-router.route('/approveFile/:id')
-       .get(asyncHandler(fileController.approveFile));
 
+router.route('/getSalesBriefFiles/:id')
+       .get(asyncHandler(fileController.getSalesBriefFiles));
+             
 router.route('/addNotes/:id')
        .post(asyncHandler(fileController.addNotes));
 
@@ -29,5 +29,13 @@ router.route('/deleteBudgetSheetFile/:id')
 
 router.route('/deletePresentationFile/:id')
        .get(asyncHandler(fileController.deletePresentationFile));
+
+router.route('/deletePDFFile/:id')
+       .get(asyncHandler(fileController.deletePDFFile));
+
+router.route('/deleteFile/:id')
+       .get(asyncHandler(fileController.deleteFile));
+
+       
 
 module.exports = router;

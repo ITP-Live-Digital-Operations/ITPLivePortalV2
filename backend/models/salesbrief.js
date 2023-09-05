@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       SalesBrief.belongsTo(models.User, {foreignKey: 'CreatedbyID', as: 'user'})
-      SalesBrief.hasOne(models.Task, { foreignKey: 'brief_id', as: 'task'})
-      SalesBrief.hasMany(models.File, { foreignKey: 'brief_id', as: 'files' });
+      SalesBrief.hasOne(models.Task, { foreignKey: 'brief_id', as: 'task', onDelete: 'CASCADE'});
+      SalesBrief.hasMany(models.File, { foreignKey: 'brief_id', as: 'files', onDelete: 'CASCADE'});
     }
   }
   SalesBrief.init({
@@ -192,15 +192,28 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: null,
       references: {
         model: 'file',
-        key: 'id'
+        key: 'id',
+        onDelete: 'CASCADE'
       }
     },
+
     PresentationId  : {
       type: DataTypes.INTEGER,
       defaultValue: null,
       references: {
         model: 'file',
-        key: 'id'
+        key: 'id',
+        onDelete: 'CASCADE'
+      }
+    },
+
+    PdfId : {
+      type: DataTypes.INTEGER,
+      defaultValue: null,
+      references: {
+        model: 'file',
+        key: 'id',
+        onDelete: 'CASCADE'
       }
     },
     ItpDepartment: {

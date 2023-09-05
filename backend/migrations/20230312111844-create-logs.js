@@ -25,18 +25,15 @@ module.exports = {
           key: 'ID'
         }
       },
+      type: {
+        type: DataTypes.STRING(20),
+        allowNull: false
+      },
       campaign: {
         type: DataTypes.STRING(100),
         allowNull: false
       },
-      currency: {
-        type: DataTypes.STRING(20),
-        allowNull: false
-      },
-      rate: {
-        type: DataTypes.DECIMAL(10,2),
-        allowNull: false
-      },
+  
       datecreated: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -50,10 +47,16 @@ module.exports = {
         type: DataTypes.STRING(255),
         allowNull: false
       },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      }
+      // Only for package type logs
+      currency: {
+        type: DataTypes.STRING(20),
+        allowNull: false
+      },
+      rate: {
+        type: DataTypes.DECIMAL(10,2),
+        allowNull: false
+      },
+      // Only for package type logs
     });
   },
   async down(queryInterface, DataTypes) {

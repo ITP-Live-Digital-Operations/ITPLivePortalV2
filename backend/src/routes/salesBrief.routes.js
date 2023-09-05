@@ -65,4 +65,8 @@ router.route('/updatePriorities')
 
 router.route('/getAllBriefsWithTask')
     .get(asyncHandler(salesBriefController.getAllBriefsWithTask))
+
+router.route('/deleteBrief/:id')
+    .delete(asyncHandler(salesBriefController.deleteBrief))
+
 module.exports = router;

@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Log_package extends Model {
+  class logItem extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,11 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Log_package.belongsTo(models.Logs, {foreignKey: 'logID', as: 'log'})
-      Log_package.belongsTo(models.Package, {foreignKey: 'packageID', as: 'package'})
+      logItem.belongsTo(models.Logs, {foreignKey: 'logID'})
     }
   }
-  Log_package.init({
+  logItem.init({
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -24,24 +23,37 @@ module.exports = (sequelize, DataTypes) => {
     },
     logID: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: 'logs',
         key: 'id'
       }
     },
-    packageID: {
+    platform: {
+      type: DataTypes.STRING(50),
+      allowNull: false
+    },
+    deliverable: {
+      type: DataTypes.STRING(50),
+      allowNull: false
+    },
+    quantity: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'package',
-        key: 'id'
-      }
-    }
+      allowNull: false
+    },
+    currency: {
+      type: DataTypes.STRING(20),
+      allowNull: false
+    },
+    rate: {
+      type: DataTypes.DECIMAL(10,2),
+      allowNull: false
+    },
+
+
   }, {
     sequelize,
-    tableName: 'log_packages',
-    modelName: 'Log_package',
+    modelName: 'logItem',
   });
-  return Log_package;
+  return logItem;
 };
