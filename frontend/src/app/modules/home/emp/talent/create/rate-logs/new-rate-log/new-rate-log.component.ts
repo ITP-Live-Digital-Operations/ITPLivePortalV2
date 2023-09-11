@@ -105,7 +105,7 @@ export class NewRateLogComponent {
         if (this.data.status === "success") {
           this.toastrService.success('Log Added Successfully!');
           sessionStorage.removeItem('influencerData');
-          this.router.navigate([this.path['forms'] + this.logForm.value.Influencer]);
+          this.router.navigate([this.path['influencerRating'] + this.logForm.value.Influencer]);
         }
         else {
           this.toastrService.error('Error! Please Try Again!');

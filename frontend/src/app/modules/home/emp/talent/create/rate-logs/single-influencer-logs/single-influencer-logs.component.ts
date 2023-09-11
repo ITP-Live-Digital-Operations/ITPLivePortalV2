@@ -184,7 +184,5 @@ export class SingleInfluencerLogsComponent {
     }
   }
 
-  test() {
-    console.log([this.path['influencerRating'] + 1] );
-  }
+
 }

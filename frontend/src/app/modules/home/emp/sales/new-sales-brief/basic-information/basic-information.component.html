@@ -46,7 +46,7 @@
       <mat-label>Campaign Objective</mat-label>
       <mat-select formControlName="CampaignObjective">
         <mat-option
-          *ngFor="let option of campaignobjectives"
+          *ngFor="let option of campaignobjectives.sort()"
           [value]="option"
           >{{ option }}</mat-option
         >

@@ -52,12 +52,12 @@ module.exports = {
         allowNull: false
       },
       progress: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
+        type: DataTypes.STRING(50),
+        defaultValue: null,
       },
       priority: {
         type: DataTypes.INTEGER,
-        defaultValue: 10,
+        defaultValue: null,
       },
       updatedAt: {
         allowNull: false,

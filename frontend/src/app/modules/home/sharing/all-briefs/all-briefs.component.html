@@ -38,7 +38,7 @@
       </ng-container>
 
       <ng-container matColumnDef="CampaignName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign Name</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign</th>
         <td mat-cell *matCellDef="let element">{{ element.CampaignName }}</td>
       </ng-container>
 
@@ -52,28 +52,30 @@
         <td mat-cell *matCellDef="let element">{{ element.Client }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="TaskDeadline">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Task Deadline</th>
+      <ng-container matColumnDef="AssignedDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Assigned Date</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.task?.deadline | date }}
+          {{ element.task?.createdAt | date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="TaskDeadline">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Deadline</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.Status !== "InActive" ? (element.task?.deadline | date) : '' }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="CampaignObjective">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          CampaignObjective
+          Campaign Objective
         </th>
         <td mat-cell *matCellDef="let element">
           {{ element.CampaignObjective }}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="Priority">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.Status !== "InActive" ? element.Priority : "" }}
-        </td>
-      </ng-container>
+
 
       <ng-container matColumnDef="Sales">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Sales</th>
@@ -85,7 +87,7 @@
       <ng-container matColumnDef="Talent">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Talent</th>
         <td mat-cell *matCellDef="let element">
-          {{ getUsername(element.task?.assigned_to) }}
+          {{ element?.task?.assignedUsers[0]?.name}}<p *ngIf="element?.task?.assignedUsers[1]?.name">and {{element?.task?.assignedUsers[1]?.name}} </p> <p *ngIf="element?.task?.assignedUsers[2]?.name">and {{ element?.task?.assignedUsers[2]?.name}}</p>
         </td>
       </ng-container>
 
@@ -93,7 +95,7 @@
         <!-- ONLY HEADTALENT SEES THIS -->
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Weight</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.task?.weight }}
+          {{ element.Status !== "InActive" ? element.task?.weight : '' }}
         </td>
       </ng-container>
 

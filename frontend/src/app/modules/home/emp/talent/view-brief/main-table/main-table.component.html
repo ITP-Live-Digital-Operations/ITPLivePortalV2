@@ -16,7 +16,7 @@
         <th>Deliverables</th>
         <th>Currency</th>
         <th>Estimated Budget</th>
-        <th *ngIf="user_id === task?.assigned_to">Delete</th>
+        <th *ngIf="assignedUser_id.includes(userId)">Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -75,7 +75,7 @@
           />
         </td>
 
-        <td *ngIf="user_id === task?.assigned_to">
+        <td *ngIf="assignedUser_id.includes(userId)">
           <button class="icon-btn" (click)="removeRow(i)">
             <mat-icon>delete</mat-icon>
           </button>
@@ -83,14 +83,14 @@
       </tr>
     </tbody>
   </table>
-  <button mat-raised-button (click)="openDialog()" *ngIf="user_id === task?.assigned_to">
+  <button mat-raised-button (click)="openDialog()" *ngIf="assignedUser_id.includes(userId)">
     Add Influencer
   </button>
   <button
     [disabled]="!form.valid"
     class="submit"
     mat-raised-button
-    *ngIf="user_id === task?.assigned_to"
+    *ngIf="assignedUser_id.includes(userId)"
     style="margin-left: 2%"
 
     (click)="submitTable()"

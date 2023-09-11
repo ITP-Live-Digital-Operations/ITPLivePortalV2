@@ -4,10 +4,10 @@
       <th class="centered">File Name</th>
       <th class="centered">Uploaded On</th>
       <th class="down">Download</th>
-      <th class="down" *ngIf="userId === task?.assigned_to">
+      <th class="down" *ngIf="assignedUser_id.includes(userId)">
         Choose File
       </th>
-      <th class="down" *ngIf="userId === task?.assigned_to">
+      <th class="down" *ngIf="assignedUser_id.includes(userId)">
         Delete
       </th>
     </tr>
@@ -33,7 +33,7 @@
       </td>
       <td *ngIf="!budgetSheet"></td>
 
-      <td *ngIf="userId === task?.assigned_to">
+      <td *ngIf="assignedUser_id.includes(userId)">
         <input
           type="file"
           (change)="chooseFile()"
@@ -48,7 +48,7 @@
         </button>
       </td>
 
-      <td *ngIf="userId === task?.assigned_to">
+      <td *ngIf="assignedUser_id.includes(userId)">
         <button
           class="icon-btn-del"
           (click)="deleteBudgetSheetFile(budgetSheet.id)"
@@ -128,7 +128,7 @@
       </td>
       <td *ngIf="!presentation"></td>
 
-      <td *ngIf="userId === task?.assigned_to">
+      <td *ngIf="assignedUser_id.includes(userId)">
         <input
           type="file"
           (change)="handleFileInput($event)"
@@ -145,7 +145,7 @@
       </button>
       </td>
 
-      <td *ngIf="userId === task?.assigned_to">
+      <td *ngIf="assignedUser_id.includes(userId)">
         <button
           class="icon-btn-del"
           (click)="deletePresentationFile(presentation.id)"
@@ -224,7 +224,7 @@
       </td>
       <td *ngIf="!pdf"></td>
 
-      <td *ngIf="userId === task?.assigned_to">
+      <td *ngIf="assignedUser_id.includes(userId)">
         <input
           type="file"
           (change)="handleFileInput($event)"
@@ -241,7 +241,7 @@
       </button>
       </td>
 
-      <td *ngIf="userId === task?.assigned_to">
+      <td *ngIf="assignedUser_id.includes(userId)">
         <button
           class="icon-btn-del"
           (click)="deletePDFFile(pdf.id)"
@@ -254,7 +254,7 @@
   </table>
 
   <button
-    *ngIf="budgetSheet && presentation && userId === task?.assigned_to"
+    *ngIf="budgetSheet && presentation && assignedUser_id.includes(userId)"
     mat-raised-button
     color="primary"
     (click)="salesBriefReady()"

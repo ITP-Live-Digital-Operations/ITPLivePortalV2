@@ -32,8 +32,8 @@ export class AllBriefsComponent {
     'Agency',
     'Client',
     'CampaignObjective',
+    'AssignedDate',
     'TaskDeadline',
-    'Priority',
     'Weight',
     'Sales',
     'Talent',
@@ -72,6 +72,7 @@ export class AllBriefsComponent {
 
   private getAllBriefs(): void {
     this.salesService.getAllBriefsWithTask().subscribe((data: any) => {
+      console.log(data);
       this.briefDetails = data;
       this.briefDetails.data.sort((a: any, b: any) => {
         if (a.Status === 'InActive' && b.Status !== 'InActive') return 1;
@@ -91,7 +92,7 @@ export class AllBriefsComponent {
       );
 
       // Send updated priorities to the backend
-      this.salesService.updatePriorities(updatedPriorities).subscribe();
+      /* this.salesService.updatePriorities(updatedPriorities).subscribe(); */
 
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
       this.dataSource.filterPredicate = (data: any, filter: string) => {

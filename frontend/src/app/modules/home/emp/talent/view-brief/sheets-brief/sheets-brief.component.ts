@@ -53,6 +53,9 @@ export class SheetsBriefComponent {
   @Input()
   pdf: any;
 
+  @Input()
+  assignedUser_id : any;
+
   @Output()
   childEvent = new EventEmitter<string>();
 
@@ -69,7 +72,7 @@ export class SheetsBriefComponent {
     private dialog : MatDialog,
     private dialogService: ConfirmationDialogService
   ) {
-    
+
   }
 
   public salesBriefReady(): void {
@@ -350,6 +353,7 @@ const dialogRef =
         brief: this.brief,
         budgetSheetId: this.budgetSheetId,
         presentationId: this.presentationId,
+        assignedUser_id: this.assignedUser_id,
       },
     });
 

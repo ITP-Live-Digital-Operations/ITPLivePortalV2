@@ -1,7 +1,7 @@
 export interface TaskModel {
     id: number;
     assigned_by: number;
-    assigned_to: number;
+    assignedUsers : any;
     brief_id: number;
     deadline: Date;
     created_at: Date;
@@ -9,4 +9,5 @@ export interface TaskModel {
     weight: number;
     progress: number;
     priority: number;
+    assigned_to: number;
   }

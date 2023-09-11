@@ -1,5 +1,10 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { NotificationService } from 'src/app/core/services/notification.service';
@@ -15,9 +20,7 @@ import { forkJoin } from 'rxjs';
   templateUrl: './assign-task.component.html',
   styleUrls: ['./assign-task.component.scss'],
 })
-
 export class AssignTaskComponent {
-
   @Input()
   dataSource: any;
 
@@ -36,7 +39,7 @@ export class AssignTaskComponent {
   protected assignForm!: FormGroup;
   selectedIds: number[] = [];
 
-  displayedColumns: string[] = ['id', 'name', 'totalWeight', 'Select'];
+  displayedColumns: string[] = ['name', 'totalWeight', 'Select'];
 
   constructor(
     private taskService: TaskService,
@@ -45,36 +48,79 @@ export class AssignTaskComponent {
     private salesService: SalesService,
     private formBuilder: FormBuilder,
     private toastrService: ToastrService
-  ) { 
-
+  ) {
     this.getTalentTaskWeights();
 
     this.assignForm = this.formBuilder.group({
       Weight: ['', Validators.required],
       Deadline: ['', Validators.required],
     });
-
   }
-  
 
   protected assign(): void {
-
     if (this.assignForm.valid) {
-
       this.selectedIds = [];
 
       const briefId = this.brief.data.id;
       const weight = this.assignForm.value.Weight;
       const deadline = this.assignForm.value.Deadline;
       const assignedBy = this.userService.getID();
-      
+
       for (const item of this.dataSource) {
         if (item.selected.value) {
           this.selectedIds.push(item.id);
         }
       }
+      this.taskService
+        .createTask({
+          assigned_by: assignedBy,
+          brief_id: briefId,
+          weight: weight,
+          deadline: deadline,
+        })
+        .subscribe(
+          (data: any) => {
+            const newTaskId = data.data.id;
 
-      const taskObservables = this.selectedIds.map((id: number) =>
+            for (let i = 0; i < this.selectedIds.length; i++) {
+              this.taskService
+                .addUserToTask(newTaskId, this.selectedIds[i])
+                .subscribe(
+                  (data: any) => {
+                    console.log(data);
+                    this.notificationService.createNotification(this.selectedIds[i], {
+                      message: 'A task has been assigned to you!',
+                      link: `${this.path['viewBrief'] + briefId}`,
+                    }).subscribe((data: any) => {});
+                    
+                  },
+                  (error) => {
+                    console.error('Error:', error);
+                  }
+                );
+            }
+            //SALES PERSON NOTIFICATION SEND
+            this.notificationService
+              .createNotification(this.salespersonId, {
+                message: 'Sales Brief has been assigned!',
+                link: `${this.path['sentBriefs'] + briefId}`,
+              })
+              .subscribe((data: any) => {});
+
+            //UPDATE STATUS TO ASSIGNED
+            this.salesService
+              .updateAssignedStatus(briefId)
+              .subscribe((data: any) => {
+                this.toastrService.success('Brief Assigned!');
+                // window.location.reload();
+              });
+          },
+          (error) => {
+            console.error('Error:', error);
+          }
+        );
+
+      /* const taskObservables = this.selectedIds.map((id: number) =>
         this.taskService.createTask({
           assigned_by: assignedBy,
           assigned_to: id,
@@ -101,26 +147,14 @@ export class AssignTaskComponent {
         }
       );
 
-      //SALES PERSON NOTIFICATION SEND
-      this.notificationService
-        .createNotification(this.salespersonId, {
-          message: 'Sales Brief has been assigned!',
-          link: `${this.path['sentBriefs'] + briefId}`,
-        })
-        .subscribe((data: any) => {});
-
-      //UPDATE STATUS TO ASSIGNED
-      this.salesService
-        .updateAssignedStatus(briefId)
-        .subscribe((data: any) => {
-          this.toastrService.success('Brief Assigned!');
-          // window.location.reload();
-        });
+      */
     }
   }
 
   private getTalentTaskWeights(): void {
     this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
+      console.log('Talent Task Weights:');
+      console.log(data);
       this.dataSource = data.usersWithTasks.map((user: any) => {
         user.selected = new FormControl(false);
         return user;

@@ -47,14 +47,17 @@ export class InfluencersComponent {
   };
 
   displayedColumns: string[] = [
-    'ID',
     'Name',
     'Gender',
-    'InstagramHandle',
     'InstagramFollowers',
+    'TiktokFollowers',
+    'YoutubeFollowers',
+    'SnapchatFollowers',
+    'TwitterFollowers',
+    'FacebookFollowers',
+
     'CountryLocation',
     'MainVertical',
-    'itpAverageRating',
     'Action',
   ];
 
@@ -224,8 +227,8 @@ export class InfluencersComponent {
 
   public viewInfluencer(inputdata: any): void {
     this.dialog?.open(InfluencerIdComponent, {
-      width: '90%',
-      height: '80%',
+      width: '100%',
+      height: '95%',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {
@@ -233,7 +236,7 @@ export class InfluencersComponent {
       },
     });
   }
-  
+
   public applyFilter(): void {
     this.dataSource.filterPredicate = (
       data: InfluencerModel,
@@ -292,7 +295,7 @@ export class InfluencersComponent {
     this.filterCriteria.city = filterValue.trim().toLowerCase();
     this.applyFilter();
   }
-  
+
   public applyPlatformFilter(platform: string): void {
     this.platform = platform;
 
@@ -367,5 +370,13 @@ export class InfluencersComponent {
     }
 
     this.displayedColumns = [...baseColumns, ...platformColumns];
+  }
+
+
+  public openLink(link: string): void {
+    if (!link) {
+      return;
+    }
+    window.open(link, '_blank');
   }
 }

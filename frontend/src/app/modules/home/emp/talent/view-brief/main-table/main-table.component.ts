@@ -20,7 +20,7 @@ export class MainTableComponent {
   task: TaskModel = this.source.task;
 
   @Input()
-  user_id: number = this.source.userId;
+  userId: number = this.source.userId;
 
   @Input()
   budgetSheetId!: number;
@@ -31,7 +31,8 @@ export class MainTableComponent {
   @Input()
   id: number = this.source.id;
 
-
+  @Input()
+  assignedUser_id : any = this.source.assignedUser_id;
 
   fileName = '';
   private influencers: InfluencerModel[] = [];
@@ -88,7 +89,7 @@ export class MainTableComponent {
       .uploadTable(
         tableData,
         this.brief.data.id,
-        this.user_id,
+        this.userId,
         this.fileName,
         Department.TALENT
       )

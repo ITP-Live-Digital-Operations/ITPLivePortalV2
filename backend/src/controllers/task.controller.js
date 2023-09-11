@@ -2,6 +2,7 @@ const model = require('../../models')
 const Sequelize = require('sequelize');
 const Task = model.Task
 const User = model.User
+const usertasks = model.UserTasks
 const SalesBrief = model.SalesBrief
 const { Op } = require('sequelize');
 
@@ -13,6 +14,7 @@ exports.create = (req, res) => {
         .then(data => {
             res.status(201).send({
                 status: "success",
+                data: data
             });
         })
         .catch(err => {
@@ -43,13 +45,59 @@ exports.getUnfinishedTasks = (req, res) => {
     });
 }
 
-exports.getUserTasks = (req, res) => {
+exports.addUserToTask = (req, res) => {
+    const { userId , taskId} = req.body;
+    usertasks.create({
+        userId: userId,
+        taskId: taskId
+    }).then(data => {
+        res.status(201).send({
+            status: 'success',
+            data: data
+        })
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while adding user to task."
+        });
+    }
+    )
+}
+
+/* exports.getUserTasks = (req, res) => {
     Task.findAll({
         where: {
             assigned_to: req.params.id
         },
     }).then(data => {
         
+        res.status(200).send({
+            status: "success",
+            data: data
+        });
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving Tasks."
+        });
+    });
+} */
+
+exports.getUserTasks = (req, res) => {
+    User.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [
+            {
+                model: Task,
+                as: 'assignedUsers',
+                through : { attributes: [] },
+            }
+        ],
+    })
+    .then(data => {
         res.status(200).send({
             status: "success",
             data: data
@@ -102,7 +150,7 @@ exports.updateStatusToComplete = (req, res) => {
     )
 } 
 
-exports.getUsersAndTaskWeights = (req, res) => {
+/* exports.getUsersAndTaskWeights = (req, res) => {
     User.findAll({
         where: {
             role: 'talent',
@@ -143,13 +191,57 @@ exports.getUsersAndTaskWeights = (req, res) => {
         console.error(err);
         res.status(500).json({ message: err.message });
       });
-  };
+  }; */
+
+
+  exports.getUsersAndTaskWeights = (req, res) => {
+    User.findAll({
+        where: {
+            role: 'talent',
+            privilege_level: { [Op.lt]: 9 }
+        },
+        attributes: ['id', 'name', [Sequelize.fn('COALESCE', Sequelize.fn('SUM', Sequelize.col('assignedUsers.weight')), 0), 'totalWeight']
+    ],
+        include: [
+            {
+                model: Task,
+                as: 'assignedUsers',
+                through: usertasks,
+                where : { status: { [Op.or]: ['Not Started', 'In Progress'] } },
+                required: false,
+            }
+        ],
+        group: ['User.id'],
+        order : [['id', 'ASC']],
+    })
+    .then((users) => {
+        const usersWithTasks = users.map((user) => ({
+          id: user.dataValues.id,
+          name: user.dataValues.name,
+          totalWeight: user.dataValues.totalWeight || 0
+        }));
+        res.status(200).json({ usersWithTasks });
+      })
+        .catch((err) => {
+        console.error(err);
+        res.status(500).json({ message: err.message });
+        });
+    };
+
      
   exports.getTaskByBriefId = (req, res) => {
-    Task.findAll({
+    Task.findOne({
         where: {
             brief_id: req.params.id
-        }
+        },
+        include: [
+            {
+                model: User,
+                as: 'assignedUsers',
+                attributes: ['id', 'name'],
+            }
+        ],
+            
     }).then(data => {
         res.status(200).send({
             status: "success",
@@ -204,6 +296,7 @@ exports.activateTask = (req, res) => {
 
 exports.updateProgress = (req, res) => {
     const id = req.params.id;
+    console.log(req.body);
     const { progress } = req.body;
     Task.update(
         { progress: progress },

@@ -15,7 +15,7 @@ import { PATH } from 'src/app/core/constant/routes.constants';
   templateUrl: './influencer-logs.component.html',
   styleUrls: ['./influencer-logs.component.scss'],
 })
-export class InfluencerLogsComponent implements OnInit {
+export class InfluencerLogsComponent {
 
   protected dataSource: any;
   protected UserDetails: any;
@@ -24,7 +24,7 @@ export class InfluencerLogsComponent implements OnInit {
   protected talentUserNames: any;
   protected userRole = this.userService.getRole();
   public path = PATH;
-  
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
@@ -50,7 +50,7 @@ export class InfluencerLogsComponent implements OnInit {
     private dialogService: ConfirmationDialogService
   ) {}
 
-  ngAfterViewInit() {
+/*   ngAfterViewInit() {
     this.extractColumnData();
   }
 
@@ -143,6 +143,6 @@ export class InfluencerLogsComponent implements OnInit {
           });
         }
       });
-    
-  }
+
+  } */
 }

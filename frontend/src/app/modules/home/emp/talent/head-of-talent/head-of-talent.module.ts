@@ -9,6 +9,7 @@ import { CelebrityIdComponent } from './celebrity-id/celebrity-id.component';
 import { SharedModule } from 'src/app/shared/components/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharingModule } from '../../../sharing/sharing.module';
+import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,8 @@ import { SharingModule } from '../../../sharing/sharing.module';
     CommonModule,
     HeadOfTalentRoutingModule,
     MaterialModule,
-    SharingModule,
     SharedModule,
+    SharingModule,
     ReactiveFormsModule
   ],
 })

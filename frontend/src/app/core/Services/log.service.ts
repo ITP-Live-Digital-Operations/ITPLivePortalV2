@@ -16,12 +16,12 @@ export class LogService {
   addLog(inputdata:any){
     return this.http.post(`${this.logApiURL}/addLog`, inputdata)
   }
-  getAllLogs():Observable<LogModel>{
-    return this.http.get<LogModel>(`${this.logApiURL}/getLogs`)
+  getAllLogs():Observable<LogModel[]>{
+    return this.http.get<LogModel[]>(`${this.logApiURL}/getLogs`)
   }
 
-  getInfluencerLogs(inputdata:any):Observable<LogModel>{
-    return this.http.get<LogModel>(`${this.logApiURL}/getInfluencerLogs/${inputdata}`)
+  getInfluencerLogs(inputdata:any):Observable<LogModel[]>{
+    return this.http.get<LogModel[]>(`${this.logApiURL}/getInfluencerLogs/${inputdata}`)
   }
 
   deleteLog(inputdata:any){

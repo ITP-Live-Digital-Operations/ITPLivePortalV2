@@ -34,7 +34,7 @@ export class AllInfoComponent {
     this.activatedRoute.params.subscribe(params => {
       this.briefId = params['id'];
     });
-   
+
     this.getSalesFiles();
   }
 
@@ -43,7 +43,6 @@ export class AllInfoComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   displayedColumns: string[] = [
-    'id',
     'originalname',
     'fileType',
     'action',
@@ -51,6 +50,7 @@ export class AllInfoComponent {
 
   private getSalesFiles() {
     this.fileService.getSalesBriefFiles(this.briefId).subscribe(data => {
+      console.log("sales files:");
       console.log(data);
       this.dataSource = new MatTableDataSource(data.data);
       this.dataSource.paginator = this.paginator;

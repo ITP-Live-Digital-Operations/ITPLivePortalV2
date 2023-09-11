@@ -2,6 +2,7 @@ const  models  = require('../../models');
 const SalesBrief = models.SalesBrief;
 const Task = models.Task;
 
+
 exports.create =  (req, res) => {
     console.log(req.body);
     
@@ -423,7 +424,15 @@ exports.getAllBriefsWithTask = (req, res) => {
                 model: models.Task,
                 required: false,
                 as: 'task',
-            }
+                include: [
+                    {
+                        model: models.User,
+                        required: false,
+                        as: 'assignedUsers',
+                        attributes: ['id', 'name']
+                    }
+                ]
+            },
         ]
     }).then(data => {
         res.status(200).send({

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="status">
       <app-person-info style="align-self: center;" [assignedUser]="assignedUser" [salesperson]="salesperson" [task]="task"></app-person-info>
-      <div class="card" *ngIf="assignedUser_id == user_id || privilege_level > 7">
+      <div class="card" *ngIf="assignedUser_id.includes(user_id) || privilege_level > 7">
         <div>
           <form [formGroup]="progressForm" (ngSubmit)="submitForm()" autocomplete="off">
             <app-update-activate (submitEvent)="submitForm()" [brief]="brief" [brief_id]="brief_id"></app-update-activate>
@@ -34,7 +34,8 @@
     [pdfId]="pdfId"
     [pdf]="pdf"
     [task]="task"
-    [id]="id">
+    [id]="id"
+    [assignedUser_id]="assignedUser_id">
     </app-sheets-brief>
 
 

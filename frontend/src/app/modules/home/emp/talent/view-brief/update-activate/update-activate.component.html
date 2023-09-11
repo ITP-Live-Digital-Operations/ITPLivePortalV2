@@ -7,7 +7,7 @@
           <mat-label>Progress</mat-label>
           <mat-select formControlName="Progress">
             <mat-option
-              *ngFor="let num of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+              *ngFor="let num of ['Submitted', 'In Progress', 'Waiting for Feedback', 'Submitted & Rejected']"
               [value]="num"
               >{{ num }}
             </mat-option>
@@ -16,7 +16,7 @@
         <button
           style="height: 2em; margin-bottom: 2%; width: 15em"
           mat-raised-button
-          
+
           (click)="emitSubmit()">
           Update Progress
         </button>
@@ -30,7 +30,7 @@
       <button
         mat-raised-button
         style="height: 2em; margin-top: 5%; width: 17em; background-color: red; color: white;"
-       
+
         (click)="deactivateBrief()"
       >
         Deactivate
@@ -41,7 +41,7 @@
       <button
         mat-raised-button
         style="height: 2rem; margin-top: 18%; width: 17em; background-color: green; color: white;"
-    
+
         (click)="activateBrief()"
       >
         Activate

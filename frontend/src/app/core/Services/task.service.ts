@@ -14,6 +14,10 @@ export class TaskService {
     return this.http.post(`${this.taskApiURL}/createTask`, inputdata);
   }
 
+  addUserToTask(taskId: any, userId: any) {
+    return this.http.post(`${this.taskApiURL}/addUserToTask`, {taskId, userId});
+  }
+
   getUnfinishedTasks(inputdata: any) {
     return this.http.get(`${this.taskApiURL}/getUnfinishedTasks/${inputdata}`);
   }

@@ -21,7 +21,7 @@ export class CelebritiesListComponent {
   public dataSource: any;
   public UserDetails: any;
 
-  
+
 
   public userRole = this.userService.getRole();
 
@@ -30,11 +30,14 @@ export class CelebritiesListComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   displayedColumns: string[] = [
-    'ID',
     'Name',
     'Gender',
-    'InstagramHandle',
     'InstagramFollowers',
+    'TiktokFollowers',
+    'SnapchatFollowers',
+    'TwitterFollowers',
+    'FacebookFollowers',
+    'YoutubeFollowers',
     'CountryLocation',
     'MainVertical',
     'Action',
@@ -101,5 +104,12 @@ export class CelebritiesListComponent {
         id: inputdata,
       },
     });
+  }
+
+  public openLink(link: string): void {
+    if (!link) {
+      return;
+    }
+    window.open(link, '_blank');
   }
 }

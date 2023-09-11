@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Task.belongsTo(models.User, {foreignKey: 'assigned_by', as: 'Talent_Head'})
-      Task.belongsTo(models.User, {foreignKey: 'assigned_to', as: 'Talent_Employee'})
-      Task.belongsTo(models.SalesBrief, {foreignKey: 'brief_id', as: 'Brief', omDelete: 'CASCADE'})
+      Task.belongsToMany(models.User, { through: 'UserTasks', foreignKey: 'taskId', as: 'assignedUsers' });
+      Task.belongsTo(models.SalesBrief, {foreignKey: 'brief_id', as: 'Brief', onDelete: 'CASCADE'})
 
     }
   }
@@ -25,14 +25,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     assigned_by: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'users',
-        key: 'id'
-      }
-    },
-    assigned_to: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -67,12 +59,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     progress: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
+      type: DataTypes.STRING(50),
+      defaultValue: null,
     },
     priority: {
       type: DataTypes.INTEGER,
-      defaultValue: 10,
+      defaultValue: null,
     },
   }, {
     sequelize,

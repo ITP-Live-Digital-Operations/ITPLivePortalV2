@@ -9,6 +9,7 @@ import { FileService } from 'src/app/core/services/file.service';
 import { TaskModel } from 'src/app/core/interfaces/task.Model';
 import * as XLSX from 'xlsx';
 import { MainTableComponent } from './main-table/main-table.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-brief',
@@ -33,8 +34,8 @@ export class ViewBriefComponent {
   protected pdfId!: number;
   protected pdf: any;
 
-  protected assignedUser: any;
-  protected assignedUser_id: any;
+  protected assignedUser: any = [];
+  protected assignedUser_id: any = [];
   protected assigned!: boolean;
   protected brief_id: any;
 
@@ -54,6 +55,7 @@ export class ViewBriefComponent {
     private taskService: TaskService,
     private location: Location,
     private cdRef: ChangeDetectorRef,
+    private toastrService: ToastrService
   ) {
     this.progressForm = this.formBuilder.group({
       Progress: ['', Validators.required],
@@ -72,7 +74,10 @@ export class ViewBriefComponent {
         progress: this.progressForm.value.Progress,
       })
       .subscribe((data: any) => {
-        window.location.reload();
+        console.log(data);
+        if( data.status === 'success'){
+          this.toastrService.success('Progress Updated!');
+        }
       });
   }
 
@@ -92,7 +97,6 @@ export class ViewBriefComponent {
       this.salesService
         .getSalesBriefWithFiles(this.id)
         .subscribe((data: any) => {
-          console.log(data);
           this.brief = data;
           this.assigned = data.data.assigned;
 
@@ -166,18 +170,22 @@ export class ViewBriefComponent {
 
   private getTask(id: number): void {
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
-      this.task = data.data[0];
+      console.log('task data');
+      console.log(data.data);
+      this.task = data.data;
       this.progressForm.setControl(
         'Progress',
         new FormControl(this.task?.progress)
       );
-      this.userService
-        .getUserNameById(this.task?.assigned_to)
-        .subscribe((data: any) => {
-          this.assignedUser = data?.name;
-          this.assignedUser_id = data?.id;
-        });
+      for(let i = 0 ; i < this.task?.assignedUsers?.length ; i++){
+        this.assignedUser.push(this.task.assignedUsers[i].name);
+        this.assignedUser_id.push(this.task.assignedUsers[i].id);
+      }
+
     });
+
+
+
   }
 
   private refresh(): void {

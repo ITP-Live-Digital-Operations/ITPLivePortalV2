@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Logs, {foreignKey: 'userID', as: 'logs'})
       User.hasMany(models.SalesBrief, {foreignKey: 'CreatedbyID', as: 'salesbriefs'})
       User.hasMany(models.Task, {foreignKey: 'assigned_by', as: 'assigned_by'})
-      User.hasMany(models.Task, {foreignKey: 'assigned_to', as: 'assigned_to'})
+      User.belongsToMany(models.Task, { through: 'UserTasks', foreignKey: 'userId', as: 'assignedUsers' });
       User.hasMany(models.Influencer, {foreignKey: 'updatedBy', as: 'influencer'})
       User.hasMany(models.InfluencerRating, {foreignKey: 'createdBy_id', as: 'influencerRating'})
       User.hasMany(models.TimeForm, {foreignKey: 'user_id', as: 'timeform'})

@@ -1,11 +1,37 @@
 export interface LogModel {
-    Influencer: string,
-    Campaign: string,
-    Platform: string,
-    Deliverable: string
-    Currency: string,
-    Rate: string,
-    Contact: number,
-    Date: number,
+    id: number,
+    userID : number,
+    influencerID: number,
+    campaign: string,
+    notes : string,
+    time_to_reply : string,
+    createdAt : Date,
+    type : string,
+
+    currency ?: string,
+    rate ?: number,
+
+    logItems : logItem[],
+    packages : logPackage[],
+
   }
-  
+
+
+  interface logItem {
+    id : number,
+    logID : number,
+    platform : string,
+    deliverable : string,
+    quantity : number,
+    currency : string,
+    rate : number,
+  }
+
+  interface logPackage {
+    id : number,
+    logID : number,
+    platform : string,
+    deliverable : string,
+    quantity : number,
+  }
+

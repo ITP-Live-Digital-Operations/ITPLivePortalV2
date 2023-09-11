@@ -6,6 +6,9 @@ const TaskController = require('../controllers/task.controller');
 router.route('/createTask')
     .post(asyncHandler(TaskController.create));
 
+router.route('/addUserToTask')
+    .post(asyncHandler(TaskController.addUserToTask));
+
 router.route('/getUnfinishedTasks/:id')
     .get(asyncHandler(TaskController.getUnfinishedTasks));
 

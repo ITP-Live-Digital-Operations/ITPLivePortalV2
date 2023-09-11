@@ -33,12 +33,6 @@ module.exports = {
         type: DataTypes.STRING(100),
         allowNull: false
       },
-  
-      datecreated: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW
-      },
       notes: {
         type: DataTypes.TEXT,
         allowNull: true

@@ -534,26 +534,8 @@ export const platforms = [
   'Youtube',
 ];
 
-export const clientIndustries = [
-  'Beauty',
-  'Lifestyle',
-  'Sports',
-  'Food',
-  'Gaming',
-  'Business',
-  'Travel',
-  'Comedy',
-  'Celebrities',
-  'Health',
-  'Nutrition',
-  'Bodybuilding',
-  'Humanitarian',
-  'Automotives',
-  'Tech',
-  'Furniture',
-  'Shopping',
-  'NGO',
-];
+export const clientIndustries = [  'Agriculture',  'Automotives',  'Aviation',  'Banking', 'Beauty & Cosmetics',  'Bodybuilding',  'Business',  'Celebrities',  'Comedy',  'Electronics',  'Energy',  'Entertainment',  'FMCG',  'Finance',  'Food',  'Furniture',  'Gaming',  'Health',  'Healthcare',  'Hospitality',  'Humanitarian',  'Insurance',  'Investment',  'Lifestyle',  'Mobile App',  'NGO',  'Nutrition',  'Pharmaceutical',  'Public Sector',  'Real Estate',  'Retail',  'Shopping',  'Skin Care',  'Sports',  'Tech',  'Telecommunication',  'Travel', 'Other']
+
 
 export const campaignobjectives = [
   'Awareness',

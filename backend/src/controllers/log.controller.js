@@ -110,8 +110,8 @@ exports.create = (req, res) => {
 exports.getInfluencerLogs = (req, res) => {
   const id = req.params.id;
   try{
-  Log.findOne({
-    where : {id: id},
+  Log.findAll({
+    where : {influencerID: id},
     include: [ { model: logItem, as: 'logItems' }, { model: Package, as: 'packages' } ]
   }).then(log => {
     if(!log){
@@ -119,7 +119,9 @@ exports.getInfluencerLogs = (req, res) => {
         message: "Log not found"
       })
     }
-    res.status(200).send(log)
+    res.status(200).send(
+      log
+  )
   })
 } catch (err) {
   res.status(500).send({

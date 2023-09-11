@@ -28,7 +28,6 @@ export class PersonTasksComponent {
     'weight',
     'createdAt',
     'progress',
-    'priority',
     'Action',
   ];
 
@@ -55,7 +54,11 @@ export class PersonTasksComponent {
         this.id = params['id'];
 
         this.taskService.getMyTasks(this.id).subscribe((data: any) => {
-          this.dataSource = data.data;
+          console.log("my tasks:");
+          console.log(data);
+          this.dataSource = data.data?.assignedUsers;
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
         });
       });
     }
@@ -64,7 +67,7 @@ export class PersonTasksComponent {
   private getMyTasks(id: any): void {
     this.taskService.getMyTasks(id).subscribe((data: any) => {
       this.briefDetails = data;
-      this.dataSource = new MatTableDataSource(this.briefDetails.data);
+      this.dataSource = new MatTableDataSource(this.briefDetails.data?.assignedUsers);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });

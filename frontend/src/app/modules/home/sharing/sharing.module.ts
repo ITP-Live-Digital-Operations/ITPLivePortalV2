@@ -29,6 +29,7 @@ import { UploadFilesComponent } from './upload-files/upload-files.component';
 import { ProgressLoaderComponent } from './upload-files/progress-loader/progress-loader.component';
 import { DndDirective } from './dnd.directive';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     RateCardComponent,
     UploadFilesComponent,
     ProgressLoaderComponent,
-    DndDirective
+    DndDirective,
+    NumberFormatPipe,
   ],
   imports: [
     CommonModule,
@@ -75,6 +77,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     UserNamePipe,
     RateCardComponent,
     UploadFilesComponent,
+    NumberFormatPipe,
   ],
 })
 export class SharingModule {}
