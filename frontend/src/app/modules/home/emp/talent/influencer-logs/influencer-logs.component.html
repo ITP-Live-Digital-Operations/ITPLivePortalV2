@@ -1,112 +1,105 @@
-<!-- <div class="form-container">
-  <div style="position: relative">
-    <div>
-      <mat-form-field style="width: 100%; height: 10%; margin-left: 0px;">
-        <input #searchInput matInput (keyup)="applyFilter(searchInput.value)" placeholder="🔍 Search" />
-      </mat-form-field>
+<div  style="display: flex; flex-wrap: wrap; margin-top: 25px; margin-left: 20px; padding: 30px; align-self: center;">
+  <H2>Logs</H2>
+  <button
 
 
-    <div class="search-container">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>filter_list</mat-icon>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-      <mat-form-field>
-        <mat-label> Influencer Filter</mat-label>
-        <mat-select placeholder="Influencer Filter" (selectionChange)="applyFilter1($event.value)">
-          <mat-option value="">All</mat-option>
-          <mat-option *ngFor="let option of influencers" [value]="option.name">{{
-            option.name
-            }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    type="button"
 
-      <mat-form-field>
-        <mat-label> Campaign Filter </mat-label>
-        <mat-select placeholder="Campaign Filter" (selectionChange)="applyFilter2($event.value)">
-          <mat-option value="">All</mat-option>
-          <mat-option *ngFor="let option of campaigns" [value]="option">{{
-            option
-            }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    style="width: 10%; margin-left: 2%"
+    (click)="
+      redirectToNewLog()
+    "
+  >
+    Add Log
+  </button>
+</div>
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" matSort>
 
-      <mat-form-field>
-        <mat-label> Contact Filter </mat-label>
-        <mat-select placeholder="Contact Filter" (selectionChange)="applyFilter3($event.value)">
-          <mat-option value="">All</mat-option>
-          <mat-option *ngFor="let option of talentUserNames" [value]="option">{{
-            option.name
-            }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-expansion-panel>
+    <ng-container matColumnDef="Campaign">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign</th>
+      <td mat-cell *matCellDef="let element;">{{ element.campaign }}</td>
+    </ng-container>
 
-    <button mat-raised-button  style="width: 15%; padding: 25px 5px; margin-bottom: 10px; margin-left: auto;"
-      routerLink="{{path['newRateLog']}}">
-      <mat-icon>add_circle_outline</mat-icon>
-      New Rate Log
-    </button>
+    <ng-container matColumnDef="Contact">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
+      <td mat-cell *matCellDef="let element">{{ getUsername(element.userID)}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.createdAt | date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Time_to_reply">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Reply time</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.time_to_reply }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type </th>
+      <td mat-cell *matCellDef="let element">{{ element.type | uppercase}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> View </th>
+      <td mat-cell *matCellDef="let element;  let i = index"> <mat-icon (click)="viewLog(i , element.type)"> remove_red_eye </mat-icon></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index"></tr>
+  </table>
+  <mat-paginator
+    [length]="dataSource?.data.length"
+    [pageSize]="5"
+    [pageSizeOptions]="[3, 5, 10, 25, 100]"
+    aria-label="Select page"
+  >
+  </mat-paginator>
+
+  <hr>
+  <!-- view package logs -->
+  <div class="package" *ngIf="package">
+    <div class="row">
+      <h2>Notes : {{log.notes}}</h2>
+      <h2> Rate: {{log.currency}}  {{log.rate }} </h2>
+
+
+
+    </div>
+    <hr>
+      <div *ngFor="let package of log.packages; " class="row">
+
+        <h4>{{package.platform}}</h4>
+         <h4>{{package.deliverable}}</h4>
+         <h4>{{package.quantity}}</h4>
+
+     </div>
+
     </div>
 
-    <div class="table-container">
-      <table mat-table #table [dataSource]="dataSource" matSort>
+    <!-- view single logs -->
+    <div class="single" *ngIf="single">
+    <div  class="row">
 
-        <ng-container matColumnDef="Influencer">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer</th>
-          <td mat-cell *matCellDef="let element">{{ element.Influencer }}</td>
-        </ng-container>
+      <h2>Notes : {{log.notes}}</h2>
 
-        <ng-container matColumnDef="Campaign">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign</th>
-          <td mat-cell *matCellDef="let element">{{ element.Campaign }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Platform">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Platform</th>
-          <td mat-cell *matCellDef="let element">{{ element.Platform }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Deliverable">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Deliverable</th>
-          <td mat-cell *matCellDef="let element">{{ element.Deliverable }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Currency">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Currency</th>
-          <td mat-cell *matCellDef="let element">{{ element.Currency }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Rate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate</th>
-          <td mat-cell *matCellDef="let element">{{ element.Rate }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Talent">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Talent</th>
-          <td mat-cell *matCellDef="let element">{{ element.Contact }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="Date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-          <td mat-cell *matCellDef="let element">{{ element.Date }}</td>
-        </ng-container>
-
-        <ng-container *ngIf="userRole == 'superadmin'" matColumnDef="Action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="accent" (click)="deleteLog(element.id)">Delete</button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
     </div>
-    <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[3, 5, 10, 25, 100]" aria-label="Select page">
-    </mat-paginator>
-  </div>
-</div> -->
+    <hr>
+    <div *ngFor="let item of log.logItems" class="row">
+      <h4>{{item.platform}}</h4>
+      <h4>{{item.deliverable}}</h4>
+      <h4>{{item.quantity}}</h4>
+      <h4>{{item.currency}}</h4>
+      <h4>{{item.rate}}</h4>
+
+    </div>
+    </div>
+
+
+</div>
+
+
+

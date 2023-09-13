@@ -9,6 +9,9 @@ import { UserService } from 'src/app/core/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { InfluencerIdComponent } from '../../../sharing/influencer-id/influencer-id.component';
 
 @Component({
   selector: 'app-influencer-logs',
@@ -25,6 +28,15 @@ export class InfluencerLogsComponent {
   protected userRole = this.userService.getRole();
   public path = PATH;
 
+
+  single : boolean = false;
+  package : boolean = false;
+
+  logs : LogModel[] = [];
+  log !: LogModel;
+
+  users : any;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @ViewChild(MatSort, {static: true}) sort!: MatSort;
@@ -34,12 +46,11 @@ export class InfluencerLogsComponent {
   displayedColumns: string[] = [
     'Influencer',
     'Campaign',
-    'Platform',
-    'Deliverable',
-    'Currency',
-    'Rate',
-    'Talent',
+    'Contact',
+    'Time_to_reply',
     'Date',
+    'type',
+    'Action',
   ];
 
   constructor(
@@ -47,102 +58,45 @@ export class InfluencerLogsComponent {
     private influencerService: InfluencerService,
     private userService: UserService,
     private toastrService: ToastrService,
-    private dialogService: ConfirmationDialogService
+    private dialogService: ConfirmationDialogService,
+    private router: Router,
+    private dialogRef: MatDialogRef<InfluencerIdComponent>,
+    private logService : LogService
   ) {}
 
-/*   ngAfterViewInit() {
-    this.extractColumnData();
-  }
 
-  ngOnInit(): void {
-    this.GetAllLogs();
-    this.GetInfluencerNames();
-    this.GetUserNames();
-    if (this.userRole == 'superadmin') {
-      this.displayedColumns.push('Action');
-    }
-  }
 
-  private extractColumnData(): void {
-    const renderedData = this.table['_data'];
-
-    for (let i = 0; i < renderedData?.length; i++) {
-      const row = renderedData[i];
-      this.campaigns.push(row.Campaign);
-    }
-  }
-
-  private GetAllLogs(): void {
-    this.service.getAllLogs().subscribe((item) => {
-      this.UserDetails = item;
-      this.dataSource = new MatTableDataSource<LogModel>(this.UserDetails);
+  public getAllLogs(): void {
+    this.service.getAllLogs().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
 
-  private GetInfluencerNames(): void {
-    this.influencerService.getInfluencerNames().subscribe((item) => {
-      this.influencers = item;
-    });
+  public viewLog(id: number, type : string): void {
+    this.single = false;
+    this.package = false;
+
+
+      this.log = this.logs[id];
+
+      if(type == 'single'){
+        this.single = true;
+      }
+
+      if(type == 'package'){
+        this.package = true;
+      }
+
   }
 
-  private GetUserNames(): void {
-    this.userService.getTalentUserIdNames().subscribe((item) => {
-      this.talentUserNames = item;
-    });
-  }
+  public getUsername(id: number): string {
+    return this.users[id];
+}
 
-  protected applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+public redirectToNewLog(): void {
 
-  protected applyFilter1(filterValue: string): void {
-    if (!filterValue) {
-      filterValue = '';
-    }
-
-    this.dataSource.filterPredicate = (data: LogModel, filter: string) => {
-      return data.Influencer.trim().toLowerCase() === filter;
-    };
-
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  protected applyFilter2(filterValue: string): void {
-    if (!filterValue) {
-      filterValue = '';
-    }
-
-    this.dataSource.filterPredicate = (data: LogModel, filter: string) => {
-      return data.Campaign.trim().toLowerCase() === filter;
-    };
-
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  protected applyFilter3(filterValue: string): void {
-    if (!filterValue) {
-      filterValue = '';
-    }
-
-    this.dataSource.filterPredicate = (data: LogModel, filter: string) => {
-      return data.Campaign.trim().toLowerCase() === filter;
-    };
-
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  protected deleteLog(id: any): void {
-    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
-      .subscribe(result => {
-        if (result === true) {
-          this.toastrService.success('Deleted Successfully!');
-          this.service.deleteLog(id).subscribe((item) => {
-            this.GetAllLogs();
-          });
-        }
-      });
-
-  } */
+  this.router.navigate([this.path['newRateLog']]);
+}
 }
