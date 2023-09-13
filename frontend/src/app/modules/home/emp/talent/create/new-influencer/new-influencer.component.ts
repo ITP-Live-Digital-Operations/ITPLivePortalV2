@@ -80,24 +80,24 @@ export class NewInfluencerComponent {
       }),
       //STATISTICS
       statistics: this.formBuilder.group({
-        AudienceMalePer: [''],
-        AudienceFemalePer: [''],
+        AudienceMalePer: [],
+        AudienceFemalePer: [],
 
-        AgeGroup1317: [''],
-        AgeGroup1824: [''],
-        AgeGroup2534: [''],
-        AgeGroup3544: [''],
-        AgeGroup4554: [''],
-        AgeGroup55: [''],
+        AgeGroup1317: [],
+        AgeGroup1824: [],
+        AgeGroup2534: [],
+        AgeGroup3544: [],
+        AgeGroup4554: [],
+        AgeGroup55: [],
 
         AudienceTopCountries1: [''],
-        AudienceTopCountries1Percentage: [''],
+        AudienceTopCountries1Percentage: [],
 
         AudienceTopCountries2: [''],
-        AudienceTopCountries2Percentage: [''],
+        AudienceTopCountries2Percentage: [],
 
         AudienceTopCountries3: [''],
-        AudienceTopCountries3Percentage: [''],
+        AudienceTopCountries3Percentage: [],
       }),
       //LICENSES
       KSALicense: [''],
@@ -146,14 +146,17 @@ export class NewInfluencerComponent {
             ...this.processFormGroups(control),
           };
         } else if (control instanceof FormControl) {
-            if ((key.endsWith('Followers') || key.endsWith('Number')) || control.value === null ){
-              valuesObject[key] = null;
+            if (control.value === '') {
+                valuesObject[key] = null;  // if the value is an empty string, set it to null
+            } else if ((key.endsWith('Followers') || key.endsWith('Number')) && typeof control.value === 'string') {
+                valuesObject[key] = parseInt(control.value, 10) || null;  // convert to integer or set to null if NaN
             } else {
-            valuesObject[key] = control.value;
+                valuesObject[key] = control.value;
             }
         }
       });
     }
     return valuesObject;
-  }
+}
+
 }
