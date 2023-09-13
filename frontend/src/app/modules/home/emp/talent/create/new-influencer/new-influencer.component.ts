@@ -51,31 +51,31 @@ export class NewInfluencerComponent {
       //SOCIALS
       socials: this.formBuilder.group({
         InstagramHandle: [''],
-        InstagramFollowers: [''],
+        InstagramFollowers: [],
         InstagramLink: [''],
 
         TiktokHandle: [''],
-        TiktokFollowers: [''],
+        TiktokFollowers: [],
         TiktokLink: [''],
 
         SnapchatHandle: [''],
-        SnapchatFollowers: [''],
+        SnapchatFollowers: [],
         SnapchatLink: [''],
 
         TwitterHandle: [''],
-        TwitterFollowers: [''],
+        TwitterFollowers: [],
         TwitterLink: [''],
 
         FacebookHandle: [''],
-        FacebookFollowers: [''],
+        FacebookFollowers: [],
         FacebookLink: [''],
 
         YoutubeHandle: [''],
-        YoutubeFollowers: [''],
+        YoutubeFollowers: [],
         YoutubeLink: [''],
 
         TwitchHandle: [''],
-        TwitchFollowers: [''],
+        TwitchFollowers: [],
         TwitchLink: [''],
       }),
       //STATISTICS
@@ -105,7 +105,7 @@ export class NewInfluencerComponent {
       //AGENCY INFO
       agencyInfo: this.formBuilder.group({
         AgencyContactPerson: [''],
-        AgencyNumber: [''],
+        AgencyNumber: [],
         AgencyEmail: ['', [Validators.email]],
       }),
       //EXTRA INFO
@@ -121,7 +121,7 @@ export class NewInfluencerComponent {
     const formValues = this.processFormGroups(this.newInfluencerForm);
     formValues.updatedBy = this.userService.getID();
 
-    console.log(formValues);
+    console.log({...formValues});
 
     this.service.addInfluencer({ ...formValues }).subscribe((res) => {
       this.data = res;
