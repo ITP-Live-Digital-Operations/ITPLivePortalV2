@@ -206,6 +206,7 @@ export class ViewBriefComponent {
   editAssignedExecs(): void {
     const dialogRef = this.dialog?.open(AssignTaskComponent, {
       width: '50%',
+      height: '90%',
       data: { task : this.task}
     });
     dialogRef.afterClosed().subscribe((result) => {
