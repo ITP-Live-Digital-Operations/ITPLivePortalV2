@@ -21,5 +21,6 @@ router.route('/getNotificationById/:id')
 
 router.route('/getUnreadNotificationCountByUserId/:id')
             .get(asyncHandler(NotificationController.getUnreadNotificationCountByUserId));
-
+router.route('/clearAllNotificationsById/:id')
+            .get(asyncHandler(NotificationController.clearAllNotificationsById));
 module.exports = router;

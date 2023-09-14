@@ -65,6 +65,45 @@ exports.addUserToTask = (req, res) => {
     )
 }
 
+exports.updateUsersToTask = (req, res) => {
+    const  taskId = req.params.id;
+    const { userIds} = req.body;
+    console.log(userIds);
+    console.log(taskId);
+    usertasks.destroy({
+        where: {
+            taskId: taskId
+        }
+    }).then(data => {
+        userIds.forEach(userId => {
+            usertasks.create({
+                userId: userId,
+                taskId: taskId
+            }).then(data => {
+                res.status(201).send({
+                    status: 'success',
+                    data: data
+                })
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while adding user to task."
+                });
+            }
+            )
+        })
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while adding user to task."
+        });
+    }
+    )
+}
+
+
 /* exports.getUserTasks = (req, res) => {
     Task.findAll({
         where: {
@@ -111,11 +150,11 @@ exports.getUserTasks = (req, res) => {
 }
 
 exports.updateStatus = (req, res) => {
-    const { assigned_to , id} = req.body;
-    console.log(req.body);
+    const { id} = req.body;
+    
     Task.update(
         { status: 'In Progress' },
-        { where: { assigned_to: assigned_to, status: 'Not Started', id: id } }
+        { where: {status: 'Not Started', id: id } }
     ).then(data => {
         res.status(200).send({
             status: 'success',

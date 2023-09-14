@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SalesService } from 'src/app/core/services/sales.service';
@@ -10,6 +10,9 @@ import { TaskModel } from 'src/app/core/interfaces/task.Model';
 import * as XLSX from 'xlsx';
 import { MainTableComponent } from './main-table/main-table.component';
 import { ToastrService } from 'ngx-toastr';
+
+import { AssignTaskComponent } from './assign-task/assign-task.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-view-brief',
@@ -55,7 +58,9 @@ export class ViewBriefComponent {
     private taskService: TaskService,
     private location: Location,
     private cdRef: ChangeDetectorRef,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private dialog: MatDialog,
+
   ) {
     this.progressForm = this.formBuilder.group({
       Progress: ['', Validators.required],
@@ -99,7 +104,8 @@ export class ViewBriefComponent {
         .subscribe((data: any) => {
           this.brief = data;
           this.assigned = data.data.assigned;
-
+          console.log('assigned');
+          console.log(this.assigned);
           this.getTask(this.brief.data.id);
           this.brief_id = this.brief.data.id;
           this.getSalesPerson(this.brief.data.CreatedbyID);
@@ -170,9 +176,8 @@ export class ViewBriefComponent {
 
   private getTask(id: number): void {
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
-      console.log('task data');
-      console.log(data.data);
       this.task = data.data;
+      console.log(this.task);
       this.progressForm.setControl(
         'Progress',
         new FormControl(this.task?.progress)
@@ -196,5 +201,17 @@ export class ViewBriefComponent {
       this.location.go(this.location.path());
       window.location.reload();
     }
+  }
+
+  editAssignedExecs(): void {
+    const dialogRef = this.dialog?.open(AssignTaskComponent, {
+      width: '50%',
+      data: { task : this.task}
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        window.location.reload();
+      }
+    });
   }
 }

@@ -50,8 +50,6 @@ export class AllInfoComponent {
 
   private getSalesFiles() {
     this.fileService.getSalesBriefFiles(this.briefId).subscribe(data => {
-      console.log("sales files:");
-      console.log(data);
       this.dataSource = new MatTableDataSource(data.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

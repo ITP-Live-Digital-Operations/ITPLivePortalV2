@@ -4,20 +4,34 @@
     padding: 20px;
     border-radius: 0px;
   }
-  
+
   .notification-box {
     /* Giving some space around each notification box */
     margin-bottom: 20px;
+
+
   }
-  
+
+  .flex{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    overflow-x: hidden;
+  }
+
   .notification-box div {
     /* Adding border and shadow to each notification */
     border: 1px solid #ccc;
     padding: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
+
+
   }
-  
+
+
+
   .notification-box a {
     /* Making the link not appear like a typical link */
     text-decoration: none;
@@ -29,7 +43,7 @@
     background-color: transparent!important;
   }
 
- 
+
 
   .notification-box {
     background-color: transparent;
@@ -39,19 +53,17 @@
     text-align: left;
     color: white;
   }
-  
+
   .notification-box a small {
     /* Aligning the time to the right */
     text-align: right;
     color: white;
   }
-  
+
   button {
     /* Styling the button */
     background-color: transparent;
     border: 0px solid;
     margin-bottom: 2%;
-    margin-left: 94%;
     color: red;
   }
-    

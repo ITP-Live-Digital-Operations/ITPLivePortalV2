@@ -141,15 +141,17 @@
           *matRowDef="let row; columns: displayedColumns"
         ></tr>
       </ng-container>
-      <ng-container *ngIf="userRole == 'talent' && privilegeLevel > 7">
+<!--       <ng-container *ngIf="userRole == 'talent' && privilegeLevel > 7">
         <tr
           mat-row
           cdkDrag
           *matRowDef="let row; columns: displayedColumns"
         ></tr>
-      </ng-container>
-      <ng-container *ngIf="userRole == 'talent' && privilegeLevel < 7">
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </ng-container> -->
+      <ng-container *ngIf="userRole == 'talent'">
+        <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"></tr>
       </ng-container>
     </table>
     <mat-paginator

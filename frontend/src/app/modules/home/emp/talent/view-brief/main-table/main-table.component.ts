@@ -23,7 +23,7 @@ export class MainTableComponent {
   userId: number = this.source.userId;
 
   @Input()
-  budgetSheetId!: number;
+  budgetSheetId : number = this.source.budgetSheetId;
 
   @Input()
   brief: any = this.source.brief;
@@ -33,6 +33,9 @@ export class MainTableComponent {
 
   @Input()
   assignedUser_id : any = this.source.assignedUser_id;
+
+  @Output()
+  childEvent = new EventEmitter<string>();
 
   fileName = '';
   private influencers: InfluencerModel[] = [];
@@ -48,6 +51,9 @@ export class MainTableComponent {
     'Youtube',
   ];
   currencies = ['SAR', 'AED'];
+
+  fileToUpload !: File
+  progress = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -226,4 +232,49 @@ export class MainTableComponent {
       }
     }
   }
+
+
+  transferedFile(file: File): void {
+    this.fileToUpload = file;
+
+  }
+
+  public uploadFileXlsx(): void {
+    if (this.fileToUpload) {
+
+      this.fileService.uploadFile(this.fileToUpload, this.brief?.data.id, this.userId, Department['TALENT'])
+        .subscribe(
+          (data) => {
+            // On successful upload, delete the old budget sheet if exists
+            if (this.budgetSheetId != null) {
+              this.fileService.deleteBudgetSheetFile(this.budgetSheetId)
+                .subscribe(
+                  (deleteData) => {
+                    this.toastrService.success('File uploaded and old budget sheet deleted successfully!');
+                    // Instead of reloading, consider fetching data or updating the component's state as required
+                    // For the sake of this example, I'll leave it commented out:
+                    // this.fetchData(); or this.updateState();
+                    this.dialogRef.close(true);
+
+                  },
+                  (deleteError) => {
+                    this.toastrService.error('Error deleting old budget sheet!');
+                    console.error(deleteError);
+                  }
+                );
+            } else {
+              this.toastrService.success('File uploaded successfully!');
+              // Similar as above, consider updating state or fetching data
+              // this.fetchData(); or this.updateState();
+              this.dialogRef.close(true);
+            }
+          },
+          (uploadError) => {
+            this.toastrService.error('File upload error!');
+            console.error(uploadError);
+          }
+        );
+    }
+    }
+
 }

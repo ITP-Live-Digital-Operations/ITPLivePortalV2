@@ -58,7 +58,7 @@ app.use(helmet.contentSecurityPolicy({
       defaultSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000",  ],
       connectSrc: ["'self'", "https://cdn.jsdelivr.net", 'http://localhost:3000',],
       scriptSrc: ["'self'", "https://cdn.jsdelivr.net", "http://localhost:3000", ],
-      imgSrc: ["'self'"],
+      imgSrc: ["'self'", "data:"],
     }
   }));
 

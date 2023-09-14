@@ -1,6 +1,10 @@
 <div class="notification-container">
+  <div class="flex">
+    <button (click)="clear()"> Clear All</button>
+    <button (click)="onClose()"><mat-icon>clear</mat-icon></button>
+  </div>
   <div class="notification-box">
-    <button   (click)="onClose()"><mat-icon>clear</mat-icon></button>
+
     <div *ngFor="let notification of notifications?.data">
       <a
         href="{{ notification?.link }}"
@@ -10,6 +14,6 @@
         <small>{{ timeSince(notification?.createdAt) }} ago</small>
       </a>
     </div>
-    
+
   </div>
 </div>

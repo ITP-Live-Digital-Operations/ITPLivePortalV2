@@ -60,14 +60,18 @@ export class InfluencerLogsComponent {
     private toastrService: ToastrService,
     private dialogService: ConfirmationDialogService,
     private router: Router,
-    private dialogRef: MatDialogRef<InfluencerIdComponent>,
     private logService : LogService
   ) {}
 
 
+  ngOnInit(): void {
+    this.getAllLogs();
+  }
 
   public getAllLogs(): void {
     this.service.getAllLogs().subscribe((data) => {
+      console.log(data);
+      this.logs = data;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

@@ -147,3 +147,45 @@ exports.getUnreadNotificationCountByUserId = (req, res) => {
 
 exports.deleteAllNotifications = (req, res) => {
 }
+
+exports.clearAllNotificationsById = (req, res) => {
+    const id = req.params.id;
+    Notification.destroy({
+        where: {
+            user_id: id
+        }
+    }).then((data) => {
+        res.status(200).json({
+            message: "Notifications cleared successfully",
+            data: data
+        })
+    }).catch((err) => {
+        res.status(500).json({
+            message: "Error occured while clearing notifications",
+            error: err
+        })
+    })
+}
+
+exports.markAllNotificationsAsReadById = (req, res) => {
+    const id = req.params.id;
+    Notification.update({
+        read : 1
+    }, {
+        where: {
+            user_id: id
+        }
+    }).then((data) => {
+        res.status(200).json({
+            message: "Notifications marked as read successfully",
+            data: data
+        })
+    }
+    ).catch((err) => {
+        res.status(500).json({
+            message: "Error occured while marking notifications as read",
+            error: err
+        })
+    }
+    )
+}

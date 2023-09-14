@@ -245,7 +245,14 @@ export class SheetsBriefComponent {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
       const url = window.URL.createObjectURL(blob);
-      window.open(url);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;  // Set the desired filename here
+      document.body.appendChild(a);  // Add to the DOM
+      a.click();  // Trigger a click event to start the download
+      document.body.removeChild(a);  // Clean up: remove the anchor from the DOM
+      window.URL.revokeObjectURL(url);  // Clean up: release the object URL
     });
   }
 
@@ -253,7 +260,14 @@ export class SheetsBriefComponent {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
       const url = window.URL.createObjectURL(blob);
-      window.open(url);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;  // Set the desired filename here
+      document.body.appendChild(a);  // Add to the DOM
+      a.click();  // Trigger a click event to start the download
+      document.body.removeChild(a);  // Clean up: remove the anchor from the DOM
+      window.URL.revokeObjectURL(url);  // Clean up: release the object URL
     });
   }
 
@@ -261,7 +275,14 @@ export class SheetsBriefComponent {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
       const blob = new Blob([data], {type: 'application/pdf'});
       const url = window.URL.createObjectURL(blob);
-      window.open(url);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;  // Set the desired filename here
+      document.body.appendChild(a);  // Add to the DOM
+      a.click();  // Trigger a click event to start the download
+      document.body.removeChild(a);  // Clean up: remove the anchor from the DOM
+      window.URL.revokeObjectURL(url);  // Clean up: release the object URL
     });
   }
 

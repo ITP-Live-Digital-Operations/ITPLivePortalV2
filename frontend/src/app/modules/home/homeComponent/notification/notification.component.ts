@@ -1,7 +1,9 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
+
 
 @Component({
   selector: 'app-notification',
@@ -12,11 +14,15 @@ export class NotificationComponent {
 
   public notifications: any;
 
+
+
   @Output() closeModal: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private notificationService: NotificationService,
     private dialogRef: DialogRef<NotificationComponent>,
+    private dialogService: ConfirmationDialogService,
+
     @Inject(MAT_DIALOG_DATA) public source: any
   ) {
     this.notificationService
@@ -68,5 +74,19 @@ export class NotificationComponent {
       return interval + ' minutes';
     }
     return Math.floor(seconds) + ' seconds';
+  }
+
+
+
+  clear(): void {
+    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to clear all notifications?')
+    .subscribe(result => {
+      if (result === true) {
+        this.notificationService.clearAllNotificationsById(this.source.userId).subscribe((res) => {
+          this.notifications = [];
+        });
+
+      }
+    });
   }
 }

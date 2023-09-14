@@ -39,4 +39,10 @@ getUnreadNotificationCountByUserId(userId: any) {
   return this.http.get(`${this.notificationApiUrl}/getUnreadNotificationCountByUserId/${userId}`);
 }
 
+clearAllNotificationsById(userId: any) {
+  return this.http.get(`${this.notificationApiUrl}/clearAllNotificationsById/${userId}`);
+}
+
+
+
 }

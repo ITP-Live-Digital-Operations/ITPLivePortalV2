@@ -158,6 +158,9 @@ exports.downloadFile = (req, res) => {
       console.log(`file name: ${data.originalname}`);
       const file = path.resolve(__dirname, "../../uploads/", data.filename);
       console.log(`file path: ${file}`);
+      const encodedFilename = encodeURIComponent(data.originalname);
+      res.setHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' + encodedFilename);
+
       res.sendFile(file);
     })
     .catch((err) => {
@@ -238,6 +241,9 @@ exports.sendFile = (req, res) => {
   File.findByPk(id)
     .then((data) => {
       const file = path.resolve(__dirname, "../../uploads/", data.filename);
+      
+      const encodedFilename = encodeURIComponent(data.originalname);
+      res.setHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' + encodedFilename);
       res.sendFile(file);
     })
     .catch((err) => {

@@ -101,4 +101,8 @@ export class UserService {
   resetPassword(id :any) {
     return this.http.get(`${this.authApiURL}/resetPassword/${id}`);
   }
+
+  deleteUser(id: any) {
+    return this.http.delete(`${this.authApiURL}/deleteUser/${id}`);
+  }
 }

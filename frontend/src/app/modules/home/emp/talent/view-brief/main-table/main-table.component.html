@@ -99,3 +99,9 @@
   </button>
 </form>
 </div>
+
+
+<app-upload-files (fileUploaded)="transferedFile($event)" ></app-upload-files>
+
+<button mat-raised-button (click)="uploadFileXlsx()" >Upload File</button>
+

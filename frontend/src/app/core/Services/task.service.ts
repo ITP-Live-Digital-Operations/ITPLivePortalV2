@@ -53,4 +53,8 @@ export class TaskService {
   updateProgress(id: number, input: any) {
     return this.http.post(`${this.taskApiURL}/updateProgress/${id}`, input);
   }
+
+  updateUsersToTask(id: number, input: any) {
+    return this.http.post(`${this.taskApiURL}/updateUsersToTask/${id}`, input);
+  }
 }

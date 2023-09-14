@@ -72,27 +72,16 @@ export class AllBriefsComponent {
 
   private getAllBriefs(): void {
     this.salesService.getAllBriefsWithTask().subscribe((data: any) => {
-      console.log(data);
+
       this.briefDetails = data;
       this.briefDetails.data.sort((a: any, b: any) => {
-        if (a.Status === 'InActive' && b.Status !== 'InActive') return 1;
-        if (b.Status === 'InActive' && a.Status !== 'InActive') return -1;
+    // Sort by createdAt
+    if (a.createdAt > b.createdAt) return -1;
+    if (a.createdAt < b.createdAt) return 1;
 
-        // If statuses are different, sort by status
-        if (a.Status !== b.Status) return a.Status.localeCompare(b.Status);
-
-        // If statuses are the same, sort by priority
-        return a.Priority - b.Priority;
+    // If createdAt is equal, sort by priority
+    return a.Priority - b.Priority;
       });
-      // Re-adjust the priorities based on the sorted order and prepare the update data
-      const updatedPriorities = this.briefDetails.data.map(
-        (item: any, index: number) => {
-          return { id: item.id, newPriority: index + 1 };
-        }
-      );
-
-      // Send updated priorities to the backend
-      /* this.salesService.updatePriorities(updatedPriorities).subscribe(); */
 
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
       this.dataSource.filterPredicate = (data: any, filter: string) => {
@@ -128,8 +117,6 @@ export class AllBriefsComponent {
       this.router.navigate([`${this.path['viewBrief'] + id}`]);
     }
   }
-
-
 
 
   public drop(event: CdkDragDrop<string[]>): void {

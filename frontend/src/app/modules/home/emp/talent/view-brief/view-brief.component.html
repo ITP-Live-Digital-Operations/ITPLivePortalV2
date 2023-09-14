@@ -7,13 +7,13 @@
           <form [formGroup]="progressForm" (ngSubmit)="submitForm()" autocomplete="off">
             <app-update-activate (submitEvent)="submitForm()" [brief]="brief" [brief_id]="brief_id"></app-update-activate>
           </form>
+          <button mat-raised-button *ngIf=" privilege_level > 7 && assigned" style="margin-left: 4%" (click)="editAssignedExecs()"> Edit Assigned Execs </button>
         </div>
       </div>
     </div>
 
     <div *ngIf="privilege_level > 7 && !assigned">
       <app-assign-task
-      [dataSource]="dataSource"
       [brief]="brief"
       [brief_id]="brief_id"
       ></app-assign-task>

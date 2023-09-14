@@ -39,7 +39,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
 
         <ng-container matColumnDef="Select" >
-          <th mat-header-cell *matHeaderCellDef sticky> Select </th>  
+          <th mat-header-cell *matHeaderCellDef sticky> Select </th>
           <td mat-cell *matCellDef="let element">
             <mat-checkbox [formControl]="element.selected"></mat-checkbox>
           </td>
@@ -47,6 +47,7 @@
 
       </table>
     </div>
-    <button mat-raised-button color="primary" (click)="assign()">Assign</button>
+    <button mat-raised-button *ngIf=" task == null" color="primary" (click)="assign()">Assign</button>
+    <button mat-raised-button *ngIf=" task != null" color="primary" (click)="update()">Update</button>
   </form>
   </div>

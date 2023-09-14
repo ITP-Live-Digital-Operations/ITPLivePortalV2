@@ -1,31 +1,31 @@
 table {
     width: 100%;
-  
+
   }
-  
+
   .warn {
     background-color: red;
     color: white;
   }
-  
+
   .table-container {
     max-height: auto;
     overflow-y: hidden;
-  
-   
+
+
   }
-  
-  
+
+
   .searchInput {
     color: white!important;
-   
+
   }
-  
-  
+
+
   .matInput {
     color: white
   }
-  
+
   .search-container {
     display: flex;
     left: 0;
@@ -33,30 +33,30 @@ table {
     z-index: 1;
     position: sticky;
   }
-  
+
   .mat-expansion-panel{
     margin-top: 12px;
     background-color: transparent;
     border-radius: 0px;
     box-shadow: 0px 0px 0px 0px;
-    
-  
+
+
   }
-  
+
   .mat-expansion-panel-header {
     border-bottom: 1px solid white;
    background-color: #2C393F;
    width: min-content;
    margin-bottom: 10px;
-   
+
   }
-  
+
   .mat-expansion-panel-header-title{
     color: white;
   }
-  
-  
-  
+
+
+
   .form-container {
     max-height: auto;
     overflow-y: hidden;
@@ -67,10 +67,86 @@ table {
     display: flex;
     flex-wrap: wrap;
   }
-  
+
   @media (max-width: 1440px), (max-height: 900px) {
-    .mat-mdc-raised-button{ 
+    .mat-mdc-raised-button{
      font-size: 11px;
     }
   }
-  
+
+
+  table {
+    max-height: auto;
+    justify-content: center;
+  }
+
+  .table-container {
+    padding: 20px 70px;
+  }
+
+  h2 {
+    margin-top: 10px !important;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+  }
+
+  /* customize the scroll bar thumb */
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+  }
+
+  /* customize the scroll bar thumb on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+
+  /* customize the scroll bar width and height */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .single {
+    color: white;
+    margin-top: 2%;
+  }
+
+  .package {
+    color: white;
+    margin-top: 2%;
+  }
+
+  .row {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* optional: to space out the <h2> tags evenly */
+  }
+
+  .row h3 {
+    margin: 0; /* removes default margins */
+    flex: 1; /* ensures equal width for all h2 */
+    text-align: center; /* centers the text within each h2 */
+  }
+
+  .row h2 {
+    margin: 0; /* removes default margins */
+    flex: 1; /* ensures equal width for all h2 */
+    text-align: center; /* centers the text within each h2 */
+  }
+
+  .row h4 {
+    margin: 0; /* removes default margins */
+    flex: 1; /* ensures equal width for all h2 */
+    text-align: center; /* centers the text within each h2 */
+  }
+
+  .row h5 {
+    margin: 0; /* removes default margins */
+    flex: 1; /* ensures equal width for all h2 */
+    text-align: center; /* centers the text within each h2 */
+  }

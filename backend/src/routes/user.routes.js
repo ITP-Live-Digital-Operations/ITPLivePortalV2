@@ -38,5 +38,7 @@ router.route('/resetCount/:id')
 router.route('/resetPassword/:id') 
     .get(asyncHandler(userController.resetPassword));
 
+router.route('/deleteUser/:id')
+    .delete(asyncHandler(userController.deleteUser));
 
 module.exports = router;

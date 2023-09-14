@@ -225,3 +225,21 @@ exports.resetPassword =  (req, res) => {
         )
     })
 }
+
+
+exports.deleteUser =  (req, res) => {
+    const id = req.params.id;
+    User.destroy({where: {id: id}}).then( (data) => {
+        res.status(200).send({
+            status: "success",
+        });
+    }
+    )
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+};

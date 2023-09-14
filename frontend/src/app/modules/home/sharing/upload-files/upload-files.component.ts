@@ -12,6 +12,9 @@ export class UploadFilesComponent {
   @Output()
   filesUploaded = new EventEmitter<File[]>();
 
+  @Output()
+  fileUploaded = new EventEmitter<File>();
+
   constructor(private toastrService: ToastrService) {}
   files: FileWithProgress[] = [];
 
@@ -73,7 +76,9 @@ export class UploadFilesComponent {
       } else {
         this.toastrService.error('File type not supported', 'Error');
       }
+
     }
+    this.fileUploaded.emit(this.files[0]);
     this.uploadFilesSimulator(0);
   }
 

@@ -76,7 +76,7 @@ export class PersonTasksComponent {
   public viewedTask(id: any): void {
     if (this.privilegeLevel < 7) {
       this.taskService
-        .updateStatus({ assigned_to: this.userID, id: id })
+        .updateStatus({ id: id })
         .subscribe((data: any) => {});
     }
 
