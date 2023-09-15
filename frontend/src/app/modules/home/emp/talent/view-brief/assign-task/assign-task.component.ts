@@ -143,15 +143,30 @@ export class AssignTaskComponent {
         );
     }
   }
+
+
+
   update(): void {
     if (this.assignForm.valid) {
       this.selectedIds = [];
+
+      const weight = this.assignForm.value.Weight;
+      const deadline = this.assignForm.value.Deadline;
 
       for (const item of this?.dataSource) {
         if (item.selected.value) {
           this.selectedIds.push(item.id);
         }
       }
+      this.taskService.updateTask(this.task.id, { weight: weight, deadline: deadline}).subscribe(
+        (data: any) => {
+          console.log(data);
+        },
+        (error) => {
+          console.error('Error:', error);
+        }
+      );
+
     this.taskService.updateUsersToTask(this.task.id, {userIds : this.selectedIds}).subscribe(
       (data: any) => {
         console.log(data);
@@ -160,7 +175,7 @@ export class AssignTaskComponent {
         for( let i = 0 ; i < this.selectedIds.length ; i++){
           this.notificationService.createNotification(this.selectedIds[i], {
             message: 'A task has been assigned to you!',
-            link: `${this.path['viewBrief'] + this.brief_id}`,
+            link: `${this.path['viewBrief'] + this.source.briefID}`,
           }).subscribe((data: any) => {});
         }
         this.dialogRef.close(true);
@@ -168,10 +183,7 @@ export class AssignTaskComponent {
       (error) => {
         console.error('Error:', error);
       }
-    );
-    }
-
-
+    )};
   }
 
   private getTalentTaskWeights(): void {

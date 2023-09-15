@@ -336,7 +336,7 @@ exports.activateTask = (req, res) => {
 exports.updateProgress = (req, res) => {
     const id = req.params.id;
     console.log(req.body);
-    const { progress } = req.body;
+    const {progress}  = req.body;
     Task.update(
         { progress: progress },
         { where: { id: id } }
@@ -369,6 +369,28 @@ exports.deleteTask = (req, res) => {
         res.status(500).send({
             message:
                 err.message || "Some error occurred while deleting the Task."
+        });
+    }
+    )
+}
+
+exports.updateTask = (req, res) => {
+    const id = req.params.id;
+    const { weight , deadline } = req.body;
+
+    Task.update(
+        { weight: weight, deadline: deadline },
+        { where: { id: id } }
+    ).then(data => {
+        res.status(200).send({
+            status: 'success',
+        })
+    }
+    )
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while updating the Task."
         });
     }
     )

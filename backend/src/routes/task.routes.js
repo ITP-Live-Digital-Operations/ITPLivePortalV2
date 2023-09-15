@@ -38,4 +38,8 @@ router.route('/updateProgress/:id')
 
 router.route('/updateUsersToTask/:id')
     .post(asyncHandler(TaskController.updateUsersToTask));
+
+router.route('/updateTask/:id')
+    .post(asyncHandler(TaskController.updateTask));
+
 module.exports = router; 

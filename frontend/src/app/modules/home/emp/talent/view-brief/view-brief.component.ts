@@ -207,7 +207,7 @@ export class ViewBriefComponent {
     const dialogRef = this.dialog?.open(AssignTaskComponent, {
       width: '50%',
       height: '90%',
-      data: { task : this.task}
+      data: { task : this.task, briefID : this.brief_id}
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
