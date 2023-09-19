@@ -42,4 +42,13 @@ router.route('/updateUsersToTask/:id')
 router.route('/updateTask/:id')
     .post(asyncHandler(TaskController.updateTask));
 
+router.route('/initiateTaskHistory/:id')
+    .get(asyncHandler(TaskController.initiateTaskHistory));
+
+router.route('/roundFeedback/:id')
+    .post(asyncHandler(TaskController.roundFeedback));
+
+router.route('/addRoundtoTask/:id')
+    .get(asyncHandler(TaskController.addRoundtoTask));
+
 module.exports = router; 

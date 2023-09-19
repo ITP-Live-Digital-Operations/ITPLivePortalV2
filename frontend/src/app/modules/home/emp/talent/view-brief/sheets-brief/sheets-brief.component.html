@@ -136,7 +136,7 @@
 </table>
 
 <button
-  *ngIf="budgetSheet && presentation && assignedUser_id.includes(userId)"
+  *ngIf="assignedUser_id.includes(userId) && (budgetSheet || presentation || pdf)"
   mat-raised-button
   color="primary"
   (click)="salesBriefReady()"

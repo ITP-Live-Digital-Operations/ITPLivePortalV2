@@ -1,0 +1,32 @@
+<div class="round-container">
+  <h1 *ngIf="task">
+    Round Number : {{ task.History[task.History.length - 1].round }}
+  </h1>
+
+  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Feedback Type</mat-label>
+      <mat-select formControlName="feedback">
+        <mat-option *ngFor="let option of feedbackOptions" [value]="option">{{
+          option
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Comments</mat-label>
+      <textarea matInput formControlName="notes" rows="4"></textarea>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!feedbackForm.valid"
+    >
+      Submit Feedback
+    </button>
+  </form>
+  <h1 style="margin-top: 2%">Round History</h1>
+  <app-round-history [task]="task"></app-round-history>
+</div>

@@ -1,27 +1,7 @@
 <div class="form-container">
   <!-- *ngIf="user_id === task?.assigned_to" -->
   <div>
-    <form [formGroup]="form" autocomplete="off">
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>Progress</mat-label>
-          <mat-select formControlName="Progress">
-            <mat-option
-              *ngFor="let num of ['Submitted', 'In Progress', 'Waiting for Feedback', 'Submitted & Rejected']"
-              [value]="num"
-              >{{ num }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button
-          style="height: 2em; margin-bottom: 2%; width: 15em"
-          mat-raised-button
-
-          (click)="emitSubmit()">
-          Update Progress
-        </button>
-      </div>
-    </form>
+    <h1> Progress:  </h1> <h2> {{task.progress}}</h2>
     <h1
       *ngIf="brief?.data.Status == 'Active'"
       style="color: green; font-size: 2em; margin-top: 10%;"

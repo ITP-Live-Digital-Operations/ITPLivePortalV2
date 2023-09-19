@@ -93,8 +93,6 @@ exports.getAllAssignedBriefs = (req, res) => {
 }
 
 
-
-
 exports.ViewedByTalent = (req, res) => {
     SalesBrief.update({ViewedByTalent: 1}, {
         where: {
@@ -387,8 +385,6 @@ exports.setPriority = (req, res) => {
     }
     );
 }
-
-
 
 
 exports.updatePriorities = (req, res) => {

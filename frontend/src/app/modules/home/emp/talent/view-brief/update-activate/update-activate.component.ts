@@ -18,9 +18,12 @@ export class UpdateActivateComponent {
   @Input()
   brief_id: any;
 
+  @Input()
+  task: any;
+
   public form!: FormGroup;
 
-  @Output() 
+  @Output()
   submitEvent = new EventEmitter<void>();
 
   constructor(

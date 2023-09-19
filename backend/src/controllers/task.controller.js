@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Task = model.Task
 const User = model.User
 const usertasks = model.UserTasks
-const SalesBrief = model.SalesBrief
+const taskHistory = model.TaskHistory
 const { Op } = require('sequelize');
 
 
@@ -12,6 +12,10 @@ const { Op } = require('sequelize');
 exports.create = (req, res) => {
     Task.create(req.body)
         .then(data => {
+            taskHistory.create({
+                task_id: data.id,
+            })
+
             res.status(201).send({
                 status: "success",
                 data: data
@@ -23,6 +27,7 @@ exports.create = (req, res) => {
                     err.message || "Some error occurred while creating the Task."
             });
         });
+
 }
 
 exports.getUnfinishedTasks = (req, res) => {
@@ -278,6 +283,10 @@ exports.updateStatusToComplete = (req, res) => {
                 model: User,
                 as: 'assignedUsers',
                 attributes: ['id', 'name'],
+            },
+            {
+                model: taskHistory,
+                as: 'History',
             }
         ],
             
@@ -387,6 +396,86 @@ exports.updateTask = (req, res) => {
         })
     }
     )
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while updating the Task."
+        });
+    }
+    )
+}
+
+
+exports.addRoundtoTask = (req, res) => {
+    const task_id = req.params.id;
+
+    taskHistory.findAll({
+        where: {
+            task_id: task_id
+        },
+        order: [
+            ['round', 'DESC']
+        ],
+        limit: 1
+    }).then(data => {
+        const round = data[0].round + 1;
+        taskHistory.create({
+            task_id: task_id,
+            round: round
+        }).then(data => {
+            res.status(201).send({
+                status: 'success',
+                data: data
+            })
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while adding round to task."
+            });
+        }
+        )
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while adding round to task."
+        });
+    }
+    )
+}
+
+exports.roundFeedback = (req, res) => {
+    const task_id = req.params.id;
+    const { feedback, notes } = req.body;
+
+    taskHistory.findAll({
+        where: {
+            task_id: task_id
+        },
+        order: [
+            ['round', 'DESC']
+        ],
+        limit: 1
+    }).then(data => {
+        const round = data[0].round;
+        taskHistory.update(
+            { feedback: feedback, notes: notes },
+            { where: { task_id: task_id, round: round } }
+        ).then(data => {
+            res.status(200).send({
+                status: 'success',
+            })
+        }
+        )
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while updating the Task."
+            });
+        }
+        )
+    })
     .catch(err => {
         res.status(500).send({
             message:

@@ -9,9 +9,9 @@ body {
   background-color: transparent;
   border: none;
   border-radius: 0px;
-  
+
   padding: 10px;
-  
+
   max-width: 40%;
 }
 
@@ -19,7 +19,7 @@ body {
   display: flex;
   justify-content: space-evenly;
 
-  
+
 }
 
 /* Style the card header */
@@ -122,4 +122,7 @@ table {
   text-overflow: ellipsis;
 }
 
-
+h1{
+  color: white;
+  margin-top: 2%;
+}

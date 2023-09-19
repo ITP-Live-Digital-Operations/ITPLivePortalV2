@@ -11,10 +11,9 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./ready-briefs-id.component.scss'],
 })
 export class ReadyBriefsIdComponent {
-
   private brief_id: any;
   public brief: any;
-  private task: any;
+  public task: any;
 
   private budgetSheetId: any;
   private presentationId: any;
@@ -23,9 +22,8 @@ export class ReadyBriefsIdComponent {
   public presentation: any;
   public pdf: any;
 
-
   public salesperson: any;
-  public assignedUser: any;
+  public assignedUser: any = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -44,7 +42,6 @@ export class ReadyBriefsIdComponent {
       this.brief_id = params['id'];
       this.salesService.getSalesBrief(this.brief_id).subscribe((res: any) => {
         this.brief = res.data;
-        console.log(this.brief);
         this.budgetSheetId = this.brief.BudgetSheetId;
 
         this.getBudgetSheet(this.budgetSheetId);
@@ -56,8 +53,6 @@ export class ReadyBriefsIdComponent {
         this.pdfId = this.brief.PdfId;
 
         this.getPDF(this.pdfId);
-
-
       });
       this.salesService
         .getSalesBriefWithFiles(this.brief_id)
@@ -65,10 +60,8 @@ export class ReadyBriefsIdComponent {
           this.brief = data;
           this.getSalesPerson(this.brief.data.CreatedbyID);
           this.getAssignedUser(this.brief.data.id);
-        }
-        )
+        });
     });
-
   }
 
   private getSalesPerson(id: number): void {
@@ -79,12 +72,12 @@ export class ReadyBriefsIdComponent {
 
   private getAssignedUser(id: number): void {
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
-      this.task = data.data[0];
-      this.userService
-        .getUserNameById(this.task?.assigned_to)
-        .subscribe((data: any) => {
-          this.assignedUser = data?.name;
-        });
+      console.log(data.data);
+      this.task = data.data;
+
+      for (let i = 0; i < this.task?.assignedUsers?.length; i++) {
+        this.assignedUser.push(this.task.assignedUsers[i].name);
+      }
     });
   }
 
@@ -102,14 +95,15 @@ export class ReadyBriefsIdComponent {
 
   private getPDF(id: number): void {
     this.fileService.getFile(id).subscribe((data: any) => {
-      console.log(data);
       this.pdf = data.data;
     });
   }
 
   public downloadFilePPTX(id: number, filename: string): void {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
-      const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
+      const blob = new Blob([data], {
+        type: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
     });
@@ -117,7 +111,9 @@ export class ReadyBriefsIdComponent {
 
   public downloadFilexlsx(id: number, filename: string): void {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
-      const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+      const blob = new Blob([data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
     });
@@ -125,7 +121,7 @@ export class ReadyBriefsIdComponent {
 
   public downloadFilePDF(id: number, filename: string): void {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
-      const blob = new Blob([data], {type: 'application/pdf'});
+      const blob = new Blob([data], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
     });

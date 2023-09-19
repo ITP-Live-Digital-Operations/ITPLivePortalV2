@@ -153,10 +153,7 @@ export class SentBriefsIdComponent {
         this.taskService.getTaskByBriefId(this.briefId).subscribe( (task) => {
           this.taskData = task;
 
-          this.userService.getUserByID(this.taskData.data[0].assigned_to).subscribe( (user) => {
-            this.assignedUser = user;
-          }
-          )
+         
         })
       }
 

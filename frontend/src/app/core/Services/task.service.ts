@@ -61,4 +61,16 @@ export class TaskService {
   updateTask(id: number, input: any) {
     return this.http.post(`${this.taskApiURL}/updateTask/${id}`, input);
   }
+
+ /*  initiateTaskHistory(id:number){
+    return this.http.get(`${this.taskApiURL}/initiateTaskHistory/${id}`);
+  } */
+
+  roundFeedback(id: number, input: any) {
+    return this.http.post(`${this.taskApiURL}/roundFeedback/${id}`, input);
+  }
+
+  addRoundtoTask(id:number) {
+    return this.http.get(`${this.taskApiURL}/addRoundtoTask/${id}`);
+  }
 }

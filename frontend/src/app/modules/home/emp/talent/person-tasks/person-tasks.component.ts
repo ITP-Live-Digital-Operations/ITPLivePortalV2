@@ -24,10 +24,10 @@ export class PersonTasksComponent {
 
   displayedColumns: string[] = [
     'deadline',
-    'status',
+    'progress',
     'weight',
     'createdAt',
-    'progress',
+    'deadline',
     'Action',
   ];
 

@@ -177,7 +177,7 @@ export class ViewBriefComponent {
   private getTask(id: number): void {
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
       this.task = data.data;
-      console.log(this.task);
+      
       this.progressForm.setControl(
         'Progress',
         new FormControl(this.task?.progress)

@@ -9,5 +9,17 @@ export interface TaskModel {
     weight: number;
     progress: number;
     priority: number;
-    assigned_to: number;
+    round : number;
+    History : TaskHistory[];
+  }
+
+
+  export interface TaskHistory{
+    id : number;
+    task_id : number;
+    round : number;
+    feedback : string;
+    notes : string;
+    createdAt : Date;
+    updatedAt : Date;
   }

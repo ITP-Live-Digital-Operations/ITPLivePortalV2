@@ -11,6 +11,7 @@ import { SharingModule } from '../../sharing/sharing.module';
 import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { RoundHistoryComponent } from './view-brief/round-history/round-history.component';
 
 
 @NgModule({
@@ -30,5 +31,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDialogModule,
     MatExpansionModule
   ],
+  exports: [
+  ]
 })
 export class TalentModule {}

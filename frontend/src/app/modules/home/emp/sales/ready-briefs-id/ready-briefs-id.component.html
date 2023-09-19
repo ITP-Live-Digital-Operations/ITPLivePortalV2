@@ -1,65 +1,67 @@
 <div>
-  <app-person-info [assignedUser]="assignedUser" [salesperson]="salesperson"></app-person-info>
+  <app-person-info
+    [assignedUser]="assignedUser"
+    [salesperson]="salesperson"
+  ></app-person-info>
+
   <div class="row">
+    <table class="my-table">
+      <tr>
+        <th class="centered">File Type</th>
+        <th class="centered">File Name</th>
+        <th class="centered">Download</th>
+      </tr>
 
-      <table class="my-table">
-        <tr>
-          <th class="centered">File Type</th>
-          <th class="centered">File Name</th>
-          <th class="centered">Download</th>
-        </tr>
+      <tr>
+        <td>Excel Sheet</td>
+        <td *ngIf="budgetSheet">{{ budgetSheet.originalname }}</td>
+        <td *ngIf="!budgetSheet"></td>
+        <td *ngIf="budgetSheet">
+          <button
+            mat-raised-button
+            (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"
+          >
+            Download
+          </button>
+        </td>
+        <td *ngIf="!budgetSheet"></td>
+      </tr>
 
-        <tr>
-          <td>Excel Sheet</td>
-          <td *ngIf="budgetSheet">{{ budgetSheet.originalname }}</td>
-          <td *ngIf="!budgetSheet"></td>
-          <td *ngIf="budgetSheet">
-            <button
-              mat-raised-button
-              (click)="
-                downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)
-              "
-            >
-              Download
-            </button>
-          </td>
-          <td *ngIf="!budgetSheet"></td>
-        </tr>
+      <tr>
+        <td>Presentation</td>
+        <td *ngIf="presentation">{{ presentation.originalname }}</td>
+        <td *ngIf="!presentation"></td>
+        <td *ngIf="presentation">
+          <button
+            mat-raised-button
+            (click)="
+              downloadFilePPTX(presentation.id, presentation.originalname)
+            "
+          >
+            Download
+          </button>
+        </td>
+        <td *ngIf="!presentation"></td>
+      </tr>
 
-        <tr>
-          <td>Presentation</td>
-          <td *ngIf="presentation">{{ presentation.originalname }}</td>
-          <td *ngIf="!presentation"></td>
-          <td *ngIf="presentation">
-            <button
-              mat-raised-button
-              (click)="
-                downloadFilePPTX(presentation.id, presentation.originalname)
-              "
-            >
-              Download
-            </button>
-          </td>
-          <td *ngIf="!presentation"></td>
-        </tr>
-
-        <tr>
-          <td>PDF File</td>
-          <td *ngIf="pdf">{{ pdf.originalname }}</td>
-          <td *ngIf="!pdf"></td>
-          <td *ngIf="pdf">
-            <button
-              mat-raised-button
-              (click)="
-                downloadFilePDF(pdf.id, pdf.originalname)
-              "
-            >
-              Download
-            </button>
-          </td>
-          <td *ngIf="!presentation"></td>
-        </tr>
-      </table>
-    </div>
-    <app-all-info [brief]="brief"></app-all-info>
+      <tr>
+        <td>PDF File</td>
+        <td *ngIf="pdf">{{ pdf.originalname }}</td>
+        <td *ngIf="!pdf"></td>
+        <td *ngIf="pdf">
+          <button
+            mat-raised-button
+            (click)="downloadFilePDF(pdf.id, pdf.originalname)"
+          >
+            Download
+          </button>
+        </td>
+        <td *ngIf="!pdf"></td>
+      </tr>
+    </table>
   </div>
+  <hr />
+  <app-task-rounds [task]="task" [brief]="brief"></app-task-rounds>
+
+  <app-all-info [brief]="brief"></app-all-info>
+</div>

@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Task.belongsTo(models.User, {foreignKey: 'assigned_by', as: 'Talent_Head'})
       Task.belongsToMany(models.User, { through: 'UserTasks', foreignKey: 'taskId', as: 'assignedUsers' });
       Task.belongsTo(models.SalesBrief, {foreignKey: 'brief_id', as: 'Brief', onDelete: 'CASCADE'})
+      Task.hasMany(models.TaskHistory, {foreignKey: 'task_id', as: 'History', onDelete: 'CASCADE'})
 
     }
   }
@@ -62,11 +63,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       defaultValue: null,
     },
-    priority: {
-      type: DataTypes.INTEGER,
-      defaultValue: null,
-    },
+
   }, {
+
     sequelize,
     tableName: 'task',
     modelName: 'Task',

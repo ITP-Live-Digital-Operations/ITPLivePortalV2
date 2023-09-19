@@ -18,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ViewBriefModule } from '../talent/view-brief/view-brief.module';
 import { UploadFilesComponent } from '../../sharing/upload-files/upload-files.component';
 import { SharingModule } from '../../sharing/sharing.module';
+import { TaskRoundsComponent } from './ready-briefs-id/task-rounds/task-rounds.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SharingModule } from '../../sharing/sharing.module';
     InfluencerDetailsComponent,
     AudienceDetailsComponent,
     DepartmentDetailsComponent,
+    TaskRoundsComponent,
   ],
   imports: [
     CommonModule,

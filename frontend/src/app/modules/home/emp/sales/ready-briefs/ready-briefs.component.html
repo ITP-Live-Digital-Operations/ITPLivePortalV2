@@ -33,10 +33,7 @@
       <ng-container matColumnDef="Action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-          <button
-            mat-raised-button
-            (click)="viewFiles(element.id)"
-          >
+          <button mat-raised-button (click)="viewFiles(element.id)">
             View
           </button>
         </td>

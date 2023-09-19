@@ -80,28 +80,27 @@ export class SheetsBriefComponent {
       if (data?.status == 'success') {
         let id = this.brief?.data.CreatedbyID;
         let input = {
-          message: 'Sales Brief is ready',
+          message: 'Sales Brief is waiting for your feedback',
           link: `${this.path['readyBriefs'] + this.brief?.data.id}`,
         };
         this.notificationService
           .createNotification(id, input)
           .subscribe(() => {});
-        this.deactivateBrief();
-        this.toastrService.success('Sales Brief is ready!');
+
+        this.taskService
+        .updateProgress(this.task?.id, {
+          progress: 'Waiting for feedback',
+        })
+        .subscribe((data: any) => {
+        });
+        this.taskService.addRoundtoTask(this.task?.id).subscribe((data: any) => {});
+        this.toastrService.success('Sales Brief is waiting for feedback!');
       } else {
         this.toastrService.error('Error!');
       }
     });
 
-    this.taskService
-      .updateStatusToComplete({ id: this.task.id, assigned_to : this.task.assigned_to})
-      .subscribe((data: any) => {
-        if (data) {
-          this.toastrService.success('Task is completed!');
-        } else {
-          this.toastrService.error('Error!');
-        }
-      });
+
   }
 
 

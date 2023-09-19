@@ -15,6 +15,7 @@ import { PersonInfoComponent } from './person-info/person-info.component';
 import { AssignTaskComponent } from './assign-task/assign-task.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SharingModule } from '../../../sharing/sharing.module';
+import { RoundHistoryComponent } from './round-history/round-history.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SharingModule } from '../../../sharing/sharing.module';
     ViewBriefComponent,
     SelectInfluencerDialogComponent,
     PersonInfoComponent,
-    AssignTaskComponent
+    AssignTaskComponent,
+    RoundHistoryComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { SharingModule } from '../../../sharing/sharing.module';
   ],
   exports: [
     AllInfoComponent,
-    PersonInfoComponent
+    PersonInfoComponent,
+    RoundHistoryComponent
   ]
 })
 export class ViewBriefModule {}
