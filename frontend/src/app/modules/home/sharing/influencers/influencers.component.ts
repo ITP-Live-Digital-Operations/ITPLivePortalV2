@@ -20,7 +20,6 @@ import { ConfirmationDialogService } from 'src/app/core/services/confirmation.se
   styleUrls: ['./influencers.component.scss'],
 })
 export class InfluencersComponent {
-
   public dataSource: any;
   private UserDetails: any;
   public verticals: string[] = [];
@@ -55,7 +54,6 @@ export class InfluencersComponent {
     'SnapchatFollowers',
     'TwitterFollowers',
     'FacebookFollowers',
-
     'CountryLocation',
     'MainVertical',
     'Action',
@@ -183,12 +181,12 @@ export class InfluencersComponent {
       ...new Set(
         renderedData.map((row: { MainVertical: any }) => row.MainVertical)
       ),
-    ].sort()  as string[];
+    ].sort() as string[];
     this.nationalities = [
       ...new Set(
         renderedData.map((row: { Nationality: any }) => row.Nationality)
       ),
-    ].sort()  as string[];
+    ].sort() as string[];
     // ... Add other filters as needed
   }
 
@@ -196,19 +194,17 @@ export class InfluencersComponent {
     this.getInfluencers();
   }
 
-  public applyFilterSearch(filterValue: string): void {
-    this.filterCriteria.search = filterValue.trim().toLowerCase();
-    this.applyFilter();
-  }
-
   public deleteInfluencer(inputdata: any): void {
-    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
-      .subscribe(result => {
+    this.dialogService
+      .openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
+      .subscribe((result) => {
         if (result === true) {
           this.toastrService.success('Deleted Successfully!');
-          this.influencerService.deleteInfluencer(inputdata).subscribe((item) => {
-            this.getInfluencers();
-          });
+          this.influencerService
+            .deleteInfluencer(inputdata)
+            .subscribe((item) => {
+              this.getInfluencers();
+            });
         }
       });
   }
@@ -243,25 +239,25 @@ export class InfluencersComponent {
       filter: string
     ) => {
       const isMatchSearch = this.filterCriteria.search
-        ? data.Name.trim().toLowerCase().includes(this.filterCriteria.search)
+        ? data.Name?.trim().toLowerCase().includes(this.filterCriteria.search)
         : true;
 
       return (
         isMatchSearch &&
         (!this.filterCriteria.gender ||
-          data.Gender.trim().toLowerCase() === this.filterCriteria.gender) &&
+          data.Gender?.trim().toLowerCase() === this.filterCriteria.gender) &&
         (!this.filterCriteria.location ||
-          data.CountryLocation.trim().toLowerCase() ===
+          data.CountryLocation?.trim().toLowerCase() ===
             this.filterCriteria.location) &&
         (!this.filterCriteria.vertical ||
-          data.MainVertical.trim().toLowerCase() ===
+          data.MainVertical?.trim().toLowerCase() ===
             this.filterCriteria.vertical) &&
         (!this.filterCriteria.nationalities ||
-          data.Nationality.trim().toLowerCase() ===
+          data.Nationality?.trim().toLowerCase() ===
             this.filterCriteria.nationalities) &&
         (!this.filterCriteria.city ||
           (data.CityLocation &&
-            data.CityLocation.trim().toLowerCase() ===
+            data.CityLocation?.trim().toLowerCase() ===
               this.filterCriteria.city))
       );
     };
@@ -271,28 +267,30 @@ export class InfluencersComponent {
     this.updateFilterDropdowns();
   }
 
-  public applyFilter1(filterValue: string): void {
-    this.filterCriteria.gender = filterValue.trim().toLowerCase();
-    this.applyFilter();
-  }
-
-  public applyFilter2(filterValue: string): void {
-    this.filterCriteria.location = filterValue.trim().toLowerCase();
-    this.applyFilter();
-  }
-
-  public applyFilter3(filterValue: string): void {
-    this.filterCriteria.vertical = filterValue.trim().toLowerCase();
-    this.applyFilter();
-  }
-
-  public applyFilter4(filterValue: string): void {
-    this.filterCriteria.nationalities = filterValue.trim().toLowerCase();
-    this.applyFilter();
-  }
-
-  public applyFilter5(filterValue: string): void {
-    this.filterCriteria.city = filterValue.trim().toLowerCase();
+  applyFilterChange(filterType: string, filterValue: string): void {
+    switch (filterType) {
+      case 'gender':
+        this.filterCriteria.gender = filterValue.trim().toLowerCase();
+        break;
+      case 'location':
+        this.filterCriteria.location = filterValue.trim().toLowerCase();
+        break;
+      case 'vertical':
+        this.filterCriteria.vertical = filterValue.trim().toLowerCase();
+        break;
+      case 'nationalities':
+        this.filterCriteria.nationalities = filterValue.trim().toLowerCase();
+        break;
+      case 'city':
+        this.filterCriteria.city = filterValue.trim().toLowerCase();
+        break;
+      case 'search':
+        this.filterCriteria.search = filterValue.trim().toLowerCase();
+        break;
+      // ... add other filters as needed
+      default:
+        break;
+    }
     this.applyFilter();
   }
 
@@ -371,7 +369,6 @@ export class InfluencersComponent {
 
     this.displayedColumns = [...baseColumns, ...platformColumns];
   }
-
 
   public openLink(link: string): void {
     if (!link) {

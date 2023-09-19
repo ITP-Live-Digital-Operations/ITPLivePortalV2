@@ -34,8 +34,6 @@ body {
   margin: 0 auto;
 }
 
-
-
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -77,12 +75,11 @@ table {
 }
 
 .my-table th {
-  background-color: #4789A1;
+  background-color: #4789a1;
   color: #ffffff;
   font-weight: bold;
   padding: 10px;
   text-align: center;
-
 }
 
 .my-table td {
@@ -100,7 +97,7 @@ table {
 .down {
   width: 1%;
 }
-.type{
+.type {
   width: 15%;
 }
 
@@ -110,7 +107,7 @@ table {
   margin-top: 10px;
 }
 
-.icon-btn-up{
+.icon-btn-up {
   text-align: center;
   color: orange;
   margin-left: 3px;
@@ -127,8 +124,6 @@ table {
   border: 0px;
 }
 
-
-
 .search-container {
   padding-top: 2%;
   padding-bottom: 2%;
@@ -144,4 +139,17 @@ table {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Take the full viewport height */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0); /* Slight white overlay */
 }

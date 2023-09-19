@@ -11,7 +11,6 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./update-activate.component.scss'],
 })
 export class UpdateActivateComponent {
-
   @Input()
   brief: any;
 

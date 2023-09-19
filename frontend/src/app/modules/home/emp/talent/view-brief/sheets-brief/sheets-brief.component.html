@@ -50,8 +50,6 @@
     </td>
   </tr>
 
-
-
   <tr>
     <td>Presentation</td>
     <td *ngIf="presentation" class="stretch-button">
@@ -135,8 +133,17 @@
   </tr>
 </table>
 
+<div *ngIf="isLoading" class="loading-container">
+
+  <mat-progress-spinner mode="indeterminate" color="red">
+    Uploading...</mat-progress-spinner
+  >
+</div>
+
 <button
-  *ngIf="assignedUser_id.includes(userId) && (budgetSheet || presentation || pdf)"
+  *ngIf="
+    assignedUser_id.includes(userId) && (budgetSheet || presentation || pdf) && active && feedback
+  "
   mat-raised-button
   color="primary"
   (click)="salesBriefReady()"
