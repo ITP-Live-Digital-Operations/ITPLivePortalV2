@@ -1,7 +1,7 @@
 <div class="form-container">
   <!-- *ngIf="user_id === task?.assigned_to" -->
   <div>
-    <h1> Progress:  </h1> <h2> {{task.progress}}</h2>
+    <h1> Progress:  </h1> <h2> {{task?.progress}}</h2>
     <h1
       *ngIf="brief?.data.Status == 'Active'"
       style="color: green; font-size: 2em; margin-top: 10%;"
