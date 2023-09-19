@@ -82,12 +82,13 @@ export class SheetsBriefComponent {
     }else{
       this.active = true
     }
-
+    if(this.task.History.length > 0){
     if(this.task?.History[(this.task?.History?.length -1)]?.feedback != null){
       this.feedback = true
     }else{
       this.feedback = false
     }
+  }
   }
   public salesBriefReady(): void {
     this.salesService.salesBriefReady(this.id).subscribe((data: any) => {
