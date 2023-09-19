@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 # Navigate to the main project directory
 cd "$(dirname "$0")"
 
