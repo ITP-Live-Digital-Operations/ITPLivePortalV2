@@ -15,7 +15,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
-  declarations: [
+  declarations: [   
     HomeComponent,
     SideNavContentComponent,
     BackButtonComponent,
