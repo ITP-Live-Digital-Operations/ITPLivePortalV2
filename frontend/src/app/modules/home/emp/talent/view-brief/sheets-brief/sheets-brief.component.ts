@@ -83,7 +83,7 @@ export class SheetsBriefComponent {
       this.active = true
     }
 
-    if(this.task?.History[(this.task?.History.length -1)].feedback != null){
+    if(this.task?.History[(this.task?.History?.length -1)]?.feedback != null){
       this.feedback = true
     }else{
       this.feedback = false
