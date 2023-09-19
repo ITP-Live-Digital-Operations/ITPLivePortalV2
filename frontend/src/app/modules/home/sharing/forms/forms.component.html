@@ -5,7 +5,7 @@
     <!-- <h1 class="splash">ITP | Portal</h1> -->
     <div class="btn d-flex flex-row align-items-center flex-wrap" style="border-color: transparent;">
 
-    <button 
+    <button
     mat-raised-button *ngIf="userRole=='superadmin'" routerLink="{{path['userManagement']}}">
     <img src="../../../../../assets/white-buttons/admin-forms.png">
     <p>User Management</p>
@@ -32,7 +32,7 @@
         <img src="../../../../../assets/white-buttons/rate-log.png">
         <p>Rate Logs</p>
     </button>
-    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="{{path['newRateLog']}}">
+    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="{{path['newRateLog']}}">    
         <img src="../../../../../assets/white-buttons/new-rate-log.png">
         <p>New Rate Log</p>
     </button>
@@ -41,24 +41,24 @@
         <p>Time Form</p>
     </button>
 
-    <button 
+    <button
     mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="{{path['newSalesBrief']}}">
     <img src="../../../../../assets/white-buttons/new-sales-brief.png">
     <p>New Sales Brief</p>
     </button>
-    <button 
+    <button
     mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="{{path['readyBriefs']}}">
     <img src="../../../../../assets/white-buttons/all-brief.png">
     <p>Ready Briefs</p>
     </button>
-    <button 
+    <button
     mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="{{path['sentBriefs']}}">
     <img src="../../../../../assets/white-buttons/sent-brief.png">
     <p>Sent Briefs</p>
     </button>
     </div>
 
-   
+
 
 
     </div>
