@@ -41,4 +41,27 @@ router.route('/resetPassword/:id')
 router.route('/deleteUser/:id')
     .delete(asyncHandler(userController.deleteUser));
 
+
+router.route('/getTalentHeads')
+    .get(asyncHandler(userController.getTalentHeads));
+
+router.route('/getKSAHeads')
+    .get(asyncHandler(userController.getKSAHeads));
+
+router.route('/getUAEHead')
+    .get(asyncHandler(userController.getUAEHead));
+
+router.route('/addTalentHead/:id')
+    .get(asyncHandler(userController.addTalentHead));
+
+router.route('/removeTalentHead/:id')
+    .get(asyncHandler(userController.removeTalentHead));
+
+router.route('/goOnLeave/:id')
+    .get(asyncHandler(userController.goOnLeave));
+
+router.route('/returnFromLeave/:id')
+    .get(asyncHandler(userController.returnFromLeave));
+
+
 module.exports = router;

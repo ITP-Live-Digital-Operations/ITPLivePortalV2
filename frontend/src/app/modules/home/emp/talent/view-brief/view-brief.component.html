@@ -1,45 +1,67 @@
 <div style="position: relative">
   <div class="row">
     <div class="status">
-      <app-person-info style="align-self: center;" [assignedUser]="assignedUser" [salesperson]="salesperson" [task]="task"></app-person-info>
-      <div class="card" *ngIf="assignedUser_id.includes(user_id) || privilege_level > 7">
+      <app-person-info
+        style="align-self: center"
+        [assignedUser]="assignedUser"
+        [salesperson]="salesperson"
+        [task]="task"
+      ></app-person-info>
+      <div
+        class="card"
+        *ngIf="assignedUser_id.includes(user_id) || privilege_level > 7 || talentHeads?.includes(user_id)"
+      >
         <div>
-          <form [formGroup]="progressForm" (ngSubmit)="submitForm()" autocomplete="off">
-            <app-update-activate (submitEvent)="submitForm()" [task]='task' [brief]="brief" [brief_id]="brief_id"></app-update-activate>
+          <form
+            [formGroup]="progressForm"
+            (ngSubmit)="submitForm()"
+            autocomplete="off"
+          >
+            <app-update-activate
+              (submitEvent)="submitForm()"
+              [task]="task"
+              [brief]="brief"
+              [brief_id]="brief_id"
+            ></app-update-activate>
           </form>
-          <button mat-raised-button *ngIf=" privilege_level > 7 && assigned" style="margin-left: 4%" (click)="editAssignedExecs()"> Edit Assigned Execs </button>
+          <button
+            mat-raised-button
+            *ngIf="talentHeads?.includes(user_id) && assigned"
+            style="margin-left: 4%"
+            (click)="editAssignedExecs()"
+          >
+            Edit Assigned Execs
+          </button>
         </div>
       </div>
     </div>
 
-    <div *ngIf="privilege_level > 7 && !assigned">
-      <app-assign-task
-      [brief]="brief"
-      [brief_id]="brief_id"
-      ></app-assign-task>
+    <div *ngIf="talentHeads?.includes(user_id) && !assigned">
+      <app-assign-task [brief]="brief" [brief_id]="brief_id"></app-assign-task>
     </div>
 
     <app-all-info [brief]="brief"></app-all-info>
 
     <app-sheets-brief
-    (childEvent)="reloadParent($event)"
-    *ngIf="assigned"
-    [userId]="user_id"
-    [brief]="brief"
-    [brief_id]="brief_id"
-    [presentation]="presentation"
-    [budgetSheet]="budgetSheet"
-    [budgetSheetId]="budgetSheetId"
-    [presentationId]="presentationId"
-    [pdfId]="pdfId"
-    [pdf]="pdf"
-    [task]="task"
-    [id]="id"
-    [assignedUser_id]="assignedUser_id">
+      (childEvent)="reloadParent($event)"
+      *ngIf="assigned"
+      [userId]="user_id"
+      [brief]="brief"
+      [brief_id]="brief_id"
+      [presentation]="presentation"
+      [budgetSheet]="budgetSheet"
+      [budgetSheetId]="budgetSheetId"
+      [presentationId]="presentationId"
+      [pdfId]="pdfId"
+      [pdf]="pdf"
+      [task]="task"
+      [id]="id"
+      [assignedUser_id]="assignedUser_id"
+    >
     </app-sheets-brief>
-
-    <h1> Rounds History </h1>
-
-    <app-round-history [task]="task"></app-round-history>
+    <div *ngIf="assigned">
+      <h1>Rounds History</h1>
+      <app-round-history [task]="task"></app-round-history>
+    </div>
   </div>
 </div>

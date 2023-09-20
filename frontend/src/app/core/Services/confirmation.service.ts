@@ -10,13 +10,24 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
 export class ConfirmationDialogService {
   constructor(private dialog: MatDialog) {}
 
-  openConfirmationDialog(title: string, message: string): Observable<boolean> {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { title, message },
-      width: '400px',
-      height: '300px',
-    });
+  openConfirmationDialog(title: string, message: string, type ?: string): Observable<boolean> {
+    if(type == 'yesno'){
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        data: { title, message, type },
+        width: '400px',
+        height: '300px',
+      });
 
-    return dialogRef.afterClosed();
+      return dialogRef.afterClosed();
+    }else{
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+        data: { title, message },
+        width: '400px',
+        height: '300px',
+      });
+
+      return dialogRef.afterClosed();
+    }
+
   }
 }

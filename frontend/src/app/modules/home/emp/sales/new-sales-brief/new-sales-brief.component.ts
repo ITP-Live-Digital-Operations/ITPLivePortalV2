@@ -24,8 +24,8 @@ export class NewSalesBriefComponent {
   private userName: any;
   public path = PATH;
 
-  private headOfKSA : number  = 15;
-  private headofUAE : number  = 23;
+  private headsOfKSA : number[]  = []
+  private headsofUAE : number[]  = [23]
 
   currentFile?: File;
   progress = 0;
@@ -138,6 +138,24 @@ export class NewSalesBriefComponent {
 
   }
 
+  ngOnInit(): void {
+    this.getHeads();
+  }
+
+  private getHeads(){
+    this.userService.getKSAHeads().subscribe((res) => {
+      this.headsOfKSA = res;
+      console.log(this.headsOfKSA)
+    });
+
+    this.userService.getUAEHead().subscribe((res) => {
+      if( res.onLeave){
+        this.headsofUAE.push(15)
+      }
+      console.log(this.headsofUAE)
+    });
+  }
+
   public submitForm(): void {
     const itpDepartment = this.newForm.value.departmentDetails.ItpDepartment;
 
@@ -153,8 +171,9 @@ export class NewSalesBriefComponent {
       this.uploadFiles(this.newBrief.id);
 
       if (itpDepartment == 'Originals' || itpDepartment == 'UAE') {
-        // Zineb will be notified usually 
-        let id = this.headofUAE;
+        // Zineb will be notified usually
+        for( let i = 0; i < this.headsofUAE.length; i++){
+          let id = this.headsofUAE[i];
         let input = {
           message: 'New Sales Brief has been created by ' + this.userName.name,
           link: `${this.path['viewBrief'] + this.newBrief.id}`,
@@ -162,9 +181,12 @@ export class NewSalesBriefComponent {
         this.notificationService
           .createNotification(id, input)
           .subscribe((notification) => {});
+      }
       } else if (itpDepartment == 'KSA' || itpDepartment == 'Gaming') {
         // Rachelle will be notified usually
-        let id = this.headOfKSA;
+        for( let i = 0; i < this.headsOfKSA.length; i++){
+          let id = this.headsOfKSA[i];
+
         let input = {
           message: 'New Sales Brief has been created by ' + this.userName.name,
           link: `${this.path['viewBrief'] + this.newBrief.id}`,
@@ -174,6 +196,7 @@ export class NewSalesBriefComponent {
           .createNotification(id, input)
           .subscribe(() => {});
       }
+    }
     });
 
     this.toastrService.success('Brief submitted successfully!');

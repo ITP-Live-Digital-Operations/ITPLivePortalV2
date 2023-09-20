@@ -52,6 +52,18 @@ module.exports = {
         type: DataTypes.INTEGER,
         defaultValue: 0
       },
+      position:{
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      location:{
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      onLeave : {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE

@@ -1,5 +1,16 @@
-import { ChangeDetectorRef, Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SalesService } from 'src/app/core/services/sales.service';
 import { TaskService } from 'src/app/core/services/task.service';
@@ -19,9 +30,7 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './view-brief.component.html',
   styleUrls: ['./view-brief.component.scss'],
 })
-
 export class ViewBriefComponent {
-
   protected dataSource: any;
   protected brief: any;
   protected id: any;
@@ -47,6 +56,8 @@ export class ViewBriefComponent {
 
   protected progressForm: FormGroup;
 
+  protected talentHeads: any;
+
   @ViewChild(MainTableComponent) mainComponent!: MainTableComponent;
 
   constructor(
@@ -59,8 +70,7 @@ export class ViewBriefComponent {
     private location: Location,
     private cdRef: ChangeDetectorRef,
     private toastrService: ToastrService,
-    private dialog: MatDialog,
-
+    private dialog: MatDialog
   ) {
     this.progressForm = this.formBuilder.group({
       Progress: ['', Validators.required],
@@ -69,30 +79,28 @@ export class ViewBriefComponent {
 
   ngOnInit(): void {
     this.loadBriefData();
+    this.getTalentHeads();
     this.refresh();
   }
 
   protected submitForm(): void {
-
     this.taskService
       .updateProgress(this.task?.id, {
         progress: this.progressForm.value.Progress,
       })
       .subscribe((data: any) => {
         console.log(data);
-        if( data.status === 'success'){
+        if (data.status === 'success') {
           this.toastrService.success('Progress Updated!');
         }
       });
   }
 
   public reloadParent($event: any): void {
+    if ($event) {
+      this.loadBriefData();
 
-    if ($event){
-
-    this.loadBriefData();
-
-    this.cdRef.detectChanges();
+      this.cdRef.detectChanges();
     }
   }
 
@@ -104,27 +112,24 @@ export class ViewBriefComponent {
         .subscribe((data: any) => {
           this.brief = data;
           this.assigned = data.data.assigned;
-          console.log('assigned');
-          console.log(this.assigned);
+
           this.getTask(this.brief.data.id);
           this.brief_id = this.brief.data.id;
           this.getSalesPerson(this.brief.data.CreatedbyID);
 
           this.budgetSheetId = data.data.BudgetSheetId;
-          if (this.budgetSheetId){
-          this.getBudgetSheet(this.budgetSheetId);
-
+          if (this.budgetSheetId) {
+            this.getBudgetSheet(this.budgetSheetId);
           }
           this.presentationId = data.data.PresentationId;
-          if (this.presentationId){
-          this.getPresentation(this.presentationId);
+          if (this.presentationId) {
+            this.getPresentation(this.presentationId);
           }
 
           this.pdfId = data.data.PdfId;
-          if (this.pdfId){
-          this.getPDF(this.pdfId);
+          if (this.pdfId) {
+            this.getPDF(this.pdfId);
           }
-
         });
     });
   }
@@ -134,12 +139,14 @@ export class ViewBriefComponent {
       this.budgetSheet = data.data;
 
       this.fileService.getFilesById(id).subscribe((data: any) => {
-        const excelFile = data
-        const workbook = XLSX.read(new Uint8Array(excelFile), {type: 'array'});
+        const excelFile = data;
+        const workbook = XLSX.read(new Uint8Array(excelFile), {
+          type: 'array',
+        });
         const firstSheetName = workbook.SheetNames[1];
         const worksheet = workbook.Sheets[firstSheetName];
-        this.budgetData = XLSX.utils.sheet_to_json(worksheet, {header: 1});
-        for(let i = 0; i < this.budgetData.length; i++) {
+        this.budgetData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+        for (let i = 0; i < this.budgetData.length; i++) {
           let influencer = {
             id: this.budgetData[i][0],
             Name: this.budgetData[i][1],
@@ -152,7 +159,7 @@ export class ViewBriefComponent {
           };
           this.mainComponent?.addRow(influencer);
         }
-      })
+      });
     });
   }
 
@@ -168,6 +175,14 @@ export class ViewBriefComponent {
     });
   }
 
+  private getTalentHeads(): void {
+    this.userService.getTalentHeads().subscribe((data: any) => {
+      this.talentHeads = data;
+      console.log(this.talentHeads);
+      console.log(this.user_id)
+    });
+  }
+
   private getSalesPerson(id: number): void {
     this.userService.getUserNameById(id).subscribe((data: any) => {
       this.salesperson = data.name;
@@ -177,20 +192,16 @@ export class ViewBriefComponent {
   private getTask(id: number): void {
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
       this.task = data.data;
-      
+
       this.progressForm.setControl(
         'Progress',
         new FormControl(this.task?.progress)
       );
-      for(let i = 0 ; i < this.task?.assignedUsers?.length ; i++){
+      for (let i = 0; i < this.task?.assignedUsers?.length; i++) {
         this.assignedUser.push(this.task.assignedUsers[i].name);
         this.assignedUser_id.push(this.task.assignedUsers[i].id);
       }
-
     });
-
-
-
   }
 
   private refresh(): void {
@@ -207,7 +218,7 @@ export class ViewBriefComponent {
     const dialogRef = this.dialog?.open(AssignTaskComponent, {
       width: '50%',
       height: '90%',
-      data: { task : this.task, briefID : this.brief_id}
+      data: { task: this.task, briefID: this.brief_id },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

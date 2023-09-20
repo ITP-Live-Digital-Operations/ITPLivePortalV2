@@ -12,12 +12,12 @@
 
     <span class="spacer"></span>
 
-    
+
     <div class="btn-container">
     <button mat-icon-button routerLink="{{path['influencers']}}">
     <mat-icon class="icon">search</mat-icon>
     </button>
-    
+
 
     <div class="notification-container">
       <button mat-icon-button class="notification-icon" (click)="toggleNotificationBox()">
@@ -47,7 +47,7 @@
 <mat-sidenav-container>
 
   <mat-sidenav #sidenav mode="side" [opened]="sidenavOpened">
-    <app-side-nav-content [userName]="userName" [userId]="userId" [privilegeLevel]="privilegeLevel" [userRole]="userRole"></app-side-nav-content>
+    <app-side-nav-content [userName]="userName" [userId]="userId" [privilegeLevel]="privilegeLevel" [userRole]="userRole" [onLeave]="onLeave"></app-side-nav-content>
   </mat-sidenav>
 
   <mat-sidenav-content>

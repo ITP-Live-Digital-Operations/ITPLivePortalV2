@@ -1,9 +1,14 @@
 <div class="confirmation-dialog">
     <h1>{{ data.title }}</h1>
     <p>{{ data.message }}</p>
-    <div class="space">
+    <div class="space" *ngIf="data.type == null">
         <button mat-raised-button color="transparent" (click)="onCancel()">Cancel</button>
-        <button mat-raised-button color="warn" (click)="onConfirm()">Delete</button>       
+        <button mat-raised-button color="warn" (click)="onConfirm()">Delete</button>
     </div>
+
+    <div class="space" *ngIf="data.type == 'yesno'">
+      <button mat-raised-button color="warn" (click)="onCancel()">No</button>
+      <button mat-raised-button color="transparent" (click)="onConfirm()">Yes</button>
+    </div>
+
 </div>
-  

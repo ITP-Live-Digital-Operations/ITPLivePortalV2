@@ -53,7 +53,7 @@ module.exports = {
       },
       progress: {
         type: DataTypes.STRING(50),
-        defaultValue: null,
+        defaultValue: "In Progress",
       },
       priority: {
         type: DataTypes.INTEGER,

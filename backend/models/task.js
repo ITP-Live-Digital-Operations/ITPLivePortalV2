@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     progress: {
       type: DataTypes.STRING(50),
-      defaultValue: null,
+      defaultValue: "In Progress",
     },
 
   }, {

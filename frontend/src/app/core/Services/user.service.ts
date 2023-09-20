@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserModel } from '../interfaces/userModel';
+import { UAEHead, UserModel } from '../interfaces/userModel';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
@@ -104,5 +104,33 @@ export class UserService {
 
   deleteUser(id: any) {
     return this.http.delete(`${this.authApiURL}/deleteUser/${id}`);
+  }
+
+  getTalentHeads(){
+    return this.http.get(`${this.authApiURL}/getTalentHeads`);
+  }
+
+  getKSAHeads(): Observable<number[]>{
+    return this.http.get<number[]>(`${this.authApiURL}/getKSAHeads`);
+  }
+
+  getUAEHead(): Observable<UAEHead>{
+    return this.http.get<UAEHead>(`${this.authApiURL}/getUAEHead`);
+  }
+
+  addTalentHead(id :any) {
+    return this.http.get(`${this.authApiURL}/addTalentHead/${id}`);
+  }
+
+  removeTalentHead(id :any) {
+    return this.http.get(`${this.authApiURL}/removeTalentHead/${id}`);
+  }
+
+  goOnLeave(id :any) {
+    return this.http.get(`${this.authApiURL}/goOnLeave/${id}`);
+  }
+
+  returnFromLeave(id :any) {
+    return this.http.get(`${this.authApiURL}/returnFromLeave/${id}`);
   }
 }

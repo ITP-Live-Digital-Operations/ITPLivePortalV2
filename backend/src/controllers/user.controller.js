@@ -243,3 +243,141 @@ exports.deleteUser =  (req, res) => {
     }
     );
 };
+
+
+exports.getTalentHeads =  (req, res) => {
+    User.findAll({
+        where: {
+            role: 'talent',
+            position : 'HEAD'
+        },
+        attributes: ['id']
+    }).then(users => {
+        
+        const userIds = users.map(user => user.id);
+        res.status(200).send(userIds);
+    })
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+};
+
+exports.getKSAHeads =  (req, res) => {
+    User.findAll({
+        where: {
+            role : 'talent',
+            position : 'HEAD',
+            location : 'KSA'
+        },
+        attributes: ['id']
+    }).then(users => {
+
+        const userIds = users.map(user => user.id);
+        res.status(200).send(userIds);
+    })
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+};
+
+exports.getUAEHead =  (req, res) => {
+    User.findAll({
+        where: {
+            role : 'talent',
+            position : 'HEAD',
+            location : 'UAE'
+        },
+        attributes: ['id', 'onLeave']
+    }).then(users => {
+
+        
+        res.status(200).send(users[0]);
+    })
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+};
+
+exports.addTalentHead =  (req, res) => {
+    const id = req.params.id;
+    
+    User.update({position: 'HEAD'}, {where: {id: id}}).then( (data) => {
+        res.status(200).send({
+            status: "success",
+        });
+    }
+    )
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+};
+
+exports.removeTalentHead =  (req, res) => {
+    const id = req.params.id;
+
+    User.update({position: null}, {where: {id: id}}).then( (data) => {
+        res.status(200).send({
+            status: "success",
+        });
+    }
+    )
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+};
+
+exports.goOnLeave =  (req, res) => {
+    const id = req.params.id;
+
+    User.update({onLeave: 1}, {where: {id: id}}).then( (data) => {
+        res.status(200).send({
+            status: "success",
+        });
+    }
+    )
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+};
+
+exports.returnFromLeave =  (req, res) => {
+    const id = req.params.id;
+
+    User.update({onLeave: 0}, {where: {id: id}}).then( (data) => {
+        res.status(200).send({
+            status: "success",
+        });
+    }
+    )
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+};

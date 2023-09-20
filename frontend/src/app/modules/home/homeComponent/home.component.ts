@@ -20,6 +20,7 @@ export class HomeComponent {
   public userName!: string;
   public userRole!: string;
   public privilegeLevel!: number;
+  public onLeave : boolean = false;
   private user: any;
 
   public backButton: boolean = false;
@@ -42,7 +43,7 @@ export class HomeComponent {
       this.userName = res.name;
       this.userRole = this.user.role;
       this.privilegeLevel = this.user.privilege_level;
-
+      this.onLeave = this.user.onLeave;
       this.notificationService.getUnreadNotificationCountByUserId(this.userId).subscribe((res) => {
         this.notificationCount = res;
       });

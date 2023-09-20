@@ -135,12 +135,12 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <ng-container *ngIf="userRole == 'sales'">
+      <!-- <ng-container *ngIf="userRole == 'sales'">
         <tr
           mat-row
           *matRowDef="let row; columns: displayedColumns"
         ></tr>
-      </ng-container>
+      </ng-container> -->
 <!--       <ng-container *ngIf="userRole == 'talent' && privilegeLevel > 7">
         <tr
           mat-row
@@ -148,7 +148,7 @@
           *matRowDef="let row; columns: displayedColumns"
         ></tr>
       </ng-container> -->
-      <ng-container *ngIf="userRole == 'talent'">
+      <ng-container>
         <tr
         mat-row
         *matRowDef="let row; columns: displayedColumns"></tr>

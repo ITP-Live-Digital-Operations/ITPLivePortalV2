@@ -184,9 +184,6 @@ export class AssignTaskComponent {
 
   private getTalentTaskWeights(): void {
     this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
-      console.log('Talent Task Weights:');
-      console.log(data);
-
       this.dataSource = data.usersWithTasks.map((user: any) => {
         user.selected = new FormControl(false);
         return user;
