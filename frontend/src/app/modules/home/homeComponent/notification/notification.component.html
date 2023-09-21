@@ -1,17 +1,21 @@
 <div class="notification-container">
-  <div class="flex">
+<!--   <div class="flex">
     <button (click)="clear()"> Clear All</button>
     <button (click)="onClose()"><mat-icon>clear</mat-icon></button>
-  </div>
+  </div> -->
   <div class="notification-box">
 
     <div *ngFor="let notification of notifications?.data">
+
       <a
         href="{{ notification?.link }}"
         (click)="updateNotificationStatus(notification?.id)"
       >
+      <mat-icon class='maticon' *ngIf="!notification.read"> fiber_manual_record </mat-icon>
         <p>{{ notification?.message }}</p>
+
         <small>{{ timeSince(notification?.createdAt) }} ago</small>
+
       </a>
     </div>
 

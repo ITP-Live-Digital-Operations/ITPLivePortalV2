@@ -1,5 +1,4 @@
-<div >
-
+<div>
   <div class="table-container">
     <table mat-table #table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="name">
@@ -10,6 +9,11 @@
       <ng-container matColumnDef="totalWeight">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Weight</th>
         <td mat-cell *matCellDef="let element">{{ element.totalWeight }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="onLeave">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>On Leave </th>
+        <td mat-cell *matCellDef="let element">{{ element.onLeave |  boolean:'Yes':'No' }}</td>
       </ng-container>
 
       <ng-container matColumnDef="action">
@@ -23,10 +27,16 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr
         mat-row
-        routerLink="{{path['personTasks'] + row.id}}"
+        routerLink="{{ path['personTasks'] + row.id }}"
         *matRowDef="let row; columns: displayedColumns"
       ></tr>
     </table>
-    <mat-paginator></mat-paginator>
+    <mat-paginator
+      [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[3, 5, 10, 25, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
   </div>
 </div>

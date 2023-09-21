@@ -6,12 +6,14 @@ import { MaterialModule } from 'src/app/common.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { BooleanPipe } from '../pipes/boolean.pipe';
 
 
 @NgModule({
   declarations: [
     ChangePasswordComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+  
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TaskService } from 'src/app/core/services/task.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-task-list',
@@ -12,7 +16,11 @@ export class TaskListComponent {
   public path = PATH;
   public dataSource: any;
 
-  displayedColumns: string[] = ['name', 'totalWeight', 'action'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  displayedColumns: string[] = ['name', 'totalWeight', 'onLeave', 'action'];
 
   constructor(private taskService: TaskService) {}
 
@@ -22,7 +30,11 @@ export class TaskListComponent {
 
   private getTalentTaskWeights(): void {
     this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
-      this.dataSource = data.usersWithTasks;
+      console.log(data);
+      this.dataSource = new MatTableDataSource(data.usersWithTasks);
+
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 }

@@ -173,11 +173,15 @@ exports.getUsersAndTaskWeights = (req, res) => {
     where: {
       role: "talent",
       privilege_level: { [Op.lt]: 9 },
-      parentId : 15
+      [Op.or]: [
+        { parentId: 15 },
+        { id: 15 }
+      ],
     },
     attributes: [
       "id",
       "name",
+      "onLeave",
       [
         Sequelize.fn(
           "COALESCE",
@@ -203,6 +207,7 @@ exports.getUsersAndTaskWeights = (req, res) => {
       const usersWithTasks = users.map((user) => ({
         id: user.dataValues.id,
         name: user.dataValues.name,
+        onLeave: user.dataValues.onLeave,
         totalWeight: user.dataValues.totalWeight || 0,
       }));
       res.status(200).json({ usersWithTasks });

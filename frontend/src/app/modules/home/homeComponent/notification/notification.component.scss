@@ -1,69 +1,74 @@
-
 .notification-container {
-    /* Ensuring enough space around the container */
-    padding: 20px;
-    border-radius: 0px;
-  }
+  /* Ensuring enough space around the container */
+  padding: 20px;
+  border-radius: 0px;
+}
 
-  .notification-box {
-    /* Giving some space around each notification box */
-    margin-bottom: 20px;
+.flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  overflow-x: hidden;
+}
 
+.notification-box {
+  /* Giving some space around each notification box */
+  margin-bottom: 20px;
+}
 
-  }
-
-  .flex{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    overflow-x: hidden;
-  }
-
-  .notification-box div {
-    /* Adding border and shadow to each notification */
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-
-
-  }
+.notification-box div {
+  /* Adding border and shadow to each notification */
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
 
 
 
-  .notification-box a {
-    /* Making the link not appear like a typical link */
-    text-decoration: none;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-  }
-  .mat-mdc-dialog-container {
-    background-color: transparent!important;
-  }
+.notification-box a {
+  /* Making the link not appear like a typical link */
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
 
+.mat-mdc-dialog-container {
+  background-color: transparent !important;
+}
 
+.notification-box {
+  background-color: transparent;
+}
 
-  .notification-box {
-    background-color: transparent;
-  }
-  .notification-box a p {
-    /* Aligning the message to the left */
-    text-align: left;
-    color: white;
-  }
+.maticon {
+  height: 25px;
+  width: 25px;
+  color: red;
+  margin-right: -10%;
+}
 
-  .notification-box a small {
-    /* Aligning the time to the right */
-    text-align: right;
-    color: white;
-  }
+.notification-box a p {
+  /* Aligning the message to the left */
+  text-align: left;
+  color: white;
+  margin-right: 2%;
 
-  button {
-    /* Styling the button */
-    background-color: transparent;
-    border: 0px solid;
-    margin-bottom: 2%;
-    color: red;
-  }
+}
+
+.notification-box a small {
+  /* Aligning the time to the right */
+  text-align: end;
+  color: white;
+  right: 0;
+}
+
+button {
+  /* Styling the button */
+  background-color: transparent;
+  border: 0px solid;
+  margin-bottom: 2%;
+  color: red;
+}

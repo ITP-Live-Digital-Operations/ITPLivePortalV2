@@ -30,6 +30,7 @@ import { ProgressLoaderComponent } from './upload-files/progress-loader/progress
 import { DndDirective } from './dnd.directive';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
+import { BooleanPipe } from 'src/app/shared/pipes/boolean.pipe';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
     ProgressLoaderComponent,
     DndDirective,
     NumberFormatPipe,
+    BooleanPipe,
   ],
   imports: [
     CommonModule,
@@ -78,6 +80,7 @@ import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
     RateCardComponent,
     UploadFilesComponent,
     NumberFormatPipe,
+    BooleanPipe,
   ],
 })
 export class SharingModule {}
