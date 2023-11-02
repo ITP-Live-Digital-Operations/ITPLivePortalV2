@@ -1,5 +1,13 @@
 table {
   width: 100%;
+
+  .truncate-text {
+    white-space: nowrap;      /* Prevent text from wrapping */
+    overflow: hidden;         /* Hide overflowing content */
+    text-overflow: ellipsis;  /* Display ellipsis (...) for overflow */
+    max-width: 150px;         /* Adjust the maximum width as needed */
+  }
+
 }
 .warn {
   background-color: red;

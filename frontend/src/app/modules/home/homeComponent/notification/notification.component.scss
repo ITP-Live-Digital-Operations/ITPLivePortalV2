@@ -1,5 +1,4 @@
 .notification-container {
-  /* Ensuring enough space around the container */
   padding: 20px;
   border-radius: 0px;
 }
@@ -7,68 +6,66 @@
 .flex {
   display: flex;
   justify-content: space-between;
-  flex-wrap: nowrap;
   align-items: flex-start;
+  flex-wrap: nowrap;
   overflow-x: hidden;
 }
 
-.notification-box {
-  /* Giving some space around each notification box */
-  margin-bottom: 20px;
-}
-
-.notification-box div {
-  /* Adding border and shadow to each notification */
-  border: 1px solid #ccc;
-  padding: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
-}
-
-
-
-.notification-box a {
-  /* Making the link not appear like a typical link */
-  text-decoration: none;
+button {
+  padding: 10px 15px;
+  background-color: transparent;
   color: white;
-  display: flex;
-  justify-content: space-between;
+  border: 1px solid #4789A1;
+  border-radius: 4px;
+  margin-bottom: 1%;
+  cursor: pointer;
+  margin-right: 0;
+
+  &:hover {
+    background-color: #4789A1;
+  }
+}
+
+
+.notification-box {
+  background-color: transparent;
+  margin-bottom: 20px; // Space around the entire notification box
+
+  div {
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; // Space between individual notifications
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit; // Inherits the color from parent
+    display: flex;
+    align-items: center; // Vertically centers the flex children
+    gap: 10px; // Adds a gap between flex items
+
+    .maticon {
+      flex-shrink: 0; // Prevents the icon from shrinking
+      height: 25px;
+      width: 25px;
+      color: red;
+    }
+
+    p {
+      margin: 0; // Resets margin
+      flex-grow: 1; // Allows the paragraph to take up remaining space
+      color: #FFF; // Text color for the message
+    }
+
+    small {
+      margin-left: auto; // Pushes the timestamp to the right
+      color: #666; // Text color for the timestamp
+    }
+  }
 }
 
 .mat-mdc-dialog-container {
   background-color: transparent !important;
 }
 
-.notification-box {
-  background-color: transparent;
-}
-
-.maticon {
-  height: 25px;
-  width: 25px;
-  color: red;
-  margin-right: -10%;
-}
-
-.notification-box a p {
-  /* Aligning the message to the left */
-  text-align: left;
-  color: white;
-  margin-right: 2%;
-
-}
-
-.notification-box a small {
-  /* Aligning the time to the right */
-  text-align: end;
-  color: white;
-  right: 0;
-}
-
-button {
-  /* Styling the button */
-  background-color: transparent;
-  border: 0px solid;
-  margin-bottom: 2%;
-  color: red;
-}

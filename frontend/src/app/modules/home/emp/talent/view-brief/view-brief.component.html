@@ -2,7 +2,6 @@
   <div class="row">
     <div class="status">
       <app-person-info
-        style="align-self: center"
         [assignedUser]="assignedUser"
         [salesperson]="salesperson"
         [task]="task"
@@ -26,12 +25,13 @@
           </form>
           <button
             mat-raised-button
-            *ngIf="talentHeads?.includes(user_id) && assigned"
+            *ngIf="talentHeads?.includes(user_id) || assigned"
             style="margin-left: 4%"
             (click)="editAssignedExecs()"
           >
-            Edit Assigned Execs
+            Edit Task
           </button>
+
         </div>
       </div>
     </div>

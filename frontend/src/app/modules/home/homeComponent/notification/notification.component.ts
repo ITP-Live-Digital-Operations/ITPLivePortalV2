@@ -76,7 +76,7 @@ export class NotificationComponent {
     return Math.floor(seconds) + ' seconds';
   }
 
-
+  public markAllAsRead(): void {}
 
   clear(): void {
     this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to clear all notifications?')

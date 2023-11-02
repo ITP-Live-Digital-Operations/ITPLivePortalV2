@@ -1,152 +1,120 @@
-table {
+// General Styles
+body {
+  font-family: Arial, sans-serif;
+}
+
+h2, h3, h4, h5 {
+  margin: 10px 0;
+  text-align: center;
+}
+
+// Table Styles
+.table-container {
+
+  table {
     width: 100%;
-
-  }
-
-  .warn {
-    background-color: red;
-    color: white;
-  }
-
-  .table-container {
-    max-height: auto;
-    overflow-y: hidden;
-
-
-  }
-
-
-  .searchInput {
-    color: white!important;
-
-  }
-
-
-  .matInput {
-    color: white
-  }
-
-  .search-container {
-    display: flex;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    position: sticky;
-  }
-
-  .mat-expansion-panel{
-    margin-top: 12px;
-    background-color: transparent;
-    border-radius: 0px;
-    box-shadow: 0px 0px 0px 0px;
-
-
-  }
-
-  .mat-expansion-panel-header {
-    border-bottom: 1px solid white;
-   background-color: #2C393F;
-   width: min-content;
-   margin-bottom: 10px;
-
-  }
-
-  .mat-expansion-panel-header-title{
-    color: white;
-  }
-
-
-
-  .form-container {
-    max-height: auto;
-    overflow-y: hidden;
-    overflow-x: hidden;
-
-  }
-    .row {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  @media (max-width: 1440px), (max-height: 900px) {
-    .mat-mdc-raised-button{
-     font-size: 11px;
+    th, td {
+      text-align: left;
+      padding: 8px;
     }
   }
 
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+}
 
-  table {
-    max-height: auto;
-    justify-content: center;
+// Button and Filter Container Styles
+.logs-button,
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1%;
+  width: 100%;
+
+  .filter {
+    flex-grow: 1;
+    margin-right: 20px; // Space between filters
+
+    &:last-child {
+      margin-right: 0; // Remove margin for the last filter
+    }
   }
 
-  .table-container {
-    padding: 20px 70px;
-  }
-
-  h2 {
-    margin-top: 10px !important;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: #f5f5f5;
-  }
-
-  /* customize the scroll bar thumb */
-  ::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 10px;
-  }
-
-  /* customize the scroll bar thumb on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-  }
-
-  /* customize the scroll bar width and height */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  .single {
+  button {
+    padding: 10px 15px;
+    background-color: transparent;
     color: white;
-    margin-top: 2%;
-  }
+    border: 1px solid #4789A1;
+    border-radius: 4px;
+    cursor: pointer;
 
-  .package {
-    color: white;
-    margin-top: 2%;
+    &:hover {
+      background-color: #4789A1;
+    }
+  }
+}
+
+// Paginator Styles
+mat-paginator {
+  background-color: #f0f0f0;
+  .mat-form-field {
+    margin: 0 12px;
+  }
+}
+
+// Log Details Styles
+.single, .package {
+  background-color: #fff;
+  color: #333;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 20px;
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .logs-button,
+  .filter-container {
+    flex-direction: column;
+    align-items: stretch;
+
+    .filter, button {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
   }
 
   .row {
-    margin-top: 2%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between; /* optional: to space out the <h2> tags evenly */
+    flex-direction: column;
+    align-items: flex-start;
   }
+}
 
-  .row h3 {
-    margin: 0; /* removes default margins */
-    flex: 1; /* ensures equal width for all h2 */
-    text-align: center; /* centers the text within each h2 */
-  }
+// Custom Scrollbars
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
 
-  .row h2 {
-    margin: 0; /* removes default margins */
-    flex: 1; /* ensures equal width for all h2 */
-    text-align: center; /* centers the text within each h2 */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  &:hover {
+    background-color: #555;
   }
+}
 
-  .row h4 {
-    margin: 0; /* removes default margins */
-    flex: 1; /* ensures equal width for all h2 */
-    text-align: center; /* centers the text within each h2 */
-  }
-
-  .row h5 {
-    margin: 0; /* removes default margins */
-    flex: 1; /* ensures equal width for all h2 */
-    text-align: center; /* centers the text within each h2 */
-  }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}

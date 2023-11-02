@@ -47,6 +47,21 @@ exports.getInfluencer =  (req, res) => {
     });
 }
 
+exports.getInfluencerNameById = (req, res) => {
+    const influencerId = Number(req.params.id);
+    Influencer.findByPk(influencerId, { attributes: ['name'] })
+    .then(data => {
+        res.status(200).send({data});
+    })
+    .catch(err => {
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    }
+    );
+}
+
 exports.deleteInfluencer =  (req, res) => {
     Influencer.update({ Status : "InActive" }, { where: { id: req.params.id } }).then(
         (data) => {

@@ -23,7 +23,7 @@
 
     <ng-container matColumnDef="Contact">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
-      <td mat-cell *matCellDef="let element">{{ getUsername(element.userID)}}</td>
+      <td mat-cell *matCellDef="let element">{{ element.userID | userNamePipe | async}}</td>
     </ng-container>
 
     <ng-container matColumnDef="Date">

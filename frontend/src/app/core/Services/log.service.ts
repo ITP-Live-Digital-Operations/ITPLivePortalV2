@@ -27,4 +27,15 @@ export class LogService {
   deleteLog(inputdata:any){
     return this.http.delete(`${this.logApiURL}/deleteLog/${inputdata}`)
   }
+  getLogById(inputdata:any):Observable<LogModel>{
+    return this.http.get<LogModel>(`${this.logApiURL}/getLogById/${inputdata}`)
+  }
+
+  updateSingleLog(id: any, inputdata:any){
+    return this.http.patch(`${this.logApiURL}/updateSingleLog/${id}`, inputdata)
+  }
+
+  updatePackageLog(id: any, inputdata:any){
+    return this.http.patch(`${this.logApiURL}/updatePackageLog/${id}`, inputdata)
+  }
 }

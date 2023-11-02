@@ -194,44 +194,7 @@ export class InfluencersComponent {
     this.getInfluencers();
   }
 
-  public deleteInfluencer(inputdata: any): void {
-    this.dialogService
-      .openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
-      .subscribe((result) => {
-        if (result === true) {
-          this.toastrService.success('Deleted Successfully!');
-          this.influencerService
-            .deleteInfluencer(inputdata)
-            .subscribe((item) => {
-              this.getInfluencers();
-            });
-        }
-      });
-  }
 
-  public editInfluencer(inputdata: any): void {
-    this.dialog?.open(EditInfluencerComponent, {
-      width: '90%',
-      height: '80%',
-      exitAnimationDuration: '1000ms',
-      enterAnimationDuration: '1000ms',
-      data: {
-        id: inputdata,
-      },
-    });
-  }
-
-  public viewInfluencer(inputdata: any): void {
-    this.dialog?.open(InfluencerIdComponent, {
-      width: '100%',
-      height: '95%',
-      exitAnimationDuration: '1000ms',
-      enterAnimationDuration: '1000ms',
-      data: {
-        id: inputdata,
-      },
-    });
-  }
 
   public applyFilter(): void {
     this.dataSource.filterPredicate = (
@@ -239,7 +202,8 @@ export class InfluencersComponent {
       filter: string
     ) => {
       const isMatchSearch = this.filterCriteria.search
-        ? data.Name?.trim().toLowerCase().includes(this.filterCriteria.search)
+        ? data.Name?.trim().toLowerCase().includes(this.filterCriteria.search) ||
+          data.InstagramHandle?.trim().toLowerCase().includes(this.filterCriteria.search)
         : true;
 
       return (
@@ -294,7 +258,7 @@ export class InfluencersComponent {
     this.applyFilter();
   }
 
-  public applyPlatformFilter(platform: string): void {
+ /*  public applyPlatformFilter(platform: string): void {
     this.platform = platform;
 
     const baseColumns = ['ID', 'Name', 'Gender', 'CountryLocation'];
@@ -368,12 +332,51 @@ export class InfluencersComponent {
     }
 
     this.displayedColumns = [...baseColumns, ...platformColumns];
-  }
+  } */
 
   public openLink(link: string): void {
     if (!link) {
       return;
     }
     window.open(link, '_blank');
+  }
+
+  public deleteInfluencer(inputdata: any): void {
+    this.dialogService
+      .openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
+      .subscribe((result) => {
+        if (result === true) {
+          this.toastrService.success('Deleted Successfully!');
+          this.influencerService
+            .deleteInfluencer(inputdata)
+            .subscribe((item) => {
+              this.getInfluencers();
+            });
+        }
+      });
+  }
+
+  public editInfluencer(inputdata: any): void {
+    this.dialog?.open(EditInfluencerComponent, {
+      width: '90%',
+      height: '80%',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: inputdata,
+      },
+    });
+  }
+
+  public viewInfluencer(inputdata: any): void {
+    this.dialog?.open(InfluencerIdComponent, {
+      width: '100%',
+      height: '95%',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: inputdata,
+      },
+    });
   }
 }

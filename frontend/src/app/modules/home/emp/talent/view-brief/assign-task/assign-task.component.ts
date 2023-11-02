@@ -23,6 +23,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class AssignTaskComponent {
   dataSource: any;
+  protected talentHeads: any;
 
   @Input()
   brief!: any;
@@ -31,6 +32,7 @@ export class AssignTaskComponent {
   brief_id: any;
 
   task: any;
+  userId = this.userService.getID();
 
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
@@ -62,13 +64,16 @@ export class AssignTaskComponent {
       });
     } else {
       this.task = source.task;
+      console.log(this.task);
       this.assignForm = this.formBuilder.group({
         Weight: [this.task.weight, Validators.required],
         Deadline: [this.task.deadline, Validators.required],
       });
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getTalentHeads();
+  }
 
   protected assign(): void {
     if (this.assignForm.valid) {
@@ -200,6 +205,14 @@ export class AssignTaskComponent {
           }
         }
       }
+    });
+  }
+
+  private getTalentHeads(): void {
+    this.userService.getTalentHeads().subscribe((data: any) => {
+      this.talentHeads = data;
+      console.log(this.talentHeads);
+
     });
   }
 }

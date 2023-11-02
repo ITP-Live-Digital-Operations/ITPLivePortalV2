@@ -41,7 +41,6 @@ router.route('/resetPassword/:id')
 router.route('/deleteUser/:id')
     .delete(asyncHandler(userController.deleteUser));
 
-
 router.route('/getTalentHeads')
     .get(asyncHandler(userController.getTalentHeads));
 

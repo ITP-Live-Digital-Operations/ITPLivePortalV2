@@ -1,0 +1,78 @@
+<div class="container">
+<div *ngIf="package">
+  <!-- Material Table structure starts here -->
+  <mat-table [dataSource]="log.packages" class="mat-elevation-z8">
+
+    <!-- Column Definitions -->
+    <ng-container matColumnDef="platform">
+      <mat-header-cell *matHeaderCellDef> Platform </mat-header-cell>
+      <mat-cell *matCellDef="let package"> {{ package.platform }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="deliverable">
+      <mat-header-cell *matHeaderCellDef> Deliverable </mat-header-cell>
+      <mat-cell *matCellDef="let package"> {{ package.deliverable }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+      <mat-cell *matCellDef="let package"> {{ package.quantity }} </mat-cell>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumnsForPackages"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumnsForPackages;"></mat-row>
+
+  </mat-table>
+
+  <hr>
+
+  <h2>Reply Time : {{log.time_to_reply}}</h2>
+  <h2>Notes: {{ log.notes }}</h2>
+  <h2>Rate: {{ log.currency }} {{ log.rate  }}</h2>
+</div>
+
+
+  <!-- view single logs -->
+<div *ngIf="single">
+    <!-- Material Table structure starts here -->
+    <mat-table [dataSource]="log.logItems" class="mat-elevation-z8">
+
+      <!-- Column Definitions -->
+      <ng-container matColumnDef="platform">
+        <mat-header-cell *matHeaderCellDef> Platform </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.platform}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="deliverable">
+        <mat-header-cell *matHeaderCellDef> Deliverable </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.deliverable}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="currency">
+        <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="rate">
+        <mat-header-cell *matHeaderCellDef> Rate </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.rate}} </mat-cell>
+      </ng-container>
+
+      <!-- Header and Row Declarations -->
+      <mat-header-row *matHeaderRowDef="displayedColumnsSingle"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumnsSingle;"></mat-row>
+
+    </mat-table>
+
+    <hr>
+    <h2>Reply Time : {{log.time_to_reply}}</h2>
+    <h2>Notes: {{ log.notes }}</h2>
+</div>
+
+</div>

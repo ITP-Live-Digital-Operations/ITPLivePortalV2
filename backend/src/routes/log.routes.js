@@ -15,5 +15,12 @@ router.route('/getInfluencerLogs/:id')
 router.route('/deleteLog/:id')
     .delete(authHandler, asyncHandler(LogController.deleteLog));
 
+router.route('/getLogById/:id')
+    .get(authHandler, asyncHandler(LogController.getLogById));
 
+router.route('/updateSingleLog/:id')
+    .patch(authHandler, asyncHandler(LogController.updateSingleLog));
+
+router.route('/updatePackageLog/:id')
+    .patch(authHandler, asyncHandler(LogController.updatePackageLog));
 module.exports = router;

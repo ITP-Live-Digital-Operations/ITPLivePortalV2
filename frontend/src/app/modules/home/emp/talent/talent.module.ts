@@ -12,6 +12,9 @@ import { InfluencerRatingComponent } from './influencer-rating/influencer-rating
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { RoundHistoryComponent } from './view-brief/round-history/round-history.component';
+import { ViewLogComponent } from './influencer-logs/view-log/view-log.component';
+import { EditItemLogComponent } from './influencer-logs/edit-item-log/edit-item-log.component';
+import { EditPackageLogComponent } from './influencer-logs/edit-package-log/edit-package-log.component';
 
 
 @NgModule({
@@ -19,6 +22,9 @@ import { RoundHistoryComponent } from './view-brief/round-history/round-history.
     InfluencerLogsComponent,
     PersonTasksComponent,
     InfluencerRatingComponent,
+    ViewLogComponent,
+    EditItemLogComponent,
+    EditPackageLogComponent,
   ],
   imports: [
     CommonModule,

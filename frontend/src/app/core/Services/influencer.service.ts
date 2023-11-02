@@ -34,6 +34,12 @@ export class InfluencerService {
     );
   }
 
+  getInfluencerNameById(inputdata: any) {
+    return this.http.get(
+      `${this.influencerApiURL}/getInfluencerNameById/${inputdata}`
+    );
+  }
+
   deleteInfluencer(inputdata: any) {
     return this.http.delete(
       `${this.influencerApiURL}/deleteInfluencer/${inputdata}`

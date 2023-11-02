@@ -1,8 +1,7 @@
 <div class="notification-container">
-<!--   <div class="flex">
-    <button (click)="clear()"> Clear All</button>
-    <button (click)="onClose()"><mat-icon>clear</mat-icon></button>
-  </div> -->
+  <div>
+  <button (click)="markAllAsRead()"> Mark All as Read </button>
+  </div>
   <div class="notification-box">
 
     <div *ngFor="let notification of notifications?.data">

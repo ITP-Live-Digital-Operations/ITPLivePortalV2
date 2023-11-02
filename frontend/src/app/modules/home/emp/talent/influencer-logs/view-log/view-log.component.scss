@@ -1,0 +1,21 @@
+.single {
+  color: white;
+  margin-top: 2%;
+}
+
+.package {
+  color: white;
+  margin-top: 2%;
+}
+
+.row {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; /* optional: to space out the <h2> tags evenly */
+}
+
+.container{
+  padding: 2%;
+}

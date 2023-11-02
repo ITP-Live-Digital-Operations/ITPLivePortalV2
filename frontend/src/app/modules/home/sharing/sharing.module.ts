@@ -31,6 +31,7 @@ import { DndDirective } from './dnd.directive';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
 import { BooleanPipe } from 'src/app/shared/pipes/boolean.pipe';
+import { InfluencerNamePipe } from 'src/app/shared/pipes/influencer-name.pipe';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,8 @@ import { BooleanPipe } from 'src/app/shared/pipes/boolean.pipe';
     DndDirective,
     NumberFormatPipe,
     BooleanPipe,
+    InfluencerNamePipe,
+
   ],
   imports: [
     CommonModule,
@@ -81,6 +84,8 @@ import { BooleanPipe } from 'src/app/shared/pipes/boolean.pipe';
     UploadFilesComponent,
     NumberFormatPipe,
     BooleanPipe,
+    InfluencerNamePipe,
+    
   ],
 })
 export class SharingModule {}
