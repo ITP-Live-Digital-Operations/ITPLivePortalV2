@@ -9,10 +9,15 @@ export class InfluencerNamePipe implements PipeTransform {
 
   constructor(private influencerService : InfluencerService) {}
 
-  transform(value: number){
-    return this.influencerService.getInfluencerNameById(value).pipe(
-      map((res: any) => res.data.name)
-    );
+  private influencers = []
+  ngOnInit(): void {
+
   }
+
+  transform(value: number){
+    return this.influencerService.getInfluencer(value).pipe(map((res: any) => {
+      return res.data.Name;
+  }))
+}
 
 }
