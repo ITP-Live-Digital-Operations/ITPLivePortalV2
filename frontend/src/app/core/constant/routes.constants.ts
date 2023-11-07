@@ -21,5 +21,6 @@ export const PATH: { [key: string]: string } = {
     talentGuide: "/home/main/talentGuide",
     influencerRating: "/home/talent/influencerRating/",
     viewBrief: "/home/talent/viewBrief/",
-    editUser: "/home/admin/edit/"
+    editUser: "/home/admin/edit/",
+    viewCampaigns: "/home/campaign/viewCampaigns",
 };

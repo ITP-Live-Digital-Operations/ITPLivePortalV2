@@ -11,7 +11,7 @@
     <p>User Management</p>
     </button>
     <button
-    mat-raised-button *ngIf="userRole=='talent' || userRole=='sales' || userRole=='superadmin'" routerLink="{{path['influencers']}}">
+    mat-raised-button *ngIf="userRole=='talent' || userRole=='sales' || userRole=='campaign' || userRole=='superadmin'" routerLink="{{path['influencers']}}">
         <img src="../../../../../assets/white-buttons/Inlfuencer.png">
         <p>Influencer</p>
     </button>
@@ -32,15 +32,15 @@
         <img src="../../../../../assets/white-buttons/rate-log.png">
         <p>Rate Logs</p>
     </button>
-    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="{{path['newRateLog']}}">    
+    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="{{path['newRateLog']}}">
         <img src="../../../../../assets/white-buttons/new-rate-log.png">
         <p>New Rate Log</p>
     </button>
-    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="{{path['newTimeForm']}}">
+    <button mat-raised-button *ngIf="userRole=='talent'|| userRole=='campaign' || userRole=='superadmin'" routerLink="{{path['newTimeForm']}}">
         <img src="../../../../../assets/white-buttons/time log.png">
         <p>Time Form</p>
     </button>
-
+    <!-- ------------------------ Sales -------------------------  -->
     <button
     mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="{{path['newSalesBrief']}}">
     <img src="../../../../../assets/white-buttons/new-sales-brief.png">
@@ -56,7 +56,21 @@
     <img src="../../../../../assets/white-buttons/sent-brief.png">
     <p>Sent Briefs</p>
     </button>
+
+      <!-- ---------------------- Campaign -------------------     -->
+
+      <button mat-raised-button *ngIf="userRole=='campaign' || userRole=='superadmin'" routerLink="{{path['viewCampaigns']}}">
+        <img src="../../../../../assets/white-buttons/rate-log.png">
+        <p>Campaigns</p>
+    </button>
+ <!--    <button mat-raised-button *ngIf="userRole=='campaign' || userRole=='superadmin'" routerLink="{{path['']}}">
+        <img src="../../../../../assets/white-buttons/new-rate-log.png">
+        <p>New Campaign</p>
+    </button> -->
+
+
     </div>
+
 
 
 

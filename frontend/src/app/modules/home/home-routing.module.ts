@@ -7,20 +7,20 @@ import { ChangePasswordComponent } from 'src/app/shared/components/change-passwo
 const routes: Routes = [
   {
     path: 'main',
-    children:[
+    children: [
       {
         path: '',
         loadChildren: () =>
           import('../home/sharing//sharing.module').then(
             (m) => m.SharingModule
           ),
-          canActivate: [AuthGuard]
-      }
-    ]
+        canActivate: [AuthGuard],
+      },
+    ],
   },
   {
     path: 'talent',
-    children:[
+    children: [
       {
         path: '',
         loadChildren: () =>
@@ -29,57 +29,70 @@ const routes: Routes = [
           ),
         canActivate: [AuthGuard, RoleGuard],
         data: {
-          allowedRoles: ['Talent Head', 'talent', 'admin', 'superadmin']
-        }
-      }
-    ]
+          allowedRoles: ['Talent Head', 'talent', 'admin', 'superadmin'],
+        },
+      },
+    ],
   },
   {
     path: 'sales',
-    children:[
+    children: [
       {
         path: '',
         loadChildren: () =>
-          import('../home/emp/sales//sales.module').then(
-            (m) => m.SalesModule
-          ),
+          import('../home/emp/sales//sales.module').then((m) => m.SalesModule),
         canActivate: [AuthGuard, RoleGuard],
         data: { allowedRoles: ['Sales Head', 'sales', 'admin', 'superadmin'] },
-      }
-    ]
+      },
+    ],
+  },
+  {
+    path: 'campaign',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('../home/emp/campaign/campaign.module').then(
+            (m) => m.CampaignModule
+          ),
+        canActivate: [AuthGuard, RoleGuard],
+        data: {
+          allowedRoles: ['admin', 'superadmin', 'campaign', 'Campaign Head'],
+        },
+      },
+    ],
   },
   {
     path: 'admin',
-    children:[
+    children: [
       {
         path: '',
         loadChildren: () =>
-          import('../home/admin//admin.module').then(
-            (m) => m.AdminModule
-          ),
+          import('../home/admin//admin.module').then((m) => m.AdminModule),
         canActivate: [AuthGuard, RoleGuard],
         data: { allowedRoles: ['admin', 'superadmin'] },
-      }
-    ]
+      },
+    ],
   },
+
   {
     path: 'changePassword',
-    component: ChangePasswordComponent
+    component: ChangePasswordComponent,
   },
   {
     path: '',
-    redirectTo: "/site/notFound",
-    pathMatch: 'full'
+    redirectTo: '/site/notFound',
+    pathMatch: 'full',
   },
   {
     path: '**',
     redirectTo: '/site/notFound',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class HomeRoutingModule { }
+export class HomeRoutingModule {}

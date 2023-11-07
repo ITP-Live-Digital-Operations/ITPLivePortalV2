@@ -1,0 +1,101 @@
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="campaignName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign</th>
+      <td mat-cell *matCellDef="let element">{{ element.campaignName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="clientName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Client</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.clientName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="market">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Market</th>
+      <td mat-cell *matCellDef="let element">{{ element.market }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="clientIndustry">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Client's Industry
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.clientIndustry }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="influencerName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.influencerName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="influencerVertical">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vertical</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.influencerVertical }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="platform">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>platform</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.platform }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="deliverable">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Instagram Handle
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.deliverable }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="poc">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>POC</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.poc }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Year</th>
+      <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+    </ng-container>
+
+    <!--  <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef sticky>View | Edit</th>
+      <td mat-cell *matCellDef="let element">
+        <button class="icon-btn" (click)="viewInfluencer(element.id)">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+
+        <button class="icon-btn" (click)="editInfluencer(element.id)">
+          <mat-icon>create</mat-icon>
+        </button>
+
+        <mat-icon
+          *ngIf="userRole == 'superadmin'"
+          mat-raised-button
+          color="warn"
+          (click)="deleteInfluencer(element.id)"
+        >
+          delete
+        </mat-icon>
+      </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" sticky></tr>
+  </table>
+</div>
+<mat-paginator
+  pageSize="20"
+  [pageSizeOptions]="[5, 10, 25, 50, 100]"
+  showFirstLastButtons
+  aria-label="Select page"
+>
+</mat-paginator>
