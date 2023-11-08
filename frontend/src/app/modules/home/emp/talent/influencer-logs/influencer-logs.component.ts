@@ -18,10 +18,7 @@ import { EditPackageLogComponent } from './edit-package-log/edit-package-log.com
   templateUrl: './influencer-logs.component.html',
   styleUrls: ['./influencer-logs.component.scss'],
 })
-
-
 export class InfluencerLogsComponent {
-
   protected dataSource: any;
   protected UserDetails: any;
   protected talentUserNames: any;
@@ -35,13 +32,13 @@ export class InfluencerLogsComponent {
 
   filterValues = { influencerID: '', campaign: '', userID: '' };
 
-  single : boolean = false;
-  package : boolean = false;
+  single: boolean = false;
+  package: boolean = false;
 
-  logs : LogModel[] = [];
-  log !: LogModel;
+  logs: LogModel[] = [];
+  log!: LogModel;
 
-  users : any;
+  users: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -62,10 +59,9 @@ export class InfluencerLogsComponent {
   constructor(
     private userService: UserService,
     private router: Router,
-    private logService : LogService,
-    private dialog : MatDialog,
+    private logService: LogService,
+    private dialog: MatDialog
   ) {}
-
 
   ngOnInit(): void {
     this.getAllLogs();
@@ -73,7 +69,7 @@ export class InfluencerLogsComponent {
 
   public getAllLogs(): void {
     this.logService.getAllLogs().subscribe((data) => {
-      console.log(data);
+      
       this.logs = data;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator!;
@@ -83,69 +79,79 @@ export class InfluencerLogsComponent {
       this.influencers = [...new Set(data.map((log: any) => log.influencerID))];
       this.campaigns = [...new Set(data.map((log: any) => log.campaign))];
       this.contacts = [...new Set(data.map((log: any) => log.userID))];
-      });
+    });
   }
 
-
-
-
   public filterInfluencer(influencerID: string) {
-  this.filterValues.influencerID = influencerID;
-  this.applyFilter();
-  this.updateFilterOptions();
+    this.filterValues.influencerID = influencerID;
+    this.applyFilter();
+    this.updateFilterOptions();
   }
 
   public filterCampaign(campaign: string) {
-  this.filterValues.campaign = campaign;
-  this.applyFilter();
-  this.updateFilterOptions();
+    this.filterValues.campaign = campaign;
+    this.applyFilter();
+    this.updateFilterOptions();
   }
 
   public filterContact(contact: string) {
-  this.filterValues.userID = contact;
-  this.applyFilter();
-  this.updateFilterOptions();
+    this.filterValues.userID = contact;
+    this.applyFilter();
+    this.updateFilterOptions();
   }
 
   public applyFilter() {
-    this.dataSource.filterPredicate = (data: LogModel, filter: string): boolean => {
+    this.dataSource.filterPredicate = (
+      data: LogModel,
+      filter: string
+    ): boolean => {
       const searchString = JSON.parse(filter);
 
-      const influencerMatch = searchString.influencerID ? data.influencerID === searchString.influencerID : true;
-      const campaignMatch = searchString.campaign ? data.campaign.toLowerCase().includes(searchString.campaign.toLowerCase()) : true;
-      const userMatch = searchString.userID ? data.userID === searchString.userID : true;
+      const influencerMatch = searchString.influencerID
+        ? data.influencerID === searchString.influencerID
+        : true;
+      const campaignMatch = searchString.campaign
+        ? data.campaign
+            .toLowerCase()
+            .includes(searchString.campaign.toLowerCase())
+        : true;
+      const userMatch = searchString.userID
+        ? data.userID === searchString.userID
+        : true;
 
       return influencerMatch && campaignMatch && userMatch;
     };
     this.dataSource.filter = JSON.stringify(this.filterValues);
   }
 
-
   private updateFilterOptions() {
-
     const renderedData = this.dataSource.filteredData || [];
 
-    this.influencers = [...new Set(renderedData.map((log: any) => log.influencerID))].sort() as number[];
+    this.influencers = [
+      ...new Set(renderedData.map((log: any) => log.influencerID)),
+    ].sort() as number[];
 
-    this.campaigns = [...new Set(renderedData.map((log: any) => log.campaign))].sort() as string[];
+    this.campaigns = [
+      ...new Set(renderedData.map((log: any) => log.campaign)),
+    ].sort() as string[];
 
-    this.contacts = [...new Set(renderedData.map((log: any) => log.userID))].sort() as number[];
+    this.contacts = [
+      ...new Set(renderedData.map((log: any) => log.userID)),
+    ].sort() as number[];
   }
 
-
-  public editInfluencerLog(inputdata: any, type : String): void {
-    if(type == "single"){
-        this.dialog?.open(EditItemLogComponent, {
-          width: '70%',
-          height: '60%',
-          exitAnimationDuration: '1000ms',
-          enterAnimationDuration: '1000ms',
-          data: {
-            id: inputdata,
-          },
-        })
-    }
-    else{
+  public editInfluencerLog(inputdata: any, type: String): void {
+    if (type == 'single') {
+      this.dialog?.open(EditItemLogComponent, {
+        width: '70%',
+        height: '60%',
+        exitAnimationDuration: '1000ms',
+        enterAnimationDuration: '1000ms',
+        data: {
+          id: inputdata,
+        },
+      });
+    } else {
       this.dialog?.open(EditPackageLogComponent, {
         width: '70%',
         height: '60%',
@@ -154,11 +160,11 @@ export class InfluencerLogsComponent {
         data: {
           id: inputdata,
         },
-      })
+      });
     }
   }
 
-  public viewInfluencerLog(inputdata: any, type : String): void {
+  public viewInfluencerLog(inputdata: any, type: String): void {
     this.dialog?.open(ViewLogComponent, {
       width: '70%',
       height: '50%',
@@ -171,11 +177,7 @@ export class InfluencerLogsComponent {
     });
   }
 
-
-
   public redirectToNewLog(): void {
-
-  this.router.navigate([this.path['newRateLog']]);
+    this.router.navigate([this.path['newRateLog']]);
   }
-
 }

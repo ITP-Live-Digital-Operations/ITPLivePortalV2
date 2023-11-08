@@ -12,7 +12,7 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./view-campaigns.component.scss'],
 })
 export class ViewCampaignsComponent {
-  public dataSource: any;
+  protected dataSource: any;
 
   displayedColumns: string[] = [
     'campaignName',
@@ -24,8 +24,14 @@ export class ViewCampaignsComponent {
     'platform',
     'deliverable',
     'poc',
-    'year'
+    'year',
   ];
+
+  campaigns: string[] = [];
+  clients: string[] = [];
+  influencers: string[] = [];
+
+  filterValues = { campaignName: '', clientName: '', influencerName: '' };
 
   ngOnInit(): void {
     this.loadCampaigns();
@@ -39,18 +45,89 @@ export class ViewCampaignsComponent {
 
   @ViewChild(MatTable) table!: MatTable<any>;
 
-  constructor(private userService: UserService,
-              private campaignService : CampaignService) {}
-
+  constructor(
+    private userService: UserService,
+    private campaignService: CampaignService
+  ) {}
 
   public loadCampaigns() {
-    this.campaignService.getCampaigns().subscribe((res: CampaignModel[]) => {
-      console.log(res);
-      this.dataSource = new MatTableDataSource<CampaignModel>(res);
-      this.dataSource.paginator = this.paginator;
+    this.campaignService.getCampaigns().subscribe((res) => {
+
+      this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator!;
       this.dataSource.sort = this.sort;
 
-
+      // Extract unique values from columns to build filter
+      this.campaigns = [
+        ...new Set(res.map((result: any) => result.campaignName)),
+      ].sort() as string[];
+      this.clients = [...new Set(res.map((result: any) => result.clientName))];
+      this.influencers = [
+        ...new Set(res.map((result: any) => result.influencerName)),
+      ];
     });
+  }
+
+  public filterInfluencer(influencer: string) {
+    this.filterValues.influencerName = influencer;
+    this.applyFilter();
+    this.updateFilterOptions();
+  }
+
+  public filterClient(client: string) {
+    this.filterValues.clientName = client;
+    this.applyFilter();
+    this.updateFilterOptions();
+  }
+
+  public filterCampaign(campaign: string) {
+    console.log(campaign);
+    this.filterValues.campaignName = campaign;
+    this.applyFilter();
+
+    this.updateFilterOptions();
+  }
+
+  public applyFilter() {
+    this.dataSource.filterPredicate = (data: CampaignModel, filter: string) => {
+      const searchString = JSON.parse(filter);
+
+
+      const influencerMatch = searchString.influencerName
+        ? data.influencerName
+        .toLowerCase()
+        .includes(searchString.influencerName.toLowerCase())
+        : true;
+      const clientMatch = searchString.clientName
+        ? data.clientName
+        .toLowerCase()
+        .includes(searchString.clientName.toLowerCase())
+        : true;
+      const campaignMatch = searchString.campaignName
+        ? data.campaignName
+          .toLowerCase()
+          .includes(searchString.campaignName.toLowerCase())
+        : true;
+
+      return influencerMatch && clientMatch && campaignMatch;
+    };
+
+    this.dataSource.filter = JSON.stringify(this.filterValues);
+  }
+
+  private updateFilterOptions() {
+    const renderedData = this.dataSource.filteredData || [];
+
+    this.influencers = [
+      ...new Set(renderedData.map((result: any) => result.influencerName)),
+    ].sort() as string[];
+
+    this.campaigns = [
+      ...new Set(renderedData.map((result: any) => result.campaignName)),
+    ].sort() as string[];
+
+    this.clients = [
+      ...new Set(renderedData.map((result: any) => result.clientName)),
+    ].sort() as string[];
   }
 }
