@@ -5,9 +5,11 @@ const Campaign = models.Campaign;
 exports.getCampaigns =  (req, res) => {
     Campaign.findAll()
      .then(data => {
+          console.log(data);
           res.status(200).send(data);
      })
      .catch(err => {
+          console.log(err);
           res.status(500).send({
                 status: "error",
                 message: err.message

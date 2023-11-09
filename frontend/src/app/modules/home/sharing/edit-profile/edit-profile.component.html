@@ -5,74 +5,70 @@
       (ngSubmit)="updateUser()"
       autocomplete="off"
     >
-
       <div class="row">
         <mat-form-field>
-          <mat-label>Avatar</mat-label>
+          <mat-label>Old Password</mat-label>
           <input
             matInput
-            type="text"
-            formControlName="name"
-            autocomplete="off"
-          />
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input
-            matInput
-            type="text"
-            formControlName="name"
+            type="password"
+            formControlName="oldPassword"
             autocomplete="off"
             required
           />
           <mat-error
             *ngIf="
-              updateProfile.controls['name'].invalid &&
-              updateProfile.controls['name'].touched
+              updateProfile.controls['oldPassword'].invalid &&
+              updateProfile.controls['oldPassword'].touched
             "
           >
-            Please enter a name.
+            Please enter the old password.
           </mat-error>
         </mat-form-field>
-
+      </div>
+      <div class="row">
         <mat-form-field>
-          <mat-label>Email</mat-label>
+          <mat-label>New Password</mat-label>
           <input
             matInput
-            type="email"
-            formControlName="email"
+            type="password"
+            formControlName="newPassword1"
             autocomplete="off"
             required
           />
           <mat-error
             *ngIf="
-              updateProfile.controls['email'].invalid &&
-              updateProfile.controls['email'].touched
+              updateProfile.controls['newPassword1'].invalid &&
+              updateProfile.controls['newPassword1'].touched
             "
           >
-            Please enter a valid email.
+            Password should be at least 8 characters.
           </mat-error>
         </mat-form-field>
       </div>
+      <div class="row">
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="newPassword2"
+            autocomplete="off"
+            required
+          />
+          <div *ngIf="passwordMatchError" class="text-danger">
+            Passwords do not match!
+          </div>
+        </mat-form-field>
+      </div>
+
+
 
       <button
         mat-raised-button
         style="margin-bottom: 2%"
-        routerLink="/home/changePassword"
+        (click)="updateUser()"
       >
         Change Password
-      </button>
-
-      <button
-        class="edit"
-        mat-raised-button
-        style="margin-bottom: 2%;"
-        type="submit"
-        [disabled]="!updateProfile.valid"
-      >
-        Edit Profile
       </button>
     </form>
   </div>

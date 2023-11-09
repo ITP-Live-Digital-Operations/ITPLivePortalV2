@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
@@ -11,9 +11,9 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class EditProfileComponent {
 
-  private userID!: number;
-  private user: any;
-  private data: any;
+  public passwordMatchError: boolean = false;
+  public passwordChangeSuccess: boolean = false;
+  public passwordChangeError: boolean = false;
 
   public updateProfile: FormGroup;
 
@@ -24,19 +24,19 @@ export class EditProfileComponent {
     private toastrService: ToastrService
   ) {
     this.updateProfile = this.formBuilder.group({
-      name: [''],
-      email: [''],
-      role: [''],
-      privilege_level: [''],
+      oldPassword: [''],
+      newPassword1: ['', [Validators.required, Validators.minLength(8)]],
+      newPassword2: ['', [Validators.required, Validators.minLength(8)]],
+    }, { validator: this.matchPassword.bind(this)
     });
   }
 
   ngOnInit(): void {
-    this.loadUserData();
+
   }
 
   private loadUserData(): void {
-    this.activatedRoute.params.subscribe((params) => {
+   /*  this.activatedRoute.params.subscribe((params) => {
       this.userID = params['id'];
     });
     this.userService.getUserByID(this.userID).subscribe((data: any) => {
@@ -48,20 +48,37 @@ export class EditProfileComponent {
           email: [this.user.email],
         });
       }
-    });
+    }); */
+  }
+
+  private matchPassword(group: FormGroup): any {
+    const newPassword = group.get('newPassword1')?.value;
+    const confirmPassword = group.get('newPassword2')?.value;
+
+    this.passwordMatchError = newPassword !== confirmPassword;
+
+    return this.passwordMatchError ? { passwordMismatch: true } : null;
   }
 
   public updateUser(): void {
     this.userService
-      .updateUser(this.updateProfile.value, this.userID)
-      .subscribe((res: any) => {
-        this.data = res;
-        if (this.data.status === 'success') {
-          this.toastrService.success('Influencer updated successfully!');
+    .changePassword({
+      oldPassword: this.updateProfile.value.oldPassword,
+      newPassword: this.updateProfile.value.newPassword,
+      id: this.userService.getID(),
+    })
+    .subscribe((response: any) => {
+      if (response.status == 'success') {
+        this.toastrService.success('Password changed successfully');
+        setTimeout(() => {
           window.location.reload();
-        } else {
-          this.toastrService.error('Influencer was not updated!');
-        }
-      });
-  }
+        }, 2000);
+      } else {
+        this.toastrService.error('Error error changing password');
+      }
+    });
 }
+
+
+}
+
