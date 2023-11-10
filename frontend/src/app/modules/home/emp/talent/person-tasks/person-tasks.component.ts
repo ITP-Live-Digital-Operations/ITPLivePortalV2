@@ -14,20 +14,21 @@ import { PATH } from 'src/app/core/constant/routes.constants';
   styleUrls: ['./person-tasks.component.scss'],
 })
 export class PersonTasksComponent {
-
   public path = PATH;
   private briefDetails: any;
   public dataSource: any;
   private userID: any;
   private id: any;
   private privilegeLevel!: number;
+  public briefName: any;
 
   displayedColumns: string[] = [
+    'briefName',
     'deadline',
     'progress',
     'weight',
     'createdAt',
-    'deadline',
+    'status',
     'Action',
   ];
 
@@ -54,8 +55,6 @@ export class PersonTasksComponent {
         this.id = params['id'];
 
         this.taskService.getMyTasks(this.id).subscribe((data: any) => {
-          console.log("my tasks:");
-          console.log(data);
           this.dataSource = data.data?.assignedUsers;
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
@@ -67,7 +66,9 @@ export class PersonTasksComponent {
   private getMyTasks(id: any): void {
     this.taskService.getMyTasks(id).subscribe((data: any) => {
       this.briefDetails = data;
-      this.dataSource = new MatTableDataSource(this.briefDetails.data?.assignedUsers);
+      this.dataSource = new MatTableDataSource(
+        this.briefDetails.data?.assignedUsers
+      );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -75,9 +76,7 @@ export class PersonTasksComponent {
 
   public viewedTask(id: any): void {
     if (this.privilegeLevel < 7) {
-      this.taskService
-        .updateStatus({ id: id })
-        .subscribe((data: any) => {});
+      this.taskService.updateStatus({ id: id }).subscribe((data: any) => {});
     }
 
     this.salesService.getSalesBriefIdbyTaskId(id).subscribe((data: any) => {

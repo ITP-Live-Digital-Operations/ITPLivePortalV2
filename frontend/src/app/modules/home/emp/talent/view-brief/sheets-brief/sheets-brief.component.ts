@@ -65,6 +65,7 @@ export class SheetsBriefComponent {
   protected isLoading: boolean = false;
   protected active !: boolean;
   protected feedback : boolean = true;
+  
 
   constructor(
     private fileService: FileService,

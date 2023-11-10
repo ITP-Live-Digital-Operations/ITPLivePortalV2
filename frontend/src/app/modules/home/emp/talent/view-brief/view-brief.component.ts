@@ -89,7 +89,7 @@ export class ViewBriefComponent {
         progress: this.progressForm.value.Progress,
       })
       .subscribe((data: any) => {
-        console.log(data);
+
         if (data.status === 'success') {
           this.toastrService.success('Progress Updated!');
         }
@@ -178,8 +178,6 @@ export class ViewBriefComponent {
   private getTalentHeads(): void {
     this.userService.getTalentHeads().subscribe((data: any) => {
       this.talentHeads = data;
-      console.log(this.talentHeads);
-      console.log(this.user_id)
     });
   }
 
@@ -192,7 +190,7 @@ export class ViewBriefComponent {
   private getTask(id: number): void {
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
       this.task = data.data;
-
+      console.log(this.task);
       this.progressForm.setControl(
         'Progress',
         new FormControl(this.task?.progress)

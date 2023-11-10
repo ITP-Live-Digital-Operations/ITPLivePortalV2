@@ -50,7 +50,6 @@ export class TaskRoundsComponent {
           this.toastrService.success('Feedback submitted successfully');
         });
       if (this.feedbackForm.value.feedback === 'Accept') {
-        this.deactivateBrief();
         let input = {
           message: `Brief ${this.brief.data.CampaignName} has been approved`,
           link: `${this.path['viewBrief']}${this.brief.data.id}`,

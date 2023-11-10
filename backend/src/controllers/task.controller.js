@@ -4,13 +4,14 @@ const Task = model.Task;
 const User = model.User;
 const usertasks = model.UserTasks;
 const taskHistory = model.TaskHistory;
+const SalesBrief = model.SalesBrief;
+
 const { Op } = require("sequelize");
+const taskclientcalls = model.taskClientCalls;
 
 exports.create = (req, res) => {
   Task.create(req.body)
     .then((data) => {
-
-
       res.status(201).send({
         status: "success",
         data: data,
@@ -115,6 +116,13 @@ exports.getUserTasks = (req, res) => {
         model: Task,
         as: "assignedUsers",
         through: { attributes: [] },
+        include: [
+          {
+            model: SalesBrief,
+            as: "Brief",
+            attributes: ["campaignName", "Status"], // Include the campaign name attribute here
+          },
+        ],
       },
     ],
   })
@@ -173,10 +181,7 @@ exports.getUsersAndTaskWeights = (req, res) => {
     where: {
       role: "talent",
       privilege_level: { [Op.lt]: 9 },
-      [Op.or]: [
-        { parentId: 15 },
-        { id: 15 }
-      ],
+      [Op.or]: [{ parentId: 15 }, { id: 15 }],
     },
     attributes: [
       "id",
@@ -233,6 +238,10 @@ exports.getTaskByBriefId = (req, res) => {
         model: taskHistory,
         as: "History",
       },
+      {
+        model: taskclientcalls,
+        as: "ClientCalls",
+      }
     ],
   })
     .then((data) => {
@@ -352,18 +361,17 @@ exports.addRoundtoTask = (req, res) => {
           });
         })
         .catch((err) => {
-          
           res.status(500).send({
             message:
               err.message || "Some error occurred while adding round to task.",
           });
-        });     
+        });
     })
     .catch((err) => {
-        taskHistory.create({
-            task_id: task_id,
-            round: 1,
-            })
+      taskHistory.create({
+        task_id: task_id,
+        round: 1,
+      });
       res.status(500).send({
         message:
           err.message || "Some error occurred while adding round to task.",

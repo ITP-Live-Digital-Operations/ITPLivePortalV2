@@ -1,10 +1,18 @@
-/* Define the font and font size for the entire document */
+/* Body style - font and font size */
 body {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 16px;
 }
 
-/* Style the card */
+/* Generic container styling */
+.container {
+  max-width: auto;
+  margin: 0 auto;
+  overflow-y: hidden;
+  max-height: auto;
+}
+
+/* Card styling */
 .card {
   background-color: #fff;
   border: none;
@@ -13,143 +21,102 @@ body {
   padding: 20px;
 }
 
-/* Style the card header */
 .card-header {
   background-color: #343a40;
-  border-radius: 5px 5px 0 0;
   color: #fff;
   font-size: 24px;
   padding: 10px 20px;
   text-align: center;
+  border-radius: 5px 5px 0 0;
 }
 
-/* Style the card text */
 .card-text {
   margin-bottom: 10px;
 }
 
-/* Style the container */
-.container {
-  max-width: auto;
-  margin: 0 auto;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 1%;
-  padding-left: 1%;
-}
-
-.table-container {
-  padding-top: 15%;
-  overflow-y: hidden;
-  max-height: auto;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-table {
-  width: 100%;
-}
-
-.no-border {
-  border: none;
-  resize: horizontal;
-  background-color: #fff;
-  border-color: #fff;
-  width: auto;
-}
-
-.form-container {
-  max-height: auto;
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
+/* Table styling */
 .my-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
-  margin-top: 5%;
+  margin: 20px 0;
+}
+
+.my-table th, .my-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  color: #fff;
 }
 
 .my-table th {
   background-color: #4789a1;
-  color: #ffffff;
+  color: #fff;
   font-weight: bold;
-  padding: 10px;
+}
+
+.my-table td.stretch-button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+/* Button styling */
+button.icon-btn, button.icon-btn-up, button.icon-btn-del {
   text-align: center;
-}
-
-.my-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  width: auto;
-  color: white;
-}
-
-.my-table th.centered {
-  text-align: center;
-  width: auto;
-}
-
-.down {
-  width: 1%;
-}
-.type {
-  width: 15%;
+  margin-top: 10px;
+  background-color: transparent;
+  border: none;
 }
 
 .icon-btn {
-  text-align: center;
-  margin-left: 13px;
-  margin-top: 10px;
+  color: #fff; /* primary color */
 }
 
 .icon-btn-up {
-  text-align: center;
   color: orange;
   margin-left: 3px;
-  margin-top: 10px;
-  background-color: transparent;
-  border: 0px;
 }
 
 .icon-btn-del {
   color: rgb(223, 42, 42);
   margin-left: 3px;
-  margin-top: 10px;
-  background-color: transparent;
-  border: 0px;
 }
 
-.search-container {
-  padding-top: 2%;
-  padding-bottom: 2%;
-  padding-left: 1%;
-  position: absolute;
-  top: 5;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-
-.stretch-button {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
+/* Loading container */
 .loading-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Take the full viewport height */
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0); /* Slight white overlay */
+  background-color: rgba(255, 255, 255, 0.5); /* semi-transparent white overlay */
+}
+
+/* Additional styles */
+.table-container {
+  overflow-y: hidden;
+  max-height: auto;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.form-container, .search-container {
+  max-height: auto;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1%;
+}
+
+/* Specific width adjustments */
+.down, .type {
+  width: auto; /* adjusted from fixed percentages to auto for flexibility */
 }

@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Task.belongsToMany(models.User, { through: 'UserTasks', foreignKey: 'taskId', as: 'assignedUsers' });
       Task.belongsTo(models.SalesBrief, {foreignKey: 'brief_id', as: 'Brief', onDelete: 'CASCADE'})
       Task.hasMany(models.TaskHistory, {foreignKey: 'task_id', as: 'History', onDelete: 'CASCADE'})
+      Task.hasOne(models.taskClientCalls, {foreignKey: 'taskId', as: 'ClientCalls', onDelete: 'CASCADE'})
 
     }
   }

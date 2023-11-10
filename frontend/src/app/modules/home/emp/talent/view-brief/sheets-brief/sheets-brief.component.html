@@ -1,152 +1,269 @@
-<table class="my-table">
-  <tr>
-    <th class="type">File Type</th>
-    <th class="centered">File Name</th>
-    <th class="centered">Uploaded On</th>
-    <th class="down">Download</th>
-    <th class="down" *ngIf="assignedUser_id.includes(userId)">Choose File</th>
-    <th class="down" *ngIf="assignedUser_id.includes(userId)">Delete</th>
-  </tr>
+<mat-tab-group>
+  <mat-tab label="Files" >
+    <div class="container">
+      <table class="my-table">
+        <tr>
+          <th class="type">File Type</th>
+          <th class="centered">File Name</th>
+          <th class="centered">Uploaded On</th>
+          <th class="down">Download</th>
+          <th class="down" *ngIf="assignedUser_id.includes(userId)">
+            Choose File
+          </th>
+          <th class="down" *ngIf="assignedUser_id.includes(userId)">Delete</th>
+        </tr>
 
-  <tr>
-    <td>Excel Sheet</td>
-    <td *ngIf="budgetSheet" class="stretch-button">
-      {{ budgetSheet.originalname }}
-    </td>
-    <td *ngIf="!budgetSheet"></td>
-    <td *ngIf="budgetSheet">{{ budgetSheet.createdAt | date }}</td>
-    <td *ngIf="!budgetSheet"></td>
-    <td *ngIf="budgetSheet">
+        <tr>
+          <td>Excel Sheet</td>
+          <td *ngIf="budgetSheet" class="stretch-button">
+            {{ budgetSheet.originalname }}
+          </td>
+          <td *ngIf="!budgetSheet"></td>
+          <td *ngIf="budgetSheet">{{ budgetSheet.createdAt | date }}</td>
+          <td *ngIf="!budgetSheet"></td>
+          <td *ngIf="budgetSheet">
+            <button
+              class="icon-btn"
+              color="primary"
+              (click)="
+                downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)
+              "
+            >
+              <mat-icon>get_app</mat-icon>
+            </button>
+          </td>
+          <td *ngIf="!budgetSheet"></td>
+
+          <td *ngIf="assignedUser_id.includes(userId)">
+            <input
+              type="file"
+              (change)="chooseFile()"
+              style="display: none"
+              #fileInput
+            />
+            <button class="icon-btn-up" (click)="chooseFile()">
+              <mat-icon>folder_open</mat-icon>
+            </button>
+          </td>
+
+          <td *ngIf="assignedUser_id.includes(userId)">
+            <button
+              class="icon-btn-del"
+              (click)="deleteBudgetSheetFile(budgetSheet.id)"
+              *ngIf="budgetSheet"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Presentation</td>
+          <td *ngIf="presentation" class="stretch-button">
+            {{ presentation.originalname }}
+          </td>
+          <td *ngIf="!presentation"></td>
+          <td *ngIf="presentation">{{ presentation.createdAt | date }}</td>
+          <td *ngIf="!presentation"></td>
+          <td *ngIf="presentation">
+            <button
+              class="icon-btn"
+              color="primary"
+              (click)="
+                downloadFilePPTX(presentation.id, presentation.originalname)
+              "
+            >
+              <mat-icon>get_app</mat-icon>
+            </button>
+          </td>
+          <td *ngIf="!presentation"></td>
+
+          <td *ngIf="assignedUser_id.includes(userId)">
+            <input
+              type="file"
+              (change)="handleFileInput($event)"
+              style="display: none"
+              #fileInput
+              accept=".pptx, .ppt"
+            />
+            <button class="icon-btn-up center" (click)="fileInput.click()">
+              <mat-icon>folder_open</mat-icon>
+            </button>
+          </td>
+
+          <td *ngIf="assignedUser_id.includes(userId)">
+            <button
+              class="icon-btn-del"
+              (click)="deletePresentationFile(presentation.id)"
+              *ngIf="presentation"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>PDF File</td>
+          <td *ngIf="pdf" class="stretch-button">
+            {{ pdf.originalname }}
+          </td>
+          <td *ngIf="!pdf"></td>
+          <td *ngIf="pdf">{{ pdf.createdAt | date }}</td>
+          <td *ngIf="!pdf"></td>
+          <td *ngIf="pdf">
+            <button
+              class="icon-btn"
+              color="primary"
+              (click)="downloadFilePDF(pdf.id, pdf.originalname)"
+            >
+              <mat-icon>get_app</mat-icon>
+            </button>
+          </td>
+          <td *ngIf="!pdf"></td>
+
+          <td *ngIf="assignedUser_id.includes(userId)">
+            <input
+              type="file"
+              (change)="handleFileInput($event)"
+              style="display: none"
+              #fileInput
+              accept=".pdf"
+            />
+            <button class="icon-btn-up center" (click)="fileInput.click()">
+              <mat-icon>folder_open</mat-icon>
+            </button>
+          </td>
+
+          <td *ngIf="assignedUser_id.includes(userId)">
+            <button
+              class="icon-btn-del"
+              (click)="deletePDFFile(pdf.id)"
+              *ngIf="pdf"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <div *ngIf="isLoading" class="loading-container">
+        <mat-progress-spinner mode="indeterminate" color="red">
+          Uploading...</mat-progress-spinner
+        >
+      </div>
+
       <button
-        class="icon-btn"
+        *ngIf="
+          assignedUser_id.includes(userId) &&
+          (budgetSheet || presentation || pdf) &&
+          active &&
+          feedback
+        "
+        mat-raised-button
         color="primary"
-        (click)="downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)"
+        (click)="salesBriefReady()"
       >
-        <mat-icon>get_app</mat-icon>
+        Send to Sales
       </button>
-    </td>
-    <td *ngIf="!budgetSheet"></td>
+    </div>
+  </mat-tab>
+  <mat-tab label="Client Calls">
+    <table class="my-table">
+      <tr>
+        <th class="type">Call Type</th>
+        <th class="centered">Status </th>
+        <th class="centered">Date</th>
+        <th class="down">Notes</th>
+      </tr>
 
-    <td *ngIf="assignedUser_id.includes(userId)">
-      <input
-        type="file"
-        (change)="chooseFile()"
-        style="display: none"
-        #fileInput
-      />
-      <button class="icon-btn-up" (click)="chooseFile()">
-        <mat-icon>folder_open</mat-icon>
-      </button>
-    </td>
+      <tr>
+        <td>Introdution Call</td>
+        <td *ngIf="budgetSheet" class="stretch-button">
 
-    <td *ngIf="assignedUser_id.includes(userId)">
-      <button
-        class="icon-btn-del"
-        (click)="deleteBudgetSheetFile(budgetSheet.id)"
-        *ngIf="budgetSheet"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </tr>
+        </td>
+        <td *ngIf="!budgetSheet"></td>
+        <td *ngIf="budgetSheet">{{ budgetSheet.createdAt | date }}</td>
+        <td *ngIf="!budgetSheet"></td>
+        <td *ngIf="budgetSheet">
+          <button
+            class="icon-btn"
+            color="primary"
+            (click)="
+              downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)
+            "
+          >
+            <mat-icon>get_app</mat-icon>
+          </button>
+        </td>
+        <td *ngIf="!budgetSheet"></td>
+      </tr>
 
-  <tr>
-    <td>Presentation</td>
-    <td *ngIf="presentation" class="stretch-button">
-      {{ presentation.originalname }}
-    </td>
-    <td *ngIf="!presentation"></td>
-    <td *ngIf="presentation">{{ presentation.createdAt | date }}</td>
-    <td *ngIf="!presentation"></td>
-    <td *ngIf="presentation">
-      <button
-        class="icon-btn"
-        color="primary"
-        (click)="downloadFilePPTX(presentation.id, presentation.originalname)"
-      >
-        <mat-icon>get_app</mat-icon>
-      </button>
-    </td>
-    <td *ngIf="!presentation"></td>
+      <tr>
+        <td>Presentation</td>
+        <td *ngIf="presentation" class="stretch-button">
+          {{ presentation.originalname }}
+        </td>
+        <td *ngIf="!presentation"></td>
+        <td *ngIf="presentation">{{ presentation.createdAt | date }}</td>
+        <td *ngIf="!presentation"></td>
+        <td *ngIf="presentation">
+          <button
+            class="icon-btn"
+            color="primary"
+            (click)="
+              downloadFilePPTX(presentation.id, presentation.originalname)
+            "
+          >
+            <mat-icon>get_app</mat-icon>
+          </button>
+        </td>
+        <td *ngIf="!presentation"></td>
 
-    <td *ngIf="assignedUser_id.includes(userId)">
-      <input
-        type="file"
-        (change)="handleFileInput($event)"
-        style="display: none"
-        #fileInput
-        accept=".pptx, .ppt"
-      />
-      <button class="icon-btn-up center" (click)="fileInput.click()">
-        <mat-icon>folder_open</mat-icon>
-      </button>
-    </td>
 
-    <td *ngIf="assignedUser_id.includes(userId)">
-      <button
-        class="icon-btn-del"
-        (click)="deletePresentationFile(presentation.id)"
-        *ngIf="presentation"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </tr>
+      </tr>
 
-  <tr>
-    <td>PDF File</td>
-    <td *ngIf="pdf" class="stretch-button">
-      {{ pdf.originalname }}
-    </td>
-    <td *ngIf="!pdf"></td>
-    <td *ngIf="pdf">{{ pdf.createdAt | date }}</td>
-    <td *ngIf="!pdf"></td>
-    <td *ngIf="pdf">
-      <button
-        class="icon-btn"
-        color="primary"
-        (click)="downloadFilePDF(pdf.id, pdf.originalname)"
-      >
-        <mat-icon>get_app</mat-icon>
-      </button>
-    </td>
-    <td *ngIf="!pdf"></td>
+      <tr>
+        <td>PDF File</td>
+        <td *ngIf="pdf" class="stretch-button">
+          {{ pdf.originalname }}
+        </td>
+        <td *ngIf="!pdf"></td>
+        <td *ngIf="pdf">{{ pdf.createdAt | date }}</td>
+        <td *ngIf="!pdf"></td>
+        <td *ngIf="pdf">
+          <button
+            class="icon-btn"
+            color="primary"
+            (click)="downloadFilePDF(pdf.id, pdf.originalname)"
+          >
+            <mat-icon>get_app</mat-icon>
+          </button>
+        </td>
+        <td *ngIf="!pdf"></td>
 
-    <td *ngIf="assignedUser_id.includes(userId)">
-      <input
-        type="file"
-        (change)="handleFileInput($event)"
-        style="display: none"
-        #fileInput
-        accept=".pdf"
-      />
-      <button class="icon-btn-up center" (click)="fileInput.click()">
-        <mat-icon>folder_open</mat-icon>
-      </button>
-    </td>
+        <td *ngIf="assignedUser_id.includes(userId)">
+          <input
+            type="file"
+            (change)="handleFileInput($event)"
+            style="display: none"
+            #fileInput
+            accept=".pdf"
+          />
+          <button class="icon-btn-up center" (click)="fileInput.click()">
+            <mat-icon>folder_open</mat-icon>
+          </button>
+        </td>
 
-    <td *ngIf="assignedUser_id.includes(userId)">
-      <button class="icon-btn-del" (click)="deletePDFFile(pdf.id)" *ngIf="pdf">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </tr>
-</table>
-
-<div *ngIf="isLoading" class="loading-container">
-
-  <mat-progress-spinner mode="indeterminate" color="red">
-    Uploading...</mat-progress-spinner
-  >
-</div>
-
-<button
-  *ngIf="
-    assignedUser_id.includes(userId) && (budgetSheet || presentation || pdf) && active && feedback
-  "
-  mat-raised-button
-  color="primary"
-  (click)="salesBriefReady()"
->
-  Send to Sales
-</button>
+        <td *ngIf="assignedUser_id.includes(userId)">
+          <button
+            class="icon-btn-del"
+            (click)="deletePDFFile(pdf.id)"
+            *ngIf="pdf"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td> 
+      </tr>
+    </table>
+  </mat-tab>
+</mat-tab-group>
