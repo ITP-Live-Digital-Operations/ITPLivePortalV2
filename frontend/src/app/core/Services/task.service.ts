@@ -73,4 +73,12 @@ export class TaskService {
   addRoundtoTask(id:number) {
     return this.http.get(`${this.taskApiURL}/addRoundtoTask/${id}`);
   }
+
+  createTaskClientCall(inputdata: any) {
+    return this.http.post(`${this.taskApiURL}/createTaskClientCall`, inputdata);
+  }
+
+  editTaskClientCall(id: number, inputdata: any) {
+    return this.http.patch(`${this.taskApiURL}/editTaskClientCall/${id}`, inputdata);
+  }
 }

@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      introCheck: { 
+      introStatus: { 
         type: DataTypes.BOOLEAN,
         defaultValue: false, 
       },
@@ -21,7 +21,7 @@ module.exports = {
         type: DataTypes.TEXT,
         defaultValue: '',
       },
-      briefCheck: {
+      briefStatus: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
@@ -33,7 +33,7 @@ module.exports = {
         type: DataTypes.TEXT,
         defaultValue: '',
       },
-      presentationCheck : {
+      presentationStatus : {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },

@@ -1,16 +1,16 @@
 <mat-tab-group>
-  <mat-tab label="Files" >
+  <mat-tab label="Files">
     <div class="container">
       <table class="my-table">
         <tr>
-          <th class="type">File Type</th>
-          <th class="centered">File Name</th>
-          <th class="centered">Uploaded On</th>
-          <th class="down">Download</th>
-          <th class="down" *ngIf="assignedUser_id.includes(userId)">
+          <th class="small">File Type</th>
+          <th class="large">File Name</th>
+          <th class="medium">Uploaded On</th>
+          <th class="small">Download</th>
+          <th class="small" *ngIf="assignedUser_id.includes(userId)">
             Choose File
           </th>
-          <th class="down" *ngIf="assignedUser_id.includes(userId)">Delete</th>
+          <th class="small" *ngIf="assignedUser_id.includes(userId)">Delete</th>
         </tr>
 
         <tr>
@@ -168,102 +168,6 @@
     </div>
   </mat-tab>
   <mat-tab label="Client Calls">
-    <table class="my-table">
-      <tr>
-        <th class="type">Call Type</th>
-        <th class="centered">Status </th>
-        <th class="centered">Date</th>
-        <th class="down">Notes</th>
-      </tr>
-
-      <tr>
-        <td>Introdution Call</td>
-        <td *ngIf="budgetSheet" class="stretch-button">
-
-        </td>
-        <td *ngIf="!budgetSheet"></td>
-        <td *ngIf="budgetSheet">{{ budgetSheet.createdAt | date }}</td>
-        <td *ngIf="!budgetSheet"></td>
-        <td *ngIf="budgetSheet">
-          <button
-            class="icon-btn"
-            color="primary"
-            (click)="
-              downloadFilexlsx(budgetSheet.id, budgetSheet.originalname)
-            "
-          >
-            <mat-icon>get_app</mat-icon>
-          </button>
-        </td>
-        <td *ngIf="!budgetSheet"></td>
-      </tr>
-
-      <tr>
-        <td>Presentation</td>
-        <td *ngIf="presentation" class="stretch-button">
-          {{ presentation.originalname }}
-        </td>
-        <td *ngIf="!presentation"></td>
-        <td *ngIf="presentation">{{ presentation.createdAt | date }}</td>
-        <td *ngIf="!presentation"></td>
-        <td *ngIf="presentation">
-          <button
-            class="icon-btn"
-            color="primary"
-            (click)="
-              downloadFilePPTX(presentation.id, presentation.originalname)
-            "
-          >
-            <mat-icon>get_app</mat-icon>
-          </button>
-        </td>
-        <td *ngIf="!presentation"></td>
-
-
-      </tr>
-
-      <tr>
-        <td>PDF File</td>
-        <td *ngIf="pdf" class="stretch-button">
-          {{ pdf.originalname }}
-        </td>
-        <td *ngIf="!pdf"></td>
-        <td *ngIf="pdf">{{ pdf.createdAt | date }}</td>
-        <td *ngIf="!pdf"></td>
-        <td *ngIf="pdf">
-          <button
-            class="icon-btn"
-            color="primary"
-            (click)="downloadFilePDF(pdf.id, pdf.originalname)"
-          >
-            <mat-icon>get_app</mat-icon>
-          </button>
-        </td>
-        <td *ngIf="!pdf"></td>
-
-        <td *ngIf="assignedUser_id.includes(userId)">
-          <input
-            type="file"
-            (change)="handleFileInput($event)"
-            style="display: none"
-            #fileInput
-            accept=".pdf"
-          />
-          <button class="icon-btn-up center" (click)="fileInput.click()">
-            <mat-icon>folder_open</mat-icon>
-          </button>
-        </td>
-
-        <td *ngIf="assignedUser_id.includes(userId)">
-          <button
-            class="icon-btn-del"
-            (click)="deletePDFFile(pdf.id)"
-            *ngIf="pdf"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td> 
-      </tr>
-    </table>
+    <app-task-client-calls-table [task]="task"></app-task-client-calls-table>
   </mat-tab>
 </mat-tab-group>

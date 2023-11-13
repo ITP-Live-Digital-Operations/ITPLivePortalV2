@@ -11,6 +11,7 @@ export interface TaskModel {
     priority: number;
     round : number;
     History : TaskHistory[];
+    ClientCalls : TaskClientCalls;
   }
 
 
@@ -22,4 +23,19 @@ export interface TaskModel {
     notes : string;
     createdAt : Date;
     updatedAt : Date;
+  }
+
+  export interface TaskClientCalls{
+    id: number;
+    introStatus: boolean;
+    introDate: Date;
+    introNotes: string;
+
+    briefStatus: boolean;
+    briefDate: Date;
+    briefNotes: string;
+
+    presentationStatus: boolean;
+    presentationDate: Date;
+    presentationNotes: string;
   }

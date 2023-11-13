@@ -7,7 +7,7 @@ const taskHistory = model.TaskHistory;
 const SalesBrief = model.SalesBrief;
 
 const { Op } = require("sequelize");
-const taskclientcalls = model.taskClientCalls;
+const taskClientCalls = model.taskClientCalls;
 
 exports.create = (req, res) => {
   Task.create(req.body)
@@ -239,9 +239,9 @@ exports.getTaskByBriefId = (req, res) => {
         as: "History",
       },
       {
-        model: taskclientcalls,
+        model: taskClientCalls,
         as: "ClientCalls",
-      }
+      },
     ],
   })
     .then((data) => {
@@ -416,3 +416,84 @@ exports.roundFeedback = (req, res) => {
       });
     });
 };
+
+exports.createTaskClientCall = (req, res) => {
+  const {
+    taskId,
+    introCallStatus,
+    introCallDate,
+    introCallNotes,
+    briefCallStatus,
+    briefCallDate,
+    briefCallNotes,
+    presentationCallStatus,
+    presentationCallDate,
+    presentationCallNotes,
+  } = req.body;
+
+  taskClientCalls
+    .create({
+      taskId: taskId,
+      introStatus: introCallStatus,
+      introDate: introCallDate,
+      introNotes: introCallNotes,
+      briefStatus: briefCallStatus,
+      briefDate: briefCallDate,
+      briefNotes: briefCallNotes,
+      presentationStatus: presentationCallStatus,
+      presentationDate: presentationCallDate,
+      presentationNotes: presentationCallNotes,
+    })
+    .then((data) => {
+      res.status(201).send({
+        status: "success",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while creating the Task.",
+      });
+    });
+};
+
+
+exports.editTaskClientCall = (req, res) => {
+  const id = req.params.id;
+  const {
+    introCallStatus,
+    introCallDate,
+    introCallNotes,
+    briefCallStatus,
+    briefCallDate,
+    briefCallNotes,
+    presentationCallStatus,
+    presentationCallDate,
+    presentationCallNotes,
+  } = req.body;
+
+  taskClientCalls.update(
+    {
+      introStatus: introCallStatus,
+      introDate: introCallDate,
+      introNotes: introCallNotes,
+      briefStatus: briefCallStatus,
+      briefDate: briefCallDate,
+      briefNotes: briefCallNotes,
+      presentationStatus: presentationCallStatus,
+      presentationDate: presentationCallDate,
+      presentationNotes: presentationCallNotes,
+    },
+    { where: { id: id } }
+  )
+    .then((data) => {
+      res.status(200).send({
+        status: "success",
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while updating the Task.",
+      });
+    });
+}

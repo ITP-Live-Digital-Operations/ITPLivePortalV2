@@ -1,44 +1,52 @@
-/* Body style - font and font size */
+/* Basic font and body styles */
 body {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 16px;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Flex container for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
-/* Generic container styling */
+/* Container styling */
 .container {
-  max-width: auto;
-  margin: 0 auto;
+  width: 100%; /* Full width of the viewport */
+  max-width: 100%; /* Prevent exceeding the viewport width */
   overflow-y: hidden;
-  max-height: auto;
 }
 
-/* Card styling */
-.card {
-  background-color: #fff;
-  border: none;
+/* Mat-tab-group styling */
+mat-tab-group {
+  background-color: transparent;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+
 }
 
-.card-header {
-  background-color: #343a40;
-  color: #fff;
-  font-size: 24px;
-  padding: 10px 20px;
-  text-align: center;
-  border-radius: 5px 5px 0 0;
-}
-
-.card-text {
-  margin-bottom: 10px;
+mat-tab {
+  background-color: #4789a1;
 }
 
 /* Table styling */
 .my-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
+  margin: 1.5% 0;
+  background-color: transparent;
+
+  .small {
+    width: 10%;
+  }
+  .medium{
+    width: 20%;
+  }
+
+  .large {
+    width: 50%;
+  }
 }
 
 .my-table th, .my-table td {
@@ -58,29 +66,30 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
 }
 
 /* Button styling */
 button.icon-btn, button.icon-btn-up, button.icon-btn-del {
-  text-align: center;
-  margin-top: 10px;
-  background-color: transparent;
   border: none;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .icon-btn {
-  color: #fff; /* primary color */
+  background-color: transparent;
+  color: #4789a1;
 }
 
 .icon-btn-up {
+  background-color: transparent;
   color: orange;
-  margin-left: 3px;
 }
 
 .icon-btn-del {
-  color: rgb(223, 42, 42);
-  margin-left: 3px;
+  background-color: transparent;
+  color: red;
 }
 
 /* Loading container */
@@ -88,35 +97,24 @@ button.icon-btn, button.icon-btn-up, button.icon-btn-del {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.5); /* semi-transparent white overlay */
+  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white overlay */
 }
 
-/* Additional styles */
-.table-container {
-  overflow-y: hidden;
-  max-height: auto;
-  width: 100%;
-  overflow-x: hidden;
+/* Specific adjustments for responsiveness and alignment */
+@media screen and (max-width: 768px) {
+  .my-table, .container {
+    width: 100%;
+    overflow-x: auto;
+  }
 }
 
-.form-container, .search-container {
-  max-height: auto;
-  overflow: hidden;
+/* Additional modifications for better UX */
+.table-container, .form-container, .search-container {
+  padding: 15px;
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
-  padding: 1%;
-}
-
-/* Specific width adjustments */
-.down, .type {
-  width: auto; /* adjusted from fixed percentages to auto for flexibility */
+  margin: 0 -15px;
 }

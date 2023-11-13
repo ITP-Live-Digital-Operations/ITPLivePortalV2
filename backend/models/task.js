@@ -44,7 +44,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     deadline : {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: null
     },
     created_at: {
       type: DataTypes.DATE,

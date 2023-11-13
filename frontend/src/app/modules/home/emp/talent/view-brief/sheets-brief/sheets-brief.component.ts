@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { InfluencerModel } from 'src/app/core/interfaces/influencersModel';
 import { TaskModel } from 'src/app/core/interfaces/task.Model';
 import { FileService } from 'src/app/core/services/file.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
@@ -12,6 +11,7 @@ import { UploadFilesComponent } from 'src/app/modules/home/sharing/upload-files/
 import { MainTableComponent } from '../main-table/main-table.component';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { Department } from 'src/app/core/constant/values.constants';
+
 
 @Component({
   selector: 'app-sheets-brief',
@@ -65,7 +65,7 @@ export class SheetsBriefComponent {
   protected isLoading: boolean = false;
   protected active !: boolean;
   protected feedback : boolean = true;
-  
+
 
   constructor(
     private fileService: FileService,
@@ -76,6 +76,8 @@ export class SheetsBriefComponent {
     private dialog: MatDialog,
     private dialogService: ConfirmationDialogService
   ) {}
+
+
 
   ngOnChanges(): void {
     if(this.brief?.data.Status == 'InActive'){

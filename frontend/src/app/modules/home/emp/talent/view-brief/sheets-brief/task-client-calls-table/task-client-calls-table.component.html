@@ -1,0 +1,107 @@
+<div class="my-table-form">
+  <form [formGroup]="form">
+    <table class="my-table">
+      <tr>
+        <th class="type">Call Type</th>
+        <th class="status">Status</th>
+        <th class="date">Date</th>
+        <th class="down">Notes</th>
+      </tr>
+
+      <tr>
+        <td>Introdution Call</td>
+
+        <td>
+          <mat-checkbox formControlName="introCallStatus"></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              formControlName="introCallDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Notes</mat-label>
+            <textarea matInput formControlName="introCallNotes" rows="1"></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Brief Call</td>
+
+        <td>
+          <mat-checkbox formControlName="briefCallStatus"></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              formControlName="briefCallDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Notes</mat-label>
+            <textarea matInput formControlName="briefCallNotes" rows="1"></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Presentation Call</td>
+
+        <td>
+          <mat-checkbox formControlName="presentationCallStatus" ></mat-checkbox>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker3"
+              formControlName="presentationCallDate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker3"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Notes</mat-label>
+            <textarea matInput formControlName="presentationCallNotes" rows="1"></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()"
+      >
+        Submit Records
+      </button>
+  </form>
+</div>

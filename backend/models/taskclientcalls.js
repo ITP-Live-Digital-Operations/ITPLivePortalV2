@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    introCheck: { 
+    introStatus: { 
       type: DataTypes.BOOLEAN,
       defaultValue: false, 
     },
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       defaultValue: '',
     },
-    briefCheck: {
+    briefStatus: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       defaultValue: '',
     },
-    presentationCheck : {
+    presentationStatus : {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },

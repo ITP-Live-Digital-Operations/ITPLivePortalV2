@@ -51,4 +51,9 @@ router.route('/roundFeedback/:id')
 router.route('/addRoundtoTask/:id')
     .get(asyncHandler(TaskController.addRoundtoTask));
 
+router.route('/createTaskClientCall')
+    .post(asyncHandler(TaskController.createTaskClientCall));
+
+router.route('/editTaskClientCall/:id')
+    .patch(asyncHandler(TaskController.editTaskClientCall));
 module.exports = router; 

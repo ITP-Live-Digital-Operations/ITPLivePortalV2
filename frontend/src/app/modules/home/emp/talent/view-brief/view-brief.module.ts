@@ -16,6 +16,7 @@ import { AssignTaskComponent } from './assign-task/assign-task.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SharingModule } from '../../../sharing/sharing.module';
 import { RoundHistoryComponent } from './round-history/round-history.component';
+import { TaskClientCallsTableComponent } from './sheets-brief/task-client-calls-table/task-client-calls-table.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RoundHistoryComponent } from './round-history/round-history.component';
     SelectInfluencerDialogComponent,
     PersonInfoComponent,
     AssignTaskComponent,
-    RoundHistoryComponent
+    RoundHistoryComponent,
+    TaskClientCallsTableComponent
   ],
   imports: [
     CommonModule,

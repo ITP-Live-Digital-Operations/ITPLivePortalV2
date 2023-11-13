@@ -1,0 +1,85 @@
+.my-table-form {
+  overflow-y: hidden;
+  .my-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+    margin: 1.5% 0;
+
+    /* table-layout: fixed; */
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #4789a1;
+      color: #FFF; // Darker color for better readability
+    }
+
+    th {
+      background-color: #4789a1; // A different shade for header
+      color: #fff;
+      text-align: left; // Aligning text to left for better readability
+      font-weight: bold;
+    }
+
+    td {
+      background-color: transparent; // Lighter background for body cells
+
+      & > * { // Aligning form elements inside table cells
+        margin: auto;
+        display: block;
+      }
+    }
+
+    .type {
+      width: 10%;
+    }
+
+    .status {
+      width: 10%;
+    }
+
+    .date {
+      width: 10%;
+    }
+
+    .notes {
+      width: 60%;
+    }
+  }
+
+  mat-form-field {
+    width: auto; // Adjusting width for better alignment
+    margin-top: 0;
+
+    .mat-input-element {
+      padding: 8px;
+      border: 1px  #ccc;
+      border-radius: 4px;
+    }
+  }
+
+  mat-checkbox {
+    .mat-checkbox-layout {
+      align-items: center;
+      color: #fff;
+    }
+  }
+
+  input[matInput] {
+    height: 30px;
+    padding: 0 8px;
+  }
+
+  mat-datepicker-toggle {
+    margin-top: 5px;
+  }
+
+  // Responsive design adjustments
+  @media (max-width: 768px) {
+    .my-table {
+      th, td {
+        padding: 5px;
+      }
+    }
+  }
+}
