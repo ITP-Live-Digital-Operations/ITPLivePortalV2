@@ -431,17 +431,19 @@ exports.createTaskClientCall = (req, res) => {
     presentationCallNotes,
   } = req.body;
 
+
+
   taskClientCalls
     .create({
       taskId: taskId,
       introStatus: introCallStatus,
-      introDate: introCallDate,
+      introDate: introCallDate ? introCallDate : null,
       introNotes: introCallNotes,
       briefStatus: briefCallStatus,
-      briefDate: briefCallDate,
+      briefDate: briefCallDate ? briefCallDate : null,
       briefNotes: briefCallNotes,
       presentationStatus: presentationCallStatus,
-      presentationDate: presentationCallDate,
+      presentationDate: presentationCallDate ? presentationCallDate : null,
       presentationNotes: presentationCallNotes,
     })
     .then((data) => {
@@ -475,13 +477,13 @@ exports.editTaskClientCall = (req, res) => {
   taskClientCalls.update(
     {
       introStatus: introCallStatus,
-      introDate: introCallDate,
+      introDate: introCallDate ? introCallDate : null,
       introNotes: introCallNotes,
       briefStatus: briefCallStatus,
-      briefDate: briefCallDate,
+      briefDate: briefCallDate ? briefCallDate : null,
       briefNotes: briefCallNotes,
       presentationStatus: presentationCallStatus,
-      presentationDate: presentationCallDate,
+      presentationDate: presentationCallDate ? presentationCallDate : null,
       presentationNotes: presentationCallNotes,
     },
     { where: { id: id } }
