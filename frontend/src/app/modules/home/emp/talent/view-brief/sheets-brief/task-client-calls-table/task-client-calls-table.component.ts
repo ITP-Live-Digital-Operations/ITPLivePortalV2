@@ -7,7 +7,7 @@ import { TaskService } from 'src/app/core/services/task.service';
 @Component({
   selector: 'app-task-client-calls-table',
   templateUrl: './task-client-calls-table.component.html',
-  styleUrls: ['./task-client-calls-table.component.scss']
+  styleUrls: ['./task-client-calls-table.component.scss'],
 })
 export class TaskClientCallsTableComponent {
   form!: FormGroup;
@@ -15,10 +15,16 @@ export class TaskClientCallsTableComponent {
   @Input()
   task!: TaskModel;
 
+  @Input()
+  assignedUser_id!: number[];
+
+  @Input()
+  userId!: number;
+
   constructor(
     private taskService: TaskService,
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -34,13 +40,11 @@ export class TaskClientCallsTableComponent {
       presentationCallDate: new FormControl(''),
       presentationCallNotes: new FormControl(''),
     });
-
-
   }
 
   ngOnChanges(): void {
     console.log(this.task?.ClientCalls);
-    if(this.task?.ClientCalls != null){
+    if (this.task?.ClientCalls != null) {
       this.form.patchValue({
         introCallStatus: this.task?.ClientCalls.introStatus,
         introCallDate: this.task?.ClientCalls.introDate,
@@ -57,30 +61,30 @@ export class TaskClientCallsTableComponent {
     }
   }
 
-
   onSubmit(): void {
     const newclientCall = { taskId: this.task.id, ...this.form.value };
 
-    const editedCall = {...this.form.value};
+    const editedCall = { ...this.form.value };
 
-    if(this.task?.ClientCalls == null){
-      this.taskService.createTaskClientCall(newclientCall).subscribe((res: any) => {
-        if(res.status == "success"){
-          this.toastr.success('Client Call Created Successfully');
-        }
-        window.location.reload();
-      });
-  } else {
-    this.taskService.editTaskClientCall(this.task?.ClientCalls.id, editedCall).subscribe((res: any) => {
-      console.log(res);
-      if(res.status == "success"){
-        this.toastr.success('Client Call updated Successfully');
-      }
-      window.location.reload();
-    });
+    if (this.task?.ClientCalls == null) {
+      this.taskService
+        .createTaskClientCall(newclientCall)
+        .subscribe((res: any) => {
+          if (res.status == 'success') {
+            this.toastr.success('Client Call Created Successfully');
+          }
+          window.location.reload();
+        });
+    } else {
+      this.taskService
+        .editTaskClientCall(this.task?.ClientCalls.id, editedCall)
+        .subscribe((res: any) => {
+          console.log(res);
+          if (res.status == 'success') {
+            this.toastr.success('Client Call updated Successfully');
+          }
+          window.location.reload();
+        });
+    }
   }
-
-}
-
-
 }

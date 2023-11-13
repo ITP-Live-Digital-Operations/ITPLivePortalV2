@@ -168,6 +168,10 @@
     </div>
   </mat-tab>
   <mat-tab label="Client Calls">
-    <app-task-client-calls-table [task]="task"></app-task-client-calls-table>
+    <app-task-client-calls-table
+      [task]="task"
+      [assignedUser_id]="assignedUser_id"
+      [userId]="userId"
+    ></app-task-client-calls-table>
   </mat-tab>
 </mat-tab-group>

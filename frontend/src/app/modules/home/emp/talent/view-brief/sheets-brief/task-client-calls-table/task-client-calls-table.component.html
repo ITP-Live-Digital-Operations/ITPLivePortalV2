@@ -32,7 +32,11 @@
         <td>
           <mat-form-field appearance="fill">
             <mat-label>Notes</mat-label>
-            <textarea matInput formControlName="introCallNotes" rows="1"></textarea>
+            <textarea
+              matInput
+              formControlName="introCallNotes"
+              rows="1"
+            ></textarea>
           </mat-form-field>
         </td>
       </tr>
@@ -61,7 +65,11 @@
         <td>
           <mat-form-field appearance="fill">
             <mat-label>Notes</mat-label>
-            <textarea matInput formControlName="briefCallNotes" rows="1"></textarea>
+            <textarea
+              matInput
+              formControlName="briefCallNotes"
+              rows="1"
+            ></textarea>
           </mat-form-field>
         </td>
       </tr>
@@ -70,7 +78,7 @@
         <td>Presentation Call</td>
 
         <td>
-          <mat-checkbox formControlName="presentationCallStatus" ></mat-checkbox>
+          <mat-checkbox formControlName="presentationCallStatus"></mat-checkbox>
         </td>
         <td>
           <mat-form-field appearance="fill">
@@ -90,18 +98,23 @@
         <td>
           <mat-form-field appearance="fill">
             <mat-label>Notes</mat-label>
-            <textarea matInput formControlName="presentationCallNotes" rows="1"></textarea>
+            <textarea
+              matInput
+              formControlName="presentationCallNotes"
+              rows="1"
+            ></textarea>
           </mat-form-field>
         </td>
       </tr>
     </table>
 
     <button
+      *ngIf="assignedUser_id.includes(userId)"
       mat-raised-button
       color="primary"
       (click)="onSubmit()"
-      >
-        Submit Records
-      </button>
+    >
+      Submit Records
+    </button>
   </form>
 </div>
