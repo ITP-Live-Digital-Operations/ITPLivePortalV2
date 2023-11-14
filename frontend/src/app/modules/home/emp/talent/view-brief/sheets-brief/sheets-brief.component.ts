@@ -12,7 +12,6 @@ import { MainTableComponent } from '../main-table/main-table.component';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { Department } from 'src/app/core/constant/values.constants';
 
-
 @Component({
   selector: 'app-sheets-brief',
   templateUrl: './sheets-brief.component.html',
@@ -63,9 +62,8 @@ export class SheetsBriefComponent {
   private fileToUpload: File | null = null;
 
   protected isLoading: boolean = false;
-  protected active !: boolean;
-  protected feedback : boolean = true;
-
+  protected active!: boolean;
+  protected feedback: boolean = true;
 
   constructor(
     private fileService: FileService,
@@ -77,21 +75,21 @@ export class SheetsBriefComponent {
     private dialogService: ConfirmationDialogService
   ) {}
 
-
-
   ngOnChanges(): void {
-    if(this.brief?.data.Status == 'InActive'){
-      this.active = false
-    }else{
-      this.active = true
+    if (this.brief?.data.Status == 'InActive') {
+      this.active = false;
+    } else {
+      this.active = true;
     }
-    if(this.task?.History.length > 0){
-    if(this.task?.History[(this.task?.History?.length -1)]?.feedback != null){
-      this.feedback = true
-    }else{
-      this.feedback = false
+    if (this.task?.History.length > 0) {
+      if (
+        this.task?.History[this.task?.History?.length - 1]?.feedback != null
+      ) {
+        this.feedback = true;
+      } else {
+        this.feedback = false;
+      }
     }
-  }
   }
   public salesBriefReady(): void {
     this.salesService.salesBriefReady(this.id).subscribe((data: any) => {
@@ -101,20 +99,26 @@ export class SheetsBriefComponent {
           message: 'Sales Brief is waiting for your feedback',
           link: `${this.path['readyBriefs'] + this.brief?.data.id}`,
         };
-        this.notificationService
-          .createNotification(id, input)
-          .subscribe(() => {});
-
-        this.taskService
-          .updateProgress(this.task?.id, {
-            progress: 'Waiting for feedback',
-          })
-          .subscribe((data: any) => {});
-        this.taskService
-          .addRoundtoTask(this.task?.id)
-          .subscribe((data: any) => {});
-        this.toastrService.success('Sales Brief is waiting for feedback!');
-        window.location.reload();
+        this.notificationService.createNotification(id, input).subscribe(() => {
+          this.taskService
+            .updateProgress(this.task?.id, {
+              progress: 'Waiting for feedback',
+            })
+            .subscribe((data: any) => {
+              this.taskService
+                .addRoundtoTask(this.task?.id)
+                .subscribe((data: any) => {
+                  if (data.status == 'success') {
+                    this.toastrService.success(
+                      'Sales Brief is waiting for feedback!'
+                    );
+                    setTimeout(() => {
+                      window.location.reload();
+                    }, 1000);
+                  }
+                });
+            });
+        });
       } else {
         this.toastrService.error('Error!');
       }

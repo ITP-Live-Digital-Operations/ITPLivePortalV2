@@ -58,6 +58,7 @@ export class ViewBriefComponent {
 
   protected talentHeads: any;
 
+  public reload = false;
   @ViewChild(MainTableComponent) mainComponent!: MainTableComponent;
 
   constructor(
@@ -89,7 +90,6 @@ export class ViewBriefComponent {
         progress: this.progressForm.value.Progress,
       })
       .subscribe((data: any) => {
-
         if (data.status === 'success') {
           this.toastrService.success('Progress Updated!');
         }
@@ -99,7 +99,7 @@ export class ViewBriefComponent {
   public reloadParent($event: any): void {
     if ($event) {
       this.loadBriefData();
-
+      this.reload = true;
       this.cdRef.detectChanges();
     }
   }

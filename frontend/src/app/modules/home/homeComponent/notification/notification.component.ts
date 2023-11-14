@@ -1,6 +1,7 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 
@@ -22,6 +23,7 @@ export class NotificationComponent {
     private notificationService: NotificationService,
     private dialogRef: DialogRef<NotificationComponent>,
     private dialogService: ConfirmationDialogService,
+    private toastrService : ToastrService,
 
     @Inject(MAT_DIALOG_DATA) public source: any
   ) {
@@ -76,7 +78,14 @@ export class NotificationComponent {
     return Math.floor(seconds) + ' seconds';
   }
 
-  public markAllAsRead(): void {}
+  public markAllAsRead(): void {
+    this.notificationService
+      .markAllNotificationsAsReadById(this.source.userId)
+      .subscribe((res) => {
+        this.toastrService.success('All notifications marked as read!');
+      });
+      this.dialogRef.close();
+  }
 
   clear(): void {
     this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to clear all notifications?')

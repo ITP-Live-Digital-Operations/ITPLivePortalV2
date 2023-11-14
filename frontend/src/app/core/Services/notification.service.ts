@@ -43,6 +43,8 @@ clearAllNotificationsById(userId: any) {
   return this.http.get(`${this.notificationApiUrl}/clearAllNotificationsById/${userId}`);
 }
 
-
+markAllNotificationsAsReadById(userId: any) {
+  return this.http.get(`${this.notificationApiUrl}/markAllNotificationsAsReadById/${userId}`);
+}
 
 }

@@ -8,7 +8,11 @@
       ></app-person-info>
       <div
         class="card"
-        *ngIf="assignedUser_id.includes(user_id) || privilege_level > 7 || talentHeads?.includes(user_id)"
+        *ngIf="
+          assignedUser_id.includes(user_id) ||
+          privilege_level > 7 ||
+          talentHeads?.includes(user_id)
+        "
       >
         <div>
           <form
@@ -31,7 +35,6 @@
           >
             Edit Task
           </button>
-
         </div>
       </div>
     </div>
@@ -61,7 +64,7 @@
     </app-sheets-brief>
     <div *ngIf="assigned">
       <h1>Rounds History</h1>
-      <app-round-history [task]="task"></app-round-history>
+      <app-round-history [task]="task" [reload]="reload"></app-round-history>
     </div>
   </div>
 </div>

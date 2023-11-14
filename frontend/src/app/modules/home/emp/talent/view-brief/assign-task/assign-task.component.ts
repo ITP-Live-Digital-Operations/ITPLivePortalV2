@@ -60,7 +60,7 @@ export class AssignTaskComponent {
     if (!source) {
       this.assignForm = this.formBuilder.group({
         Weight: ['', Validators.required],
-        Deadline: ['', Validators.required],
+        Deadline: [''],
       });
     } else {
       this.task = source.task;
@@ -70,6 +70,9 @@ export class AssignTaskComponent {
         Deadline: [this.task.deadline, Validators.required],
       });
     }
+  
+
+
   }
   ngOnInit(): void {
     this.getTalentHeads();
@@ -191,11 +194,11 @@ export class AssignTaskComponent {
     this.taskService.getUsersAndTaskWeights().subscribe((data: any) => {
       console.log(data);
       this.dataSource = data.usersWithTasks
-      .filter((user: any) => user.onLeave !== true)
-      .map((user: any) => {
-        user.selected = new FormControl(false);
-        return user;
-      });
+        .filter((user: any) => user.onLeave !== true)
+        .map((user: any) => {
+          user.selected = new FormControl(false);
+          return user;
+        });
       if (this.task != null) {
         for (let i = 0; i < this.task?.assignedUsers?.length; i++) {
           for (let j = 0; j < this.dataSource.length; j++) {
@@ -212,7 +215,6 @@ export class AssignTaskComponent {
     this.userService.getTalentHeads().subscribe((data: any) => {
       this.talentHeads = data;
       console.log(this.talentHeads);
-
     });
   }
 }

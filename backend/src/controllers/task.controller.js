@@ -372,9 +372,8 @@ exports.addRoundtoTask = (req, res) => {
         task_id: task_id,
         round: 1,
       });
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while adding round to task.",
+      res.status(200).send({
+        status: "success",
       });
     });
 };
@@ -431,8 +430,6 @@ exports.createTaskClientCall = (req, res) => {
     presentationCallNotes,
   } = req.body;
 
-
-
   taskClientCalls
     .create({
       taskId: taskId,
@@ -459,7 +456,6 @@ exports.createTaskClientCall = (req, res) => {
     });
 };
 
-
 exports.editTaskClientCall = (req, res) => {
   const id = req.params.id;
   const {
@@ -474,20 +470,21 @@ exports.editTaskClientCall = (req, res) => {
     presentationCallNotes,
   } = req.body;
 
-  taskClientCalls.update(
-    {
-      introStatus: introCallStatus,
-      introDate: introCallDate ? introCallDate : null,
-      introNotes: introCallNotes,
-      briefStatus: briefCallStatus,
-      briefDate: briefCallDate ? briefCallDate : null,
-      briefNotes: briefCallNotes,
-      presentationStatus: presentationCallStatus,
-      presentationDate: presentationCallDate ? presentationCallDate : null,
-      presentationNotes: presentationCallNotes,
-    },
-    { where: { id: id } }
-  )
+  taskClientCalls
+    .update(
+      {
+        introStatus: introCallStatus,
+        introDate: introCallDate ? introCallDate : null,
+        introNotes: introCallNotes,
+        briefStatus: briefCallStatus,
+        briefDate: briefCallDate ? briefCallDate : null,
+        briefNotes: briefCallNotes,
+        presentationStatus: presentationCallStatus,
+        presentationDate: presentationCallDate ? presentationCallDate : null,
+        presentationNotes: presentationCallNotes,
+      },
+      { where: { id: id } }
+    )
     .then((data) => {
       res.status(200).send({
         status: "success",
@@ -498,4 +495,4 @@ exports.editTaskClientCall = (req, res) => {
         message: err.message || "Some error occurred while updating the Task.",
       });
     });
-}
+};

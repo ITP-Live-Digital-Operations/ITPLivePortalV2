@@ -2,6 +2,6 @@
     <div class="info">
       <h1>Sales Person: {{ salesperson }}</h1>
       <h2>Assigned to: </h2><p *ngFor="let user of assignedUser"> {{user}}</p>
-      <h2 *ngIf="task != null"> Deadline: {{ task.deadline | date}}</h2>
+      <h2 *ngIf="task != null && task.deadline != null "> Deadline: {{ task.deadline | date}}</h2>
     </div>
 </div>

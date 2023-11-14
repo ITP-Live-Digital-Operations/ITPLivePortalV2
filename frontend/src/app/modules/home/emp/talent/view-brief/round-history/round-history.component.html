@@ -1,4 +1,4 @@
-<div class="roundsTable">
+<div class="roundsTable" *ngIf="this.task">
 <table mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="round">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Round</th>
