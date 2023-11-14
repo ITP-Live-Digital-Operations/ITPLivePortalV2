@@ -64,7 +64,7 @@ export class EditProfileComponent {
     this.userService
     .changePassword({
       oldPassword: this.updateProfile.value.oldPassword,
-      newPassword: this.updateProfile.value.newPassword,
+      newPassword: this.updateProfile.value.newPassword1,
       id: this.userService.getID(),
     })
     .subscribe((response: any) => {
