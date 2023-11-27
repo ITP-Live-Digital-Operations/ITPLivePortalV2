@@ -21,7 +21,7 @@ background: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(71,137,161,1) 60%, r
 	100% {
 		background-position: 215% 50%;
   }
- 
+
 }
 
 
@@ -32,7 +32,7 @@ background: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(71,137,161,1) 60%, r
 }
 
 .navbar img {
-  
+
   width: 60px;
   height: 50px;
   cursor: pointer;
@@ -54,7 +54,7 @@ align-self: auto;
   color: white;
   text-decoration: none;
   transition: 200ms;
-  
+
 }
 
 .login:hover{
@@ -77,7 +77,7 @@ align-self: auto;
 
 .title-1 {
   font-size: 10vh;
-  
+
   -webkit-animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) 1.5s both;
   animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) 1.5s both;
 }
@@ -124,7 +124,7 @@ align-self: auto;
   border: 1px solid white;
   color: white;
   max-width: fit-content;
-  
+
   padding: 10px 20px;
   transition: 200ms;
   text-decoration: none;
@@ -139,7 +139,7 @@ align-self: auto;
   background-color: white;
   color: black;
   transition: 400ms;
-} 
+}
 
 
 #video-background {
@@ -160,4 +160,15 @@ align-self: auto;
       gap: 30px;
       padding: 80px;
   }
+}
+
+
+.maintenance{
+  background-image: url("../../../assets/images/maintanance_page.png");
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

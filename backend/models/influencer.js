@@ -168,61 +168,29 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(250),
       defaultValue: null
     },
-    
-    AudienceMalePer: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: null
-    },
-    AudienceFemalePer: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: null
-    },
-    AgeGroup1317: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: null
-    },
-    AgeGroup1824: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: null
-    },
-    AgeGroup2534: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: null
-    },
-    AgeGroup3544: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: null
-    },
-    AgeGroup4554: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: null
-    },
-    AgeGroup55: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: null
-    },
-    AudienceTopCountries1: {
+    TelegramHandle: {
       type: DataTypes.STRING(50),
       defaultValue: null
     },
-    AudienceTopCountries1Percentage: {
-      type: DataTypes.DECIMAL(10, 2),
+    TelegramFollowers: {
+      type: DataTypes.INTEGER,
       defaultValue: null
     },
-    AudienceTopCountries2: {
+    TelegramLink: {
+      type: DataTypes.STRING(250),
+      defaultValue: null
+    },
+
+    VKHandle: {
       type: DataTypes.STRING(50),
       defaultValue: null
     },
-    AudienceTopCountries2Percentage: {
-      type: DataTypes.DECIMAL(10, 2),
+    VKFollowers: {
+      type: DataTypes.INTEGER,
       defaultValue: null
     },
-    AudienceTopCountries3: {
-      type: DataTypes.STRING(50),
-      defaultValue: null
-    },
-    AudienceTopCountries3Percentage: {
-      type: DataTypes.DECIMAL(10, 2),
+    VKLink: {
+      type: DataTypes.STRING(250),
       defaultValue: null
     },
     KSALicense: {
@@ -264,6 +232,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedBy: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 1,
       references: {
         model: 'users',
         key: 'id'

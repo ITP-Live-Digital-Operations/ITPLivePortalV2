@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -13,8 +14,13 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class ViewCampaignsComponent {
   protected dataSource: any;
+  public userRole = this.userService.getRole();
 
-  displayedColumns: string[] = [
+  protected campaigns: string[] = [];
+  protected clients: string[] = [];
+  protected influencers: string[] = [];
+
+  protected displayedColumns: string[] = [
     'campaignName',
     'clientName',
     'market',
@@ -27,17 +33,79 @@ export class ViewCampaignsComponent {
     'year',
   ];
 
-  campaigns: string[] = [];
-  clients: string[] = [];
-  influencers: string[] = [];
+  protected filterValues = { campaignName: '', clientName: '', influencerName: '' };
 
-  filterValues = { campaignName: '', clientName: '', influencerName: '' };
+  filteredCampaigns: string[] = [];
+  filteredClients: string[] = [];
+  filteredInfluencers: string[] = [];
+
+  selectedCampaign: string = '';
+  selectedClient: string = '';
+  selectedInfluencer: string = '';
 
   ngOnInit(): void {
     this.loadCampaigns();
+
+    this.filteredCampaigns = this.campaigns;
+    this.filteredClients = this.clients;
+    this.filteredInfluencers = this.influencers;
+
   }
 
-  public userRole = this.userService.getRole();
+  searchCampaigns(searchTerm: string) {
+    if (searchTerm) {
+      this.filteredCampaigns = this.campaigns.filter((campaign) =>
+        campaign.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      this.filterCampaign(searchTerm.toLowerCase());
+    } else {
+      // Reset to all campaigns if the search term is empty
+      this.filteredCampaigns = this.campaigns;
+      this.filterCampaign(searchTerm.toLowerCase());
+    }
+  }
+
+  searchClients(searchTerm: string) {
+    if (searchTerm) {
+      this.filteredClients = this.clients.filter((client) =>
+        client.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      this.filterClient(searchTerm.toLowerCase());
+    } else {
+      // Reset to all clients if the search term is empty
+      this.filteredClients = this.clients;
+      this.filterClient(searchTerm.toLowerCase());
+    }
+  }
+
+  searchInfluencers(searchTerm: string) {
+    if (searchTerm) {
+      this.filteredInfluencers = this.influencers.filter((influencer) =>
+        influencer.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      this.filterInfluencer(searchTerm.toLowerCase());
+    } else {
+      // Reset to all influencers if the search term is empty
+      this.filteredInfluencers = this.influencers;
+      this.filterInfluencer(searchTerm.toLowerCase());
+    }
+  }
+
+
+  onCampaignSelect(event: MatAutocompleteSelectedEvent) {
+    this.selectedCampaign = event.option.value;
+    this.filterCampaign(this.selectedCampaign.toLowerCase());
+  }
+
+  onClientSelect(event: MatAutocompleteSelectedEvent) {
+    this.selectedClient = event.option.value;
+    this.filterClient(this.selectedClient.toLowerCase());
+  }
+
+  onInfluencerSelect(event: MatAutocompleteSelectedEvent) {
+    this.selectedInfluencer = event.option.value;
+    this.filterInfluencer(this.selectedInfluencer.toLowerCase());
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
