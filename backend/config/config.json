@@ -16,7 +16,7 @@
   "production": {
     "username": "root",
     "password": "5f73WFXDBH",
-    "database": "itplive_prod",
+    "database": "itplive_prodNov",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
