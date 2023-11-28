@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `budgetsheettasks`
 --
 
-CREATE TABLE IF NOT EXISTS `budgetsheettasks` (
+CREATE TABLE IF NOT EXISTS `budgetSheetTasks` (
   `id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
@@ -480,10 +480,10 @@ INSERT INTO `file` (`id`, `filename`, `originalname`, `mimetype`, `brief_id`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `findinfluencerstasks`
+-- Table structure for table `findInfluencersTasks`
 --
 
-CREATE TABLE IF NOT EXISTS `findinfluencerstasks` (
+CREATE TABLE IF NOT EXISTS `findInfluencersTasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `taskId` int(11) DEFAULT NULL,
   `influencer` varchar(255) DEFAULT NULL,
@@ -2629,7 +2629,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 -- Table structure for table `influencerrating`
 --
 
-CREATE TABLE IF NOT EXISTS `influencerrating` (
+CREATE TABLE IF NOT EXISTS `influencerRating` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `influencer_id` int(11) NOT NULL,
   `responseRate` int(11) DEFAULT NULL,
@@ -2650,7 +2650,7 @@ CREATE TABLE IF NOT EXISTS `influencerrating` (
 -- Dumping data for table `influencerrating`
 --
 
-INSERT INTO `influencerrating` (`id`, `influencer_id`, `responseRate`, `contentQuality`, `creativity`, `flexibility`, `campaignPerformance`, `notes`, `createdBy_id`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `influencerRating` (`id`, `influencer_id`, `responseRate`, `contentQuality`, `creativity`, `flexibility`, `campaignPerformance`, `notes`, `createdBy_id`, `createdAt`, `updatedAt`) VALUES
 (1, 2, 4, 2, 5, 3, 5, 'Easy to work with', 14, '2023-04-10 16:26:55', '2023-04-10 16:26:55'),
 (2, 2, 5, 3, 4, 5, 4, '', 18, '2023-05-23 07:21:50', '2023-05-23 07:21:50'),
 (3, 11, 4, 5, 4, 4, 5, '', 18, '2023-06-22 13:56:07', '2023-06-22 13:56:07'),
@@ -2673,7 +2673,7 @@ INSERT INTO `influencerrating` (`id`, `influencer_id`, `responseRate`, `contentQ
 -- Table structure for table `influencerstatistics`
 --
 
-CREATE TABLE IF NOT EXISTS `influencerstatistics` (
+CREATE TABLE IF NOT EXISTS `influencerStatistics` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `platform` varchar(255) DEFAULT NULL,
   `deliverable` varchar(255) DEFAULT NULL,
@@ -2698,7 +2698,7 @@ CREATE TABLE IF NOT EXISTS `influencerstatistics` (
 -- Dumping data for table `influencerstatistics`
 --
 
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `influencerStatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
 (1, 'Instagram', 'Instagram Stories', 996000, 211202, 242935, 12911, 1953.00, 1500.00, 'Video Views', 'Zerbia Khan', 2023, 1, 2394, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, 'Instagram', 'Instagram Reel', 996000, 837309, 1127912, 66674, 1953.00, 1500.00, 'Video Views', 'Zerbia Khan', 2023, 1, 2394, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 'Instagram', 'Instagram Stories', 517000, 62865, 63359, 211, 386.46, 270.00, 'Video Views', 'Zerbia Khan', 2023, 1, 2395, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -5776,7 +5776,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 -- Table structure for table `influencer_campaign`
 --
 
-CREATE TABLE IF NOT EXISTS `influencer_campaign` (
+CREATE TABLE IF NOT EXISTS `Influencer_Campaign` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `CampaignId` int(11) NOT NULL,
@@ -5788,7 +5788,7 @@ CREATE TABLE IF NOT EXISTS `influencer_campaign` (
 -- Dumping data for table `influencer_campaign`
 --
 
-INSERT INTO `influencer_campaign` (`createdAt`, `updatedAt`, `CampaignId`, `InfluencerId`) VALUES
+INSERT INTO `Influencer_Campaign` (`createdAt`, `updatedAt`, `CampaignId`, `InfluencerId`) VALUES
 ('0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 2333),
 ('0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 2394),
 ('0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 2395),
@@ -6535,7 +6535,7 @@ INSERT INTO `influencer_campaign` (`createdAt`, `updatedAt`, `CampaignId`, `Infl
 -- Table structure for table `logitems`
 --
 
-CREATE TABLE IF NOT EXISTS `logitems` (
+CREATE TABLE IF NOT EXISTS `logItems` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `logID` int(11) NOT NULL,
   `platform` varchar(50) NOT NULL,
@@ -6553,7 +6553,7 @@ CREATE TABLE IF NOT EXISTS `logitems` (
 -- Dumping data for table `logitems`
 --
 
-INSERT INTO `logitems` (`id`, `logID`, `platform`, `deliverable`, `quantity`, `currency`, `rate`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `logItems` (`id`, `logID`, `platform`, `deliverable`, `quantity`, `currency`, `rate`, `createdAt`, `updatedAt`) VALUES
 (1, 1, 'Instagram', 'Carousel posts', 2, 'AED', 10000.00, '2023-09-21 14:06:21', '2023-11-05 11:18:10'),
 (2, 2, 'Instagram', 'Influencer partnerships and collaborations', 4, 'SAR', 50000.00, '2023-10-30 07:05:16', '2023-10-30 07:05:16'),
 (3, 3, 'Snapchat', 'Snap stories', 1, 'SAR', 45000.00, '2023-10-30 07:12:32', '2023-10-30 07:12:32'),
@@ -6794,7 +6794,7 @@ INSERT INTO `package` (`id`, `platform`, `deliverable`, `createdAt`, `updatedAt`
 -- Table structure for table `presentationtasks`
 --
 
-CREATE TABLE IF NOT EXISTS `presentationtasks` (
+CREATE TABLE IF NOT EXISTS `presentationTasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `taskId` int(11) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
@@ -6928,10 +6928,10 @@ INSERT INTO `salesbrief` (`id`, `Agency`, `Client`, `ClientIndustry`, `CampaignN
 -- --------------------------------------------------------
 
 --
--- Table structure for table `salesbrieftasks`
+-- Table structure for table `salesBriefTasks`
 --
 
-CREATE TABLE IF NOT EXISTS `salesbrieftasks` (
+CREATE TABLE IF NOT EXISTS `salesBriefTasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `taskId` int(11) NOT NULL,
   `salesBriefId` int(11) NOT NULL,
@@ -7012,10 +7012,10 @@ INSERT INTO `task` (`id`, `assigned_by`, `brief_id`, `deadline`, `created_at`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taskclientcalls`
+-- Table structure for table `taskClientCalls`
 --
 
-CREATE TABLE IF NOT EXISTS `taskclientcalls` (
+CREATE TABLE IF NOT EXISTS `taskClientCalls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `introDate` datetime DEFAULT NULL,
   `introNotes` text DEFAULT NULL,
@@ -7034,10 +7034,10 @@ CREATE TABLE IF NOT EXISTS `taskclientcalls` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `taskclientcalls`
+-- Dumping data for table `taskClientCalls`
 --
 
-INSERT INTO `taskclientcalls` (`id`, `introDate`, `introNotes`, `briefDate`, `briefNotes`, `presentationDate`, `presentationNotes`, `createdAt`, `updatedAt`, `taskId`, `introStatus`, `briefStatus`, `presentationStatus`) VALUES
+INSERT INTO `taskClientCalls` (`id`, `introDate`, `introNotes`, `briefDate`, `briefNotes`, `presentationDate`, `presentationNotes`, `createdAt`, `updatedAt`, `taskId`, `introStatus`, `briefStatus`, `presentationStatus`) VALUES
 (1, NULL, '', NULL, '', NULL, '', '2023-11-13 12:42:58', '2023-11-13 13:13:45', 2, 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -7169,10 +7169,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `status`, `role`, `privi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usertasks`
+-- Table structure for table `userTasks`
 --
 
-CREATE TABLE IF NOT EXISTS `usertasks` (
+CREATE TABLE IF NOT EXISTS `userTasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `taskId` int(11) NOT NULL,
@@ -7184,10 +7184,10 @@ CREATE TABLE IF NOT EXISTS `usertasks` (
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `usertasks`
+-- Dumping data for table `userTasks`
 --
 
-INSERT INTO `usertasks` (`id`, `userId`, `taskId`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `userTasks` (`id`, `userId`, `taskId`, `createdAt`, `updatedAt`) VALUES
 (21, 35, 2, '2023-09-20 15:11:19', '2023-09-20 15:11:19'),
 (25, 24, 7, '2023-10-04 14:03:33', '2023-10-04 14:03:33'),
 (26, 35, 8, '2023-10-05 09:30:06', '2023-10-05 09:30:06'),
