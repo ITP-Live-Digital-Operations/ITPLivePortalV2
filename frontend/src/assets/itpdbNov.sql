@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2023 at 01:15 PM
+-- Generation Time: Nov 28, 2023 at 01:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -27,29 +27,37 @@ SET time_zone = "+00:00";
 -- Table structure for table `budgetsheettasks`
 --
 
-CREATE TABLE IF NOT EXISTS `budgetSheetTasks` (
+CREATE TABLE `budgetsheettasks` (
   `id` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `budgetsheettasks`
+--
+
+TRUNCATE TABLE `budgetsheettasks`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `campaigns`
 --
 
-CREATE TABLE IF NOT EXISTS `campaigns` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `campaigns` (
+  `id` int(11) NOT NULL,
   `campaignName` varchar(255) DEFAULT NULL,
   `market` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `clientId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `clientId` (`clientId`)
-) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `clientId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Truncate table before insert `campaigns`
+--
+
+TRUNCATE TABLE `campaigns`;
 --
 -- Dumping data for table `campaigns`
 --
@@ -220,8 +228,8 @@ INSERT INTO `campaigns` (`id`, `campaignName`, `market`, `createdAt`, `updatedAt
 -- Table structure for table `celebrity`
 --
 
-CREATE TABLE IF NOT EXISTS `celebrity` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `celebrity` (
+  `id` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Gender` varchar(50) DEFAULT NULL,
   `Number` bigint(20) DEFAULT NULL,
@@ -267,11 +275,14 @@ CREATE TABLE IF NOT EXISTS `celebrity` (
   `TwitchLink` varchar(250) DEFAULT NULL,
   `Agency` varchar(250) DEFAULT NULL,
   `PreviouslyWorkedWith` varchar(250) DEFAULT NULL,
-  `Rating` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `updatedBy` (`updatedBy`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `Rating` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `celebrity`
+--
+
+TRUNCATE TABLE `celebrity`;
 --
 -- Dumping data for table `celebrity`
 --
@@ -305,16 +316,20 @@ INSERT INTO `celebrity` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContent
 -- Table structure for table `clients`
 --
 
-CREATE TABLE IF NOT EXISTS `clients` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `clients` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `industry` varchar(255) NOT NULL,
   `updatedBy` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Truncate table before insert `clients`
+--
+
+TRUNCATE TABLE `clients`;
 --
 -- Dumping data for table `clients`
 --
@@ -415,8 +430,8 @@ INSERT INTO `clients` (`id`, `name`, `industry`, `updatedBy`, `createdAt`, `upda
 -- Table structure for table `file`
 --
 
-CREATE TABLE IF NOT EXISTS `file` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `file` (
+  `id` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL,
   `originalname` varchar(255) NOT NULL,
   `mimetype` varchar(255) NOT NULL,
@@ -425,12 +440,14 @@ CREATE TABLE IF NOT EXISTS `file` (
   `fileType` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `department` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `brief_id` (`brief_id`),
-  KEY `uploaded_by` (`uploaded_by`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `department` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `file`
+--
+
+TRUNCATE TABLE `file`;
 --
 -- Dumping data for table `file`
 --
@@ -480,26 +497,30 @@ INSERT INTO `file` (`id`, `filename`, `originalname`, `mimetype`, `brief_id`, `u
 -- --------------------------------------------------------
 
 --
--- Table structure for table `findInfluencersTasks`
+-- Table structure for table `findinfluencerstasks`
 --
 
-CREATE TABLE IF NOT EXISTS `findInfluencersTasks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `findinfluencerstasks` (
+  `id` int(11) NOT NULL,
   `taskId` int(11) DEFAULT NULL,
   `influencer` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `findinfluencerstasks`
+--
+
+TRUNCATE TABLE `findinfluencerstasks`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `influencer`
 --
 
-CREATE TABLE IF NOT EXISTS `influencer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `influencer` (
+  `id` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Gender` varchar(50) DEFAULT NULL,
   `Number` varchar(50) DEFAULT NULL,
@@ -553,11 +574,14 @@ CREATE TABLE IF NOT EXISTS `influencer` (
   `TelegramLink` varchar(250) DEFAULT NULL,
   `VKHandle` varchar(50) DEFAULT NULL,
   `VKFollowers` int(11) DEFAULT NULL,
-  `VKLink` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `updatedBy` (`updatedBy`)
-) ENGINE=InnoDB AUTO_INCREMENT=2415 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `VKLink` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `influencer`
+--
+
+TRUNCATE TABLE `influencer`;
 --
 -- Dumping data for table `influencer`
 --
@@ -649,8 +673,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (84, 'Imad Boujemaoui', 'Male', '567590699', 'caludgero@hotmail.com', NULL, NULL, 'Adventure', 'Travel', NULL, 'Live Unite', 'Belgium', '', 'UAE', NULL, NULL, 'caludgero', 20500, 'https://www.instagram.com/caludgero/?hl=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, 'Caludgero', 106, 'https://www.facebook.com/caludgero/', '', NULL, NULL, NULL, NULL, 'Live Unite', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-13 11:01:23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (85, 'Ines Akari', 'Female', '526421567', 'inesnousa2009@hotmail.com', NULL, NULL, 'Fashion', 'Lifestyle', NULL, 'Live Unite', 'Tunisia', '', 'UAE', NULL, NULL, 'noussa.nour', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Live Unite', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (86, 'Irene George', 'Female', '558776782', 'irene.george155@gmail.com', NULL, NULL, 'Lifestyle', 'Mother', NULL, 'Live Unite', 'India', '', 'UAE', NULL, NULL, 'irene_freespirit', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Live Unite', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(87, 'Jigna Shiju', 'Female', '529133277', 'glamjigs@gmail.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'Live Unite', 'India', '', 'UAE', NULL, NULL, 'glamjigs', 149000, 'https://www.instagram.com/glamjigs/?hl=en', ' glamjigs', 2943, 'https://www.tiktok.com/@glamjigs', '', NULL, NULL, 'glamwithjigs', 21, 'https://twitter.com/glamwithjigs', '', NULL, NULL, 'Glamyourlife', 1200, 'https://www.youtube.com/@Glamyourlife', NULL, NULL, 'Live Unite', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 13:31:10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(87, 'Jigna Shiju', 'Female', '529133277', 'glamjigs@gmail.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'Live Unite', 'India', '', 'UAE', NULL, NULL, 'glamjigs', 149000, 'https://www.instagram.com/glamjigs/?hl=en', ' glamjigs', 2943, 'https://www.tiktok.com/@glamjigs', '', NULL, NULL, 'glamwithjigs', 21, 'https://twitter.com/glamwithjigs', '', NULL, NULL, 'Glamyourlife', 1200, 'https://www.youtube.com/@Glamyourlife', NULL, NULL, 'Live Unite', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 13:31:10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (88, 'JJ Thompson', 'Male', '544783945', 'jj-thompson@hotmail.co.uk', NULL, NULL, 'Lifestyle', 'Radio Presenter', NULL, 'Live Unite', 'UK', '', 'UAE', NULL, NULL, 'IamJJThompson', 14900, 'https://www.instagram.com/iamjjthompson/?hl=en', 'iamjjthompson', 18600, 'https://www.tiktok.com/@iamjjthompson', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Live Unite', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-13 10:48:08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (89, 'Joumana Soufi', 'Female', '965 99001035', 'thesidetalk@gmail.com', NULL, NULL, 'Entrepreneur', 'Fashion', NULL, 'Live Unite', 'KWT', '', 'UAE', NULL, NULL, 'joumana.soufi', 82600, 'https://www.instagram.com/joumana.soufi/?hl=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Live Unite', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-13 10:44:32', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (90, 'Kameron Jaff', 'Male', '504625763', 'kameron.jaff@fitballfactory.me', NULL, NULL, 'Fitness', 'Football', NULL, 'Live Unite', 'USA', '', 'UAE', NULL, NULL, 'fitball.kam', 27200, 'https://www.instagram.com/fitball.kam/?next=%2Fshiarodri%2F&hl=es', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Live Unite', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-13 10:41:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -742,8 +765,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (176, 'Sara Al Madani', 'Female', '', 'rouge-couture@hotmail.com', NULL, NULL, 'Entrepreneur', 'Fashion', NULL, 'Close Friends', 'UAE', '', 'UAE', NULL, NULL, 'sara_almadani_', 764000, 'https://www.instagram.com/sara_almadani_/?hl=en', 'sara_almadani_', 217500, 'https://www.tiktok.com/@sara_almadani_', '', NULL, NULL, 'sara_almadani_', 12800, 'https://twitter.com/sara_almadani_?lang=en', 'iamsaraalmadani', 18000, 'https://www.facebook.com/iamsaraalmadani/', '', NULL, NULL, NULL, NULL, 'Campaign', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 07:48:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (177, 'Nada Baeshen', 'Female', '', 'thehuntress2017@gmail.com', NULL, NULL, 'Entrepreneur', 'Fashion', NULL, 'Close Friends', 'KSA', '', 'KSA', NULL, NULL, 'nadabaeshen', 713000, 'https://www.instagram.com/nadabaeshen/?hl=en', ' nada_baeshen', 105200, 'https://www.tiktok.com/@nada_baeshen', 'nadabaeshenn', NULL, 'https://www.snapchat.com/add/nadabaeshenn', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 07:50:59', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (178, 'Elanz/Tanaz/Golnaz', 'Female', '', 'thetripletsss@outlook.com', NULL, NULL, 'Fashion', 'Lifestyle', NULL, 'Close Friends', 'Iran', '', 'UK', NULL, NULL, 'thetripletss', 338000, 'https://www.instagram.com/thetripletsss/?hl=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Ego & East', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 07:52:19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(179, 'Mohammad Kindy', 'Male', '', 'kindy378@gmail.com', NULL, NULL, 'Comedy', 'Entertainment', NULL, 'Close Friends', 'UAE', '', 'UAE', NULL, NULL, 'kindy_man', 1000000, 'https://z-p42.www.instagram.com/kindy_man/', 'kindy_man', 1100000, 'https://www.tiktok.com/@kindy_man?lang=en', 'kindy_man12', NULL, 'https://www.snapchat.com/add/kindy_man12', '', NULL, NULL, '', NULL, '', 'kindyman5983', 35000, 'https://www.youtube.com/channel/UCcj71NIjvGZRTeZSiOs9-bw', NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 07:57:15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(179, 'Mohammad Kindy', 'Male', '', 'kindy378@gmail.com', NULL, NULL, 'Comedy', 'Entertainment', NULL, 'Close Friends', 'UAE', '', 'UAE', NULL, NULL, 'kindy_man', 1000000, 'https://z-p42.www.instagram.com/kindy_man/', 'kindy_man', 1100000, 'https://www.tiktok.com/@kindy_man?lang=en', 'kindy_man12', NULL, 'https://www.snapchat.com/add/kindy_man12', '', NULL, NULL, '', NULL, '', 'kindyman5983', 35000, 'https://www.youtube.com/channel/UCcj71NIjvGZRTeZSiOs9-bw', NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 07:57:15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (180, 'Latifa Al Shamsi', 'Female', '', 'latifa.a.alshamsi@gmail.com', NULL, NULL, 'Food', 'Lifestyle', NULL, 'Close Friends', 'UAE', '', 'UAE', NULL, NULL, 'latifalshamsi', 406000, 'https://www.instagram.com/latifalshamsi/?hl=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Dubai Food Festival', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 07:59:13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (181, 'Rasha Al Beick', 'Female', '', 'rasha.albeick@gmail.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'Close Friends', 'Syria', '', 'UAE', NULL, NULL, 'rasha_albecik', 644000, 'https://www.instagram.com/rasha_albeick/?hl=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'We have her rates', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 08:00:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (182, 'Abdallah Jameel', 'Male', '', 'mail@abdoh4magic.om', NULL, NULL, 'Lifestyle', 'Gaming', NULL, 'Close Friends', 'KSA', '', 'KSA', NULL, NULL, 'abdoh4magic', 550000, 'https://www.instagram.com/abdoh4magic/?hl=en', 'abdoh4magic', 1900000, 'https://www.tiktok.com/@abdoh4magic?lang=en', 'abdoh4magic', NULL, 'https://www.snapchat.com/add/abdoh4magic', 'abdoh4magic', 127900, 'https://twitter.com/abdoh4magic?lang=en', '', NULL, NULL, 'Abdoh4Magic', 4110000, 'https://www.youtube.com/channel/UCLZBSO20PWAIJ-o9I5Als8w', NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 08:04:21', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -833,8 +855,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (266, 'Yousef Abdelbary', 'Male', '', 'yousef.saeed@hotmail.com', NULL, NULL, 'TV Presenter', 'News', NULL, 'Friends', 'UAE', '', 'UAE', NULL, NULL, 'yousef.abdelbary', 19300, 'https://www.instagram.com/yousef.abdelbary/?hl=en', '', NULL, NULL, '', NULL, NULL, 'YousefAbdalbari', 155, 'https://twitter.com/YousefAbdalbari', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Reem', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 08:17:04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (267, 'Dina Saadi', 'Female', '', 'info@dinasaadi.com', NULL, NULL, 'Art', '', NULL, 'Friends', 'Syria', '', 'UAE', NULL, NULL, 'dinasaadi', 19600, 'https://www.instagram.com/dinasaadi/?hl=en', 'dinasaadi13', 1044, 'https://www.tiktok.com/@dinasaadi13', '', NULL, NULL, 'SaadiDina', 413, 'https://twitter.com/SaadiDina', 'SaadiDina', 8000, 'https://www.facebook.com/SaadiDina/', 'dinasaadi', 186, 'https://www.youtube.com/dinasaadi', NULL, NULL, 'Campaign', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 08:19:24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (268, 'Dina Zahran', 'Female', '', 'dina@dinzsisters.com', NULL, NULL, 'Fashion', 'Mother', NULL, 'Friends', 'Palestine', '', 'UAE', NULL, NULL, 'dinazahran', 175000, 'https://www.instagram.com/dinazahran/?hl=en', 'dinazahran', 11100, 'https://www.tiktok.com/@dinazahran?lang=en', '', NULL, NULL, 'DinaZahran', 2184, 'https://twitter.com/DinaZahran', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 08:21:14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(269, 'Dinz Sisters', 'Female', '', 'rima@dinzclothing.com', NULL, NULL, 'Fashion', '', NULL, 'Friends', 'Palestine', '', 'UAE', NULL, NULL, 'dinzsisters', 91000, 'https://www.instagram.com/dinzsisters/?hl=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, 'DinzSisters', 7100, 'https://www.facebook.com/DinzSisters/', '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 08:23:14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(269, 'Dinz Sisters', 'Female', '', 'rima@dinzclothing.com', NULL, NULL, 'Fashion', '', NULL, 'Friends', 'Palestine', '', 'UAE', NULL, NULL, 'dinzsisters', 91000, 'https://www.instagram.com/dinzsisters/?hl=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, 'DinzSisters', 7100, 'https://www.facebook.com/DinzSisters/', '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 08:23:14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (270, 'Dounia Sheikh El Ard', 'Female', '', 'dounia@mydounia.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'Friends', 'Tunisia', '', 'UAE', NULL, NULL, 'mydounia', 28400, 'https://www.instagram.com/mydounia/?hl=en', 'mydounia', 31, 'https://www.tiktok.com/@mydounia', '', NULL, NULL, 'douniasea', 23, 'https://twitter.com/douniasea?lang=en', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 08:26:19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (271, 'Dua Al Hammadi', 'Female', '', 'duaalhammadi@yahoo.com', NULL, NULL, 'TV Presenter', '', NULL, 'Friends', 'UAE', '', 'UAE', NULL, NULL, 'duaalhammadi', 109000, 'https://www.instagram.com/duaalhammadi/?hl=en', '', NULL, NULL, 'da.dmi', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Potential Campaign', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 08:28:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (272, 'Sara Sadik', 'Female', '', 'magic@sarasadik.com', NULL, NULL, 'Lifestyle', 'Mother', NULL, 'Friends', 'UAE', '', 'UAE', NULL, NULL, 'sarasadikofficiel', 10900, 'https://www.instagram.com/sarasadikofficiel/', '', NULL, NULL, '', NULL, NULL, 'magicmommyhood', 1169, 'https://twitter.com/magicmommyhood', 'magicmommyhood', 8600, 'https://www.facebook.com/magicmommyhood/', '', NULL, NULL, NULL, NULL, 'Sara', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 08:37:42', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -927,8 +948,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (359, 'Sadaf Khan', 'Female', '', 'highonfashionsblog@gmail.com', NULL, NULL, 'Fashion', 'Lifestyle', NULL, 'Friends', 'India', '', 'UAE', NULL, NULL, 'sadafjkhan', 72700, 'https://www.instagram.com/sadafjkhan/?hl=en', 'sadafjkhan', 1277, 'https://www.tiktok.com/@sadafjkhan?lang=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Email/Events', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 09:53:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (360, 'Mais Al Ali', 'Female', '', 'DM/Phone', NULL, NULL, 'Food', 'Lifestyle', NULL, 'Friends', 'KSA', '', 'KSA', NULL, NULL, 'al.miis', 20600, 'https://www.instagram.com/al.miis/', 'al.miis', 17400, 'https://www.tiktok.com/@al.miis?lang=ar', 'al.miis', NULL, 'https://www.snapchat.com/add/al.miis?web_client_id=0b8a382d-68db-4918-9570-61985be7f172', 'miis_al', 11400, 'https://twitter.com/miis_al?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'OSN', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 09:58:26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (361, 'Najoud', 'Female', '', 'info@chefotb.com', NULL, NULL, 'Chef', 'Food', NULL, 'Friends', 'KSA', '', 'UAE', NULL, NULL, 'chefotb', 15800, 'https://www.instagram.com/chefotb/?hl=en', '', NULL, NULL, 'chefotb', NULL, 'https://www.snapchat.com/add/chefotb', '', NULL, NULL, 'ChefOTB', 5500, 'https://www.facebook.com/ChefOTB/', '', NULL, NULL, NULL, NULL, 'We have her rates', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 12:37:36', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(362, 'Namarah Asim', 'Female', '', 'makeupbynamrahh@gmail.com', NULL, NULL, 'Beauty', '', NULL, 'Friends', 'India', '', 'UAE', NULL, NULL, 'makeupbynamrahh', 101999, 'https://www.instagram.com/makeupbynamrahh/', 'miss.nammy', 51500, 'https://www.tiktok.com/@miss.nammy', 'Nammrahnami', NULL, 'https://www.snapchat.com/add/namrahnami?web_client_id=0b8a382d-68db-4918-9570-61985be7f172', '', NULL, NULL, '', NULL, NULL, 'Namrah Asim', 71, 'https://www.youtube.com/channel/UCx9Ewn2EbSEoHzjPTJs2jMA', NULL, NULL, 'Alia', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 12:40:16', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(362, 'Namarah Asim', 'Female', '', 'makeupbynamrahh@gmail.com', NULL, NULL, 'Beauty', '', NULL, 'Friends', 'India', '', 'UAE', NULL, NULL, 'makeupbynamrahh', 101999, 'https://www.instagram.com/makeupbynamrahh/', 'miss.nammy', 51500, 'https://www.tiktok.com/@miss.nammy', 'Nammrahnami', NULL, 'https://www.snapchat.com/add/namrahnami?web_client_id=0b8a382d-68db-4918-9570-61985be7f172', '', NULL, NULL, '', NULL, NULL, 'Namrah Asim', 71, 'https://www.youtube.com/channel/UCx9Ewn2EbSEoHzjPTJs2jMA', NULL, NULL, 'Alia', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 12:40:16', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (363, 'Natasha Mufleh', 'Female', '', 'muflehnatasha@gmail.com', NULL, NULL, 'Fitness', 'Lifestyle', NULL, 'Friends', 'Jordan', '', 'Jordan', NULL, NULL, 'eatrightrun', 21000, 'https://www.instagram.com/eatrightrun/', '', NULL, NULL, '', NULL, NULL, 'natashamufleh', 145, 'https://twitter.com/natashamufleh', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'We have her rates', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 12:44:28', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (364, 'Nathalie Mamo', 'Female', '', 'nathalie_mamo@hotmail.com', NULL, NULL, 'Sports', 'TV Presenter', NULL, 'Friends', 'Lebanon', '', 'Lebanon', NULL, NULL, 'nathaliemamo', 55700, 'https://www.instagram.com/nathaliemamo/?hl=en', '', NULL, NULL, '', NULL, NULL, 'nathaliemamo', 5246, 'https://twitter.com/nathaliemamo12?lang=en', 'officialnathaliemamo', 13000, 'https://www.facebook.com/officialnathaliemamo/?locale=ar_AR', '', NULL, NULL, NULL, NULL, 'We have her rates', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 12:47:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (365, 'Nayla Al Khaja', 'Female', '', 'inquiry@naylaalkhaja.com', NULL, NULL, 'Entrepreneur', 'Film Director', NULL, 'Friends', 'UAE', '', 'UAE', NULL, NULL, 'naylaalkhaja', 23800, 'https://www.instagram.com/naylaalkhaja/', '', NULL, NULL, '', NULL, NULL, 'NaylaAlkhaja', 17200, 'https://twitter.com/NaylaAlkhaja', 'naylaalkhaja', 8900, 'https://www.facebook.com/naylaalkhaja/', 'NaylaAlKhajaOfficial', 930, 'https://www.youtube.com/c/NaylaAlKhajaOfficial', NULL, NULL, 'Other', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 12:49:24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1018,8 +1038,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (449, 'Hanan Sobati', 'Female', '', 'hanan@arabiangazelles.com', NULL, NULL, 'Automotive', 'Lifestyle', NULL, 'Friends', 'Algeria', '', 'UAE', NULL, NULL, 'arabiangazelles', 141000, 'https://www.instagram.com/arabiangazelles/?hl=en', 'arabiangazelles', 19100, 'https://www.tiktok.com/@arabiangazelles?lang=en', '', NULL, NULL, '', NULL, NULL, 'femalesupercarclub', 21000, 'https://www.facebook.com/femalesupercarclub/', '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 14:23:57', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (450, 'Dalia Soubra', 'Female', '', 'dscooking@gmail.com', NULL, NULL, 'Chef', 'Food', NULL, 'Friends', 'Germay', 'Syria', 'UAE', NULL, NULL, 'daliaskitchen', 77600, 'https://www.instagram.com/daliaskitchen/?hl=en', '', NULL, '', '', NULL, NULL, 'DaliasKitchen', 5665, 'https://twitter.com/daliaskitchen?lang=en', '', NULL, NULL, 'DaliasKitchenStories', 16500, 'https://www.youtube.com/channel/UCKN0I6wmX1zQjM0uXxPYcVA', NULL, NULL, 'Campaign', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 14:30:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (451, 'Soha Darwish', 'Female', '', 'sohash5@gmail.com', NULL, NULL, 'Chef', 'Food', NULL, 'Friends', 'Egypt', 'UK', 'UAE', NULL, NULL, 'sohadarwish_food', 18500, 'https://www.instagram.com/sohadarwish_food/?hl=en', 'sohadarwish_food', 397, 'https://www.tiktok.com/@sohadarwish_food', '', NULL, NULL, '', NULL, '', 'Soha.M.Darwish', 1500, 'https://www.facebook.com/Soha.M.Darwish', 'sohadarwish_food', 151, 'https://www.youtube.com/@sohadarwish_food', NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 14:35:10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(452, 'Suaad Al Shamsi', 'Female', '', 'DM', NULL, NULL, 'Author', 'Speaker', NULL, 'Friends', 'UAE', '', 'UAE', NULL, NULL, 'dr.eng.suaadalshamsi', 307000, 'https://www.instagram.com/dr.eng.suaadalshamsi/?hl=en', 'suaadalshamsi1', 182, 'https://www.tiktok.com/@suaadalshamsi1', '', NULL, NULL, 'suaad_alshamsi', 4949, 'https://twitter.com/suaad_alshamsi?lang=en', 'suaad.alshamsi.3', NULL, 'https://www.facebook.com/suaad.alshamsi.3', '', NULL, NULL, NULL, NULL, 'Adnoc', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 14:40:57', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(452, 'Suaad Al Shamsi', 'Female', '', 'DM', NULL, NULL, 'Author', 'Speaker', NULL, 'Friends', 'UAE', '', 'UAE', NULL, NULL, 'dr.eng.suaadalshamsi', 307000, 'https://www.instagram.com/dr.eng.suaadalshamsi/?hl=en', 'suaadalshamsi1', 182, 'https://www.tiktok.com/@suaadalshamsi1', '', NULL, NULL, 'suaad_alshamsi', 4949, 'https://twitter.com/suaad_alshamsi?lang=en', 'suaad.alshamsi.3', NULL, 'https://www.facebook.com/suaad.alshamsi.3', '', NULL, NULL, NULL, NULL, 'Adnoc', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 14:40:57', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (453, 'Georges Kallab', 'Male', '', 'georrges.akallab@gmail.com', NULL, NULL, 'Fashion', 'Lifestyle', NULL, 'Friends', '', '', 'UAE', NULL, NULL, 'georgeskb', 68500, 'https://www.instagram.com/georgeskb/?hl=en', 'georgeskallab', 2438, 'https://www.tiktok.com/@georgeskallab', '', NULL, NULL, 'Jorjkallab', 88, 'https://twitter.com/jorjkallab?lang=en', 'Georges Kallab', 490, 'https://www.facebook.com/profile.php?id=100068958396539', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 14:46:11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (454, 'Sultan', 'Male', '', 'sultan@unlimit-tech.com', NULL, NULL, 'Technology', '', NULL, 'Friends', 'KSA', '', 'KSA', NULL, NULL, 'utechcom', 45700, 'https://www.instagram.com/utechcom/?hl=en', 'utechcom', 63200, 'https://www.tiktok.com/@utechcom', '', NULL, NULL, 'Utechcom', 1000000, 'https://twitter.com/Utechcom', 'Utechcom', 240000, 'https://www.facebook.com/Utechcom/', 'TheUtechcom', 775000, 'https://www.youtube.com/channel/UCwZYEQG1Xr2UX7sngxR9JXw', NULL, NULL, 'Honor Campaign', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 14:49:58', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (455, 'Israa Allaf', 'Female', '', 'israagallery@gmail.com', NULL, NULL, 'Fashion', 'Fashion Designer', NULL, 'Friends', 'KSA', '', 'KSA', NULL, NULL, 'israa_allaf', 12700, 'https://www.instagram.com/israa_allaf/?hl=en', 'israaallaf', 12000, 'https://www.tiktok.com/@israaallaf', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-14 14:56:21', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1107,8 +1126,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (537, 'Esra Sam', 'Female', '', 'info@esrasam.com', NULL, NULL, 'Photographer', 'Videographer', NULL, 'Friends', 'Turkey', 'Germany', 'UAE', NULL, NULL, 'esrasam', 29700, 'https://www.instagram.com/esrasam/', 'esrasam', 71, 'https://www.tiktok.com/@esrasam?lang=en', '', NULL, NULL, 'esrasam_nft', 1608, 'https://twitter.com/esrasam_nft?lang=en', '', NULL, NULL, 'EsraSamUrai', 228, 'https://www.youtube.com/c/EsraSamUrai', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:37:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (538, 'Natasha Haris', 'Female', '', 'DM', NULL, NULL, 'Fashion', 'Beauty', NULL, 'Friends', 'Lebanon', '', 'UK', NULL, NULL, 'natashaharis', 18000, 'https://www.instagram.com/tashaharis/', 'natashaharis115', 119, 'https://www.tiktok.com/@natashaharis115', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:42:15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (539, 'Sara Mouslli', 'Female', '', 'sara.mouslli@outlook.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'Friends', 'Syria', '', 'UAE', NULL, NULL, 'saramouslli', 248000, 'https://www.instagram.com/saramouslli/', 'saramouslli', 24400, 'https://www.tiktok.com/@saramouslli?lang=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:46:04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(540, 'Elham Abdul Karem', 'Female', '', 'elham.abdulkarim@gmail.com', NULL, NULL, 'Fashion', 'Food', NULL, 'Friends', 'UAE', '', 'UAE', NULL, NULL, 'eabdulkarem', 178000, 'https://www.instagram.com/eabdulkarem/', ' eabdulkarem', 281, 'https://www.tiktok.com/@eabdulkarem', 'eabdulkarem', NULL, 'https://www.snapchat.com/add/eabdulkarem?web_client_id=b5ea1755-a90f-43a3-9434-ff33a94024f7', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:50:44', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(540, 'Elham Abdul Karem', 'Female', '', 'elham.abdulkarim@gmail.com', NULL, NULL, 'Fashion', 'Food', NULL, 'Friends', 'UAE', '', 'UAE', NULL, NULL, 'eabdulkarem', 178000, 'https://www.instagram.com/eabdulkarem/', ' eabdulkarem', 281, 'https://www.tiktok.com/@eabdulkarem', 'eabdulkarem', NULL, 'https://www.snapchat.com/add/eabdulkarem?web_client_id=b5ea1755-a90f-43a3-9434-ff33a94024f7', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:50:44', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (541, 'Maitha Al Obeidli', 'Female', '', 'maithav@outlook.com', NULL, NULL, 'Entrepreneur', 'Mother', NULL, 'Friends', 'UAE', '', 'UAE', NULL, NULL, 'maithav', 266000, 'https://www.instagram.com/maithav/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, 'MaithaDubai', NULL, 'https://www.facebook.com/MaithaDubai', 'maithav_', 165, 'https://www.youtube.com/@maithav_', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:55:05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (542, 'Siham Jarjees', 'Female', '', 'dr.sihamakam@gmail.com', NULL, NULL, 'Mother', 'News', NULL, 'Friends', 'Iraq', '', 'UAE', NULL, NULL, 'siham.jarjees', 201000, 'https://www.instagram.com/siham.jarjees/', 'yasameen444', 34000, 'https://www.tiktok.com/@yasameen444', '', NULL, NULL, '', NULL, NULL, 'siham.jirjees', 35292, 'https://www.facebook.com/siham.jirjees', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:59:08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (543, 'Zeina Abdalla', 'Female', '', 'zeina@fishfayce.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'Friends', 'Iran', 'Sudan', 'UAE', NULL, NULL, 'zeinaabdalla', 109000, 'https://www.instagram.com/zeinaabdalla/', '', NULL, NULL, '', NULL, NULL, 'ZeinaAbdalla', 1157, 'https://twitter.com/zeinaabdalla?lang=en', 'Zeina Abdalla', 1081, 'https://www.facebook.com/Zeina-Abdalla-119202758781672', '', NULL, NULL, NULL, NULL, 'Events', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 11:04:21', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1193,8 +1211,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (622, 'Amy Hanbury', 'Female', '', 'contact@myamydiary.com', NULL, NULL, 'Fashion', '', NULL, 'All Others', 'UK', '', 'UAE', NULL, NULL, 'amy.hanbury', 10300, 'https://www.instagram.com/amy.hanbury/', 'amyhanbury1', 4, 'https://www.tiktok.com/@amyhanbury1', '', NULL, '', 'amyhanbury1', NULL, 'https://twitter.com/amyhanbury1?lang=en', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:20:34', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (623, 'Anas Faz', 'Male', '', 'info@anasfaz.com', NULL, NULL, 'Food', '', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'in_mkh', 73000, 'https://www.instagram.com/in_mkh/', 'anasfaz', 64200, 'https://www.tiktok.com/@anasfaz', 'a_az', NULL, 'https://www.snapchat.com/add/an_az?share_id=1tlK/um6QrSN6hfrNkqlhA&locale=en_SA@calendar=gregorian&sid=ab311bb3b20b448da7cff84dd97f9f92', 'in_mkh', 8114, 'https://twitter.com/in_mkh', '', NULL, NULL, 'anasfaz3706', 20100, 'https://www.youtube.com/channel/UCV4sxtM0xWP-C6eq1eNmSgw', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:24:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (624, 'Andreea', 'Female', '', 'markthelittle@yahoo.com', NULL, NULL, 'Fashion', 'Travel', NULL, 'All Others', 'Romania', '', 'UAE', NULL, NULL, 'markyourownstyle', 15400, 'https://www.instagram.com/markyourownstyle/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:28:40', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(625, 'Angélique Turner', 'Female', '', 'angelique@angeliqueturner.com', NULL, NULL, 'Beauty', 'Makeup Artist', NULL, 'All Others', 'Australia', '', 'UAE', NULL, NULL, 'angeliqueturner', 11400, 'https://www.instagram.com/angeliqueturner/', '', NULL, NULL, '', NULL, NULL, 'AngeliqueTurner', 35, 'https://twitter.com/angeliqueturner?lang=en', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:33:16', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(625, 'Angélique Turner', 'Female', '', 'angelique@angeliqueturner.com', NULL, NULL, 'Beauty', 'Makeup Artist', NULL, 'All Others', 'Australia', '', 'UAE', NULL, NULL, 'angeliqueturner', 11400, 'https://www.instagram.com/angeliqueturner/', '', NULL, NULL, '', NULL, NULL, 'AngeliqueTurner', 35, 'https://twitter.com/angeliqueturner?lang=en', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:33:16', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (626, 'Anifsa Chekova', 'Female', '', 'dir.chekhova@mail.ru', NULL, NULL, 'Actress', 'TV Presenter', NULL, 'All Others', 'Russia', '', 'Russia', NULL, NULL, 'achekhova', 1700000, 'https://www.instagram.com/achekhova/', 'achekhova__', 2654, 'https://www.tiktok.com/@achekhova__?lang=en', '', NULL, NULL, 'anfisachehova', 307, 'https://twitter.com/anfisachehova?lang=en', 'anfisa.chekhova', 15685, 'https://www.facebook.com/anfisa.chekhova', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:38:22', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (627, 'Anne Abit', 'Female', '', 'abit.ladyanne@gmail.com', NULL, NULL, 'Food', 'Travel', NULL, 'All Others', 'Philippines', '', 'UAE', NULL, NULL, 'ladyandhersweetescapes', 56900, 'https://www.instagram.com/ladyandhersweetescapes/', ' ladyandhersweetescapes', 10000, 'https://www.tiktok.com/@ladyandhersweetescapes?lang=en', '', NULL, NULL, 'L_sweetescapes', 1462, 'https://twitter.com/L_sweetescapes', 'LadyHerSweetEscapes', 3200, 'https://www.facebook.com/LadyHerSweetEscapes', 'Ladyandhersweetescapes', 317, 'https://www.youtube.com/channel/UC5vFKLM9fHvBfH92e503PSw', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:41:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (628, 'Anupama Chauhan', 'Female', '', 'DM', NULL, NULL, 'Entrepreneur', 'Beauty', NULL, 'All Others', 'India', '', 'UAE', NULL, NULL, 'anupamachauhanofficial', 43500, 'https://www.instagram.com/anupamachauhanofficial/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, 'Anupama Chauhan', 1500, 'https://www.facebook.com/iamaunpamachauhansinger/', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:45:20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1278,8 +1295,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (707, 'Dr. Maitha Al Hameli', 'Female', '', 'DM', NULL, NULL, 'Entrepreneur', 'Poet', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'maithaalhameli', 112000, 'https://www.instagram.com/maithaalhameli/', 'maithaalhameli', 17800, 'https://www.tiktok.com/@maithaalhameli', 'maithaalhameli', NULL, 'https://www.snapchat.com/add/maithaalhameli?share_id=ODUwNDIyRDAtNDk5NC00NjcwLTlDNUQtMDQwOTdFMUJERjg5&locale=ar_AE&sid=50669021f7864233aa6ab68deba5b9d5', '', NULL, '', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 13:40:21', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (708, 'Dr. Mona Saqr', 'Female', '', 'saqr.mona@yahoo.com', NULL, NULL, 'Banking', 'Health', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'monasaqr', NULL, '', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 13:46:39', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (709, 'Dr. Sally Serdaneh', 'Female', '', 'laaskfamily@gmail.com', NULL, NULL, 'Dentist', 'Lifestyle', NULL, 'All Others', '', '', 'UAE', NULL, NULL, 'sallyserdaneh', 1300000, 'https://www.instagram.com/sallyserdaneh/', '', NULL, NULL, 'sallyserdaneh', NULL, 'https://www.snapchat.com/add/sallyserdaneh', '', NULL, NULL, 'sally.serdaneh.3', NULL, 'https://www.facebook.com/sally.serdaneh.3', 'sallyserdaneh', 361000, 'https://www.youtube.com/channel/UC3vbrmHxHN8FScIeUil-k3g', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 13:53:15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(710, 'Dr. Sumayah Al Nasser', 'Female', '', 'support@sumaya369.net', NULL, NULL, 'Entrepreneur', 'Life Awareness Coach', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'dr.sumayah369', 1100000, 'https://www.instagram.com/dr.sumayah369/', 'dr.sumaya369', 2300000, 'https://www.tiktok.com/@dr.sumaya369', 'sumayah369', NULL, 'https://www.snapchat.com/add/sumayah369', '369drsumaya', 673, 'https://twitter.com/369drsumaya?lang=en', 'Sumaya Alnasser', 395000, 'https://www.facebook.com/Sumayah369/about/?paipv=0&eav=Afa0uKYfFybG8_1OldT6V2S1O-kYEDAInuOz9TLv6IGHc0H1odfTK5I4OmxH6Hra51A&_rdr', 'DrSumaya369', 512000, 'https://www.youtube.com/channel/UCwnk3eRJcUTszcmQQzLsRWA', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:04:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(710, 'Dr. Sumayah Al Nasser', 'Female', '', 'support@sumaya369.net', NULL, NULL, 'Entrepreneur', 'Life Awareness Coach', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'dr.sumayah369', 1100000, 'https://www.instagram.com/dr.sumayah369/', 'dr.sumaya369', 2300000, 'https://www.tiktok.com/@dr.sumaya369', 'sumayah369', NULL, 'https://www.snapchat.com/add/sumayah369', '369drsumaya', 673, 'https://twitter.com/369drsumaya?lang=en', 'Sumaya Alnasser', 395000, 'https://www.facebook.com/Sumayah369/about/?paipv=0&eav=Afa0uKYfFybG8_1OldT6V2S1O-kYEDAInuOz9TLv6IGHc0H1odfTK5I4OmxH6Hra51A&_rdr', 'DrSumaya369', 512000, 'https://www.youtube.com/channel/UCwnk3eRJcUTszcmQQzLsRWA', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:04:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (711, 'Dr.Mona Taher', 'Female', '', 'dubai_food_fans@yahoo.com', NULL, NULL, 'Dentist', 'Food', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'dubai_food_fans', 85400, 'https://www.instagram.com/dubai_food_fans/', 'dubai_food_fans', 159, 'https://www.tiktok.com/@dubai_food_fans', '', NULL, NULL, '', NULL, NULL, 'DubaiFoodFans', 677, 'https://www.facebook.com/DubaiFoodFans/', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:09:44', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (712, 'Dr.Sabriena', 'Female', '', 'drsabrienda.inq_@hotmail.com', NULL, NULL, 'Beauty', 'Lifestyle', NULL, 'All Others', 'KWT', '', 'KWT', NULL, NULL, 'dr.sabriena', 359000, 'https://www.instagram.com/dr.sabriena/', 'dr.sabriena_', 20800, 'https://www.tiktok.com/@dr.sabriena_', 'dr.sabriena', NULL, 'https://www.snapchat.com/add/dr.sabrienahttps://www.snapchat.com/add/dr.sabriena', 'SabrienaAz', 8, 'https://twitter.com/sabrienaaz', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:13:19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (713, 'Dr.Shammat', 'Male', '', 'dr.shammat1@gmail.com', NULL, NULL, 'News', '', NULL, 'All Others', 'KWT', '', 'KWT', NULL, NULL, 'dr_shammat', 60300, 'https://www.instagram.com/dr_shammat/', 'dr_shammat1', 28, 'https://www.tiktok.com/@dr_shammat1', 'dr_shammat', 117000, 'https://www.snapchat.com/add/dr_shammat', 'Dr_Shammat', 3731, 'https://twitter.com/dr_shammat?lang=en', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:16:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1366,8 +1382,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (794, 'Hameed Al Siddiqi', 'Male', '', 'alsiddiqi86@gmail.com', NULL, NULL, 'Art', 'Artist', NULL, 'All Others', 'Qatar', '', 'Qatar', NULL, NULL, '7ameed86', 150000, 'https://www.instagram.com/7ameed86/', '7ameed863', 8743, 'https://www.tiktok.com/@7ameed863', '', NULL, NULL, '', NULL, NULL, 'HameedALSiddiq', 88, 'https://www.facebook.com/HameedALSiddiq/', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-07-03 09:37:46', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (795, 'Hamza Hafed', 'Male', '', '96k96business@gmail.com', NULL, NULL, 'Comedy', 'Entertainment', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, '96k96', 1000000, 'https://www.instagram.com/96k96/', '96k96', 681000, 'https://www.tiktok.com/@96k96', 'mr.h97', 238000, 'https://www.snapchat.com/add/i96k96', '', NULL, NULL, '', NULL, NULL, 'hamzahafd', 244000, 'https://www.youtube.com/@hamzahafd', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-07-03 09:40:09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (796, 'Hamza Slim', 'Male', '', 'bouba@beautiquebybouba.com', NULL, NULL, 'Beauty', 'Makeup Artist', NULL, 'All Others', 'Lebanon', '', 'Lebanon', NULL, NULL, 'bouba', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-07-03 09:41:01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(797, 'Hana El Alfy', 'Female', '', 'hanaalfy@hotmail.com', NULL, NULL, 'Beauty', '', NULL, 'All Others', 'Egypt', '', 'Egypt', NULL, NULL, 'hanaalfy', 22900, 'https://www.instagram.com/hanaalfy/', 'hanaalfy00', 510, 'https://www.tiktok.com/@hanaalfy00', '', NULL, NULL, 'HanaAlfy', 1305, 'https://twitter.com/HanaAlfy', 'hana.elalfy.9', NULL, 'https://www.facebook.com/hana.elalfy.9', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-07-03 09:43:47', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(797, 'Hana El Alfy', 'Female', '', 'hanaalfy@hotmail.com', NULL, NULL, 'Beauty', '', NULL, 'All Others', 'Egypt', '', 'Egypt', NULL, NULL, 'hanaalfy', 22900, 'https://www.instagram.com/hanaalfy/', 'hanaalfy00', 510, 'https://www.tiktok.com/@hanaalfy00', '', NULL, NULL, 'HanaAlfy', 1305, 'https://twitter.com/HanaAlfy', 'hana.elalfy.9', NULL, 'https://www.facebook.com/hana.elalfy.9', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-07-03 09:43:47', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (798, 'Hanaa', 'Female', '', 'DM', NULL, NULL, 'Chef', 'Food', NULL, 'All Others', 'KWT', '', 'KWT', NULL, NULL, 'hanaa.cook', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-07-03 09:45:31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (799, 'Hanadi Diab', 'Female', '', 'kontakt@hanadibeauty.de', NULL, NULL, 'Beauty', 'Fashion', NULL, 'All Others', 'Lebanon', '', 'Germany', NULL, NULL, 'hanadibeauty', 597000, 'https://www.instagram.com/hanadibeauty/', 'hanadibeauty', 38000, 'https://www.tiktok.com/@hanadibeauty?lang=en', '', NULL, NULL, 'HanadiBeauty', 1677, 'https://twitter.com/HanadiBeauty', 'HanadiBeauty', 110000, 'https://www.facebook.com/HanadiBeauty', 'hanadibeauty', 107000, 'https://www.youtube.com/user/hanadibeauty', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-07-03 09:48:31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (800, 'Hanady Nabut', 'Female', '', 'info@hanadykitchen.com', NULL, NULL, 'Chef', 'Food', NULL, 'All Others', 'Palestine', 'Puerto Rico', 'USA', NULL, NULL, ' hanady.nabut', 3521, 'https://www.instagram.com/hanady.nabut/?hl=en', 'hanadykitchen', 25, 'https://www.tiktok.com/@hanadykitchen', '', NULL, NULL, 'hanadykitchen', 162, 'https://twitter.com/hanadykitchen?lang=en', 'hanadykitchenofficial', 3100, 'https://www.facebook.com/hanadykitchenofficial/', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-07-03 09:51:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1454,8 +1469,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (882, 'Keith Fernandez', 'Male', '', 'DM', NULL, NULL, 'Food', '', NULL, 'All Others', 'India', '', 'UAE', NULL, NULL, 'excessallareas', 4665, 'https://www.instagram.com/excessallareas/?hl=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 10:53:12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (883, 'Khalaf Zone', 'Male', '', 'xtiigeir@gmail.com', NULL, NULL, 'Entertainment', 'Horror Movie Reviewer', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'Khalafz1', 946000, 'https://www.instagram.com/khalafz1/?hl=en', 'realkhalafzone', 222800, 'https://www.tiktok.com/@realkhalafzone', 'khalafz1', NULL, 'https://www.snapchat.com/add/khalafz1', 'khalafz1', 266100, 'https://twitter.com/khalafz1?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor', '', NULL, NULL, 'Khalaf Zone', 4480000, 'https://www.youtube.com/@KhalafZone', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 10:58:22', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (884, 'Khaled Abdulla', 'Male', '', 'dxbkdk@gmail.com', NULL, NULL, 'Comedy', 'Entertainment', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'dxbkd', 219000, 'https://www.instagram.com/dxbkd/?hl=en', 'dxbkd', 870000, 'https://www.tiktok.com/@dxbkd?lang=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 11:03:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(885, 'Khaled Al Ghailani', 'Male', '', 'alfasiluh@gmail.com', NULL, NULL, 'Actor', 'Comedy', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'alfasiluh', 116000, 'https://www.instagram.com/alfasiluh/', 'alfasiluh', 37500, 'https://www.tiktok.com/@alfasiluh', 'alfasiluh', 25800, 'https://www.snapchat.com/add/alfasiluh?share_id=jBnKCKjsSty9yKYduE6iZQ&locale=ar_AE', 'alfasiluh', 54, 'https://twitter.com/alfasiluh', 'alfasiluh', 19, 'https://www.facebook.com/alfasiluh/', 'user-cd6xn6lm5n', 5880, 'https://www.youtube.com/@user-cd6xn6lm5n', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 11:08:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(885, 'Khaled Al Ghailani', 'Male', '', 'alfasiluh@gmail.com', NULL, NULL, 'Actor', 'Comedy', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'alfasiluh', 116000, 'https://www.instagram.com/alfasiluh/', 'alfasiluh', 37500, 'https://www.tiktok.com/@alfasiluh', 'alfasiluh', 25800, 'https://www.snapchat.com/add/alfasiluh?share_id=jBnKCKjsSty9yKYduE6iZQ&locale=ar_AE', 'alfasiluh', 54, 'https://twitter.com/alfasiluh', 'alfasiluh', 19, 'https://www.facebook.com/alfasiluh/', 'user-cd6xn6lm5n', 5880, 'https://www.youtube.com/@user-cd6xn6lm5n', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 11:08:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (886, 'Khalid Al Astad', 'Male', '', 'k.alastad@gmail.com', NULL, NULL, 'Art', 'Photography', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'ialastad', 12800, 'https://www.instagram.com/ialastad/', '', NULL, NULL, '', NULL, NULL, 'khalidalastad', 2088, 'https://twitter.com/khalidalastad', 'khalid.alastad', 265, 'https://www.facebook.com/khalid.alastad?ref=tn_tnmn', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 12:47:59', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (887, 'Khalid Al Hammadi', 'Male', '', 'DM', NULL, NULL, 'Photography', 'Travel', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'kalooold', 2004, 'https://www.instagram.com/kalooold/?hl=en', '', NULL, NULL, '', NULL, NULL, 'kalooold', 270, 'https://twitter.com/kalooold?lang=en', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 12:51:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (888, 'Khalid Al Hammadi', 'Male', '', 'k72k18@gmail.com', NULL, NULL, 'Photography', '', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'khd_uae', 66600, 'https://www.instagram.com/khd_uae/', 'khduae', 24, 'https://www.tiktok.com/@khduae', '', NULL, NULL, 'khd_uae', 15800, 'https://twitter.com/khd_uae?lang=en', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-15 12:55:32', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1540,8 +1554,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (967, 'Maryam Al Balooshi', 'Female', '', 'mar_albalooshi@hotmail.com', NULL, NULL, 'Art', 'Author', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'engmaryamalbalooshi', 44700, 'https://www.instagram.com/engmaryamalbalooshi/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 07:00:19', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (968, 'Maryam Al Kaabi', 'Female', '', 'DM', NULL, NULL, 'Author', '', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'mryumsvanity', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 07:01:40', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (969, 'Maryam Bin Fahad', 'Female', '', 'info@mediabrain.ae', NULL, NULL, 'Media', '', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'maryambinfahad', 118000, 'https://www.instagram.com/maryambinfahad/', 'maryambinfahad', 13000, 'https://www.tiktok.com/@maryambinfahad?lang=en', '', NULL, NULL, 'MaryamBinFahad', 216800, 'https://twitter.com/maryambinfahad', 'maryambinfahad', 5088, 'https://www.facebook.com/maryambinfahad', 'MaryamBinFahad', 1230, 'https://www.youtube.com/channel/UC99LYjG4MeQX82a1zw8fZ8w/featured', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 07:08:32', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(970, 'Maryam Raja', 'Female', '', 'merlettebymaryam@gmail.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'All Others', 'Pakistan', '', 'KSA', NULL, NULL, 'maryamraja', 19400, 'https://www.instagram.com/maryamraja/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 07:11:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(970, 'Maryam Raja', 'Female', '', 'merlettebymaryam@gmail.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'All Others', 'Pakistan', '', 'KSA', NULL, NULL, 'maryamraja', 19400, 'https://www.instagram.com/maryamraja/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 07:11:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (971, 'Mashael Ahmed', 'Female', '', 'mashael_ama@hotmail.com', NULL, NULL, 'Entrepreneur', 'Lifestyle', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'mashael_ama', 179000, 'https://www.instagram.com/mashael_ama/', 'mashael_ama', 1195, 'https://www.tiktok.com/@mashael_ama', 'mashael.ama', NULL, 'https://www.snapchat.com/add/mashael.ama?share_id=gIl/imzZT6aUXR48t5cx2w&locale=en_AE&sid=f6fd3aa928af42d582794d6f50b7d6c9', 'mashael11livec1', 29, 'https://twitter.com/mashael11livec1', 'Mashael AHMED', 70, 'https://www.facebook.com/profile.php?id=100069347336781', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 07:19:29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (972, 'Mashael Al Subaie', 'Female', '', 'beautybymashael@outlook.com', NULL, NULL, 'Beauty', 'Makeup Artist', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'beautybymashael', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 07:20:48', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (973, 'Mashael Al Turki', 'Female', '', 'micha.artist@gmail.com', NULL, NULL, 'Beauty', 'Makeup Artist', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'micha_makeupartist', 17000, 'https://www.instagram.com/micha_makeupartist/', 'micha_m95', 961, 'https://www.tiktok.com/@micha_m95', 'micha_m95', NULL, 'https://www.snapchat.com/add/micha_m95?web_client_id=f0ae2557-4d84-40d7-878f-3822d9bf65d1', '', NULL, NULL, '', NULL, NULL, 'mashaelalturki3682', 177, 'https://www.youtube.com/channel/UCzcpBfLuB9_mbkW7h4Tk8qQ', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 07:25:31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1629,8 +1642,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (1055, 'Musaab Al Muassbi', 'Male', '', 'musab.mj66@gmail.com', NULL, NULL, 'Photography', 'Travel', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, '_mj66', 122000, 'https://www.instagram.com/_mj66/', '_mj664', 320, 'https://www.tiktok.com/@_mj664', '', NULL, NULL, '_mj666', 257, 'https://twitter.com/_mj666?lang=ar', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:03:01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1056, 'Musaed Al Mutri', 'Male', '', 'musaed_2020@hotmail.com', NULL, NULL, 'Art Director', 'Fashion', NULL, 'All Others', 'KWT', '', 'KWT', NULL, NULL, 'musaed_1980', 97700, 'https://www.instagram.com/musaed_1980/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:07:43', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1057, 'Musalam Al Seiari', 'Male', '', 'DM', NULL, NULL, 'Travel', '', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'ej2', 214000, 'https://www.instagram.com/ej2/', 'alseiari01', 16700, 'https://www.tiktok.com/@alseiari01', 'v711v', 919000, 'https://www.snapchat.com/add/v711v', 'alseiari01', 77100, 'https://twitter.com/alseiari01?lang=en', 'alseiari01', 775, 'https://www.facebook.com/alseiari01/', 'busalman3065', 185000, 'https://www.youtube.com/channel/UCpav0qLWeqAuYEdYSlUsGsg', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:12:31', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1058, 'Nabeel Merchant', 'Male', '', 'nabeel.shabbir@gmail.com', NULL, NULL, 'Fitness', 'Photography', NULL, 'All Others', 'India', '', 'UAE', NULL, NULL, 'therollingprodigy', 96100, 'https://www.instagram.com/therollingprodigy/?hl=en', 'therollingprodigy', 9443, 'https://www.tiktok.com/@therollingprodigy', '', NULL, NULL, 'rollingprodigy', 58, 'https://twitter.com/rollingprodigy', 'nabeel.freesouls', 130, 'https://www.facebook.com/nabeel.freesouls/', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:17:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(1058, 'Nabeel Merchant', 'Male', '', 'nabeel.shabbir@gmail.com', NULL, NULL, 'Fitness', 'Photography', NULL, 'All Others', 'India', '', 'UAE', NULL, NULL, 'therollingprodigy', 96100, 'https://www.instagram.com/therollingprodigy/?hl=en', 'therollingprodigy', 9443, 'https://www.tiktok.com/@therollingprodigy', '', NULL, NULL, 'rollingprodigy', 58, 'https://twitter.com/rollingprodigy', 'nabeel.freesouls', 130, 'https://www.facebook.com/nabeel.freesouls/', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:17:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1059, 'Naccache Eya', 'Female', '', 'contact.eyanch@gmail.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'All Others', 'Tunisia', '', 'Tunisia', NULL, NULL, 'eya.naccache', 495000, 'https://www.instagram.com/eya.naccache/', 'eya.naccache94', 32100, 'https://www.tiktok.com/@eya.naccache94?lang=en', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:21:36', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1060, 'Nada', 'Female', '', 'DM', NULL, NULL, 'Health', 'Mother', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'nada_moments', 168000, 'https://www.instagram.com/nada_moments/', '', NULL, NULL, '', NULL, NULL, 'nada_moments', 43, 'https://twitter.com/nada_moments', '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:27:04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1061, 'Nada Elashmouny', 'Female', '', 'info@nadaelashmouny.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'All Others', 'Egypt', '', 'Egypt', NULL, NULL, 'missbasketofficial', 551000, 'https://www.instagram.com/missbasketofficial/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, 'missbasketofficial', 127000, 'https://www.facebook.com/missbasketofficial/', '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-23 08:30:08', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1718,8 +1730,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (1144, 'Real Feras', 'Male', '', 'contact@realferas.com', NULL, NULL, 'Gaming', '', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'realferas', 116000, 'https://www.instagram.com/realferas/', 'feras', 211700, 'https://www.tiktok.com/@feras', 'feras.yt', NULL, 'https://www.snapchat.com/add/feras.yt', 'iRealFeras', 87300, 'https://twitter.com/irealferas?lang=en', '', NULL, NULL, 'RealFeras', 1520000, 'https://www.youtube.com/c/RealFeras', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:22:36', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1145, 'Reem', 'Female', '', 'rreemi_noni@icloud.com', NULL, NULL, 'Mother', 'Food', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'reemi__wt', 153000, 'https://www.instagram.com/reemi__wt/', 'reemi_wt', 74400, 'https://www.tiktok.com/@reemi_wt', 'reemi_wt', NULL, 'https://www.snapchat.com/add/reemi_wt?share_id=NTQwOURFMzktM0REQi00MTAyLTgxMjEtNDYxM0YyRkJEQzFC&locale=ar_SA@calendar=gregorian', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:34:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1146, 'Reem Abdulaziz', 'Female', '', 'miss_reem_85@hotmail.com', NULL, NULL, 'Beauty', 'Makeup Artist', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'reemabdualaziz_makeup', 145000, 'https://www.instagram.com/reemabdualaziz_makeup/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:46:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1147, 'Reem Al Marshad', 'Female', '', 'reem.almarshad@dcatchers.com', NULL, NULL, 'Lifestyle', 'Travel', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'reem_al.marshad', 34700, 'https://www.instagram.com/reem_al.marshad/', 'reemalmarshad1', 1898, 'https://www.tiktok.com/@reemalmarshad1', 'reem.almarshad', NULL, 'https://www.snapchat.com/add/reem.almarshad', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:49:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(1147, 'Reem Al Marshad', 'Female', '', 'reem.almarshad@dcatchers.com', NULL, NULL, 'Lifestyle', 'Travel', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'reem_al.marshad', 34700, 'https://www.instagram.com/reem_al.marshad/', 'reemalmarshad1', 1898, 'https://www.tiktok.com/@reemalmarshad1', 'reem.almarshad', NULL, 'https://www.snapchat.com/add/reem.almarshad', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:49:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1148, 'Reem Al Mobayed', 'Female', '', 'reem.fmobayed@gmail.com', NULL, NULL, 'Lifestyle', 'TV Presenter', NULL, 'All Others', 'Syria', '', 'UAE', NULL, NULL, 'reemalmobayed', 39200, 'https://www.instagram.com/reemalmobayed/', 'reemalmobayed', 71400, 'https://www.tiktok.com/@reemalmobayed', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:51:59', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1149, 'Reem Juffali', 'Female', '', 'info@reemjuffali.com', NULL, NULL, 'Athlete', 'Automotive', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'reemajuffali', 78600, 'https://www.instagram.com/reemajuffali/', '', NULL, NULL, '', NULL, '', 'reemajuffali', 13100, 'https://twitter.com/reemajuffali', 'reemajuffaliracing', 2100, 'https://www.facebook.com/reemajuffaliracing', 'reemajuffali4721', 141, 'https://www.youtube.com/channel/UC9FPYiyH32N4WXQeazZ9yjA', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-26 14:55:06', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1150, 'Reham', 'Female', '', 'rdasouki@gmail.com', NULL, NULL, 'Fitness', 'Lifestyle', NULL, 'All Others', 'Jordan', '', 'KWT', NULL, NULL, 'herfitbod', 202000, 'https://www.instagram.com/herfitbod/', '', NULL, NULL, 'herfitbod', NULL, 'https://www.snapchat.com/add/herfitbod', 'herfitbodreham', 28, 'https://twitter.com/herfitbodreham', '', NULL, NULL, 'TheRdas', 9570, 'https://www.youtube.com/user/TheRdas', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-07-03 06:39:16', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1810,8 +1821,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (1235, 'Stephanie Farah', 'Female', '', 'DM', NULL, NULL, 'Fashion', 'Lifestyle', NULL, 'All Others', 'Lebanon', 'South Africa', 'UAE', NULL, NULL, 'steph.farah', 13400, 'https://www.instagram.com/steph.farah/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-19 07:23:29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1236, 'Sudqi Naddaf', 'Male', '', 'naddafsudqi@gmail.com', NULL, NULL, 'Chef', 'Food', NULL, 'All Others', 'Jordan', '', 'UAE', NULL, NULL, 'sudqinaddaf', 238000, 'https://www.instagram.com/sudqinaddaf/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, 'Sudqi Naddaf', NULL, NULL, 'chefsudqinaddaf8651', 9970, 'https://www.youtube.com/channel/UCOK8uYFhzLNkzzzJZNuNXfA?app=desktop', NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-19 07:25:46', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1237, 'Sukaina Rajabali', 'Female', '', 'info@sukainarajabali.com', NULL, NULL, 'Entrepreneur', 'Fashion', NULL, 'All Others', 'India', '', 'UAE', NULL, NULL, 'sukainarajabali', 91800, 'https://www.instagram.com/sukainarajabali/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, 'This account is private. ', 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:02:07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1238, 'Sulaiman Waleed Radwan', 'Male', '', 'esaalaam@hotmail.com', NULL, NULL, 'Travel', 'Lifestyle', NULL, 'All Others', 'KSA', '', 'Kuwait', NULL, NULL, 'sulaiman.plus', 78700, 'https://www.instagram.com/sulaiman.plus/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:03:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(1238, 'Sulaiman Waleed Radwan', 'Male', '', 'esaalaam@hotmail.com', NULL, NULL, 'Travel', 'Lifestyle', NULL, 'All Others', 'KSA', '', 'Kuwait', NULL, NULL, 'sulaiman.plus', 78700, 'https://www.instagram.com/sulaiman.plus/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:03:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1239, 'Sultan Al Ameemi', 'Male', '', 'DM', NULL, NULL, 'Politics', '', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'sultanbuamim', 61700, 'https://www.instagram.com/sultanbuamim/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:04:26', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1240, 'Sultan Al Jamal', 'Male', '', 'DM', NULL, NULL, 'Lifestyle', 'Travel', NULL, 'All Others', 'UAE', '', 'UAE', NULL, NULL, 'drsultanaljamal', 2571, 'https://www.instagram.com/drsultanaljamal/', '', NULL, NULL, 'sultanaljamal', NULL, NULL, 'DrSultanAlJamal', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:05:40', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1241, 'Sultan Al Shehr', 'Male', '', 'sultan@momentsa.com', NULL, NULL, 'Lifestyle', 'Travel', NULL, 'All Others', 'KSA', '', 'KSA', NULL, NULL, 'sultanalshehr1', 220000, 'https://www.instagram.com/sultanalshehr1/', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-06-20 10:06:58', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -1925,8 +1935,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (1350, 'Nicolas Mouawad', 'Male', '', '', NULL, NULL, 'Actor', '', NULL, 'Celebrities', 'Lebanon', '', 'Lebanon', NULL, NULL, 'nicolasmouawad', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1351, 'Ragheb Alama', 'Male', '', '', NULL, NULL, 'Singer', '', NULL, 'Celebrities', 'Lebanon', '', 'Lebanon', NULL, NULL, 'raghebalama', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1352, 'Saad Ramadan', 'Male', '', '', NULL, NULL, 'Singer', '', NULL, 'Celebrities', 'Lebanon', '', 'Lebanon', NULL, NULL, 'saad_ramadan', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1353, 'Najwa Karam', 'Female', '', '', NULL, NULL, 'Singer', '', NULL, 'Celebrities', 'Lebanon', '', 'Lebanon', NULL, NULL, 'najwakaram', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(1353, 'Najwa Karam', 'Female', '', '', NULL, NULL, 'Singer', '', NULL, 'Celebrities', 'Lebanon', '', 'Lebanon', NULL, NULL, 'najwakaram', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1354, 'Mahra Abdelaziz', 'Female', '', '', NULL, NULL, 'TV Presenter', '', NULL, 'Celebrities', 'Lebanon', '', 'UAE', NULL, NULL, 'mahiraabdelaziz', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1355, 'Saad Lamjarred', 'Male', '', '', NULL, NULL, 'Singer', '', NULL, 'Celebrities', 'Morroco', '', 'Morroco', NULL, NULL, 'saadlamjarred1', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1356, 'Rachid El Ouali', 'Male', '', '', NULL, NULL, 'Actor', 'Producer', NULL, 'Celebrities', 'Morroco', '', 'Morroco', NULL, NULL, 'rachideloualiofficiel', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'N/A', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -2044,8 +2053,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (1469, 'Hawra Al Farsi', 'Female', '', 'Socialize.om@gmail.com', NULL, NULL, 'TV Presenter', '', NULL, 'Agencies', 'Oman', '', 'Oman', NULL, NULL, 'hawra.alfarsi', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Socalize Oman', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1470, 'Khadija Al Lawati', 'Female', '', 'socialize.om@gmail.com', NULL, NULL, 'Beauty', 'Lifestyle', NULL, 'Agencies', 'Oman', '', 'Oman', NULL, NULL, 'khadijalaw', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Socalize Oman', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1471, 'Rashid Al Rubkhi', 'Male', '', 'socialize.om@gmail.com', NULL, NULL, 'TV Presenter', '', NULL, 'Agencies', 'Oman', '', 'Oman', NULL, NULL, 'retro_95', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Socalize Oman', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1472, 'Said Al Busaidi', 'Male', '', 'socialize.om@gmail.com', NULL, NULL, 'Communications Expert', 'Marketing', NULL, 'Agencies', 'Oman', '', 'Oman', NULL, NULL, 'saidalbusaidi', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Socalize Oman', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(1472, 'Said Al Busaidi', 'Male', '', 'socialize.om@gmail.com', NULL, NULL, 'Communications Expert', 'Marketing', NULL, 'Agencies', 'Oman', '', 'Oman', NULL, NULL, 'saidalbusaidi', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Socalize Oman', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1473, 'Sumaya Al Harthy', 'Female', '', 'socialize.om@gmail.com', NULL, NULL, 'Beauty', 'Lifestyle', NULL, 'Agencies', 'Oman', '', 'Oman', NULL, NULL, 'sumayatha28', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Socalize Oman', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1474, 'Tahani Al Kalbani', 'Female', '', 'socialize.om@gmail.com', NULL, NULL, 'Beauty', 'Fashion', NULL, 'Agencies', 'Oman', '', 'Oman', NULL, NULL, 'tahani_alkalbani', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Socalize Oman', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1475, 'Ahmed Al Matrook', 'Male', '', 'DM', NULL, NULL, 'Comedy', 'Lifestyle', NULL, 'Agencies', 'Bahrain', '', 'Bahrain', NULL, NULL, 'aalmatrook57', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Tarteeb', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -2160,8 +2168,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (1584, 'Megan Pormer', 'Female', '', 'info@megan.social', NULL, NULL, 'Actress', 'Beauty', NULL, 'Blacklist', 'US', '', 'UAE', NULL, NULL, 'meganpromer', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Email', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1585, 'Mohammed Sal', 'Male', '', 'sal@humanagement.me', NULL, NULL, 'TV Presenter', '', NULL, 'Blacklist', 'KSA', '', 'UAE', NULL, NULL, 'moasalem', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'HuManagement', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1586, 'Mouhnned AlHamdi', 'Male', '', 'muhannad@humanagement.me', NULL, NULL, 'TV Presenter', '', NULL, 'Blacklist', 'KSA', '', 'UAE', NULL, NULL, 'mouhnned', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'HuManagement', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1587, 'Nayla Abdelnour', 'Female', '', 'nayla.a.social@gmail.com', NULL, NULL, 'Fashion', 'Lifestyle', NULL, 'Blacklist', 'Lebanon', '', 'UAE', NULL, NULL, 'nayla.abdelnour', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'ITP', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(1587, 'Nayla Abdelnour', 'Female', '', 'nayla.a.social@gmail.com', NULL, NULL, 'Fashion', 'Lifestyle', NULL, 'Blacklist', 'Lebanon', '', 'UAE', NULL, NULL, 'nayla.abdelnour', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'ITP', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1588, 'Nisa Tiwana', 'Female', '', 'nisatiwana@hotmail.com', NULL, NULL, 'Beauty', 'Lifestyle', NULL, 'Blacklist', 'Pakistan', '', 'UAE', NULL, NULL, 'nisa_tiwana', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'Campaign', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1589, 'Noha Nabil', 'Female', '', 'noha@nohastyleicon.com', NULL, NULL, 'Fashion', 'Lifestyle', NULL, 'Blacklist', 'KSA', '', 'KSA', NULL, NULL, 'nohastyleicon', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, 'Nohastyleicon Vlogs', NULL, NULL, NULL, NULL, 'We have her rates', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1590, 'Nour Aldin', 'Male', '', 'n.alyoushuf@gmai.com', NULL, NULL, 'TV Presenter', '', NULL, 'Blacklist', 'UAE', '', 'UAE', NULL, NULL, 'nouraldin', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, NULL, 'HuManagement', NULL, NULL, NULL, NULL, NULL, 'Active', 1, '2023-04-07 22:29:49', '2023-04-07 22:29:49', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -2271,8 +2278,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (2055, 'Aymen Hussein', NULL, NULL, NULL, NULL, NULL, 'Sports', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'aymanhussen9', NULL, 'https://www.instagram.com/aymanhussen9/', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2056, 'Az Bin Fahad', NULL, NULL, NULL, NULL, NULL, 'Lifestyle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, '', 'az_binfahad', NULL, 'https://www.snapchat.com/add/az_binfahad', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2057, 'Aziz-AZ Life', NULL, NULL, NULL, NULL, NULL, 'Humanitarian', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'azlife.ae', NULL, 'https://instagram.com/azlife.ae?igshid=YmMyMTA2M2Y=', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
-(2058, 'Azzyland', NULL, NULL, NULL, NULL, NULL, 'Public Figure', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'azzyland', NULL, 'https://www.instagram.com/azzyland/', 'azzyoriginxl', NULL, 'https://www.tiktok.com/@azzyoriginxl', '', NULL, '', '', NULL, '', '', NULL, '', 'AzzyLand', NULL, 'https://www.youtube.com/@AzzyLand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, '');
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(2058, 'Azzyland', NULL, NULL, NULL, NULL, NULL, 'Public Figure', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'azzyland', NULL, 'https://www.instagram.com/azzyland/', 'azzyoriginxl', NULL, 'https://www.tiktok.com/@azzyoriginxl', '', NULL, '', '', NULL, '', '', NULL, '', 'AzzyLand', NULL, 'https://www.youtube.com/@AzzyLand', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2059, 'Bader Al Shemry', NULL, NULL, NULL, NULL, NULL, 'Lifestyle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'he.bdr', NULL, 'https://instagram.com/he.bdr?igshid=YmMyMTA2M2Y=', 'he.bdr', NULL, 'https://www.tiktok.com/@he.bdr?lang=en', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2060, 'Basma Hamze', NULL, NULL, NULL, NULL, NULL, 'Lifestyle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'basmabhamze', NULL, 'https://www.instagram.com/basmabhamze/', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2061, 'Beki Kasri', NULL, NULL, NULL, NULL, NULL, 'Lifestyle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'beki_ksri', NULL, 'https://www.instagram.com/beki_ksri/', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', 'balkisksouri123', NULL, 'https://www.youtube.com/c/balkisksouri123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
@@ -2388,8 +2394,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (2171, 'Mahima Seth', NULL, NULL, NULL, NULL, NULL, 'Video Creator', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mahimaaseth', NULL, 'https://instagram.com/mahimaaseth/', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2172, 'Mahmoud Sidani', NULL, NULL, NULL, NULL, NULL, 'Lifestyle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'mrmoudz', NULL, 'https://www.instagram.com/mrmoudz/?hl=en', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2173, 'Maitha Hamdan', NULL, NULL, NULL, NULL, NULL, 'Artist', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'maithahamdan', NULL, 'https://www.instagram.com/maithahamdan/?igshid=YmMyMTA2M2Y%3D', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
-(2174, 'Majid Alamry', NULL, NULL, NULL, NULL, NULL, 'Public Figure', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'majidalamry', NULL, 'https://www.instagram.com/majidalamry/', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, '');
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(2174, 'Majid Alamry', NULL, NULL, NULL, NULL, NULL, 'Public Figure', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'majidalamry', NULL, 'https://www.instagram.com/majidalamry/', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2175, 'Malak Al Dawood', NULL, NULL, NULL, NULL, NULL, 'Lifestyle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'malakaldawood', NULL, 'https://www.instagram.com/malakaldawood/', 'malakaldawood', NULL, 'https://www.tiktok.com/@malakaldawood?lang=en', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2176, '', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2177, 'Manal Marvelous', NULL, NULL, NULL, NULL, NULL, 'Fashion', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'manal.marvelous', NULL, 'https://www.instagram.com/manal.marvelous/', 'manal.marvelous', NULL, 'https://www.tiktok.com/search?q=manal.marvelous&t=1700462021338', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
@@ -2509,8 +2514,7 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 (2298, 'Salmita Corita', NULL, NULL, NULL, NULL, NULL, 'Lifestyle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', 'salmita_corita', NULL, 'https://www.tiktok.com/@salmita_corita', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2299, 'Samantha Perriera', NULL, NULL, NULL, NULL, NULL, 'Lifestyle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'samxnthaferreira', NULL, 'https://www.instagram.com/samxnthaferreira/', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2300, 'Sandra Sahi', NULL, NULL, NULL, NULL, NULL, 'Singer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sandrasahi', NULL, 'https://www.instagram.com/sandrasahi/', 'sandrasahi', NULL, 'https://www.tiktok.com/@sandrasahi', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
-(2301, 'Sanzi', NULL, NULL, NULL, NULL, NULL, 'Beauty ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sanziibeauty', NULL, 'https://www.instagram.com/sanziibeauty/', 'sanzii_beauty', NULL, 'https://www.tiktok.com/@sanzii_beauty', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, '');
-INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainContentLanguage`, `SubContentLang`, `MainVertical`, `SubVertical`, `Occupation`, `ItpRelationship`, `Nationality`, `SecondNationality`, `CountryLocation`, `CityLocation`, `Address`, `InstagramHandle`, `InstagramFollowers`, `InstagramLink`, `TiktokHandle`, `TiktokFollowers`, `TiktokLink`, `SnapchatHandle`, `SnapchatFollowers`, `SnapchatLink`, `TwitterHandle`, `TwitterFollowers`, `TwitterLink`, `FacebookHandle`, `FacebookFollowers`, `FacebookLink`, `YoutubeHandle`, `YoutubeFollowers`, `YoutubeLink`, `KSALicense`, `UAELicense`, `AgencyContactPerson`, `AgencyNumber`, `AgencyEmail`, `PreviousBrands`, `Bio`, `Notes`, `Status`, `updatedBy`, `createdAt`, `updatedAt`, `TwitchHandle`, `TwitchFollowers`, `TwitchLink`, `TelegramHandle`, `TelegramFollowers`, `TelegramLink`, `VKHandle`, `VKFollowers`, `VKLink`) VALUES
+(2301, 'Sanzi', NULL, NULL, NULL, NULL, NULL, 'Beauty ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sanziibeauty', NULL, 'https://www.instagram.com/sanziibeauty/', 'sanzii_beauty', NULL, 'https://www.tiktok.com/@sanzii_beauty', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2302, 'Saoud AL Kaabi', NULL, NULL, NULL, NULL, NULL, 'Humanitarian', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'saoudalkaabi', NULL, 'https://www.instagram.com/saoudalkaabi/?hl=en', '', NULL, '', '', NULL, '', 'saoudalkaabi', NULL, 'https://www.instagram.com/saoudalkaabi/?hl=en', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2303, 'Sara Al Gamal', NULL, NULL, NULL, NULL, NULL, 'Beauty ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'saraelgamall', NULL, 'https://www.instagram.com/saraelgamall/', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
 (2304, 'Sara Alwadani \n', NULL, NULL, NULL, NULL, NULL, 'Lifestyle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', NULL, '', '', NULL, '', 'sarah_wad3ani1', NULL, 'https://twitter.com/sarah_wad3ani1', '', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Active', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', NULL, '', '', NULL, '', '', NULL, ''),
@@ -2629,8 +2633,8 @@ INSERT INTO `influencer` (`id`, `Name`, `Gender`, `Number`, `Email`, `MainConten
 -- Table structure for table `influencerrating`
 --
 
-CREATE TABLE IF NOT EXISTS `influencerRating` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `influencerrating` (
+  `id` int(11) NOT NULL,
   `influencer_id` int(11) NOT NULL,
   `responseRate` int(11) DEFAULT NULL,
   `contentQuality` int(11) DEFAULT NULL,
@@ -2640,17 +2644,19 @@ CREATE TABLE IF NOT EXISTS `influencerRating` (
   `notes` text DEFAULT NULL,
   `createdBy_id` int(11) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `influencer_id` (`influencer_id`),
-  KEY `createdBy_id` (`createdBy_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `influencerrating`
+--
+
+TRUNCATE TABLE `influencerrating`;
 --
 -- Dumping data for table `influencerrating`
 --
 
-INSERT INTO `influencerRating` (`id`, `influencer_id`, `responseRate`, `contentQuality`, `creativity`, `flexibility`, `campaignPerformance`, `notes`, `createdBy_id`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `influencerrating` (`id`, `influencer_id`, `responseRate`, `contentQuality`, `creativity`, `flexibility`, `campaignPerformance`, `notes`, `createdBy_id`, `createdAt`, `updatedAt`) VALUES
 (1, 2, 4, 2, 5, 3, 5, 'Easy to work with', 14, '2023-04-10 16:26:55', '2023-04-10 16:26:55'),
 (2, 2, 5, 3, 4, 5, 4, '', 18, '2023-05-23 07:21:50', '2023-05-23 07:21:50'),
 (3, 11, 4, 5, 4, 4, 5, '', 18, '2023-06-22 13:56:07', '2023-06-22 13:56:07'),
@@ -2673,8 +2679,8 @@ INSERT INTO `influencerRating` (`id`, `influencer_id`, `responseRate`, `contentQ
 -- Table structure for table `influencerstatistics`
 --
 
-CREATE TABLE IF NOT EXISTS `influencerStatistics` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `influencerstatistics` (
+  `id` int(11) NOT NULL,
   `platform` varchar(255) DEFAULT NULL,
   `deliverable` varchar(255) DEFAULT NULL,
   `followers` int(11) DEFAULT NULL,
@@ -2689,16 +2695,19 @@ CREATE TABLE IF NOT EXISTS `influencerStatistics` (
   `campaignId` int(11) DEFAULT NULL,
   `influencerId` int(11) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `influencerId` (`influencerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3061 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Truncate table before insert `influencerstatistics`
+--
+
+TRUNCATE TABLE `influencerstatistics`;
 --
 -- Dumping data for table `influencerstatistics`
 --
 
-INSERT INTO `influencerStatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
 (1, 'Instagram', 'Instagram Stories', 996000, 211202, 242935, 12911, 1953.00, 1500.00, 'Video Views', 'Zerbia Khan', 2023, 1, 2394, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, 'Instagram', 'Instagram Reel', 996000, 837309, 1127912, 66674, 1953.00, 1500.00, 'Video Views', 'Zerbia Khan', 2023, 1, 2394, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 'Instagram', 'Instagram Stories', 517000, 62865, 63359, 211, 386.46, 270.00, 'Video Views', 'Zerbia Khan', 2023, 1, 2395, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -2985,8 +2994,7 @@ INSERT INTO `influencerStatistics` (`id`, `platform`, `deliverable`, `followers`
 (284, 'YouTube', 'YouTube Videos', 277000, 1800, 22100, 61, 920.00, 800.00, 'Video Views', 'Adnan', 2023, 32, 2214, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (285, 'Instagram', 'Instagram Stories', 66000, 2291, 2305, 23, 958.33, 833.33, 'Video Views', 'Adnan', 2023, 32, 2062, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (286, 'Instagram', 'Instagram Stories', 66000, 2570, 2632, 21, 958.33, 833.33, 'Video Views', 'Adnan', 2023, 32, 2062, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(287, 'Instagram', 'Instagram Stories', 66000, 2049, 2077, 12, 958.33, 833.33, 'Video Views', 'Adnan', 2023, 32, 2062, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(287, 'Instagram', 'Instagram Stories', 66000, 2049, 2077, 12, 958.33, 833.33, 'Video Views', 'Adnan', 2023, 32, 2062, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (288, 'Instagram', 'Instagram Stories', 66000, 1935, 1935, 44, 958.33, 833.33, 'Video Views', 'Adnan', 2023, 32, 2062, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (289, 'Twitter', 'Tweet', 90000, 11011, 11011, 50, 958.33, 833.33, 'Impressions', 'Adnan', 2023, 32, 2062, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (290, 'YouTube', 'YouTube Videos', 1003000, 12000, 248700, 1235, 958.33, 833.33, 'Video Views', 'Adnan', 2023, 32, 2062, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -3283,8 +3291,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 (581, 'Instagram', 'Instagram Reel', 223000, 522000, 539742, 63000, 1333.33, 1000.00, 'Video Views', 'Adnan', 2023, 59, 2177, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (582, 'Tiktok', 'Tiktok Videos', 667000, 490000, 498000, 49800, 1333.33, 1000.00, 'Video Views', 'Adnan', 2023, 59, 2177, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (583, 'Instagram', 'Instagram Stories', 83000, 864, 864, 8, 1000.00, 650.00, 'Video Views', 'Adnan', 2023, 59, 2362, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(584, 'Instagram', 'Instagram Reel', 83000, 2573, 2824, 165, 1000.00, 650.00, 'Video Views', 'Adnan', 2023, 59, 2362, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(584, 'Instagram', 'Instagram Reel', 83000, 2573, 2824, 165, 1000.00, 650.00, 'Video Views', 'Adnan', 2023, 59, 2362, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (585, 'Instagram', 'Instagram Stories', 3400000, 262897, 289488, 571, 16023.05, 7619.05, 'Video Views', 'Nada', 2023, 60, 2149, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (586, 'Instagram', 'Instagram Stories', 3400000, 364331, 378136, 134, 16023.05, 7619.05, 'Video Views', 'Nada', 2023, 60, 2149, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (587, 'Snapchat', 'Snapchat Stories', 1700000, 1114873, 1256937, 1212, 16023.05, 7619.05, 'Video Views', 'Nada', 2023, 60, 2149, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -3574,8 +3581,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 (871, 'Instagram', 'Instagram Reel', 31500, 5357, 5707, 878, 817.00, 572.00, 'Video Views', 'Ghinwa Bassil', 2022, 73, 2244, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (872, 'Instagram', 'Instagram Stories', 31500, 2034, 2034, 9, 0.00, 0.00, 'Video Views', 'Ghinwa Bassil', 2022, 73, 2244, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (873, 'Instagram', 'Instagram Post', 31500, 6683, 6683, 502, 739.00, 517.00, 'Impressions', 'Ghinwa Bassil', 2022, 73, 2244, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(874, 'Instagram', 'Instagram Stories', 178000, 9771, 9771, 5, 250.00, 162.50, 'Video Views', 'Ghinwa Bassil', 2022, 74, 13, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(874, 'Instagram', 'Instagram Stories', 178000, 9771, 9771, 5, 250.00, 162.50, 'Video Views', 'Ghinwa Bassil', 2022, 74, 13, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (875, 'Instagram', 'Instagram Stories', 178000, 10287, 10287, 5, 250.00, 162.50, 'Video Views', 'Ghinwa Bassil', 2022, 74, 13, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (876, 'Instagram', 'Instagram Stories', 178000, 4624, 4719, 4, 250.00, 162.50, 'Video Views', 'Ghinwa Bassil', 2022, 74, 13, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (877, 'Instagram', 'Instagram Stories', 178000, 3696, 3768, 3, 250.00, 162.50, 'Video Views', 'Ghinwa Bassil', 2022, 74, 13, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -3864,8 +3870,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 (1160, 'Instagram', 'Instagram Video', 508000, 171420, 181312, 20242, 3268.00, 2723.00, 'Video Views', 'Zerbia Khan', 2022, 105, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1161, 'Instagram', 'Instagram Video', 508000, 47793, 49990, 4825, 3268.00, 2723.00, 'Video Views', 'Zerbia Khan', 2022, 105, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1162, 'Instagram', 'Instagram Video', 508000, 92529, 98668, 9304, 3268.00, 2723.00, 'Video Views', 'Zerbia Khan', 2022, 105, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(1163, 'Instagram', 'Instagram Stories', 820000, 4381, 4381, 6, 3267.00, 2723.00, 'Video Views', 'Zerbia Khan', 2022, 105, 2302, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(1163, 'Instagram', 'Instagram Stories', 820000, 4381, 4381, 6, 3267.00, 2723.00, 'Video Views', 'Zerbia Khan', 2022, 105, 2302, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1164, 'Instagram', 'Instagram Stories', 820000, 4429, 4429, 11, 3267.00, 2723.00, 'Video Views', 'Zerbia Khan', 2022, 105, 2302, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1165, 'Instagram', 'Instagram Video', 820000, 35670, 37834, 19889, 3267.00, 2723.00, 'Video Views', 'Zerbia Khan', 2022, 105, 2302, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1166, 'Instagram', 'Instagram Video', 820000, 8867, 9386, 19915, 3267.00, 2723.00, 'Video Views', 'Zerbia Khan', 2022, 105, 2302, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -4150,8 +4155,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 (1445, 'Instagram', 'Instagram Stories', 3200000, 78407, 79512, 22, 5923.00, 2076.00, 'Video Views', 'Zerbia Khan', 2022, 120, 23, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1446, 'Instagram', 'Instagram Stories', 3200000, 88029, 88029, 26, 5923.00, 2076.00, 'Video Views', 'Zerbia Khan', 2022, 120, 23, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1447, 'Instagram', 'Instagram Stories', 3200000, 83927, 83927, 13, 5923.00, 2076.00, 'Video Views', 'Zerbia Khan', 2022, 120, 23, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(1448, 'Instagram', 'Instagram Reel', 3200000, 79774, 80314, 11, 5923.00, 2076.00, 'Video Views', 'Zerbia Khan', 2022, 120, 23, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(1448, 'Instagram', 'Instagram Reel', 3200000, 79774, 80314, 11, 5923.00, 2076.00, 'Video Views', 'Zerbia Khan', 2022, 120, 23, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1449, 'Instagram', 'Instagram Stories', 3200000, 82542, 82542, 16, 5923.00, 2076.00, 'Video Views', 'Zerbia Khan', 2022, 120, 23, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1450, 'Instagram', 'Instagram Post', 3200000, 497039, 551246, 104970, 5923.00, 2076.00, 'Impressions', 'Zerbia Khan', 2022, 120, 23, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1451, 'Instagram', 'Instagram Video', 3200000, 287133, 412258, 20364, 5923.00, 2076.00, 'Video Views', 'Zerbia Khan', 2022, 120, 23, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -4434,8 +4438,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 (1728, 'Instagram', 'Instagram Stories', 1100000, 45887, 46405, 12, 482.00, 360.00, 'Video Views', 'Zerbia Khan', 2022, 123, 2390, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1729, 'Instagram', 'Instagram Stories', 1100000, 45047, 45921, 30, 482.00, 360.00, 'Video Views', 'Zerbia Khan', 2022, 123, 2390, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1730, 'Instagram', 'Instagram Stories', 1100000, 68336, 68520, 8, 482.00, 360.00, 'Video Views', 'Zerbia Khan', 2022, 123, 2390, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(1731, 'Instagram', 'Instagram Stories', 1100000, 69722, 69722, 16, 482.00, 360.00, 'Video Views', 'Zerbia Khan', 2022, 123, 2390, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(1731, 'Instagram', 'Instagram Stories', 1100000, 69722, 69722, 16, 482.00, 360.00, 'Video Views', 'Zerbia Khan', 2022, 123, 2390, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1732, 'Instagram', 'Instagram Stories', 1100000, 66497, 66497, 17, 482.00, 360.00, 'Video Views', 'Zerbia Khan', 2022, 123, 2390, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1733, 'Instagram', 'Instagram Stories', 1100000, 70634, 70732, 37, 482.00, 360.00, 'Video Views', 'Zerbia Khan', 2022, 123, 2390, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (1734, 'Instagram', 'Instagram Stories', 1100000, 66932, 66932, 13, 482.00, 360.00, 'Video Views', 'Zerbia Khan', 2022, 123, 2390, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -4719,8 +4722,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 (2012, 'Instagram', 'Instagram Stories', 75200, 2546, 2546, 1, 49.00, 41.00, 'Video Views', 'Zerbia Khan', 2022, 125, 2174, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2013, 'Instagram', 'Instagram Stories', 75200, 2498, 2498, 1, 49.00, 41.00, 'Video Views', 'Zerbia Khan', 2022, 125, 2174, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2014, 'Instagram', 'Instagram Stories', 75200, 2367, 2367, 8, 49.00, 41.00, 'Video Views', 'Zerbia Khan', 2022, 125, 2174, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2015, 'Instagram', 'Instagram Stories', 75200, 2430, 2430, 3, 49.00, 41.00, 'Video Views', 'Zerbia Khan', 2022, 125, 2174, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(2015, 'Instagram', 'Instagram Stories', 75200, 2430, 2430, 3, 49.00, 41.00, 'Video Views', 'Zerbia Khan', 2022, 125, 2174, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2016, 'Instagram', 'Instagram Stories', 75200, 9401, 9809, 26, 49.00, 41.00, 'Video Views', 'Zerbia Khan', 2022, 125, 2174, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2017, 'Instagram', 'Instagram Stories', 75200, 2825, 2825, 6, 49.00, 41.00, 'Video Views', 'Zerbia Khan', 2022, 125, 2174, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2018, 'Instagram', 'Instagram Stories', 75200, 1341, 1374, 0, 49.00, 41.00, 'Video Views', 'Zerbia Khan', 2022, 125, 2174, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -5009,8 +5011,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 (2301, 'Instagram', 'Instagram Stories', 542000, 12403, 12694, 35, 93.00, 77.00, 'Video Views', 'Zerbia Khan', 2022, 125, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2302, 'Instagram', 'Instagram Stories', 542000, 13027, 13431, 55, 93.00, 77.00, 'Video Views', 'Zerbia Khan', 2022, 125, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2303, 'Instagram', 'Instagram Stories', 542000, 10139, 10419, 31, 93.00, 77.00, 'Video Views', 'Zerbia Khan', 2022, 125, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2304, 'Instagram', 'Instagram Stories', 542000, 13552, 13935, 15, 93.00, 77.00, 'Video Views', 'Zerbia Khan', 2022, 125, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(2304, 'Instagram', 'Instagram Stories', 542000, 13552, 13935, 15, 93.00, 77.00, 'Video Views', 'Zerbia Khan', 2022, 125, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2305, 'Instagram', 'Instagram Stories', 542000, 15441, 15653, 10, 93.00, 77.00, 'Video Views', 'Zerbia Khan', 2022, 125, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2306, 'Instagram', 'Instagram Stories', 542000, 12025, 12417, 368, 93.00, 77.00, 'Video Views', 'Zerbia Khan', 2022, 125, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2307, 'Instagram', 'Instagram Stories', 542000, 12624, 12937, 3, 93.00, 77.00, 'Video Views', 'Zerbia Khan', 2022, 125, 589, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -5297,8 +5298,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 (2588, 'Instagram', 'Instagram Stories', 285000, 93000, 96000, 34, 1361.00, 953.00, 'Video Views', 'Fatmah Alsharif', 2022, 141, 2026, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2589, 'Instagram', 'Instagram Reel', 285000, 98000, 129000, 6000, 1361.00, 953.00, 'Video Views', 'Fatmah Alsharif', 2022, 141, 2026, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2590, 'Instagram', 'Instagram Stories', 126000, 4000, 5000, 120, 817.00, 612.00, 'Video Views', 'Fatmah Alsharif', 2022, 141, 2233, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2591, 'Instagram', 'Instagram Reel', 126000, 45000, 54000, 3610, 817.00, 612.00, 'Video Views', 'Fatmah Alsharif', 2022, 141, 2233, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(2591, 'Instagram', 'Instagram Reel', 126000, 45000, 54000, 3610, 817.00, 612.00, 'Video Views', 'Fatmah Alsharif', 2022, 141, 2233, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2592, 'Snapchat', 'Snapchat Stories', 1500000, 98500, 98500, 67, 8784.00, 3500.00, 'Video Views', 'Fatmah Alsharif', 2022, 141, 2117, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2593, 'Instagram', 'Instagram Reel', 86000, 59000, 59000, 1204, 2500.00, 2000.00, 'Video Views', 'Fatmah Alsharif', 2022, 141, 2175, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2594, 'Tiktok', 'Tiktok Videos', 1200000, 258000, 312000, 13000, 2500.00, 2000.00, 'Video Views', 'Fatmah Alsharif', 2022, 141, 2175, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -5579,8 +5579,7 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 (2869, 'Instagram', 'Instagram Stories', 48000, 7219, 7367, 710, 53.00, 37.00, 'Video Views', 'Adnan Zahabi', 2022, 155, 2282, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2870, 'Instagram', 'Instagram Stories', 48000, 7116, 7156, 700, 53.00, 37.00, 'Video Views', 'Adnan Zahabi', 2022, 155, 2282, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2871, 'Instagram', 'Instagram Stories', 48000, 7389, 7513, 721, 53.00, 37.00, 'Video Views', 'Adnan Zahabi', 2022, 155, 2282, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2872, 'Instagram', 'Instagram Stories', 48000, 8113, 8206, 790, 53.00, 37.00, 'Video Views', 'Adnan Zahabi', 2022, 155, 2282, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`, `reach`, `impressions`, `interactions`, `clientCost`, `influencerCost`, `metric`, `POC`, `year`, `campaignId`, `influencerId`, `createdAt`, `updatedAt`) VALUES
+(2872, 'Instagram', 'Instagram Stories', 48000, 8113, 8206, 790, 53.00, 37.00, 'Video Views', 'Adnan Zahabi', 2022, 155, 2282, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2873, 'Instagram', 'Instagram Stories', 48000, 7393, 7599, 730, 53.00, 37.00, 'Video Views', 'Adnan Zahabi', 2022, 155, 2282, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2874, 'Instagram', 'Instagram Stories', 48000, 6551, 6551, 670, 53.00, 37.00, 'Video Views', 'Adnan Zahabi', 2022, 155, 2282, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2875, 'Instagram', 'Instagram Stories', 48000, 6316, 6316, 650, 53.00, 37.00, 'Video Views', 'Adnan Zahabi', 2022, 155, 2282, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -5776,19 +5775,23 @@ INSERT INTO `influencerstatistics` (`id`, `platform`, `deliverable`, `followers`
 -- Table structure for table `influencer_campaign`
 --
 
-CREATE TABLE IF NOT EXISTS `Influencer_Campaign` (
+CREATE TABLE `influencer_campaign` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `CampaignId` int(11) NOT NULL,
-  `InfluencerId` int(11) NOT NULL,
-  PRIMARY KEY (`CampaignId`,`InfluencerId`)
+  `InfluencerId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Truncate table before insert `influencer_campaign`
+--
+
+TRUNCATE TABLE `influencer_campaign`;
 --
 -- Dumping data for table `influencer_campaign`
 --
 
-INSERT INTO `Influencer_Campaign` (`createdAt`, `updatedAt`, `CampaignId`, `InfluencerId`) VALUES
+INSERT INTO `influencer_campaign` (`createdAt`, `updatedAt`, `CampaignId`, `InfluencerId`) VALUES
 ('0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 2333),
 ('0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 2394),
 ('0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 2395),
@@ -6535,8 +6538,8 @@ INSERT INTO `Influencer_Campaign` (`createdAt`, `updatedAt`, `CampaignId`, `Infl
 -- Table structure for table `logitems`
 --
 
-CREATE TABLE IF NOT EXISTS `logItems` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `logitems` (
+  `id` int(11) NOT NULL,
   `logID` int(11) NOT NULL,
   `platform` varchar(50) NOT NULL,
   `deliverable` varchar(50) NOT NULL,
@@ -6544,16 +6547,19 @@ CREATE TABLE IF NOT EXISTS `logItems` (
   `currency` varchar(20) NOT NULL,
   `rate` decimal(10,2) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `logID` (`logID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `logitems`
+--
+
+TRUNCATE TABLE `logitems`;
 --
 -- Dumping data for table `logitems`
 --
 
-INSERT INTO `logItems` (`id`, `logID`, `platform`, `deliverable`, `quantity`, `currency`, `rate`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `logitems` (`id`, `logID`, `platform`, `deliverable`, `quantity`, `currency`, `rate`, `createdAt`, `updatedAt`) VALUES
 (1, 1, 'Instagram', 'Carousel posts', 2, 'AED', 10000.00, '2023-09-21 14:06:21', '2023-11-05 11:18:10'),
 (2, 2, 'Instagram', 'Influencer partnerships and collaborations', 4, 'SAR', 50000.00, '2023-10-30 07:05:16', '2023-10-30 07:05:16'),
 (3, 3, 'Snapchat', 'Snap stories', 1, 'SAR', 45000.00, '2023-10-30 07:12:32', '2023-10-30 07:12:32'),
@@ -6575,8 +6581,8 @@ INSERT INTO `logItems` (`id`, `logID`, `platform`, `deliverable`, `quantity`, `c
 -- Table structure for table `logs`
 --
 
-CREATE TABLE IF NOT EXISTS `logs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL,
   `userID` int(11) DEFAULT NULL,
   `influencerID` int(11) DEFAULT NULL,
   `campaign` varchar(100) NOT NULL,
@@ -6586,12 +6592,14 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `time_to_reply` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `type` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `userID` (`userID`),
-  KEY `influencerID` (`influencerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `logs`
+--
+
+TRUNCATE TABLE `logs`;
 --
 -- Dumping data for table `logs`
 --
@@ -6626,18 +6634,21 @@ INSERT INTO `logs` (`id`, `userID`, `influencerID`, `campaign`, `currency`, `rat
 -- Table structure for table `notification`
 --
 
-CREATE TABLE IF NOT EXISTS `notification` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `notification` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `read` tinyint(1) DEFAULT 0,
   `link` varchar(255) DEFAULT NULL,
   `message` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `notification`
+--
+
+TRUNCATE TABLE `notification`;
 --
 -- Dumping data for table `notification`
 --
@@ -6748,18 +6759,21 @@ INSERT INTO `notification` (`id`, `user_id`, `read`, `link`, `message`, `created
 -- Table structure for table `package`
 --
 
-CREATE TABLE IF NOT EXISTS `package` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `package` (
+  `id` int(11) NOT NULL,
   `platform` varchar(50) DEFAULT NULL,
   `deliverable` varchar(50) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `logID` int(11) NOT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `logID` (`logID`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `quantity` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `package`
+--
+
+TRUNCATE TABLE `package`;
 --
 -- Dumping data for table `package`
 --
@@ -6794,36 +6808,44 @@ INSERT INTO `package` (`id`, `platform`, `deliverable`, `createdAt`, `updatedAt`
 -- Table structure for table `presentationtasks`
 --
 
-CREATE TABLE IF NOT EXISTS `presentationTasks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `presentationtasks` (
+  `id` int(11) NOT NULL,
   `taskId` int(11) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `presentationtasks`
+--
+
+TRUNCATE TABLE `presentationtasks`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `roles`
 --
 
-CREATE TABLE IF NOT EXISTS `roles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
   `currentRole` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `roles`
+--
+
+TRUNCATE TABLE `roles`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `salesbrief`
 --
 
-CREATE TABLE IF NOT EXISTS `salesbrief` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `salesbrief` (
+  `id` int(11) NOT NULL,
   `Agency` varchar(255) DEFAULT NULL,
   `Client` varchar(255) DEFAULT NULL,
   `ClientIndustry` varchar(255) DEFAULT NULL,
@@ -6878,14 +6900,14 @@ CREATE TABLE IF NOT EXISTS `salesbrief` (
   `Priority` int(11) DEFAULT 100,
   `InfluencerCity` varchar(255) DEFAULT NULL,
   `InfluencerNotes` text DEFAULT NULL,
-  `PdfId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `BudgetSheetId` (`BudgetSheetId`),
-  KEY `PresentationId` (`PresentationId`),
-  KEY `CreatedbyID` (`CreatedbyID`),
-  KEY `PdfId` (`PdfId`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `PdfId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `salesbrief`
+--
+
+TRUNCATE TABLE `salesbrief`;
 --
 -- Dumping data for table `salesbrief`
 --
@@ -6928,30 +6950,37 @@ INSERT INTO `salesbrief` (`id`, `Agency`, `Client`, `ClientIndustry`, `CampaignN
 -- --------------------------------------------------------
 
 --
--- Table structure for table `salesBriefTasks`
+-- Table structure for table `salesbrieftasks`
 --
 
-CREATE TABLE IF NOT EXISTS `salesBriefTasks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `salesbrieftasks` (
+  `id` int(11) NOT NULL,
   `taskId` int(11) NOT NULL,
   `salesBriefId` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `salesbrieftasks`
+--
+
+TRUNCATE TABLE `salesbrieftasks`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `sequelizemeta`
 --
 
-CREATE TABLE IF NOT EXISTS `sequelizemeta` (
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`name`),
-  UNIQUE KEY `name` (`name`)
+CREATE TABLE `sequelizemeta` (
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Truncate table before insert `sequelizemeta`
+--
+
+TRUNCATE TABLE `sequelizemeta`;
 --
 -- Dumping data for table `sequelizemeta`
 --
@@ -6972,8 +7001,8 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 -- Table structure for table `task`
 --
 
-CREATE TABLE IF NOT EXISTS `task` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `task` (
+  `id` int(11) NOT NULL,
   `assigned_by` int(11) NOT NULL,
   `brief_id` int(11) NOT NULL,
   `deadline` datetime DEFAULT NULL,
@@ -6982,12 +7011,14 @@ CREATE TABLE IF NOT EXISTS `task` (
   `weight` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `progress` varchar(50) DEFAULT 'In Progress',
-  PRIMARY KEY (`id`),
-  KEY `assigned_by` (`assigned_by`),
-  KEY `brief_id` (`brief_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `progress` varchar(50) DEFAULT 'In Progress'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `task`
+--
+
+TRUNCATE TABLE `task`;
 --
 -- Dumping data for table `task`
 --
@@ -7012,11 +7043,11 @@ INSERT INTO `task` (`id`, `assigned_by`, `brief_id`, `deadline`, `created_at`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taskClientCalls`
+-- Table structure for table `taskclientcalls`
 --
 
-CREATE TABLE IF NOT EXISTS `taskClientCalls` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `taskclientcalls` (
+  `id` int(11) NOT NULL,
   `introDate` datetime DEFAULT NULL,
   `introNotes` text DEFAULT NULL,
   `briefDate` datetime DEFAULT NULL,
@@ -7028,16 +7059,19 @@ CREATE TABLE IF NOT EXISTS `taskClientCalls` (
   `taskId` int(11) DEFAULT NULL,
   `introStatus` tinyint(1) DEFAULT 0,
   `briefStatus` tinyint(1) DEFAULT 0,
-  `presentationStatus` tinyint(1) DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `taskId` (`taskId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `presentationStatus` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `taskClientCalls`
+-- Truncate table before insert `taskclientcalls`
 --
 
-INSERT INTO `taskClientCalls` (`id`, `introDate`, `introNotes`, `briefDate`, `briefNotes`, `presentationDate`, `presentationNotes`, `createdAt`, `updatedAt`, `taskId`, `introStatus`, `briefStatus`, `presentationStatus`) VALUES
+TRUNCATE TABLE `taskclientcalls`;
+--
+-- Dumping data for table `taskclientcalls`
+--
+
+INSERT INTO `taskclientcalls` (`id`, `introDate`, `introNotes`, `briefDate`, `briefNotes`, `presentationDate`, `presentationNotes`, `createdAt`, `updatedAt`, `taskId`, `introStatus`, `briefStatus`, `presentationStatus`) VALUES
 (1, NULL, '', NULL, '', NULL, '', '2023-11-13 12:42:58', '2023-11-13 13:13:45', 2, 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -7046,18 +7080,21 @@ INSERT INTO `taskClientCalls` (`id`, `introDate`, `introNotes`, `briefDate`, `br
 -- Table structure for table `taskhistory`
 --
 
-CREATE TABLE IF NOT EXISTS `taskhistory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `taskhistory` (
+  `id` int(11) NOT NULL,
   `task_id` int(11) NOT NULL,
   `round` int(11) DEFAULT 1,
   `feedback` varchar(250) DEFAULT NULL,
   `notes` text DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `task_id` (`task_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `taskhistory`
+--
+
+TRUNCATE TABLE `taskhistory`;
 --
 -- Dumping data for table `taskhistory`
 --
@@ -7077,8 +7114,8 @@ INSERT INTO `taskhistory` (`id`, `task_id`, `round`, `feedback`, `notes`, `creat
 -- Table structure for table `timeform`
 --
 
-CREATE TABLE IF NOT EXISTS `timeform` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `timeform` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `Date` datetime NOT NULL,
   `Agency` varchar(255) NOT NULL,
@@ -7087,11 +7124,14 @@ CREATE TABLE IF NOT EXISTS `timeform` (
   `ExtraNotes` varchar(255) NOT NULL,
   `TimeSpentInHours` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `timeform`
+--
+
+TRUNCATE TABLE `timeform`;
 --
 -- Dumping data for table `timeform`
 --
@@ -7105,8 +7145,8 @@ INSERT INTO `timeform` (`id`, `user_id`, `Date`, `Agency`, `Client`, `MainTaskTy
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -7120,11 +7160,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updatedAt` datetime NOT NULL,
   `position` varchar(255) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `onLeave` tinyint(1) DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `parentId` (`parentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `onLeave` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Truncate table before insert `users`
+--
+
+TRUNCATE TABLE `users`;
 --
 -- Dumping data for table `users`
 --
@@ -7169,25 +7212,27 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `status`, `role`, `privi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userTasks`
+-- Table structure for table `usertasks`
 --
 
-CREATE TABLE IF NOT EXISTS `userTasks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usertasks` (
+  `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `taskId` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `userTasks_userId_taskId_unique` (`userId`,`taskId`),
-  KEY `taskId` (`taskId`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `userTasks`
+-- Truncate table before insert `usertasks`
 --
 
-INSERT INTO `userTasks` (`id`, `userId`, `taskId`, `createdAt`, `updatedAt`) VALUES
+TRUNCATE TABLE `usertasks`;
+--
+-- Dumping data for table `usertasks`
+--
+
+INSERT INTO `usertasks` (`id`, `userId`, `taskId`, `createdAt`, `updatedAt`) VALUES
 (21, 35, 2, '2023-09-20 15:11:19', '2023-09-20 15:11:19'),
 (25, 24, 7, '2023-10-04 14:03:33', '2023-10-04 14:03:33'),
 (26, 35, 8, '2023-10-05 09:30:06', '2023-10-05 09:30:06'),
@@ -7205,6 +7250,316 @@ INSERT INTO `userTasks` (`id`, `userId`, `taskId`, `createdAt`, `updatedAt`) VAL
 (38, 24, 18, '2023-10-24 09:28:28', '2023-10-24 09:28:28'),
 (39, 22, 19, '2023-10-24 09:29:19', '2023-10-24 09:29:19'),
 (40, 24, 20, '2023-10-31 11:46:08', '2023-10-31 11:46:08');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `campaigns`
+--
+ALTER TABLE `campaigns`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `clientId` (`clientId`);
+
+--
+-- Indexes for table `celebrity`
+--
+ALTER TABLE `celebrity`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `updatedBy` (`updatedBy`);
+
+--
+-- Indexes for table `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `file`
+--
+ALTER TABLE `file`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `brief_id` (`brief_id`),
+  ADD KEY `uploaded_by` (`uploaded_by`);
+
+--
+-- Indexes for table `findinfluencerstasks`
+--
+ALTER TABLE `findinfluencerstasks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `influencer`
+--
+ALTER TABLE `influencer`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `updatedBy` (`updatedBy`);
+
+--
+-- Indexes for table `influencerrating`
+--
+ALTER TABLE `influencerrating`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `influencer_id` (`influencer_id`),
+  ADD KEY `createdBy_id` (`createdBy_id`);
+
+--
+-- Indexes for table `influencerstatistics`
+--
+ALTER TABLE `influencerstatistics`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `influencerId` (`influencerId`);
+
+--
+-- Indexes for table `influencer_campaign`
+--
+ALTER TABLE `influencer_campaign`
+  ADD PRIMARY KEY (`CampaignId`,`InfluencerId`);
+
+--
+-- Indexes for table `logitems`
+--
+ALTER TABLE `logitems`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `logID` (`logID`);
+
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `influencerID` (`influencerID`);
+
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `package`
+--
+ALTER TABLE `package`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `logID` (`logID`);
+
+--
+-- Indexes for table `presentationtasks`
+--
+ALTER TABLE `presentationtasks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `salesbrief`
+--
+ALTER TABLE `salesbrief`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `BudgetSheetId` (`BudgetSheetId`),
+  ADD KEY `PresentationId` (`PresentationId`),
+  ADD KEY `CreatedbyID` (`CreatedbyID`),
+  ADD KEY `PdfId` (`PdfId`);
+
+--
+-- Indexes for table `salesbrieftasks`
+--
+ALTER TABLE `salesbrieftasks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sequelizemeta`
+--
+ALTER TABLE `sequelizemeta`
+  ADD PRIMARY KEY (`name`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `task`
+--
+ALTER TABLE `task`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `assigned_by` (`assigned_by`),
+  ADD KEY `brief_id` (`brief_id`);
+
+--
+-- Indexes for table `taskclientcalls`
+--
+ALTER TABLE `taskclientcalls`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `taskId` (`taskId`);
+
+--
+-- Indexes for table `taskhistory`
+--
+ALTER TABLE `taskhistory`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `task_id` (`task_id`);
+
+--
+-- Indexes for table `timeform`
+--
+ALTER TABLE `timeform`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parentId` (`parentId`);
+
+--
+-- Indexes for table `usertasks`
+--
+ALTER TABLE `usertasks`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `userTasks_userId_taskId_unique` (`userId`,`taskId`),
+  ADD KEY `taskId` (`taskId`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `campaigns`
+--
+ALTER TABLE `campaigns`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+
+--
+-- AUTO_INCREMENT for table `celebrity`
+--
+ALTER TABLE `celebrity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+
+--
+-- AUTO_INCREMENT for table `file`
+--
+ALTER TABLE `file`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+
+--
+-- AUTO_INCREMENT for table `findinfluencerstasks`
+--
+ALTER TABLE `findinfluencerstasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `influencer`
+--
+ALTER TABLE `influencer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2415;
+
+--
+-- AUTO_INCREMENT for table `influencerrating`
+--
+ALTER TABLE `influencerrating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `influencerstatistics`
+--
+ALTER TABLE `influencerstatistics`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3061;
+
+--
+-- AUTO_INCREMENT for table `logitems`
+--
+ALTER TABLE `logitems`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+
+--
+-- AUTO_INCREMENT for table `package`
+--
+ALTER TABLE `package`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `presentationtasks`
+--
+ALTER TABLE `presentationtasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `salesbrief`
+--
+ALTER TABLE `salesbrief`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `salesbrieftasks`
+--
+ALTER TABLE `salesbrieftasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `task`
+--
+ALTER TABLE `task`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `taskclientcalls`
+--
+ALTER TABLE `taskclientcalls`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `taskhistory`
+--
+ALTER TABLE `taskhistory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `timeform`
+--
+ALTER TABLE `timeform`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+
+--
+-- AUTO_INCREMENT for table `usertasks`
+--
+ALTER TABLE `usertasks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables
