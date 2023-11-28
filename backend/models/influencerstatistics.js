@@ -77,6 +77,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
+    tableName: 'influencerstatistics',
     modelName: 'InfluencerStatistics',
   });
   return InfluencerStatistics;

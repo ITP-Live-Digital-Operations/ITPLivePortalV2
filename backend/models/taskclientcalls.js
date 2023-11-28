@@ -70,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'taskClientCalls',
-    tableName: 'taskClientCalls',
+    tableName: 'taskclientcalls',
   });
   return taskClientCalls;
 };

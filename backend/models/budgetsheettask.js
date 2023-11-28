@@ -20,58 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-  /*   taskId: {
-      type: DataTypes.INTEGER,
-      references : {
-        model: 'tasks',
-        key: 'id'
-      }
-    },
-    budgetSheetId1: {
-      type: DataTypes.INTEGER,
-      references : {
-        model: 'file',
-        key: 'id'
-      }
-    },
-    budgetSheetId2: {
-      type: DataTypes.INTEGER,
-      references : {
-        model: 'file',
-        key: 'id'
-      }
-    },
-    presentationId1: {
-      type: DataTypes.INTEGER,
-      references : {
-        model: 'file',
-        key: 'id'
-      }
-    },
-    presentationId2: {
-      type: DataTypes.INTEGER,
-      references : {
-        model: 'file',
-        key: 'id'
-      }
-    },
-    pdfId1  : {
-      type: DataTypes.INTEGER,
-      references : {
-        model: 'file',
-        key: 'id'
-      }
-    },
-    pdfId2 : {
-      type: DataTypes.INTEGER,
-      references : {
-        model: 'file',
-        key: 'id'
-      }
-    }, */
+  
   }, {
     sequelize,
-    tableName: 'budgetSheetTasks',
+    tableName: 'budgetsheettasks',
     modelName: 'budgetSheetTask',
   });
   return budgetSheetTask;

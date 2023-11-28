@@ -69,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
   
   {
     sequelize,
-    tableName: 'influencerRating',
+    tableName: 'influencerrating',
     modelName: 'InfluencerRating',
   });
   return InfluencerRating;

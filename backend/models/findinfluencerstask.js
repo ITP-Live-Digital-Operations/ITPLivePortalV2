@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     
   }, {
     sequelize,
-    tableName: 'findInfluencersTasks',
+    tableName: 'findinfluencerstasks',
     modelName: 'FindInfluencersTask',
   });
   return FindInfluencersTask;
