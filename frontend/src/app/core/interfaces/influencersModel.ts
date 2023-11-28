@@ -1,3 +1,5 @@
+import { InfluencerStatisticsModel } from "./influencerStatistics.model";
+
 export interface InfluencerModel
  {
   id: number;
@@ -34,20 +36,6 @@ export interface InfluencerModel
   YoutubeHandle: string;
   YoutubeFollowers: number;
   YoutubeLink: string;
-  AudienceMalePer: number;
-  AudienceFemalePer: number;
-  AgeGroup1317: number;
-  AgeGroup1824: number;
-  AgeGroup2534: number;
-  AgeGroup3544: number;
-  AgeGroup4554: number;
-  AgeGroup55: number;
-  AudienceTopCountries1: string;
-  AudienceTopCountries1Percentage: number;
-  AudienceTopCountries2: string;
-  AudienceTopCountries2Percentage: number;
-  AudienceTopCountries3: string;
-  AudienceTopCountries3Percentage: number;
   KSALicense: boolean;
   UAELicense: boolean;
   AgencyContactPerson: string;
@@ -59,4 +47,9 @@ export interface InfluencerModel
   Status: string;
   influencerRating : Array<String>;
   itpAverageRating : number;
+  influencerStatistics: InfluencerStatisticsModel[];
  }
+
+
+
+

@@ -6,6 +6,9 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CampaignModel } from 'src/app/core/interfaces/campaign.model';
 import { CampaignService } from 'src/app/core/services/campaign.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { InfluencerIdComponent } from '../../../sharing/influencer-id/influencer-id.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-campaigns',
@@ -25,12 +28,7 @@ export class ViewCampaignsComponent {
     'clientName',
     'market',
     'clientIndustry',
-    'influencerName',
-    'influencerVertical',
-    'platform',
-    'deliverable',
-    'poc',
-    'year',
+    'action'
   ];
 
   protected filterValues = { campaignName: '', clientName: '', influencerName: '' };
@@ -78,18 +76,7 @@ export class ViewCampaignsComponent {
     }
   }
 
-  searchInfluencers(searchTerm: string) {
-    if (searchTerm) {
-      this.filteredInfluencers = this.influencers.filter((influencer) =>
-        influencer.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      this.filterInfluencer(searchTerm.toLowerCase());
-    } else {
-      // Reset to all influencers if the search term is empty
-      this.filteredInfluencers = this.influencers;
-      this.filterInfluencer(searchTerm.toLowerCase());
-    }
-  }
+
 
 
   onCampaignSelect(event: MatAutocompleteSelectedEvent) {
@@ -102,10 +89,6 @@ export class ViewCampaignsComponent {
     this.filterClient(this.selectedClient.toLowerCase());
   }
 
-  onInfluencerSelect(event: MatAutocompleteSelectedEvent) {
-    this.selectedInfluencer = event.option.value;
-    this.filterInfluencer(this.selectedInfluencer.toLowerCase());
-  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -115,13 +98,16 @@ export class ViewCampaignsComponent {
 
   constructor(
     private userService: UserService,
-    private campaignService: CampaignService
+    private campaignService: CampaignService,
+    private dialog: MatDialog,
+    private router: Router,
   ) {}
 
   public loadCampaigns() {
     this.campaignService.getCampaigns().subscribe((res) => {
-
+      console.log(res[0]);
       this.dataSource = new MatTableDataSource(res);
+
       this.dataSource.paginator = this.paginator!;
       this.dataSource.sort = this.sort;
 
@@ -129,18 +115,11 @@ export class ViewCampaignsComponent {
       this.campaigns = [
         ...new Set(res.map((result: any) => result.campaignName)),
       ].sort() as string[];
-      this.clients = [...new Set(res.map((result: any) => result.clientName))];
-      this.influencers = [
-        ...new Set(res.map((result: any) => result.influencerName)),
-      ];
+      this.clients = [...new Set(res.map((result: any) => result.client.name))];
+
     });
   }
 
-  public filterInfluencer(influencer: string) {
-    this.filterValues.influencerName = influencer;
-    this.applyFilter();
-    this.updateFilterOptions();
-  }
 
   public filterClient(client: string) {
     this.filterValues.clientName = client;
@@ -161,13 +140,8 @@ export class ViewCampaignsComponent {
       const searchString = JSON.parse(filter);
 
 
-      const influencerMatch = searchString.influencerName
-        ? data.influencerName
-        .toLowerCase()
-        .includes(searchString.influencerName.toLowerCase())
-        : true;
       const clientMatch = searchString.clientName
-        ? data.clientName
+        ? data.client.name
         .toLowerCase()
         .includes(searchString.clientName.toLowerCase())
         : true;
@@ -177,7 +151,7 @@ export class ViewCampaignsComponent {
           .includes(searchString.campaignName.toLowerCase())
         : true;
 
-      return influencerMatch && clientMatch && campaignMatch;
+      return /* influencerMatch &&  */ clientMatch && campaignMatch;
     };
 
     this.dataSource.filter = JSON.stringify(this.filterValues);
@@ -186,16 +160,20 @@ export class ViewCampaignsComponent {
   private updateFilterOptions() {
     const renderedData = this.dataSource.filteredData || [];
 
-    this.influencers = [
-      ...new Set(renderedData.map((result: any) => result.influencerName)),
-    ].sort() as string[];
+
 
     this.campaigns = [
       ...new Set(renderedData.map((result: any) => result.campaignName)),
     ].sort() as string[];
 
     this.clients = [
-      ...new Set(renderedData.map((result: any) => result.clientName)),
+      ...new Set(renderedData.map((result: any) => result.client.name)),
     ].sort() as string[];
+  }
+
+
+
+  public viewCampaign(inputdata: any): void {
+    this.router.navigate([`/home/campaign/campaignDetails/${inputdata}`]);
   }
 }

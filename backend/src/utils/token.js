@@ -8,7 +8,7 @@ JWT_SECRET_KEY= '0d597307518f707d0b429e10b63c8658b63ceaab8b4f76c92d5236358fb0c0f
 const GLOBAL_PASSWORD = 'itpP0rt@l400'
 
 const generate = (id,name, role, privilege_level) => { 
-    const token = jwt.sign({ id, name, role, privilege_level }, JWT_SECRET_KEY, { expiresIn: '1m'}); 
+    const token = jwt.sign({ id, name, role, privilege_level }, JWT_SECRET_KEY, { expiresIn: '720m'}); 
     return 'Bearer ' + token;
 };
 

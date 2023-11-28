@@ -75,26 +75,7 @@ export class EditInfluencerComponent {
         TwitchFollowers: [''],
         TwitchLink: [''],
       }),
-      statistics: this.formBuilder.group({
-        AudienceMalePer: [''],
-        AudienceFemalePer: [''],
 
-        AgeGroup1317: [''],
-        AgeGroup1824: [''],
-        AgeGroup2534: [''],
-        AgeGroup3544: [''],
-        AgeGroup4554: [''],
-        AgeGroup55: [''],
-
-        AudienceTopCountries1: [''],
-        AudienceTopCountries1Percentage: [''],
-
-        AudienceTopCountries2: [''],
-        AudienceTopCountries2Percentage: [''],
-
-        AudienceTopCountries3: [''],
-        AudienceTopCountries3Percentage: [''],
-      }),
       KSALicense: [''],
       UAELicense: [''],
       agencyInfo: this.formBuilder.group({
@@ -161,27 +142,6 @@ export class EditInfluencerComponent {
             TwitchHandle: this.influencerData.data.TwitchHandle,
             TwitchFollowers: this.influencerData.data.TwitchFollowers,
             TwitchLink: this.influencerData.data.TwitchLink,
-            },
-
-            statistics: {
-            AudienceMalePer: this.influencerData.data.AudienceMalePer,
-            AudienceFemalePer: this.influencerData.data.AudienceFemalePer,
-
-            AgeGroup1317: this.influencerData.data.AgeGroup1317,
-            AgeGroup1824: this.influencerData.data.AgeGroup1824,
-            AgeGroup2534: this.influencerData.data.AgeGroup2534,
-            AgeGroup3544: this.influencerData.data.AgeGroup3544,
-            AgeGroup4554: this.influencerData.data.AgeGroup4554,
-            AgeGroup55: this.influencerData.data.AgeGroup55,
-
-            AudienceTopCountries1: this.influencerData.data.AudienceTopCountries1,
-            AudienceTopCountries1Percentage: this.influencerData.data.AudienceTopCountries1Percentage,
-
-            AudienceTopCountries2: this.influencerData.data.AudienceTopCountries2,
-            AudienceTopCountries2Percentage: this.influencerData.data.AudienceTopCountries2Percentage,
-
-            AudienceTopCountries3: this.influencerData.data.AudienceTopCountries3,
-            AudienceTopCountries3Percentage: this.influencerData.data.AudienceTopCountries3Percentage,
             },
 
             KSALicense: this.influencerData.data.KSALicense,

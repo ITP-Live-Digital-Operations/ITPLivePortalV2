@@ -1,8 +1,10 @@
 const { Sequelize } = require('sequelize');
 const  models  = require('../../models');
+const Campaign = models.Campaign;
 const Influencer = models.Influencer;
 const InfluencerRating = models.InfluencerRating;
 const User = models.User;
+const InfluencerStatistics = models.InfluencerStatistics;
 
 exports.createInfluencer =  (req, res) => {
     const influencer = req.body;
@@ -35,7 +37,8 @@ exports.getInfluencers =  (req, res) => {
 
 exports.getInfluencer =  (req, res) => {
     const influencerId = Number(req.params.id);
-    Influencer.findByPk(influencerId)
+    Influencer.findByPk(influencerId, { include: [ { model: InfluencerStatistics, as: 'influencerStatistics' } ] })
+        
     .then(data => {
         res.status(200).send({data});
     })
@@ -297,6 +300,37 @@ exports.getAllInfluencersWithAverageRating = (req, res) => {
         }
         );
 }
+
+
+exports.getInfluencerStatisticsById = (req, res) => {
+    const influencerId = Number(req.params.id);
+    InfluencerStatistics.findAll({ where: { influencerId: influencerId }})
+    .then(statData => {
+        const campaignPromises = statData.map(stat => {
+            return Campaign.findOne({ where: { id: stat.campaignId }})
+            .then(data => {
+                if (data && data.campaignName) {
+                    stat.setDataValue('campaignName', data.campaignName);
+                }
+                return stat;
+            });
+        });
+
+        return Promise.all(campaignPromises);
+    })
+    .then(statDataWithCampaignNames => {
+        const serializedData = statDataWithCampaignNames.map(stat => stat.get({ plain: true }));
+        res.status(200).send({ statData: serializedData });
+    })
+    .catch(err => {
+        console.error("Error occurred:", err.message);
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    });
+}
+
 
 
 

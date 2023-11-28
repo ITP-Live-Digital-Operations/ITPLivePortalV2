@@ -3,37 +3,33 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Campaign extends Model {
+  class Clients extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-        Campaign.belongsTo(models.Clients, {foreignKey: 'clientId', as: 'client'})
-        Campaign.belongsToMany(models.Influencer, {through: 'Influencer_Campaign'})
-        
-      }
+      // define association here
+    }
   }
-  Campaign.init({
+  Clients.init({
     id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER
-    },
-    campaignName: {
-      type: DataTypes.STRING
-    },
-    market: {
-      type: DataTypes.STRING
-    },
-    clientId: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'clients',
-        key: 'id'
-      }
+      primaryKey: true,
+      autoIncrement: true
+    },
+    name : {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    industry : {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    updatedBy: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     createdAt: {
       allowNull: false,
@@ -45,8 +41,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Campaign',
-    tableName: 'campaigns'
+    tableName: 'clients',
+    modelName: 'Clients',
   });
-  return Campaign;
+  return Clients;
 };

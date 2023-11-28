@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       Influencer.belongsTo(models.User, {foreignKey: 'updatedBy', as: 'user'})
       Influencer.hasMany(models.Logs, {foreignKey: 'influencerID', as: 'influencer'})
       Influencer.hasMany(models.InfluencerRating, {foreignKey: 'influencer_id', as: 'influencerRating'})
+      Influencer.belongsToMany(models.Campaign, {through: 'Influencer_Campaign'})
+      Influencer.hasMany(models.InfluencerStatistics, {foreignKey: 'influencerId', as: 'influencerStatistics'})
     }
 
   }

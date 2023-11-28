@@ -11,13 +11,13 @@ export class CampaignService {
 
   constructor(private http: HttpClient) { }
 
-  camnpaignApiURL = environment.apiUrl + '/v1/campaigns';
+  campaignApiURL = environment.apiUrl + '/v1/campaigns';
 
   getCampaigns(): Observable<CampaignModel[]> {
-    return this.http.get<CampaignModel[]>(`${this.camnpaignApiURL}/getCampaigns`);
+    return this.http.get<CampaignModel[]>(`${this.campaignApiURL}/getCampaigns`);
   }
 
   getCampaignById(inputdata: any): Observable<CampaignModel> {
-    return this.http.get<CampaignModel>(`${this.camnpaignApiURL}/getCampaign/${inputdata}`);
+    return this.http.get<CampaignModel>(`${this.campaignApiURL}/getCampaignById/${inputdata}`);
   }
 }

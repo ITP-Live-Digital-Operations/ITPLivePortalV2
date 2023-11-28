@@ -8,11 +8,13 @@ import { ViewBriefModule } from '../talent/view-brief/view-brief.module';
 import { SharingModule } from '../../sharing/sharing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ViewCampaignsComponent } from './view-campaigns/view-campaigns.component';
+import { CampaignDetailsComponent } from './view-campaigns/campaign-details/campaign-details.component';
 
 
 @NgModule({
   declarations: [
-    ViewCampaignsComponent
+    ViewCampaignsComponent,
+    CampaignDetailsComponent
   ],
   imports: [
     CommonModule,

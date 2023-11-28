@@ -2,25 +2,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, DataTypes) {
-    await queryInterface.createTable('campaigns', {
+    await queryInterface.createTable('clients', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER
-      },
-      campaignName: {
-        type: DataTypes.STRING
-      },
-      market: {
-        type: DataTypes.STRING
-      },
-      clientId: {
         type: DataTypes.INTEGER,
-        references: {
-          model: 'clients',
-          key: 'id'
-        }
+        primaryKey: true,
+        autoIncrement: true
+      },
+      name : {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      industry : {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      updatedBy: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -33,6 +31,6 @@ module.exports = {
     });
   },
   async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable('campaigns');
+    await queryInterface.dropTable('clients');
   }
 };

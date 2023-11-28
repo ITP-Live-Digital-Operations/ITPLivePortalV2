@@ -78,27 +78,7 @@ export class NewInfluencerComponent {
         TwitchFollowers: [],
         TwitchLink: [''],
       }),
-      //STATISTICS
-      statistics: this.formBuilder.group({
-        AudienceMalePer: [],
-        AudienceFemalePer: [],
-
-        AgeGroup1317: [],
-        AgeGroup1824: [],
-        AgeGroup2534: [],
-        AgeGroup3544: [],
-        AgeGroup4554: [],
-        AgeGroup55: [],
-
-        AudienceTopCountries1: [''],
-        AudienceTopCountries1Percentage: [],
-
-        AudienceTopCountries2: [''],
-        AudienceTopCountries2Percentage: [],
-
-        AudienceTopCountries3: [''],
-        AudienceTopCountries3Percentage: [],
-      }),
+      
       //LICENSES
       KSALicense: [''],
       UAELicense: [''],

@@ -107,4 +107,10 @@ export class InfluencerService {
       `${this.influencerApiURL}/getInfluencersWithRatings`
     );
   }
+
+  getInfluencerStatisticsById(inputdata: any) {
+    return this.http.get(
+      `${this.influencerApiURL}/getInfluencerStatisticsById/${inputdata}`
+    );
+  }
 }
