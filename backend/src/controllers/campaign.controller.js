@@ -10,7 +10,8 @@ exports.getCampaigns = (req, res) => {
         as: "client",
       },
       {
-        model: models.Influencer
+        model: models.Influencer,
+        attributes: ['id', 'Name' ],
       }
     ],
   })

@@ -63,6 +63,6 @@ module.exports = {
     });
   },
   async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable('InfluencerStatistics');
+    await queryInterface.dropTable('influencerstatistics');
   }
 };
