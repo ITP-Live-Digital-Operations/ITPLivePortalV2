@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         Campaign.belongsTo(models.Clients, {foreignKey: 'clientId', as: 'client'})
-        Campaign.belongsToMany(models.Influencer, {through: 'Influencer_Campaign'})
+        Campaign.belongsToMany(models.Influencer, {through: 'influencer_campaign'})
         
       }
   }

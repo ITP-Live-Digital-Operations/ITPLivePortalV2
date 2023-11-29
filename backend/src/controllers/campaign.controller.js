@@ -1,6 +1,6 @@
 const models = require("../../models");
 const Campaign = models.Campaign;
-const InfluencerStatistics = models.InfluencerStatistics;
+
 
 exports.getCampaigns = (req, res) => {
   Campaign.findAll({
