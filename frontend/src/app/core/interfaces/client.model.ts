@@ -6,3 +6,10 @@ export interface ClientModel {
   createdAt: Date;
   updatedAt: Date;
 }
+
+
+export interface createClientModel {
+  name: string;
+  industry: string;
+  updatedBy: number;
+}

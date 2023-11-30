@@ -8,6 +8,7 @@ export const PATH: { [key: string]: string } = {
   adminGuide: "/home/main/adminGuide",
   talentGuide: "/home/main/talentGuide",
   influencers: "/home/main/influencers",
+  clients: "/home/main/clients",
 
   // admin routes
   userManagement: "/home/admin/users",

@@ -32,6 +32,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
 import { BooleanPipe } from 'src/app/shared/pipes/boolean.pipe';
 import { InfluencerNamePipe } from 'src/app/shared/pipes/influencer-name.pipe';
+import { ClientsComponent } from './clients/clients.component';
+import { NewClientComponent } from './clients/new-client/new-client.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { InfluencerNamePipe } from 'src/app/shared/pipes/influencer-name.pipe';
     NumberFormatPipe,
     BooleanPipe,
     InfluencerNamePipe,
+    ClientsComponent,
+    NewClientComponent,
 
   ],
   imports: [

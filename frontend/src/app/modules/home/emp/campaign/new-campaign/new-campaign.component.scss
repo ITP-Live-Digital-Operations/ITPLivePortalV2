@@ -1,0 +1,19 @@
+.form-container{
+  margin: 3%;
+
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  mat-form-field {
+    flex: 1;
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+
+  button{
+    background-color: #4789A1;
+  }
+
+}

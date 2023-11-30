@@ -6,9 +6,9 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CampaignModel } from 'src/app/core/interfaces/campaign.model';
 import { CampaignService } from 'src/app/core/services/campaign.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { InfluencerIdComponent } from '../../../sharing/influencer-id/influencer-id.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { NewCampaignComponent } from '../new-campaign/new-campaign.component';
 
 @Component({
   selector: 'app-view-campaigns',
@@ -28,10 +28,14 @@ export class ViewCampaignsComponent {
     'clientName',
     'market',
     'clientIndustry',
-    'action'
+    'action',
   ];
 
-  protected filterValues = { campaignName: '', clientName: '', influencerName: '' };
+  protected filterValues = {
+    campaignName: '',
+    clientName: '',
+    influencerName: '',
+  };
 
   filteredCampaigns: string[] = [];
   filteredClients: string[] = [];
@@ -47,7 +51,6 @@ export class ViewCampaignsComponent {
     this.filteredCampaigns = this.campaigns;
     this.filteredClients = this.clients;
     this.filteredInfluencers = this.influencers;
-
   }
 
   searchCampaigns(searchTerm: string) {
@@ -76,9 +79,6 @@ export class ViewCampaignsComponent {
     }
   }
 
-
-
-
   onCampaignSelect(event: MatAutocompleteSelectedEvent) {
     this.selectedCampaign = event.option.value;
     this.filterCampaign(this.selectedCampaign.toLowerCase());
@@ -88,7 +88,6 @@ export class ViewCampaignsComponent {
     this.selectedClient = event.option.value;
     this.filterClient(this.selectedClient.toLowerCase());
   }
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -100,12 +99,11 @@ export class ViewCampaignsComponent {
     private userService: UserService,
     private campaignService: CampaignService,
     private dialog: MatDialog,
-    private router: Router,
+    private router: Router
   ) {}
 
   public loadCampaigns() {
     this.campaignService.getCampaigns().subscribe((res) => {
-      console.log(res[0]);
       this.dataSource = new MatTableDataSource(res);
 
       this.dataSource.paginator = this.paginator!;
@@ -116,10 +114,8 @@ export class ViewCampaignsComponent {
         ...new Set(res.map((result: any) => result.campaignName)),
       ].sort() as string[];
       this.clients = [...new Set(res.map((result: any) => result.client.name))];
-
     });
   }
-
 
   public filterClient(client: string) {
     this.filterValues.clientName = client;
@@ -128,7 +124,6 @@ export class ViewCampaignsComponent {
   }
 
   public filterCampaign(campaign: string) {
-    console.log(campaign);
     this.filterValues.campaignName = campaign;
     this.applyFilter();
 
@@ -139,16 +134,15 @@ export class ViewCampaignsComponent {
     this.dataSource.filterPredicate = (data: CampaignModel, filter: string) => {
       const searchString = JSON.parse(filter);
 
-
       const clientMatch = searchString.clientName
         ? data.client.name
-        .toLowerCase()
-        .includes(searchString.clientName.toLowerCase())
+            .toLowerCase()
+            .includes(searchString.clientName.toLowerCase())
         : true;
       const campaignMatch = searchString.campaignName
         ? data.campaignName
-          .toLowerCase()
-          .includes(searchString.campaignName.toLowerCase())
+            .toLowerCase()
+            .includes(searchString.campaignName.toLowerCase())
         : true;
 
       return /* influencerMatch &&  */ clientMatch && campaignMatch;
@@ -160,8 +154,6 @@ export class ViewCampaignsComponent {
   private updateFilterOptions() {
     const renderedData = this.dataSource.filteredData || [];
 
-
-
     this.campaigns = [
       ...new Set(renderedData.map((result: any) => result.campaignName)),
     ].sort() as string[];
@@ -171,9 +163,17 @@ export class ViewCampaignsComponent {
     ].sort() as string[];
   }
 
-
-
   public viewCampaign(inputdata: any): void {
     this.router.navigate([`/home/campaign/campaignDetails/${inputdata}`]);
+  }
+
+  redirectToNewCampaign() {
+    this.dialog?.open(NewCampaignComponent, {
+      width: '80%',
+      height: '65%',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {},
+    });
   }
 }

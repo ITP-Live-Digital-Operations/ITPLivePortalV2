@@ -22,6 +22,13 @@ module.exports = {
           key: 'id'
         }
       },
+      clientId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'clients',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE

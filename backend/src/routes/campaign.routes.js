@@ -9,5 +9,9 @@ router.route('/getCampaigns')
 router.route('/getCampaignById/:id')
     .get(asyncHandler(campaignController.getCampaignById));
 
+router.route('/addCampaign')
+    .post(asyncHandler(campaignController.addCampaign));
 
+router.route('/addInfluencersToCampaign/:id')
+    .post(asyncHandler(campaignController.addInfluencersToCampaign));
 module.exports = router;

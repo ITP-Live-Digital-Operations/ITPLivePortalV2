@@ -8,11 +8,13 @@ import { AdminGuideComponent } from './userGuides/admin-guide/admin-guide.compon
 import { TalentGuideComponent } from './userGuides/talent-guide/talent-guide.component';
 import { SalesGuideComponent } from './userGuides/sales-guide/sales-guide.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ClientsComponent } from './clients/clients.component';
+import { NewClientComponent } from './clients/new-client/new-client.component';
 
 const routes: Routes = [
   {
     path: 'forms',
-    component: FormsComponent 
+    component: FormsComponent
   },
   {
     path: 'allBriefs',
@@ -41,6 +43,14 @@ const routes: Routes = [
   {
     path: 'editProfile',
     component: EditProfileComponent
+  },
+  {
+    path: 'clients',
+    component: ClientsComponent
+  },
+  {
+   path: 'newClient',
+   component: NewClientComponent,
   },
   {
     path: '',

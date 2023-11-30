@@ -3,35 +3,36 @@ import { RouterModule, Routes } from '@angular/router';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { ViewCampaignsComponent } from './view-campaigns/view-campaigns.component';
 import { CampaignDetailsComponent } from './view-campaigns/campaign-details/campaign-details.component';
+import { NewCampaignComponent } from './new-campaign/new-campaign.component';
 
 let path = PATH;
 
 const routes: Routes = [
   {
     path: 'viewCampaigns',
-    component: ViewCampaignsComponent
+    component: ViewCampaignsComponent,
   },
   {
     path: 'campaignDetails/:id',
-    component: CampaignDetailsComponent
+    component: CampaignDetailsComponent,
+  },
+  {
+    path: 'newCampaign',
+    component: NewCampaignComponent,
   },
   {
     path: '',
     redirectTo: `${path['forms']}`,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '**',
-    redirectTo: '/site/notFound'
-  }
-
+    redirectTo: '/site/notFound',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CampaignRoutingModule {
-
-
-}
+export class CampaignRoutingModule {}

@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
         Campaign.belongsTo(models.Clients, {foreignKey: 'clientId', as: 'client'})
         Campaign.belongsToMany(models.Influencer, {through: 'influencer_campaign'})
+        Campaign.belongsTo(models.User,  {foreignKey: 'createdBy', as: 'user'})
         
       }
   }
@@ -34,6 +35,14 @@ module.exports = (sequelize, DataTypes) => {
         model: 'clients',
         key: 'id'
       }
+    },
+    createdBy: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'users',
+        key: 'id'
+      },
+      defaultValue: 1 
     },
     createdAt: {
       allowNull: false,

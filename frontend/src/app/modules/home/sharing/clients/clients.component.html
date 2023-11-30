@@ -1,0 +1,40 @@
+<div class="logs-button">
+  <H2>Clients</H2>
+  <button type="button" style="margin-left: 2%" (click)="redirectToNewClient()">
+    Add New Client
+  </button>
+</div>
+
+<mat-form-field
+  style="width: 100%; height: 10%; margin-left: 0px; display: flex"
+>
+  <input
+    #searchInput
+    matInput
+    (keyup)="applyFilterChange(searchInput.value)"
+    placeholder="🔍 Search"
+  />
+</mat-form-field>
+<div class="table-container">
+  <table mat-table [dataSource]="clients" matSort>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="industry">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Industry</th>
+      <td mat-cell *matCellDef="let element">{{ element.industry }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" sticky></tr>
+  </table>
+</div>
+<mat-paginator
+  pageSize="10"
+  [pageSizeOptions]="[5, 10, 25, 50, 100]"
+  showFirstLastButtons
+  aria-label="Select page"
+>
+</mat-paginator>

@@ -9,4 +9,17 @@ export interface CampaignModel {
   Influencers: InfluencerModel[];
   createdAt: Date;
   updatedAt: Date;
+  createdBy: number;
+}
+
+export interface createCampaignModel{
+  campaignName: string;
+  market: string;
+  clientId: number;
+  createdBy: number;
+
+}
+
+export interface addInfluencersToCampaignModel{
+  influncerIds: number[];
 }

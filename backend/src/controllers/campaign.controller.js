@@ -1,5 +1,6 @@
 const models = require("../../models");
 const Campaign = models.Campaign;
+const Influencer = models.Influencer;
 
 
 exports.getCampaigns = (req, res) => {
@@ -56,3 +57,67 @@ exports.getCampaignById = (req, res) => {
       });
     });
 };
+
+
+exports.addCampaign = (req, res) => {
+  const campaign = {
+    campaignName: req.body.campaignName,
+    market: req.body.market,
+    clientId: req.body.clientId,
+    createdBy: req.body.createdBy,
+  };
+
+  Campaign.create(campaign)
+    .then((data) => {
+      res.status(201).send({
+        status: "success",
+        message: "Campaign created successfully",
+        
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+  };
+
+exports.addInfluencersToCampaign = (req, res) => {
+  const campaignId = req.params.id;
+  const influencerIds = req.body.influencers;
+
+  //Find the campaign
+  Campaign.findByPk(campaignId)
+    .then((campaign) => {
+      if (!campaign) {
+        res.status(404).send({
+          status: "error",
+          message: "Campaign not found",
+        });
+      } else {
+        //If campaign is found, add the influencers
+        campaign
+          .addInfluencers(influencerIds)
+          .then((data) => {
+            res.status(201).send({
+              status: "success",
+              message: "Influencers added to campaign successfully",
+            });
+          })
+          .catch((err) => {
+            res.status(500).send({
+              status: "error",
+              message: err.message,
+            });
+          });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+}
+    

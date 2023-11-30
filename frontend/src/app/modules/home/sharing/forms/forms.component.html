@@ -1,79 +1,140 @@
 <div class="container">
-
-    <div class="box">
+  <div class="box">
     <h1 class="title"></h1>
     <!-- <h1 class="splash">ITP | Portal</h1> -->
-    <div class="btn d-flex flex-row align-items-center flex-wrap" style="border-color: transparent;">
-
-    <button
-    mat-raised-button *ngIf="userRole=='superadmin'" routerLink="{{path['userManagement']}}">
-    <img src="../../../../../assets/white-buttons/admin-forms.png">
-    <p>User Management</p>
-    </button>
-    <button
-    mat-raised-button *ngIf="userRole=='talent' || userRole=='sales' || userRole=='campaign' || userRole=='superadmin'" routerLink="{{path['influencers']}}">
-        <img src="../../../../../assets/white-buttons/Inlfuencer.png">
-        <p>Influencer</p>
-    </button>
-    <button
-    mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="{{path['newInfluencer']}}">
-        <img src="../../../../../assets/white-buttons/new-influencer.png">
+    <div
+      class="btn d-flex flex-row align-items-center flex-wrap"
+      style="border-color: transparent"
+    >
+      <button
+        mat-raised-button
+        *ngIf="userRole == 'superadmin'"
+        routerLink="{{ path['userManagement'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/admin-forms.png" />
+        <p>User Management</p>
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="
+          userRole == 'talent' ||
+          userRole == 'sales' ||
+          userRole == 'campaign' ||
+          userRole == 'superadmin'
+        "
+        routerLink="{{ path['influencers'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/Inlfuencer.png" />
+        <p>Influencers</p>
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="userRole == 'talent' || userRole == 'superadmin'"
+        routerLink="{{ path['newInfluencer'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/new-influencer.png" />
         <p>New Influencer</p>
-    </button>
-    <button mat-raised-button *ngIf="(userRole == 'talent' && privilegeLevel > 7) || userRole == 'superadmin'" routerLink="{{path['celebrities']}}">
-        <img src="../../../../../assets/white-buttons/celebrities.png">
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="
+          (userRole == 'talent' && privilegeLevel > 7) ||
+          userRole == 'superadmin'
+        "
+        routerLink="{{ path['celebrities'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/celebrities.png" />
         <p>Celebrities</p>
-    </button>
-    <button  mat-raised-button *ngIf="(userRole == 'talent' && privilegeLevel > 7) || userRole == 'superadmin'" routerLink="{{path['newCelebrity']}}">
-        <img src="../../../../../assets/white-buttons/new-celebrities.png">
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="
+          (userRole == 'talent' && privilegeLevel > 7) ||
+          userRole == 'superadmin'
+        "
+        routerLink="{{ path['newCelebrity'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/new-celebrities.png" />
         <p>New Celebrity</p>
-    </button>
-    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="{{path['rateLogs']}}">
-        <img src="../../../../../assets/white-buttons/rate-log.png">
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="userRole == 'talent' || userRole == 'superadmin'"
+        routerLink="{{ path['rateLogs'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/rate-log.png" />
         <p>Rate Logs</p>
-    </button>
-    <button mat-raised-button *ngIf="userRole=='talent' || userRole=='superadmin'" routerLink="{{path['newRateLog']}}">
-        <img src="../../../../../assets/white-buttons/new-rate-log.png">
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="userRole == 'talent' || userRole == 'superadmin'"
+        routerLink="{{ path['newRateLog'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/new-rate-log.png" />
         <p>New Rate Log</p>
-    </button>
-    <button mat-raised-button *ngIf="userRole=='talent'|| userRole=='campaign' || userRole=='superadmin'" routerLink="{{path['newTimeForm']}}">
-        <img src="../../../../../assets/white-buttons/time log.png">
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="
+          userRole == 'talent' ||
+          userRole == 'campaign' ||
+          userRole == 'superadmin'
+        "
+        routerLink="{{ path['newTimeForm'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/time log.png" />
         <p>Time Form</p>
-    </button>
-    <!-- ------------------------ Sales -------------------------  -->
-    <button
-    mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="{{path['newSalesBrief']}}">
-    <img src="../../../../../assets/white-buttons/new-sales-brief.png">
-    <p>New Sales Brief</p>
-    </button>
-    <button
-    mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="{{path['readyBriefs']}}">
-    <img src="../../../../../assets/white-buttons/all-brief.png">
-    <p>Ready Briefs</p>
-    </button>
-    <button
-    mat-raised-button *ngIf="userRole=='sales' || userRole=='superadmin'" routerLink="{{path['sentBriefs']}}">
-    <img src="../../../../../assets/white-buttons/sent-brief.png">
-    <p>Sent Briefs</p>
-    </button>
+      </button>
+      <!-- ------------------------ Sales -------------------------  -->
+
+      <button
+        mat-raised-button
+        *ngIf="userRole == 'sales' || userRole == 'superadmin'"
+        routerLink="{{ path['newSalesBrief'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/new-sales-brief.png" />
+        <p>New Sales Brief</p>
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="userRole == 'sales' || userRole == 'superadmin'"
+        routerLink="{{ path['readyBriefs'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/all-brief.png" />
+        <p>Ready Briefs</p>
+      </button>
+      <button
+        mat-raised-button
+        *ngIf="userRole == 'sales' || userRole == 'superadmin'"
+        routerLink="{{ path['sentBriefs'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/sent-brief.png" />
+        <p>Sent Briefs</p>
+      </button>
 
       <!-- ---------------------- Campaign -------------------     -->
 
-      <button mat-raised-button *ngIf="userRole=='campaign' || userRole=='superadmin'" routerLink="{{path['viewCampaigns']}}">
-        <img src="../../../../../assets/white-buttons/rate-log.png">
+      <button
+        mat-raised-button
+        *ngIf="userRole == 'campaign' || userRole == 'superadmin'"
+        routerLink="{{ path['viewCampaigns'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/rate-log.png" />
         <p>Campaigns</p>
-    </button>
- <!--    <button mat-raised-button *ngIf="userRole=='campaign' || userRole=='superadmin'" routerLink="{{path['']}}">
+      </button>
+      <!--    <button mat-raised-button *ngIf="userRole=='campaign' || userRole=='superadmin'" routerLink="{{path['']}}">
         <img src="../../../../../assets/white-buttons/new-rate-log.png">
         <p>New Campaign</p>
     </button> -->
 
-
+      <button
+        mat-raised-button
+        *ngIf="userRole == 'campaign' || userRole == 'superadmin' || userRole == 'sales'"
+        routerLink="{{ path['clients'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/rate-log.png" />
+        <p>Clients</p>
+      </button>
     </div>
-
-
-
-
-
-    </div>
+  </div>
 </div>

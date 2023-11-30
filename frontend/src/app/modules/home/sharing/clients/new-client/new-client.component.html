@@ -1,0 +1,32 @@
+<div class="form-container">
+  <form
+   [formGroup]="newClientForm"
+   >
+    <h2>New Client</h2>
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Name </mat-label>
+        <input matInput type="text" formControlName="name" autocomplete="off" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Industry </mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="industry"
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!newClientForm.valid"
+      (click)="addClient()"
+    >
+      Add Client
+    </button>
+  </form>
+</div>

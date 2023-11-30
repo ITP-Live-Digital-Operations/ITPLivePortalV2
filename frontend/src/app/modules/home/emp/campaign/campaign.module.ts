@@ -9,12 +9,14 @@ import { SharingModule } from '../../sharing/sharing.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ViewCampaignsComponent } from './view-campaigns/view-campaigns.component';
 import { CampaignDetailsComponent } from './view-campaigns/campaign-details/campaign-details.component';
+import { NewCampaignComponent } from './new-campaign/new-campaign.component';
 
 
 @NgModule({
   declarations: [
     ViewCampaignsComponent,
-    CampaignDetailsComponent
+    CampaignDetailsComponent,
+    NewCampaignComponent
   ],
   imports: [
     CommonModule,

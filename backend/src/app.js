@@ -21,6 +21,8 @@ const webHookRoutes = require("./routes/webhook.routes");
 const fileRoutes = require("./routes/file.routes");
 const NotificationRoutes = require("./routes/notification.routes");
 const campaignRoutes = require("./routes/campaign.routes");
+const clientRoutes = require("./routes/client.routes");
+
 const app = express();
 
 app.use(express.json({ limit: "50mb" }));
@@ -78,6 +80,8 @@ app.use("/api/v1/tasks", authHandler, TaskRoutes);
 app.use("/api/v1/files", authHandler, fileRoutes);
 app.use("/api/v1/campaigns", authHandler, campaignRoutes)
 app.use("/api/v1/notifications", authHandler, NotificationRoutes);
+app.use("/api/v1/clients", authHandler, clientRoutes);
+
 
 
 app.use("/api/v1/webhooks", webHookRoutes);
