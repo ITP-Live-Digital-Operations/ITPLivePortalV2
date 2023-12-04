@@ -1,32 +1,55 @@
-.logs-button,
-.filter-container {
+.clients-section {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
   margin-bottom: 1%;
   width: 100%;
 
-  .filter {
-    flex-grow: 1;
-    margin-right: 20px; // Space between filters
+  header {
+    display: flex;
+    justify-content: space-between; // Aligns items on opposite ends
+    width: 100%;
 
-    &:last-child {
-      margin-right: 0; // Remove margin for the last filter
+    h2 {
+      font-size: 1.5rem;
     }
 
+    .add-client-btn {
+      padding: 10px 15px;
+      background-color: transparent;
+      color: white;
+      border: 1px solid #4789A1;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 1%;
 
+      &:hover {
+        background-color: #4789A1;
+      }
+    }
   }
 
-  button {
-    padding: 10px 15px;
-    background-color: transparent;
-    color: white;
-    border: 1px solid #4789A1;
-    border-radius: 4px;
-    cursor: pointer;
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1%; // Added margin for spacing below the header
 
-    &:hover {
-      background-color: #4789A1;
+    .filter {
+      flex-grow: 1;
+      margin-right: 20px;
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
+  }
+
+  .search-field {
+    width: 100%;
+    height: 10%;
+    display: flex;
+  }
+
+  .table-container {
+    // Add any styles for the table container here if needed
   }
 }

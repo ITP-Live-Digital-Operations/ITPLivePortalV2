@@ -18,7 +18,7 @@ import { TableContentComponent } from './influencer-id/table-content/table-conte
 import { CampaignResultsComponent } from './influencer-id/campaign-results/campaign-results.component';
 import { StatisticsComponent } from './influencer-id/statistics/statistics.component';
 import { LogsTableComponent } from './influencer-id/logs-table/logs-table.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/components/shared.module';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { UserNamePipe } from 'src/app/shared/pipes/user-name.pipe';
@@ -74,7 +74,8 @@ import { NewClientComponent } from './clients/new-client/new-client.component';
     SharedModule,
     MatDialogModule,
     DragDropModule,
-    MatExpansionModule
+    MatExpansionModule,
+    FormsModule,
   ],
   exports: [
     StarRatingComponent,
@@ -89,7 +90,7 @@ import { NewClientComponent } from './clients/new-client/new-client.component';
     NumberFormatPipe,
     BooleanPipe,
     InfluencerNamePipe,
-    
+
   ],
 })
 export class SharingModule {}

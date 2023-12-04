@@ -45,12 +45,39 @@ export class ViewCampaignsComponent {
   selectedClient: string = '';
   selectedInfluencer: string = '';
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  @ViewChild(MatTable) table!: MatTable<any>;
+
+  constructor(
+    private userService: UserService,
+    private campaignService: CampaignService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
     this.loadCampaigns();
 
     this.filteredCampaigns = this.campaigns;
     this.filteredClients = this.clients;
     this.filteredInfluencers = this.influencers;
+  }
+
+  public loadCampaigns() {
+    this.campaignService.getCampaigns().subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator!;
+      this.dataSource.sort = this.sort;
+
+      // Extract unique values from columns to build filter
+      this.campaigns = [
+        ...new Set(res.map((result: any) => result.campaignName)),
+      ].sort() as string[];
+      this.clients = [...new Set(res.map((result: any) => result.client.name))];
+    });
   }
 
   searchCampaigns(searchTerm: string) {
@@ -89,47 +116,6 @@ export class ViewCampaignsComponent {
     this.filterClient(this.selectedClient.toLowerCase());
   }
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  @ViewChild(MatSort) sort!: MatSort;
-
-  @ViewChild(MatTable) table!: MatTable<any>;
-
-  constructor(
-    private userService: UserService,
-    private campaignService: CampaignService,
-    private dialog: MatDialog,
-    private router: Router
-  ) {}
-
-  public loadCampaigns() {
-    this.campaignService.getCampaigns().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res);
-
-      this.dataSource.paginator = this.paginator!;
-      this.dataSource.sort = this.sort;
-
-      // Extract unique values from columns to build filter
-      this.campaigns = [
-        ...new Set(res.map((result: any) => result.campaignName)),
-      ].sort() as string[];
-      this.clients = [...new Set(res.map((result: any) => result.client.name))];
-    });
-  }
-
-  public filterClient(client: string) {
-    this.filterValues.clientName = client;
-    this.applyFilter();
-    this.updateFilterOptions();
-  }
-
-  public filterCampaign(campaign: string) {
-    this.filterValues.campaignName = campaign;
-    this.applyFilter();
-
-    this.updateFilterOptions();
-  }
-
   public applyFilter() {
     this.dataSource.filterPredicate = (data: CampaignModel, filter: string) => {
       const searchString = JSON.parse(filter);
@@ -149,6 +135,18 @@ export class ViewCampaignsComponent {
     };
 
     this.dataSource.filter = JSON.stringify(this.filterValues);
+  }
+
+  public filterClient(client: string) {
+    this.filterValues.clientName = client;
+    this.applyFilter();
+    this.updateFilterOptions();
+  }
+
+  public filterCampaign(campaign: string) {
+    this.filterValues.campaignName = campaign;
+    this.applyFilter();
+    this.updateFilterOptions();
   }
 
   private updateFilterOptions() {

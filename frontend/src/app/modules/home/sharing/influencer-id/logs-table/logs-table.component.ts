@@ -1,14 +1,14 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { InfluencerIdComponent } from '../influencer-id.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { LogService } from 'src/app/core/services/log.service';
 import { LogModel } from 'src/app/core/interfaces/logModel';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { UserService } from 'src/app/core/services/user.service';
+
 
 @Component({
   selector: 'app-logs-table',

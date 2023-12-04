@@ -7,17 +7,31 @@ import { Router } from '@angular/router';
 import { ClientModel } from 'src/app/core/interfaces/client.model';
 import { ClientService } from 'src/app/core/services/client.service';
 import { NewClientComponent } from './new-client/new-client.component';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.scss']
+  styleUrls: ['./clients.component.scss'],
 })
 export class ClientsComponent {
+  protected clients: any;
 
-  protected clients : any;
-  protected displayedColumns = ['name', 'industry']
-  
+  protected clientName: string[] = [];
+  protected clientIndustry: string[] = [];
+
+  protected displayedColumns = ['name', 'industry'];
+
+  protected filterValues = {
+    clientName: '',
+    clientIndustry: '',
+  };
+
+  filteredClientName: string[] = [];
+  filteredClientIndustry: string[] = [];
+
+  selectedClientName: string = '';
+  selectedClientIndustry: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -25,38 +39,112 @@ export class ClientsComponent {
 
   @ViewChild(MatTable) table!: MatTable<any>;
 
-
   constructor(
     private clientService: ClientService,
     private router: Router,
-    private dialog: MatDialog,
-  ) { }
+    private dialog: MatDialog
+  ) {}
+
+  ngOnInit() {
+    this.loadClients();
+
+    this.filteredClientName = this.clientName;
+    this.filteredClientIndustry = this.clientIndustry;
+  }
 
   private loadClients() {
     this.clientService.getClients().subscribe((clients: ClientModel[]) => {
       this.clients = new MatTableDataSource(clients);
-      this.clients.paginator = this.paginator;
+      this.clients.paginator = this.paginator!;
       this.clients.sort = this.sort;
-      console.log(this.clients);
+
+      // Extract unique values from columns to build filter
+      this.clientName = [
+        ...new Set(clients.map((result: any) => result.name)),
+      ].sort() as string[];
+
+      this.clientIndustry = [
+        ...new Set(clients.map((result: any) => result.industry)),
+      ].sort() as string[];
     });
   }
 
-  ngOnInit() {
-    this.loadClients();
+  searchClients(searchTerm: string) {
+    if (searchTerm) {
+      this.filteredClientName = this.clientName.filter((client) =>
+        client.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      this.filterClientName(searchTerm.toLowerCase());
+    } else {
+      this.filteredClientName = this.clientName;
+      this.filterClientName(searchTerm.toLowerCase());
+    }
   }
 
-  applyFilterChange(value: string): void {
-    // Trim whitespace from the input and convert to lowercase for case-insensitive filtering
-    const filterValue = value.trim().toLowerCase();
-
-    // Assign the filter value to the MatTableDataSource's filter property
-    // The MatTableDataSource will automatically handle the filtering
-    this.clients.filter = filterValue;
-
-    // If the paginator is used, it should be reset to the first page
-    if (this.clients.paginator) {
-      this.clients.paginator.firstPage();
+  searchIndustry(searchTerm: string) {
+    if (searchTerm) {
+      this.filteredClientIndustry = this.clientIndustry.filter((client) =>
+        client.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      this.filterClientIndustry(searchTerm.toLowerCase());
+    } else {
+      this.filteredClientIndustry = this.clientIndustry;
+      this.filterClientIndustry(searchTerm.toLowerCase());
     }
+  }
+
+  onClientNameSelect(event: MatAutocompleteSelectedEvent) {
+    this.selectedClientName = event.option.value;
+    this.filterClientName(this.selectedClientName.toLowerCase());
+  }
+
+  onClientIndustrySelect(event: MatAutocompleteSelectedEvent) {
+    this.selectedClientIndustry = event.option.value;
+    this.filterClientIndustry(this.selectedClientIndustry.toLowerCase());
+  }
+
+  public applyFilter() {
+    this.clients.filterPredicate = (data: ClientModel, filter: string) => {
+      const searchString = JSON.parse(filter);
+
+      const clientNameMatch = searchString.clientName
+        ? data.name
+            .toLowerCase()
+            .includes(searchString.clientName.toLowerCase())
+        : true;
+      const clientIndustryMatch = searchString.clientIndustry
+        ? data.industry
+            .toLowerCase()
+            .includes(searchString.clientIndustry.toLowerCase())
+        : true;
+
+      return clientNameMatch && clientIndustryMatch;
+    };
+    this.clients.filter = JSON.stringify(this.filterValues);
+  }
+
+  public filterClientName(clientName: string) {
+    this.filterValues.clientName = clientName;
+    this.applyFilter();
+    this.updateFilterOptions();
+  }
+
+  public filterClientIndustry(clientIndustry: string) {
+    this.filterValues.clientIndustry = clientIndustry;
+    this.applyFilter();
+    this.updateFilterOptions();
+  }
+
+  private updateFilterOptions() {
+    const renderedData = this.clients.filteredData || [];
+
+    this.clientName = [
+      ...new Set(renderedData.map((result: any) => result.name)),
+    ].sort() as string[];
+
+    this.clientIndustry = [
+      ...new Set(renderedData.map((result: any) => result.industry)),
+    ].sort() as string[];
   }
 
   redirectToNewClient() {
@@ -65,10 +153,7 @@ export class ClientsComponent {
       height: '65%',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
-      data: {
-
-      },
+      data: {},
     });
   }
-
 }
