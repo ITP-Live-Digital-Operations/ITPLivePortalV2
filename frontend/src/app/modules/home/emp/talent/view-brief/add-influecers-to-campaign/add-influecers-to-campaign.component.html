@@ -54,16 +54,30 @@
   >
   </mat-paginator>
 
-  <h2>Influencers to be added:</h2>
+
+  <h2>Campaign Influencers:</h2>
+  <div class="influencers">
   <ul style="color: white">
     <li *ngFor="let influencerId of selectedInfluencers">
       {{ influencerId.name }}
+
+      <button mat-raised-button class="delete-button" (click)="deleteInfluencer(influencerId.id)">
+        Delete
+      </button>
+
     </li>
   </ul>
 
-<button mat-raised-button *ngIf="selectedInfluencers.length > 0"
+<button mat-raised-button *ngIf="selectedInfluencers.length > 0 && !hasInfluencers"
   (click)="addtoCampaign()"
-  > Add to Campaign </button>
+  > Add to Campaign
+</button>
+
+<button mat-raised-button *ngIf="selectedInfluencers.length > 0 && hasInfluencers"
+  (click)="editInfluencers()"
+  > Edit Campaign
+</button>
+</div>
 
 </div>
 

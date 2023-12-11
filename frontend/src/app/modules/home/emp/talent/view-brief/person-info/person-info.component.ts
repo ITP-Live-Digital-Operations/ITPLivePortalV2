@@ -50,10 +50,8 @@ export class PersonInfoComponent {
       height: '90%',
       data: {campaignId: this.campaignId},
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+    dialogRef.afterClosed().subscribe(() => {
         window.location.reload();
-      }
     });
   }
 }

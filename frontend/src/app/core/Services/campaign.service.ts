@@ -29,6 +29,18 @@ export class CampaignService {
     return this.http.post<any>(`${this.campaignApiURL}/addInfluencersToCampaign/${id}`, inputdata);
   }
 
+  editCampaign(id: number, inputdata: any): Observable<any> {
+    return this.http.patch<any>(`${this.campaignApiURL}/editCampaign/${id}`, inputdata);
+  }
+
+  editCampaignInfluencers(id: number, inputdata: any): Observable<any> {
+    return this.http.post<any>(`${this.campaignApiURL}/editCampaignInfluencers/${id}`, inputdata);
+  }
+
+  getCampaignInfluencers(id: number): Observable<any> {
+    return this.http.get<any>(`${this.campaignApiURL}/getCampaignInfluencers/${id}`);
+  }
+
 
 }
 

@@ -7,7 +7,8 @@ import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CampaignService } from 'src/app/core/services/campaign.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-influecers-to-campaign',
@@ -29,9 +30,13 @@ export class AddInfluecersToCampaignComponent {
   protected searchInputChanged: Subject<string> = new Subject<string>();
   protected searchTerm: string = '';
   protected campaignId!: number;
+  protected hasInfluencers: boolean = false;
+
   constructor(
     private influencerService: InfluencerService,
     private campaignService: CampaignService,
+    private toastr: ToastrService,
+    private dialog: MatDialog,
     @Optional() @Inject(MAT_DIALOG_DATA) protected source: any
   ) {}
 
@@ -46,7 +51,7 @@ export class AddInfluecersToCampaignComponent {
         this.applyFilter(model);
       });
 
-    this.campaignId = this.source.campaignId;
+
   }
 
   loadInfluencers() {
@@ -59,6 +64,17 @@ export class AddInfluecersToCampaignComponent {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
+      this.campaignId = this.source.campaignId;
+      this.campaignService.getCampaignInfluencers(this.campaignId).subscribe((data: any) => {
+        console.log(data);
+        if( data.Influencers.length > 0) {
+          this.hasInfluencers = true;
+          for( let i = 0; i < data.Influencers.length; i++) {
+            this.selectedInfluencers.push({id: data.Influencers[i].id, name: data.Influencers[i].Name});
+          }
+        }
+        console.log(this.hasInfluencers);
+      })
   }
 
   onSearchInputChanged(event: Event) {
@@ -109,26 +125,44 @@ export class AddInfluecersToCampaignComponent {
     });
     console.log(this.selectedInfluencerIds);
 
-    for (let i = 0; i < this.selectedInfluencerIds.length; i++) {
-      this.influencerService
-        .initiateInfluencerCampaignStats({
-          campaignId: this.campaignId,
-          influencerId: this.selectedInfluencerIds[i],
-        })
-        .subscribe();
-    }
     this.campaignService
       .addInfluencersToCampaign(this.campaignId, {
         influencers: this.selectedInfluencerIds,
       })
       .subscribe(
         (data: any) => {
-          console.log(data);
+          if (data.status === 'success')  {
+            this.toastr.success('Influencers added to campaign successfully');
+            this.dialog.closeAll();
+          }
         },
         (error: any) => {
           console.log(error);
         }
       );
   }
-  
+
+  editInfluencers() {
+    this.selectedInfluencers.forEach((influencer) => {
+      this.selectedInfluencerIds.push(influencer.id);
+    });
+    console.log(this.selectedInfluencerIds);
+
+    this.campaignService
+      .editCampaignInfluencers(this.campaignId, {
+        influencers: this.selectedInfluencerIds,
+      })
+      .subscribe(
+        (data: any) => {
+          if (data.status === 'success')  {
+            this.toastr.success('Influencers edited successfully');
+            this.dialog.closeAll();
+          }
+        },
+        (error: any) => {
+          console.log(error);
+        }
+      );
+  }
+
 }

@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         Campaign.belongsTo(models.Clients, {foreignKey: 'clientId', as: 'client'})
-        Campaign.belongsToMany(models.Influencer, {through: 'influencer_campaign'})
+        Campaign.belongsToMany(models.Influencer, {through: 'influencer_campaign', onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'})
         Campaign.belongsTo(models.User,  {foreignKey: 'createdBy', as: 'user'})
         Campaign.hasOne(models.SalesBrief, {foreignKey: 'campaignId', as: 'salesBrief'})
         

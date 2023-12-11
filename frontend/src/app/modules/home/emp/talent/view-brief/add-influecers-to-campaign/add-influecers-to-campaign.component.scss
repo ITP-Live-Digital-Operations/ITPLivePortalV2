@@ -47,3 +47,18 @@
 h2{
   margin-top: 2%;
 }
+
+
+.influencers {
+  ul {
+    li {
+      display: flex; // Set the list items as flex containers
+      justify-content: space-between; // Spread out content between start and end of each item
+      align-items: center; // Align items vertically in the center
+
+      .delete-button {
+        margin-left: auto; // Pushes the button to the far right
+      }
+    }
+  }
+}

@@ -14,4 +14,13 @@ router.route('/addCampaign')
 
 router.route('/addInfluencersToCampaign/:id')
     .post(asyncHandler(campaignController.addInfluencersToCampaign));
+
+router.route('/editCampaignInfluencers/:id')
+    .post(asyncHandler(campaignController.editCampaignInfluencers));
+
+router.route('/editCampaign/:id')
+    .patch(asyncHandler(campaignController.editCampaign));
+
+router.route('/getCampaignInfluencers/:id')
+    .get(asyncHandler(campaignController.getCampaignInfluencers));
 module.exports = router;

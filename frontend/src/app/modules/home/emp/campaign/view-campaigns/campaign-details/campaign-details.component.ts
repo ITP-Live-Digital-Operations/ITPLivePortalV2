@@ -41,7 +41,9 @@ export class CampaignDetailsComponent {
     this.loadCampaignData();
   }
 
-  ngOnChanges(): void {}
+  onCampaignEdited(): void {
+    this.loadCampaignData();
+  }
 
   protected loadCampaignData(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -55,8 +57,27 @@ export class CampaignDetailsComponent {
             Influencers: this.campaign.Influencers,
           };
 
+
           originalJson.Influencers.forEach((influencer) => {
             let isFirstStatistic = true;
+            if(influencer.influencerStatistics.length === 0) {
+              this.dataSource.push({
+                showName: isFirstStatistic,
+                influencerId: influencer.id,
+                name: isFirstStatistic ? influencer.Name : '',
+                platform: '',
+                deliverable: '',
+                followers: 0,
+                reach: 0,
+                impressions: 0,
+                interactions: 0,
+                clientCost: 0,
+                influencerCost: 0,
+                metric: '',
+                year: 0,
+              });
+            }
+            else{
             influencer.influencerStatistics.forEach((stat) => {
               this.dataSource.push({
                 showName: isFirstStatistic,
@@ -73,9 +94,10 @@ export class CampaignDetailsComponent {
                 metric: stat.metric,
                 year: stat.year,
               });
-
               isFirstStatistic = false;
             });
+
+          }
           });
           this.cdr.detectChanges();
         });
@@ -103,6 +125,10 @@ export class CampaignDetailsComponent {
       data: {
         campaign: this.campaign,
       },
+    });
+
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.loadCampaignData();
     });
   }
 }
