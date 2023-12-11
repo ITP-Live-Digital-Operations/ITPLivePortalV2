@@ -10,9 +10,6 @@ import { FileService } from 'src/app/core/services/file.service';
   selector: 'app-all-info',
   templateUrl: './all-info.component.html',
   styleUrls: ['./all-info.component.scss'],
-
-
-
 })
 export class AllInfoComponent {
   panelOpenState = false;
@@ -20,18 +17,18 @@ export class AllInfoComponent {
   @Input()
   brief: any;
 
-  briefId !: number
+  briefId!: number;
 
-  public path = PATH; // to use it in html
+  public path = PATH; 
   public dataSource: any;
 
   constructor(
     private fileService: FileService,
-    private activatedRoute: ActivatedRoute,
-  ) { }
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe((params) => {
       this.briefId = params['id'];
     });
 
@@ -42,29 +39,21 @@ export class AllInfoComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = [
-    'originalname',
-    'fileType',
-    'action',
-  ];
+  displayedColumns: string[] = ['originalname', 'fileType', 'action'];
 
   private getSalesFiles() {
-    this.fileService.getSalesBriefFiles(this.briefId).subscribe(data => {
+    this.fileService.getSalesBriefFiles(this.briefId).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
 
-  downloadFile(id : number, mimeType : string) {
-    this.fileService.downloadFile(id).subscribe(data => {
+  downloadFile(id: number, mimeType: string) {
+    this.fileService.downloadFile(id).subscribe((data) => {
       const blob = new Blob([data], { type: mimeType });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
-    }
-    );
-
+    });
   }
-
-
 }

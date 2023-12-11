@@ -16,13 +16,13 @@ module.exports = {
         type: DataTypes.STRING(255),
         defaultValue: null
       },
-      Client: {
-        type: DataTypes.STRING(255),
-        defaultValue: null
-      },
-      ClientIndustry: {
-        type: DataTypes.STRING(255),
-        defaultValue: null
+      clientId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'clients',
+          key: 'id'
+        }
       },
       CampaignName: {
         type: DataTypes.STRING(255),

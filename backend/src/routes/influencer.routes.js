@@ -57,4 +57,7 @@ router.route('/getCities')
 
 router.route('/getInfluencerStatisticsById/:id')
     .get(asyncHandler(influencerController.getInfluencerStatisticsById));
+
+router.route('/initiateInfluencerCampaignStats')
+    .post(asyncHandler(influencerController.initiateInfluencerCampaignStats));
 module.exports = router;

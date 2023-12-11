@@ -10,6 +10,7 @@ export interface CampaignModel {
   createdAt: Date;
   updatedAt: Date;
   createdBy: number;
+  salesBrief: any;
 }
 
 export interface createCampaignModel{
@@ -17,9 +18,6 @@ export interface createCampaignModel{
   market: string;
   clientId: number;
   createdBy: number;
-
 }
 
-export interface addInfluencersToCampaignModel{
-  influncerIds: number[];
-}
+

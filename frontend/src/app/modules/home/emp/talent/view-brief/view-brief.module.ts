@@ -17,6 +17,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { SharingModule } from '../../../sharing/sharing.module';
 import { RoundHistoryComponent } from './round-history/round-history.component';
 import { TaskClientCallsTableComponent } from './sheets-brief/task-client-calls-table/task-client-calls-table.component';
+import { AddInfluecersToCampaignComponent } from './add-influecers-to-campaign/add-influecers-to-campaign.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TaskClientCallsTableComponent } from './sheets-brief/task-client-calls-
     PersonInfoComponent,
     AssignTaskComponent,
     RoundHistoryComponent,
-    TaskClientCallsTableComponent
+    TaskClientCallsTableComponent,
+    AddInfluecersToCampaignComponent
   ],
   imports: [
     CommonModule,

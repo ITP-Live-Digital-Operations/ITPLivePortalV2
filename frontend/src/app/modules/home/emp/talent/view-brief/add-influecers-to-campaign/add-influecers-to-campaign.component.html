@@ -1,0 +1,69 @@
+<div class="search-container">
+  <div class="input-group">
+<mat-form-field class="search-bar">
+  <input
+    #searchInput
+    matInput
+    placeholder="🔍 Search"
+    [(ngModel)]="searchTerm"
+    (input)="onSearchInputChanged($event)"
+
+
+  />
+</mat-form-field>
+<button mat-raised-button  class="clear-button"(click)="clearSearch()">Clear</button>
+</div>
+</div>
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Select</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          class="add-button"
+          *ngIf="!isInfluencerSelected(element.id)"
+          (click)="addInfluencer(element.id, element.name)"
+        >
+          Add
+        </button>
+        <button
+          mat-raised-button
+          class="delete-button"
+          *ngIf="isInfluencerSelected(element.id)"
+          (click)="deleteInfluencer(element.id)"
+        >
+          Delete
+        </button>
+      </td>
+
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[3, 5, 10, 25, 100]"
+    showFirstLastButtons
+    aria-label="Select page"
+  >
+  </mat-paginator>
+
+  <h2>Influencers to be added:</h2>
+  <ul style="color: white">
+    <li *ngFor="let influencerId of selectedInfluencers">
+      {{ influencerId.name }}
+    </li>
+  </ul>
+
+<button mat-raised-button *ngIf="selectedInfluencers.length > 0"
+  (click)="addtoCampaign()"
+  > Add to Campaign </button>
+
+</div>
+

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import { CampaignModel, addInfluencersToCampaignModel, createCampaignModel } from '../interfaces/campaign.model';
+import { CampaignModel, createCampaignModel } from '../interfaces/campaign.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class CampaignService {
     return this.http.post<any>(`${this.campaignApiURL}/addCampaign`, inputdata);
   }
 
-  addInfluencersToCampaign(id: number, inputdata: addInfluencersToCampaignModel): Observable<any> {
+  addInfluencersToCampaign(id: number, inputdata:any): Observable<any> {
     return this.http.post<any>(`${this.campaignApiURL}/addInfluencersToCampaign/${id}`, inputdata);
   }
 

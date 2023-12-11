@@ -65,8 +65,7 @@ export class SentBriefsIdComponent {
       //BASIC INFORMATION
       basicInfo: this.formBuilder.group({
         Agency: ['', [Validators.required]],
-        Client: ['', [Validators.required]],
-        ClientIndustry: ['', [Validators.required]],
+        clientId: ['', [Validators.required]],
         CampaignName: ['', [Validators.required]],
         CampaignOverview: [''],
         CampaignObjective: [''],
@@ -148,12 +147,13 @@ export class SentBriefsIdComponent {
 
     this.salesService.getSalesBrief(this.briefId).subscribe((brief) => {
       this.briefData = brief;
+      console.log(this.briefData.data)
 
       if( this.briefData.data.assigned ){
         this.taskService.getTaskByBriefId(this.briefId).subscribe( (task) => {
           this.taskData = task;
 
-         
+
         })
       }
 
@@ -182,8 +182,7 @@ export class SentBriefsIdComponent {
         this.editForm.patchValue({
           basicInfo: {
             Agency: this.briefData.data.Agency,
-            Client: this.briefData.data.Client,
-            ClientIndustry: this.briefData.data.ClientIndustry,
+            clientId: this.briefData.data.client.id,
             CampaignName: this.briefData.data.CampaignName,
             CampaignOverview: this.briefData.data.CampaignOverview,
             CampaignObjective: this.briefData.data.CampaignObjective,

@@ -43,7 +43,6 @@ export class TaskClientCallsTableComponent {
   }
 
   ngOnChanges(): void {
-    console.log(this.task?.ClientCalls);
     if (this.task?.ClientCalls != null) {
       this.form.patchValue({
         introCallStatus: this.task?.ClientCalls.introStatus,
@@ -79,7 +78,6 @@ export class TaskClientCallsTableComponent {
       this.taskService
         .editTaskClientCall(this.task?.ClientCalls.id, editedCall)
         .subscribe((res: any) => {
-          console.log(res);
           if (res.status == 'success') {
             this.toastr.success('Client Call updated Successfully');
           }

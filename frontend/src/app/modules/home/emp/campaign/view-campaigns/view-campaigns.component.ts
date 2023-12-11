@@ -8,7 +8,7 @@ import { CampaignService } from 'src/app/core/services/campaign.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { NewCampaignComponent } from '../new-campaign/new-campaign.component';
+
 
 @Component({
   selector: 'app-view-campaigns',
@@ -165,13 +165,5 @@ export class ViewCampaignsComponent {
     this.router.navigate([`/home/campaign/campaignDetails/${inputdata}`]);
   }
 
-  redirectToNewCampaign() {
-    this.dialog?.open(NewCampaignComponent, {
-      width: '80%',
-      height: '65%',
-      exitAnimationDuration: '1000ms',
-      enterAnimationDuration: '1000ms',
-      data: {},
-    });
-  }
+
 }

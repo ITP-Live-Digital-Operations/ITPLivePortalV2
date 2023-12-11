@@ -15,6 +15,9 @@ exports.getCampaigns = (req, res) => {
         attributes: ['id', 'Name' ],
       }
     ],
+    order: [
+      ['id', 'DESC'],
+    ],
   })
     .then((data) => {
       res.status(200).send(data);
@@ -35,13 +38,18 @@ exports.getCampaignById = (req, res) => {
         as: "client",
       },
       {
+        model: models.SalesBrief,
+        as: "salesBrief",
+      },
+      {
         model: models.Influencer,
         attributes: ['id', 'Name' ],
           include: [
             {
               model: models.InfluencerStatistics,
               where: { campaignId : req.params.id },
-              as: "influencerStatistics"
+              as: "influencerStatistics",
+              required: false,
             }
           ]
       }
@@ -70,6 +78,7 @@ exports.addCampaign = (req, res) => {
   Campaign.create(campaign)
     .then((data) => {
       res.status(201).send({
+        campaign : data,
         status: "success",
         message: "Campaign created successfully",
         
@@ -86,6 +95,9 @@ exports.addCampaign = (req, res) => {
 exports.addInfluencersToCampaign = (req, res) => {
   const campaignId = req.params.id;
   const influencerIds = req.body.influencers;
+
+  console.log(campaignId);
+  console.log(influencerIds);
 
   //Find the campaign
   Campaign.findByPk(campaignId)

@@ -1,42 +1,21 @@
 <div class="form-container">
-  <!-- *ngIf="user_id === task?.assigned_to" -->
   <div>
-    <h1>Progress:</h1>
-    <h2>{{ task?.progress }}</h2>
-    <h1
-      *ngIf="brief?.data.Status == 'Active'"
-      style="color: green; font-size: 2em; margin-top: 10%"
-    >
-      Brief Status: {{ brief?.data.Status }}
-      <button
-        mat-raised-button
-        style="
-          height: 2em;
-          margin-top: 5%;
-          width: 17em;
-          background-color: red;
-          color: white;
-        "
-        (click)="deactivateBrief()"
-      >
+    <h1 class="progress-title">Progress:</h1>
+    <h2 class="progress-value">{{ task?.progress }}</h2>
+
+    <h1>Brief Status: </h1>
+    <div *ngIf="brief?.data.Status == 'Active'" class="brief-status active">
+      <span>{{ brief?.data.Status }}</span>
+      <button mat-raised-button class="deactivate-button" (click)="deactivateBrief()">
         Deactivate
       </button>
-    </h1>
-    <h1 *ngIf="brief?.data.Status != 'Active'" style="color: red">
-      Brief Status: {{ brief?.data.Status }}
-      <button
-        mat-raised-button
-        style="
-          height: 2rem;
-          margin-top: 18%;
-          width: 17em;
-          background-color: green;
-          color: white;
-        "
-        (click)="activateBrief()"
-      >
+    </div>
+
+    <div *ngIf="brief?.data.Status != 'Active'" class="brief-status inactive">
+      <span>{{ brief?.data.Status }}</span>
+      <button mat-raised-button class="activate-button" (click)="activateBrief()">
         Activate
       </button>
-    </h1>
+    </div>
   </div>
 </div>

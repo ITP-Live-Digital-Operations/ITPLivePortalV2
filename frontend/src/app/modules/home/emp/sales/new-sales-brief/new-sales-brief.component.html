@@ -2,7 +2,7 @@
   <h2 style="align-content: center; text-align: center; font-size: 300%; margin-top: 2%; margin-bottom: 3%;">New Sales Brief</h2>
   <form [formGroup]="newForm" (ngSubmit)="submitForm()" autocomplete="off">
 
-    <app-basic-information formGroupName="basicInfo"></app-basic-information>
+    <app-basic-information formGroupName="basicInfo" (clients)="clients"></app-basic-information>
 
     <app-campaign-overview formGroupName="campaignOverview"></app-campaign-overview>
 
@@ -32,6 +32,6 @@
 
     <button mat-raised-button color="primary" type="submit" [disabled]="!newForm.valid" style="margin-bottom: 2%; margin-top: 2% ; color : white">Submit Brief Form</button>
   </form>
-  
+
 
 </div>

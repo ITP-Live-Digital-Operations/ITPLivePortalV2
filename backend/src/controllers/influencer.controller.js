@@ -332,6 +332,24 @@ exports.getInfluencerStatisticsById = (req, res) => {
 }
 
 
+exports.initiateInfluencerCampaignStats = (req, res) => {
+    const influencerId = Number(req.body.influencerId);
+    const campaignId = Number(req.body.campaignId);
+    InfluencerStatistics.create({ influencerId: influencerId, campaignId: campaignId })
+    .then(data => {
+        res.status(200).send({
+            status: "success",
+        });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).send({
+            status: "error",
+            message: err.message
+        });
+    });
+}
+
 
 
     

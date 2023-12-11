@@ -50,6 +50,10 @@ export interface InfluencerModel
   influencerStatistics: InfluencerStatisticsModel[];
  }
 
+export interface InfluencerIdsAndNames{
+  id: number;
+  name: string;
+}
 
 
 

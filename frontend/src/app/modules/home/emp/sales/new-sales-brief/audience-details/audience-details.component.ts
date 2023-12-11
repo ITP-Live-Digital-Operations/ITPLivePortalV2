@@ -8,12 +8,14 @@ import { clientIndustries, countries } from 'src/assets/influencer-form-arrays';
   styleUrls: ['./audience-details.component.scss']
 })
 export class AudienceDetailsComponent {
-  
+
   public countries: string[] = countries;
   public clientIndustries: string[] = clientIndustries;
 
-  @Input() 
+  @Input()
   formGroupName: string = '';
+
+  public showInfo1 = false;
 
   public form!: FormGroup;
 

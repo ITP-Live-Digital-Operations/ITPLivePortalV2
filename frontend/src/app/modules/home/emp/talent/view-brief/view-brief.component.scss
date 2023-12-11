@@ -1,119 +1,95 @@
-/* Define the font and font size for the entire document */
 body {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 16px;
 }
 
-/* Style the card */
-.card {
-  background-color: transparent;
-  border: none;
-  border-radius: 0px;
-
-  padding: 10px;
-
-  max-width: 40%;
-}
-
-.status {
-  display: flex;
-  justify-content: space-evenly;
-
-
-}
-
-/* Style the card header */
-.card-header {
-  background-color: #343a40;
-  border-radius: 5px 5px 0 0;
-  color: #fff;
-  font-size: 24px;
-  padding: 10px 20px;
-  text-align: center;
-}
-
-/* Style the card text */
-.card-text {
-  margin-bottom: 10px;
-}
-
-/* Style the container */
-.container {
-  max-width: auto;
-  margin: 0 auto;
-  max-width: 100%;
-}
-
 .row {
   display: flex;
-  flex-wrap: wrap;
-  padding-top: 1%;
-  padding-left: 1%;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 1%;
   max-width: 100%;
+
+  /* Status div styles */
+  .status,
+  .card {
+    flex: 1;
+    display: flex; /* Added to make 'status' a flex container */
+    flex-direction: column; /* Arranges children vertically */
+    justify-content: space-between; /* Distributes space between children */
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 1%;
+  }
+
+  /* Card styles */
+  .card {
+    flex: 1; /* Takes up 2   portions of the available space */
+
+    /* Button styles inside .card */
+    button {
+      margin-left: 2%;
+      text-align: left;
+      width: 17em;
+      background-color: #403D58;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: #3f3d58; /* Darker shade on hover */
+      }
+    }
+  }
 }
 
-.table-container {
-  padding-top: 15%;
-  overflow-y: hidden;
-  max-height: auto;
-  width: 100%;
-  overflow-x: hidden;
+/* Styles for the app components */
+app-person-info,
+app-update-activate,
+app-assign-task,
+app-all-info,
+app-sheets-brief,
+app-round-history {
+  /* Shared styles for app components */
+  margin-bottom: 2%;
 }
 
+/* Table styles */
 table {
   width: 100%;
+  border-collapse: collapse;
+  margin: 5% 1%;
+
+  th,
+  td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+
+    th {
+      background-color: #f2f2f2;
+      color: #444;
+      font-weight: bold;
+    }
+  }
 }
 
+/* Additional utility classes */
 .no-border {
   border: none;
-  resize: horizontal;
   background-color: #fff;
-  border-color: #fff;
-  width: auto;
-}
-
-.form-container {
-  max-height: auto;
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
-.my-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  margin-top: 5%;
-}
-
-.my-table th {
-  background-color: #f2f2f2;
-  color: #444;
-  font-weight: bold;
-  padding: 10px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
-
-.my-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  width: auto;
-}
-
-.my-table th.centered {
-  text-align: center;
-  width: auto;
 }
 
 .search-container {
-  padding-top: 2%;
-  padding-bottom: 2%;
-  padding-left: 1%;
   position: absolute;
-  top: 5;
+  top: 5%;
   left: 0;
   right: 0;
   z-index: 1;
+  padding: 2% 1%;
 }
 
 .stretch-button {
@@ -122,7 +98,7 @@ table {
   text-overflow: ellipsis;
 }
 
-h1{
-  color: white;
+h1 {
+  color: #fff; /* Changed for better visibility */
   margin-top: 2%;
 }

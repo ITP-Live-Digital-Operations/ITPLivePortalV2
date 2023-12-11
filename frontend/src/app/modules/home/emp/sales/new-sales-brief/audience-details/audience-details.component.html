@@ -13,6 +13,11 @@
 
   <div class="row">
     <h2>Audience Location, Nationality and Gender</h2>
+    <div
+        class="hoverable-text"
+        (mouseover)="showInfo1 = true"
+        (mouseout)="showInfo1 = false"
+      >
     <mat-form-field>
       <mat-label>Audience Location</mat-label>
       <mat-select formControlName="AudienceLocation" multiple>
@@ -21,6 +26,10 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <div *ngIf="showInfo1" class="info-box">
+      Please select main market first.
+    </div>
+  </div>
 
     <mat-form-field>
       <mat-label>Audience Nationality</mat-label>

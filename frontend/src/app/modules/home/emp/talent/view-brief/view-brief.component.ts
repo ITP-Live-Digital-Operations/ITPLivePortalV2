@@ -57,6 +57,7 @@ export class ViewBriefComponent {
   protected progressForm: FormGroup;
 
   protected talentHeads: any;
+  protected lastFeedback: any;
 
   public reload = false;
   @ViewChild(MainTableComponent) mainComponent!: MainTableComponent;
@@ -82,7 +83,9 @@ export class ViewBriefComponent {
     this.loadBriefData();
     this.getTalentHeads();
     this.refresh();
+
   }
+
 
   protected submitForm(): void {
     this.taskService
@@ -112,7 +115,6 @@ export class ViewBriefComponent {
         .subscribe((data: any) => {
           this.brief = data;
           this.assigned = data.data.assigned;
-
           this.getTask(this.brief.data.id);
           this.brief_id = this.brief.data.id;
           this.getSalesPerson(this.brief.data.CreatedbyID);
@@ -190,7 +192,6 @@ export class ViewBriefComponent {
   private getTask(id: number): void {
     this.taskService.getTaskByBriefId(id).subscribe((data: any) => {
       this.task = data.data;
-      console.log(this.task);
       this.progressForm.setControl(
         'Progress',
         new FormControl(this.task?.progress)
@@ -199,6 +200,9 @@ export class ViewBriefComponent {
         this.assignedUser.push(this.task.assignedUsers[i].name);
         this.assignedUser_id.push(this.task.assignedUsers[i].id);
       }
+
+      this.lastFeedback =
+        this.task?.History[this.task.History.length - 1].feedback;
     });
   }
 

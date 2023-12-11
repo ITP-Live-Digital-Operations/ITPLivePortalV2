@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "",
-    "database": "itpdb",
+    "database": "tempdb",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }, 
@@ -16,7 +16,7 @@
   "production": {
     "username": "root",
     "password": "5f73WFXDBH",
-    "database": "itplive_prodNov",
+    "database": "itpdb_Dec",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

@@ -72,7 +72,7 @@ export class AllBriefsComponent {
 
   private getAllBriefs(): void {
     this.salesService.getAllBriefsWithTask().subscribe((data: any) => {
-
+      console.log(data);
       this.briefDetails = data;
       this.briefDetails.data.sort((a: any, b: any) => {
     // Sort by createdAt

@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       SalesBrief.belongsTo(models.User, {foreignKey: 'CreatedbyID', as: 'user'})
       SalesBrief.hasOne(models.Task, { foreignKey: 'brief_id', as: 'task', onDelete: 'CASCADE'});
       SalesBrief.hasMany(models.File, { foreignKey: 'brief_id', as: 'files', onDelete: 'CASCADE'});
+      SalesBrief.belongsTo(models.Clients, { foreignKey: 'clientId', as: 'client'})
+      SalesBrief.belongsTo(models.Campaign, {foreignKey: 'campaignId', as: 'campaign'})
     }
   }
   SalesBrief.init({
@@ -27,13 +29,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(255),
       defaultValue: null
     },
-    Client: {
-      type: DataTypes.STRING(255),
-      defaultValue: null
+    clientId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'clients',
+        key: 'id'
+      }
     },
-    ClientIndustry: {
-      type: DataTypes.STRING(255),
-      defaultValue: null
+    campaignId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references : {
+        model: 'campaigns',
+        key: 'id'
+      }
     },
     CampaignName: {
       type: DataTypes.STRING(255),

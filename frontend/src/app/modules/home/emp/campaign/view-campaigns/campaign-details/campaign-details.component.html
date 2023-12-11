@@ -1,10 +1,17 @@
 <h1>Campaign Name: {{this?.campaign?.campaignName}}</h1>
 <h2>Client: {{this?.campaign?.client?.name}}</h2>
 <h2>Client Industry: {{this?.campaign?.client?.industry}}</h2>
-
-
-<h1 style="color: #4789A1; font-size: 250%; margin-top: 3%;"> Influencers' Results</h1>
-
+<br>
+<div class="logs-button">
+<h2> Influencers' Results</h2>
+<button
+    type="button"
+    style="margin-left: 2%"
+    (click)="redirectToNewCampaign()"
+  >
+    Edit Campaign
+  </button>
+</div>
 
 <div class="table-container" *ngIf="dataSource && dataSource.length > 0">
     <table mat-table [dataSource]="dataSource" matSort>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { InfluencerModel } from '../interfaces/influencersModel';
+import { InfluencerIdsAndNames, InfluencerModel } from '../interfaces/influencersModel';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
@@ -111,6 +111,24 @@ export class InfluencerService {
   getInfluencerStatisticsById(inputdata: any) {
     return this.http.get(
       `${this.influencerApiURL}/getInfluencerStatisticsById/${inputdata}`
+    );
+  }
+
+  getInfluencerIdsandNames(): Observable<InfluencerIdsAndNames[]> {
+    return this.http.get<InfluencerIdsAndNames[]>(`${this.influencerApiURL}/getInfluencerIdsandNames`);
+  }
+
+  addStatsToInfluencer(inputdata: any, id: any) {
+    return this.http.post(
+      `${this.influencerApiURL}/addStatsToInfluencer/${id}`,
+      inputdata
+    );
+  }
+
+  initiateInfluencerCampaignStats(inputdata: any) {
+    return this.http.post(
+      `${this.influencerApiURL}/initiateInfluencerCampaignStats`,
+      inputdata
     );
   }
 }

@@ -1,12 +1,5 @@
 <div class="logs-button">
   <H2>Campaigns</H2>
-  <button
-    type="button"
-    style="margin-left: 2%"
-    (click)="redirectToNewCampaign()"
-  >
-    Add New Campaign
-  </button>
 </div>
 
 <div class="filter-container">
@@ -90,45 +83,14 @@
       >
     </ng-container>
 
-    <ng-container matColumnDef="influencerVertical">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vertical</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.influencerVertical }}
-      </td>
-    </ng-container>
 
-    <ng-container matColumnDef="platform">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Platform</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.platform }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="deliverable">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Deliverable</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.deliverable }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="poc">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>POC</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.poc }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="year">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Year</th>
-      <td mat-cell *matCellDef="let element">{{ element.year }}</td>
-    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns" sticky></tr>
   </table>
 </div>
 <mat-paginator
-  pageSize="20"
+  pageSize="10"
   [pageSizeOptions]="[5, 10, 25, 50, 100]"
   showFirstLastButtons
   aria-label="Select page"

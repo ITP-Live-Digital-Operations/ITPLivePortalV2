@@ -5,38 +5,37 @@
         [assignedUser]="assignedUser"
         [salesperson]="salesperson"
         [task]="task"
+        [lastFeedback]="lastFeedback"
+        [brief]="brief"
       ></app-person-info>
-      <div
-        class="card"
-        *ngIf="
-          assignedUser_id.includes(user_id) ||
-          privilege_level > 7 ||
-          talentHeads?.includes(user_id)
-        "
+    </div>
+    <div
+      class="card"
+      *ngIf="
+        assignedUser_id.includes(user_id) ||
+        privilege_level > 7 ||
+        talentHeads?.includes(user_id)
+      "
+    >
+      <form
+        [formGroup]="progressForm"
+        (ngSubmit)="submitForm()"
+        autocomplete="off"
       >
-        <div>
-          <form
-            [formGroup]="progressForm"
-            (ngSubmit)="submitForm()"
-            autocomplete="off"
-          >
-            <app-update-activate
-              (submitEvent)="submitForm()"
-              [task]="task"
-              [brief]="brief"
-              [brief_id]="brief_id"
-            ></app-update-activate>
-          </form>
-          <button
-            mat-raised-button
-            *ngIf="talentHeads?.includes(user_id) || assigned"
-            style="margin-left: 4%"
-            (click)="editAssignedExecs()"
-          >
-            Edit Task
-          </button>
-        </div>
-      </div>
+        <app-update-activate
+          (submitEvent)="submitForm()"
+          [task]="task"
+          [brief]="brief"
+          [brief_id]="brief_id"
+        ></app-update-activate>
+      </form>
+      <button
+        mat-raised-button
+        *ngIf="talentHeads?.includes(user_id) || assigned"
+        (click)="editAssignedExecs()"
+      >
+        Edit Task
+      </button>
     </div>
 
     <div *ngIf="talentHeads?.includes(user_id) && !assigned">

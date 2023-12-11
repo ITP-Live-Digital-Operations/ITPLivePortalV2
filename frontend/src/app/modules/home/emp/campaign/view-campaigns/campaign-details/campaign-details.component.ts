@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CampaignModel } from 'src/app/core/interfaces/campaign.model';
 import { CampaignService } from 'src/app/core/services/campaign.service';
 import { InfluencerIdComponent } from 'src/app/modules/home/sharing/influencer-id/influencer-id.component';
+import { EditCampaignComponent } from '../../edit-campaign/edit-campaign.component';
+
 
 @Component({
   selector: 'app-campaign-details',
@@ -32,7 +34,7 @@ export class CampaignDetailsComponent {
     private activatedRoute: ActivatedRoute,
     private campaignService: CampaignService,
     private cdr: ChangeDetectorRef,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,7 @@ export class CampaignDetailsComponent {
       this.campaignService
         .getCampaignById(this.id)
         .subscribe((data: CampaignModel) => {
+          console.log(data);
           this.campaign = data;
           const originalJson = {
             Influencers: this.campaign.Influencers,
@@ -73,15 +76,13 @@ export class CampaignDetailsComponent {
 
               isFirstStatistic = false;
             });
-
           });
           this.cdr.detectChanges();
-          console.log(this.dataSource);
         });
     });
   }
 
-    public viewInfluencer(inputdata: any): void {
+  public viewInfluencer(inputdata: any): void {
     this.dialog?.open(InfluencerIdComponent, {
       width: '100%',
       height: '95%',
@@ -89,6 +90,18 @@ export class CampaignDetailsComponent {
       enterAnimationDuration: '1000ms',
       data: {
         id: inputdata,
+      },
+    });
+  }
+
+  redirectToNewCampaign() {
+    this.dialog?.open(EditCampaignComponent, {
+      width: '80%',
+      height: '65%',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        campaign: this.campaign,
       },
     });
   }

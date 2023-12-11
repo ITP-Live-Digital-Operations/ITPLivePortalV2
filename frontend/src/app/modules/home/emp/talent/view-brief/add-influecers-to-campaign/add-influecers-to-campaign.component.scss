@@ -1,0 +1,49 @@
+.table-container {
+  margin: 2%;
+  margin-top: 4%;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin: 2%;
+}
+
+.input-group {
+  display: flex;
+  align-items: stretch; /* Align items vertically */
+  width: 100%;
+}
+
+.search-bar {
+  width: auto; /* Adjust this as needed */
+  flex-grow: 1; /* Allows the search bar to grow and fill available space */
+}
+
+.clear-button {
+  background-color: #4C5C68!important;
+  color: #FFF;
+
+  /* Add more styling as needed */
+}
+
+.add-button{
+  background-color: #403D58!important;
+  color: #FFF;
+  &:hover{
+    background-color: #3d4658!important;
+    color: #F8C537;
+  }
+}
+
+.delete-button{
+  background-color: #D72638!important;
+  color: #FFF;
+  &:hover{
+    color: #B4DC7F
+  }
+}
+
+h2{
+  margin-top: 2%;
+}

@@ -1,17 +1,18 @@
 .my-table-form {
   overflow-y: hidden;
+  margin: 2%;
   .my-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1em;
-    margin: 1.5% 0;
 
     /* table-layout: fixed; */
 
-    th, td {
+    th,
+    td {
       padding: 10px;
       border-bottom: 1px solid #4789a1;
-      color: #FFF; // Darker color for better readability
+      color: #fff; // Darker color for better readability
     }
 
     th {
@@ -24,7 +25,8 @@
     td {
       background-color: transparent; // Lighter background for body cells
 
-      & > * { // Aligning form elements inside table cells
+      & > * {
+        // Aligning form elements inside table cells
         margin: auto;
         display: block;
       }
@@ -53,7 +55,7 @@
 
     .mat-input-element {
       padding: 8px;
-      border: 1px  #ccc;
+      border: 1px #ccc;
       border-radius: 4px;
     }
   }
@@ -77,9 +79,15 @@
   // Responsive design adjustments
   @media (max-width: 768px) {
     .my-table {
-      th, td {
+      th,
+      td {
         padding: 5px;
       }
     }
   }
+}
+
+.submit-button {
+  background-color: #403d58;
+  color: white;
 }
