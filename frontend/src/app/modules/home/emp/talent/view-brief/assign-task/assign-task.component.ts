@@ -86,7 +86,7 @@ export class AssignTaskComponent {
 
       console.log(deadline)
 
-    /*   for (const item of this?.dataSource) {
+      for (const item of this?.dataSource) {
         if (item.selected.value) {
           this.selectedIds.push(item.id);
         }
@@ -138,7 +138,7 @@ export class AssignTaskComponent {
           (error) => {
             console.error('Error:', error);
           }
-        ); */
+        );
     }
   }
 
