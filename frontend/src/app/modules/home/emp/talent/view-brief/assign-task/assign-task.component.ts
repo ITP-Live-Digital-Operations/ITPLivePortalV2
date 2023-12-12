@@ -60,7 +60,7 @@ export class AssignTaskComponent {
     if (!source) {
       this.assignForm = this.formBuilder.group({
         Weight: ['', Validators.required],
-        Deadline: [''],
+        Deadline: [null],
       });
     } else {
       this.task = source.task;
@@ -84,7 +84,9 @@ export class AssignTaskComponent {
       const deadline = this.assignForm.value.Deadline;
       const assignedBy = this.userService.getID();
 
-      for (const item of this?.dataSource) {
+      console.log(deadline)
+
+    /*   for (const item of this?.dataSource) {
         if (item.selected.value) {
           this.selectedIds.push(item.id);
         }
@@ -136,7 +138,7 @@ export class AssignTaskComponent {
           (error) => {
             console.error('Error:', error);
           }
-        );
+        ); */
     }
   }
 
