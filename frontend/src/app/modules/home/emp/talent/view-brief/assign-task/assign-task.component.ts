@@ -70,9 +70,6 @@ export class AssignTaskComponent {
         Deadline: [this.task.deadline, Validators.required],
       });
     }
-  
-
-
   }
   ngOnInit(): void {
     this.getTalentHeads();

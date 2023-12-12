@@ -76,8 +76,8 @@ export class AllBriefsComponent {
       this.briefDetails = data;
       this.briefDetails.data.sort((a: any, b: any) => {
     // Sort by createdAt
-    if (a.createdAt > b.createdAt) return -1;
-    if (a.createdAt < b.createdAt) return 1;
+    if (a.id > b.id) return -1;
+    if (a.id < b.id) return 1;
 
     // If createdAt is equal, sort by priority
     return a.Priority - b.Priority;

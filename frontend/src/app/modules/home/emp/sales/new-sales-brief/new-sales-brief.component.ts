@@ -121,7 +121,7 @@ export class NewSalesBriefComponent {
           AgeGroup4: new FormControl(false),
           AgeGroup5: new FormControl(false),
         }),
-        AudienceLocation: [''],
+        AudienceLocation: ['', [Validators.required]],
         AudienceNationality: [''],
         AudienceGender: [''],
         PrimaryAudienceInterest: [''],

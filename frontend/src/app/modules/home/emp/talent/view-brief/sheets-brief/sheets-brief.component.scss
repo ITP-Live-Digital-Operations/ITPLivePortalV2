@@ -22,8 +22,6 @@ mat-tab-group {
   background-color: transparent;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-
-
 }
 
 mat-tab {
@@ -40,7 +38,7 @@ mat-tab {
   .small {
     width: 10%;
   }
-  .medium{
+  .medium {
     width: 20%;
   }
 
@@ -49,7 +47,8 @@ mat-tab {
   }
 }
 
-.my-table th, .my-table td {
+.my-table th,
+.my-table td {
   padding: 10px;
   text-align: center;
   border: 1px solid #ddd;
@@ -66,10 +65,13 @@ mat-tab {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 250px;
 }
 
 /* Button styling */
-button.icon-btn, button.icon-btn-up, button.icon-btn-del {
+button.icon-btn,
+button.icon-btn-up,
+button.icon-btn-del {
   border: none;
   margin: 5px;
   padding: 5px 10px;
@@ -97,19 +99,27 @@ button.icon-btn, button.icon-btn-up, button.icon-btn-del {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent white overlay */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* semi-transparent white overlay */
 }
 
 /* Specific adjustments for responsiveness and alignment */
 @media screen and (max-width: 768px) {
-  .my-table, .container {
+  .my-table,
+  .container {
     width: 100%;
     overflow-x: auto;
   }
 }
 
 /* Additional modifications for better UX */
-.table-container, .form-container, .search-container {
+.table-container,
+.form-container,
+.search-container {
   padding: 15px;
 }
 
@@ -119,8 +129,8 @@ button.icon-btn, button.icon-btn-up, button.icon-btn-del {
   margin: 0 -15px;
 }
 
-
-.send-to-sales-btn
-{
-  background-color: #403D58; margin-bottom: 1%; color: white;
+.send-to-sales-btn {
+  background-color: #403d58;
+  margin-bottom: 1%;
+  color: white;
 }

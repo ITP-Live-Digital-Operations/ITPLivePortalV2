@@ -113,6 +113,7 @@ export class ViewBriefComponent {
       this.salesService
         .getSalesBriefWithFiles(this.id)
         .subscribe((data: any) => {
+          console.log(data);
           this.brief = data;
           this.assigned = data.data.assigned;
           this.getTask(this.brief.data.id);

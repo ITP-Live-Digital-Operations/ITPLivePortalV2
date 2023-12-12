@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       SalesBrief.hasOne(models.Task, { foreignKey: 'brief_id', as: 'task', onDelete: 'CASCADE'});
       SalesBrief.hasMany(models.File, { foreignKey: 'brief_id', as: 'files', onDelete: 'CASCADE'});
       SalesBrief.belongsTo(models.Clients, { foreignKey: 'clientId', as: 'client'})
-      SalesBrief.belongsTo(models.Campaign, {foreignKey: 'campaignId', as: 'campaign'})
+      SalesBrief.belongsTo(models.Campaign, {foreignKey: 'campaignId', as: 'campaign', onDelete: 'CASCADE'})
     }
   }
   SalesBrief.init({

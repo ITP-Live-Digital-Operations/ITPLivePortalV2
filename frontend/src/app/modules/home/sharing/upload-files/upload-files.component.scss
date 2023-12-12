@@ -6,7 +6,6 @@
   border: dashed 1px #979797;
   position: relative;
   margin: 0 auto;
-  
 
   input {
     opacity: 0;
@@ -20,16 +19,15 @@
 
   label {
     color: white;
-    
- 
-    background-color: #db202f;
+
+    background-color: #d72638;
     padding: 8px 16px;
     margin-top: 1%;
-    margin-bottom:2%;
+    margin-bottom: 2%;
   }
 
-  img{
-    height : 30%
+  img {
+    height: 30%;
   }
 
   h3 {
@@ -37,9 +35,6 @@
     font-weight: 600;
     color: #38424c;
   }
-
-
-
 }
 
 .fileover {
@@ -65,9 +60,9 @@
       align-self: flex-end;
     }
 
-    h4{
-        color : white!important;
-      }
+    h4 {
+      color: white !important;
+    }
 
     display: flex;
     flex-grow: 1;
@@ -88,7 +83,7 @@
     }
 
     .info {
-      width: 100%
+      width: 100%;
     }
   }
 }
@@ -139,5 +134,3 @@
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
-
-
