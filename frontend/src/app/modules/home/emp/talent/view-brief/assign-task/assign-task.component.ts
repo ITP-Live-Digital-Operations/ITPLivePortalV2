@@ -67,7 +67,7 @@ export class AssignTaskComponent {
       console.log(this.task);
       this.assignForm = this.formBuilder.group({
         Weight: [this.task.weight, Validators.required],
-        Deadline: [this.task.deadline, Validators.required],
+        Deadline: [this.task.deadline],
       });
     }
   }
