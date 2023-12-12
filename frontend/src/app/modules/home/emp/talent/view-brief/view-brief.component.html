@@ -15,8 +15,7 @@
         assignedUser_id.includes(user_id) ||
         privilege_level > 7 ||
         talentHeads?.includes(user_id)
-      "
-    >
+      ">
       <form
         [formGroup]="progressForm"
         (ngSubmit)="submitForm()"
