@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,8 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FileService } from 'src/app/core/services/file.service';
 import { Observable, map } from 'rxjs';
 import { Department } from 'src/app/core/constant/values.constants';
-import { ClientService } from 'src/app/core/services/client.service';
-import { CampaignService } from 'src/app/core/services/campaign.service';
+
 @Component({
   selector: 'app-new-sales-brief',
   templateUrl: './new-sales-brief.component.html',
@@ -28,8 +27,6 @@ export class NewSalesBriefComponent {
   private userId = this.userService.getID();
   private userName: any;
   public path = PATH;
-
-  private market: string = '';
 
   private headsOfKSA: number[] = [];
   private headsofUAE: number[] = [23];
@@ -53,7 +50,6 @@ export class NewSalesBriefComponent {
     private router: Router,
     private toastrService: ToastrService,
     private fileService: FileService,
-    private campaignService: CampaignService
   ) {
     this.userService.getUserNameById(this.userId).subscribe((res) => {
       this.userName = res;
@@ -138,7 +134,6 @@ export class NewSalesBriefComponent {
         ItpDepartment: ['', [Validators.required]],
         KPIs: [''],
       }),
-      //Upload Files
     });
   }
 
@@ -166,56 +161,41 @@ export class NewSalesBriefComponent {
     formValues.Ready = false;
     formValues.ResultsViewed = false;
 
-    console.log(formValues.CampaignName);
-    this.market = formValues.AudienceLocation.split(',')[0].trim();
-    console.log(this.market);
+    this.salesService.createBrief({ ...formValues }).subscribe((brief) => {
+      this.newBrief = brief;
 
-    this.campaignService
-      .addCampaign({
-        campaignName: formValues.CampaignName,
-        market: this.market,
-        clientId: formValues.clientId,
-        createdBy: this.userService.getID(),
-      })
-      .subscribe((res) => {
-        this.salesService
-          .createBrief({ ...formValues, campaignId: res.campaign.id })
-          .subscribe((brief) => {
-            this.newBrief = brief;
+      this.uploadFiles(this.newBrief.id);
 
-            this.uploadFiles(this.newBrief.id);
+      if (itpDepartment == 'Originals' || itpDepartment == 'UAE') {
+        // Zineb will be notified usually
+        for (let i = 0; i < this.headsofUAE.length; i++) {
+          let id = this.headsofUAE[i];
+          let input = {
+            message:
+              'New Sales Brief has been created by ' + this.userName.name,
+            link: `${this.path['viewBrief'] + this.newBrief.id}`,
+          };
+          this.notificationService
+            .createNotification(id, input)
+            .subscribe((notification) => {});
+        }
+      } else if (itpDepartment == 'KSA' || itpDepartment == 'Gaming') {
+        // Rachelle will be notified usually
+        for (let i = 0; i < this.headsOfKSA.length; i++) {
+          let id = this.headsOfKSA[i];
 
-            if (itpDepartment == 'Originals' || itpDepartment == 'UAE') {
-              // Zineb will be notified usually
-              for (let i = 0; i < this.headsofUAE.length; i++) {
-                let id = this.headsofUAE[i];
-                let input = {
-                  message:
-                    'New Sales Brief has been created by ' + this.userName.name,
-                  link: `${this.path['viewBrief'] + this.newBrief.id}`,
-                };
-                this.notificationService
-                  .createNotification(id, input)
-                  .subscribe((notification) => {});
-              }
-            } else if (itpDepartment == 'KSA' || itpDepartment == 'Gaming') {
-              // Rachelle will be notified usually
-              for (let i = 0; i < this.headsOfKSA.length; i++) {
-                let id = this.headsOfKSA[i];
+          let input = {
+            message:
+              'New Sales Brief has been created by ' + this.userName.name,
+            link: `${this.path['viewBrief'] + this.newBrief.id}`,
+          };
 
-                let input = {
-                  message:
-                    'New Sales Brief has been created by ' + this.userName.name,
-                  link: `${this.path['viewBrief'] + this.newBrief.id}`,
-                };
-
-                this.notificationService
-                  .createNotification(id, input)
-                  .subscribe(() => {});
-              }
-            }
-          });
-      });
+          this.notificationService
+            .createNotification(id, input)
+            .subscribe(() => {});
+        }
+      }
+    });
 
     this.toastrService.success('Brief submitted successfully!');
     this.router.navigate([this.path['forms']]);

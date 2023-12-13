@@ -20,7 +20,7 @@ export class ClientsComponent {
   protected clientName: string[] = [];
   protected clientIndustry: string[] = [];
 
-  protected displayedColumns = ['name', 'industry'];
+  protected displayedColumns = ['name', 'industry', 'action'];
 
   protected filterValues = {
     clientName: '',
@@ -145,6 +145,10 @@ export class ClientsComponent {
     this.clientIndustry = [
       ...new Set(renderedData.map((result: any) => result.industry)),
     ].sort() as string[];
+  }
+
+  viewClient(id: number) {
+    this.router.navigate([`/home/main/editClient/${id}`]);
   }
 
   redirectToNewClient() {

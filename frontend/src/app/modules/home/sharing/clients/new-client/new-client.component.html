@@ -1,7 +1,5 @@
 <div class="form-container">
-  <form
-   [formGroup]="newClientForm"
-   >
+  <form [formGroup]="newClientForm">
     <h2>New Client</h2>
     <div class="row">
       <mat-form-field>
@@ -15,6 +13,38 @@
           matInput
           type="text"
           formControlName="industry"
+          autocomplete="off"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label> POC Name </mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="pocName"
+          autocomplete="off"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> POC Email </mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="pocEmail"
+          autocomplete="off"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> POC Number </mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="pocNumber"
           autocomplete="off"
         />
       </mat-form-field>

@@ -10,6 +10,7 @@ import { SalesGuideComponent } from './userGuides/sales-guide/sales-guide.compon
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ClientsComponent } from './clients/clients.component';
 import { NewClientComponent } from './clients/new-client/new-client.component';
+import { EditClientComponent } from './clients/edit-client/edit-client.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
    path: 'newClient',
    component: NewClientComponent,
+  },
+  {
+    path: 'editClient/:id',
+    component: EditClientComponent,
   },
   {
     path: '',

@@ -3,51 +3,43 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Clients extends Model {
+  class brand extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Clients.hasMany(models.brand, {
+      brand.belongsTo(models.Clients, {
         foreignKey: 'clientId',
-        as: 'brands',
+        as: 'client',
         onDelete: 'CASCADE'
       })
 
-      Clients.belongsTo(models.User, {
+      brand.belongsTo(models.User, {
         foreignKey: 'updatedBy',
         as: 'user',
         onDelete: 'CASCADE'
       })
     }
   }
-  Clients.init({
+  brand.init({
     id: {
-      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
-      autoIncrement: true
+      type: DataTypes.INTEGER
     },
-    name : {
-      type: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING
+    },
+    clientId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'clients',
+        key: 'id'
+      },
       allowNull: false
-    },
-    industry : {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    pocName: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    pocEmail: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    pocNumber: {
-      type: DataTypes.STRING,
-      allowNull: true
     },
     updatedBy: {
       type: DataTypes.INTEGER,
@@ -68,8 +60,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    tableName: 'clients',
-    modelName: 'Clients',
+    tableName: 'brand',
+    modelName: 'brand',
   });
-  return Clients;
+  return brand;
 };

@@ -4,8 +4,6 @@ const Task = models.Task;
 const Campaign = models.Campaign;
 
 exports.create = (req, res) => {
-  console.log(req.body);
-
   SalesBrief.create(req.body)
     .then((data) => {
       res.status(201).send({
@@ -186,7 +184,7 @@ exports.getSalesBriefWithFiles = (req, res) => {
       {
         model: models.Campaign,
         required: false,
-        as: 'campaign'
+        as: "campaign",
       },
     ],
   })

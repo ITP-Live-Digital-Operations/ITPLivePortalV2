@@ -57,14 +57,14 @@ export class TaskRoundsComponent {
 
         this.taskService
           .updateProgress(this.task.id, { progress: 'Submitted and Approved' })
-          .subscribe((res: any) => {});
-
-        for (let i = 0; i < ids.length; i++) {
-          this.notificationService
-            .createNotification(ids[i], input)
-            .subscribe((res: any) => {});
-        }
-        window.location.reload();
+          .subscribe((res: any) => {
+            for (let i = 0; i < ids.length; i++) {
+              this.notificationService
+                .createNotification(ids[i], input)
+                .subscribe((res: any) => {});
+            }
+            window.location.reload();
+          });
       } else if (this.feedbackForm.value.feedback === 'Request Changes') {
         this.activateBrief();
         let input = {
@@ -74,14 +74,14 @@ export class TaskRoundsComponent {
 
         this.taskService
           .updateProgress(this.task.id, { progress: 'Submitted and Rejected' })
-          .subscribe((res: any) => {});
-
-        for (let i = 0; i < ids.length; i++) {
-          this.notificationService
-            .createNotification(ids[i], input)
-            .subscribe((res: any) => {});
-        }
-        window.location.reload();
+          .subscribe((res: any) => {
+            for (let i = 0; i < ids.length; i++) {
+              this.notificationService
+                .createNotification(ids[i], input)
+                .subscribe((res: any) => {});
+            }
+            window.location.reload();
+          });
       }
     }
   }

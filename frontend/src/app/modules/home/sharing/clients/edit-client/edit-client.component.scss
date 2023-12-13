@@ -1,0 +1,122 @@
+.client-details {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 60px;
+  background: linear-gradient(130deg, #2e373d, #35444c);
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  font-family: "Roboto", sans-serif;
+  color: #cfd8dc;
+  transition: box-shadow 0.4s ease;
+
+  @media (max-width: 768px) {
+    padding: 40px;
+    margin: 40px 20px;
+  }
+
+  &:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  h2 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 30px;
+    color: #fff;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #b4dc7f;
+  }
+
+  h3 {
+    font-size: 26px;
+    margin-top: 45px;
+    margin-bottom: 25px;
+    color: #fff;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 25px;
+      line-height: 1.7;
+      position: relative;
+
+      b {
+        font-weight: bold;
+        color: #b0bec5;
+      }
+    }
+  }
+
+  button {
+    background-color: #4789A1;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    &:hover {
+      background-color: #65b2ce;
+    }
+  }
+
+  form {
+    background-color: #2e373d;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #b0bec5;
+      background-color: #35444c;
+      color: #fff;
+
+      &:focus {
+        outline: none;
+        border-color: #42a5f5;
+      }
+    }
+
+    button {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+}
+
+.brand-list {
+  li {
+    background-color: #2a3136;
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 15px solid #403d58;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      background-color: #323b41;
+    }
+  }
+
+  .add-brand {
+    button {
+      display: block;
+      width: auto;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<div class="client-details" *ngIf="client">
+  <h2>Client Details</h2>
+  <ul>
+    <li><b>Name:</b> {{ client.name }}</li>
+    <li><b>Industry:</b> {{ client.industry }}</li>
+    <li><b>POC Name:</b> {{ client.pocName }}</li>
+    <li><b>POC Email:</b> {{ client.pocEmail }}</li>
+    <li><b>POC Number:</b> {{ client.pocNumber }}</li>
+  </ul>
+
+  <button (click)="toggleEditMode()">Edit Client Details</button>
+
+  <!-- Edit Form -->
+  <form *ngIf="editMode" (ngSubmit)="editClientDetails()">
+    <input
+      type="text"
+      [(ngModel)]="client.name"
+      name="name"
+      placeholder="Name"
+    />
+    <input
+      type="text"
+      [(ngModel)]="client.industry"
+      name="industry"
+      placeholder="Industry"
+    />
+    <input
+      type="text"
+      [(ngModel)]="client.pocName"
+      name="pocName"
+      placeholder="POC Name"
+    />
+    <input
+      type="text"
+      [(ngModel)]="client.pocEmail"
+      name="pocEmail"
+      placeholder="POC Email"
+    />
+    <input
+      type="text"
+      [(ngModel)]="client.pocNumber"
+      name="pocNumber"
+      placeholder="POC Number"
+    />
+
+    <button type="submit">Save</button>
+    <button (click)="toggleEditMode()">Cancel</button>
+  </form>
+
+  <h3>Brands</h3>
+  <ul class="brand-list" *ngIf="client.brands && client.brands.length">
+    <li *ngFor="let brand of client.brands">
+      {{ brand.name }}
+    </li>
+  </ul>
+  <div class="add-brand">
+    <button (click)="showBrandForm = true">Add Brand</button>
+    <form *ngIf="showBrandForm" (ngSubmit)="addBrand()">
+      <input
+        type="text"
+        [(ngModel)]="newBrand"
+        name="brandName"
+        placeholder="Brand Name"
+      />
+
+      <button type="submit">Add Brand</button>
+      <button (click)="showBrandForm = false">Cancel</button>
+    </form>
+  </div>
+</div>

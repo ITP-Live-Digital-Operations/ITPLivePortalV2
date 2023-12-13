@@ -34,6 +34,7 @@ import { BooleanPipe } from 'src/app/shared/pipes/boolean.pipe';
 import { InfluencerNamePipe } from 'src/app/shared/pipes/influencer-name.pipe';
 import { ClientsComponent } from './clients/clients.component';
 import { NewClientComponent } from './clients/new-client/new-client.component';
+import { EditClientComponent } from './clients/edit-client/edit-client.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { NewClientComponent } from './clients/new-client/new-client.component';
     InfluencerNamePipe,
     ClientsComponent,
     NewClientComponent,
+    EditClientComponent,
 
   ],
   imports: [
@@ -90,6 +92,7 @@ import { NewClientComponent } from './clients/new-client/new-client.component';
     NumberFormatPipe,
     BooleanPipe,
     InfluencerNamePipe,
+    ClientsComponent,
 
   ],
 })

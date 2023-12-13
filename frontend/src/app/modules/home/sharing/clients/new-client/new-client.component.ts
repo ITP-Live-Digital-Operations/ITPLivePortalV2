@@ -23,6 +23,9 @@ export class NewClientComponent {
     this.newClientForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       industry: ['', [Validators.required]],
+      pocName: [''],
+      pocEmail: [''],
+      pocNumber: [''],
     });
   }
 
