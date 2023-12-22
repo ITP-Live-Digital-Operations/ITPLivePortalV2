@@ -3,45 +3,46 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class File extends Model {
+  class CampaignFiles extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      File.belongsTo(models.SalesBrief, { foreignKey: 'brief_id', as: 'Brief', onDelete: 'CASCADE' });
-      File.belongsTo(models.User, { foreignKey: 'uploaded_by', as: 'uploaded by' });  
+      CampaignFiles.belongsTo(models.Campaign, { foreignKey: 'campaignId', as: 'campaign', onDelete: 'CASCADE' });
+      CampaignFiles.belongsTo(models.User, { foreignKey: 'uploadedBy', as: 'user' });
     }
   }
-  File.init({
+  CampaignFiles.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false
     },
-    filename: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    originalname: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    mimetype: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    brief_id: {
+    campaignId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'salesbrief',
+        model: 'campaigns',
         key: 'id'
       }
-    },  
-    uploaded_by: {
+    },
+    fileName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    fileType: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    fileSize: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    uploadedBy: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -49,18 +50,10 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    fileType: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    department: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
   }, {
     sequelize,
-    tableName: 'file',
-    modelName: 'File',
+    modelName: 'CampaignFiles',
+    tableName: 'campaignfiles'
   });
-  return File;
+  return CampaignFiles;
 };

@@ -10,6 +10,15 @@ const storage = multer.diskStorage({
   }
 });
 
+const campaignStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `${__dirname}/../uploads/campaignUploads`);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
+
 const fileFilter = (req, file, cb) => {
   console.log("filter");
   const ext = file.originalname.split('.').pop();
@@ -32,4 +41,12 @@ const upload = multer({
   }
 });
 
-module.exports = upload;
+const campaignUpload = multer({
+  storage: campaignStorage,
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: 1024 * 1024 * 100 //100MB
+  }
+});
+
+module.exports = {upload, campaignUpload};

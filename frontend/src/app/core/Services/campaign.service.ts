@@ -41,7 +41,23 @@ export class CampaignService {
     return this.http.get<any>(`${this.campaignApiURL}/getCampaignInfluencers/${id}`);
   }
 
+  uploadCampaignFile(file: File, campaignId: number, uploadedBy: number): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    formData.append('campaignId', String(campaignId));
+    formData.append('uploadedBy', String(uploadedBy));
+    return this.http.post(`${this.campaignApiURL}/uploadCampaignFile`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+  }
 
+  downloadCampaignFile(id: number, filename?: string): Observable<any> {
+    return this.http.get(`${this.campaignApiURL}/downloadCampaignFile/${id}`, {
+      responseType: 'blob',
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 }
 
 

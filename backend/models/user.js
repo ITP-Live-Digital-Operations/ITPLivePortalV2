@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.TimeForm, {foreignKey: 'user_id', as: 'timeform'})
       User.hasMany(models.File, {foreignKey: 'uploaded_by', as: 'files'})
       User.hasMany(models.Campaign, {foreignKey: 'createdBy', as: 'campaigns'})
-      
+      User.hasMany(models.CampaignFiles, {foreignKey: 'uploadedBy', as: 'campaignFiles'})
     }
 
     /* toJSON(){

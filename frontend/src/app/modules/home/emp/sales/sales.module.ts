@@ -19,6 +19,7 @@ import { ViewBriefModule } from '../talent/view-brief/view-brief.module';
 import { UploadFilesComponent } from '../../sharing/upload-files/upload-files.component';
 import { SharingModule } from '../../sharing/sharing.module';
 import { TaskRoundsComponent } from './ready-briefs-id/task-rounds/task-rounds.component';
+import { InitiateCampaignComponent } from './ready-briefs-id/initiate-campaign/initiate-campaign.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TaskRoundsComponent } from './ready-briefs-id/task-rounds/task-rounds.c
     AudienceDetailsComponent,
     DepartmentDetailsComponent,
     TaskRoundsComponent,
+    InitiateCampaignComponent,
   ],
   imports: [
     CommonModule,

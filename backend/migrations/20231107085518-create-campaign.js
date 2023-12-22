@@ -22,12 +22,22 @@ module.exports = {
           key: 'id'
         }
       },
-      clientId: {
+      brandId: {
         type: DataTypes.INTEGER,
         references: {
-          model: 'clients',
+          model: 'brand',
           key: 'id'
-        }
+        },
+        allowNull: true
+      
+      },
+      createdBy: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        defaultValue: 1 
       },
       createdAt: {
         allowNull: false,

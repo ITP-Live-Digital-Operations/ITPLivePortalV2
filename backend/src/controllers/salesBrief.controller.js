@@ -125,6 +125,11 @@ exports.getSalesBrief = (req, res) => {
         required: false,
         as: "client",
       },
+      {
+        model: models.brand,
+        required: false,
+        as: "brand",
+      }
     ],
   })
     .then((data) => {
@@ -512,6 +517,29 @@ exports.getAllBriefsWithTask = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving SalesBriefs.",
+      });
+    });
+};
+
+
+exports.signedOffByClient = (req, res) => {
+  SalesBrief.update(
+    { signedOffByClient: 1 },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((data) => {
+      res.status(200).send({
+        status: "success",
+        message: "Brief signed off by client",
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message,
       });
     });
 };

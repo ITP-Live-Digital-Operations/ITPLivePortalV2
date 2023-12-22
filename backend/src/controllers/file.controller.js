@@ -8,89 +8,104 @@ const fs = require("fs");
 const ExcelJS = require("exceljs");
 
 exports.uploadFile = (req, res) => {
-    
-    upload.single('file')(req, res, function (err) {
-        if (err) {
+  upload.single("file")(req, res, function (err) {
+    if (err) {
+      res.status(400).send({
+        status: "fail",
+        message: err.message,
+      });
+      return; // Return here to prevent further execution
+    }
 
-            res.status(400).send({
-                status: 'fail',
-                message: err.message
-            });
-            return; // Return here to prevent further execution
+    const file = req.file;
+    const briefId = Number(req.body.brief_id);
+    const userId = Number(req.body.uploaded_by);
+    const department = Number(req.body.department);
+
+    let fileType;
+
+    const ext = file.originalname.split(".").pop();
+    if (
+      ext === "xlsx" ||
+      ext === "xls" ||
+      ext === "ods" ||
+      file.mimetype.includes("sheet")
+    ) {
+      fileType = "sheet";
+    } else if (
+      ext === "ppt" ||
+      ext === "pptx" ||
+      ext === "odp" ||
+      file.mimetype.includes("presentation")
+    ) {
+      fileType = "presentation";
+    } else if (ext === "pdf" || file.mimetype.includes("pdf")) {
+      fileType = "pdf";
+    } else if (
+      ext === "doc" ||
+      ext === "docx" ||
+      ext === "odt" ||
+      file.mimetype.includes("word") ||
+      file.mimetype.includes("text")
+    ) {
+      fileType = "document";
+    }
+
+    const newFile = {
+      filename: file.filename,
+      originalname: file.originalname,
+      mimetype: file.mimetype,
+      fileType: fileType,
+      brief_id: briefId,
+      uploaded_by: userId,
+      department: department,
+    };
+
+    File.create(newFile)
+      .then((fileData) => {
+        let updateField;
+        if (fileData.fileType === "sheet") {
+          updateField = { BudgetSheetId: fileData.id };
+        } else if (fileData.fileType === "presentation") {
+          updateField = { PresentationId: fileData.id };
+        } else if (fileData.fileType === "pdf") {
+          updateField = { PdfId: fileData.id };
         }
 
-        const file = req.file;
-        const briefId = Number(req.body.brief_id);
-        const userId = Number(req.body.uploaded_by);
-        const department = Number(req.body.department);
-
-        let fileType;
-
-        const ext = file.originalname.split('.').pop();
-        if (ext === 'xlsx' || ext === 'xls' || ext === 'ods' || file.mimetype.includes('sheet')) {
-          fileType = 'sheet';
-      } else if (ext === 'ppt' || ext === 'pptx' || ext === 'odp' || file.mimetype.includes('presentation')) {
-          fileType = 'presentation';
-      } else if (ext === 'pdf' || file.mimetype.includes('pdf')) {
-          fileType = 'pdf';
-      } else if (ext === 'doc' || ext === 'docx' || ext === 'odt' || file.mimetype.includes('word') || file.mimetype.includes('text')) {
-          fileType = 'document';
-      }
-      
-
-        const newFile = {
-            filename: file.filename,
-            originalname: file.originalname,
-            mimetype: file.mimetype,
-            fileType: fileType,
-            brief_id: briefId,
-            uploaded_by: userId,
-            department: department
-        };
-
-        File.create(newFile).then(fileData => {
-           
-            let updateField;
-            if (fileData.fileType === 'sheet') {
-                updateField = { BudgetSheetId: fileData.id };
-            } else if (fileData.fileType === 'presentation') {
-                updateField = { PresentationId: fileData.id };
-            } else if (fileData.fileType === 'pdf') {
-                updateField = { PdfId: fileData.id };
-            }
-            
-            if (updateField) {
-              if( newFile.department == 2 ){
-                SalesBrief.update(updateField, {
-                    where: { id: briefId }
-                }).then(data => {
-                    res.status(201).send({
-                        status: 'success',
-                        data: fileData
-                    });
-                }).catch(err => {
-                    res.status(500).send({
-                        status: 'fail',
-                        message: err.message
-                    });
-                });
-              }
-            } else {
+        if (updateField) {
+          if (newFile.department == 2) {
+            SalesBrief.update(updateField, {
+              where: { id: briefId },
+            })
+              .then((data) => {
                 res.status(201).send({
-                    status: 'success',
-                    fileData: fileData
+                  status: "success",
+                  data: fileData,
                 });
-            }
-        }).catch(err => {
-            console.log(err);
-            res.status(500).send({
-                status: 'fail',
-                message: err.message
-            });
+              })
+              .catch((err) => {
+                res.status(500).send({
+                  status: "fail",
+                  message: err.message,
+                });
+              });
+          }
+        } else {
+          res.status(201).send({
+            status: "success",
+            fileData: fileData,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send({
+          status: "fail",
+          message: err.message,
         });
-    });
+      });
+  });
 };
-
 
 exports.uploadTable = async (req, res, next) => {
   const briefId = Number(req.body.brief_id);
@@ -159,7 +174,10 @@ exports.downloadFile = (req, res) => {
       const file = path.resolve(__dirname, "../../uploads/", data.filename);
       console.log(`file path: ${file}`);
       const encodedFilename = encodeURIComponent(data.originalname);
-      res.setHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' + encodedFilename);
+      res.setHeader(
+        "Content-Disposition",
+        "attachment; filename*=UTF-8''" + encodedFilename
+      );
 
       res.sendFile(file);
     })
@@ -194,8 +212,7 @@ exports.getSalesBriefFiles = (req, res) => {
   const id = req.params.id;
 
   File.findAll({
-    where: { brief_id: id,
-    department: 1 },
+    where: { brief_id: id, department: 1 },
   })
     .then((data) => {
       res.status(200).send({
@@ -211,7 +228,6 @@ exports.getSalesBriefFiles = (req, res) => {
       });
     });
 };
-
 
 exports.addNotes = (req, res) => {
   const id = req.params.id;
@@ -241,9 +257,12 @@ exports.sendFile = (req, res) => {
   File.findByPk(id)
     .then((data) => {
       const file = path.resolve(__dirname, "../../uploads/", data.filename);
-      
+
       const encodedFilename = encodeURIComponent(data.originalname);
-      res.setHeader('Content-Disposition', 'attachment; filename*=UTF-8\'\'' + encodedFilename);
+      res.setHeader(
+        "Content-Disposition",
+        "attachment; filename*=UTF-8''" + encodedFilename
+      );
       res.sendFile(file);
     })
     .catch((err) => {
@@ -267,7 +286,7 @@ exports.deleteBudgetSheetFile = (req, res) => {
       File.findByPk(id)
         .then((data) => {
           const file = path.resolve(__dirname, "../../uploads/", data.filename);
-          
+
           fs.unlinkSync(file);
           File.destroy({
             where: { id: id },
@@ -348,64 +367,63 @@ exports.deletePresentationFile = (req, res) => {
     });
 };
 
-
 exports.deletePDFFile = (req, res) => {
-    const id = req.params.id;
-    SalesBrief.update(
-        { PdfId: null },
-        { where: { PdfId: id } }
-    ).then(data => {
-        File.findByPk(id).then(data => {
-            const file = path.resolve(__dirname, '../../uploads/', data.filename);
-            fs.unlinkSync(file);
-            File.destroy({ where: { id: id } }).then(data => {
-                res.status(200).send({
-                    status: 'success'
-                });
-            }).catch(err => {
-                console.log(err);
-                res.status(500).send({
-                    status: 'fail',
-                    message: err.message
-                });
-            });
-        }).catch(err => {
-            console.log(err);
-            res.status(500).send({
-                status: 'fail',
-                message: err.message
-            });
-        });
-    }).catch(err => {
-        console.log(err);
-        res.status(500).send({
-            status: 'fail',
-            message: err.message
-        });
-    }
-    );
-};
-
-exports.deleteFile = (req, res) => {
   const id = req.params.id;
-  File.findByPk(id)
+  SalesBrief.update({ PdfId: null }, { where: { PdfId: id } })
     .then((data) => {
-      const file = path.resolve(__dirname, "../../uploads/", data.filename);
-      fs.unlinkSync(file);
-      File.destroy({
-        where: { id: id },
-      })
+      File.findByPk(id)
         .then((data) => {
-          res.status(200).send({
-            status: "success",
-          });
-        }
-        )
+          const file = path.resolve(__dirname, "../../uploads/", data.filename);
+          fs.unlinkSync(file);
+          File.destroy({ where: { id: id } })
+            .then((data) => {
+              res.status(200).send({
+                status: "success",
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              res.status(500).send({
+                status: "fail",
+                message: err.message,
+              });
+            });
+        })
         .catch((err) => {
+          console.log(err);
           res.status(500).send({
             status: "fail",
             message: err.message,
           });
         });
     })
-}
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({
+        status: "fail",
+        message: err.message,
+      });
+    });
+};
+
+exports.deleteFile = (req, res) => {
+  const id = req.params.id;
+  File.findByPk(id).then((data) => {
+    const file = path.resolve(__dirname, "../../uploads/", data.filename);
+    fs.unlinkSync(file);
+    File.destroy({
+      where: { id: id },
+    })
+      .then((data) => {
+        res.status(200).send({
+          status: "success",
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          status: "fail",
+          message: err.message,
+        });
+      });
+  });
+};

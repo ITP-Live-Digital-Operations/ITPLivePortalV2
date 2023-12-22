@@ -107,4 +107,7 @@ export class SalesService {
     );
   }
 
+  signedOffByClient(id: any) {
+    return this.http.get(`${this.salesApiURL}/signedOffByClient/${id}`);
+  }
 }

@@ -9,7 +9,7 @@
 
   <button
     mat-raised-button
-    *ngIf="lastFeedback == 'Accept'"
+    *ngIf="signedOffByClient == true"
     class="influ-button"
     (click)="addInfluencers()"
   >

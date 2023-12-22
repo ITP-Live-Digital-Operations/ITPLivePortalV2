@@ -1,9 +1,19 @@
 <div>
-  <app-person-info
+  <div class="top-row">
+  <app-person-info class="status"
     [assignedUser]="assignedUser"
     [salesperson]="salesperson"
   ></app-person-info>
+  <div class="card" *ngIf="acceptedBrief && brief">
+    <mat-icon style="color : #FFF">feedback</mat-icon>
+    <h2> Press this button when the client signs the B.O to initiate the campaign process.
+      B.O should be uploaded here.
+    </h2>
 
+    <button  mat-raised-button (click)="initiateCampaign()" [disabled]="brief.signedOffByClient"> Initiate Campaign </button>
+
+  </div>
+</div>
   <div class="row">
     <table class="my-table">
       <tr>

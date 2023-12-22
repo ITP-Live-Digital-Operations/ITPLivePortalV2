@@ -69,4 +69,6 @@ router.route('/getAllBriefsWithTask')
 router.route('/deleteBrief/:id')
     .delete(asyncHandler(salesBriefController.deleteBrief))
 
+router.route('/signedOffByClient/:id')
+    .get(asyncHandler(salesBriefController.signedOffByClient))
 module.exports = router;

@@ -27,7 +27,7 @@ export class PersonInfoComponent {
   task!: TaskModel;
 
   @Input()
-  lastFeedback: any;
+  signedOffByClient: any;
 
   campaignId!: number;
 

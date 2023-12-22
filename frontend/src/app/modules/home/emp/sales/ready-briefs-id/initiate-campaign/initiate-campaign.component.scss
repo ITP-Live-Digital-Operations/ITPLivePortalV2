@@ -1,0 +1,32 @@
+.upload{
+  margin-top: 3%;
+
+  h2{
+    margin-left: 2%;
+  }
+
+  .btn{
+    margin-left: 2%;
+    background-color: #403D58;
+    color: #FFF;
+
+  }
+
+  .btn-hover {
+    display: none; // Initially hidden
+    margin-left: 2%;
+    margin-top: 2%;
+
+    p {
+      color: yellow;
+    }
+  }
+
+  .button-container:hover .btn:disabled + .btn-hover {
+    display: block; // Show .btn-hover only when the container is hovered and the button is disabled
+  }
+
+  button:disabled + .btn-hover {
+    display: none; // Ensure that .btn-hover is only shown when the button is disabled
+  }
+}

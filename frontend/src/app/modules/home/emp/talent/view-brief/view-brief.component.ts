@@ -33,6 +33,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class ViewBriefComponent {
   protected dataSource: any;
   protected brief: any;
+  protected allinfoBrief: any;
   protected id: any;
   protected task!: TaskModel;
   protected salesperson: any;
@@ -58,6 +59,7 @@ export class ViewBriefComponent {
 
   protected talentHeads: any;
   protected lastFeedback: any;
+  protected signedOffByClient: any;
 
   public reload = false;
   @ViewChild(MainTableComponent) mainComponent!: MainTableComponent;
@@ -113,8 +115,10 @@ export class ViewBriefComponent {
       this.salesService
         .getSalesBriefWithFiles(this.id)
         .subscribe((data: any) => {
-          console.log(data);
+          this.signedOffByClient = data.data.signedOffByClient;
           this.brief = data;
+          this.allinfoBrief = data.data;
+          console.log(this.brief);
           this.assigned = data.data.assigned;
           this.getTask(this.brief.data.id);
           this.brief_id = this.brief.data.id;
@@ -133,7 +137,9 @@ export class ViewBriefComponent {
           if (this.pdfId) {
             this.getPDF(this.pdfId);
           }
+
         });
+
     });
   }
 

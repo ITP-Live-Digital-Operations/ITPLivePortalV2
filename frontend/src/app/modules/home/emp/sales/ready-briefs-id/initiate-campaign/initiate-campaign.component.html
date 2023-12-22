@@ -1,0 +1,24 @@
+<div class="upload">
+  <h2>
+    Please Attach the B.O to start the campaign process (you can upload
+    multiple files if needed).
+  </h2>
+  <app-upload-files
+    (fileUploaded)="transferedFile($event)"
+    (filesUploaded)="transferedFiles($event)"
+  ></app-upload-files>
+
+  <div class="button-container">
+    <button
+      mat-raised-button
+      class="btn"
+      (click)="initiateCampaign()"
+      [disabled]="!fileToUpload"
+    >
+      Upload BO and Initiate Campaign
+    </button>
+    <div class="btn-hover">
+      <p>Please upload BO to enable button</p>
+    </div>
+  </div>
+</div>

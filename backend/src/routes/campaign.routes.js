@@ -23,4 +23,7 @@ router.route('/editCampaign/:id')
 
 router.route('/getCampaignInfluencers/:id')
     .get(asyncHandler(campaignController.getCampaignInfluencers));
+
+router.route('/uploadCampaignFile')
+    .post(asyncHandler(campaignController.uploadCampaignFile));
 module.exports = router;

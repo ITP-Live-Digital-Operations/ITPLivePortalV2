@@ -11,11 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         Campaign.belongsTo(models.Clients, {foreignKey: 'clientId', as: 'client'})
+        Campaign.belongsTo(models.brand, {foreignKey: 'brandId', as: 'brand'})
         Campaign.belongsToMany(models.Influencer, {through: 'influencer_campaign', onDelete: 'CASCADE',
         onUpdate: 'CASCADE'})
         Campaign.belongsTo(models.User,  {foreignKey: 'createdBy', as: 'user'})
         Campaign.hasOne(models.SalesBrief, {foreignKey: 'campaignId', as: 'salesBrief'})
-        
+        Campaign.hasMany(models.CampaignFiles, {foreignKey: 'campaignId', as: 'campaignFiles', onDelete: 'CASCADE',})
       }
   }
   Campaign.init({
@@ -37,6 +38,15 @@ module.exports = (sequelize, DataTypes) => {
         model: 'clients',
         key: 'id'
       }
+    },
+    brandId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'brand',
+        key: 'id'
+      },
+      allowNull: true
+    
     },
     createdBy: {
       type: DataTypes.INTEGER,

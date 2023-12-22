@@ -1,6 +1,12 @@
 const models = require("../../models");
 const Campaign = models.Campaign;
 const Influencer = models.Influencer;
+const CampaignFile = models.CampaignFiles;
+const SalesBrief = models.SalesBrief;
+const path = require("path");
+
+const { campaignUpload } = require('../../config/multerConfig');
+
 
 exports.getCampaigns = (req, res) => {
   Campaign.findAll({
@@ -39,6 +45,10 @@ exports.getCampaignById = (req, res) => {
         as: "salesBrief",
       },
       {
+        model: models.CampaignFiles,
+        as: "campaignFiles",
+      },
+      {
         model: models.Influencer,
         attributes: ["id", "Name"],
         include: [
@@ -68,16 +78,29 @@ exports.addCampaign = (req, res) => {
     campaignName: req.body.campaignName,
     market: req.body.market,
     clientId: req.body.clientId,
+    brandId: req.body.brandId,
     createdBy: req.body.createdBy,
+    briefId: req.body.briefId,
   };
 
   Campaign.create(campaign)
     .then((data) => {
-      res.status(201).send({
-        campaign: data,
-        status: "success",
-        message: "Campaign created successfully",
+      SalesBrief.findByPk(req.body.briefId).then((brief) => {
+        brief.update({ campaignId: data.id }).then(() => {
+          res.status(201).send({
+            campaign: data,
+            status: "success",
+            message: "Campaign created successfully",
+          });
+        })
+        .catch((err) => {
+          res.status(500).send({
+            status: "error",
+            message: err.message,
+          });
+        });
       });
+      
     })
     .catch((err) => {
       res.status(500).send({
@@ -141,37 +164,41 @@ exports.editCampaignInfluencers = (req, res) => {
         });
       } else {
         // Directly remove all associations from the join table
-        campaign.getInfluencers().then((influencers) => {
-          campaign.removeInfluencers(influencers)
-            .then(() => {
-              // Add the new influencers after removing the old ones
-              campaign.addInfluencers(influencerIds)
-                .then(() => {
-                  res.status(201).send({
-                    status: "success",
-                    message: "Influencers updated successfully",
+        campaign
+          .getInfluencers()
+          .then((influencers) => {
+            campaign
+              .removeInfluencers(influencers)
+              .then(() => {
+                // Add the new influencers after removing the old ones
+                campaign
+                  .addInfluencers(influencerIds)
+                  .then(() => {
+                    res.status(201).send({
+                      status: "success",
+                      message: "Influencers updated successfully",
+                    });
+                  })
+                  .catch((err) => {
+                    res.status(500).send({
+                      status: "error",
+                      message: err.message,
+                    });
                   });
-                })
-                .catch((err) => {
-                  res.status(500).send({
-                    status: "error",
-                    message: err.message,
-                  });
+              })
+              .catch((err) => {
+                res.status(500).send({
+                  status: "error",
+                  message: err.message,
                 });
-            })
-            .catch((err) => {
-              res.status(500).send({
-                status: "error",
-                message: err.message,
               });
+          })
+          .catch((err) => {
+            res.status(500).send({
+              status: "error",
+              message: err.message,
             });
-        })
-        .catch((err) => {
-          res.status(500).send({
-            status: "error",
-            message: err.message,
           });
-        });
       }
     })
     .catch((err) => {
@@ -181,12 +208,6 @@ exports.editCampaignInfluencers = (req, res) => {
       });
     });
 };
-
-
-
-  
-  
-
 
 exports.getCampaignInfluencers = (req, res) => {
   const campaignId = req.params.id;
@@ -249,3 +270,98 @@ exports.editCampaign = (req, res) => {
       });
     });
 };
+
+exports.uploadCampaignFile = (req, res) => {
+  campaignUpload.single("file")(req, res, (err) => {
+    if (err) {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+      return;
+    } else {
+      const file = req.file;
+      const campaignId = Number(req.body.campaignId);
+      const uploadedBy = Number(req.body.uploadedBy);
+
+      let fileType;
+
+      const ext = file.originalname.split(".").pop();
+      if (
+        ext === "xlsx" ||
+        ext === "xls" ||
+        ext === "ods" ||
+        file.mimetype.includes("sheet")
+      ) {
+        fileType = "sheet";
+      } else if (
+        ext === "ppt" ||
+        ext === "pptx" ||
+        ext === "odp" ||
+        file.mimetype.includes("presentation")
+      ) {
+        fileType = "presentation";
+      } else if (ext === "pdf" || file.mimetype.includes("pdf")) {
+        fileType = "pdf";
+      } else if (
+        ext === "doc" ||
+        ext === "docx" ||
+        ext === "odt" ||
+        file.mimetype.includes("word") ||
+        file.mimetype.includes("text")
+      ) {
+        fileType = "document";
+      }
+
+      const campaignFile = {
+        campaignId: campaignId,
+        fileName: file.filename,
+        fileType: fileType,
+        fileSize: file.size,
+        uploadedBy: uploadedBy,
+      };
+
+      CampaignFile.create(campaignFile)
+        .then((data) => {
+          res.status(201).send({
+            status: "success",
+            message: "File uploaded successfully",
+          });
+        })
+        .catch((err) => {
+          res.status(500).send({
+            status: "error",
+            message: err.message,
+          });
+        });
+    }
+  });
+};
+
+
+exports.downloadCampaignFile = (req, res) => {
+  const id = req.params.id;
+  CampaignFile.findByPk(id)
+    .then((file) => {
+      if (!file) {
+        res.status(404).send({
+          status: "error",
+          message: "File not found",
+        });
+      } else {
+        const file = path.resolve(__dirname, "../../uploads/campaignFiles/" + file.fileName);
+        const encodedFilename = encodeURIComponent(file.fileName);
+        res.setHeader(
+          "Content-disposition",
+          "attachment; filename=" + encodedFilename
+        );
+        res.sendFile(file);
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+  };

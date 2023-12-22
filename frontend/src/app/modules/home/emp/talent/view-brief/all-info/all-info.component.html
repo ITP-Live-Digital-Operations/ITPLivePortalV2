@@ -1,5 +1,5 @@
 <div class="card-header text-light; margin-top: 20px">
-  {{ this.brief?.data?.CampaignName }}
+  {{ this.brief?.CampaignName }}
 </div>
 
 <div class="card">
@@ -10,15 +10,16 @@
         1. Campaign Information:
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p class="words">Agency: {{ brief?.data?.Agency }}</p>
-    <p class="words">Client: {{ brief?.data?.client?.name }}</p>
-    <p class="words">Client Industry: {{ brief?.data?.client?.industry }}</p>
-    <p class="words">Campaign Overview: {{ brief?.data?.CampaignOverview }}</p>
+    <p class="words">Agency: {{ brief?.Agency }}</p>
+    <p class="words">Client: {{ brief?.client?.name }}</p>
+    <p class="words">Client Industry: {{ brief?.client?.industry }}</p>
+    <p class="words">Brand: {{ brief?.brand?.name}}</p>
+    <p class="words">Campaign Overview: {{ brief?.CampaignOverview }}</p>
     <p class="words">
-      Campaign Objective: {{ brief?.data?.CampaignObjective }}
+      Campaign Objective: {{ brief?.CampaignObjective }}
     </p>
     <p class="words">
-      Campaign Objective Details: {{ brief?.data?.CampaignObjectiveDetails }}
+      Campaign Objective Details: {{ brief?.CampaignObjectiveDetails }}
     </p>
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -28,27 +29,27 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p class="words">
-      Number of Recommendations: {{ brief?.data?.NumberofRecommendations }}
+      Number of Recommendations: {{ brief?.NumberofRecommendations }}
     </p>
-    <p class="words">Currency: {{ brief?.data?.Currency }}</p>
-    <p class="words">Budget: {{ brief?.data?.Budget }}</p>
+    <p class="words">Currency: {{ brief?.Currency }}</p>
+    <p class="words">Budget: {{ brief?.Budget }}</p>
     <p class="words">
-      Campaign Start Date: {{ brief?.data?.CampaignStartDate | date }}
-    </p>
-    <p class="words">
-      Campaign End Date: {{ brief?.data?.CampaignEndDate | date }}
+      Campaign Start Date: {{ brief?.CampaignStartDate | date }}
     </p>
     <p class="words">
-      Campaign Message Phase One:{{ brief?.data?.CampaignMessagePhaseOne }}
+      Campaign End Date: {{ brief?.CampaignEndDate | date }}
     </p>
     <p class="words">
-      Campaign Message Phase Two:{{ brief?.data?.CampaignMessagePhaseTwo }}
+      Campaign Message Phase One:{{ brief?.CampaignMessagePhaseOne }}
     </p>
     <p class="words">
-      Campaign Message Phase Three:{{ brief?.data?.CampaignMessagePhaseThree }}
+      Campaign Message Phase Two:{{ brief?.CampaignMessagePhaseTwo }}
     </p>
     <p class="words">
-      Content Deliverables: {{ brief?.data?.ContentDeliverables }}
+      Campaign Message Phase Three:{{ brief?.CampaignMessagePhaseThree }}
+    </p>
+    <p class="words">
+      Content Deliverables: {{ brief?.ContentDeliverables }}
     </p>
     <p class="words">
       Brand Exclusivity Duration in Days:{{
@@ -57,13 +58,13 @@
     </p>
     <p class="words">
       Video Production:
-      <span *ngIf="brief?.data?.VideoProduction == 1"> Yes </span>
-      <span *ngIf="brief?.data?.VideoProduction == 0"> No</span>
+      <span *ngIf="brief?.VideoProduction == 1"> Yes </span>
+      <span *ngIf="brief?.VideoProduction == 0"> No</span>
     </p>
     <p class="words">
       Video Editing:
-      <span *ngIf="brief?.data?.VideoEditing == 1"> Yes </span>
-      <span *ngIf="brief?.data?.VideoEditing == 0"> No</span>
+      <span *ngIf="brief?.VideoEditing == 1"> Yes </span>
+      <span *ngIf="brief?.VideoEditing == 0"> No</span>
     </p>
   </mat-expansion-panel>
 
@@ -73,29 +74,29 @@
         3. Influencer Information:
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p class="words" *ngIf="brief?.data?.InfluencerAgeRange != undefined">
-      Influencer Age Range:{{ brief?.data?.InfluencerAgeRange | ageGroup }}
+    <p class="words" *ngIf="brief?.InfluencerAgeRange != undefined">
+      Influencer Age Range:{{ brief?.InfluencerAgeRange | ageGroup }}
     </p>
     <p class="words">
-      Influencer Location: {{ brief?.data?.InfluencerLocation }}
+      Influencer Location: {{ brief?.InfluencerLocation }}
     </p>
     <p class="words">
-      Influencer Nationality: {{ brief?.data?.InfluencerNationality }}
+      Influencer Nationality: {{ brief?.InfluencerNationality }}
     </p>
-    <p class="words">Influencer Gender: {{ brief?.data?.InfluencerGender }}</p>
+    <p class="words">Influencer Gender: {{ brief?.InfluencerGender }}</p>
     <p class="words">
-      Similar Profile Link: {{ brief?.data?.SimilarProfileLink }}
+      Similar Profile Link: {{ brief?.SimilarProfileLink }}
     </p>
     <p class="words">
-      Influencer Interest: {{ brief?.data?.InfluencerInterest }}
+      Influencer Interest: {{ brief?.InfluencerInterest }}
     </p>
     <p class="words">
       Influencer Number Of Followers:{{
-      brief?.data?.InfluencerNumberOfFollowers
+      brief?.InfluencerNumberOfFollowers
       }}
     </p>
     <p class="words">
-      Note For Number Of Followers:{{ brief?.data?.NoteForNumberOfFollowers }}
+      Note For Number Of Followers:{{ brief?.NoteForNumberOfFollowers }}
     </p>
   </mat-expansion-panel>
 
@@ -105,27 +106,27 @@
         4. Audience Information:
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p class="words" *ngIf="brief?.data?.AudienceAgeRange != undefined">
-      Audience Age Range: {{ brief?.data?.AudienceAgeRange | ageGroup }}
+    <p class="words" *ngIf="brief?.AudienceAgeRange != undefined">
+      Audience Age Range: {{ brief?.AudienceAgeRange | ageGroup }}
     </p>
-    <p class="words">Audience Location: {{ brief?.data?.AudienceLocation }}</p>
+    <p class="words">Audience Location: {{ brief?.AudienceLocation }}</p>
     <p class="words">
-      Audience Nationality: {{ brief?.data?.AudienceNationality }}
+      Audience Nationality: {{ brief?.AudienceNationality }}
     </p>
-    <p class="words">Audience Gender: {{ brief?.data?.AudienceGender }}</p>
-    <p class="words">Audience Interest: {{ brief?.data?.AudienceInterest }}</p>
+    <p class="words">Audience Gender: {{ brief?.AudienceGender }}</p>
+    <p class="words">Audience Interest: {{ brief?.AudienceInterest }}</p>
     <p class="words">
       Confirmed Influencer Handles:{{
-      brief?.data?.ConfirmedInfluencerHandles
+      brief?.ConfirmedInfluencerHandles
       }}
     </p>
     <p class="words">
       Previous Brand Ambassadors Name:{{
-      brief?.data?.PreviousBrandAmbassadorsName
+      brief?.PreviousBrandAmbassadorsName
       }}
     </p>
-    <p class="words">Created At: {{ brief?.data?.createdAt | date }}</p>
-    <p class="words">Updated At: {{ brief?.data?.updatedAt | date }}</p>
+    <p class="words">Created At: {{ brief?.createdAt | date }}</p>
+    <p class="words">Updated At: {{ brief?.updatedAt | date }}</p>
   </mat-expansion-panel>
 
   <mat-expansion-panel>

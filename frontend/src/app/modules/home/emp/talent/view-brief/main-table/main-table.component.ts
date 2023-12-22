@@ -3,7 +3,11 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InfluencerModel } from 'src/app/core/interfaces/influencersModel';
 import { FileService } from 'src/app/core/services/file.service';
 import { SelectInfluencerDialogComponent } from '../select-influencer-dialog/select-influencer-dialog.component';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { TaskModel } from 'src/app/core/interfaces/task.Model';
 import { ToastrService } from 'ngx-toastr';
 import { Department } from 'src/app/core/constant/values.constants';
@@ -13,9 +17,7 @@ import { Department } from 'src/app/core/constant/values.constants';
   templateUrl: './main-table.component.html',
   styleUrls: ['./main-table.component.scss'],
 })
-
 export class MainTableComponent {
-
   @Input()
   task: TaskModel = this.source.task;
 
@@ -23,7 +25,7 @@ export class MainTableComponent {
   userId: number = this.source.userId;
 
   @Input()
-  budgetSheetId : number = this.source.budgetSheetId;
+  budgetSheetId: number = this.source.budgetSheetId;
 
   @Input()
   brief: any = this.source.brief;
@@ -32,7 +34,7 @@ export class MainTableComponent {
   id: number = this.source.id;
 
   @Input()
-  assignedUser_id : any = this.source.assignedUser_id;
+  assignedUser_id: any = this.source.assignedUser_id;
 
   @Output()
   childEvent = new EventEmitter<string>();
@@ -52,7 +54,7 @@ export class MainTableComponent {
   ];
   currencies = ['SAR', 'AED'];
 
-  fileToUpload !: File
+  fileToUpload!: File;
   progress = 0;
 
   constructor(
@@ -61,14 +63,12 @@ export class MainTableComponent {
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<MainTableComponent>,
     private toastrService: ToastrService,
-    @Inject(MAT_DIALOG_DATA) public source: any,
+    @Inject(MAT_DIALOG_DATA) public source: any
   ) {
     this.form = this.formBuilder.group({
       rows: this.formBuilder.array([]),
-      fileName : ['', Validators.required],
+      fileName: ['', Validators.required],
     });
-
-
   }
 
   public submitTable(): void {
@@ -77,18 +77,17 @@ export class MainTableComponent {
       tableData.push(rowGroup);
     });
 
-
     this.fileName = this.form.value.fileName;
 
-    if(this.budgetSheetId != null){
-    this.fileService.deleteBudgetSheetFile(this.budgetSheetId).subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if (this.budgetSheetId != null) {
+      this.fileService.deleteBudgetSheetFile(this.budgetSheetId).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     }
 
     this.fileService
@@ -103,7 +102,9 @@ export class MainTableComponent {
         (data) => {
           console.log(data);
 
-          this.toastrService.success('Excel file created and uploaded successfully!');
+          this.toastrService.success(
+            'Excel file created and uploaded successfully!'
+          );
 
           this.downloadFilexlsx(data.data.id, data.data.fileName);
 
@@ -117,7 +118,9 @@ export class MainTableComponent {
 
   private downloadFilexlsx(id: number, filename: string): void {
     this.fileService.downloadFile(id, filename).subscribe((data: any) => {
-      const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+      const blob = new Blob([data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
     });
@@ -155,6 +158,57 @@ export class MainTableComponent {
         this.addRow(selectedInfluencer);
       }
     });
+  }
+
+  transferedFile(file: File): void {
+    this.fileToUpload = file;
+  }
+
+  public uploadFileXlsx(): void {
+    if (this.fileToUpload) {
+      this.fileService
+        .uploadFile(
+          this.fileToUpload,
+          this.brief?.data.id,
+          this.userId,
+          Department['TALENT']
+        )
+        .subscribe(
+          (data) => {
+            // On successful upload, delete the old budget sheet if exists
+            if (this.budgetSheetId != null) {
+              this.fileService
+                .deleteBudgetSheetFile(this.budgetSheetId)
+                .subscribe(
+                  (deleteData) => {
+                    this.toastrService.success(
+                      'File uploaded and old budget sheet deleted successfully!'
+                    );
+                    // Instead of reloading, consider fetching data or updating the component's state as required
+                    // For the sake of this example, I'll leave it commented out:
+                    // this.fetchData(); or this.updateState();
+                    this.dialogRef.close(true);
+                  },
+                  (deleteError) => {
+                    this.toastrService.error(
+                      'Error deleting old budget sheet!'
+                    );
+                    console.error(deleteError);
+                  }
+                );
+            } else {
+              this.toastrService.success('File uploaded successfully!');
+              // Similar as above, consider updating state or fetching data
+              // this.fetchData(); or this.updateState();
+              this.dialogRef.close(true);
+            }
+          },
+          (uploadError) => {
+            this.toastrService.error('File upload error!');
+            console.error(uploadError);
+          }
+        );
+    }
   }
 
   public updateFields(i: number, event: any): void {
@@ -232,49 +286,4 @@ export class MainTableComponent {
       }
     }
   }
-
-
-  transferedFile(file: File): void {
-    this.fileToUpload = file;
-
-  }
-
-  public uploadFileXlsx(): void {
-    if (this.fileToUpload) {
-
-      this.fileService.uploadFile(this.fileToUpload, this.brief?.data.id, this.userId, Department['TALENT'])
-        .subscribe(
-          (data) => {
-            // On successful upload, delete the old budget sheet if exists
-            if (this.budgetSheetId != null) {
-              this.fileService.deleteBudgetSheetFile(this.budgetSheetId)
-                .subscribe(
-                  (deleteData) => {
-                    this.toastrService.success('File uploaded and old budget sheet deleted successfully!');
-                    // Instead of reloading, consider fetching data or updating the component's state as required
-                    // For the sake of this example, I'll leave it commented out:
-                    // this.fetchData(); or this.updateState();
-                    this.dialogRef.close(true);
-
-                  },
-                  (deleteError) => {
-                    this.toastrService.error('Error deleting old budget sheet!');
-                    console.error(deleteError);
-                  }
-                );
-            } else {
-              this.toastrService.success('File uploaded successfully!');
-              // Similar as above, consider updating state or fetching data
-              // this.fetchData(); or this.updateState();
-              this.dialogRef.close(true);
-            }
-          },
-          (uploadError) => {
-            this.toastrService.error('File upload error!');
-            console.error(uploadError);
-          }
-        );
-    }
-    }
-
 }

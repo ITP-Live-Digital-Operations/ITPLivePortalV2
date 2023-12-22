@@ -24,6 +24,22 @@ module.exports = {
           key: 'id'
         }
       },
+      brandId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'brand',
+          key: 'id'
+        }
+      },
+      campaignId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references : {
+          model: 'campaigns',
+          key: 'id'
+        }
+      },
       CampaignName: {
         type: DataTypes.STRING(255),
         defaultValue: null
@@ -185,8 +201,8 @@ module.exports = {
           onDelete: 'CASCADE'
         }
       },
-
-      PresentationId : {
+  
+      PresentationId  : {
         type: DataTypes.INTEGER,
         defaultValue: null,
         references: {
@@ -195,7 +211,7 @@ module.exports = {
           onDelete: 'CASCADE'
         }
       },
-
+  
       PdfId : {
         type: DataTypes.INTEGER,
         defaultValue: null,
@@ -204,6 +220,10 @@ module.exports = {
           key: 'id',
           onDelete: 'CASCADE'
         }
+      },
+      ItpDepartment: {
+        type: DataTypes.STRING(255),
+        allowNull: false
       },
       assigned: {
         type: DataTypes.BOOLEAN,
@@ -236,14 +256,18 @@ module.exports = {
       },
       Priority: {
         type: DataTypes.INTEGER,
-        defaultValue: 10
+        defaultValue: 100
       },
       ResultsViewed: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
       },
-      
+      signedOffByClient: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },  
       created_at: {
         allowNull: false,
         type: DataTypes.DATE

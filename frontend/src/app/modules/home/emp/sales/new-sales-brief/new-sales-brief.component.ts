@@ -63,6 +63,7 @@ export class NewSalesBriefComponent {
       basicInfo: this.formBuilder.group({
         Agency: ['', [Validators.required]],
         clientId: ['', [Validators.required]],
+        brandId: [''],
         CampaignName: ['', [Validators.required]],
         CampaignOverview: [''],
         CampaignObjective: [''],
@@ -160,7 +161,10 @@ export class NewSalesBriefComponent {
     formValues.CreatedbyID = this.userService.getID();
     formValues.Ready = false;
     formValues.ResultsViewed = false;
-
+    if(formValues.brandId === ''){
+      formValues.brandId = null;
+    }
+    console.log({...formValues})
     this.salesService.createBrief({ ...formValues }).subscribe((brief) => {
       this.newBrief = brief;
 

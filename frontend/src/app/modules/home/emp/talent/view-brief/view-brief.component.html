@@ -5,7 +5,7 @@
         [assignedUser]="assignedUser"
         [salesperson]="salesperson"
         [task]="task"
-        [lastFeedback]="lastFeedback"
+        [signedOffByClient]="signedOffByClient"
         [brief]="brief"
       ></app-person-info>
     </div>
@@ -41,7 +41,7 @@
       <app-assign-task [brief]="brief" [brief_id]="brief_id"></app-assign-task>
     </div>
 
-    <app-all-info [brief]="brief"></app-all-info>
+    <app-all-info [brief]="allinfoBrief"></app-all-info>
 
     <app-sheets-brief
       (childEvent)="reloadParent($event)"
