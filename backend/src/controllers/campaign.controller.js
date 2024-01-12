@@ -5,8 +5,7 @@ const CampaignFile = models.CampaignFiles;
 const SalesBrief = models.SalesBrief;
 const path = require("path");
 
-const { campaignUpload } = require('../../config/multerConfig');
-
+const { campaignUpload } = require("../../config/multerConfig");
 
 exports.getCampaigns = (req, res) => {
   Campaign.findAll({
@@ -47,6 +46,13 @@ exports.getCampaignById = (req, res) => {
       {
         model: models.CampaignFiles,
         as: "campaignFiles",
+        include: [
+          {
+            model: models.User,
+            as: "user",
+            attributes: ["id", "name"],
+          },
+        ],
       },
       {
         model: models.Influencer,
@@ -86,21 +92,22 @@ exports.addCampaign = (req, res) => {
   Campaign.create(campaign)
     .then((data) => {
       SalesBrief.findByPk(req.body.briefId).then((brief) => {
-        brief.update({ campaignId: data.id }).then(() => {
-          res.status(201).send({
-            campaign: data,
-            status: "success",
-            message: "Campaign created successfully",
+        brief
+          .update({ campaignId: data.id })
+          .then(() => {
+            res.status(201).send({
+              campaign: data,
+              status: "success",
+              message: "Campaign created successfully",
+            });
+          })
+          .catch((err) => {
+            res.status(500).send({
+              status: "error",
+              message: err.message,
+            });
           });
-        })
-        .catch((err) => {
-          res.status(500).send({
-            status: "error",
-            message: err.message,
-          });
-        });
       });
-      
     })
     .catch((err) => {
       res.status(500).send({
@@ -318,6 +325,7 @@ exports.uploadCampaignFile = (req, res) => {
         fileName: file.filename,
         fileType: fileType,
         fileSize: file.size,
+        mimeType: file.mimetype,
         uploadedBy: uploadedBy,
       };
 
@@ -338,24 +346,29 @@ exports.uploadCampaignFile = (req, res) => {
   });
 };
 
-
 exports.downloadCampaignFile = (req, res) => {
   const id = req.params.id;
   CampaignFile.findByPk(id)
-    .then((file) => {
-      if (!file) {
+    .then((campaignFile) => {
+      if (!campaignFile) {
         res.status(404).send({
           status: "error",
           message: "File not found",
         });
       } else {
-        const file = path.resolve(__dirname, "../../uploads/campaignFiles/" + file.fileName);
-        const encodedFilename = encodeURIComponent(file.fileName);
-        res.setHeader(
-          "Content-disposition",
-          "attachment; filename=" + encodedFilename
+        const filePath = path.resolve(
+          __dirname,
+          "../../uploads/campaignUploads/",
+          campaignFile.fileName
         );
-        res.sendFile(file);
+        console.log(`Downloading file: ${campaignFile.fileName}`);
+        const encodedFilename = encodeURIComponent(campaignFile.fileName);
+        res.setHeader(
+          "Content-Disposition",
+          "attachment; filename*=UTF-8''" + encodedFilename
+        );
+
+        res.sendFile(filePath);
       }
     })
     .catch((err) => {
@@ -364,4 +377,4 @@ exports.downloadCampaignFile = (req, res) => {
         message: err.message,
       });
     });
-  };
+};

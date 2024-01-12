@@ -47,7 +47,8 @@ import { AddInfluecersToCampaignComponent } from './add-influecers-to-campaign/a
   exports: [
     AllInfoComponent,
     PersonInfoComponent,
-    RoundHistoryComponent
+    RoundHistoryComponent,
+    AddInfluecersToCampaignComponent
   ]
 })
 export class ViewBriefModule {}

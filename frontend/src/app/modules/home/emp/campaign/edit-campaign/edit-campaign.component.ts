@@ -8,6 +8,7 @@ import { ClientService } from 'src/app/core/services/client.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { CampaignModel } from 'src/app/core/interfaces/campaign.model';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { AddInfluecersToCampaignComponent } from '../../talent/view-brief/add-influecers-to-campaign/add-influecers-to-campaign.component';
 
 @Component({
   selector: 'app-edit-campaign',
@@ -17,6 +18,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 export class EditCampaignComponent {
   protected newCampaignForm: FormGroup;
   private userId = this.userService.getID();
+  protected campaignId!: number;
   protected clients: any;
   protected campaign!: CampaignModel;
 
@@ -60,6 +62,19 @@ export class EditCampaignComponent {
         }
       });
 
+  }
+
+  addInfluencers() {
+    this.campaignId = this.campaign?.id;
+
+    const dialogRef = this.dialog?.open(AddInfluecersToCampaignComponent, {
+      width: '50%',
+      height: '90%',
+      data: {campaignId: this.campaignId},
+    });
+    dialogRef.afterClosed().subscribe(() => {
+        window.location.reload();
+    });
   }
 
 

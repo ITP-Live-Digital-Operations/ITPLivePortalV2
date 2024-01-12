@@ -2,8 +2,14 @@
 <h2>Client: {{this?.campaign?.client?.name}}</h2>
 <h2>Client Industry: {{this?.campaign?.client?.industry}}</h2>
 <br>
-<h2> Files </h2>
-<app-campaign-files></app-campaign-files>
+<div class="files-header">
+  <h2> Files </h2>
+  <button mat-icon-button (click)="toggleTableVisibility()" class="hide-show-button">
+    <mat-icon>{{ isTableVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+  </button>
+</div>
+
+<app-campaign-files [campaign]="campaign" *ngIf="isTableVisible"></app-campaign-files>
 
 
 <div class="logs-button">

@@ -26,4 +26,7 @@ router.route('/getCampaignInfluencers/:id')
 
 router.route('/uploadCampaignFile')
     .post(asyncHandler(campaignController.uploadCampaignFile));
+
+router.route('/downloadCampaignFile/:id')
+    .get(asyncHandler(campaignController.downloadCampaignFile));
 module.exports = router;

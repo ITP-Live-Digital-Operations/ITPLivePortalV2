@@ -17,6 +17,12 @@ export class CampaignDetailsComponent {
   protected campaign!: CampaignModel;
   public dataSource: InfluencerStatistic[] = [];
 
+  isTableVisible: boolean = true; // Initially, the table is visible
+
+  toggleTableVisibility(): void {
+    this.isTableVisible = !this.isTableVisible;
+  }
+
   protected displayedColumns: string[] = [
     'name',
     'platform',

@@ -1,1 +1,65 @@
-<p>campaign-files works!</p>
+
+
+<div class="mat-elevation-z8" *ngIf="this.campaignFiles">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- File Name Column -->
+    <!-- File Name Column -->
+    <ng-container matColumnDef="fileName">
+      <th mat-header-cell *matHeaderCellDef> File Name </th>
+      <td mat-cell *matCellDef="let element" [matTooltip]="element.fileName"> {{truncateFilename(element.fileName)}} </td>
+    </ng-container>
+
+    <!-- File Type Column -->
+    <ng-container matColumnDef="fileType">
+      <th mat-header-cell *matHeaderCellDef> File Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.fileType}} </td>
+    </ng-container>
+
+    <!-- File Size Column -->
+    <ng-container matColumnDef="fileSizeMB">
+      <th mat-header-cell *matHeaderCellDef> File Size (MB) </th>
+      <td mat-cell *matCellDef="let element"> {{convertToMB(element.fileSize) | number:'1.2-2'}} </td>
+    </ng-container>
+
+    <!-- Uploaded By Column -->
+    <ng-container matColumnDef="uploadedBy">
+      <th mat-header-cell *matHeaderCellDef> Uploaded By </th>
+      <td mat-cell *matCellDef="let element"> {{element.user.name}} </td>
+    </ng-container>
+
+    <!-- Created At Column -->
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef> Created At </th>
+      <td mat-cell *matCellDef="let element"> {{element.createdAt | date:'medium'}} </td>
+    </ng-container>
+
+    <!-- Updated At Column -->
+    <ng-container matColumnDef="updatedAt">
+      <th mat-header-cell *matHeaderCellDef> Updated At </th>
+      <td mat-cell *matCellDef="let element"> {{element.updatedAt | date:'medium'}} </td>
+    </ng-container>
+
+    <!-- Campaign ID Column -->
+    <ng-container matColumnDef="campaignId">
+      <th mat-header-cell *matHeaderCellDef> Campaign ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.campaignId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="download">
+      <th mat-header-cell *matHeaderCellDef> Download </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon (click)="downloadFile(element.id, element)">download</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

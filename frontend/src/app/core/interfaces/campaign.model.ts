@@ -9,7 +9,7 @@ export interface CampaignModel {
   Influencers: InfluencerModel[];
   createdAt: Date;
   updatedAt: Date;
-  campaignFiles: any[];
+  campaignFiles: campaignFileModel[];
   createdBy: number;
   salesBrief: any;
 }
@@ -30,5 +30,17 @@ export interface uploadCampaignFileModel{
   fileType: string;
   fileSize: number;
   uploadedBy: number;
+}
+
+export interface campaignFileModel{
+  id: number;
+  fileName: string;
+  fileType: string;
+  fileSize: number;
+  mimeType: string;
+  uploadedBy: string;
+  createdAt: Date;
+  updatedAt: Date;
+  campaignId: number;
 }
 

@@ -11,7 +11,7 @@ import { ViewCampaignsComponent } from './view-campaigns/view-campaigns.componen
 import { CampaignDetailsComponent } from './view-campaigns/campaign-details/campaign-details.component';
 import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
 import { CampaignFilesComponent } from './view-campaigns/campaign-details/campaign-files/campaign-files.component';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { CampaignFilesComponent } from './view-campaigns/campaign-details/campai
     MatDialogModule,
     ViewBriefModule,
     SharingModule,
+    MatTooltipModule
   ]
 })
 export class CampaignModule { }

@@ -1,6 +1,40 @@
-h1{ color: #FFF}
+h1 {
+  color: #fff;
+}
+.files-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
 
+.hide-show-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 
+.hide-show-button mat-icon {
+  font-size: 24px;
+}
+.hide-show-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #4789a1;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 3px 10px 3px 5px; /* Adjusted padding values */
+
+  &:hover {
+    background-color: #4789a1;
+  }
+
+  margin-bottom: 1%;
+}
 
 .logs-button,
 .filter-container {
@@ -8,11 +42,12 @@ h1{ color: #FFF}
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 1%;
+  margin-top: 2%;
   width: 100%;
 
- h2{
-  color: #4789A1 !important;
- }
+  h2 {
+    color: #4789a1 !important;
+  }
 
   .filter {
     flex-grow: 1;
@@ -27,12 +62,12 @@ h1{ color: #FFF}
     padding: 10px 15px;
     background-color: transparent;
     color: white;
-    border: 1px solid #4789A1;
+    border: 1px solid #4789a1;
     border-radius: 4px;
     cursor: pointer;
 
     &:hover {
-      background-color: #4789A1;
+      background-color: #4789a1;
     }
   }
 }

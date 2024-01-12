@@ -15,6 +15,7 @@ import { RoundHistoryComponent } from './view-brief/round-history/round-history.
 import { ViewLogComponent } from './influencer-logs/view-log/view-log.component';
 import { EditItemLogComponent } from './influencer-logs/edit-item-log/edit-item-log.component';
 import { EditPackageLogComponent } from './influencer-logs/edit-package-log/edit-package-log.component';
+import { AddInfluecersToCampaignComponent } from './view-brief/add-influecers-to-campaign/add-influecers-to-campaign.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { EditPackageLogComponent } from './influencer-logs/edit-package-log/edit
     ViewLogComponent,
     EditItemLogComponent,
     EditPackageLogComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { EditPackageLogComponent } from './influencer-logs/edit-package-log/edit
     MatExpansionModule
   ],
   exports: [
+
   ]
 })
 export class TalentModule {}

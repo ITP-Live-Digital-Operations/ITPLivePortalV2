@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    mimeType: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     uploadedBy: {
       type: DataTypes.INTEGER,
       allowNull: false,
