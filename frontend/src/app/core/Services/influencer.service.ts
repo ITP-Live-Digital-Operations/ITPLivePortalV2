@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { InfluencerIdsAndNames, InfluencerModel } from '../interfaces/influencersModel';
+import {
+  InfluencerIdsAndNames,
+  InfluencerModel,
+} from '../interfaces/influencersModel';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
@@ -115,7 +118,9 @@ export class InfluencerService {
   }
 
   getInfluencerIdsandNames(): Observable<InfluencerIdsAndNames[]> {
-    return this.http.get<InfluencerIdsAndNames[]>(`${this.influencerApiURL}/getInfluencerIdsandNames`);
+    return this.http.get<InfluencerIdsAndNames[]>(
+      `${this.influencerApiURL}/getInfluencerIdsandNames`
+    );
   }
 
   addStatsToInfluencer(inputdata: any, id: any) {
@@ -125,10 +130,19 @@ export class InfluencerService {
     );
   }
 
-  initiateInfluencerCampaignStats(inputdata: any) {
-    return this.http.post(
-      `${this.influencerApiURL}/initiateInfluencerCampaignStats`,
-      inputdata
-    );
+  addInfluencerStats(
+    campaignId: number,
+    influencerId: number,
+    poc: string,
+    platformDeliverable: string,
+    stats: any
+  ) {
+    return this.http.post(`${this.influencerApiURL}/addInfluencerStats`, {
+      campaignId: campaignId,
+      influencerId: influencerId,
+      platformDeliverable: platformDeliverable,
+      poc: poc,
+      stats: stats,
+    });
   }
 }

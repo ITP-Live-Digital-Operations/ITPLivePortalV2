@@ -1,0 +1,48 @@
+<div class="form-container" *ngIf="schema">
+  <h2>{{ platformDeliverable }}</h2>
+
+  <form [formGroup]="form">
+    <table class="my-table">
+      <thead>
+        <tr>
+          <th
+            *ngIf="
+              platformDeliverable == 'Snapchat Stories' ||
+                platformDeliverable == 'Instagram Stories';
+              else elseBlock
+            "
+          >
+            Frame
+          </th>
+          <ng-template #elseBlock>
+            <th>Set</th>
+          </ng-template>
+
+          <th *ngFor="let item of labels">{{ item }}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr formArrayName="rows" *ngFor="let row of rows.controls; index as i">
+          <td style="color: #fff; width: 1%">{{ i + 1 }}</td>
+          <td [formGroupName]="i" *ngFor="let item of keysAndTypes">
+            <input
+              *ngIf="item.key != 'isEdit'"
+              formControlName="{{ item.key }}"
+              type="{{ item.type }}"
+              class="no-border"
+            />
+          </td>
+          <td>
+            <button mat-raised-button (click)="deleteRow(i)" class="btn-red">
+              Delete Row
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn" (click)="addRow()">Add Row</button>
+  </form>
+
+  <button class="btn-green" (click)="save()">Add Statistics</button>
+</div>

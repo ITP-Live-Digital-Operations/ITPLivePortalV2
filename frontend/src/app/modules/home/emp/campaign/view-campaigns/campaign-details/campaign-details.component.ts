@@ -5,6 +5,7 @@ import { CampaignModel } from 'src/app/core/interfaces/campaign.model';
 import { CampaignService } from 'src/app/core/services/campaign.service';
 import { InfluencerIdComponent } from 'src/app/modules/home/sharing/influencer-id/influencer-id.component';
 import { EditCampaignComponent } from '../../edit-campaign/edit-campaign.component';
+import { CampaignResultsComponent } from 'src/app/modules/home/emp/campaign/view-campaigns/campaign-details/campaign-results/campaign-results.component';
 
 
 @Component({
@@ -137,9 +138,34 @@ export class CampaignDetailsComponent {
       this.loadCampaignData();
     });
   }
+
+  addIfnluencerResults() {
+    const influencers = this.campaign.Influencers.map(influencer => {
+      return {
+        id: influencer.id,
+        Name: influencer.Name
+      };
+    });
+
+    this.dialog?.open(CampaignResultsComponent, {
+      width: '100%',
+      height: '95%',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        campaignId: this.campaign.id,
+        influencers: influencers,
+      },
+    });
+
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.loadCampaignData();
+    });
+  }
+
 }
 
-interface InfluencerStatistic {
+export interface InfluencerStatistic {
   influencerId: number;
   showName: boolean;
   name: string;

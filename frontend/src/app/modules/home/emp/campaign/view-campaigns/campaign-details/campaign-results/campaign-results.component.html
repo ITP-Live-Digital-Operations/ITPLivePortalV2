@@ -1,0 +1,168 @@
+<div class="campaign-details">
+  <mat-form-field>
+    <mat-label style="color: white">Select POC</mat-label>
+    <mat-select [(ngModel)]="poc" style="color: white">
+      <mat-option *ngFor="let poc of POCS" [value]="poc">{{ poc }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label style="color: white">Select Influencer</mat-label>
+    <mat-select [(ngModel)]="selectedInfluencer" style="color: white">
+      <mat-option
+        *ngFor="let influencer of influencers"
+        [value]="influencer.id"
+        >{{ influencer.Name }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="selectedInfluencer">
+    <mat-label style="color: white">Select Platform</mat-label>
+    <mat-select
+      [(ngModel)]="selectedPlatform"
+      (ngModelChange)="onSelectionChange()"
+      style="color: white"
+    >
+      <mat-option *ngFor="let platform of platforms" [value]="platform">{{
+        platform
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="selectedPlatform">
+    <mat-label style="color: white">Select Deliverable</mat-label>
+    <mat-select
+      [(ngModel)]="selectedDeliverable"
+      (ngModelChange)="onSelectionChange()"
+      style="color: white"
+    >
+      <mat-option
+        *ngFor="let deliverable of getDeliverables(selectedPlatform)"
+        [value]="deliverable"
+        >{{ deliverable }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="campaign-details">
+  <div *ngIf="combinedPlatformDeliverable === 'Instagram Stories'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_IG_STORIES"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'Instagram Post'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_POST_REEL"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'Instagram Reel'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_POST_REEL"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'Snapchat Stories'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUNMS_SCHEMA_SC_STORIES"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'YouTube Videos'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_YOUTUBE_VIDEOS_SHORTS"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'YouTube Shorts'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_YOUTUBE_VIDEOS_SHORTS"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'YouTube Stream'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_YOUTUBE_VIDEOS_SHORTS"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'TikTok Video'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_TIKTOK"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'Facebook Post'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_FACEBOOK"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'X Post'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_X"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'Twitch Stream'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_TWITCH"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'VK Post'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_REGULAR_POSTS"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+  <div *ngIf="combinedPlatformDeliverable === 'Telegram Post'">
+    <app-campaign-deliverables
+      [platformDeliverable]="combinedPlatformDeliverable"
+      [schema]="COLUMNS_SCHEMA_REGULAR_POSTS"
+      [campaignId]="campaignId"
+      [influencerId]="selectedInfluencer"
+      [poc]="poc"
+    ></app-campaign-deliverables>
+  </div>
+</div>
+

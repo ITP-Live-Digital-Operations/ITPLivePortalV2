@@ -1,0 +1,29 @@
+.campaign-details{
+  margin: 2%;
+}
+
+.add-stats-btn {
+  margin-left: 2%;
+  background-color: transparent;
+  color: #FFF;
+  border: 2px solid #4789a1;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-stats-btn:hover {
+  background-color: #4789a1;
+  color: #FFF;
+}
+
+.campaign-details{
+  p{
+    color: #FFF;
+  }
+  .stats-table{
+    margin-right: 2%;
+  }
+}

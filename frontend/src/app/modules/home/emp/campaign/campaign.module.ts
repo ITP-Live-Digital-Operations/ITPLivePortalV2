@@ -12,13 +12,19 @@ import { CampaignDetailsComponent } from './view-campaigns/campaign-details/camp
 import { EditCampaignComponent } from './edit-campaign/edit-campaign.component';
 import { CampaignFilesComponent } from './view-campaigns/campaign-details/campaign-files/campaign-files.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CampaignResultsComponent } from './view-campaigns/campaign-details/campaign-results/campaign-results.component';
+import { CampaignDeliverablesComponent } from './view-campaigns/campaign-details/campaign-results/campaign-deliverables/campaign-deliverables.component';
+
 
 @NgModule({
   declarations: [
     ViewCampaignsComponent,
     CampaignDetailsComponent,
     EditCampaignComponent,
-    CampaignFilesComponent
+    CampaignFilesComponent,
+    CampaignResultsComponent,
+    CampaignDeliverablesComponent,
+
   ],
   imports: [
     CommonModule,

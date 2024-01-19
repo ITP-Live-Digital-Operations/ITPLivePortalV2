@@ -58,6 +58,6 @@ router.route('/getCities')
 router.route('/getInfluencerStatisticsById/:id')
     .get(asyncHandler(influencerController.getInfluencerStatisticsById));
 
-router.route('/initiateInfluencerCampaignStats')
-    .post(asyncHandler(influencerController.initiateInfluencerCampaignStats));
+router.route('/addInfluencerStats')
+    .post(asyncHandler(influencerController.addInfluencerStats));
 module.exports = router;

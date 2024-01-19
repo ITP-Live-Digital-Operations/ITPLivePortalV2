@@ -84,7 +84,7 @@ export class CampaignService {
     });
   }
 
-  private getFilenameFromContentDisposition(
+ /*  private getFilenameFromContentDisposition(
     contentDisposition: string | null
   ): string | null {
     if (!contentDisposition) return null;
@@ -105,5 +105,5 @@ export class CampaignService {
     anchor.download = filename;
     anchor.click();
     window.URL.revokeObjectURL(url);
-  }
+  } */
 }

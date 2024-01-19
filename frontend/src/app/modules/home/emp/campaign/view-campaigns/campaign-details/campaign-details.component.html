@@ -1,22 +1,26 @@
-<h1>Campaign Name: {{this?.campaign?.campaignName}}</h1>
-<h2>Client: {{this?.campaign?.client?.name}}</h2>
-<h2>Client Industry: {{this?.campaign?.client?.industry}}</h2>
-<br>
+<h1>Campaign Name: {{ this?.campaign?.campaignName }}</h1>
+<h2>Client: {{ this?.campaign?.client?.name }}</h2>
+<h2>Client Industry: {{ this?.campaign?.client?.industry }}</h2>
+<br />
 <div class="files-header">
-  <h2> Files </h2>
-  <button mat-icon-button (click)="toggleTableVisibility()" class="hide-show-button">
-    <mat-icon>{{ isTableVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
+  <h2>Files</h2>
+  <button
+    mat-icon-button
+    (click)="toggleTableVisibility()"
+    class="hide-show-button"
+  >
+    <mat-icon>{{ isTableVisible ? "visibility_off" : "visibility" }}</mat-icon>
   </button>
 </div>
 
-<app-campaign-files [campaign]="campaign" *ngIf="isTableVisible"></app-campaign-files>
-
+<app-campaign-files
+  [campaign]="campaign"
+  *ngIf="isTableVisible"
+></app-campaign-files>
 
 <div class="logs-button">
-
-
-<h2> Influencers' Results</h2>
-<button
+  <h2>Influencers' Results</h2>
+  <button
     type="button"
     style="margin-left: 2%"
     (click)="redirectToNewCampaign()"
@@ -26,63 +30,74 @@
 </div>
 
 <div class="table-container" *ngIf="dataSource && dataSource.length > 0">
-    <table mat-table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"
-        (click)="viewInfluencer(element.influencerId)"> {{ element.showName ? element.name : '' }} </td>
-      </ng-container>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        (click)="viewInfluencer(element.influencerId)"
+      >
+        {{ element.showName ? element.name : "" }}
+      </td>
+    </ng-container>
 
-      <ng-container matColumnDef="platform">
-        <th mat-header-cell *matHeaderCellDef> Platform </th>
-        <td mat-cell *matCellDef="let element"> {{element.platform}} </td>
-      </ng-container>
+    <ng-container matColumnDef="platform">
+      <th mat-header-cell *matHeaderCellDef>Platform</th>
+      <td mat-cell *matCellDef="let element">{{ element.platform }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="deliverable">
-        <th mat-header-cell *matHeaderCellDef> Deliverable </th>
-        <td mat-cell *matCellDef="let element"> {{element.deliverable}} </td>
-      </ng-container>
+    <ng-container matColumnDef="deliverable">
+      <th mat-header-cell *matHeaderCellDef>Deliverable</th>
+      <td mat-cell *matCellDef="let element">{{ element.deliverable }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="followers">
-        <th mat-header-cell *matHeaderCellDef> Followers </th>
-        <td mat-cell *matCellDef="let element"> {{element.followers}} </td>
-      </ng-container>
+    <ng-container matColumnDef="followers">
+      <th mat-header-cell *matHeaderCellDef>Followers</th>
+      <td mat-cell *matCellDef="let element">{{ element.followers }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="reach">
-        <th mat-header-cell *matHeaderCellDef> Reach </th>
-        <td mat-cell *matCellDef="let element"> {{element.reach}} </td>
-      </ng-container>
+    <ng-container matColumnDef="reach">
+      <th mat-header-cell *matHeaderCellDef>Reach</th>
+      <td mat-cell *matCellDef="let element">{{ element.reach }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="impressions">
-        <th mat-header-cell *matHeaderCellDef> Impressions </th>
-        <td mat-cell *matCellDef="let element"> {{element.impressions}} </td>
-      </ng-container>
+    <ng-container matColumnDef="impressions">
+      <th mat-header-cell *matHeaderCellDef>Impressions</th>
+      <td mat-cell *matCellDef="let element">{{ element.impressions }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="interactions">
-        <th mat-header-cell *matHeaderCellDef> Interactions </th>
-        <td mat-cell *matCellDef="let element"> {{element.interactions}} </td>
-      </ng-container>
+    <ng-container matColumnDef="interactions">
+      <th mat-header-cell *matHeaderCellDef>Interactions</th>
+      <td mat-cell *matCellDef="let element">{{ element.interactions }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="clientCost">
-        <th mat-header-cell *matHeaderCellDef> Client Cost </th>
-        <td mat-cell *matCellDef="let element"> {{element.clientCost}} </td>
-      </ng-container>
+    <ng-container matColumnDef="clientCost">
+      <th mat-header-cell *matHeaderCellDef>Client Cost</th>
+      <td mat-cell *matCellDef="let element">{{ element.clientCost }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="influencerCost">
-        <th mat-header-cell *matHeaderCellDef> Influencer Cost </th>
-        <td mat-cell *matCellDef="let element"> {{element.influencerCost}} </td>
-      </ng-container>
+    <ng-container matColumnDef="influencerCost">
+      <th mat-header-cell *matHeaderCellDef>Influencer Cost</th>
+      <td mat-cell *matCellDef="let element">{{ element.influencerCost }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="metric">
-        <th mat-header-cell *matHeaderCellDef> Metric </th>
-        <td mat-cell *matCellDef="let element"> {{element.metric}} </td>
-      </ng-container>
+    <ng-container matColumnDef="metric">
+      <th mat-header-cell *matHeaderCellDef>Metric</th>
+      <td mat-cell *matCellDef="let element">{{ element.metric }}</td>
+    </ng-container>
 
-      <ng-container matColumnDef="year">
-        <th mat-header-cell *matHeaderCellDef> Year </th>
-        <td mat-cell *matCellDef="let element"> {{element.year}} </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef>Year</th>
+      <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>
+
+<div class="logs-button">
+  <button type="button" style="margin-left: 2%" (click)="addIfnluencerResults()">Add Influencer Results</button>
+</div>
+
+<app-campaign-deliverables></app-campaign-deliverables>

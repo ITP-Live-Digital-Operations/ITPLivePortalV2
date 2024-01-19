@@ -1,0 +1,95 @@
+.form-container {
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // subtle shadow for depth
+
+  border-radius: 8px; // rounded corners for the container
+
+  .my-table {
+    width: 100%;
+    margin: 0 auto;
+    table-layout: auto;
+    border-collapse: separate; // allows spacing between rows
+    border-spacing: 0 10px; // vertical spacing between rows
+
+    th, td {
+      padding: 15px 10px;
+      text-align: left;
+
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); // subtle shadow for cells
+      /* border-radius: 4px; // rounded corners for cells */
+    }
+
+    th {
+      background-color: #4789A1;
+      color: white;
+      font-weight: bold;
+      border-bottom: none;
+    }
+
+    td {
+      border: none;
+    }
+
+    input {
+      background-color: #343a40;
+      color: white;
+      border: none;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 5px 10px; // better padding for inputs
+      border-radius: 4px; // rounded corners for inputs
+    }
+
+    .no-border {
+      background: rgb(32, 32, 32);
+      border: 1px solid #ddd;
+    }
+  }
+
+  .btn{
+    padding: 10px 15px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #4789a1;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #4789a1;
+    }
+  }
+
+  .btn-red {
+    padding: 10px 15px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #D72638;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap; // Prevent text wrapping
+    min-width: 100px; // Optional, adjust as needed
+    overflow: hidden; // Optional, hides overflow text
+    text-overflow: ellipsis; // Optional, adds ellipsis for overflow text
+
+    &:hover {
+      background-color: #D72638;
+    }
+  }
+
+
+  .btn-green{
+    margin-top: 2%;
+    padding: 10px 15px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #B4DC7F;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #B4DC7F;
+    }
+  }
+}
