@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, DataTypes) {
-    await queryInterface.createTable('influencerCampaignMetrics', {
+    await queryInterface.createTable('influencercampaignmetrics', {
       id : {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -52,6 +52,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('influencerCampaignMetrics');
+    await queryInterface.dropTable('influencercampaignmetrics');
   }
 };

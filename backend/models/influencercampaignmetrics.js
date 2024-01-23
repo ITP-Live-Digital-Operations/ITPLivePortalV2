@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    tableName : 'influencerCampaignMetrics',
+    tableName : 'influencercampaignmetrics',
     modelName: 'influencerCampaignMetrics',
   });
   return influencerCampaignMetrics;
