@@ -30,13 +30,10 @@ module.exports = {
       profitOfMargin: {
         type: DataTypes.FLOAT,
       },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-      },
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
       },
     });
   },
