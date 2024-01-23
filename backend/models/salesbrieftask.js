@@ -20,14 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    taskId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    salesBriefId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     
   }, {
     sequelize,

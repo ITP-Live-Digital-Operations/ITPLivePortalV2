@@ -1,4 +1,5 @@
 export interface InfluencerStatisticsModel{
+  engagementRate: number;
   id: number;
   platform: string;
   deliverable: string;

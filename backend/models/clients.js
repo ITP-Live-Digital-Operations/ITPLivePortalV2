@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         as: 'user',
         onDelete: 'CASCADE'
       })
+
+      Clients.hasOne(models.clientMetrics, {
+        foreignKey: 'clientId',
+        as: 'clientMetrics',
+        onDelete: 'CASCADE'
+      })
     }
   }
   Clients.init({

@@ -9,19 +9,11 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      taskId: {
-        type: DataTypes.NUMBER
-      },
-      salesBriefId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
       createdAt: {
-        allowNull: false,
         type: DataTypes.DATE
       },
       updatedAt: {
-        allowNull: false,
+        
         type: DataTypes.DATE
       }
     });

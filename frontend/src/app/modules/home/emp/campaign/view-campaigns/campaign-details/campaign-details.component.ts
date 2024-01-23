@@ -34,7 +34,7 @@ export class CampaignDetailsComponent {
     'interactions',
     'clientCost',
     'influencerCost',
-    'metric',
+    'engagementRate',
     'year',
   ];
   constructor(
@@ -80,7 +80,7 @@ export class CampaignDetailsComponent {
                 interactions: 0,
                 clientCost: 0,
                 influencerCost: 0,
-                metric: '',
+                engagementRate: 0.0,
                 year: 0,
               });
             }
@@ -98,7 +98,7 @@ export class CampaignDetailsComponent {
                 interactions: stat.interactions,
                 clientCost: stat.clientCost,
                 influencerCost: stat.influencerCost,
-                metric: stat.metric,
+                engagementRate: stat.engagementRate,
                 year: stat.year,
               });
               isFirstStatistic = false;
@@ -177,6 +177,6 @@ export interface InfluencerStatistic {
   interactions: number;
   clientCost: number; // Assuming clientCost is a string
   influencerCost: number; // Assuming influencerCost is a string
-  metric: string;
   year: number;
+  engagementRate: number;
 }
