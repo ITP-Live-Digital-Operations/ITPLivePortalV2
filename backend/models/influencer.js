@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "influencerId",
         as: "influencerStatistics",
       });
+      Influencer.hasOne(models.influencerMetrics, {
+        foreignKey: "influencerId",
+        as: "influencerMetrics",
+      });
     }
   }
   Influencer.init(

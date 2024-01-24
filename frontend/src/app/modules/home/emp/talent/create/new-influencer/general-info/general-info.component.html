@@ -186,7 +186,7 @@
       <mat-form-field >
         <mat-label>Nationality</mat-label>
         <mat-select formControlName="Nationality">
-          <mat-option *ngFor="let country of nationalities" [value]="country">{{
+          <mat-option *ngFor="let country of countries" [value]="country">{{
             country
           }}</mat-option>
         </mat-select>
@@ -203,7 +203,7 @@
       <mat-form-field  *ngIf="isCelebrity">
         <mat-label>Second Nationality</mat-label>
         <mat-select formControlName="SecondNationality">
-          <mat-option *ngFor="let country of nationalities" [value]="country">{{
+          <mat-option *ngFor="let country of countries" [value]="country">{{
             country
           }}</mat-option>
         </mat-select>

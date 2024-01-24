@@ -48,11 +48,21 @@ export interface InfluencerModel
   influencerRating : Array<String>;
   itpAverageRating : number;
   influencerStatistics: InfluencerStatisticsModel[];
+  influencerMetrics: influencermetrics;
  }
 
 export interface InfluencerIdsAndNames{
   id: number;
   name: string;
+}
+
+export interface influencermetrics{
+  id: number,
+  CPE: number,
+  CPM: number,
+  influencerId: number,
+  influencerName: string,
+  marginOfProfit: number,
 }
 
 

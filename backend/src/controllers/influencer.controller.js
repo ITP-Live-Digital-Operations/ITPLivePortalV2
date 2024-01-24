@@ -5,6 +5,7 @@ const Influencer = models.Influencer;
 const InfluencerRating = models.InfluencerRating;
 const User = models.User;
 const InfluencerStatistics = models.InfluencerStatistics;
+const InfluencerMetrics = models.influencerMetrics;
 
 exports.createInfluencer = (req, res) => {
   const influencer = req.body;
@@ -23,7 +24,9 @@ exports.createInfluencer = (req, res) => {
 };
 
 exports.getInfluencers = (req, res) => {
-  Influencer.findAll({ where: { Status: "Active" } })
+  Influencer.findAll({ where: { Status: "Active" },
+  include: [{ model: InfluencerMetrics, as: "influencerMetrics" }],
+})
     .then((data) => {
       res.status(200).send(data);
     })
@@ -299,6 +302,7 @@ exports.getAllInfluencersWithAverageRating = (req, res) => {
           "campaignPerformance",
         ],
       },
+      { model: InfluencerMetrics, as: "influencerMetrics" },
     ],
   })
     .then((data) => {

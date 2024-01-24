@@ -28,15 +28,6 @@ export class InfluencersComponent {
   public nationalities: string[] = [];
   public cities: string[] = [];
 
-  platforms: any[] = [
-    'Instagram',
-    'Tiktok',
-    'Snapchat',
-    'Twitter',
-    'Facebook',
-    'Youtube',
-  ];
-
   filterCriteria: any = {
     search: '',
     gender: '',
@@ -54,18 +45,17 @@ export class InfluencersComponent {
     'SnapchatFollowers',
     'TwitterFollowers',
     'FacebookFollowers',
-    'CountryLocation',
-    'MainVertical',
+    'CPE',
+    'CPM',
+    'marginOfProfit',
     'Action',
   ];
-
-  public platform: string = 'Instagram';
 
   public userRole = this.userService.getRole();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   @ViewChild(MatTable) table!: MatTable<any>;
 
@@ -79,17 +69,9 @@ export class InfluencersComponent {
 
   ngOnInit(): void {
     this.getInfluencers();
-    this.getGenders();
-    this.getLocations();
-    this.getVerticals();
-    this.getNationalities();
-    this.getCities();
   }
 
   ngAfterViewInit() {
-    if (this.sort && this.dataSource) {
-      this.dataSource.sort = this.sort;
-    }
     this.extractColumnData();
   }
 
@@ -105,64 +87,43 @@ export class InfluencersComponent {
     }
   }
 
-  private getGenders(): void {
-    this.influencerService.getGenders().subscribe((response: any) => {
-      this.genders = response
-        .map((obj: { genders: any }) => obj.genders)
-        .filter((str: string) => str !== '')
-        .sort();
-    });
-  }
-
-  private getLocations(): void {
-    this.influencerService.getLocations().subscribe((response: any) => {
-      this.locations = response
-        .map((obj: { locations: any }) => obj.locations)
-        .filter((str: string) => str !== '')
-        .sort();
-    });
-  }
-
-  private getVerticals(): void {
-    this.influencerService.getVerticals().subscribe((response: any) => {
-      this.verticals = response
-        .map((obj: { verticals: any }) => obj.verticals)
-        .filter((str: string) => str !== '')
-        .sort();
-    });
-  }
-
-  private getNationalities(): void {
-    this.influencerService.getNationalities().subscribe((response: any) => {
-      this.nationalities = response
-        .map((obj: { nationalities: any }) => obj.nationalities)
-        .filter((str: string) => str !== '')
-        .sort();
-    });
-  }
-
-  private getCities(): void {
-    this.influencerService.getCities().subscribe((response: any) => {
-      this.cities = response
-        .map((obj: { cities: any }) => obj.cities)
-        .filter((str: string) => str && str !== '')
-        .sort();
-    });
-  }
-
   private getInfluencers(): void {
     this.influencerService
       .getInfluencersWithRatings()
       .subscribe((response: PaginatedInfluencers) => {
+        console.log(response);
         this.UserDetails = response;
-        this.dataSource = new MatTableDataSource<InfluencerModel>(
+        this.dataSource = new MatTableDataSource<InfluencerModel[]>(
           this.UserDetails.influencers
         );
+        this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+          switch (property) {
+            case 'CPE':
+              let value = item.influencerMetrics.CPE;
+              if (value === null || value === '') {
+                return 1000000;
+              } else {
+                return item.influencerMetrics.CPE;
+              }
+            case 'CPM':
+              let value1 = item.influencerMetrics.CPM;
+              if (value1 === null || value1 === '') {
+                return Number.MAX_VALUE;
+              } else {
+                return item.influencerMetrics.CPM;
+              }
+            case 'marginOfProfit':
+              return item.influencerMetrics.marginOfProfit;
+            default:
+              return item[property];
+          }
+        };
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+
           this.updateFilterDropdowns();
-        }, 0);
+        }, 1);
       });
   }
 
@@ -170,31 +131,51 @@ export class InfluencersComponent {
     const renderedData = this.dataSource.filteredData || [];
 
     this.genders = [
-      ...new Set(renderedData.map((row: { Gender: any }) => row.Gender)),
+      ...new Set(
+        renderedData
+          .map((row: { Gender: string }) => row.Gender)
+          .filter((gender: string) => gender)
+      ),
     ].sort() as string[];
+
     this.locations = [
       ...new Set(
-        renderedData.map((row: { CountryLocation: any }) => row.CountryLocation)
+        renderedData
+          .map((row: { CountryLocation: string }) => row.CountryLocation)
+          .filter((location: string) => location)
       ),
     ].sort() as string[];
+
     this.verticals = [
       ...new Set(
-        renderedData.map((row: { MainVertical: any }) => row.MainVertical)
+        renderedData
+          .map((row: { MainVertical: string }) => row.MainVertical)
+          .filter((vertical: string) => vertical)
       ),
     ].sort() as string[];
+
     this.nationalities = [
       ...new Set(
-        renderedData.map((row: { Nationality: any }) => row.Nationality)
+        renderedData
+          .map((row: { Nationality: string }) => row.Nationality)
+          .filter((nationality: string) => nationality)
       ),
     ].sort() as string[];
+
     // ... Add other filters as needed
+
+    this.cities = [
+      ...new Set(
+        renderedData
+          .map((row: { CityLocation: string }) => row.CityLocation)
+          .filter((city: string) => city)
+      ),
+    ].sort() as string[];
   }
 
   public onPageChange(event: any): void {
     this.getInfluencers();
   }
-
-
 
   public applyFilter(): void {
     this.dataSource.filterPredicate = (
@@ -202,8 +183,12 @@ export class InfluencersComponent {
       filter: string
     ) => {
       const isMatchSearch = this.filterCriteria.search
-        ? data.Name?.trim().toLowerCase().includes(this.filterCriteria.search) ||
-          data.InstagramHandle?.trim().toLowerCase().includes(this.filterCriteria.search)
+        ? data.Name?.trim()
+            .toLowerCase()
+            .includes(this.filterCriteria.search) ||
+          data.InstagramHandle?.trim()
+            .toLowerCase()
+            .includes(this.filterCriteria.search)
         : true;
 
       return (
@@ -257,7 +242,6 @@ export class InfluencersComponent {
     }
     this.applyFilter();
   }
-
 
   public openLink(link: string): void {
     if (!link) {
