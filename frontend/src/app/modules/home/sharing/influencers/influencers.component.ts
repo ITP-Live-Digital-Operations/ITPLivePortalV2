@@ -108,7 +108,7 @@ export class InfluencersComponent {
             case 'CPM':
               let value1 = item.influencerMetrics.CPM;
               if (value1 === null || value1 === '') {
-                return Number.MAX_VALUE;
+                return 1000000;
               } else {
                 return item.influencerMetrics.CPM;
               }
