@@ -100,7 +100,7 @@ export class InfluencersComponent {
           switch (property) {
             case 'CPE':
               let value = item.influencerMetrics.CPE;
-              if (value === null || value === '' || value === 0) {
+              if (value === null || value === '') {
                 return 1000000;
               } else {
                 return item.influencerMetrics.CPE;
