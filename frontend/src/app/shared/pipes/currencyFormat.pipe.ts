@@ -7,7 +7,7 @@ import { Pipe, type PipeTransform } from '@angular/core';
 export class CurrencyFormatPipe implements PipeTransform {
 
   transform(value: number, decimals: number = 2): string {
-    if (isNaN(value)) {
+    if (isNaN(value) || value === 0 || value === null) {
       return '$0.00';
     }
 
