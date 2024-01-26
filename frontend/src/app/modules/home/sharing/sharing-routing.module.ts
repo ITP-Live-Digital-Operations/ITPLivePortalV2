@@ -11,6 +11,10 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ClientsComponent } from './clients/clients.component';
 import { NewClientComponent } from './clients/new-client/new-client.component';
 import { EditClientComponent } from './clients/edit-client/edit-client.component';
+import { GeneralStatisticsComponent } from './general-statistics/general-statistics.component';
+import { CampaignStatsComponent } from './general-statistics/campaign-stats/campaign-stats.component';
+import { ClientStatsComponent } from './general-statistics/client-stats/client-stats.component';
+
 
 const routes: Routes = [
   {
@@ -56,6 +60,19 @@ const routes: Routes = [
   {
     path: 'editClient/:id',
     component: EditClientComponent,
+  },
+  {
+    path: 'generalStatistics',
+    component: GeneralStatisticsComponent,
+
+  },
+  {
+    path: 'campaignStatistics',
+    component: CampaignStatsComponent,
+  },
+  {
+    path: 'clientStatistics',
+    component: ClientStatsComponent,
   },
   {
     path: '',

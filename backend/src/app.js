@@ -22,6 +22,7 @@ const fileRoutes = require("./routes/file.routes");
 const NotificationRoutes = require("./routes/notification.routes");
 const campaignRoutes = require("./routes/campaign.routes");
 const clientRoutes = require("./routes/client.routes");
+const statisticsRoutes = require("./routes/statistics.routes");
 
 const app = express();
 
@@ -81,6 +82,7 @@ app.use("/api/v1/files", authHandler, fileRoutes);
 app.use("/api/v1/campaigns", authHandler, campaignRoutes)
 app.use("/api/v1/notifications", authHandler, NotificationRoutes);
 app.use("/api/v1/clients", authHandler, clientRoutes);
+app.use("/api/v1/statistics", authHandler, statisticsRoutes);
 
 
 

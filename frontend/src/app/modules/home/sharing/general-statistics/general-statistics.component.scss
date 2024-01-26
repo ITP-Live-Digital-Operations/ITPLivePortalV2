@@ -1,0 +1,86 @@
+.container {
+  max-width: 100%;
+}
+
+
+
+
+
+
+.container .btn {
+  row-gap: 1px;
+  column-gap: 10px;
+  cursor: default;
+  border: 0px solid;
+  margin-left: 120px;
+}
+
+.container p {
+  margin-top: 20px;
+  color: white;
+  font-size: medium;
+}
+
+button[mat-raised-button] {
+  top: 50px;
+  width: 300px;
+  height: 300px;
+  // margin-bottom: 15px;
+  background: rgb(71,137,161);
+  background: linear-gradient(180deg, rgba(71,137,161,1) 55%, rgba(30,110,139,1) 90%);
+  border-radius: 0px;
+  transition:  500ms;
+  border-bottom: 3px solid white;
+  box-shadow: rgba(0, 0, 0, 0.388) 0px 10px 10px;
+
+
+}
+
+.title {
+  color: white;
+}
+
+// .splash {
+//   position: absolute;
+//   max-width: 50%;
+//   max-height: 25%;
+//   margin-left: 30%;
+//   margin-top: 20%;
+//   font-size: 12vh;
+//   color: white;
+//   z-index: 0;
+
+// }
+
+button[mat-raised-button]:hover {
+  transition: 200ms;
+  z-index: 2;
+  border-bottom: 15px solid white;
+
+
+}
+
+img {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+
+
+@media (max-width: 1440px), (max-height: 900px) {
+  button[mat-raised-button]{
+      width: 220px;
+      height: 220px;
+  }
+
+  img {
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .container .btn {
+    margin-left: 80px;
+  }
+}

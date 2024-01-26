@@ -35,6 +35,10 @@ import { InfluencerNamePipe } from 'src/app/shared/pipes/influencer-name.pipe';
 import { ClientsComponent } from './clients/clients.component';
 import { NewClientComponent } from './clients/new-client/new-client.component';
 import { EditClientComponent } from './clients/edit-client/edit-client.component';
+import { GeneralStatisticsComponent } from './general-statistics/general-statistics.component';
+import { ClientStatsComponent } from './general-statistics/client-stats/client-stats.component';
+import { CampaignStatsComponent } from './general-statistics/campaign-stats/campaign-stats.component';
+
 
 @NgModule({
   declarations: [
@@ -65,6 +69,10 @@ import { EditClientComponent } from './clients/edit-client/edit-client.component
     ClientsComponent,
     NewClientComponent,
     EditClientComponent,
+    GeneralStatisticsComponent,
+    ClientStatsComponent,
+    CampaignStatsComponent,
+    
 
   ],
   imports: [

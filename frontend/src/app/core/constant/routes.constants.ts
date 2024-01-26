@@ -9,6 +9,11 @@ export const PATH: { [key: string]: string } = {
   talentGuide: "/home/main/talentGuide",
   influencers: "/home/main/influencers",
   clients: "/home/main/clients",
+  generalStatistics: "/home/main/generalStatistics",
+  campaignStatistics: "/home/main/campaignStatistics",
+  viewCampaignStatistics: "/home/main/viewCampaignStatistics/",
+  clientStatistics: "/home/main/clientStatistics",
+  viewClientStatistics: "/home/main/viewClientStatistics/",
 
   // admin routes
   userManagement: "/home/admin/users",

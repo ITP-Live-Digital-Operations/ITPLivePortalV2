@@ -1,0 +1,86 @@
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="clientName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.clientName }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="clientCPE">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Client CPE</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.clientCPE }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="clientCPM">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Client CPM</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.clientCPM }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="itpCPE">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ITP CPE</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.itpCPE }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="itpCPM">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ITP CPM</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.itpCPM }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="marginOfProfit">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Margin Of Profit</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        {{ element.marginOfProfit | percent }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> View More </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+      >
+        <button mat-raised-button >View</button>
+      </td>
+    </ng-container>
+
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" sticky></tr>
+  </table>
+</div>
+<mat-paginator
+  pageSize="10"
+  [pageSizeOptions]="[5, 10, 25, 50, 100]"
+  showFirstLastButtons
+  aria-label="Select page"
+>
+</mat-paginator>
