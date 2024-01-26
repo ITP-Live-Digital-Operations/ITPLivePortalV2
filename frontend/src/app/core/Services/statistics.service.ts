@@ -20,5 +20,8 @@ export class StatisticsService {
     return this.http.get(`${this.statisticsApiURL}/getCampaignMetrics`);
   }
 
+  getCampaignMetricsByClientId(clientId: number) {
+    return this.http.get(`${this.statisticsApiURL}/getCampaignMetricsByClientId/${clientId}`);
+  }
 
 }

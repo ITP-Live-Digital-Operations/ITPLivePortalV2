@@ -26,3 +26,17 @@ exports.getCampaignMetrics =  (req, res) => {
         });
     }
 
+exports.getCampaignMetricsByClientId =  (req, res) => {
+    campaignMetrics.findAll({
+        where: {
+            clientId: req.params.clientId
+        }
+    })
+        .then((data) => {
+        res.send(data);
+        })
+        .catch((err) => {
+        console.log("Error retrieving campaign metrics", err);
+        });
+    }
+

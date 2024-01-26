@@ -16,7 +16,7 @@
         mat-cell
         *matCellDef="let element"
       >
-        {{ element.clientCPE }}
+        {{ element.clientCPE | appCurrencyFormat }}
       </td>
     </ng-container>
 
@@ -26,7 +26,7 @@
         mat-cell
         *matCellDef="let element"
       >
-        {{ element.clientCPM }}
+        {{ element.clientCPM | appCurrencyFormat:3 }}
       </td>
     </ng-container>
 
@@ -36,7 +36,7 @@
         mat-cell
         *matCellDef="let element"
       >
-        {{ element.itpCPE }}
+        {{ element.itpCPE | appCurrencyFormat }}
       </td>
     </ng-container>
 
@@ -46,7 +46,7 @@
         mat-cell
         *matCellDef="let element"
       >
-        {{ element.itpCPM }}
+        {{ element.itpCPM | appCurrencyFormat:3 }}
       </td>
     </ng-container>
 
@@ -66,7 +66,7 @@
         mat-cell
         *matCellDef="let element"
       >
-        <button mat-raised-button >View</button>
+        <button mat-raised-button routerLink="{{path['viewClientStatistics'] + element.id}}" >View</button>
       </td>
     </ng-container>
 

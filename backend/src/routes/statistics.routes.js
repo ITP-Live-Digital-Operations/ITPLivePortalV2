@@ -9,4 +9,7 @@ router.route('/getClientMetrics')
 router.route('/getCampaignMetrics')
     .get(asyncHandler(clientMetrics.getCampaignMetrics));
 
+router.route('/getCampaignMetricsByClientId/:clientId')
+    .get(asyncHandler(clientMetrics.getCampaignMetricsByClientId));
+
 module.exports = router;

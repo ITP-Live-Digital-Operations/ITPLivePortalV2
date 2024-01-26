@@ -14,6 +14,7 @@ import { EditClientComponent } from './clients/edit-client/edit-client.component
 import { GeneralStatisticsComponent } from './general-statistics/general-statistics.component';
 import { CampaignStatsComponent } from './general-statistics/campaign-stats/campaign-stats.component';
 import { ClientStatsComponent } from './general-statistics/client-stats/client-stats.component';
+import { DrillDownStatsComponent } from './general-statistics/drill-down-stats/drill-down-stats.component';
 
 
 const routes: Routes = [
@@ -73,6 +74,10 @@ const routes: Routes = [
   {
     path: 'clientStatistics',
     component: ClientStatsComponent,
+  },
+  {
+    path: 'viewClientStatistics/:id',
+    component: DrillDownStatsComponent,
   },
   {
     path: '',

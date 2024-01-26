@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { SharingRoutingModule } from './sharing-routing.module';
 import { AdminGuideComponent } from './userGuides/admin-guide/admin-guide.component';
@@ -38,6 +38,8 @@ import { EditClientComponent } from './clients/edit-client/edit-client.component
 import { GeneralStatisticsComponent } from './general-statistics/general-statistics.component';
 import { ClientStatsComponent } from './general-statistics/client-stats/client-stats.component';
 import { CampaignStatsComponent } from './general-statistics/campaign-stats/campaign-stats.component';
+import { CurrencyFormatPipe } from 'src/app/shared/pipes/currencyFormat.pipe';
+import { DrillDownStatsComponent } from './general-statistics/drill-down-stats/drill-down-stats.component';
 
 
 @NgModule({
@@ -72,7 +74,10 @@ import { CampaignStatsComponent } from './general-statistics/campaign-stats/camp
     GeneralStatisticsComponent,
     ClientStatsComponent,
     CampaignStatsComponent,
-    
+    DrillDownStatsComponent,
+
+
+
 
   ],
   imports: [
@@ -86,6 +91,7 @@ import { CampaignStatsComponent } from './general-statistics/campaign-stats/camp
     DragDropModule,
     MatExpansionModule,
     FormsModule,
+    CurrencyFormatPipe,
   ],
   exports: [
     StarRatingComponent,
@@ -101,6 +107,7 @@ import { CampaignStatsComponent } from './general-statistics/campaign-stats/camp
     BooleanPipe,
     InfluencerNamePipe,
     ClientsComponent,
+    CurrencyFormatPipe,
 
   ],
 })
