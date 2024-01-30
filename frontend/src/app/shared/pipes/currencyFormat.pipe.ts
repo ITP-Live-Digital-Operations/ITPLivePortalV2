@@ -14,4 +14,7 @@ export class CurrencyFormatPipe implements PipeTransform {
     return '$' + value.toFixed(decimals);
   }
 
+
+
+
 }

@@ -2,6 +2,7 @@ const { Sequelize } = require("sequelize");
 const models = require("../../models");
 const clientMetrics = models.clientMetrics;
 const campaignMetrics = models.campaignMetrics;
+const influencerCampaignMetrics = models.influencerCampaignMetrics;
 
 exports.getClientMetrics =  (req, res) => {
     clientMetrics.findAll({
@@ -38,5 +39,19 @@ exports.getCampaignMetricsByClientId =  (req, res) => {
         .catch((err) => {
         console.log("Error retrieving campaign metrics", err);
         });
-    }
+}
+
+exports.getInfluencerCampaignMetricsByCampaignId =  (req, res) => {
+    influencerCampaignMetrics.findAll({
+        where: {
+            campaignId: req.params.campaignId
+        }
+    })
+        .then((data) => {
+        res.send(data);
+        })
+        .catch((err) => {
+        console.log("Error retrieving campaign metrics", err);
+        });
+}
 
