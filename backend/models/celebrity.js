@@ -49,24 +49,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       defaultValue: null
     },
-    ItpRelationship: {
-      type: DataTypes.STRING(50),
-      defaultValue: null
-    },
     Nationality: {
       type: DataTypes.STRING(50),
       defaultValue: null
     },
     CountryLocation: {
       type: DataTypes.STRING(50),
-      defaultValue: null
-    },
-    CityLocation: {
-      type: DataTypes.STRING(50),
-      defaultValue: null
-    },
-    Address: {
-      type: DataTypes.STRING(250),
       defaultValue: null
     },
     InstagramHandle: {
@@ -93,18 +81,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(250),
       defaultValue: null
     },
-    SnapchatHandle: {
-      type: DataTypes.STRING(50),
-      defaultValue: null
-    },
-    SnapchatFollowers: {
-      type: DataTypes.INTEGER,
-      defaultValue: null
-    },
-    SnapchatLink: {
-      type: DataTypes.STRING(250),
-      defaultValue: null
-    },
     TwitterHandle: {
       type: DataTypes.STRING(50),
       defaultValue: null
@@ -114,18 +90,6 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: null
     },
     TwitterLink: {
-      type: DataTypes.STRING(250),
-      defaultValue: null
-    },
-    FacebookHandle: {
-      type: DataTypes.STRING(50),
-      defaultValue: null
-    },
-    FacebookFollowers: {
-      type: DataTypes.INTEGER,
-      defaultValue: null
-    },
-    FacebookLink: {
       type: DataTypes.STRING(250),
       defaultValue: null
     },
@@ -177,10 +141,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(250),
       defaultValue: null
     },
-    Rating: {
-      type: DataTypes.STRING(50),
-      defaultValue: null
-    },
     Bio: {
       type: DataTypes.TEXT,
       defaultValue: null
@@ -193,6 +153,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(10),
       defaultValue: "Active"
     },
+    Game : {
+      type: DataTypes.STRING(250),
+      defaultValue: null
+    },
+    
     updatedBy: {
       type: DataTypes.INTEGER,
       allowNull: false,
