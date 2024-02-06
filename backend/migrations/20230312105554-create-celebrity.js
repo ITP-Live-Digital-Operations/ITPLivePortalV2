@@ -10,177 +10,142 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       Name: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING,
         allowNull: false
       },
       Gender: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       Number: {
         type: DataTypes.BIGINT,
-        defaultValue: null
+        allowNull: true
       },
       Email: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       MainContentLanguage: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       MainVertical: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       Occupation: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
-      },
-      ItpRelationship: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       Nationality: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       CountryLocation: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
-      },
-      CityLocation: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
-      },
-      Address: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       InstagramHandle: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       InstagramFollowers: {
         type: DataTypes.INTEGER,
-        defaultValue: null
+        allowNull: true
       },
       InstagramLink: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       TiktokHandle: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       TiktokFollowers: {
         type: DataTypes.INTEGER,
-        defaultValue: null
+        allowNull: true
       },
       TiktokLink: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
-      },
-      SnapchatHandle: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
-      },
-      SnapchatFollowers: {
-        type: DataTypes.INTEGER,
-        defaultValue: null
-      },
-      SnapchatLink: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       TwitterHandle: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       TwitterFollowers: {
         type: DataTypes.INTEGER,
-        defaultValue: null
+        allowNull: true
       },
       TwitterLink: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
-      },
-      FacebookHandle: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
-      },
-      FacebookFollowers: {
-        type: DataTypes.INTEGER,
-        defaultValue: null
-      },
-      FacebookLink: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       YoutubeHandle: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       YoutubeFollowers: {
         type: DataTypes.INTEGER,
-        defaultValue: null
+        allowNull: true
       },
       YoutubeLink: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       TwitchHandle: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       TwitchFollowers: {
         type: DataTypes.INTEGER,
-        defaultValue: null
+        allowNull: true
       },
       TwitchLink: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       Agency : {
-        type: DataTypes.STRING(250),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       AgencyContactPerson: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       AgencyNumber: {
         type: DataTypes.BIGINT,
-        defaultValue: null
+        allowNull: true
       },
       AgencyEmail: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       PreviousBrands: {
         type: DataTypes.TEXT,
-        defaultValue: null
+        allowNull: true
       },
       PreviouslyWorkedWith: {
-        type: DataTypes.STRING(250),
-        defaultValue: null
-      },
-      Rating: {
-        type: DataTypes.STRING(50),
-        defaultValue: null
+        type: DataTypes.STRING,
+        allowNull: true
       },
       Bio: {
         type: DataTypes.TEXT,
-        defaultValue: null
+        allowNull: true
       },
       Notes: {
         type: DataTypes.TEXT,
-        defaultValue: null
+        allowNull: true
       },
       Status: {
         type: DataTypes.STRING(10),
         defaultValue: "Active"
       },
+      Game : {
+        type: DataTypes.STRING,
+        defaultValue: null
+      },
+      
       updatedBy: {
         type: DataTypes.INTEGER,
         allowNull: false,

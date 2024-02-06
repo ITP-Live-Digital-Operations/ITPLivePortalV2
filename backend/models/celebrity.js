@@ -22,11 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     Name: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: false
     },
     Gender: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     Number: {
@@ -34,31 +34,31 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     Email: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     MainContentLanguage: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     MainVertical: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     Occupation: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     Nationality: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     CountryLocation: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     InstagramHandle: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     InstagramFollowers: {
@@ -66,11 +66,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     InstagramLink: {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       allowNull: true
     },
     TiktokHandle: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     TiktokFollowers: {
@@ -78,11 +78,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     TiktokLink: {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       allowNull: true
     },
     TwitterHandle: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     TwitterFollowers: {
@@ -90,11 +90,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     TwitterLink: {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       allowNull: true
     },
     YoutubeHandle: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     YoutubeFollowers: {
@@ -102,11 +102,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     YoutubeLink: {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       allowNull: true
     },
     TwitchHandle: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     TwitchFollowers: {
@@ -114,15 +114,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     TwitchLink: {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       allowNull: true
     },
     Agency : {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       allowNull: true
     },
     AgencyContactPerson: {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       allowNull: true
     },
     AgencyNumber: {
@@ -130,7 +130,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     AgencyEmail: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: true
     },
     PreviousBrands: {
@@ -138,7 +138,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     PreviouslyWorkedWith: {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       allowNull: true
     },
     Bio: {
@@ -154,7 +154,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: "Active"
     },
     Game : {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       defaultValue: null
     },
     
