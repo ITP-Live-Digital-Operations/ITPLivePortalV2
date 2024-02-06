@@ -7,7 +7,6 @@
         type="text"
         formControlName="InstagramHandle"
         autocomplete="off"
-        required
       />
       <mat-error
         *ngIf="
@@ -55,7 +54,7 @@
       </mat-error>
     </mat-form-field>
   </div>
-  
+
   <div class="row">
     <mat-form-field>
       <mat-label>Tiktok Handle</mat-label>
@@ -111,8 +110,8 @@
       </mat-error>
     </mat-form-field>
   </div>
-  <div class="row">
-    <mat-form-field>
+  <div class="row" *ngIf="isCelebrity">
+    <mat-form-field  >
       <mat-label>SnapChat Handle</mat-label>
       <input
         matInput
@@ -223,7 +222,7 @@
     </mat-form-field>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="isCelebrity">
     <mat-form-field>
       <mat-label>Facebook Handle</mat-label>
       <input

@@ -163,7 +163,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field >
+      <mat-form-field *ngIf="isCelebrity">
         <mat-label>ITP Relationship</mat-label>
         <mat-select formControlName="ItpRelationship">
           <mat-option
@@ -235,7 +235,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field >
+      <mat-form-field *ngIf="isCelebrity" >
         <mat-label>City</mat-label>
         <input
           matInput
@@ -253,7 +253,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field >
+      <mat-form-field *ngIf="isCelebrity" >
         <mat-label>Address</mat-label>
         <input
           matInput

@@ -1,4 +1,4 @@
-const upload = require("../../config/multerConfig");
+const {upload} = require("../../config/multerConfig");
 const models = require("../../models");
 const File = models.File;
 const SalesBrief = models.SalesBrief;
@@ -84,6 +84,7 @@ exports.uploadFile = (req, res) => {
                 });
               })
               .catch((err) => {
+                console.log(err);
                 res.status(500).send({
                   status: "fail",
                   message: err.message,
