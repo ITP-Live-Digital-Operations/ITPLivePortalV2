@@ -125,21 +125,21 @@
         <ng-container matColumnDef="CPE">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>CPE</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.influencerMetrics.CPE | appCurrencyFormat }}
+            {{ element?.influencerMetrics?.CPE | appCurrencyFormat }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="CPM">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>CPM</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.influencerMetrics.CPM | appCurrencyFormat:3 }}
+            {{ element?.influencerMetrics?.CPM | appCurrencyFormat:3 }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="marginOfProfit">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Margin</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.influencerMetrics.marginOfProfit | percent }}
+            {{ element?.influencerMetrics?.marginOfProfit | percent }}
           </td>
         </ng-container>
 
