@@ -3,7 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { PATH } from 'src/app/core/constant/routes.constants';
 import { StatisticsService } from 'src/app/core/services/statistics.service';
 
 @Component({
@@ -13,7 +12,7 @@ import { StatisticsService } from 'src/app/core/services/statistics.service';
 })
 export class DrillDownStatsComponent {
 
-  path = PATH;
+
   clientId: any;
   public dataSource: any;
   private campaignMetrics : any;
@@ -22,7 +21,6 @@ export class DrillDownStatsComponent {
     'CPE',
     'CPM',
     'marginOfProfit',
-    'view'
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

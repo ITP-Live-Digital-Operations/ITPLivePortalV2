@@ -1,4 +1,7 @@
-<div class="container">
+<!-- The outer container with a fixed width to act as a viewport -->
+<div class="carousel-container">
+  <!-- The inner container with flex display to hold all buttons -->
+  <div class="carousel-wrapper">
   <div class="box">
     <h1 class="title"></h1>
     <!-- <h1 class="splash">ITP | Portal</h1> -->
@@ -11,6 +14,7 @@
         *ngIf="userRole == 'superadmin'"
         routerLink="{{ path['userManagement'] }}"
       >
+      
         <img src="../../../../../assets/white-buttons/admin-forms.png" />
         <p>User Management</p>
       </button>
@@ -155,3 +159,27 @@
     </div>
   </div>
 </div>
+</div>
+
+<script>
+  let startX;
+const container = document.querySelector('.carousel-container');
+
+container.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].pageX;
+});
+
+container.addEventListener('touchmove', (e) => {
+  const moveX = e.touches[0].pageX;
+  const diffX = startX - moveX;
+  if (diffX > 0) {
+    // Swiping left
+    container.scrollLeft += diffX;
+  } else {
+    // Swiping right
+    container.scrollLeft += diffX;
+  }
+  startX = moveX;
+});
+
+</script>

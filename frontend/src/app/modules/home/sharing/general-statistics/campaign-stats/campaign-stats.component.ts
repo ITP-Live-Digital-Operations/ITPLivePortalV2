@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { PATH } from 'src/app/core/constant/routes.constants';
 import { StatisticsService } from 'src/app/core/services/statistics.service';
 
 @Component({
@@ -12,8 +11,8 @@ import { StatisticsService } from 'src/app/core/services/statistics.service';
 })
 export class CampaignStatsComponent {
 
+  
 
-  path = PATH;
   public dataSource: any;
   private campaignMetrics : any;
   displayedColumns: string[] = [

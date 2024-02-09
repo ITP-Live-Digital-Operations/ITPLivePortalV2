@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Component, Inject, Input } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 interface Influencer {
   id: number;
@@ -82,16 +82,6 @@ export class CampaignResultsComponent {
     type: 'number',
     label: 'Saves',
   },
-  {
-    key: 'clientCost',
-    type: 'number',
-    label: 'Client Cost',
-  },
-  {
-    key: 'influencerCost',
-    type: 'number',
-    label: 'Influencer Cost',
-  }
   ]
 
   COLUMNS_SCHEMA_YOUTUBE_VIDEOS_SHORTS = [
@@ -130,16 +120,6 @@ export class CampaignResultsComponent {
       type: 'number',
       label: 'Comments',
     },
-    {
-      key: 'clientCost',
-      type: 'number',
-      label: 'Client Cost',
-    },
-    {
-      key: 'influencerCost',
-      type: 'number',
-      label: 'Influencer Cost',
-    }
   ]
 
   COLUMNS_SCHEMA_TIKTOK = [
@@ -173,16 +153,6 @@ export class CampaignResultsComponent {
       type: 'number',
       label: 'Saves',
     },
-    {
-      key: 'clientCost',
-      type: 'number',
-      label: 'Client Cost',
-    },
-    {
-      key: 'influencerCost',
-      type: 'number',
-      label: 'Influencer Cost',
-    }
   ]
 
   COLUMNS_SCHEMA_FACEBOOK = [
@@ -211,16 +181,6 @@ export class CampaignResultsComponent {
       type: 'number',
       label: 'Shares',
     },
-    {
-      key: 'clientCost',
-      type: 'number',
-      label: 'Client Cost',
-    },
-    {
-      key: 'influencerCost',
-      type: 'number',
-      label: 'Influencer Cost',
-    }
   ]
 
   COLUMNS_SCHEMA_X = [
@@ -249,16 +209,6 @@ export class CampaignResultsComponent {
       type: 'number',
       label: 'Retweets',
     },
-    {
-      key: 'clientCost',
-      type: 'number',
-      label: 'Client Cost',
-    },
-    {
-      key: 'influencerCost',
-      type: 'number',
-      label: 'Influencer Cost',
-    }
   ]
 
   COLUMNS_SCHEMA_TWITCH = [
@@ -292,16 +242,6 @@ export class CampaignResultsComponent {
       type: 'number',
       label: 'Comments',
     },
-    {
-      key: 'clientCost',
-      type: 'number',
-      label: 'Client Cost',
-    },
-    {
-      key: 'influencerCost',
-      type: 'number',
-      label: 'Influencer Cost',
-    }
   ]
 
 COLUMNS_SCHEMA_IG_STORIES = [
@@ -335,16 +275,6 @@ COLUMNS_SCHEMA_IG_STORIES = [
       type: 'number',
       label: 'Link Clicks',
     },
-    {
-      key: 'clientCost',
-      type: 'number',
-      label: 'Client Cost',
-    },
-    {
-      key: 'influencerCost',
-      type: 'number',
-      label: 'Influencer Cost',
-    }
 ]
 
 COLUNMS_SCHEMA_SC_STORIES = [
@@ -373,16 +303,6 @@ COLUNMS_SCHEMA_SC_STORIES = [
       type: 'number',
       label: 'Clicks',
     },
-    {
-      key: 'clientCost',
-      type: 'number',
-      label: 'Client Cost',
-    },
-    {
-      key: 'influencerCost',
-      type: 'number',
-      label: 'Influencer Cost',
-    }
   ]
 
   COLUMNS_SCHEMA_REGULAR_POSTS = [
@@ -401,16 +321,6 @@ COLUNMS_SCHEMA_SC_STORIES = [
       type: 'number',
       label: 'Impressions',
     },
-    {
-      key: 'clientCost',
-      type: 'number',
-      label: 'Client Cost',
-    },
-    {
-      key: 'influencerCost',
-      type: 'number',
-      label: 'Influencer Cost',
-    }
   ]
   POCS = [
     'Zerbia Khan',
@@ -424,11 +334,7 @@ COLUNMS_SCHEMA_SC_STORIES = [
   combinedPlatformDeliverable!: string;
   poc!: string;
 
-  @Output() reload: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-    public dialog : MatDialog
-  ) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit(): void {
     if (this.data) {
@@ -469,11 +375,6 @@ COLUNMS_SCHEMA_SC_STORIES = [
         this.selectedPlatform + ' ' + this.selectedDeliverable;
     }
 
-  }
-
-  onChildDone(): void {
-    this.reload.emit();
-    this.dialog.closeAll() // Close the dialog here
   }
 
 }

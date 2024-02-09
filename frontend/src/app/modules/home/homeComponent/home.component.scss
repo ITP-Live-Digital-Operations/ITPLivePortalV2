@@ -3,7 +3,7 @@ mat-toolbar {
 }
 
 mat-toolbar-row {
-  background-color: #232C30;
+  background-color: #080b21;;
   display: flex;
 }
 
@@ -55,12 +55,33 @@ mat-sidenav {
 
 mat-sidenav-container {
   height: calc(100vh - 64px);
-  background: #232C30;
+  background-color:hsla(232,60%,8%,1);
+  background-image:
+  radial-gradient(at 86% 97%, hsla(271,0%,0%,1) 0px, transparent 50%),
+  radial-gradient(at 22% 58%, hsla(240,75%,48%,0.42) 0px, transparent 50%);
+  animation: gradient 5s ease infinite;
+  background-size: 120% 120%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 20%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 70%;
+  }
+  100% {
+    background-position: 0% 20%;
+  }
+}
   // background: rgb(35,35,35);
   // background: linear-gradient(180deg, rgba(35,35,35,1) 0%, rgba(35,35,35,1) 90%, rgb(1, 1, 1) 100%);
 
 
-}
+
 
 mat-sidenav-content {
   overflow-x: hidden;
@@ -248,7 +269,28 @@ mat-divider {
 (max-height: 900px) {
   .router-container {
     padding:  20px 50px;
+    background-color:hsla(232,60%,8%,1);
+    background-image:
+    radial-gradient(at 86% 97%, hsla(271,0%,0%,1) 0px, transparent 50%),
+    radial-gradient(at 22% 58%, hsla(240,75%,48%,0.42) 0px, transparent 50%);
+    animation: gradient 20s ease infinite;
+    background-size: 120% 120%;
     // overflow-y: scroll;
     /* overflow-x: hidden ; */
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 20%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 70%;
+  }
+  100% {
+    background-position: 0% 20%;
   }
 }
