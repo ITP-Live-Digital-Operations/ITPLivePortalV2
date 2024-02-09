@@ -1,17 +1,17 @@
 <div class="table-container">
   <table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="campaignName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign Name</th>
+    <ng-container matColumnDef="influencerName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer Name</th>
       <td
         mat-cell
         *matCellDef="let element"
       >
-        {{ element.campaignName }}
+        {{ element.influencerName }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="CPE">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign CPE</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer CPE</th>
       <td
         mat-cell
         *matCellDef="let element"
@@ -21,7 +21,7 @@
     </ng-container>
 
     <ng-container matColumnDef="CPM">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign CPM</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer CPM</th>
       <td
         mat-cell
         *matCellDef="let element"
@@ -41,15 +41,7 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="view">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> View More </th>
-      <td
-        mat-cell
-        *matCellDef="let element"
-      >
-      <button mat-raised-button routerLink="{{path['viewInfluencerCampaignStatistics'] + element.campaignId}}">View</button>
-      </td>
-    </ng-container>
+
 
 
 
@@ -65,5 +57,3 @@
   aria-label="Select page"
 >
 </mat-paginator>
-
-

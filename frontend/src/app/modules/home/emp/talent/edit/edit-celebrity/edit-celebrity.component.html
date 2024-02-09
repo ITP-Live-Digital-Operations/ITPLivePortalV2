@@ -1,36 +1,35 @@
 <div class="form-container">
-    <form
-      [formGroup]="editCelebrityForm"
-      autocomplete="off"
-      (ngSubmit)="onSubmit()"
-    >
-      <!-- GENERAL INFORMATION HERE -->
-      <h2>General Information</h2>
-      <app-general-info formGroupName="generalInfo" [isCelebrity]="isCelebrity"></app-general-info>
-      <hr />
-  
-      <!-- SOCIALS HERE -->
-      <h2>Socials</h2>
-      <app-socials formGroupName="socials"></app-socials>
-      <hr />
+  <form
+    [formGroup]="editCelebrityForm"
+    autocomplete="off"
+    (ngSubmit)="onSubmit()"
+  >
+    <!-- GENERAL INFORMATION HERE -->
+    <h2>General Information</h2>
+    <app-general-info formGroupName="generalInfo" [isCelebrity]="isCelebrity"></app-general-info>
+    <hr />
 
-      <!-- AGENCY INFORMATION HERE -->
-      <h2>Agency Information</h2>
-      <app-agency-info formGroupName="agencyInfo" [isCelebrity]="isCelebrity"></app-agency-info>
-      <hr />
-  
-      <!-- END OF FORM HERE -->
-      <app-extra-info formGroupName="extraInfo" [isCelebrity]="isCelebrity"></app-extra-info>
-  
-      <!-- SUBMIT BUTTON HERE -->
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="!editCelebrityForm.valid"
-      >
-        Edit Celebrity
-      </button>
-    </form>
-  </div>
-  
+    <!-- SOCIALS HERE -->
+    <h2>Socials</h2>
+    <app-socials formGroupName="socials" [isCelebrity]="isCelebrity"></app-socials>
+    <hr />
+
+    <!-- AGENCY INFORMATION HERE -->
+    <h2>Agency Information</h2>
+    <app-agency-info formGroupName="agencyInfo" [isCelebrity]="isCelebrity"></app-agency-info>
+    <hr />
+
+    <!-- END OF FORM HERE -->
+    <app-extra-info formGroupName="extraInfo" [isCelebrity]="isCelebrity"></app-extra-info>
+
+    <!-- SUBMIT BUTTON HERE -->
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!editCelebrityForm.valid"
+    >
+      Edit Celebrity
+    </button>
+  </form>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
 
@@ -24,6 +24,8 @@ export class CampaignDeliverablesComponent {
 
   @Input()
   poc!: string;
+
+  @Output() done: EventEmitter<void> = new EventEmitter<void>();
 
   public form!: FormGroup;
 
@@ -80,6 +82,7 @@ export class CampaignDeliverablesComponent {
     this.influencerService.addInfluencerStats(this.campaignId, this.influencerId,  this.poc, this.platformDeliverable, this.form.value).subscribe(
       (res) => {
         console.log(res);
+        this.done.emit();
       },
       (err) => {
         console.log(err);

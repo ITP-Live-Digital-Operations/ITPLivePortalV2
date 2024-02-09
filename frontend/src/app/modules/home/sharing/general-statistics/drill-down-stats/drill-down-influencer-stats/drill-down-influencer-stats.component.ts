@@ -1,24 +1,22 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { PATH } from 'src/app/core/constant/routes.constants';
 import { StatisticsService } from 'src/app/core/services/statistics.service';
 
 @Component({
-  selector: 'app-drill-down-stats',
-  templateUrl: './drill-down-stats.component.html',
-  styleUrls: ['./drill-down-stats.component.scss']
+  selector: 'app-drill-down-influencer-stats',
+  templateUrl: './drill-down-influencer-stats.component.html',
+  styleUrls: ['./drill-down-influencer-stats.component.scss']
 })
-export class DrillDownStatsComponent {
+export class DrillDownInfluencerStatsComponent {
 
-  path = PATH;
-  clientId: any;
+  campaignId: any;
   public dataSource: any;
-  private campaignMetrics : any;
+  private influencerCampaignMetrics : any;
   displayedColumns: string[] = [
-    'campaignName',
+    'influencerName',
     'CPE',
     'CPM',
     'marginOfProfit',
@@ -36,22 +34,24 @@ export class DrillDownStatsComponent {
   ) { }
 
   ngOnInit(): void {
-    this.clientId = this.route.snapshot.paramMap.get('id');
-    this.loadCampaignMetrics();
+    this.campaignId = this.route.snapshot.paramMap.get('id');
+    this.loadInfluencerCampaignMetrics();
   }
 
   ngOnChanges(): void {
-    this.loadCampaignMetrics();
+    this.loadInfluencerCampaignMetrics();
   }
-  public loadCampaignMetrics() {
-    this.statisticsService.getCampaignMetricsByClientId(this.clientId).subscribe((res) => {
-      this.campaignMetrics = res;
+
+  public loadInfluencerCampaignMetrics() {
+    this.statisticsService.getInfluencerCampaignMetricsByCampaignId(this.campaignId).subscribe((res) => {
+      this.influencerCampaignMetrics = res;
       this.dataSource = new MatTableDataSource<any[]>(
-        this.campaignMetrics
+        this.influencerCampaignMetrics
       );
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
+
 }

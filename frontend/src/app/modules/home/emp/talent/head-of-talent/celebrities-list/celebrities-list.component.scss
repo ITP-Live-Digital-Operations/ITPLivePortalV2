@@ -3,16 +3,26 @@ table {
 
 }
 
-.warn {
-  background-color: red;
-  color: white;
+.delete-btn{
+  padding: 10px 15px;
+  background-color: transparent!important;
+  color: white!important;
+  border: 1px solid #FF0000;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 2%;
+
+  :hover {
+    background-color: #FF0000;
+  }
 }
+
 
 .table-container {
   max-height: auto;
   overflow-y: hidden;
 
- 
+
 }
 
 
@@ -42,7 +52,7 @@ table {
   max-height: auto;
   overflow-y: hidden;
   overflow-x: hidden;
-  
+
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(0, 0, 0, 0.15) 0px 0px 0px 1px;
 }
   .row {
@@ -51,7 +61,32 @@ table {
 }
 
 @media (max-width: 1440px), (max-height: 900px) {
-  .mat-mdc-raised-button{ 
+  .mat-mdc-raised-button{
    font-size: 11px;
   }
+}
+
+
+.new-celeb button {
+  padding: 10px 15px;
+  background-color: transparent!important;
+  color: white!important;
+  border: 1px solid #4789A1;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 2%;
+
+  &:hover {
+    background-color: #4789A1;
+  }
+}
+
+.truncate {
+
+    white-space: nowrap;      /* Prevent text from wrapping */
+    overflow: hidden;         /* Hide overflowing content */
+    text-overflow: ellipsis;  /* Display ellipsis (...) for overflow */
+    max-width: 150px;         /* Adjust the maximum width as needed */
+
+
 }

@@ -19,7 +19,7 @@ export class EditCelebrityComponent {
   constructor(
     private formBuilder: FormBuilder,
     private service: CelebrityService,
-    @Inject(MAT_DIALOG_DATA) public source: any, 
+    @Inject(MAT_DIALOG_DATA) public source: any,
     private dialogRef: MatDialogRef<EditCelebrityComponent>,
     private toastrService: ToastrService
   ) {
@@ -102,11 +102,11 @@ export class EditCelebrityComponent {
             MainContentLanguage: this.celebrityData.data.MainContentLanguage,
             MainVertical: this.celebrityData.data.MainVertical,
             Occupation: this.celebrityData.data.Occupation,
-            ItpRelationship: this.celebrityData.data.ItpRelationship,
+            ItpRelationship: '',
             Nationality: this.celebrityData.data.Nationality,
             CountryLocation: this.celebrityData.data.CountryLocation,
-            CityLocation: this.celebrityData.data.CityLocation,
-            Address: this.celebrityData.data.Address,
+            CityLocation: '',
+            Address: '',
             },
             socials: {
             InstagramHandle: this.celebrityData.data.InstagramHandle,
@@ -117,17 +117,17 @@ export class EditCelebrityComponent {
             TiktokFollowers: this.celebrityData.data.TiktokFollowers,
             TiktokLink: this.celebrityData.data.TiktokLink,
 
-            SnapchatHandle: this.celebrityData.data.SnapchatHandle,
-            SnapchatFollowers: this.celebrityData.data.SnapchatFollowers,
-            SnapchatLink: this.celebrityData.data.SnapchatLink,
+            SnapchatHandle: '',
+            SnapchatFollowers: '',
+            SnapchatLink: '',
 
             TwitterHandle: this.celebrityData.data.TwitterHandle,
             TwitterFollowers: this.celebrityData.data.TwitterFollowers,
             TwitterLink: this.celebrityData.data.TwitterLink,
 
-            FacebookHandle:this.celebrityData.data.FacebookHandle,
-            FacebookFollowers: this.celebrityData.data.FacebookFollowers,
-            FacebookLink: this.celebrityData.data.FacebookLink,
+            FacebookHandle:'',
+            FacebookFollowers: '',
+            FacebookLink: '',
 
             YoutubeHandle: this.celebrityData.data.YoutubeHandle,
             YoutubeFollowers: this.celebrityData.data.YoutubeFollowers,
@@ -149,7 +149,7 @@ export class EditCelebrityComponent {
             PreviousBrands: this.celebrityData.data.PreviousBrands,
             Bio: this.celebrityData.data.Bio,
             Notes: this.celebrityData.data.Notes,
-            Rating: this.celebrityData.data.Rating,
+            Rating: '',
             }
           }
         )
