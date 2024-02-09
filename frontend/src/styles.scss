@@ -4,7 +4,27 @@
 @import 'ngx-toastr/toastr';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color:hsla(232,60%,8%,1);
+  background-image:
+  radial-gradient(at 86% 97%, hsla(271,0%,0%,1) 0px, transparent 50%),
+  radial-gradient(at 22% 58%, #1f1fd66b 0px, transparent 50%);animation: gradient 5s ease infinite;
+  background-size: 120% 120%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 20%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 70%;
+  }
+  100% {
+    background-position: 0% 20%;
+  }
+}
 
 .back_button {
     padding-bottom: 2%;

@@ -52,14 +52,16 @@
 
   <mat-sidenav-content>
 
-    <div class="d-flex content mat-elevation-z8" class="router-container" [ngClass]="{ 'backgroundColor': backButton}">
+    <div  class="router-container" [ngClass]="{ 'backgroundColor': backButton}">
       <div>
 
         <app-back-button *ngIf="backButton"></app-back-button>
+      
+        <router-outlet></router-outlet>
+    
       </div>
-        <router-outlet></router-outlet>`
-    </div>
-
+      </div>
   </mat-sidenav-content>
 
 </mat-sidenav-container>
+
