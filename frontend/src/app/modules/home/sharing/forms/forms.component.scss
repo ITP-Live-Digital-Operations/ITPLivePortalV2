@@ -2,23 +2,19 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory; /* This is optional and enables snap scrolling */
   -webkit-overflow-scrolling: touch; /* For iOS Webkit browsers */
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none;
-   /* For Internet Explorer and Edge */
+  scrollbar-width: thin; /* For Firefox, let's make it thin */
+  scrollbar-color: rgba(71, 137, 161, 0.286)  #e0e0e000;
+  -ms-overflow-style: none; 
+ 
 }
 
-.carousel-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
-}
 
 .carousel-wrapper {
   display: flex;
   flex-direction: row;
   width: max-content;
-  margin-top: 1rem auto; /* Ensure the width is as wide as the combined width of all buttons */
+  margin: 1rem auto; /* Corrected the margin property */
 }
-
-
 
 
 
