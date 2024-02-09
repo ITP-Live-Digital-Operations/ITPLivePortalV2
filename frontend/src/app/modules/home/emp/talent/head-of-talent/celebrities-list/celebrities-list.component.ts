@@ -31,13 +31,15 @@ export class CelebritiesListComponent {
 
   displayedColumns: string[] = [
     'Name',
+    'Gender',
     'InstagramFollowers',
     'TiktokFollowers',
+    'SnapchatFollowers',
     'TwitterFollowers',
+    'FacebookFollowers',
     'YoutubeFollowers',
     'CountryLocation',
     'MainVertical',
-    'Game',
     'Action',
   ];
 

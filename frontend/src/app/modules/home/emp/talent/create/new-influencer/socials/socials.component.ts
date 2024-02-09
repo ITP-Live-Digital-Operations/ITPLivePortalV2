@@ -11,9 +11,6 @@ export class SocialsComponent {
   @Input()
   formGroupName: string = '';
 
-  @Input()
-  isCelebrity !: boolean;
-
   public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective){ }

@@ -7,6 +7,7 @@ import { InfluencerIdComponent } from 'src/app/modules/home/sharing/influencer-i
 import { EditCampaignComponent } from '../../edit-campaign/edit-campaign.component';
 import { CampaignResultsComponent } from 'src/app/modules/home/emp/campaign/view-campaigns/campaign-details/campaign-results/campaign-results.component';
 
+
 @Component({
   selector: 'app-campaign-details',
   templateUrl: './campaign-details.component.html',
@@ -47,15 +48,11 @@ export class CampaignDetailsComponent {
     this.loadCampaignData();
   }
 
-  ngOnChanges(): void {
-    this.loadCampaignData();
-  }
-
   onCampaignEdited(): void {
     this.loadCampaignData();
   }
 
-  public loadCampaignData(): void {
+  protected loadCampaignData(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'];
       this.campaignService
@@ -67,9 +64,10 @@ export class CampaignDetailsComponent {
             Influencers: this.campaign.Influencers,
           };
 
+
           originalJson.Influencers.forEach((influencer) => {
             let isFirstStatistic = true;
-            if (influencer.influencerStatistics.length === 0) {
+            if(influencer.influencerStatistics.length === 0) {
               this.dataSource.push({
                 showName: isFirstStatistic,
                 influencerId: influencer.id,
@@ -85,28 +83,29 @@ export class CampaignDetailsComponent {
                 engagementRate: 0.0,
                 year: 0,
               });
-            } else {
-              influencer.influencerStatistics.forEach((stat) => {
-                this.dataSource.push({
-                  showName: isFirstStatistic,
-                  influencerId: influencer.id,
-                  name: isFirstStatistic ? influencer.Name : '',
-                  platform: stat.platform,
-                  deliverable: stat.deliverable,
-                  followers: stat.followers,
-                  reach: stat.reach,
-                  impressions: stat.impressions,
-                  interactions: stat.interactions,
-                  clientCost: stat.clientCost,
-                  influencerCost: stat.influencerCost,
-                  engagementRate: stat.engagementRate,
-                  year: stat.year,
-                });
-                isFirstStatistic = false;
-              });
             }
+            else{
+            influencer.influencerStatistics.forEach((stat) => {
+              this.dataSource.push({
+                showName: isFirstStatistic,
+                influencerId: influencer.id,
+                name: isFirstStatistic ? influencer.Name : '',
+                platform: stat.platform,
+                deliverable: stat.deliverable,
+                followers: stat.followers,
+                reach: stat.reach,
+                impressions: stat.impressions,
+                interactions: stat.interactions,
+                clientCost: stat.clientCost,
+                influencerCost: stat.influencerCost,
+                engagementRate: stat.engagementRate,
+                year: stat.year,
+              });
+              isFirstStatistic = false;
+            });
+
+          }
           });
-          console.log('loadcampiagn')
           this.cdr.detectChanges();
         });
     });
@@ -140,11 +139,11 @@ export class CampaignDetailsComponent {
     });
   }
 
-  addInfluencerResults() {
-    const influencers = this.campaign.Influencers.map((influencer) => {
+  addIfnluencerResults() {
+    const influencers = this.campaign.Influencers.map(influencer => {
       return {
         id: influencer.id,
-        Name: influencer.Name,
+        Name: influencer.Name
       };
     });
 
@@ -157,18 +156,13 @@ export class CampaignDetailsComponent {
         campaignId: this.campaign.id,
         influencers: influencers,
       },
-      
-
-
-
     });
 
     this.dialog.afterAllClosed.subscribe(() => {
       this.loadCampaignData();
-      this.cdr.detectChanges();
     });
-
   }
+
 }
 
 export interface InfluencerStatistic {
