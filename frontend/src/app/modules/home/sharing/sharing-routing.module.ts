@@ -15,6 +15,7 @@ import { GeneralStatisticsComponent } from './general-statistics/general-statist
 import { CampaignStatsComponent } from './general-statistics/campaign-stats/campaign-stats.component';
 import { ClientStatsComponent } from './general-statistics/client-stats/client-stats.component';
 import { DrillDownStatsComponent } from './general-statistics/drill-down-stats/drill-down-stats.component';
+import { DrillDownInfluencerStatsComponent } from './general-statistics/drill-down-stats/drill-down-influencer-stats/drill-down-influencer-stats.component';
 
 
 const routes: Routes = [
@@ -78,6 +79,10 @@ const routes: Routes = [
   {
     path: 'viewClientStatistics/:id',
     component: DrillDownStatsComponent,
+  },
+  {
+    path: 'viewInfluencerCampaignStatistics/:id',
+    component: DrillDownInfluencerStatsComponent,
   },
   {
     path: '',

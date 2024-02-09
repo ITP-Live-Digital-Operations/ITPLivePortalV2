@@ -139,7 +139,7 @@ export class CampaignDetailsComponent {
     });
   }
 
-  addIfnluencerResults() {
+  addInfluencerResults() {
     const influencers = this.campaign.Influencers.map(influencer => {
       return {
         id: influencer.id,
