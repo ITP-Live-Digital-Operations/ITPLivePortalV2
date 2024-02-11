@@ -22,6 +22,7 @@ export class DrillDownStatsComponent {
     'CPE',
     'CPM',
     'marginOfProfit',
+    'view',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
