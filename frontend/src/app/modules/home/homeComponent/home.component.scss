@@ -11,8 +11,10 @@ mat-sidenav {
   position: fixed;
   width: 200px;
   border-right: none;
-  background: rgb(71,137,161);
-  background: linear-gradient(180deg, rgba(71,137,161,1) 55%, rgba(30,110,139,1) 90%);
+  background: rgba(71, 137, 161, 0.286);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+
   color: white;
   // border-radius: 10px;
   text-align: center;
