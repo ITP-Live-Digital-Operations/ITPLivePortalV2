@@ -1,4 +1,4 @@
-const {upload} = require("../../config/multerConfig");
+const { upload } = require("../../config/multerConfig");
 const models = require("../../models");
 const File = models.File;
 const SalesBrief = models.SalesBrief;
