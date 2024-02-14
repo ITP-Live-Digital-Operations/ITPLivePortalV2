@@ -8,21 +8,25 @@ mat-toolbar-row {
 }
 
 mat-sidenav {
+
   position: fixed;
-  width: 200px;
-  border-right: none;
+  top: 10%; /* Center the element vertically */
+  bottom: 10%;
   background: rgba(71, 137, 161, 0.286);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-
   color: white;
-  // border-radius: 10px;
   text-align: center;
-  padding-top: 80px;
+  padding-top: 65px;
 }
 
 .mat-mdc-icon-button {
   color: #ffffff !important;
+}
+img {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px; 
 }
 
 
@@ -84,7 +88,6 @@ mat-sidenav-container {
 
 
 
-
 mat-sidenav-content {
   overflow-x: hidden;
   justify-content: center;
@@ -103,7 +106,9 @@ mat-sidenav-content {
   z-index: 990;
   position: relative;
 }
-
+.menu-item:hover{
+  background-color: #3f51b5c9;
+}
 
 
 .avatar {
@@ -271,11 +276,9 @@ mat-divider {
 (max-height: 900px) {
   .router-container {
     padding:  20px 50px;
-    background-color:hsla(232,60%,8%,1);
-    background-image:
-    radial-gradient(at 86% 97%, hsla(271,0%,0%,1) 0px, transparent 50%),
-    radial-gradient(at 22% 58%, hsla(240,75%,48%,0.42) 0px, transparent 50%);
-    animation: gradient 20s ease infinite;
+    background-color:rgba(8, 11, 33, 0.034);
+
+    animation: gradient 5s ease infinite;
     background-size: 120% 120%;
     // overflow-y: scroll;
     /* overflow-x: hidden ; */
@@ -295,4 +298,43 @@ mat-divider {
   100% {
     background-position: 0% 20%;
   }
+}
+
+
+/* Side Bar content*/
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  
+}
+.example-sidenav {
+   user-select: none;
+}
+.full-width {
+  width: 100%;
+}
+
+mat-icon {
+  color: white;
+  margin-right: 8px; 
+}
+
+span {
+  color: white;
+  flex-grow: 1;
+  padding-bottom: 2px !important; /* Let the text take up the remaining space */
+}
+
+mat-nav-list {
+
+  text-align: left;
+}
+
+mat-nav-list a.mat-list-item,
+mat-nav-list .mat-list-item {
+
+  justify-content: flex-start; 
+  text-align: left; 
 }

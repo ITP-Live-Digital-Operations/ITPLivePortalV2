@@ -18,7 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { TokenInterceptorService } from './core/services/token-interceptor.service';
 import { UserService } from './core/services/user.service';
 import { LoginCredentialsComponent } from './modules/login/login-credentials/login-credentials.component';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +28,7 @@ import { LoginCredentialsComponent } from './modules/login/login-credentials/log
     LoginCredentialsComponent,
   ],
   imports: [
+    MatSidenavModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

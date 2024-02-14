@@ -12,6 +12,7 @@ import { BackButtonComponent } from './homeComponent/back-button/back-button.com
 import { NotificationComponent } from './homeComponent/notification/notification.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
+import { CharbelSideNavComponent } from './homeComponent/charbel-side-nav/charbel-side-nav.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     SideNavContentComponent,
     BackButtonComponent,
     NotificationComponent,
+    CharbelSideNavComponent,
   ],
   imports: [
     CommonModule,
