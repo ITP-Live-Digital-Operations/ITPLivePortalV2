@@ -1,10 +1,10 @@
 
 <mat-toolbar class="mat-elevation-z10">
   <mat-toolbar-row>
-    <button class="menu" mat-icon-button (click)="toggleSidenav()">
+  <!-- <button class="menu" mat-icon-button (click)="toggleSidenav()">
       <mat-icon *ngIf="!sidenavOpened">menu</mat-icon>
       <mat-icon *ngIf="sidenavOpened">close</mat-icon>
-    </button>
+    </button>--> 
     <div class="title">
       <span class="title-1">ITP |</span><span class="title-2">Portal</span>
     </div>
@@ -46,18 +46,84 @@
 
 <mat-sidenav-container>
 
-  <mat-sidenav #sidenav mode="side" [opened]="sidenavOpened">
-    <app-side-nav-content [userName]="userName" [userId]="userId" [privilegeLevel]="privilegeLevel" [userRole]="userRole" [onLeave]="onLeave"></app-side-nav-content>
+
+
+  <mat-sidenav #sidenav class="example-sidenav" [@expandCollapse]="isOpen ? 'expanded' : 'collapsed'" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+    <!-- <app-side-nav-content [userName]="userName" [userId]="userId" [privilegeLevel]="privilegeLevel" [userRole]="userRole" [onLeave]="onLeave"></app-side-nav-content>-->
+   <mat-nav-list>
+ 
+    
+    <!-- Forms -->
+    <mat-list-item [routerLink]="path['forms']" class="menu-item">
+      <img src="../../../../../assets/white-buttons/account-pic.png">
+      <span class="full-width"  >{{ userName }}</span>
+    </mat-list-item>
+
+    <mat-list-item [routerLink]="path['forms']" class="menu-item">
+      <mat-icon mat-list-icon>home</mat-icon>
+      <span class="full-width">Forms</span>
+    </mat-list-item>
+  
+    <mat-list-item [routerLink]="path['allBriefs']" class="menu-item">
+      <mat-icon mat-list-icon>chrome_reader_mode</mat-icon>
+      <span class="full-width">All Briefs</span>
+    </mat-list-item>
+
+    <mat-list-item *ngIf="(userRole == 'talent' && privilegeLevel > 7) || userRole == 'superadmin'" [routerLink]="path['talentTasks']" class="menu-item">
+      <mat-icon mat-list-icon>supervisor_account</mat-icon>
+      <span class="full-width">Talent Tasks</span>
+    </mat-list-item>
+   
+    <mat-list-item *ngIf="userRole == 'talent'" [routerLink]="path['personTasks'] + userId" class="menu-item">
+      <mat-icon mat-list-icon>assignment</mat-icon>
+      <span class="full-width">Tasks</span>
+    </mat-list-item>
+    
+    <mat-list-item *ngIf="userRole == 'superadmin'" [routerLink]="path['registerUser']" class="menu-item">
+      <mat-icon mat-list-icon>assignment</mat-icon>
+      <span class="full-width">Register User</span>
+    </mat-list-item>
+  
+    <mat-list-item *ngIf="userRole == 'superadmin'" (click)="exportSeeds()" class="menu-item">
+      <mat-icon mat-list-icon>import_export</mat-icon>
+      <span class="full-width">Export Seeds</span>
+    </mat-list-item>
+ 
+    <mat-list-item [routerLink]="path['editProfile']" class="menu-item">
+      <mat-icon mat-list-icon>account_circle</mat-icon>
+      <span class="full-width">Profile</span>
+    </mat-list-item>
+
+    <mat-list-item *ngIf="['admin', 'superadmin', 'sales', 'talent'].includes(userRole)" [routerLink]="userRole == 'sales' || userRole == 'admin' || userRole == 'superadmin' ? path['salesGuide'] : path['talentGuide']" class="menu-item">
+      <mat-icon mat-list-icon>help</mat-icon>
+      <span class="full-width">Help</span>
+    </mat-list-item>
+
+    <mat-list-item *ngIf="!onLeave" (click)="goOnLeave()" class="menu-item">
+      <mat-icon mat-list-icon>transfer_within_a_station</mat-icon>
+      <span class="full-width" >Go on Leave</span>
+    </mat-list-item>
+    <mat-list-item *ngIf="onLeave" (click)="returnFromLeave()" class="menu-item">
+      <mat-icon mat-list-icon>transfer_within_a_station</mat-icon>
+      <span class="full-width">Back to work</span>
+    </mat-list-item>
+  
+    <mat-list-item routerLink="/login" class="menu-item">
+      <mat-icon mat-list-icon>logout</mat-icon>
+      <span class="full-width">Log Out</span>
+    </mat-list-item>
+  </mat-nav-list>
+
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content [@contentMargin]="isOpen ? 'expanded' : 'collapsed'">
 
-    <div class="d-flex content mat-elevation-z8" class="router-container" [ngClass]="{ 'backgroundColor': backButton}">
+    <div class="d-flex content mat-elevation-z8" class="router-container" [ngClass]="{ 'backgroundColor': backButton} " >
       <div>
 
         <app-back-button *ngIf="backButton"></app-back-button>
       </div>
-        <router-outlet></router-outlet>`
+        <router-outlet></router-outlet>
     </div>
 
   </mat-sidenav-content>

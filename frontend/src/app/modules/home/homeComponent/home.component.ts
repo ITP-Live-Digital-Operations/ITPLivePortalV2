@@ -7,13 +7,45 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/core/services/user.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
-
+import { MatSidenav } from '@angular/material/sidenav'; // Corrected import path for MatSidenav
+import { ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('expandCollapse', [
+      state('collapsed', style({
+        width: '60px', 
+      })),
+      state('expanded', style({
+        width: '240px',
+      })),
+      transition('collapsed <=> expanded', animate('0.2s ease-in-out')),
+    ]),
+    trigger('contentMargin', [
+      state('collapsed', style({
+        'margin-left': '60px', // The margin when the sidenav is collapsed
+      })),
+      state('expanded', style({
+        'margin-left': '240px', // The margin when the sidenav is expanded
+      })),
+      transition('collapsed <=> expanded', animate('0.2s ease-in-out')),
+    ]),
+  ],
 })
+
 export class HomeComponent {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+  isExpanded = false;
+  showSubmenu: boolean = false;
+  isShowing = false;
+  showSubSubMenu: boolean = false;
+  isOpen = false; // Track the state of the sidenav
+
 
   public path = PATH;
 
@@ -30,12 +62,14 @@ export class HomeComponent {
   public userId = this.userService.getID();
 
   private routerSubscription!: Subscription;
-
+  
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private userService: UserService,
     private notificationService: NotificationService,
+    private userService: UserService,
+    private toastrService: ToastrService,
+    private dialogService: ConfirmationDialogService
   ) {
 
     this.userService.getUserByID(this.userId).subscribe((res) => {
@@ -92,7 +126,71 @@ export class HomeComponent {
     });
   }
 
-  public toggleSidenav(): void {
-    this.sidenavOpened = !this.sidenavOpened;
+  mouseenter() {
+    this.isOpen = true;
+  }
+  
+  mouseleave() {
+    this.isOpen = false;
+  }
+  public exportSeeds(): void {
+    /* this.dataService.exportSeeds().subscribe((res) => {
+      const msg: any = res;
+
+      if (msg.message == 'Script executed successfully!') {
+        this.toastrService.success('Seeds exported successfully!');
+      } else {
+        this.toastrService.error('Seeds export failed!');
+      }
+    }); */
+  }
+
+  ngOnChanges() {}
+
+  goOnLeave() {
+    this.dialogService
+      .openConfirmationDialog(
+        'Confirm!',
+        'Are you sure you want to go on leave?',
+        'yesno'
+      )
+      .subscribe((result) => {
+        if (result == true) {
+          this.userService.goOnLeave(this.userId).subscribe((res) => {
+            this.toastrService.success('You are on leave now!');
+            if (this.userId == 15) {
+              this.userService.addTalentHead(24).subscribe((res) => {
+                window.location.reload();
+              });
+            }else{
+              window.location.reload();
+            }
+          });
+
+        }
+      });
+  }
+
+  returnFromLeave() {
+    this.dialogService
+      .openConfirmationDialog(
+        'Confirm!',
+        'Are you sure you want to return to work?',
+        'yesno'
+      )
+      .subscribe((result) => {
+        if (result == true) {
+          this.userService.returnFromLeave(this.userId).subscribe((res) => {
+            this.toastrService.success('You are back from leave!');
+
+            if (this.userId == 15) {
+              this.userService.removeTalentHead(24).subscribe((res) => {window.location.reload();});
+            }else{
+              window.location.reload();
+            }
+          });
+
+        }
+      });
   }
 }
