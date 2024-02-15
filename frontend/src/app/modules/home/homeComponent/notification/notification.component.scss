@@ -1,71 +1,70 @@
 .notification-container {
   padding: 20px;
   border-radius: 0px;
-}
-
-.flex {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  overflow-x: hidden;
+  flex-direction: column;  /* Arrange items vertically */
 }
-
-button {
-  padding: 10px 15px;
-  background-color: transparent;
-  color: white;
-  border: 1px solid #4789A1;
-  border-radius: 4px;
-  margin-bottom: 1%;
-  cursor: pointer;
-  margin-right: 0;
-
-  &:hover {
-    background-color: #4789A1;
-  }
-}
-
 
 .notification-box {
   background-color: transparent;
-  margin-bottom: 20px; // Space around the entire notification box
+  margin-bottom: 20px; // Space around entire notification box
+  flex-grow: 1; /* Allows notifications area to grow and fill space */
+  overflow-y: auto; /* Enables vertical scrolling for notifications */
+  max-height: 400px; /* Limits height of notifications area */
+
 
   div {
     border: 1px solid #ccc;
     padding: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px; // Space between individual notifications
-  }
 
-  a {
-    text-decoration: none;
-    color: inherit; // Inherits the color from parent
-    display: flex;
-    align-items: center; // Vertically centers the flex children
-    gap: 10px; // Adds a gap between flex items
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 10px;
 
-    .maticon {
-      flex-shrink: 0; // Prevents the icon from shrinking
-      height: 25px;
-      width: 25px;
-      color: red;
-    }
+      .maticon {
+        flex-shrink: 0;
+        height: 2%;
+        width: 5%;
+        color: red;
+        font-size: 20px;
+      }
 
-    p {
-      margin: 0; // Resets margin
-      flex-grow: 1; // Allows the paragraph to take up remaining space
-      color: #FFF; // Text color for the message
-    }
+      p {
+        margin: 0;
+        flex-grow: 1;
+        color: #FFF;
+        font-size: 13px;
+      
 
-    small {
-      margin-left: auto; // Pushes the timestamp to the right
-      color: #666; // Text color for the timestamp
+      }
+
+      small {
+        margin-left: auto;
+        color: #666;
+      }
     }
   }
 }
 
-.mat-mdc-dialog-container {
-  background-color: transparent !important;
-}
+.mark-btn {
+  margin-top: auto; /* Pushes button to the bottom */
+  align-self: flex-end; /* Aligns button to the right */
 
+  button {
+    padding: 10px 15px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #1f3371;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #1f3371;
+    }
+  }
+}

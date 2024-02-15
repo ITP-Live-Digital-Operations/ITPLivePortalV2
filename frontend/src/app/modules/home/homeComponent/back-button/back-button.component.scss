@@ -1,15 +1,14 @@
 .back-button {
-    background-color: transparent;
     font-size: medium;
-    color: white;
-    border: 3px solid  rgba(71, 137, 161, 0.286);;
+    background-color: #ffffff2a!important;
+    border: 3px solid  #1f3371;
     padding: 4px 8px;
     border-radius: 10px !important;
 
 }
 
 .back-button:hover {
-    background-color: #ffffff2a;
+  background-color: #fFF!important;
     transition: 300ms;
 }
 

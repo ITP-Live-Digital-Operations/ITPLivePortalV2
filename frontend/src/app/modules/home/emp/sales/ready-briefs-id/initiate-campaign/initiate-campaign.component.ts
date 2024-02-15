@@ -42,7 +42,7 @@ export class InitiateCampaignComponent {
       campaignName: this.brief.CampaignName,
       market: firstMarket,
       clientId: this.brief.client.id,
-      brandId: this.brief.brand.id,
+      brandId: this.brief.brand?.id || null,
       createdBy: this.userService.getID(),
       briefId: this.brief.id,
     };

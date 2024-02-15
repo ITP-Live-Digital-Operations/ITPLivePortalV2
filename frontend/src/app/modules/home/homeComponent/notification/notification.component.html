@@ -1,7 +1,5 @@
 <div class="notification-container">
-  <div>
-  <button (click)="markAllAsRead()"> Mark All as Read </button>
-  </div>
+
   <div class="notification-box">
 
     <div *ngFor="let notification of notifications?.data">
@@ -18,5 +16,9 @@
       </a>
     </div>
 
+  </div>
+
+  <div class="mark-btn">
+    <button (click)="markAllAsRead()"> Mark All as Read </button>
   </div>
 </div>

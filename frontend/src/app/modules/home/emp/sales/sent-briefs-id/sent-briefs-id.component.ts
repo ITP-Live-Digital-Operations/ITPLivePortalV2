@@ -29,6 +29,7 @@ export class SentBriefsIdComponent {
   private briefData: any;
   public newBrief: any;
   private taskData: any;
+  brand : any;
 
   public userId = this.userService.getID();
   public userName: any;
@@ -66,6 +67,7 @@ export class SentBriefsIdComponent {
       basicInfo: this.formBuilder.group({
         Agency: ['', [Validators.required]],
         clientId: ['', [Validators.required]],
+        brandId: [''],
         CampaignName: ['', [Validators.required]],
         CampaignOverview: [''],
         CampaignObjective: [''],
@@ -179,10 +181,12 @@ export class SentBriefsIdComponent {
       });
 
       if (this.briefData.data != null) {
+        this.brand = this.briefData.data.brand;
         this.editForm.patchValue({
           basicInfo: {
             Agency: this.briefData.data.Agency,
             clientId: this.briefData.data.client.id,
+            brandId:  this.briefData.data.brand.id,
             CampaignName: this.briefData.data.CampaignName,
             CampaignOverview: this.briefData.data.CampaignOverview,
             CampaignObjective: this.briefData.data.CampaignObjective,
