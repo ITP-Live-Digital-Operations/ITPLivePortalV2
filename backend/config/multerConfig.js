@@ -19,6 +19,15 @@ const campaignStorage = multer.diskStorage({
   }
 });
 
+const profilePictureStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `${__dirname}/../uploads/profilePictures`);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
+
 const fileFilter = (req, file, cb) => {
   console.log("filter");
   const ext = file.originalname.split('.').pop();
