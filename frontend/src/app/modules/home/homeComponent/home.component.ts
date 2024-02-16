@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -22,7 +22,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         width: '60px', 
       })),
       state('expanded', style({
-        width: '240px',
+        width: '300px',
       })),
       transition('collapsed <=> expanded', animate('0.2s ease-in-out')),
     ]),
@@ -31,32 +31,43 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         'margin-left': '60px', // The margin when the sidenav is collapsed
       })),
       state('expanded', style({
-        'margin-left': '240px', // The margin when the sidenav is expanded
+        'margin-left': '300px', // The margin when the sidenav is expanded
       })),
       transition('collapsed <=> expanded', animate('0.2s ease-in-out')),
     ]),
-  ],
+  trigger('slideUpDown', [
+    state('collapsed', style({
+      height: '0',
+      overflow: 'hidden',
+      opacity: '0'
+    })),
+    state('expanded', style({
+      height: '*',
+      opacity: '1'
+    })),
+    transition('collapsed <=> expanded', animate('300ms ease-out')),
+  ])
+],
 })
 
 export class HomeComponent {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   isExpanded = false;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
-  isOpen = false; // Track the state of the sidenav
+  isOpen = false; 
 
-
+  private touchStartX = 0;
+  private touchEndX = 0;
   public path = PATH;
 
   public userName!: string;
   public userRole!: string;
   public privilegeLevel!: number;
   public onLeave : boolean = false;
+  public backtowork : boolean = false;
   private user: any;
 
   public backButton: boolean = false;
-  public sidenavOpened: boolean = true;
+  public sidenavOpened: boolean = false;
 
   public notificationCount: any;
   public userId = this.userService.getID();
@@ -125,6 +136,33 @@ export class HomeComponent {
       },
     });
   }
+  @HostListener('document:touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    this.touchStartX = event.touches[0].clientX;
+  }
+
+  @HostListener('document:touchend', ['$event'])
+  onTouchEnd(event: TouchEvent) {
+    this.touchEndX = event.changedTouches[0].clientX;
+    this.handleSwipe();
+  }
+
+  private handleSwipe() {
+    const minSwipeDistance = 50; // Minimum distance in pixels to consider as swipe
+    const direction = this.touchEndX - this.touchStartX;
+
+    if (Math.abs(direction) >= minSwipeDistance) {
+      if (direction > 0) {
+        // Swipe right
+        this.sidenavOpened = true;
+      } else {
+        // Swipe left
+        this.sidenavOpened = false;
+      }
+      // Toggle the sidebar's opened state
+      this.sidenav.opened = this.sidenavOpened;
+    }
+  }
 
   mouseenter() {
     this.isOpen = true;
@@ -146,8 +184,13 @@ export class HomeComponent {
   }
 
   ngOnChanges() {}
-
+  
+  toggleExpand(): void {
+    this.isExpanded = !this.isExpanded;
+  }
   goOnLeave() {
+    this.onLeave = true;
+    this.backtowork = false;
     this.dialogService
       .openConfirmationDialog(
         'Confirm!',
@@ -172,6 +215,7 @@ export class HomeComponent {
   }
 
   returnFromLeave() {
+    this.onLeave=true;
     this.dialogService
       .openConfirmationDialog(
         'Confirm!',

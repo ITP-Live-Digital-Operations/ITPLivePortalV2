@@ -3,7 +3,7 @@
   scroll-snap-type: x mandatory; /* This is optional and enables snap scrolling */
   -webkit-overflow-scrolling: touch; /* For iOS Webkit browsers */
   scrollbar-width: thin; /* For Firefox, let's make it thin */
-  scrollbar-color: rgba(71, 137, 161, 0.286)  #e0e0e000;
+  scrollbar-color:  rgba(95, 95, 95, 0.575)  #e0e0e000;
   -ms-overflow-style: none; 
  
 }
@@ -37,23 +37,40 @@
 }
 
 button[mat-raised-button] {
-  scroll-snap-align: start; /* Optional: if using scroll snap */
-  flex: 0 0 auto; /* Do not grow or shrink, keep the original size */
-  width: 300px; /* Your width */
-  height: 73vh !important; /* Your height */
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 300px;
+  height: 73vh !important;
   margin: 0 10px;
-  position: relative; /* Establish positioning context */
-   
-  // margin-bottom: 15px;
-  background: rgba(71, 137, 161, 0.286);
-  
-  border-radius: 0px;
-  transition:  500ms;
+  position: relative;
+  background: rgb(75,75,75);
+  background: linear-gradient(0deg,rgba(176, 186, 225, 0.2)  0%, rgba(176, 186, 225, 0.15)  20%,rgba(176, 186, 225, 0.1)  70%,rgba(176, 186, 225, 0.02) 100%);
+  transition: background-color 500ms, border-color 500ms;
   border-radius: 20px !important;
-  border: solid 5px transparent; /* Make the border transparent */
-  border-radius: 20px; /* Adjust border-radius as needed */
- 
- 
+  overflow: hidden; /* Ensure the pseudo-element doesn't exceed the button's boundary */
+}
+
+button[mat-raised-button]::before {
+  content: '';
+  position: absolute;
+  top: 100%; /* Start from the bottom */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.01) 100%); /* This will be the color of the slide */
+  transition: top 300ms; /* Adjust timing as needed */
+  border-radius: 20px; /* Match the button's border-radius */
+  
+}
+
+button[mat-raised-button]:hover::before {
+  top: 0; /* Slide up to cover the entire button */
+}
+
+button[mat-raised-button]:hover {
+  z-index: 2;
+  border: 4px solid  rgba(176, 186, 225, 0.15) ;
 }
 
 .title {
@@ -72,15 +89,6 @@ button[mat-raised-button] {
   
 // }
 
-button[mat-raised-button]:hover {
-  transition: 200ms;
-  z-index: 2;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  
-  
-  
-  
-}
 
 button[mat-raised-button] img {
   position: absolute;

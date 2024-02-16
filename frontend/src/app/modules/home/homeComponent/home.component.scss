@@ -12,12 +12,14 @@ mat-sidenav {
   position: fixed;
   top: 10%; /* Center the element vertically */
   bottom: 10%;
-  background: rgba(71, 137, 161, 0.286);
+  background: rgb(75,75,75);
+  background: linear-gradient(0deg, rgba(95, 95, 95, 0.575) 0%,rgba(75, 74, 74, 0.427) 0%, rgba(53, 53, 53, 0.236) 7%, rgba(29, 29, 29, 0.29) 100%, rgba(198,19,163,1) 100%); transition: background-color 500ms, border-color 500ms;
+ 
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   color: white;
   text-align: center;
-  padding-top: 65px;
+
 }
 
 .mat-mdc-icon-button {
@@ -27,6 +29,7 @@ img {
   width: 24px;
   height: 24px;
   margin-right: 8px; 
+  
 }
 
 
@@ -92,9 +95,7 @@ mat-sidenav-content {
   overflow-x: hidden;
   justify-content: center;
   max-width: 100%;
-
-
-
+  
 }
 
 .container {
@@ -107,10 +108,45 @@ mat-sidenav-content {
   position: relative;
 }
 .menu-item:hover{
-  background-color: #3f51b5c9;
+  background: rgb(255,255,255);
+background: linear-gradient(112deg, rgb(77, 79, 196) 0%, rgba(23,25,94,1) 77%, rgba(16,18,89,1) 100%);
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}; /* Slide up to cover the entire button */
+
+
+#vacation:hover{
+  background: rgb(232, 97, 97);
+  background: linear-gradient(112deg, rgb(232, 97, 97) 0%, rgb(70, 1, 1) 100%);
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+#backtowork:hover{
+  background: rgb(255,255,255);
+  background: rgb(102,232,97);
+  background: linear-gradient(112deg, rgba(102,232,97,1) 0%, rgba(1,70,11,1) 100%);
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.menu-button {
+  transition: transform 0.3s ease;
+  margin-left: 15px;
+  padding-top: 7px;
 }
 
+/* Icon rotated state, pointing up */
+.rotate-icon {
+  transform: rotate(180deg);
+}
+.account-pic {
+  border: 3px solid rgb(0, 255, 0); /* Adjust the border size and style as needed */
+  border-radius: 50%; /* Assuming the picture is circular */
+}
 
+/* Additional class for when the user is on leave */
+.on-leave-border {
+  border-color: red;
+}
 .avatar {
   margin-top: 16px;
   width: 100px;
@@ -147,7 +183,7 @@ mat-divider {
 }
 
 .router-container {
-  padding: 30px 60px;
+  padding: 7vh 60px;
   // overflow-y: scroll;
   /* overflow-x: hidden ; */
 }
@@ -337,4 +373,11 @@ mat-nav-list .mat-list-item {
 
   justify-content: flex-start; 
   text-align: left; 
+}
+
+.example-sidenav .nav-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* This centers the content vertically */
+  height: 100%; /* Full height of the parent container */
 }
