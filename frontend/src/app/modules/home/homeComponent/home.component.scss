@@ -14,7 +14,7 @@ mat-sidenav {
   bottom: 10%;
   background: rgb(75,75,75);
   background: linear-gradient(0deg,rgba(176, 186, 225, 0.2)  0%, rgba(176, 186, 225, 0.15)  20%,rgba(176, 186, 225, 0.1)  70%,rgba(176, 186, 225, 0.02) 100%);
- 
+
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   color: white;
@@ -28,8 +28,8 @@ mat-sidenav {
 img {
   width: 24px;
   height: 24px;
-  margin-right: 8px; 
-  
+  margin-right: 8px;
+
 }
 
 
@@ -95,7 +95,7 @@ mat-sidenav-content {
   overflow-x: hidden;
   justify-content: center;
   max-width: 100%;
-  
+
 }
 
 .container {
@@ -184,8 +184,13 @@ mat-divider {
 
 .router-container {
   padding: 7vh 60px;
+
   // overflow-y: scroll;
   /* overflow-x: hidden ; */
+}
+
+.content-noScroll {
+  overflow-y: hidden;
 }
 
 ::-webkit-scrollbar-track {
@@ -343,7 +348,7 @@ mat-divider {
   height: 100%;
   align-items: center;
   justify-content: center;
-  
+
 }
 .example-sidenav {
    user-select: none;
@@ -354,7 +359,7 @@ mat-divider {
 
 mat-icon {
   color: white;
-  margin-right: 8px; 
+  margin-right: 8px;
 }
 
 span {
@@ -371,8 +376,8 @@ mat-nav-list {
 mat-nav-list a.mat-list-item,
 mat-nav-list .mat-list-item {
 
-  justify-content: flex-start; 
-  text-align: left; 
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .example-sidenav .nav-list-container {

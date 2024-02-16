@@ -19,7 +19,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations: [
     trigger('expandCollapse', [
       state('collapsed', style({
-        width: '60px', 
+        width: '60px',
       })),
       state('expanded', style({
         width: '300px',
@@ -51,9 +51,12 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 
 export class HomeComponent {
+
+  themeClass: string = '';
+
   @ViewChild('sidenav') sidenav!: MatSidenav;
   isExpanded = false;
-  isOpen = false; 
+  isOpen = false;
 
   private touchStartX = 0;
   private touchEndX = 0;
@@ -73,7 +76,7 @@ export class HomeComponent {
   public userId = this.userService.getID();
 
   private routerSubscription!: Subscription;
-  
+
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -115,6 +118,40 @@ export class HomeComponent {
         this.backButton = true;
       }
     });
+  }
+
+  ngOnInit(): void {
+
+    const url = this.router.url;
+    console.log(url);
+    if (url.endsWith('/forms')) {
+      console.log('forms');
+      this.themeClass = 'content-noScroll'
+    }else{
+      this.themeClass = '';
+    } 
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        const url = this.router.url;
+    console.log(url);
+    if (url.endsWith('/forms')) {
+      console.log('forms');
+      this.themeClass = 'content-noScroll'
+    }else{
+      this.themeClass = '';
+    }
+      });
+
+  /*   const url = this.router.url;
+    console.log(url);
+    if (url.endsWith('/forms')) {
+      console.log('forms');
+      this.themeClass = 'content-noScroll'
+    }else{
+      this.themeClass = '';
+    } */
   }
 
   ngOnDestroy(): void {
@@ -167,7 +204,7 @@ export class HomeComponent {
   mouseenter() {
     this.isOpen = true;
   }
-  
+
   mouseleave() {
     this.isOpen = false;
   }
@@ -183,8 +220,9 @@ export class HomeComponent {
     }); */
   }
 
-  ngOnChanges() {}
-  
+  ngOnChanges() {
+  }
+
   toggleExpand(): void {
     this.isExpanded = !this.isExpanded;
   }
