@@ -129,7 +129,7 @@ export class HomeComponent {
       this.themeClass = 'content-noScroll'
     }else{
       this.themeClass = '';
-    } 
+    }
 
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
@@ -162,14 +162,14 @@ export class HomeComponent {
 
   public toggleNotificationBox(): void {
     this.dialog.open(NotificationComponent, {
-      width: '500px',
-      height: '500px',
+      width: '680px',
+      height: '600px',
       data: {
         userId: this.userId,
       },
       position: {
-        top: '3%',
-        right: '7%',
+        top: '11.5%',
+        left: '3.1%',
       },
     });
   }

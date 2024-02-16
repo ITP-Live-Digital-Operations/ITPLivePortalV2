@@ -6,7 +6,7 @@
       <mat-icon *ngIf="sidenavOpened">close</mat-icon>
     </button>-->
     <div class="title">
-      <span class="title-1">ITP |</span><span class="title-2">Portal</span>
+      <span class="title-1">ITP</span><br><span class="title-1">Portal</span>
     </div>
 
 
@@ -19,12 +19,6 @@
     </button>
 
 
-    <div class="notification-container">
-      <button mat-icon-button class="notification-icon" (click)="toggleNotificationBox()">
-        <span class="notification-dot" *ngIf="notificationCount?.data > 0" ></span>
-        <mat-icon class="icon">notification_important</mat-icon>
-      </button>
-    </div>
 
     <span class="changePassword-icon"></span>
     <button mat-icon-button routerLink="{{path['forms']}}">
@@ -91,15 +85,14 @@
       <span class="full-width">Tasks</span>
     </mat-list-item>
 
-    <mat-list-item *ngIf="userRole == 'superadmin'" [routerLink]="path['registerUser']" class="menu-item">
-      <mat-icon mat-list-icon>assignment</mat-icon>
-      <span class="full-width">Register User</span>
+
+    <mat-list-item (click)="toggleNotificationBox()"  class="notification-icon">
+        <mat-icon class="icon">notification_important</mat-icon>
+        <span class="notification-dot" *ngIf="notificationCount?.data > 0" ></span>
+        <span class="full-width"> Notifications </span>
     </mat-list-item>
 
-    <mat-list-item *ngIf="userRole == 'superadmin'" (click)="exportSeeds()" class="menu-item">
-      <mat-icon mat-list-icon>import_export</mat-icon>
-      <span class="full-width">Export Seeds</span>
-    </mat-list-item>
+
 
     <mat-list-item [routerLink]="path['editProfile']" class="menu-item">
       <mat-icon mat-list-icon>account_circle</mat-icon>
