@@ -38,10 +38,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    data: {
-      type: DataTypes.BLOB('long'),
-      allowNull: false,
-    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE
