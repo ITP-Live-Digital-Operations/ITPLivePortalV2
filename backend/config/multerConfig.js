@@ -19,14 +19,7 @@ const campaignStorage = multer.diskStorage({
   }
 });
 
-const profilePictureStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, `${__dirname}/../uploads/profilePictures`);
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  }
-});
+
 
 const fileFilter = (req, file, cb) => {
   console.log("filter");
@@ -41,6 +34,8 @@ const fileFilter = (req, file, cb) => {
   cb(null, false);
 }
 }
+
+
 
 const upload = multer({
   storage: storage,
@@ -58,4 +53,32 @@ const campaignUpload = multer({
   }
 });
 
-module.exports = {upload, campaignUpload};
+const profilePictureStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, `${__dirname}/../uploads/profilePictures`);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  }
+});
+
+const profilePictureFileFilter = (req, file, cb) => {
+  console.log("filter");
+  const ext = file.originalname.split('.').pop();
+  console.log(ext);
+  if (ext === 'png' || ext === 'jpg' || ext === 'jpeg') {
+  cb(null, true);
+} else {
+  cb(null, false);
+}
+}
+
+const profilePictureUpload = multer({
+  storage: profilePictureStorage,
+  fileFilter: profilePictureFileFilter,
+  limits: {
+    fileSize: 1024 * 1024 * 5 //5MB
+  }
+});
+
+module.exports = {upload, campaignUpload, profilePictureUpload};

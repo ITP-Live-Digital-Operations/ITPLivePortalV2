@@ -62,5 +62,8 @@ router.route('/goOnLeave/:id')
 router.route('/returnFromLeave/:id')
     .get(asyncHandler(userController.returnFromLeave));
 
+router.route('/uploadProfilePicture/:id')
+    .post(asyncHandler(userController.uploadProfilePicture));
+
 
 module.exports = router;
