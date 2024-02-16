@@ -15,7 +15,7 @@ export class FormsComponent {
   public userRole!: string;
 
   constructor(private userService: UserService){ }
-
+ 
   ngOnInit(){
     this.getRole();
     this.getPrivilegeLevel();
