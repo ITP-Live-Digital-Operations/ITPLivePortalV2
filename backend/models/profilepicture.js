@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       ProfilePicture.belongsTo(models.User, {
         foreignKey: 'userId',
+        as: 'user',
         onDelete: 'CASCADE'
       });
     }
@@ -49,6 +50,7 @@ module.exports = (sequelize, DataTypes) => {
 
   }, {
     sequelize,
+    tableName: 'profilepictures',
     modelName: 'ProfilePicture',
   });
   return ProfilePicture;
