@@ -227,8 +227,7 @@ export class HomeComponent {
     this.isExpanded = !this.isExpanded;
   }
   goOnLeave() {
-    this.onLeave = true;
-    this.backtowork = false;
+   
     this.dialogService
       .openConfirmationDialog(
         'Confirm!',
@@ -237,6 +236,8 @@ export class HomeComponent {
       )
       .subscribe((result) => {
         if (result == true) {
+          this.onLeave = true;
+          this.backtowork = false;
           this.userService.goOnLeave(this.userId).subscribe((res) => {
             this.toastrService.success('You are on leave now!');
             if (this.userId == 15) {
@@ -253,7 +254,7 @@ export class HomeComponent {
   }
 
   returnFromLeave() {
-    this.onLeave=true;
+
     this.dialogService
       .openConfirmationDialog(
         'Confirm!',
@@ -262,6 +263,8 @@ export class HomeComponent {
       )
       .subscribe((result) => {
         if (result == true) {
+          this.onLeave = false;
+          this.backtowork = true;
           this.userService.returnFromLeave(this.userId).subscribe((res) => {
             this.toastrService.success('You are back from leave!');
 
