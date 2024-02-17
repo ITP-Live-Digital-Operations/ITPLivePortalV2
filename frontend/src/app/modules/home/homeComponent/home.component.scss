@@ -14,7 +14,7 @@ mat-sidenav {
   bottom: 10%;
   background: rgb(75,75,75);
   background: linear-gradient(0deg,rgba(176, 186, 225, 0.2)  0%, rgba(176, 186, 225, 0.15)  20%,rgba(176, 186, 225, 0.1)  70%,rgba(176, 186, 225, 0.02) 100%);
-
+ 
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   color: white;
@@ -28,20 +28,17 @@ mat-sidenav {
 img {
   width: 24px;
   height: 24px;
-  margin-right: 8px;
-
+  margin-right: 8px; 
+  
 }
 
 
 
 .title-1 {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 20px;
-  margin-left: -20%;
-
+  position: relative;
+  z-index: 2;
 }
-
-
 
 .title-2 {
   margin-top: 2px;
@@ -98,7 +95,7 @@ mat-sidenav-content {
   overflow-x: hidden;
   justify-content: center;
   max-width: 100%;
-
+  
 }
 
 .container {
@@ -187,13 +184,8 @@ mat-divider {
 
 .router-container {
   padding: 7vh 60px;
-
   // overflow-y: scroll;
   /* overflow-x: hidden ; */
-}
-
-.content-noScroll {
-  overflow-y: hidden;
 }
 
 ::-webkit-scrollbar-track {
@@ -255,6 +247,7 @@ mat-divider {
 .notification-container {
   position: relative;
   display: inline-block;
+  
   /* to shrink container to the size of the icon */
 }
 
@@ -264,7 +257,12 @@ mat-divider {
   background-size: cover;
   cursor: pointer;
 }
-
+.notification-icon:hover{
+  background: rgb(255,255,255);
+ background: linear-gradient(112deg, rgb(77, 79, 196) 0%, rgba(23,25,94,1) 77%, rgba(16,18,89,1) 100%);
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
 .notification-dot {
   position: absolute;
   top: 5px;
@@ -351,7 +349,7 @@ mat-divider {
   height: 100%;
   align-items: center;
   justify-content: center;
-
+  
 }
 .example-sidenav {
    user-select: none;
@@ -362,7 +360,7 @@ mat-divider {
 
 mat-icon {
   color: white;
-  margin-right: 8px;
+  margin-right: 8px; 
 }
 
 span {
@@ -379,8 +377,8 @@ mat-nav-list {
 mat-nav-list a.mat-list-item,
 mat-nav-list .mat-list-item {
 
-  justify-content: flex-start;
-  text-align: left;
+  justify-content: flex-start; 
+  text-align: left; 
 }
 
 .example-sidenav .nav-list-container {
