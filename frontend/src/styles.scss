@@ -14,14 +14,37 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
   // Notifications center background color
   .mat-mdc-dialog-container .mdc-dialog__surface {
-    background-color: #232C30!important;
-    border-radius: 0px!important;
+    background: rgb(255,255,255);
+    background: linear-gradient(300deg, rgb(77, 79, 196) 0%, rgba(23,25,94,1) 77%, rgba(16,18,89,1) 100%);
+    border-radius: 10px!important;
+    animation: gradient 5s ease infinite;
+    background-size: 120% 120%;
+    // overflow-y: scroll;
+    /* overflow-x: hidden ; */
   }
+
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 20%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 70%;
+  }
+  100% {
+    background-position: 0% 20%;
+  }
+}
+
 
   .mat-mdc-tab .mdc-tab__text-label {
     color: white!important;
 
   }
+  
   // .mdc-tab .mat-mdc-tab .mat-mdc-focus-indicator .mdc-tab--active .ng-star-inserted .mdc-tab-indicator--active {
   //   background-color: rgb(28, 28, 28);
   // }
