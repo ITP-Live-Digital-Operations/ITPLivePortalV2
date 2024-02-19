@@ -11,47 +11,69 @@ import { MatSidenav } from '@angular/material/sidenav'; // Corrected import path
 import { ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
     trigger('expandCollapse', [
-      state('collapsed', style({
-        width: '60px',
-      })),
-      state('expanded', style({
-        width: '300px',
-      })),
+      state(
+        'collapsed',
+        style({
+          width: '60px',
+        })
+      ),
+      state(
+        'expanded',
+        style({
+          width: '300px',
+        })
+      ),
       transition('collapsed <=> expanded', animate('0.2s ease-in-out')),
     ]),
     trigger('contentMargin', [
-      state('collapsed', style({
-        'margin-left': '60px', // The margin when the sidenav is collapsed
-      })),
-      state('expanded', style({
-        'margin-left': '300px', // The margin when the sidenav is expanded
-      })),
+      state(
+        'collapsed',
+        style({
+          'margin-left': '60px', // The margin when the sidenav is collapsed
+        })
+      ),
+      state(
+        'expanded',
+        style({
+          'margin-left': '300px', // The margin when the sidenav is expanded
+        })
+      ),
       transition('collapsed <=> expanded', animate('0.2s ease-in-out')),
     ]),
-  trigger('slideUpDown', [
-    state('collapsed', style({
-      height: '0',
-      overflow: 'hidden',
-      opacity: '0'
-    })),
-    state('expanded', style({
-      height: '*',
-      opacity: '1'
-    })),
-    transition('collapsed <=> expanded', animate('300ms ease-out')),
-  ])
-],
+    trigger('slideUpDown', [
+      state(
+        'collapsed',
+        style({
+          height: '0',
+          overflow: 'hidden',
+          opacity: '0',
+        })
+      ),
+      state(
+        'expanded',
+        style({
+          height: '*',
+          opacity: '1',
+        })
+      ),
+      transition('collapsed <=> expanded', animate('300ms ease-out')),
+    ]),
+  ],
 })
-
 export class HomeComponent {
-
   themeClass: string = '';
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
@@ -65,8 +87,8 @@ export class HomeComponent {
   public userName!: string;
   public userRole!: string;
   public privilegeLevel!: number;
-  public onLeave : boolean = false;
-  public backtowork : boolean = false;
+  public onLeave: boolean = false;
+  public backtowork: boolean = false;
   private user: any;
 
   public backButton: boolean = false;
@@ -84,7 +106,15 @@ export class HomeComponent {
     private userService: UserService,
     private toastrService: ToastrService,
     private dialogService: ConfirmationDialogService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    const url = this.router.url;
+    if (url.endsWith('/forms')) {
+      this.themeClass = 'content-noScroll';
+    } else {
+      this.themeClass = '';
+    }
 
     this.userService.getUserByID(this.userId).subscribe((res) => {
       this.user = res;
@@ -92,66 +122,36 @@ export class HomeComponent {
       this.userRole = this.user.role;
       this.privilegeLevel = this.user.privilege_level;
       this.onLeave = this.user.onLeave;
-      this.notificationService.getUnreadNotificationCountByUserId(this.userId).subscribe((res) => {
-        this.notificationCount = res;
-      });
+      this.notificationService
+        .getUnreadNotificationCountByUserId(this.userId)
+        .subscribe((res) => {
+          this.notificationCount = res;
+        });
     });
-
-    this.router.events.pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
-    ).subscribe(event => {
-      if (event.url.endsWith('/forms')) {
-        this.backButton = false;
-      }else if (event.url.endsWith('/main')) {
-        this.backButton = false;
-      }
-      else if (event.url.endsWith('/talent')) {
-        this.backButton = false;
-      }
-      else if (event.url.endsWith('/sales')) {
-        this.backButton = false;
-      }
-      else if (event.url.endsWith('/home')) {
-        this.backButton = false;
-      }
-      else {
-        this.backButton = true;
-      }
-    });
-  }
-
-  ngOnInit(): void {
-
-    const url = this.router.url;
-    console.log(url);
-    if (url.endsWith('/forms')) {
-      console.log('forms');
-      this.themeClass = 'content-noScroll'
-    }else{
-      this.themeClass = '';
-    }
 
     this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd
+        )
+      )
       .subscribe((event) => {
-        const url = this.router.url;
-    console.log(url);
-    if (url.endsWith('/forms')) {
-      console.log('forms');
-      this.themeClass = 'content-noScroll'
-    }else{
-      this.themeClass = '';
-    }
+        if (event.url.endsWith('/forms')) {
+          this.themeClass = 'content-noScroll';
+          this.backButton = false;
+        } else if (event.url.endsWith('/main')) {
+          this.backButton = false;
+        } else if (event.url.endsWith('/talent')) {
+          this.backButton = false;
+        } else if (event.url.endsWith('/sales')) {
+          this.backButton = false;
+        } else if (event.url.endsWith('/home')) {
+          this.backButton = false;
+        } else {
+          this.backButton = true;
+          this.themeClass = '';
+        }
       });
-
-  /*   const url = this.router.url;
-    console.log(url);
-    if (url.endsWith('/forms')) {
-      console.log('forms');
-      this.themeClass = 'content-noScroll'
-    }else{
-      this.themeClass = '';
-    } */
   }
 
   ngOnDestroy(): void {
@@ -208,26 +208,13 @@ export class HomeComponent {
   mouseleave() {
     this.isOpen = false;
   }
-  public exportSeeds(): void {
-    /* this.dataService.exportSeeds().subscribe((res) => {
-      const msg: any = res;
 
-      if (msg.message == 'Script executed successfully!') {
-        this.toastrService.success('Seeds exported successfully!');
-      } else {
-        this.toastrService.error('Seeds export failed!');
-      }
-    }); */
-  }
-
-  ngOnChanges() {
-  }
+  ngOnChanges() {}
 
   toggleExpand(): void {
     this.isExpanded = !this.isExpanded;
   }
   goOnLeave() {
-   
     this.dialogService
       .openConfirmationDialog(
         'Confirm!',
@@ -244,17 +231,15 @@ export class HomeComponent {
               this.userService.addTalentHead(24).subscribe((res) => {
                 window.location.reload();
               });
-            }else{
+            } else {
               window.location.reload();
             }
           });
-
         }
       });
   }
 
   returnFromLeave() {
-
     this.dialogService
       .openConfirmationDialog(
         'Confirm!',
@@ -269,12 +254,13 @@ export class HomeComponent {
             this.toastrService.success('You are back from leave!');
 
             if (this.userId == 15) {
-              this.userService.removeTalentHead(24).subscribe((res) => {window.location.reload();});
-            }else{
+              this.userService.removeTalentHead(24).subscribe((res) => {
+                window.location.reload();
+              });
+            } else {
               window.location.reload();
             }
           });
-
         }
       });
   }

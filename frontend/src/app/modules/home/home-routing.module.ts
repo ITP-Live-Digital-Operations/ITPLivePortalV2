@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
-import { RoleGuard } from 'src/app/core/guards/role.guard';
+import { RoleGuard } from 'src/app/core/Guards/role.guard';
 import { ChangePasswordComponent } from 'src/app/shared/components/change-password/change-password.component';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
           ),
         canActivate: [AuthGuard],
       },
-    ], 
+    ],
   },
   {
     path: 'talent',

@@ -3,23 +3,27 @@ mat-toolbar {
 }
 
 mat-toolbar-row {
-  background-color: #080b21;;
+  background-color: #080b21;
   display: flex;
 }
 
 mat-sidenav {
-
   position: fixed;
   top: 10%; /* Center the element vertically */
   bottom: 10%;
-  background: rgb(75,75,75);
-  background: linear-gradient(0deg,rgba(176, 186, 225, 0.2)  0%, rgba(176, 186, 225, 0.15)  20%,rgba(176, 186, 225, 0.1)  70%,rgba(176, 186, 225, 0.02) 100%);
- 
+  background: rgb(75, 75, 75);
+  background: linear-gradient(
+    0deg,
+    rgba(176, 186, 225, 0.2) 0%,
+    rgba(176, 186, 225, 0.15) 20%,
+    rgba(176, 186, 225, 0.1) 70%,
+    rgba(176, 186, 225, 0.02) 100%
+  );
+
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   color: white;
   text-align: center;
-
 }
 
 .mat-mdc-icon-button {
@@ -28,16 +32,13 @@ mat-sidenav {
 img {
   width: 24px;
   height: 24px;
-  margin-right: 8px; 
-  
+  margin-right: 8px;
 }
 
-
-
 .title-1 {
-  font-family: 'Times New Roman', Times, serif;
-  position: relative;
-  z-index: 2;
+  font-family: "Times New Roman", Times, serif;
+  top: 0;
+  margin-left: 25%;
 }
 
 .title-2 {
@@ -47,7 +48,6 @@ img {
   font-size: 15px;
   position: relative;
   z-index: 2;
-
 }
 
 .content {
@@ -63,11 +63,14 @@ img {
 }
 
 mat-sidenav-container {
-  height: calc(100vh - 64px);
-  background-color:hsla(232,60%,8%,1);
-  background-image:
-  radial-gradient(at 86% 97%, hsla(271,0%,0%,1) 0px, transparent 50%),
-  radial-gradient(at 22% 58%, #1f1fd66b 0px, transparent 50%);
+  height: 100%;
+  background-color: hsla(232, 60%, 8%, 1);
+  background-image: radial-gradient(
+      at 86% 97%,
+      hsla(271, 0%, 0%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 22% 58%, #1f1fd66b 0px, transparent 50%);
   animation: gradient 5s ease infinite;
   background-size: 120% 120%;
 }
@@ -86,20 +89,16 @@ mat-sidenav-container {
     background-position: 0% 20%;
   }
 }
-  // background: rgb(35,35,35);
-  // background: linear-gradient(180deg, rgba(35,35,35,1) 0%, rgba(35,35,35,1) 90%, rgb(1, 1, 1) 100%);
-
-
+// background: rgb(35,35,35);
+// background: linear-gradient(180deg, rgba(35,35,35,1) 0%, rgba(35,35,35,1) 90%, rgb(1, 1, 1) 100%);
 
 mat-sidenav-content {
   overflow-x: hidden;
   justify-content: center;
   max-width: 100%;
-  
 }
 
 .container {
-
   justify-content: center;
 }
 
@@ -107,24 +106,32 @@ mat-sidenav-content {
   z-index: 990;
   position: relative;
 }
-.menu-item:hover{
-  background: rgb(255,255,255);
-background: linear-gradient(112deg, rgb(77, 79, 196) 0%, rgba(23,25,94,1) 77%, rgba(16,18,89,1) 100%);
+.menu-item:hover {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    112deg,
+    rgb(77, 79, 196) 0%,
+    rgba(23, 25, 94, 1) 77%,
+    rgba(16, 18, 89, 1) 100%
+  );
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-}; /* Slide up to cover the entire button */
+} /* Slide up to cover the entire button */
 
-
-#vacation:hover{
+#vacation:hover {
   background: rgb(232, 97, 97);
   background: linear-gradient(112deg, rgb(232, 97, 97) 0%, rgb(70, 1, 1) 100%);
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 }
-#backtowork:hover{
-  background: rgb(255,255,255);
-  background: rgb(102,232,97);
-  background: linear-gradient(112deg, rgba(102,232,97,1) 0%, rgba(1,70,11,1) 100%);
+#backtowork:hover {
+  background: rgb(255, 255, 255);
+  background: rgb(102, 232, 97);
+  background: linear-gradient(
+    112deg,
+    rgba(102, 232, 97, 1) 0%,
+    rgba(1, 70, 11, 1) 100%
+  );
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -241,25 +248,28 @@ mat-divider {
 
 .btn-container {
   padding: 20px;
-
 }
 
 .notification-container {
   position: relative;
   display: inline-block;
-  
+
   /* to shrink container to the size of the icon */
 }
 
 .notification-icon {
-
   // background: url('/assets/white-buttons/white-notification-bell-icon.png');
   background-size: cover;
   cursor: pointer;
 }
-.notification-icon:hover{
-  background: rgb(255,255,255);
- background: linear-gradient(112deg, rgb(77, 79, 196) 0%, rgba(23,25,94,1) 77%, rgba(16,18,89,1) 100%);
+.notification-icon:hover {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    112deg,
+    rgb(77, 79, 196) 0%,
+    rgba(23, 25, 94, 1) 77%,
+    rgba(16, 18, 89, 1) 100%
+  );
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -289,8 +299,6 @@ mat-divider {
   z-index: 1;
 }
 
-
-
 .notification-box div {
   border-bottom: 1px solid #ddd;
   padding: 5px;
@@ -314,11 +322,10 @@ mat-divider {
   cursor: pointer;
 }
 
-@media (max-width: 1440px),
-(max-height: 900px) {
+@media (max-width: 1440px), (max-height: 900px) {
   .router-container {
-    padding:  20px 50px;
-    background-color:rgba(8, 11, 33, 0.034);
+    padding: 20px 50px;
+    background-color: rgba(8, 11, 33, 0.034);
 
     animation: gradient 5s ease infinite;
     background-size: 120% 120%;
@@ -342,17 +349,15 @@ mat-divider {
   }
 }
 
-
 /* Side Bar content*/
 .example-sidenav-content {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: center;
-  
 }
 .example-sidenav {
-   user-select: none;
+  user-select: none;
 }
 .full-width {
   width: 100%;
@@ -360,7 +365,7 @@ mat-divider {
 
 mat-icon {
   color: white;
-  margin-right: 8px; 
+  margin-right: 8px;
 }
 
 span {
@@ -370,15 +375,13 @@ span {
 }
 
 mat-nav-list {
-
   text-align: left;
 }
 
 mat-nav-list a.mat-list-item,
 mat-nav-list .mat-list-item {
-
-  justify-content: flex-start; 
-  text-align: left; 
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .example-sidenav .nav-list-container {
@@ -386,4 +389,8 @@ mat-nav-list .mat-list-item {
   flex-direction: column;
   justify-content: center; /* This centers the content vertically */
   height: 100%; /* Full height of the parent container */
+}
+
+.content-noScroll {
+  overflow-y: hidden;
 }

@@ -1,128 +1,161 @@
-
-<mat-toolbar class="mat-elevation-z10">
+<!-- <mat-toolbar class="mat-elevation-z10">
   <mat-toolbar-row>
-  <!-- <button class="menu" mat-icon-button (click)="toggleSidenav()">
-      <mat-icon *ngIf="!sidenavOpened">menu</mat-icon>
-      <mat-icon *ngIf="sidenavOpened">close</mat-icon>
-    </button>-->
     <div class="title">
-      <span class="title-1">ITP</span><br><span class="title-1">Portal</span>
+      <span class="title-1">ITP</span>
+      <br/>
+      <span class="title-1">Portal</span>
     </div>
-
 
     <span class="spacer"></span>
 
-
     <div class="btn-container">
-    <button mat-icon-button routerLink="{{path['influencers']}}">
-    <mat-icon class="icon">search</mat-icon>
-    </button>
+      <button mat-icon-button routerLink="{{ path['influencers'] }}">
+        <mat-icon class="icon">search</mat-icon>
+      </button>
 
-
-
-    <span class="changePassword-icon"></span>
-    <button mat-icon-button routerLink="{{path['forms']}}">
-      <mat-icon class="icon">home</mat-icon>
-    </button>
-  </div>
-
+      <span class="changePassword-icon"></span>
+      <button mat-icon-button routerLink="{{ path['forms'] }}">
+        <mat-icon class="icon">home</mat-icon>
+      </button>
+    </div>
 
     <span class="icon-spacer"></span>
     <button mat-icon-button routerLink="/login">
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar-row>
-</mat-toolbar>
-
+</mat-toolbar> -->
 
 <!-- TOP PART    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -->
 
-
-<mat-sidenav-container >
-
-
-
-  <mat-sidenav #sidenav class="light example-sidenav"  [@expandCollapse]="isOpen ? 'expanded' : 'collapsed'" mode="side" opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+<mat-sidenav-container>
+  <mat-sidenav
+    #sidenav
+    class="light example-sidenav"
+    [@expandCollapse]="isOpen ? 'expanded' : 'collapsed'"
+    mode="side"
+    opened="true"
+    (mouseenter)="mouseenter()"
+    (mouseleave)="mouseleave()"
+  >
     <!-- <app-side-nav-content [userName]="userName" [userId]="userId" [privilegeLevel]="privilegeLevel" [userRole]="userRole" [onLeave]="onLeave"></app-side-nav-content>-->
     <div class="nav-list-container">
-    <mat-nav-list>
-    <!-- Forms -->
+      <mat-nav-list>
+        <!-- Forms -->
 
-    <mat-list-item [routerLink]="path['forms']" class="parent menu-item" (click)="toggleExpand()">
-      <img [class.on-leave-border]="onLeave" class="account-pic"  src="../../../../../assets/white-buttons/account-pic.png" >
-      <span class="full-width"> {{ userName }}</span>
-      <mat-icon class="menu-button" [class.rotate-icon]="isExpanded">expand_more</mat-icon>
-    </mat-list-item>
-    <div *ngIf="isExpanded" [@slideUpDown]="isExpanded ? 'expanded' : 'collapsed'">
-      <mat-list-item *ngIf="!onLeave" (click)="goOnLeave()" id="vacation">
-        <img src="../../../../../assets/white-buttons/vacation.png">
-        <span class="full-width" >Go on Leave</span>
-      </mat-list-item>
-      <mat-list-item *ngIf="onLeave" (click)="returnFromLeave()" id="backtowork">
-        <img src="../../../../../assets/white-buttons/work.png">
-        <span class="full-width">Back to work</span>
-      </mat-list-item>
+        <mat-list-item
+          [routerLink]="path['forms']"
+          class="parent menu-item"
+          (click)="toggleExpand()"
+        >
+          <img
+            [class.on-leave-border]="onLeave"
+            class="account-pic"
+            src="../../../../../assets/white-buttons/account-pic.png"
+          />
+          <span class="full-width"> {{ userName }}</span>
+          <mat-icon class="menu-button" [class.rotate-icon]="isExpanded"
+            >expand_more</mat-icon
+          >
+        </mat-list-item>
+        <div
+          *ngIf="isExpanded"
+          [@slideUpDown]="isExpanded ? 'expanded' : 'collapsed'"
+        >
+          <mat-list-item *ngIf="!onLeave" (click)="goOnLeave()" id="vacation">
+            <img src="../../../../../assets/white-buttons/vacation.png" />
+            <span class="full-width">Go on Leave</span>
+          </mat-list-item>
+          <mat-list-item
+            *ngIf="onLeave"
+            (click)="returnFromLeave()"
+            id="backtowork"
+          >
+            <img src="../../../../../assets/white-buttons/work.png" />
+            <span class="full-width">Back to work</span>
+          </mat-list-item>
+        </div>
+
+        <mat-list-item [routerLink]="path['forms']" class="menu-item">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <span class="full-width">Forms</span>
+        </mat-list-item>
+
+        <mat-list-item [routerLink]="path['allBriefs']" class="menu-item">
+          <mat-icon mat-list-icon>chrome_reader_mode</mat-icon>
+          <span class="full-width">All Briefs</span>
+        </mat-list-item>
+
+        <mat-list-item
+          *ngIf="
+            (userRole == 'talent' && privilegeLevel > 7) ||
+            userRole == 'superadmin'
+          "
+          [routerLink]="path['talentTasks']"
+          class="menu-item"
+        >
+          <mat-icon mat-list-icon>supervisor_account</mat-icon>
+          <span class="full-width">Talent Tasks</span>
+        </mat-list-item>
+
+        <mat-list-item
+          *ngIf="userRole == 'talent'"
+          [routerLink]="path['personTasks'] + userId"
+          class="menu-item"
+        >
+          <mat-icon mat-list-icon>assignment</mat-icon>
+          <span class="full-width">Tasks</span>
+        </mat-list-item>
+
+        <mat-list-item
+          (click)="toggleNotificationBox()"
+          class="notification-icon"
+        >
+          <mat-icon class="icon">notification_important</mat-icon>
+          <span
+            class="notification-dot"
+            *ngIf="notificationCount?.data > 0"
+          ></span>
+          <span class="full-width"> Notifications </span>
+        </mat-list-item>
+
+        <mat-list-item [routerLink]="path['editProfile']" class="menu-item">
+          <mat-icon mat-list-icon>account_circle</mat-icon>
+          <span class="full-width">Profile</span>
+        </mat-list-item>
+
+        <mat-list-item
+          *ngIf="['admin', 'superadmin', 'sales', 'talent'].includes(userRole)"
+          [routerLink]="
+            userRole == 'sales' ||
+            userRole == 'admin' ||
+            userRole == 'superadmin'
+              ? path['salesGuide']
+              : path['talentGuide']
+          "
+          class="menu-item"
+        >
+          <mat-icon mat-list-icon>help</mat-icon>
+          <span class="full-width">Help</span>
+        </mat-list-item>
+
+        <mat-list-item routerLink="/login" class="menu-item">
+          <mat-icon mat-list-icon>logout</mat-icon>
+          <span class="full-width">Log Out</span>
+        </mat-list-item>
+      </mat-nav-list>
     </div>
-
-
-    <mat-list-item [routerLink]="path['forms']" class="menu-item">
-      <mat-icon mat-list-icon>home</mat-icon>
-      <span class="full-width">Forms</span>
-    </mat-list-item>
-
-    <mat-list-item [routerLink]="path['allBriefs']" class="menu-item">
-      <mat-icon mat-list-icon>chrome_reader_mode</mat-icon>
-      <span class="full-width">All Briefs</span>
-    </mat-list-item>
-
-    <mat-list-item *ngIf="(userRole == 'talent' && privilegeLevel > 7) || userRole == 'superadmin'" [routerLink]="path['talentTasks']" class="menu-item">
-      <mat-icon mat-list-icon>supervisor_account</mat-icon>
-      <span class="full-width">Talent Tasks</span>
-    </mat-list-item>
-
-    <mat-list-item *ngIf="userRole == 'talent'" [routerLink]="path['personTasks'] + userId" class="menu-item">
-      <mat-icon mat-list-icon>assignment</mat-icon>
-      <span class="full-width">Tasks</span>
-    </mat-list-item>
-
-
-    <mat-list-item (click)="toggleNotificationBox()"  class="notification-icon ">
-        <mat-icon class="icon">notification_important</mat-icon>
-        <span class="notification-dot" *ngIf="notificationCount?.data > 0" ></span>
-        <span class="full-width"> Notifications </span>
-    </mat-list-item>
-
-
-
-    <mat-list-item [routerLink]="path['editProfile']" class="menu-item">
-      <mat-icon mat-list-icon>account_circle</mat-icon>
-      <span class="full-width">Profile</span>
-    </mat-list-item>
-
-    <mat-list-item *ngIf="['admin', 'superadmin', 'sales', 'talent'].includes(userRole)" [routerLink]="userRole == 'sales' || userRole == 'admin' || userRole == 'superadmin' ? path['salesGuide'] : path['talentGuide']" class="menu-item">
-      <mat-icon mat-list-icon>help</mat-icon>
-      <span class="full-width">Help</span>
-    </mat-list-item>
-
-    <mat-list-item routerLink="/login" class="menu-item">
-      <mat-icon mat-list-icon>logout</mat-icon>
-      <span class="full-width">Log Out</span>
-    </mat-list-item>
-  </mat-nav-list>
-   </div>
   </mat-sidenav>
 
-  <mat-sidenav-content [ngClass]="themeClass" [@contentMargin]="isOpen ? 'expanded' : 'collapsed'">
-
-    <div  class="router-container" [ngClass]="{ 'backgroundColor': backButton} " >
+  <mat-sidenav-content
+    [ngClass]="themeClass"
+    [@contentMargin]="isOpen ? 'expanded' : 'collapsed'"
+  >
+    <div class="router-container" [ngClass]="{ backgroundColor: backButton }">
       <div>
-
         <app-back-button *ngIf="backButton"></app-back-button>
       </div>
-        <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </div>
-
   </mat-sidenav-content>
-
-
 </mat-sidenav-container>
