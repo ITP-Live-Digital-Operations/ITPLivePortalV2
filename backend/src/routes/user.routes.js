@@ -65,5 +65,8 @@ router.route('/returnFromLeave/:id')
 router.route('/uploadProfilePicture/:id')
     .post(asyncHandler(userController.uploadProfilePicture));
 
+router.route('/getProfilePictureById/:id')
+    .get(asyncHandler(userController.getProfilePictureById));
+
 
 module.exports = router;

@@ -63,9 +63,9 @@ const profilePictureStorage = multer.diskStorage({
 });
 
 const profilePictureFileFilter = (req, file, cb) => {
-  console.log("filter");
+  
   const ext = file.originalname.split('.').pop();
-  console.log(ext);
+  
   if (ext === 'png' || ext === 'jpg' || ext === 'jpeg') {
   cb(null, true);
 } else {

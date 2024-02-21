@@ -133,4 +133,13 @@ export class UserService {
   returnFromLeave(id :any) {
     return this.http.get(`${this.authApiURL}/returnFromLeave/${id}`);
   }
+
+  uploadProfilePicture(id: number, inputdata: any) {
+    return this.http.post(`${this.authApiURL}/uploadProfilePicture/${id}`, inputdata);
+  }
+
+  getProfilePictureById(id: number) {
+    return this.http.get(`${this.authApiURL}/getProfilePictureById/${id}`);
+  }
+
 }

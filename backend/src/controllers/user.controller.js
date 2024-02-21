@@ -405,15 +405,14 @@ exports.uploadProfilePicture = (req, res) => {
   
 
   profilePictureUpload.single("profilePicture")(req, res, (err) => {
-
     const userId = req.params.id;
-    const file = req.file;
-    console.log(file);
-    console.log("here");
     
+    const file = req.file;
     if (err) {
       return res.status(500).send({ message: err.message });
     }
+
+
     
     ProfilePicture.create({
       userId: userId,
@@ -444,6 +443,7 @@ exports.updateProfilePicture = (req, res) => {
       if (err) {
         return res.status(500).send({ message: err.message });
       }
+      
   
       ProfilePicture.findOne({ userId: userId })
         .then((existingPicture) => {
@@ -477,4 +477,17 @@ exports.updateProfilePicture = (req, res) => {
         });
     });
   };
-  
+
+
+exports.getProfilePictureById = (req, res) => {
+  ProfilePicture.findOne({ where: { userId: req.params.id } })
+    .then((profilePicture) => {
+      res.status(200).send(profilePicture);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+};
