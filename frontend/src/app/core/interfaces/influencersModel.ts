@@ -65,5 +65,10 @@ export interface influencermetrics{
   marginOfProfit: number,
 }
 
+export interface getInfluencerNames{
+  id: number;
+  name: string;
+}
+
 
 

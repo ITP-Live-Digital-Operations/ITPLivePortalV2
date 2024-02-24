@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {
   InfluencerIdsAndNames,
   InfluencerModel,
+  getInfluencerNames,
 } from '../interfaces/influencersModel';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
@@ -62,8 +63,8 @@ export class InfluencerService {
     );
   }
 
-  getInfluencerNames() {
-    return this.http.get(`${this.influencerApiURL}/getInfluencerNames`);
+  getInfluencerNames(): Observable<getInfluencerNames[]> {
+    return this.http.get<getInfluencerNames[]>(`${this.influencerApiURL}/getInfluencerNames`);
   }
 
   createInfluencerRating(inputdata: any) {
