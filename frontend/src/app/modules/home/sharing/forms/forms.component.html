@@ -3,8 +3,6 @@
   <!-- The inner container with flex display to hold all buttons -->
   <div class="carousel-wrapper"  (wheel)="onWheel($event)"  >
   <div class="box">
-    <h1 class="title"></h1>
-    <!-- <h1 class="splash">ITP | Portal</h1> -->
     <div
       class="btn d-flex flex-row align-items-center flex-wrap"
       style="border-color: transparent"
@@ -14,7 +12,7 @@
         *ngIf="userRole == 'superadmin'"
         routerLink="{{ path['userManagement'] }}"
       >
-      
+
         <img src="../../../../../assets/white-buttons/admin-forms.png" />
         <p>User Management</p>
       </button>

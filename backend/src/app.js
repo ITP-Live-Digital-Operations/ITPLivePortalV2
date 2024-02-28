@@ -16,6 +16,7 @@ const logRoutes = require("./routes/log.routes");
 const salesBriefRoutes = require("./routes/salesBrief.routes");
 const TaskRoutes = require("./routes/task.routes");
 
+
 const exportRoutes = require("./routes/export-seeds.routes");
 const webHookRoutes = require("./routes/webhook.routes");
 const fileRoutes = require("./routes/file.routes");
@@ -23,6 +24,7 @@ const NotificationRoutes = require("./routes/notification.routes");
 const campaignRoutes = require("./routes/campaign.routes");
 const clientRoutes = require("./routes/client.routes");
 const statisticsRoutes = require("./routes/statistics.routes");
+const OGRoutes = require("./routes/og.routes");
 
 const app = express();
 
@@ -83,6 +85,7 @@ app.use("/api/v1/campaigns", authHandler, campaignRoutes)
 app.use("/api/v1/notifications", authHandler, NotificationRoutes);
 app.use("/api/v1/clients", authHandler, clientRoutes);
 app.use("/api/v1/statistics", authHandler, statisticsRoutes);
+app.use("/api/v1/ogs", authHandler, OGRoutes);
 
 
 

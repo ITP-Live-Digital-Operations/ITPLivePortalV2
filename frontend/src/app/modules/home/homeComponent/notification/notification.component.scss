@@ -11,7 +11,7 @@
     margin-bottom: 20px; // Space around entire notification box
     flex-grow: 1; /* Allows notifications area to grow and fill space */
     overflow-y: auto; /* Enables vertical scrolling for notifications */
-    max-height: 400px; /* Limits height of notifications area */
+    max-height: 500px; /* Limits height of notifications area */
 
     div {
       border: 1px solid #ccc;
