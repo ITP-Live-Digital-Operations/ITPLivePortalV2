@@ -6,6 +6,7 @@ const InfluencerRating = models.InfluencerRating;
 const User = models.User;
 const InfluencerStatistics = models.InfluencerStatistics;
 const InfluencerMetrics = models.influencerMetrics;
+const InfluencerRemarks = models.influencerRemarks;
 
 exports.createInfluencer = (req, res) => {
   const influencer = req.body;
@@ -537,4 +538,109 @@ exports.addInfluencerStats = (req, res) => {
         });
       });
   }
+};
+
+exports.createInfluencerRemark = (req, res) => {
+  const influencerRemark = req.body;
+  InfluencerRemarks.create(influencerRemark)
+    .then((data) => {
+      res.status(200).send({
+        status: "success",
+        message: "Influencer Remark Created",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+};
+
+exports.getInfluencerRemarkById = (req, res) => {
+  InfluencerRemarks.findByPk(req.params.id, 
+    { include: 
+            [
+              {
+                model: Influencer,
+                as: "influencer",
+                attributes: ["id", "Name"],
+              },
+            ]  
+    }
+    
+    )
+    .then((data) => {
+      res.status(200).send( data );
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+}
+
+exports.getInfluencerRemarks = (req, res) => {
+  const influencerId = Number(req.params.id);
+  InfluencerRemarks.findAll({
+    where: { influencerId: influencerId },
+    include: [
+      {
+        model: User,
+        as: "user",
+        attributes: ["name"],
+      },
+    ],
+     
+    order: [["updatedAt", "DESC"]],
+  })
+    .then((data) => {
+      res.status(200).send( data );
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+};
+
+exports.updateInfluencerRemark = (req, res) => {
+  console.log(req.body);
+  InfluencerRemarks.update(req.body, { where: { id: req.params.id } })
+    .then((data) => {
+      res.status(200).send({
+        status: "success",
+        message: "Influencer Remark Updated",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+};
+
+exports.deleteInfluencerRemark = (req, res) => {
+  InfluencerRemarks.destroy({ where: { id: req.params.id } })
+    .then((data) => {
+      res.status(200).send({
+        status: "success",
+        message: "Influencer Remark Deleted",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
 };

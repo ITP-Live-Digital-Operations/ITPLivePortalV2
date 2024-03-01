@@ -16,6 +16,8 @@ import { CampaignStatsComponent } from './general-statistics/campaign-stats/camp
 import { ClientStatsComponent } from './general-statistics/client-stats/client-stats.component';
 import { DrillDownStatsComponent } from './general-statistics/drill-down-stats/drill-down-stats.component';
 import { DrillDownInfluencerStatsComponent } from './general-statistics/drill-down-stats/drill-down-influencer-stats/drill-down-influencer-stats.component';
+import { EditInfluencerComponent } from '../emp/talent/edit/edit-influencer/edit-influencer.component';
+import { EditInfluencerRemarksComponent } from './influencer-id/influencer-remarks/edit-influencer-remarks/edit-influencer-remarks.component';
 
 
 const routes: Routes = [
@@ -83,6 +85,10 @@ const routes: Routes = [
   {
     path: 'viewInfluencerCampaignStatistics/:id',
     component: DrillDownInfluencerStatsComponent,
+  },
+  {
+    path: 'editInfluencerRemark',
+    component: EditInfluencerRemarksComponent,
   },
   {
     path: '',

@@ -60,4 +60,19 @@ router.route('/getInfluencerStatisticsById/:id')
 
 router.route('/addInfluencerStats')
     .post(asyncHandler(influencerController.addInfluencerStats));
+
+router.route('/createInfluencerRemark')
+    .post(asyncHandler(influencerController.createInfluencerRemark));
+
+router.route('/getInfluencerRemarkById/:id')
+    .get(asyncHandler(influencerController.getInfluencerRemarkById));
+
+router.route('/getInfluencerRemarks/:id')
+    .get(asyncHandler(influencerController.getInfluencerRemarks));
+
+router.route('/updateInfluencerRemark/:id')
+    .patch(asyncHandler(influencerController.updateInfluencerRemark));
+
+router.route('/deleteInfluencerRemark/:id')
+    .delete(asyncHandler(influencerController.deleteInfluencerRemark));
 module.exports = router;

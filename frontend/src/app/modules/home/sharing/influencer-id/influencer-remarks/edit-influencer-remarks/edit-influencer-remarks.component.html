@@ -1,0 +1,15 @@
+<div class="form-container">
+  <form [formGroup]="form">
+    <div class="row">
+    <h1> {{remark?.influencer?.Name}}</h1>
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="note" placeholder="Notes"></textarea>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button class="btn-container" (click)="onSubmit()">Save</button>
+  </form>
+</div>

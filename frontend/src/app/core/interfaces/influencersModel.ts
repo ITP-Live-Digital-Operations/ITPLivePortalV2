@@ -70,5 +70,51 @@ export interface getInfluencerNames{
   name: string;
 }
 
+export interface createInfluencerRemark{
+  influencerId: number;
+  note: string;
+  createdById: number;
+}
+
+export interface influencerRemark{
+  id: number;
+  influencerId: number;
+  note: string;
+  createdById: number;
+  createdAt: string;
+  updatedAt: string;
+  user: nameUser;
+
+}
+
+export interface influencerRemarkWithInfluencer{
+  id: number;
+  influencerId: number;
+  createdById: number;
+  influencer: influencerIdAndName;
+  note : string;
+  updatedAt: Date;
+  createdAt: Date;
+}
+
+export interface influencerIdAndName{
+  id: number;
+  Name: string;
+}
+
+
+
+
+
+export interface nameUser{
+  name: string;
+}
+
+export interface returnData{
+  status: string;
+  message: string;
+  data?: any;
+}
+
 
 

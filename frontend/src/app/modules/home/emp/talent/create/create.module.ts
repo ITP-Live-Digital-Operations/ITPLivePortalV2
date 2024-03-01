@@ -16,6 +16,7 @@ import { ExtraInfoComponent } from './new-influencer/extra-info/extra-info.compo
 import { NewCelebrityComponent } from './new-celebrity/new-celebrity.component';
 import { SingleInfluencerLogsComponent } from './rate-logs/single-influencer-logs/single-influencer-logs.component';
 import { RateLogsComponent } from './rate-logs/rate-logs.component';
+import { NoteLogComponent } from './rate-logs/note-log/note-log.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RateLogsComponent } from './rate-logs/rate-logs.component';
     ExtraInfoComponent,
     NewCelebrityComponent,
     SingleInfluencerLogsComponent,
-    RateLogsComponent
+    RateLogsComponent,
+    NoteLogComponent
   ],
   imports: [
     CommonModule,

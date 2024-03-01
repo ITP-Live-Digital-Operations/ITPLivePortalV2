@@ -15,6 +15,7 @@ export const PATH: { [key: string]: string } = {
   clientStatistics: "/home/main/clientStatistics",
   viewClientStatistics: "/home/main/viewClientStatistics/",
   viewInfluencerCampaignStatistics: "/home/main/viewInfluencerCampaignStatistics/",
+  editInfluencerRemark: "/home/main/editInfluencerRemark/:id",
 
   // admin routes
   userManagement: "/home/admin/users",

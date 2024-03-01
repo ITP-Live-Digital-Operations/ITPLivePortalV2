@@ -3,7 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import {
   InfluencerIdsAndNames,
   InfluencerModel,
+  createInfluencerRemark,
   getInfluencerNames,
+  influencerRemark,
+  influencerRemarkWithInfluencer,
+  returnData,
 } from '../interfaces/influencersModel';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
@@ -146,4 +150,31 @@ export class InfluencerService {
       stats: stats,
     });
   }
+
+  createInfluencerRemark(inputdata: createInfluencerRemark): Observable<returnData> {
+    return this.http.post<returnData>(
+      `${this.influencerApiURL}/createInfluencerRemark`,
+      inputdata
+    );
+  }
+  getInfluencerRemarkById(id: number): Observable<influencerRemarkWithInfluencer> {
+    return this.http.get<influencerRemarkWithInfluencer>(
+      `${this.influencerApiURL}/getInfluencerRemarkById/${id}`
+    );
+  }
+
+  getInfluencerRemarks(infuencerId: number): Observable<influencerRemark[]> {
+    return this.http.get<influencerRemark[]>(
+      `${this.influencerApiURL}/getInfluencerRemarks/${infuencerId}`
+    );
+  }
+
+  updateInfluencerRemark(id: number, note: string): Observable<returnData> {
+    return this.http.patch<returnData>(`${this.influencerApiURL}/updateInfluencerRemark/${id}`, note);
+  }
+
+  deleteInfluencerRemark(id: number): Observable<returnData>{
+    return this.http.delete<returnData>(`${this.influencerApiURL}/deleteInfluencerRemark/${id}`);
+  }
+
 }

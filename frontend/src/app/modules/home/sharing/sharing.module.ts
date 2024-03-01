@@ -41,6 +41,9 @@ import { CampaignStatsComponent } from './general-statistics/campaign-stats/camp
 import { CurrencyFormatPipe } from 'src/app/shared/pipes/currencyFormat.pipe';
 import { DrillDownStatsComponent } from './general-statistics/drill-down-stats/drill-down-stats.component';
 import { DrillDownInfluencerStatsComponent } from './general-statistics/drill-down-stats/drill-down-influencer-stats/drill-down-influencer-stats.component';
+import { InfluencerRemarksComponent } from './influencer-id/influencer-remarks/influencer-remarks.component';
+import { EditInfluencerRemarksComponent } from './influencer-id/influencer-remarks/edit-influencer-remarks/edit-influencer-remarks.component';
+
 
 
 @NgModule({
@@ -77,8 +80,8 @@ import { DrillDownInfluencerStatsComponent } from './general-statistics/drill-do
     CampaignStatsComponent,
     DrillDownStatsComponent,
     DrillDownInfluencerStatsComponent,
-
-
+    InfluencerRemarksComponent,
+    EditInfluencerRemarksComponent,
 
 
   ],

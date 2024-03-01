@@ -1,0 +1,28 @@
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Influencer</mat-label>
+        <mat-select formControlName="influencerId">
+          <mat-option *ngFor="let option of influencers" [value]="option.id">{{
+            option.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Notes</mat-label>
+        <textarea
+          matInput
+          formControlName="note"
+          rows="2"
+          autocomplete="off"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button type="submit">Submit</button>
+  </form>
+</div>

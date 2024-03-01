@@ -9,14 +9,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-
 @Component({
   selector: 'app-logs-table',
   templateUrl: './logs-table.component.html',
   styleUrls: ['./logs-table.component.scss'],
 })
 export class LogsTableComponent {
-
   @Input()
   id: number = 0;
 
@@ -24,19 +22,18 @@ export class LogsTableComponent {
   profileData: any;
 
   @Input()
-  users : any;
+  users: any;
 
-  logs : LogModel[] = [];
-  log !: LogModel;
+  logs: LogModel[] = [];
+  log!: LogModel;
 
-  single : boolean = false;
-  package : boolean = false;
-
+  single: boolean = false;
+  package: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  @ViewChild(MatSort, {static: true}) sort!: MatSort;
-  public dataSource : any;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  public dataSource: any;
 
   private path = PATH;
 
@@ -49,10 +46,11 @@ export class LogsTableComponent {
     'Action',
   ];
 
-  constructor(private router: Router, private dialogRef: MatDialogRef<InfluencerIdComponent>,
-    private logService : LogService) {
-
-  }
+  constructor(
+    private router: Router,
+    private dialogRef: MatDialogRef<InfluencerIdComponent>,
+    private logService: LogService
+  ) {}
 
   ngOnInit(): void {
     this.getLogs(this.id);
@@ -68,38 +66,34 @@ export class LogsTableComponent {
 
   public getLogs(id: number): void {
     this.logService.getInfluencerLogs(id).subscribe((item) => {
-        this.logs = item;
+      this.logs = item;
 
       this.dataSource = new MatTableDataSource<LogModel>(item);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
-
     });
   }
 
-  public viewLog(id: number, type : string): void {
+  public viewLog(id: number, type: string): void {
     this.single = false;
     this.package = false;
 
+    this.log = this.logs[id];
 
-      this.log = this.logs[id];
+    if (type == 'single') {
+      this.single = true;
+    }
 
-      if(type == 'single'){
-        this.single = true;
-      }
-
-      if(type == 'package'){
-        this.package = true;
-      }
-
+    if (type == 'package') {
+      this.package = true;
+    }
   }
 
   public getUsername(id: number): string {
-      return this.users[id];
-}
+    return this.users[id];
+  }
 
-public floor(value: number): number {
-  return Math.floor(value);
-}
+  public floor(value: number): number {
+    return Math.floor(value);
+  }
 }
