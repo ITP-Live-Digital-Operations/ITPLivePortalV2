@@ -27,13 +27,19 @@ export class InfluencersComponent {
   public genders: string[] = [];
   public nationalities: string[] = [];
   public cities: string[] = [];
+  public allGenders: string[] = []; // This array will be used to populate the mat-select
+  public allLocations: string[] = [];
+  public allCities: string[] = [];
+  public allVerticals: string[] = [];
+  public allNationalities: string[] = [];
 
   filterCriteria: any = {
     search: '',
-    gender: '',
-    location: '',
-    vertical: '',
-    nationalities: '',
+    gender: [],
+    location: [],
+    vertical: [],
+    nationalities: [],
+    city: [],
   };
 
   displayedColumns: string[] = [
@@ -93,6 +99,13 @@ export class InfluencersComponent {
       .subscribe((response: PaginatedInfluencers) => {
         console.log(response);
         this.UserDetails = response;
+        this.allGenders = this.extractUniqueAttributes(this.UserDetails.influencers, 'Gender');
+        this.allLocations = this.extractUniqueAttributes(this.UserDetails.influencers, 'CountryLocation');
+        this.allCities = this.extractUniqueAttributes(this.UserDetails.influencers, 'CityLocation');
+        this.allVerticals = this.extractUniqueAttributes(this.UserDetails.influencers, 'MainVertical');
+        this.allNationalities = this.extractUniqueAttributes(this.UserDetails.influencers, 'Nationality');
+   
+
         this.dataSource = new MatTableDataSource<InfluencerModel[]>(
           this.UserDetails.influencers
         );
@@ -127,51 +140,73 @@ export class InfluencersComponent {
       });
   }
 
-  private updateFilterDropdowns(): void {
-    const renderedData = this.dataSource.filteredData || [];
-
-    this.genders = [
-      ...new Set(
-        renderedData
-          .map((row: { Gender: string }) => row.Gender)
-          .filter((gender: string) => gender)
-      ),
-    ].sort() as string[];
-
-    this.locations = [
-      ...new Set(
-        renderedData
-          .map((row: { CountryLocation: string }) => row.CountryLocation)
-          .filter((location: string) => location)
-      ),
-    ].sort() as string[];
-
-    this.verticals = [
-      ...new Set(
-        renderedData
-          .map((row: { MainVertical: string }) => row.MainVertical)
-          .filter((vertical: string) => vertical)
-      ),
-    ].sort() as string[];
-
-    this.nationalities = [
-      ...new Set(
-        renderedData
-          .map((row: { Nationality: string }) => row.Nationality)
-          .filter((nationality: string) => nationality)
-      ),
-    ].sort() as string[];
-
-    // ... Add other filters as needed
-
-    this.cities = [
-      ...new Set(
-        renderedData
-          .map((row: { CityLocation: string }) => row.CityLocation)
-          .filter((city: string) => city)
-      ),
-    ].sort() as string[];
+  private extractUniqueAttributes(data: InfluencerModel[], attribute: keyof InfluencerModel): string[] {
+    const attributeSet = new Set<string>(
+      data.map(item => {
+        const value = item[attribute];
+        return (typeof value === 'string' || typeof value === 'number') ? value.toString().trim() : null;
+      }).filter((attr): attr is string => attr !== null && attr !== '')
+    );
+    return Array.from(attributeSet).sort();
   }
+
+  private updateFilterDropdowns(): void {
+    // Use a copy of the full data set as the starting point for filtering
+    let baseFilteredData = [...this.dataSource.data];
+  
+    // Dynamically update options for each filter based on current filterCriteria
+    // Note: It's important to maintain the integrity of each "all" array to allow for multiple selections
+    
+    // Filter for Gender options based on all criteria except gender itself
+    this.allGenders = this.extractUniqueAttributes(
+      baseFilteredData.filter(data => 
+        (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
+        (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
+        (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
+        (!this.filterCriteria.nationalities.length || this.filterCriteria.nationalities.includes(data.Nationality?.trim().toLowerCase()))
+      ), 'Gender'
+    );
+  
+    // Filter for Location options based on all criteria except location itself
+    this.allLocations = this.extractUniqueAttributes(
+      baseFilteredData.filter(data => 
+        (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
+        (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
+        (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
+        (!this.filterCriteria.nationalities.length || this.filterCriteria.nationalities.includes(data.Nationality?.trim().toLowerCase()))
+      ), 'CountryLocation'
+    );
+  
+    // Repeat the pattern for City, Vertical, and Nationalities filters
+    this.allCities = this.extractUniqueAttributes(
+      baseFilteredData.filter(data => 
+        (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
+        (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
+        (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
+        (!this.filterCriteria.nationalities.length || this.filterCriteria.nationalities.includes(data.Nationality?.trim().toLowerCase()))
+      ), 'CityLocation'
+    );
+  
+    this.allVerticals = this.extractUniqueAttributes(
+      baseFilteredData.filter(data => 
+        (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
+        (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
+        (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
+        (!this.filterCriteria.nationalities.length || this.filterCriteria.nationalities.includes(data.Nationality?.trim().toLowerCase()))
+      ), 'MainVertical'
+    );
+  
+    this.allNationalities = this.extractUniqueAttributes(
+      baseFilteredData.filter(data => 
+        (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
+        (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
+        (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
+        (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase()))
+      ), 'Nationality'
+    );
+  }
+  
+
 
   public onPageChange(event: any): void {
     this.getInfluencers();
@@ -182,32 +217,36 @@ export class InfluencersComponent {
       data: InfluencerModel,
       filter: string
     ) => {
-      const isMatchSearch = this.filterCriteria.search
-        ? data.Name?.trim()
-            .toLowerCase()
-            .includes(this.filterCriteria.search) ||
-          data.InstagramHandle?.trim()
-            .toLowerCase()
-            .includes(this.filterCriteria.search)
+      const filterObject = JSON.parse(filter);
+    
+      const isMatchSearch = filterObject.search
+        ? data.Name?.trim().toLowerCase().includes(filterObject.search) ||
+          data.InstagramHandle?.trim().toLowerCase().includes(filterObject.search)
         : true;
+      
+      const isMatchGender = !this.filterCriteria.gender.length || 
+      this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase());
+
+      const isMatchLocation = !filterObject.location.length || 
+      filterObject.location.includes(data.CountryLocation?.trim().toLowerCase());
+
+      const isMatchCity = !this.filterCriteria.city.length || 
+      this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase());
+      
+      const isMatchVertical = !this.filterCriteria.vertical.length || 
+      this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase());
+
+      const isMatchNationalities = !this.filterCriteria.nationalities.length || 
+      this.filterCriteria.nationalities.includes(data.Nationality?.trim().toLowerCase());
+
 
       return (
         isMatchSearch &&
-        (!this.filterCriteria.gender ||
-          data.Gender?.trim().toLowerCase() === this.filterCriteria.gender) &&
-        (!this.filterCriteria.location ||
-          data.CountryLocation?.trim().toLowerCase() ===
-            this.filterCriteria.location) &&
-        (!this.filterCriteria.vertical ||
-          data.MainVertical?.trim().toLowerCase() ===
-            this.filterCriteria.vertical) &&
-        (!this.filterCriteria.nationalities ||
-          data.Nationality?.trim().toLowerCase() ===
-            this.filterCriteria.nationalities) &&
-        (!this.filterCriteria.city ||
-          (data.CityLocation &&
-            data.CityLocation?.trim().toLowerCase() ===
-              this.filterCriteria.city))
+        isMatchGender &&
+        isMatchLocation &&
+        isMatchVertical &&
+        isMatchNationalities &&
+        isMatchCity 
       );
     };
 
@@ -216,22 +255,22 @@ export class InfluencersComponent {
     this.updateFilterDropdowns();
   }
 
-  applyFilterChange(filterType: string, filterValue: string): void {
+  applyFilterChange(filterType: string, filterValue: any): void {
     switch (filterType) {
       case 'gender':
-        this.filterCriteria.gender = filterValue.trim().toLowerCase();
-        break;
+        this.filterCriteria.gender = filterValue.map((val: string) => val.trim().toLowerCase());
+      break;
       case 'location':
-        this.filterCriteria.location = filterValue.trim().toLowerCase();
+        this.filterCriteria.location = filterValue.map((val: string) => val.trim().toLowerCase());
         break;
       case 'vertical':
-        this.filterCriteria.vertical = filterValue.trim().toLowerCase();
+        this.filterCriteria.vertical = filterValue.map((val: string) => val.trim().toLowerCase());
         break;
       case 'nationalities':
-        this.filterCriteria.nationalities = filterValue.trim().toLowerCase();
+        this.filterCriteria.nationalities = filterValue.map((val: string) => val.trim().toLowerCase());
         break;
       case 'city':
-        this.filterCriteria.city = filterValue.trim().toLowerCase();
+        this.filterCriteria.city = filterValue.map((val: string) => val.trim().toLowerCase());
         break;
       case 'search':
         this.filterCriteria.search = filterValue.trim().toLowerCase();
@@ -240,8 +279,16 @@ export class InfluencersComponent {
       default:
         break;
     }
+    if (!Array.isArray(filterValue)) {
+      filterValue = [filterValue];
+    }
+    this.filterCriteria[filterType] = filterValue.map((val: string) => val.trim().toLowerCase());  
     this.applyFilter();
-  }
+    this.updateFilterDropdowns();
+
+
+
+}
 
   public openLink(link: string): void {
     if (!link) {
