@@ -20,73 +20,46 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-form-field class="filter">
-            <mat-label> Gender Filter</mat-label>
-            <mat-select
-              placeholder="Gender Filter"
-              (selectionChange)="applyFilterChange('gender', $event.value)"
-            >
-              <mat-option value="">All</mat-option>
-              <mat-option *ngFor="let option of genders" [value]="option">{{
-                option
-              }}</mat-option>
+            <mat-label>Gender Filter</mat-label>
+            <mat-select multiple placeholder="Gender Filter" (selectionChange)="applyFilterChange('gender', $event.value)">
+              <mat-option *ngFor="let gender of allGenders" [value]="gender">{{ gender }}</mat-option>
             </mat-select>
           </mat-form-field>
+          
+
 
           <mat-form-field class="filter">
-            <mat-label> Location Filter </mat-label>
-            <mat-select
-              placeholder="Location Filter"
-              (selectionChange)="applyFilterChange('location', $event.value)"
-            >
-              <mat-option value="">All</mat-option>
-              <mat-option *ngFor="let option of locations" [value]="option">{{
-                option
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
+          <mat-label>Location Filter</mat-label>
+          <mat-select multiple placeholder="Location Filter" (selectionChange)="applyFilterChange('location', $event.value)">
+            <mat-option *ngFor="let option of allLocations" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="filter">
+          <mat-label>City Filter</mat-label>
+          <mat-select multiple placeholder="City Filter" (selectionChange)="applyFilterChange('city', $event.value)">
+            <mat-option *ngFor="let option of allCities" [value]="option">{{ option }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
 
           <mat-form-field class="filter">
-            <mat-label> City Filter</mat-label>
-            <mat-select
-              placeholder="City Filter"
-              (selectionChange)="applyFilterChange('city', $event.value)"
-            >
-              <mat-option value="">All</mat-option>
-              <mat-option *ngFor="let option of cities" [value]="option">{{
-                option
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <mat-label>Main Vertical Filter</mat-label>
+        <mat-select multiple placeholder="Main Vertical Filter" (selectionChange)="applyFilterChange('vertical', $event.value)">
+          <mat-option *ngFor="let option of allVerticals" [value]="option">{{ option }}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-          <mat-form-field class="filter">
-            <mat-label> Main Vertical Filter </mat-label>
-            <mat-select
-              placeholder="Main Vertical Filter"
-              (selectionChange)="applyFilterChange('vertical', $event.value)"
-            >
-              <mat-option value="">All</mat-option>
-              <mat-option *ngFor="let option of verticals" [value]="option">{{
-                option
-              }}</mat-option>
-            </mat-select>
-          </mat-form-field>
 
-          <mat-form-field class="filter">
-            <mat-label> Nationality Filter </mat-label>
-            <mat-select
-              placeholder="Nationality Filter"
-              (selectionChange)="
-                applyFilterChange('nationalities', $event.value)
-              "
-            >
-              <mat-option value="">All</mat-option>
-              <mat-option
-                *ngFor="let option of nationalities"
-                [value]="option"
-                >{{ option }}</mat-option
-              >
-            </mat-select>
-          </mat-form-field>
+      <mat-form-field class="filter">
+        <mat-label>Nationality Filter</mat-label>
+        <mat-select multiple placeholder="Nationality Filter" (selectionChange)="applyFilterChange('nationalities', $event.value)">
+          <mat-option *ngFor="let option of allNationalities" [value]="option">{{ option }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
         </mat-expansion-panel>
         <button
           mat-raised-button
