@@ -13,6 +13,7 @@ import { EditInfluencerComponent } from '../../emp/talent/edit/edit-influencer/e
 import { InfluencerIdComponent } from '../influencer-id/influencer-id.component';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-influencers',
@@ -65,6 +66,11 @@ export class InfluencersComponent {
 
   @ViewChild(MatTable) table!: MatTable<any>;
 
+  @ViewChild('genderSelect') genderSelect!: MatSelect;
+  @ViewChild('locationSelect') locationSelect!: MatSelect;
+  @ViewChild('citySelect') citySelect!: MatSelect;
+  @ViewChild('verticalSelect') verticalSelect!: MatSelect;
+  @ViewChild('nationalitySelect') nationalitySelect!: MatSelect;
   constructor(
     private influencerService: InfluencerService,
     private userService: UserService,
@@ -206,7 +212,44 @@ export class InfluencersComponent {
     );
   }
   
+  public resetFilters(): void {
+    // Reset filter criteria
+    this.filterCriteria = {
+      search: '',
+      gender: [],
+      location: [],
+      vertical: [],
+      nationalities: [],
+      city: [],
+    };
 
+    this.allGenders = this.extractUniqueAttributes(this.dataSource.data, 'Gender');
+    this.allLocations = this.extractUniqueAttributes(this.dataSource.data, 'CountryLocation');
+    this.allCities = this.extractUniqueAttributes(this.dataSource.data, 'CityLocation');
+    this.allVerticals = this.extractUniqueAttributes(this.dataSource.data, 'MainVertical');
+    this.allNationalities = this.extractUniqueAttributes(this.dataSource.data, 'Nationality');
+    this.resetMatSelects();
+    this.applyFilter();
+  }
+
+  private resetMatSelects(): void {
+    if (this.genderSelect) {
+      this.genderSelect.value = [];
+    }
+    if (this.locationSelect) {
+      this.locationSelect.value = [];
+    }
+    if (this.citySelect) {
+      this.citySelect.value = [];
+    }
+    if (this.verticalSelect) {
+      this.verticalSelect.value = [];
+    }
+    if (this.nationalitySelect) {
+      this.nationalitySelect.value = [];
+    }
+  }
+  
 
   public onPageChange(event: any): void {
     this.getInfluencers();
