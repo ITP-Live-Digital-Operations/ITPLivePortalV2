@@ -60,7 +60,7 @@ export class SentBriefsIdComponent {
 
     this.getSalesFiles();
   }
-
+  
   private initializeElements(): void {
     this.editForm = this.formBuilder.group({
       //BASIC INFORMATION
@@ -140,6 +140,7 @@ export class SentBriefsIdComponent {
         KPIs: [''],
       }),
     });
+    
   }
 
   private loadSalesBriefData(): void {
@@ -179,14 +180,15 @@ export class SentBriefsIdComponent {
       AFetchedAgeGroups?.forEach((ageGroup: string) => {
         numberOfFollowers.get(ageGroup)?.setValue(true);
       });
+      console.log('Data to patch:', this.briefData.data.Agency);
 
       if (this.briefData.data != null) {
         this.brand = this.briefData.data.brand;
         this.editForm.patchValue({
           basicInfo: {
             Agency: this.briefData.data.Agency,
-            clientId: this.briefData.data.client.id,
-            brandId:  this.briefData.data.brand.id,
+            clientId: this.briefData.data.clientId,
+            brandId:  this.briefData.data.brandId,
             CampaignName: this.briefData.data.CampaignName,
             CampaignOverview: this.briefData.data.CampaignOverview,
             CampaignObjective: this.briefData.data.CampaignObjective,
@@ -249,7 +251,10 @@ export class SentBriefsIdComponent {
           },
         });
       }
+      console.log('test', this.editForm.value);
+
     });
+
   }
 
   public submitForm(): void {
