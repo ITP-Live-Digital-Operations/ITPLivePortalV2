@@ -1,0 +1,26 @@
+.row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-gap: 10px; /* Gap between items */
+  }
+  
+  .mat-form-field {
+    flex: 1;
+    width: 100%;
+  }
+  
+  @media (max-width: 600px) {
+    .row {
+      grid-template-columns: 1fr; /* One column for small screens */
+    }
+  }
+.custom-button {
+  margin-top: 1%;
+  border-radius: 5px !important;
+  background-color: #1f3371;
+  color: white;
+  padding: 10px;
+  &:disabled {
+    background-color: grey;
+  }
+}

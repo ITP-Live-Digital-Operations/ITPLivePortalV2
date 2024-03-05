@@ -46,4 +46,13 @@ export const PATH: { [key: string]: string } = {
   viewCampaign: "/home/campaign/viewCampaign/",
   newCampaign: "/home/campaign/newCampaign",
 
+
+  // originals routes 
+
+  shows: "/home/originals/shows",
+  bookings : "/home/originals/bookings",
+  viewShows : "/home/originals/viewShows",
+  newShow : "/home/originals/addShow",
+  editShow : "/home/originals/editShow"
+  
 };

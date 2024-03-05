@@ -62,6 +62,23 @@ const routes: Routes = [
       },
     ],
   },
+  // add originals
+  {
+    path: 'originals',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('../home/emp/originals/originals.module').then(
+            (m) => m.OriginalsModule
+          ),
+        canActivate: [AuthGuard, RoleGuard],
+        data: {
+          allowedRoles: ['admin', 'superadmin', 'originals'],
+        },
+      },
+    ],
+  },
   {
     path: 'admin',
     children: [

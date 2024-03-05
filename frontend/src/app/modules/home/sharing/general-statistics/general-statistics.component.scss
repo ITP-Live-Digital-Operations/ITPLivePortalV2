@@ -1,16 +1,11 @@
-.container {
-  max-width: 100%;
-}
-
-
 .carousel-container {
   overflow-x: auto;
   scroll-snap-type: x mandatory; /* This is optional and enables snap scrolling */
   -webkit-overflow-scrolling: touch; /* For iOS Webkit browsers */
   scrollbar-width: thin; /* For Firefox, let's make it thin */
-  scrollbar-color: rgba(71, 137, 161, 0.286)  #e0e0e000;
-  -ms-overflow-style: none; 
- 
+  scrollbar-color:  rgba(95, 95, 95, 0.575)  #e0e0e000;
+  -ms-overflow-style: none;
+
 }
 
 
@@ -18,11 +13,21 @@
   display: flex;
   flex-direction: row;
   width: max-content;
-  margin: 1rem auto; /* Corrected the margin property */
+  margin: 1rem auto;
+  overflow-y : hidden;/* Corrected the margin property */
 }
 
 
-p {
+
+.container .btn {
+  row-gap: 1px;
+  column-gap: 10px;
+  cursor: default;
+  border: 0px solid;
+  margin-left: 120px;
+}
+
+ p {
   position: relative;
   bottom: -15rem; /* Text sticks to the bottom */
   left: 0;
@@ -57,7 +62,7 @@ button[mat-raised-button]::before {
   background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.01) 100%); /* This will be the color of the slide */
   transition: top 300ms; /* Adjust timing as needed */
   border-radius: 20px; /* Match the button's border-radius */
-  
+
 }
 
 button[mat-raised-button]:hover::before {
@@ -66,7 +71,11 @@ button[mat-raised-button]:hover::before {
 
 button[mat-raised-button]:hover {
   z-index: 2;
-  border: 4px solid  rgba(176, 186, 225, 0.15) ;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+
+
+
+
 }
 
 button[mat-raised-button] img {
@@ -79,20 +88,6 @@ button[mat-raised-button] img {
 
 }
 
-
-
-@media (max-width: 1440px), (max-height: 900px) {
-  button[mat-raised-button]{
-      width: 220px;
-      height: 220px;
-  }
-
-  img {
-    margin-top: 10px;
-    width: 80px;
-    height: 80px;
-  }
-}
 
 .title {
   color: white;
@@ -111,10 +106,14 @@ button[mat-raised-button] img {
 // }
 
 
-img {
-  margin-top: 10px;
-  width: 100px;
+button[mat-raised-button] img {
+  position: absolute;
+  bottom: -13rem; /* Adjust this value as needed to move the image up from the bottom */
+  left: 50%;
+  transform: translateX(-50%); /* Center the image horizontally */
+  width: 100px; /* Your desired width or keep it responsive */
   height: 100px;
+
 }
 
 

@@ -1,0 +1,21 @@
+<div #carouselContainer class="carousel-container">
+    <!-- The inner container with flex display to hold all buttons -->
+    <div class="carousel-wrapper">
+    <div class="box">
+      <div
+        class="btn d-flex flex-row align-items-center flex-wrap"
+        style="border-color: transparent"
+      >
+        <button mat-raised-button routerLink="{{ path['viewShows'] }}" *ngIf="userRole =='superadmin'">
+          <img src="../../../../../assets/white-buttons/shiningStar.png"/>
+          <p>shows</p>
+        </button>
+  
+        <button mat-raised-button routerLink="{{ path['bookings'] }}" *ngIf="userRole =='superadmin'">
+          <img src="../../../../../assets/white-buttons/shiningStar.png"/>
+          <p>bookings</p>
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>

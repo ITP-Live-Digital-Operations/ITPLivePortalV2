@@ -154,6 +154,36 @@
         <img src="../../../../../assets/white-buttons/rate-log.png" />
         <p>Clients</p>
       </button>
+        <!-- ---------------------- originals -------------------     -->
+        <button
+        mat-raised-button
+        *ngIf="userRole == 'superadmin'"
+        routerLink="{{ path['shows'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/shiningStar.png" style="width : 132px ; height : 121px"/>
+        <p>originals</p>
+      </button>
+
+      <button
+      mat-raised-button
+      *ngIf="userRole == 'originals'"
+      routerLink="{{ path['viewShows'] }}"
+    >
+      <img src="../../../../../assets/white-buttons/shiningStar.png" style="width : 132px ; height : 121px"/>
+      <p>Shows</p>
+    </button>
+
+    <button
+    mat-raised-button
+    *ngIf="userRole == 'originals'"
+    routerLink="{{ path['bookings'] }}"
+  >
+    <img src="../../../../../assets/white-buttons/shiningStar.png" style="width : 132px ; height : 121px"/>
+    <p>Bookings</p>
+  </button>
+        
+
+        
     </div>
   </div>
 </div>

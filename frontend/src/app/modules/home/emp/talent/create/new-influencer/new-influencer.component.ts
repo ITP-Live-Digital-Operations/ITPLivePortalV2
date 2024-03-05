@@ -113,7 +113,7 @@ export class NewInfluencerComponent {
       }
     });
   }
-
+  
   private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
 

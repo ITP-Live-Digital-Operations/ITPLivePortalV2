@@ -1,0 +1,69 @@
+<form [formGroup]="newShowForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput type="string" formControlName="name" autocomplete="off" />
+      <mat-error
+        *ngIf="
+          newShowForm.controls['name'].invalid &&
+          newShowForm.controls['name'].touched
+        "
+      >
+        Please enter a Name.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        type="string"
+        formControlName="description"
+        autocomplete="off"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Color</mat-label>
+      <input
+        matInput
+        type="string"
+        formControlName="color"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          newShowForm.controls['color'].invalid &&
+          newShowForm.controls['color'].touched
+        "
+      >
+        Please enter a Color.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Color Code</mat-label>
+      <input
+        matInput
+        type="string"
+        formControlName="colorCode"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          newShowForm.controls['colorCode'].invalid &&
+          newShowForm.controls['colorCode'].touched
+        "
+      >
+        Please enter a Color Code.
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button
+    type="submit"
+    [disabled]="!newShowForm.valid"
+    class="custom-button"
+  >
+    Add Show
+  </button>
+</form>

@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.gap {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-button {
+  height: 30px;
+  line-height: 0%;
+  font-size: 13px;
+  // padding: 0 10px;
+  width: auto;
+  padding: 12px 15px 10px 15px; /* Top, Right, Bottom, Left */
+  margin-left: auto;
+  margin-bottom: 3px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid #1f3371;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+table {
+  width: 100%;
+}
+
+.icon-btn {
+}
