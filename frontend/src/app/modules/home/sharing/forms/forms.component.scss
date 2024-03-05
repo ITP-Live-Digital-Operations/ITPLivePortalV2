@@ -29,8 +29,9 @@
 
  p {
   position: relative;
-  bottom: -15rem; /* Text sticks to the bottom */
+  bottom: -25vh; /* Text sticks to the bottom */
   left: 0;
+  font-size: 2vh;
   width: 100%;
   text-align: center;
   margin: 0;
@@ -49,6 +50,18 @@ button[mat-raised-button] {
   transition: background-color 500ms, border-color 500ms;
   border-radius: 20px !important;
   overflow: hidden; /* Ensure the pseudo-element doesn't exceed the button's boundary */
+}
+
+@media (max-height: 800px) {
+  button[mat-raised-button] {
+    height: 73vh; /* Smaller height for smaller viewports */
+  }
+}
+
+@media (max-height: 500px) {
+  button[mat-raised-button] {
+    height: 50vh; /* Even smaller height for very small viewports */
+  }
 }
 
 button[mat-raised-button]::before {
@@ -93,11 +106,11 @@ button[mat-raised-button]:hover {
 
 button[mat-raised-button] img {
   position: absolute;
-  bottom: -13rem; /* Adjust this value as needed to move the image up from the bottom */
+  bottom: -20vh; /* Adjust this value as needed to move the image up from the bottom */
   left: 50%;
   transform: translateX(-50%); /* Center the image horizontally */
-  width: 100px; /* Your desired width or keep it responsive */
-  height: 100px;
+  width: 9vh; /* Your desired width or keep it responsive */
+  height: 9vh;
 
 }
 
