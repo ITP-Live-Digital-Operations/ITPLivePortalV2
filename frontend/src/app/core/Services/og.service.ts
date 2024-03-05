@@ -30,19 +30,19 @@ export class OgService {
   private ogApiURL = environment.apiUrl + '/v1/ogs';
 
   getOgShows(): Observable<ogShow[]> {
-    return this.http.get<ogShow[]>(`${this.ogApiURL}/getShows`);
+    return this.http.get<ogShow[]>(`${this.ogApiURL}/getOgShows`);
   }
 
   getOgShowById(id: number): Observable<ogShow> {
-    return this.http.get<ogShow>(`${this.ogApiURL}/getShowById/${id}`);
+    return this.http.get<ogShow>(`${this.ogApiURL}/getOgShowById/${id}`);
   }
 
   editShowById(id: number, inputdata: ogShowEdit): Observable<returnData> {
-    return this.http.patch<returnData>(`${this.ogApiURL}/editShow/${id}`, inputdata);
+    return this.http.patch<returnData>(`${this.ogApiURL}/editShowById/${id}`, inputdata);
   }
 
   addOgShow(inputdata: ogShowCreate): Observable<returnData> {
-    return this.http.post<returnData>(`${this.ogApiURL}/addShow`, inputdata);
+    return this.http.post<returnData>(`${this.ogApiURL}/addOgShow`, inputdata);
   }
 
   getOgBookings(): Observable<ogBookings[]> {

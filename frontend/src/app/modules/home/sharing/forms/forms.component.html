@@ -154,6 +154,18 @@
         <img src="../../../../../assets/white-buttons/rate-log.png" />
         <p>Clients</p>
       </button>
+        <!-- ---------------------- originals -------------------     -->
+        <button
+        mat-raised-button
+        *ngIf="userRole == 'superadmin' || userRole == 'originals'"
+        routerLink="{{ path['shows'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/shiningStar.png" style="width : 132px ; height : 121px"/>
+        <p>originals</p>
+      </button>
+        
+
+        
     </div>
   </div>
 </div>
