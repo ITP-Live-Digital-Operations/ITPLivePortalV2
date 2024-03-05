@@ -21,68 +21,74 @@
           </mat-expansion-panel-header>
           <mat-form-field class="filter">
             <mat-label>Gender Filter</mat-label>
-            <mat-select #genderSelect multiple placeholder="Gender Filter" (selectionChange)="applyFilterChange('gender', $event.value)">
-              <mat-option *ngFor="let gender of allGenders" [value]="gender">{{ gender }}</mat-option>
+            <mat-select
+              multiple
+              placeholder="Gender Filter"
+              (selectionChange)="applyFilterChange('gender', $event.value)"
+            >
+              <mat-option *ngFor="let gender of allGenders" [value]="gender">{{
+                gender
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
-          
-
 
           <mat-form-field class="filter">
-          <mat-label>Location Filter</mat-label>
-          <mat-select #locationSelect multiple placeholder="Location Filter" (selectionChange)="applyFilterChange('location', $event.value)">
-            <mat-option *ngFor="let option of allLocations" [value]="option">
-              {{ option }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field class="filter">
-          <mat-label>City Filter</mat-label>
-          <mat-select  #citySelect multiple placeholder="City Filter" (selectionChange)="applyFilterChange('city', $event.value)">
-            <mat-option *ngFor="let option of allCities" [value]="option">{{ option }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        
+            <mat-label>Location Filter</mat-label>
+            <mat-select
+              multiple
+              placeholder="Location Filter"
+              (selectionChange)="applyFilterChange('location', $event.value)"
+            >
+              <mat-option *ngFor="let option of allLocations" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
           <mat-form-field class="filter">
-        <mat-label>Main Vertical Filter</mat-label>
-        <mat-select  #verticalSelect multiple placeholder="Main Vertical Filter" (selectionChange)="applyFilterChange('vertical', $event.value)">
-          <mat-option *ngFor="let option of allVerticals" [value]="option">{{ option }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+            <mat-label>City Filter</mat-label>
+            <mat-select
+              multiple
+              placeholder="City Filter"
+              (selectionChange)="applyFilterChange('city', $event.value)"
+            >
+              <mat-option *ngFor="let option of allCities" [value]="option">{{
+                option
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
 
+          <mat-form-field class="filter">
+            <mat-label>Main Vertical Filter</mat-label>
+            <mat-select
+              multiple
+              placeholder="Main Vertical Filter"
+              (selectionChange)="applyFilterChange('vertical', $event.value)"
+            >
+              <mat-option
+                *ngFor="let option of allVerticals"
+                [value]="option"
+                >{{ option }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
 
-      <mat-form-field class="filter">
-        <mat-label>Nationality Filter</mat-label>
-        <mat-select #nationalitySelect multiple placeholder="Nationality Filter" (selectionChange)="applyFilterChange('nationalities', $event.value)">
-          <mat-option *ngFor="let option of allNationalities" [value]="option">{{ option }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="filter">
-        <mat-label>Social Media Platforms</mat-label>
-        <mat-select #socialMediaPlatformSelect placeholder="Social Media" (selectionChange)="applyPlatformFilter($event.value)">
-          <mat-option *ngFor="let platform of ['Instagram', 'Tiktok', 'Youtube', 'Twitter', 'Snapchat', 'Facebook']" [value]="platform">{{ platform }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      
-      
-      <div class="filter">
-        <mat-form-field>
-          <mat-label>Min Followers</mat-label>
-          <input matInput type="number" [(ngModel)]="minFollowers" (ngModelChange)="applyFollowerRangeChange()">
-
-        </mat-form-field>
-      
-        <mat-form-field>
-          <mat-label>Max Followers</mat-label>
-          <input matInput type="number" [(ngModel)]="maxFollowers" (ngModelChange)="applyFollowerRangeChange()">
-        </mat-form-field>
-      </div>
-      
-      
-      <button mat-raised-button color="primary" (click)="resetFilters()">Reset Filters</button>
-
+          <mat-form-field class="filter">
+            <mat-label>Nationality Filter</mat-label>
+            <mat-select
+              multiple
+              placeholder="Nationality Filter"
+              (selectionChange)="
+                applyFilterChange('nationalities', $event.value)
+              "
+            >
+              <mat-option
+                *ngFor="let option of allNationalities"
+                [value]="option"
+                >{{ option }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
         </mat-expansion-panel>
         <button
           mat-raised-button
@@ -128,7 +134,7 @@
         <ng-container matColumnDef="CPM">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>CPM</th>
           <td mat-cell *matCellDef="let element">
-            {{ element?.influencerMetrics?.CPM | appCurrencyFormat:3 }}
+            {{ element?.influencerMetrics?.CPM | appCurrencyFormat : 3 }}
           </td>
         </ng-container>
 
