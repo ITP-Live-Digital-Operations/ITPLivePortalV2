@@ -27,5 +27,6 @@ export class InfluencerDetailsComponent {
 
   ngOnInit() {
     this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
+    
   }
 }

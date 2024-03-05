@@ -10,7 +10,7 @@ import { CelebrityIdComponent } from '../celebrity-id/celebrity-id.component';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
-
+import { MatSelect } from '@angular/material/select';
 @Component({
   selector: 'app-celebrities-list',
   templateUrl: './celebrities-list.component.html',
@@ -20,6 +20,24 @@ export class CelebritiesListComponent {
 
   public dataSource: any;
   public UserDetails: any;
+  public verticals: string[] = [];
+  public locations: string[] = [];
+  public genders: string[] = [];
+  public games: string[] = [];
+  public allGenders: string[] = []; // This array will be used to populate the mat-select
+  public allLocations: string[] = [];
+  public allCities: string[] = [];
+  public allVerticals: string[] = [];
+  public allGames: string[] = [];
+
+  filterCriteria: any = {
+    search: '',
+    gender: [],
+    location: [],
+    vertical: [],
+    games: [],
+
+  };
 
 
 
@@ -28,7 +46,10 @@ export class CelebritiesListComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
-
+  @ViewChild('genderSelect') genderSelect!: MatSelect;
+  @ViewChild('locationSelect') locationSelect!: MatSelect;
+  @ViewChild('verticalSelect') verticalSelect!: MatSelect;
+  @ViewChild('gameSelect') gameSelect!: MatSelect;
   displayedColumns: string[] = [
     'Name',
     'InstagramFollowers',
@@ -61,12 +82,172 @@ export class CelebritiesListComponent {
       );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.populateFilterParameters();
+
     });
   }
-
-  public applyFilter(filterValue: string): void {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  private populateFilterParameters(): void {
+    // Assuming dataSource.data is an array of your items
+    const data = this.dataSource.data;
+  
+    // Extract and assign unique values for each filter
+    this.allGenders = this.extractUniqueAttributes(data, 'Gender');
+    this.allLocations = this.extractUniqueAttributes(data, 'CountryLocation');
+    this.allVerticals = this.extractUniqueAttributes(data, 'MainVertical');
+    this.allGames = this.extractUniqueAttributes(data, 'Game');
   }
+  
+  private extractUniqueAttributes(data: any[], attribute: string): string[] {
+    const uniqueValues = new Set(data.map(item => item[attribute]).filter(Boolean));
+    return Array.from(uniqueValues).sort();
+  }
+
+  public resetFilters(): void {
+    // Reset filter criteria
+    this.filterCriteria = {
+      search: '',
+      gender: [],
+      location: [],
+      vertical: [],
+      games: [],
+
+    };
+
+    this.allGenders = this.extractUniqueAttributes(this.dataSource.data, 'Gender');
+    this.allLocations = this.extractUniqueAttributes(this.dataSource.data, 'CountryLocation');
+    this.allVerticals = this.extractUniqueAttributes(this.dataSource.data, 'MainVertical');
+    this.allGames = this.extractUniqueAttributes(this.dataSource.data, 'Game');
+    this.resetMatSelects();
+    this.applyFilter();
+  }
+  private updateFilterDropdowns(): void {
+    // Use a copy of the full data set as the starting point for filtering
+    let baseFilteredData = [...this.dataSource.data];
+  
+    // Dynamically update options for each filter based on current filterCriteria
+    // Note: It's important to maintain the integrity of each "all" array to allow for multiple selections
+    
+    // Filter for Gender options based on all criteria except gender itself
+    this.allGenders = this.extractUniqueAttributes(
+      baseFilteredData.filter(data => 
+        (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
+        (!this.filterCriteria.games.length || this.filterCriteria.games.includes(data.Game?.trim().toLowerCase())) &&
+        (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase()))  ), 'Gender'
+    );
+  
+    // Filter for Location options based on all criteria except location itself
+    this.allLocations = this.extractUniqueAttributes(
+      baseFilteredData.filter(data => 
+        (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
+        (!this.filterCriteria.games.length || this.filterCriteria.games.includes(data.Game?.trim().toLowerCase())) &&
+        (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) ), 'CountryLocation'
+    );
+  
+  
+    this.allVerticals = this.extractUniqueAttributes(
+      baseFilteredData.filter(data => 
+        (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
+        (!this.filterCriteria.games.length || this.filterCriteria.games.includes(data.Game?.trim().toLowerCase())) &&
+        (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) ), 'MainVertical'
+    );
+    
+    this.allGames = this.extractUniqueAttributes(
+      baseFilteredData.filter(data => 
+        (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
+        (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
+        (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) ), 'MainVertical'
+    );
+  
+
+  }
+  private resetMatSelects(): void {
+    if (this.genderSelect) {
+      this.genderSelect.value = [];
+    }
+    if (this.locationSelect) {
+      this.locationSelect.value = [];
+    }
+  
+    if (this.verticalSelect) {
+      this.verticalSelect.value = [];
+    }
+    if (this.gameSelect) {
+      this.gameSelect.value = [];
+    }
+  }
+
+  public applyFilter(): void {
+    this.dataSource = new MatTableDataSource<InfluencerModel>(this.UserDetails);
+
+    // Define the filter predicate
+    this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
+      const filterObject = JSON.parse(filter);
+    
+      const isMatchSearch = filterObject.search
+        ? data.Name?.trim().toLowerCase().includes(filterObject.search) ||
+          data.InstagramHandle?.trim().toLowerCase().includes(filterObject.search)
+        : true;
+      
+      const isMatchGender = !this.filterCriteria.gender.length || 
+      this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase());
+
+      const isMatchLocation = !filterObject.location.length || 
+      filterObject.location.includes(data.CountryLocation?.trim().toLowerCase());
+
+      
+      const isMatchVertical = !this.filterCriteria.vertical.length || 
+      this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase());
+      
+      //const isMatchGames = !filterObject.games.length || (data.game && filterObject.games.includes(data.game.toLowerCase()));
+
+
+
+      return (
+        isMatchSearch &&
+        isMatchGender &&
+        isMatchLocation &&
+        isMatchVertical
+         //&&
+        //isMatchGames 
+      );
+    };
+
+    this.dataSource.filter = JSON.stringify(this.filterCriteria);
+
+    this.updateFilterDropdowns();
+  }
+
+  applyFilterChange(filterType: string, filterValue: any): void {
+    switch (filterType) {
+      case 'gender':
+        this.filterCriteria.gender = filterValue.map((val: string) => val.trim().toLowerCase());
+      break;
+      case 'location':
+        this.filterCriteria.location = filterValue.map((val: string) => val.trim().toLowerCase());
+        break;
+      case 'vertical':
+        this.filterCriteria.vertical = filterValue.map((val: string) => val.trim().toLowerCase());
+        break;
+        case 'game':
+          this.filterCriteria.games = filterValue.map((val: string) => val.trim().toLowerCase());
+          break;
+      case 'search':
+        this.filterCriteria.search = filterValue.trim().toLowerCase();
+        break;
+      // ... add other filters as needed
+      default:
+        break;
+    }
+    if (!Array.isArray(filterValue)) {
+      filterValue = [filterValue];
+    }
+    this.filterCriteria[filterType] = filterValue.map((val: string) => val.trim().toLowerCase());  
+    this.applyFilter();
+    this.updateFilterDropdowns();
+
+
+
+}
 
   public deleteCelebrity(inputdata: any): void {
     this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')

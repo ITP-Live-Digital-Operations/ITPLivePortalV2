@@ -1,13 +1,66 @@
 <div style="position: relative">
-  <mat-form-field style="width: 100%; height: 10%; margin-left: 0px;">
-    <input #searchInput matInput (keyup)="applyFilter(searchInput.value)" placeholder="🔍 Search" />
-  </mat-form-field>
+  <mat-form-field
+  style="width: 100%; height: 10%; margin-left: 0px; display: flex"
+>
+  <input
+    #searchInput
+    matInput
+    (keyup)="applyFilterChange('search', searchInput.value)"
+    placeholder="🔍 Search"
+  />
+</mat-form-field>
+<div>
+ <div class="search-container">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>filter_list</mat-icon>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-form-field class="filter">
+            <mat-label>Gender Filter</mat-label>
+            <mat-select #genderSelect multiple placeholder="Gender Filter" (selectionChange)="applyFilterChange('gender', $event.value)">
+              <mat-option *ngFor="let gender of allGenders" [value]="gender">{{ gender }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
 
+
+          <mat-form-field class="filter">
+          <mat-label>Location Filter</mat-label>
+          <mat-select #locationSelect multiple placeholder="Location Filter" (selectionChange)="applyFilterChange('location', $event.value)">
+            <mat-option *ngFor="let option of allLocations" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+          <mat-form-field class="filter">
+        <mat-label>Main Vertical Filter</mat-label>
+        <mat-select  #verticalSelect multiple placeholder="Main Vertical Filter" (selectionChange)="applyFilterChange('vertical', $event.value)">
+          <mat-option *ngFor="let option of allVerticals" [value]="option">{{ option }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="filter">
+        <mat-label>Game Filter</mat-label>
+        <mat-select  #verticalSelect multiple placeholder="Game Filter" (selectionChange)="applyFilterChange('game', $event.value)">
+          <mat-option *ngFor="let option of allGames" [value]="option">{{ option }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div><button mat-raised-button color="primary" (click)="resetFilters()">Reset Filters</button></div>
+
+      
+
+        </mat-expansion-panel>
+      </div>
+    </div>
   <div class="new-celeb">
   <button mat-raised-button
     routerLink="/home/talent/new/celebrity">
     <mat-icon>add_circle_outline</mat-icon>
-    New Celebrity
+    New Celebrity 
   </button>
 </div>
   <div class="table-container">

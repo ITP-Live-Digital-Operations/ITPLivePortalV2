@@ -10,6 +10,8 @@ import { SharedModule } from 'src/app/shared/components/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharingModule } from '../../../sharing/sharing.module';
 import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
     MaterialModule,
     SharedModule,
     SharingModule,
+    MatExpansionModule,
+    MatSliderModule,
     ReactiveFormsModule
   ],
 })

@@ -42,7 +42,6 @@ table {
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: #2C393F;
   position: sticky;
 }
 
@@ -89,4 +88,56 @@ table {
     max-width: 150px;         /* Adjust the maximum width as needed */
 
 
+}
+.search-container {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding-bottom: 1rem;
+
+  mat-expansion-panel {
+   display: block;
+    width: 100%; // Stretch the panel to full width
+    margin-top: 12px;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+
+    mat-expansion-panel-header {
+      background-color: #2C393F;
+      border-bottom: 1px solid white;
+      margin-bottom: 10px;
+      width: min-content;
+
+      .mat-panel-title {
+        color: white;
+      }
+    }
+
+    .filter {
+      display: inline-block;
+      width: calc(100% / 5 - 10px); // adjust the denominator based on the number of filters
+      margin-right: 10px; // add space between filters
+
+      &:last-child {
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
+  button {
+    padding: 10px 15px;
+    background-color: transparent!important;
+    color: white!important;
+    border: 1px solid #4789A1;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 2%;
+  
+    &:hover {
+      background-color: #4789A1;
+    }
+  }
 }

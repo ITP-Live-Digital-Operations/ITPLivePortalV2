@@ -15,7 +15,7 @@ export class BasicInformationComponent {
   public campaignobjectives: string[] = campaignobjectives;
   public currencies: string[] = currencies;
   selectedClient: ClientModel | null = null;
-
+  @Input() basicInfo: any;
   @Input()
   formGroupName: string = '';
 
@@ -29,9 +29,12 @@ export class BasicInformationComponent {
     private clientService: ClientService, ){  }
 
   ngOnInit() {
+    
     this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
     this.getClients();
     this.setupFormChanges();
+
+
 
      // Add the brandId control, initially disabled
      this.form.addControl('brandId', new FormControl({value: '', disabled: true}));
