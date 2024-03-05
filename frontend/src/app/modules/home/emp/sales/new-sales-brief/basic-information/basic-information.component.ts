@@ -29,7 +29,7 @@ export class BasicInformationComponent {
     private clientService: ClientService, ){  }
 
   ngOnInit() {
-    
+
     this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
     this.getClients();
     this.setupFormChanges();
@@ -50,7 +50,7 @@ export class BasicInformationComponent {
 
   private setupFormChanges() {
     this.form.get('clientId')?.valueChanges.subscribe(clientId => {
-      this.selectedClient = this.clients.find((client: ClientModel) => client.id === clientId);
+      this.selectedClient = this.clients?.find((client: ClientModel) => client.id === clientId);
       this.brands = this.selectedClient ? this.selectedClient.brands : [];
 
       if (this.selectedClient) {

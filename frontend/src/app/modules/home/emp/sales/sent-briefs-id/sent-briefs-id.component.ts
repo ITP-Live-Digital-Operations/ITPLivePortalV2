@@ -60,7 +60,7 @@ export class SentBriefsIdComponent {
 
     this.getSalesFiles();
   }
-  
+
   private initializeElements(): void {
     this.editForm = this.formBuilder.group({
       //BASIC INFORMATION
@@ -140,7 +140,7 @@ export class SentBriefsIdComponent {
         KPIs: [''],
       }),
     });
-    
+
   }
 
   private loadSalesBriefData(): void {
@@ -150,7 +150,7 @@ export class SentBriefsIdComponent {
 
     this.salesService.getSalesBrief(this.briefId).subscribe((brief) => {
       this.briefData = brief;
-      console.log(this.briefData.data)
+
 
       if( this.briefData.data.assigned ){
         this.taskService.getTaskByBriefId(this.briefId).subscribe( (task) => {
@@ -180,7 +180,7 @@ export class SentBriefsIdComponent {
       AFetchedAgeGroups?.forEach((ageGroup: string) => {
         numberOfFollowers.get(ageGroup)?.setValue(true);
       });
-      console.log('Data to patch:', this.briefData.data.Agency);
+
 
       if (this.briefData.data != null) {
         this.brand = this.briefData.data.brand;
@@ -251,7 +251,7 @@ export class SentBriefsIdComponent {
           },
         });
       }
-      console.log('test', this.editForm.value);
+
 
     });
 
@@ -306,7 +306,7 @@ export class SentBriefsIdComponent {
     if (formGroup instanceof FormGroup) {
       Object.keys(formGroup.controls)?.forEach((key) => {
         const control = formGroup.get(key);
-        console.log(control?.value)
+
 
         if (key === 'InfluencerAgeRange' || key === 'AudienceAgeRange' || key === 'InfluencerNumberOfFollowers') {
           valuesObject[key] = this.processAgeRangeGroup(control as FormGroup);
@@ -350,7 +350,7 @@ export class SentBriefsIdComponent {
 
   private getSalesFiles() {
     this.fileService.getSalesBriefFiles(this.briefId).subscribe(data => {
-      console.log(data);
+     
       this.dataSource = new MatTableDataSource(data.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
