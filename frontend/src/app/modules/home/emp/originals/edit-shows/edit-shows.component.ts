@@ -43,13 +43,14 @@ export class EditShowsComponent {
 
   private GetShowData(inputdata :any): void{
     this.ogService.getOgShowById(inputdata).subscribe((res) =>{
+      console.log(res)
       this.showData = res;
-      if(this.showData.data != null){
+      if(this.showData != null){
         this.editShowForm.setValue({
-          name : this.showData.data.name,
-          description : this.showData.data.description,
-          color : this.showData.data.color,
-          colorCode : this.showData.data.colorCode
+          name : this.showData.name,
+          description : this.showData.description,
+          color : this.showData.color,
+          colorCode : this.showData.colorCode
         })
       }
     })

@@ -62,7 +62,7 @@ export class ViewShowsComponent {
   }
 
   public editShows(inputdata: any): void {
-    this.dialog?.open(EditShowsComponent, {
+    const dialogRef = this.dialog?.open(EditShowsComponent, {
       width: '90%',
       height: '80%',
       exitAnimationDuration: '1000ms',
@@ -71,6 +71,10 @@ export class ViewShowsComponent {
         id: inputdata,
       },
     });
+    
+    dialogRef.afterClosed().subscribe( result => {
+      this.getShows()
+    })
   }
 
   private getShows(): void {
