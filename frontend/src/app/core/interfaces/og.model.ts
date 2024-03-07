@@ -53,11 +53,11 @@ export interface ogBookingsCreate{
   showId: number;
   team: string;
   shootName: string;
-  numberofGuests: number;
+  numberOfGuests: number;
   guestNames: string;
   startingDate: Date;
   endingDate: Date;
-  progress: string;
+  progress?: string;
   notes: string;
 }
 

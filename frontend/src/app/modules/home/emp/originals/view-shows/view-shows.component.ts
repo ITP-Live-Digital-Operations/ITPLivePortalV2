@@ -45,8 +45,9 @@ export class ViewShowsComponent {
     'description',
     'color',
     'colorCode',
-    'edit',
   ];
+
+;
 
   public userRole = this.userService.getRole();
 
@@ -71,7 +72,7 @@ export class ViewShowsComponent {
         id: inputdata,
       },
     });
-    
+
     dialogRef.afterClosed().subscribe( result => {
       this.getShows()
     })
@@ -90,6 +91,13 @@ export class ViewShowsComponent {
 
   public toggleEditColumn(): void {
     this.showEditColumn = !this.showEditColumn;
+    if(this.showEditColumn) {
+      this.displayedColumns.push('edit');
+    } else {
+      if(this.displayedColumns.length > 4) {
+        this.displayedColumns.pop();
+      }
+    }
   }
 
   public editShow(): void {

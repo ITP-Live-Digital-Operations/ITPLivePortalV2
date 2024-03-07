@@ -1,0 +1,67 @@
+<div class="form-container">
+  <h1> New Booking Form </h1>
+<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <mat-form-field>
+      <mat-label> Show </mat-label>
+      <mat-select formControlName="showId" required>
+        <mat-option *ngFor="let show of ogShowsList" [value]="show.id">
+          {{ show.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label> Team </mat-label>
+      <mat-select formControlName="team" required>
+        <mat-option *ngFor="let team of teamsList" [value]="team">
+          {{ team }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+  </div>
+  <div class="row">
+    <mat-form-field>
+      <mat-label> Shoot Name </mat-label>
+      <input matInput formControlName="shootName" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label> Number of Guests</mat-label>
+      <input matInput type="number" formControlName="numberOfGuests" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label> Guest Names</mat-label>
+      <textarea matInput formControlName="guestNames" rows="1"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <mat-label> Starting Date</mat-label>
+      <input matInput [matDatepicker]="startingDatePicker" formControlName="startingDate" required />
+      <mat-datepicker-toggle matSuffix [for]="startingDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startingDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label> Ending Date</mat-label>
+      <input matInput [matDatepicker]="endingDatePicker" formControlName="endingDate" required />
+      <mat-datepicker-toggle matSuffix [for]="endingDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endingDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <mat-label> Notes </mat-label>
+      <textarea matInput formControlName="notes" rows="2"></textarea>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button class="submit-btn" [disabled]="bookingForm.invalid"> Submit & Continue  </button>
+</form>
+</div>

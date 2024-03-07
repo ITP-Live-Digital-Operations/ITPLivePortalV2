@@ -47,12 +47,17 @@ export const PATH: { [key: string]: string } = {
   newCampaign: "/home/campaign/newCampaign",
 
 
-  // originals routes 
+  // originals routes
 
   shows: "/home/originals/shows",
   bookings : "/home/originals/bookings",
   viewShows : "/home/originals/viewShows",
   newShow : "/home/originals/addShow",
-  editShow : "/home/originals/editShow"
-  
+  editShow : "/home/originals/editShow",
+
+  addBooking : "/home/originals/addBooking",
+
+  addProductionBooking : "/home/originals/addProductionBooking",
+  addEditorBooking : "/home/originals/addEditorBooking",
+  addGraphicsBooking : "/home/originals/addGraphicsBooking",
 };

@@ -1,0 +1,50 @@
+<div class="form-container">
+  <h1>Production Booking Form</h1>
+  <form [formGroup]="productionBookingForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Shoot Location </mat-label>
+        <input matInput formControlName="locationOfShoot" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Equipment Needed </mat-label>
+        <input matInput formControlName="equipmentNeeded" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Camera Number</mat-label>
+        <input matInput type="number" formControlName="cameraNumber" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Nic Mic Number</mat-label>
+        <input matInput type="number" formControlName="cameraNumber" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Painting Or Props</mat-label>
+        <input matInput  formControlName="paintingOrProps" />
+      </mat-form-field>
+
+
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Full Shoot Brief</mat-label>
+        <textarea matInput formControlName="fullShootBrief" rows="2"></textarea>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-raised-button
+      class="submit-btn"
+      [disabled]="productionBookingForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

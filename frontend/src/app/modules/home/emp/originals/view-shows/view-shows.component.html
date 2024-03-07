@@ -13,7 +13,7 @@
       <button
         mat-raised-button
         routerLink="/home/originals/newShow"
-        *ngIf="userRole == 'originals'"
+        *ngIf="userRole == 'originals' || 'superadmin'"
         class="custom-button"
       >
         Add New Show
@@ -21,7 +21,7 @@
       <button
         mat-raised-button
         (click)="toggleEditColumn()"
-        *ngIf="userRole == 'originals'"
+        *ngIf="userRole == 'originals' || 'superadmin'"
         class="custom-button"
       >
         Edit Show
@@ -68,7 +68,7 @@
 
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          <ng-container *ngIf="showEditColumn">Edit</ng-container>
+          <ng-container>Edit</ng-container>
         </th>
         <td
           mat-cell
@@ -76,7 +76,7 @@
           [style.width]="showEditColumn ? '2%' : '0'"
         >
           <button class="icon-btn" (click)="editShows(element.id)">
-            <mat-icon *ngIf="showEditColumn">create</mat-icon>
+            <mat-icon >create</mat-icon>
           </button>
         </td></ng-container
       >

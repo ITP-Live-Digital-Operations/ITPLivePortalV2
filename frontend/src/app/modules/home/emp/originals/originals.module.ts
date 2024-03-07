@@ -7,10 +7,7 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { ViewShowsComponent } from './view-shows/view-shows.component';
 import { MaterialModule } from 'src/app/common.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ViewBriefModule } from '../talent/view-brief/view-brief.module';
-import { SharingModule } from '../../sharing/sharing.module';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -18,6 +15,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { AddShowComponent } from './add-show/add-show.component';
 import { MatIconModule } from '@angular/material/icon';
+import { AddBookingComponent } from './add-booking/add-booking.component';
+import { ProductionFormComponent } from './add-booking/production-form/production-form.component';
+import { EditorFormComponent } from './add-booking/editor-form/editor-form.component';
+import { GraphicsFormComponent } from './add-booking/graphics-form/graphics-form.component';
+
 
 
 
@@ -28,17 +30,16 @@ import { MatIconModule } from '@angular/material/icon';
     EditShowsComponent,
     BookingsComponent,
     ViewShowsComponent,
-    AddShowComponent
+    AddShowComponent,
+    AddBookingComponent,
+    ProductionFormComponent,
+    EditorFormComponent,
+    GraphicsFormComponent
   ],
   imports: [
     CommonModule,
     OriginalsRoutingModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatInputModule,
+    MaterialModule,
     ReactiveFormsModule,
     FormsModule,
     MatIconModule

@@ -8,13 +8,19 @@
       >
         <button mat-raised-button routerLink="{{ path['viewShows'] }}" *ngIf="userRole =='superadmin'">
           <img src="../../../../../assets/white-buttons/shiningStar.png"/>
-          <p>shows</p>
+          <p>Shows</p>
         </button>
-  
+
         <button mat-raised-button routerLink="{{ path['bookings'] }}" *ngIf="userRole =='superadmin'">
           <img src="../../../../../assets/white-buttons/shiningStar.png"/>
-          <p>bookings</p>
+          <p>Bookings</p>
         </button>
+
+        <button mat-raised-button routerLink="{{ path['addBooking'] }}" *ngIf="userRole =='superadmin'">
+          <img src="../../../../../assets/white-buttons/shiningStar.png"/>
+          <p>Add New Booking</p>
+        </button>
+
       </div>
     </div>
   </div>

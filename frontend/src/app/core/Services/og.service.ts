@@ -44,13 +44,13 @@ export class OgService {
   addOgShow(inputdata: ogShowCreate): Observable<returnData> {
     return this.http.post<returnData>(`${this.ogApiURL}/addOgShow`, inputdata);
   }
-
+  // ------------------------------------- Bookings ------------------------------------- //
   getOgBookings(): Observable<ogBookings[]> {
-    return this.http.get<ogBookings[]>(`${this.ogApiURL}/getBookings`);
+    return this.http.get<ogBookings[]>(`${this.ogApiURL}/getOgBookings`);
   }
 
   getOgBookingById(id: number): Observable<ogBookings> {
-    return this.http.get<ogBookings>(`${this.ogApiURL}/getBookingById/${id}`);
+    return this.http.get<ogBookings>(`${this.ogApiURL}/getOgBookingById/${id}`);
   }
 
   getOgBookingByTeam(team: string): Observable<ogBookings[]> {
@@ -58,11 +58,11 @@ export class OgService {
   }
 
   createOgBooking(inputdata: ogBookingsCreate): Observable<returnData> {
-    return this.http.post<returnData>(`${this.ogApiURL}/addBooking`, inputdata);
+    return this.http.post<returnData>(`${this.ogApiURL}/createOgBooking`, inputdata);
   }
 
   editOgBookingById(id: number, inputdata: ogBookingsEdit): Observable<returnData> {
-    return this.http.patch<returnData>(`${this.ogApiURL}/editBooking/${id}`, inputdata);
+    return this.http.patch<returnData>(`${this.ogApiURL}/editOgBookingById/${id}`, inputdata);
   }
 
   // Same link used to create all booking forms in the backend, but using 3 different methods to create the forms with different interfaces

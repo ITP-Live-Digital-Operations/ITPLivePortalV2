@@ -1,25 +1,18 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment} from '../../../environments/environment.development';
-
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
+  private dataSubject = new BehaviorSubject<any>(null);
+  currentData = this.dataSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
-
-  dataApiURL = environment.apiUrl + '/v1/seeds';
-
-  exportSeeds(){
-    return this.http.get(`${this.dataApiURL}/export-seeds`);
+  changeData(data: any) {
+    this.dataSubject.next(data);
   }
 
-  accessToken(){
-    return this.http.get(`${environment.apiUrl}/powerbi/token`);
+  resetData() {
+    this.dataSubject.next(null); // Or any default value you prefer
   }
-
 }
-
-

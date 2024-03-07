@@ -6,5 +6,7 @@ export const Department = {
   CAMPAIGN: 3,
 }
 
+export const ogTeamList = ['Production', 'Editing', 'Graphic Design'];
+
 
 

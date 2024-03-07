@@ -7,6 +7,10 @@ import { EditShowsComponent } from './edit-shows/edit-shows.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { ViewShowsComponent } from './view-shows/view-shows.component';
 import { AddShowComponent } from './add-show/add-show.component';
+import { AddBookingComponent } from './add-booking/add-booking.component';
+import { ProductionFormComponent } from './add-booking/production-form/production-form.component';
+import { EditorFormComponent } from './add-booking/editor-form/editor-form.component';
+import { GraphicsFormComponent } from './add-booking/graphics-form/graphics-form.component';
 
 let path = PATH;
 
@@ -27,6 +31,7 @@ const routes : Routes = [
     path : 'bookings',
     component : BookingsComponent
   },
+
   {
     path : 'newShow',
     component : AddShowComponent
@@ -34,6 +39,22 @@ const routes : Routes = [
   {
     path : 'editShow',
     component : EditShowsComponent
+  },
+  {
+    path : 'addBooking',
+    component : AddBookingComponent
+  },
+  {
+    path: 'addProductionBooking/:id',
+    component: ProductionFormComponent
+  },
+  {
+    path: 'addEditorBooking',
+    component: EditorFormComponent
+  },
+  {
+    path: 'addGraphicsBooking',
+    component: GraphicsFormComponent
   },
   {
     path: '',
