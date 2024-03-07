@@ -63,7 +63,7 @@ img {
 }
 
 mat-sidenav-container {
-  height: 100%;
+ /*  height: 100%;
   background-color: hsla(232, 60%, 8%, 1);
   background-image: radial-gradient(
       at 86% 97%,
@@ -72,23 +72,40 @@ mat-sidenav-container {
     ),
     radial-gradient(at 22% 58%, #1f1fd66b 0px, transparent 50%);
   animation: gradient 5s ease infinite;
+  background-size: 120% 120%; */
+  height: 100%;
+  /* Adjusted the base color to a lighter tone for a more modern feel */
+  background-color: hsla(232, 60%, 20%, 1);
+  /* Lightened the gradient colors and made them more subtle */
+  background-image: radial-gradient(
+      at 86% 97%,
+      hsla(271, 60%, 30%, 0.5) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 22% 58%, hsla(210, 60%, 50%, 0.3) 0px, transparent 50%);
+  animation: gradient 5s ease infinite;
   background-size: 120% 120%;
-}
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 20%;
   }
-  25% {
-    background-position: 100% 50%;
+
+
+
+
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    25% {
+      background-position: 100% 25%;
+    }
+    50% {
+      background-position: 0% 0%;
+    }
+    75% {
+      background-position: 100% 75%;
+    }
   }
-  50% {
-    background-position: 50% 70%;
-  }
-  100% {
-    background-position: 0% 20%;
-  }
-}
+
 // background: rgb(35,35,35);
 // background: linear-gradient(180deg, rgba(35,35,35,1) 0%, rgba(35,35,35,1) 90%, rgb(1, 1, 1) 100%);
 
@@ -98,18 +115,14 @@ mat-sidenav-content {
   max-width: 100%;
   vertical-align: middle;
   padding-top: 7vh;
-  padding-bottom: 2vh ;
-
+  padding-bottom: 2vh;
 }
-
-
-
 
 .menu {
   z-index: 990;
   position: relative;
 }
-.menu-item:hover {
+/* .menu-item:hover {
   background: rgb(255, 255, 255);
   background: linear-gradient(
     112deg,
@@ -119,7 +132,21 @@ mat-sidenav-content {
   );
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-} /* Slide up to cover the entire button */
+}  *//* Slide up to cover the entire button */
+
+.menu-item:hover {
+  /* Transition to a lighter gradient to match the updated background */
+  background: linear-gradient(
+    112deg,
+    rgba(147, 149, 255, 0.8) 0%, /* Lightened color */
+    rgba(103, 105, 194, 0.8) 77%, /* More subtle middle transition */
+    rgba(86, 88, 189, 0.8) 100% /* Softened end color */
+  );
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
 
 #vacation:hover {
   background: rgb(232, 97, 97);
@@ -193,9 +220,8 @@ mat-divider {
 }
 
 .router-container {
-  
   padding: 7vh 60px;
-  justify-content: center; 
+  justify-content: center;
   // overflow-y: scroll;
   /* overflow-x: hidden ; */
 }
@@ -268,15 +294,16 @@ mat-divider {
   cursor: pointer;
 }
 .notification-icon:hover {
-  background: hsl(0, 0%, 100%);
-  background: linear-gradient(
-    112deg,
-    rgb(77, 79, 196) 0%,
-    rgba(23, 25, 94, 1) 77%,
-    rgba(16, 18, 89, 1) 100%
-  );
-  border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
+/* Transition to a lighter gradient to match the updated background */
+background: linear-gradient(
+  112deg,
+  rgba(147, 149, 255, 0.8) 0%, /* Lightened color */
+  rgba(103, 105, 194, 0.8) 77%, /* More subtle middle transition */
+  rgba(86, 88, 189, 0.8) 100% /* Softened end color */
+);
+border-bottom-right-radius: 10px;
+border-top-right-radius: 10px;
+transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
 .notification-dot {
   position: absolute;

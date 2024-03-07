@@ -70,10 +70,10 @@ export class AddBookingComponent {
         this.route.navigate([this.path['addProductionBooking'], response.data.id]);
         break;
       case 'Editing':
-        this.route.navigate([this.path['addEditorBooking']]);
+        this.route.navigate([this.path['addEditorBooking'], response.data.id]);
         break;
       case 'Graphic Design':
-        this.route.navigate([this.path['addGraphicsBooking']]);
+        this.route.navigate([this.path['addGraphicsBooking'], response.data.id]);
         break;
       default:
         console.log('No team selected');

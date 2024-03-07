@@ -22,16 +22,18 @@ body {
   background: rgb(255, 255, 255);
   background: linear-gradient(
     300deg,
-    rgb(77, 79, 196) 0%,
-    rgba(23, 25, 94, 1) 77%,
-    rgba(16, 18, 89, 1) 100%
+    rgb(145, 147, 249) 0%, /* Lighter shade of blue for a softer start */
+    rgba(103, 105, 194, 0.85) 77%, /* Semi-transparent for a lighter appearance */
+    rgba(86, 88, 189, 0.85) 100% /* Keeping the end of the gradient soft */
   );
   border-radius: 10px !important;
   animation: gradient 5s ease infinite;
   background-size: 120% 120%;
-  // overflow-y: scroll;
-  /* overflow-x: hidden ; */
+  /* Adjusted overflow for better consistency in modern designs */
+  overflow-y: auto; /* Allows for vertical scrolling if necessary */
+  overflow-x: hidden; /* Ensures horizontal content does not overflow */
 }
+
 
 @keyframes gradient {
   0% {

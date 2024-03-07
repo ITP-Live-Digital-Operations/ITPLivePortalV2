@@ -49,11 +49,11 @@ const routes : Routes = [
     component: ProductionFormComponent
   },
   {
-    path: 'addEditorBooking',
+    path: 'addEditorBooking/:id',
     component: EditorFormComponent
   },
   {
-    path: 'addGraphicsBooking',
+    path: 'addGraphicsBooking/:id',
     component: GraphicsFormComponent
   },
   {

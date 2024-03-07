@@ -9,8 +9,9 @@
   overflow: hidden;
 
   h1{
-    color: #FFF;
-    margin-left: 30%;
+    color: #2753da;
+    font-weight: 500;
+    margin-left: 35%;
 
   }
 
@@ -37,7 +38,7 @@
     /* border: 1px solid rgba(255, 255, 255, 0.3); */
 
     mat-label {
-      color: #FFF;
+      color: #ffffff60;
     }
 
     input, textarea, mat-select {
@@ -48,20 +49,25 @@
       }
     }
 
+
+
+
     ::ng-deep .mdc-text-field{
       background-color: transparent;
     }
-
-    ::ng-deep .matformfieldlineripple{
-      display: none;
-    }
-
 
     .mat-datepicker-toggle,
     .mat-form-field-suffix {
       color: rgba(0, 0, 0, 0.54);
     }
   }
+
+  ::ng-deep .mat-mdc-checkbox label {
+    color: #ffffff60 !important;
+    cursor: pointer;
+  }
+
+
 
   input[matInput], textarea[matInput] {
     &::placeholder {
@@ -84,7 +90,7 @@
   }
 
   ::ng-deep .mat-datepicker-toggle-default-icon {
-    color: #FFF;
+    color: #ffffff60;
   }
 
 
@@ -95,3 +101,6 @@
     }
   }
 }
+
+
+

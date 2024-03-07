@@ -1,36 +1,30 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from 'src/app/core/Services/data.service';
 import { OgService } from 'src/app/core/Services/og.service';
 
 @Component({
   selector: 'app-production-form',
   templateUrl: './production-form.component.html',
-  styleUrls: ['./production-form.component.scss']
+  styleUrls: ['./production-form.component.scss'],
 })
 export class ProductionFormComponent {
-
-  ogBookingId !: number;
-  protected productionBookingForm !: FormGroup;
+  ogBookingId!: number;
+  protected productionBookingForm!: FormGroup;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private ogService: OgService,
-    private formBuilder: FormBuilder,
-  ) { }
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-
       this.ogBookingId = params['id'];
       console.log(this.ogBookingId);
 
       this.initializeForm();
-
     });
-
-
   }
 
   private initializeForm(): void {
@@ -41,21 +35,15 @@ export class ProductionFormComponent {
       equipmentNeeded: [''],
       cameraNumber: [''],
       nicMicNumber: [''],
-      paintingOrProps: ['']
+      paintingOrProps: [''],
     });
-
   }
 
-  onSubmit(): void {}
-
-
-}
-
-
-interface recievedData {
-  bookingId: number;
-  staffId: number;
-  showId: number;
-  team: string;
-
+  onSubmit(): void {
+    this.ogService
+      .createOgBookingProductionForm(this.productionBookingForm.value)
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 }

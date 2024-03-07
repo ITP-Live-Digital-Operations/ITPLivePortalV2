@@ -1,59 +1,150 @@
-<!--
 <div class="form-container">
-  <h1>Production Booking Form</h1>
-  <form [formGroup]="productionBookingForm" (ngSubmit)="onSubmit()">
+  <h1>Editor Booking Form</h1>
+  <form [formGroup]="editorBookingForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <mat-form-field>
-        <mat-label> Draft 1 Deadline Date</mat-label>
-        <input matInput [matDatepicker]="deadlineDateDraft1" formControlName="deadlineDateDraft1" required />
-        <mat-datepicker-toggle matSuffix [for]="deadlineDateDraft1"></mat-datepicker-toggle>
+        <mat-label> Draft 1 Deadline</mat-label>
+        <input
+          matInput
+          [matDatepicker]="deadlineDateDraft1"
+          formControlName="deadlineDateDraft1"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="deadlineDateDraft1"
+        ></mat-datepicker-toggle>
         <mat-datepicker #deadlineDateDraft1></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label> Draft 1 Link  </mat-label>
+        <mat-label> Draft 1 Link </mat-label>
         <input matInput formControlName="deadlineDateDraft1Link" />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label> Draft 1 Comments  </mat-label>
-        <input matInput formControlName="deadlineDateDraft1Link" />
+        <mat-label> Draft 1 Comments </mat-label>
+        <input matInput formControlName="deadlineDateDraft1Comments" />
       </mat-form-field>
     </div>
 
     <div class="row">
       <mat-form-field>
-        <mat-label> Camera Number</mat-label>
-        <input matInput type="number" formControlName="cameraNumber" />
+        <mat-label> Draft 2 Deadline</mat-label>
+        <input
+          matInput
+          [matDatepicker]="deadlineDateDraft2"
+          formControlName="deadlineDateDraft2"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="deadlineDateDraft2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #deadlineDateDraft2></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label> Nic Mic Number</mat-label>
-        <input matInput type="number" formControlName="cameraNumber" />
+        <mat-label> Draft 2 Link </mat-label>
+        <input matInput formControlName="deadlineDateDraft2Link" />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label> Painting Or Props</mat-label>
-        <input matInput  formControlName="paintingOrProps" />
+        <mat-label> Draft 2 Comments </mat-label>
+        <input matInput formControlName="deadlineDateDraft2Comments" />
       </mat-form-field>
-
-
     </div>
 
     <div class="row">
       <mat-form-field>
-        <mat-label> Full Shoot Brief</mat-label>
-        <textarea matInput formControlName="fullShootBrief" rows="2"></textarea>
+        <mat-label> Final Deadline</mat-label>
+        <input
+          matInput
+          [matDatepicker]="deadlineDateFinal"
+          formControlName="deadlineDateFinal"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="deadlineDateFinal"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #deadlineDateFinal></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Draft Final Link </mat-label>
+        <input matInput formControlName="deadlineDateFinalLink" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Date Of Episode Going Live</mat-label>
+        <input
+          matInput
+          [matDatepicker]="dateOfEpisodeGoingLive"
+          formControlName="dateOfEpisodeGoingLive"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dateOfEpisodeGoingLive"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dateOfEpisodeGoingLive></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Link Of Footage</mat-label>
+        <input matInput formControlName="linkOfFootage" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-checkbox formControlName="music">Music Needed</mat-checkbox>
+      <mat-checkbox formControlName="brolls">Brolls Needed</mat-checkbox>
+    </div>
+    <div class="row">
+      <mat-checkbox formControlName="graphics">Graphics Needed</mat-checkbox>
+      <mat-checkbox formControlName="textNeeded">Text Needed</mat-checkbox>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Guest Social Media Links</mat-label>
+        <textarea
+          matInput
+          formControlName="guestSocialMediaLinks"
+          rows="2"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Full Episode Brief</mat-label>
+        <textarea
+          matInput
+          formControlName="fullEpisodeBrief"
+          rows="2"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Requested Editor </mat-label>
+        <mat-select formControlName="requestedEditorId" required>
+          <mat-option *ngFor="let show of editorList" [value]="show">
+            {{ show }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 
     <button
       mat-raised-button
       class="submit-btn"
-      [disabled]="productionBookingForm.invalid"
+      [disabled]="editorBookingForm.invalid"
     >
       Submit
     </button>
   </form>
 </div>
- -->

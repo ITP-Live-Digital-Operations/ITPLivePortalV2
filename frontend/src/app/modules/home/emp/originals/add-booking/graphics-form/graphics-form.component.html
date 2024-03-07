@@ -1,1 +1,80 @@
-<p>graphics-form works!</p>
+
+<div class="form-container">
+  <h1>Graphics Booking Form</h1>
+  <form [formGroup]="graphicsBookingForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Draft 1 Deadline</mat-label>
+        <input matInput [matDatepicker]="deadlineDateDraft1" formControlName="deadlineDateDraft1" required />
+        <mat-datepicker-toggle matSuffix [for]="deadlineDateDraft1"></mat-datepicker-toggle>
+        <mat-datepicker #deadlineDateDraft1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Draft 1 Link  </mat-label>
+        <input matInput formControlName="deadlineDateDraft1Link" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Draft 1 Comments  </mat-label>
+        <input matInput formControlName="deadlineDateDraft1Link" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Final Deadline Date</mat-label>
+        <input matInput [matDatepicker]="deadlineDateFinal" formControlName="deadlineDateFinal" required />
+        <mat-datepicker-toggle matSuffix [for]="deadlineDateFinal"></mat-datepicker-toggle>
+        <mat-datepicker #deadlineDateFinal></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Draft Final Link  </mat-label>
+        <input matInput formControlName="deadlineDateFinalLink" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label> Date Of Thumbnail Going Live</mat-label>
+        <input matInput [matDatepicker]="dateOfThumbnailGoingLive" formControlName="dateOfThumbnailGoingLive" required />
+        <mat-datepicker-toggle matSuffix [for]="dateOfThumbnailGoingLive"></mat-datepicker-toggle>
+        <mat-datepicker #dateOfThumbnailGoingLive></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Link Of Pictures</mat-label>
+        <input matInput formControlName="linkOfPictures" />
+      </mat-form-field>
+
+    </div>
+
+    <div class="row">
+
+      <mat-form-field>
+        <mat-label> Requested Graphic Designer</mat-label>
+        <input matInput formControlName="requestedGraphicDesignerId"  placeholder="Lilitte" [disabled]="true"/>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label> Full Thumbnail Brief</mat-label>
+        <textarea matInput formControlName="fullThumbnailBrief" rows="2"></textarea>
+      </mat-form-field>
+    </div>
+
+
+
+    <button
+      mat-raised-button
+      class="submit-btn"
+      [disabled]="graphicsBookingForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+
+
+
