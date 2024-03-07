@@ -4,24 +4,23 @@
 }
 
 body {
-background: radial-gradient(circle, rgba(0,0,0,1) 35%, #02029fe6 60%, #02029fe6 77%);
-	background-size: 400% 400%;
-	animation: gradient 7s;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 35%, hsla(232, 60%, 40%, 0.7) 60%, hsla(232, 60%, 50%, 0.7) 77%);
+  background-size: 400% 400%;
+  animation: gradient 7s ease-in-out;
   animation-fill-mode: forwards;
-	height: 100vh;
+  height: 100vh;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 145% 50%;
-	}
-	// 50% {
-	// 	background-position: 100% 50%;
-	// }
-	100% {
-		background-position: 215% 50%;
+  0% {
+    background-position: 0% 50%;
   }
-
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 
