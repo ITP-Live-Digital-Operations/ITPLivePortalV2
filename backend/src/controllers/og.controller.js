@@ -91,7 +91,18 @@ exports.addOgShow = async (req, res) => {
 
 exports.getOgBookings = async (req, res) => {
   ogBookings
-    .findAll()
+    .findAll({
+      include: [
+        {
+          model: ogShows,
+          attributes: ["id", "name"],
+        },
+        {
+          model: models.User,
+          attributes: ["id", "name"],
+        }
+      ],
+    })
     .then((ogBookings) => {
       res.status(200).send(ogBookings);
     })

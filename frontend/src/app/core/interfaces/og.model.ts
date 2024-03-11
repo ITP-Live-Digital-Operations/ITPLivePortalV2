@@ -46,6 +46,8 @@ export interface ogBookings{
   notes: string;
   createdAt: Date;
   updatedAt: Date;
+  User: UserIdandName;
+  ogShow: ogShowIdandName;
 }
 
 export interface ogBookingsCreate{
@@ -218,3 +220,14 @@ export interface ogBookingGraphicsFormEdit{
 }
 
 
+// ----------------------------------------
+
+export interface UserIdandName{
+  id: number;
+  name: string;
+}
+
+export interface ogShowIdandName{
+  id: number;
+  name: string;
+}
