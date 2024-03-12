@@ -16,7 +16,6 @@ export class InfluencerNamePipe implements PipeTransform {
 
   transform(value: number){
     return this.influencerService.getInfluencer(value).pipe(map((res: any) => {
-      console.log(res)
       return res.data.Name;
   }))
 }

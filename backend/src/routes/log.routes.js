@@ -8,6 +8,9 @@ router.route('/addLog')
 
 router.route('/getLogs')
     .get(authHandler, asyncHandler(LogController.getLogs));
+    
+    router.route('/getAllLogsUpdated')
+    .get(authHandler, asyncHandler(LogController.getAllLogsUpdated));
 
 router.route('/getInfluencerLogs/:id')
     .get(authHandler, asyncHandler(LogController.getInfluencerLogs));

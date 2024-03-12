@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Logs.belongsTo(models.User, {foreignKey: 'userID'})
-      Logs.belongsTo(models.Influencer, {foreignKey: 'influencerID'})
+      Logs.belongsTo(models.User, {foreignKey: 'userID', as: 'user'})
+      Logs.belongsTo(models.Influencer, {foreignKey: 'influencerID', as : 'influencer'})
       Logs.hasMany(models.logItem, { foreignKey: 'logID', as: 'logItems', onDelete: 'CASCADE'});
       Logs.hasMany(models.Package, { foreignKey: 'logID', as: 'packages', onDelete: 'CASCADE'});
      
