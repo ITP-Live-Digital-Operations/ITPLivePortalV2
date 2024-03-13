@@ -596,3 +596,30 @@ exports.updateProductionTeamMembersToBooking = async (req, res) => {
     }
   )
 }
+
+exports.getProductionTeamMembersByBookingId = async (req, res) => {
+  const ogbookingFormId = req.params.id;
+  ogBookingForm.findByPk(ogbookingFormId)
+    .then((ogBookingFormFound) => {
+      if (!ogBookingFormFound) {
+        res.status(404).send({
+          status: "error",
+          message: "OG Booking Form not found",
+        });
+      } else {
+        ogBookingFormFound.getProductionStaff({
+          attributes: ['id', 'name']
+        })
+        .then((data) => {
+          res.status(200).send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            status: "error",
+            message: err.message,
+          });
+        });
+      }
+    }
+  )
+}

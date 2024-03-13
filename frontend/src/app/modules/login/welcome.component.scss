@@ -4,7 +4,13 @@
 }
 
 body {
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 35%, hsla(232, 60%, 40%, 0.7) 60%, hsla(232, 60%, 50%, 0.7) 77%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 35%,
+    hsla(232, 60%, 20%, 0.7) 60%,
+    hsla(232, 60%, 30%, 0.7) 77%
+  );
+
   background-size: 400% 400%;
   animation: gradient 7s ease-in-out;
   animation-fill-mode: forwards;
@@ -23,15 +29,12 @@ body {
   }
 }
 
-
 .navbar {
-
   padding: 15px;
-  justify-content:center;
+  justify-content: center;
 }
 
 .navbar img {
-
   width: 60px;
   height: 50px;
   cursor: pointer;
@@ -39,24 +42,22 @@ body {
 
 .link {
   margin-left: 30px;
-padding: 10px;
-color: white;
-text-decoration: none;
-align-self: auto;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  align-self: auto;
 }
 
-
 .login {
-  font-family: 'roboto';
+  font-family: "roboto";
   margin-left: auto;
   padding: 5px 10px;
   color: white;
   text-decoration: none;
   transition: 200ms;
-
 }
 
-.login:hover{
+.login:hover {
   background-color: white;
   color: black;
   transition: 400ms;
@@ -77,19 +78,17 @@ align-self: auto;
 .title-1 {
   font-size: 10vh;
 
-  -webkit-animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) 1.5s both;
-  animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) 1.5s both;
+  -webkit-animation: fade-in 3s cubic-bezier(0.39, 0.575, 0.565, 1) 1.5s both;
+  animation: fade-in 3s cubic-bezier(0.39, 0.575, 0.565, 1) 1.5s both;
 }
 
 .title-2 {
   display: flex;
   font-size: 8vh;
   margin: 0px;
-  -webkit-animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) 2.8s both;
-  animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) 2.8s both;
+  -webkit-animation: fade-in 3s cubic-bezier(0.39, 0.575, 0.565, 1) 2.8s both;
+  animation: fade-in 3s cubic-bezier(0.39, 0.575, 0.565, 1) 2.8s both;
 }
-
-
 
 .title-3 {
   display: flex;
@@ -98,17 +97,32 @@ align-self: auto;
   padding: 25px;
   max-width: fit-content;
   color: black;
-  -webkit-animation:fade-in 3.5s cubic-bezier(.39,.575,.565,1.000) 4.5s both;
-  animation:fade-in 3.5s cubic-bezier(.39,.575,.565,1.000) 4.5s both;
+  -webkit-animation: fade-in 3.5s cubic-bezier(0.39, 0.575, 0.565, 1) 4.5s both;
+  animation: fade-in 3.5s cubic-bezier(0.39, 0.575, 0.565, 1) 4.5s both;
 }
 
-@-webkit-keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 .itp {
   margin-top: 15px;
   display: flex;
   font-size: 9vh;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .portal {
@@ -128,18 +142,16 @@ align-self: auto;
   transition: 200ms;
   text-decoration: none;
   font-size: 16px;
-  font-family: 'roboto';
-  -webkit-animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) 6.5s both;
-  animation:fade-in 3s cubic-bezier(.39,.575,.565,1.000) 6.5s both;
+  font-family: "roboto";
+  -webkit-animation: fade-in 3s cubic-bezier(0.39, 0.575, 0.565, 1) 6.5s both;
+  animation: fade-in 3s cubic-bezier(0.39, 0.575, 0.565, 1) 6.5s both;
 }
-
 
 .portal-btn:hover {
   background-color: white;
   color: black;
   transition: 400ms;
 }
-
 
 #video-background {
   position: fixed;
@@ -154,15 +166,14 @@ align-self: auto;
 }
 
 @media (max-width: 1440px), (max-height: 900px) {
-  .overlay{
-      margin-top: 150px;
-      gap: 30px;
-      padding: 80px;
+  .overlay {
+    margin-top: 150px;
+    gap: 30px;
+    padding: 80px;
   }
 }
 
-
-.maintenance{
+.maintenance {
   background-image: url("../../../assets/images/maintanance_page.png");
   height: 100%;
 

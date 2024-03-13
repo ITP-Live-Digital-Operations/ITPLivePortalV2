@@ -4,32 +4,43 @@ table {
 }
 
 .table-container {
-  padding: 20px 70px;
+  margin: 2%;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 1%;
 }
 
-h2 {
-  margin-top: 10px !important;
-}
+.top-div {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2%;
+  align-self: center;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 1%;
+  width: auto;
 
-::-webkit-scrollbar-track {
-  background-color: #f5f5f5;
-}
-
-/* customize the scroll bar thumb */
-::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 10px;
-}
-
-/* customize the scroll bar thumb on hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}
-
-/* customize the scroll bar width and height */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  .logs-btn {
+    margin-left: 2%;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 1%;
+    background: linear-gradient(
+      300deg,
+      rgb(45, 47, 149) 0%,
+      /* Darkened shade of blue for the start */ rgba(43, 45, 124, 0.85) 77%,
+      /* Further darkened middle for depth, maintaining semi-transparency */
+        rgba(36, 38, 119, 0.85) 100%
+        /* Deepest end for a strong visual impact */
+    );
+    color: #ffffff;
+    padding: 0px 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
 }
 
 .single {

@@ -28,4 +28,7 @@ export class StatisticsService {
     return this.http.get(`${this.statisticsApiURL}/getInfluencerCampaignMetricsByCampaignId/${campaignId}`);
   }
 
+  getInfluencerCampaignMetricsByInfluencerId(influencerId: number) {
+    return this.http.get(`${this.statisticsApiURL}/getInfluencerCampaignMetricsByInfluencerId/${influencerId}`);
+  }
 }

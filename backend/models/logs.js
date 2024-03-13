@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     time_to_reply: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true,
     },
     // Only for package type logs
     currency: {

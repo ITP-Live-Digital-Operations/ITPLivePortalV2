@@ -38,6 +38,9 @@ module.exports = {
       CPM : {
         type: DataTypes.FLOAT,
       },
+      ER : {
+        type: DataTypes.FLOAT,
+      },
       marginOfProfit : {
         type: DataTypes.FLOAT,
       },

@@ -84,6 +84,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    team : {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     onLeave : {
       type: DataTypes.BOOLEAN,
       defaultValue: false

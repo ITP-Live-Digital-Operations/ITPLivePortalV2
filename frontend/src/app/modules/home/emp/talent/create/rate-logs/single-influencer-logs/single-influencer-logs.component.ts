@@ -41,7 +41,7 @@ export class SingleInfluencerLogsComponent {
       Influencer: ['', Validators.required],
       Campaign: ['', Validators.required],
       Notes: [''],
-      Time_to_reply: ['', Validators.required],
+      Time_to_reply: [''],
     });
 
     this.form = this.formBuilder.group({
@@ -104,7 +104,7 @@ export class SingleInfluencerLogsComponent {
         if (this.data.status === "success") {
           this.toastrService.success('Log Added Successfully!');
           sessionStorage.removeItem('influencerData');
-          this.router.navigate([this.path['influencerRating'] + this.logForm.value.Influencer]);
+          this.router.navigate([this.path['rateLogs']]);
         }
         else {
           this.toastrService.error('Error! Please Try Again!');

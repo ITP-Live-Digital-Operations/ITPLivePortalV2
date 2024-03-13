@@ -15,4 +15,6 @@ router.route('/getCampaignMetricsByClientId/:clientId')
 router.route('/getInfluencerCampaignMetricsByCampaignId/:campaignId')
     .get(asyncHandler(clientMetrics.getInfluencerCampaignMetricsByCampaignId));
 
+router.route('/getInfluencerCampaignMetricsByInfluencerId/:influencerId')
+    .get(asyncHandler(clientMetrics.getInfluencerCampaignMetricsByInfluencerId));
 module.exports = router;

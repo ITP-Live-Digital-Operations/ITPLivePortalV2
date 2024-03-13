@@ -1,45 +1,32 @@
 .container {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    align-self: center;
     text-align: center;
     justify-content: center;
-    min-width: 100%;    
-    
-    
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: auto;
+
+    position: relative; /* Position it absolutely */
+    margin-top: 5%;
+    left: 50%;         /* Position 50% from the left */
+    transform: translate(-50%, -50%); /* Center precisely */
 }
 
 .card-body {
     width: 100%;
     border: 0px solid;
-   
     padding: 20px;
     color: white!important;
     border-radius: 0px;
-   
-   
-    
-   
 }
 
 .name {
-    font-size: 4vh;
-    margin: 0px 0px 0px;
+    font-size: 6vh;
+    font-weight: 700;
 }
 
 
-.card-body button {
-    background-color: #4789A1;
-}
-
-.card h1 p {
-    color: white;
-}
-
-.number {
-   
-    color: #3851da;
-
-    
-}
 
 

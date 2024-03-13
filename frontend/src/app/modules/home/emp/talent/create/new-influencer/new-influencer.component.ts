@@ -78,7 +78,7 @@ export class NewInfluencerComponent {
         TwitchFollowers: [],
         TwitchLink: [''],
       }),
-      
+
       //LICENSES
       KSALicense: [''],
       UAELicense: [''],
@@ -113,7 +113,7 @@ export class NewInfluencerComponent {
       }
     });
   }
-  
+
   private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
 

@@ -1,21 +1,47 @@
-<div class="influencer" *ngIf="influencerData!= undefined || influencerData!= null">
-  <div class="container">
-    <app-main [profileData]="influencerData" [id]="id" [influencerRating]="influencerRating"></app-main>
-      <app-platform-links class="platform" [profileData]="influencerData"></app-platform-links>
+<div *ngIf="influencerData != undefined || influencerData != null">
+  <div class="top-container">
+    <app-main
+      [profileData]="influencerData"
+      [id]="id"
+      [influencerRating]="influencerRating"
+    ></app-main>
+
+    <app-platform-links
+      class="platform-container"
+      [profileData]="influencerData"
+    ></app-platform-links>
   </div>
-<div class="influencer">
-  <mat-tab-group >
-    <mat-tab label="Basic Information"><app-table-content [profileData]="influencerData"></app-table-content></mat-tab>
-    <!-- <mat-tab label="Remarks"><app-campaign-results></app-campaign-results></mat-tab> -->
-    <mat-tab label="Remarks"><app-influencer-remarks [id]="id" [profileData]="influencerData"></app-influencer-remarks></mat-tab>
-    <mat-tab label="Statistics"><app-statistics [profileData]="influencerData"></app-statistics></mat-tab>
-    <mat-tab label="Logs"><app-logs-table [users]="users" [profileData]="influencerData" [id]="id"></app-logs-table></mat-tab>
+  <mat-tab-group>
+    <mat-tab label="Basic Information"
+      ><app-table-content [profileData]="influencerData"></app-table-content
+    ></mat-tab>
+
+    <mat-tab label="Remarks"
+      ><app-influencer-remarks
+        [id]="id"
+        [profileData]="influencerData"
+      ></app-influencer-remarks
+    ></mat-tab>
+    <mat-tab label="Campaigns"
+      ><app-campaign-results
+        [id]="id"
+      ></app-campaign-results>
+    </mat-tab>
+    <mat-tab label="Statistics"
+      ><app-statistics [profileData]="influencerData"></app-statistics
+    ></mat-tab>
+    <mat-tab label="Logs"
+      ><app-logs-table
+        [users]="users"
+        [profileData]="influencerData"
+        [id]="id"
+      ></app-logs-table
+    ></mat-tab>
+    <mat-tab label="Star Rating"
+      ><app-influencer-star-rating
+        [influencerID]="id"
+      ></app-influencer-star-rating
+    ></mat-tab>
     <!-- <mat-tab label="Rate Card"><app-rate-card></app-rate-card></mat-tab> -->
   </mat-tab-group>
 </div>
-</div>
-
-
-
-
-

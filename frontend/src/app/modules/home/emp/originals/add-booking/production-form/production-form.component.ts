@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OgService } from 'src/app/core/Services/og.service';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-production-form',
@@ -11,11 +12,13 @@ import { OgService } from 'src/app/core/Services/og.service';
 export class ProductionFormComponent {
   ogBookingId!: number;
   protected productionBookingForm!: FormGroup;
+  path = PATH;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private ogService: OgService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +47,8 @@ export class ProductionFormComponent {
       .createOgBookingProductionForm(this.productionBookingForm.value)
       .subscribe((data) => {
         console.log(data);
+        this.router.navigate([this.path['productionTeamMembers'], this.ogBookingId])
+
       });
   }
 }

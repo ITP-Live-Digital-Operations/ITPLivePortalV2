@@ -19,6 +19,7 @@ import { AddBookingComponent } from './add-booking/add-booking.component';
 import { ProductionFormComponent } from './add-booking/production-form/production-form.component';
 import { EditorFormComponent } from './add-booking/editor-form/editor-form.component';
 import { GraphicsFormComponent } from './add-booking/graphics-form/graphics-form.component';
+import { ProductionTeamMembersFormComponent } from './add-booking/production-form/production-team-members-form/production-team-members-form.component';
 
 
 
@@ -34,7 +35,8 @@ import { GraphicsFormComponent } from './add-booking/graphics-form/graphics-form
     AddBookingComponent,
     ProductionFormComponent,
     EditorFormComponent,
-    GraphicsFormComponent
+    GraphicsFormComponent,
+    ProductionTeamMembersFormComponent
   ],
   imports: [
     CommonModule,

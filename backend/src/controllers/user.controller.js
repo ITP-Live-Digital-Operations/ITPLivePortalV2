@@ -10,7 +10,7 @@ const { profilePictureUpload } = require("../../config/multerConfig");
 const comparePassword = require("../utils/password").compare;
 
 exports.register = (req, res) => {
-  const { name, email, password, status, role, privilege_level, parentId } =
+  const { name, email, password, status, role, privilege_level, parentId, team, location } =
     req.body;
 
   const hash = crypto.randomBytes(32).toString("hex");
@@ -25,6 +25,8 @@ exports.register = (req, res) => {
     privilege_level: privilege_level,
     parentId: parentId,
     hash: hash,
+    team: team,
+    location: location,
     createdAt: new Date(),
     updatedAt: new Date(),
   }).then((user) => {

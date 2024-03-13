@@ -26,7 +26,7 @@ import { AddInfluecersToCampaignComponent } from './view-brief/add-influecers-to
     ViewLogComponent,
     EditItemLogComponent,
     EditPackageLogComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -40,7 +40,7 @@ import { AddInfluecersToCampaignComponent } from './view-brief/add-influecers-to
     MatExpansionModule
   ],
   exports: [
-
+    InfluencerRatingComponent
   ]
 })
 export class TalentModule {}

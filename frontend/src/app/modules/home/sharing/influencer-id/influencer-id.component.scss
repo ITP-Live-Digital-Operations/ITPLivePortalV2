@@ -1,68 +1,48 @@
-.influencer {
-  border-radius: 0px;
-  background-color: #2c393f!important;
-}
-
 .container {
  display: flex;
-justify-content: space-evenly;
- background-color: #232C30;
+ justify-content: space-between;
+ background-color: transparent;
  align-items: center;
- padding: 20px;
-
+ align-self: center;
 }
 
-.platform{
-
-  justify-content: center;
-
-
+.top-container{
+  margin-top: 1%;
+  margin-bottom: 1%;
 }
-
 
 
 .mat-mdc-tab-group  {
-  background-color: #2C393F;
-  --mdc-tab-indicator-active-indicator-color: #4789A1;
+  --mdc-tab-indicator-active-indicator-color: linear-gradient(
+    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+  );
   --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
   --mat-tab-header-pagination-icon-color: #000;
   --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
-  --mat-tab-header-active-label-text-color: #4789A1;
-  --mat-tab-header-active-ripple-color: #4789A1;
-  --mat-tab-header-inactive-ripple-color: #4789A1;
-  --mat-tab-header-inactive-focus-label-text-color: #4789A1;
+  --mat-tab-header-active-label-text-color: linear-gradient(
+    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+  );
+  --mat-tab-header-active-ripple-color: linear-gradient(
+    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+  );
+  --mat-tab-header-inactive-ripple-color: linear-gradient(
+    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+  );
+  --mat-tab-header-inactive-focus-label-text-color: linear-gradient(
+    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+  );
   --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
-  --mat-tab-header-active-focus-label-text-color: #4789A1;
-  --mat-tab-header-active-hover-label-text-color: #4789A1;
-  --mat-tab-header-active-focus-indicator-color: #4789A1;
-  --mat-tab-header-active-hover-indicator-color: #4789A1;
+  --mat-tab-header-active-focus-label-text-color: linear-gradient(
+    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+  );
+  --mat-tab-header-active-hover-label-text-color: linear-gradient(
+    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+  );
+  --mat-tab-header-active-focus-indicator-color: linear-gradient(
+    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+  );
+  --mat-tab-header-active-hover-indicator-color: linear-gradient(
+    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+  );
 }
 
-
-
-.row{
-  background-color: grey;
-}
-
-
-
-::-webkit-scrollbar-track {
-  background-color: #f5f5f5;
-}
-
-/* customize the scroll bar thumb */
-::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 10px;
-}
-
-/* customize the scroll bar thumb on hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}
-
-/* customize the scroll bar width and height */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}

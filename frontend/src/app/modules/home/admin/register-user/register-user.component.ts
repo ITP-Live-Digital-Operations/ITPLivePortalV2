@@ -6,6 +6,7 @@ import { ROLES, PRIVILEGE_LEVEL } from 'src/app/core/constant/values.constants'
 import { Router } from '@angular/router';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { ToastrService } from 'ngx-toastr';
+import { teams } from 'src/app/core/interfaces/og.model';
 
 @Component({
   selector: 'app-register-user',
@@ -22,6 +23,10 @@ export class RegisterUserComponent implements OnInit {
   public privilege_level = PRIVILEGE_LEVEL;
   public userForm: FormGroup;
 
+  public teams = teams;
+
+  public locations = ['UAE', 'KSA', 'Beirut', 'India', 'USA']
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
@@ -33,6 +38,8 @@ export class RegisterUserComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       role: ['', Validators.required],
+      team: [''],
+      location: ['', Validators.required],
       privilege_level: ['', Validators.required],
       parentId: [''],
     });

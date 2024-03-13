@@ -22,10 +22,12 @@ body {
   background: rgb(255, 255, 255);
   background: linear-gradient(
     300deg,
-    rgb(145, 147, 249) 0%, /* Lighter shade of blue for a softer start */
-    rgba(103, 105, 194, 0.85) 77%, /* Semi-transparent for a lighter appearance */
-    rgba(86, 88, 189, 0.85) 100% /* Keeping the end of the gradient soft */
+    rgb(45, 47, 149) 0%, /* Further darkened shade of blue for a deeper start */
+    rgba(43, 45, 124, 0.85) 77%, /* Even lower lightness for a much darker appearance, with semi-transparency */
+    rgba(36, 38, 119, 0.85) 100% /* Deepest darkened end for a stronger visual impact */
   );
+
+
   border-radius: 10px !important;
   animation: gradient 5s ease infinite;
   background-size: 120% 120%;
@@ -100,6 +102,7 @@ body {
 .mat-mdc-row .mat-mdc-cell {
   cursor: pointer;
   color: white;
+  background-color: #b4c4cc10;
 }
 
 .mat-mdc-row:hover .mat-mdc-cell {

@@ -1,5 +1,4 @@
 .remarks-container {
-  background-color: #2c393f;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -7,8 +6,13 @@
   padding: 20px;
 
   .new-remark-btn {
-    width: 100%;
-    background-color: #4a6572;
+    width: 90%;
+    background: linear-gradient(
+      300deg,
+      rgb(45, 47, 149) 0%, /* Darkened shade of blue for the start */
+      rgba(43, 45, 124, 0.85) 77%, /* Further darkened middle for depth, maintaining semi-transparency */
+      rgba(36, 38, 119, 0.85) 100% /* Deepest end for a strong visual impact */
+    );
     color: #ffffff;
     padding: 10px 0;
     font-size: 16px;
@@ -23,7 +27,12 @@
   }
 
   .remark-card {
-    background-color: #3f5058;
+    background: linear-gradient(
+      300deg,
+      rgb(45, 47, 149) 0%, /* Darkened shade of blue for the start */
+      rgba(43, 45, 124, 0.85) 77%, /* Further darkened middle for depth, maintaining semi-transparency */
+      rgba(36, 38, 119, 0.85) 100% /* Deepest end for a strong visual impact */
+    );
     border: 1px solid #34495e;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -84,17 +93,17 @@
         cursor: pointer;
 
         &:hover mat-icon {
-          color: #e2b007;
+          color: #FFF;
         }
       }
 
       mat-icon {
-        color: #f1c40f;
+        color: #FFF;
         cursor: pointer;
         font-size: 24px;
 
         &:hover {
-          color: #e2b007;
+          color: #FFF;
         }
       }
     }

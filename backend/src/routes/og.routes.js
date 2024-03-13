@@ -61,4 +61,7 @@ router.route('/addProductionTeamMembersToBooking')
 router.route('/updateProductionTeamMembersToBooking')
     .post(authHandler, asyncHandler(OGController.updateProductionTeamMembersToBooking));
 
+router.route('/getProductionTeamMembersByBookingId/:id')
+    .get(authHandler, asyncHandler(OGController.getProductionTeamMembersByBookingId));
+
 module.exports = router;

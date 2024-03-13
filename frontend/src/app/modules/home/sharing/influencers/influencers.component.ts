@@ -314,7 +314,7 @@ export class InfluencersComponent {
 
   public editInfluencer(inputdata: any): void {
     this.dialog?.open(EditInfluencerComponent, {
-      width: '90%',
+      width: '100%',
       height: '80%',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
@@ -326,7 +326,7 @@ export class InfluencersComponent {
 
   public viewInfluencer(inputdata: any): void {
     this.dialog?.open(InfluencerIdComponent, {
-      width: '100%',
+      width: '95vw',
       height: '95%',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',

@@ -1,23 +1,10 @@
-
-.container {
-width: fit-content;
+.table-container{
+  margin: 2%;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 1%;
 }
 
-.card {
-   width: 580px;
-    background-color: transparent;
-   padding: 20px;
-   border-radius: 0px;
-   color: white; 
-   border: 0px solid;
-}
 
-.progress-bar {
-    background-color:  #4789A1;
-}
 
-@media (max-width: 1440px), (max-height: 900px) {
-    .card {
-        width: 535px;
-    }
-}
+

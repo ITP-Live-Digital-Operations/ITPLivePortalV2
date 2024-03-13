@@ -1,15 +1,14 @@
 <div class="content">
   <div class="social">
     <div class="items">
-
       <li>
         <ng-container *ngIf="profileData?.data.InstagramLink">
           <a href="{{ profileData.data.InstagramLink }}" target="_blank">
-            <i class="bi bi-instagram" style="font-size: 2rem; color: rgb(255, 0, 81)"></i>
+            <i class="bi bi-instagram" style="font-size: 2rem; color: #FFF"></i>
           </a>
         </ng-container>
         <ng-container *ngIf="!profileData?.data.InstagramLink">
-          <i class="bi bi-instagram" style="font-size: 2rem; color: rgb(255, 0, 81)"></i>
+          <i class="bi bi-instagram" style="font-size: 2rem; color: #FFF"></i>
         </ng-container>
         <p class="mb-0">
           {{ this.profileData?.data.InstagramHandle }}
@@ -22,11 +21,11 @@
       <li>
         <ng-container *ngIf="profileData?.data.TiktokLink">
           <a href="{{ profileData.data.TiktokLink }}" target="_blank">
-            <i class="bi bi-tiktok" style="font-size: 2rem; color: rgb(0, 255, 238)"></i>
+            <i class="bi bi-tiktok" style="font-size: 2rem; color:#FFF"></i>
           </a>
         </ng-container>
         <ng-container *ngIf="!profileData?.data.TiktokLink">
-          <i class="bi bi-tiktok" style="font-size: 2rem; color: rgb(0, 255, 238)"></i>
+          <i class="bi bi-tiktok" style="font-size: 2rem; color: #FFF"></i>
         </ng-container>
         <p class="mb-0">
           {{ this.profileData?.data.TiktokHandle }}</p>
@@ -38,11 +37,11 @@
       <li>
         <ng-container *ngIf="profileData?.data.FacebookLink">
           <a href="{{ profileData.data.FacebookLink }}" target="_blank">
-            <i class="bi bi-facebook" style="font-size: 2rem"></i>
+            <i class="bi bi-facebook" style="font-size: 2rem; color: #FFF"></i>
           </a>
         </ng-container>
         <ng-container *ngIf="!profileData?.data.FacebookLink">
-          <i class="bi bi-facebook" style="font-size: 2rem; color: rgb(0, 51, 255);"></i>
+          <i class="bi bi-facebook" style="font-size: 2rem; color: #FFF;"></i>
         </ng-container>
         <p class="mb-0">
           {{ this.profileData?.data.FacebookHandle }}
@@ -55,11 +54,11 @@
       <li>
         <ng-container *ngIf="profileData?.data.SnapchatLink">
           <a href="{{ profileData.data.SnapchatLink }}" target="_blank">
-            <i class="bi bi-snapchat" style="font-size: 2rem; color: yellow"></i>
+            <i class="bi bi-snapchat" style="font-size: 2rem; color: #FFF"></i>
           </a>
         </ng-container>
         <ng-container *ngIf="!profileData?.data.SnapchatLink">
-          <i class="bi bi-snapchat" style="font-size: 2rem; color: yellow"></i>
+          <i class="bi bi-snapchat" style="font-size: 2rem; color: #FFF"></i>
         </ng-container>
         <p class="mb-0">
           {{ this.profileData?.data.SnapchatHandle }}
@@ -72,11 +71,11 @@
       <li>
         <ng-container *ngIf="profileData?.data.TwitterLink">
           <a href="{{ profileData.data.TwitterLink }}" target="_blank">
-            <i class="bi bi-twitter" style="font-size: 2rem"></i>
+            <i class="bi bi-twitter" style="font-size: 2rem; color: #FFF"></i>
           </a>
         </ng-container>
         <ng-container *ngIf="!profileData?.data.TwitterLink">
-          <i class="bi bi-twitter" style="font-size: 2rem"></i>
+          <i class="bi bi-twitter" style="font-size: 2rem; color: #FFF"></i>
         </ng-container>
         <p class="mb-0">
           {{ this.profileData?.data.TwitterHandle }}</p>
@@ -88,11 +87,11 @@
       <li>
         <ng-container *ngIf="profileData?.data.YoutubeLink">
           <a href="{{ profileData.data.YoutubeLink }}" target="_blank">
-            <i class="bi bi-youtube" style="font-size: 2rem; color: red"></i>
+            <i class="bi bi-youtube" style="font-size: 2rem; ; color: #FFF"></i>
           </a>
         </ng-container>
         <ng-container *ngIf="!profileData?.data.YoutubeLink">
-          <i class="bi bi-youtube" style="font-size: 2rem; color: red"></i>
+          <i class="bi bi-youtube" style="font-size: 2rem; ; color: #FFF"></i>
         </ng-container>
         <p class="mb-0">{{ this.profileData?.data.YoutubeHandle }}</p>
         <p class="number">
@@ -103,18 +102,18 @@
       <li>
         <ng-container *ngIf="profileData?.data.TwitchLink">
           <a href="{{ profileData.data.TwitchLink }}" target="_blank">
-            <i class="bi bi-twitch" style="font-size: 2rem; color: rgb(168, 21, 194)"></i>
+            <i class="bi bi-twitch" style="font-size: 2rem;; color: #FFF"></i>
           </a>
         </ng-container>
         <ng-container *ngIf="!profileData?.data.TwitchLink">
-          <i class="bi bi-twitch" style="font-size: 2rem; color: rgb(168, 21, 194)"></i>
+          <i class="bi bi-twitch" style="font-size: 2rem; ; color: #FFF"></i>
         </ng-container>
         <p class="mb-0">{{ this.profileData?.data.TwitchHandle }}</p>
         <p class="mb-0">
           {{ this.profileData?.data.TwitchFollowers }}
         </p>
       </li>
-      
+
     </div>
   </div>
 </div>

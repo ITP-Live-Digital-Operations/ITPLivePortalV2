@@ -60,4 +60,6 @@ export const PATH: { [key: string]: string } = {
   addProductionBooking : "/home/originals/addProductionBooking",
   addEditorBooking : "/home/originals/addEditorBooking",
   addGraphicsBooking : "/home/originals/addGraphicsBooking",
+
+  productionTeamMembers : "/home/originals/productionTeamMembers",
 };

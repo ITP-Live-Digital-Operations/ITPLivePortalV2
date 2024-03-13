@@ -43,6 +43,11 @@ import { DrillDownStatsComponent } from './general-statistics/drill-down-stats/d
 import { DrillDownInfluencerStatsComponent } from './general-statistics/drill-down-stats/drill-down-influencer-stats/drill-down-influencer-stats.component';
 import { InfluencerRemarksComponent } from './influencer-id/influencer-remarks/influencer-remarks.component';
 import { EditInfluencerRemarksComponent } from './influencer-id/influencer-remarks/edit-influencer-remarks/edit-influencer-remarks.component';
+import { InfluencerRatingComponent } from '../emp/talent/influencer-rating/influencer-rating.component';
+import { TalentModule } from '../emp/talent/talent.module';
+import { InfluencerStarRatingComponent } from './influencer-id/influencer-star-rating/influencer-star-rating.component';
+import { YesNoPipe } from './influencer-id/table-content/yes-no.pipe';
+
 
 
 
@@ -82,6 +87,8 @@ import { EditInfluencerRemarksComponent } from './influencer-id/influencer-remar
     DrillDownInfluencerStatsComponent,
     InfluencerRemarksComponent,
     EditInfluencerRemarksComponent,
+    InfluencerStarRatingComponent,
+    YesNoPipe,
 
 
   ],
@@ -97,6 +104,7 @@ import { EditInfluencerRemarksComponent } from './influencer-id/influencer-remar
     MatExpansionModule,
     FormsModule,
     CurrencyFormatPipe,
+
   ],
   exports: [
     StarRatingComponent,

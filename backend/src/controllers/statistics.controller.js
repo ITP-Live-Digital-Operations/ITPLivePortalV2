@@ -55,3 +55,18 @@ exports.getInfluencerCampaignMetricsByCampaignId =  (req, res) => {
         });
 }
 
+exports.getInfluencerCampaignMetricsByInfluencerId =  (req, res) => {
+    influencerCampaignMetrics.findAll({
+        where: {
+            influencerId: req.params.influencerId
+        }
+    })
+        .then((data) => {
+        res.send(data);
+        })
+        .catch((err) => {
+        console.log("Error retrieving campaign metrics", err);
+        });
+}
+
+

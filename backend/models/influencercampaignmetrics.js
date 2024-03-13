@@ -61,6 +61,10 @@ module.exports = (sequelize, DataTypes) => {
     CPM : {
       type: DataTypes.FLOAT,
     },
+    ER : {
+      type: DataTypes.FLOAT,
+    },
+
     marginOfProfit : {
       type: DataTypes.FLOAT,
     },

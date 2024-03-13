@@ -11,6 +11,7 @@ import { AddBookingComponent } from './add-booking/add-booking.component';
 import { ProductionFormComponent } from './add-booking/production-form/production-form.component';
 import { EditorFormComponent } from './add-booking/editor-form/editor-form.component';
 import { GraphicsFormComponent } from './add-booking/graphics-form/graphics-form.component';
+import { ProductionTeamMembersFormComponent } from './add-booking/production-form/production-team-members-form/production-team-members-form.component';
 
 let path = PATH;
 
@@ -47,6 +48,10 @@ const routes : Routes = [
   {
     path: 'addProductionBooking/:id',
     component: ProductionFormComponent
+  },
+  {
+    path: 'productionTeamMembers/:id',
+    component: ProductionTeamMembersFormComponent
   },
   {
     path: 'addEditorBooking/:id',
