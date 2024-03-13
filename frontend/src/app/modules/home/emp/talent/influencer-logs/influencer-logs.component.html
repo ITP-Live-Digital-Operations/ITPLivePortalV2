@@ -1,52 +1,87 @@
+<h2 style="align-items: center; font-size: 35px; 
+">Logs</h2>
+
+
+<div id="search">
+  <svg viewBox="0 0 420 60" >
+    <rect class="bar"/>
+
+  </svg>
+  
+<mat-form-field  >
+  
+
+  <input
+    #searchInput
+    matInput
+    (keyup)="applyFilterChange('search', searchInput.value)"
+    placeholder="Search"
+  />
+  <mat-icon matPrefix style="color:aliceblue">search</mat-icon>
+</mat-form-field>
+<!-- Add this button to your template -->
+</div>
+<div>
+
+
+  <div class="search-container">
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>filter_list</mat-icon>        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <!-- Add this button to your template -->
+
+      <mat-form-field class="filter" style="width: 30%;">
+        <mat-label>Influencers Filter</mat-label>
+        <mat-select #influencerSelect multiple placeholder="Influencers Filter" (selectionChange)="applyFilterChange('influencers', $event.value)">
+
+          <mat-option *ngFor="let influencer of allInfluencers" [value]="influencer">
+            {{ influencer }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="filter" style="width: 30%;">
+        <mat-label>Campaigns Filter</mat-label>
+        <mat-select #campaignSelect multiple placeholder="Campaigns Filter" (selectionChange)="applyFilterChange('campaigns', $event.value)">
+
+        <mat-option *ngFor="let campaign of allCampaigns" [value]="campaign">
+          {{ campaign }}
+        </mat-option>        
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="filter" style="width: 30%;">
+        <mat-label>Contacts Filter</mat-label>
+        <mat-select #contactSelect multiple placeholder="Contacts Filter" (selectionChange)="applyFilterChange('contacts', $event.value)">
+
+          <mat-option *ngFor="let contact of allContacts" [value]="contact">
+            {{ contact }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="logs-button">
+      <button type="button" style="margin-left: 2%" (click)="resetFilters()">
+        Clear Filters
+      </button>
+    </div>
+    </mat-expansion-panel>
+    
+  </div>
+  
+</div>
+
+
 <div class="logs-button">
-  <H2>Logs</H2>
-  <button type="button" style="margin-left: 2%" (click)="redirectToNewLog()">
+
+  <button type="button" style="  display: flex;
+  justify-content: flex-end;" (click)="redirectToNewLog()">
     Add New Log
   </button>
+  
 </div>
-
-<div class="filter-container">
-  <mat-form-field class="filter">
-    <mat-label> Influencers Filter</mat-label>
-    <mat-select
-      placeholder="Influencers Filter"
-      (selectionChange)="filterInfluencer($any($event).value)"
-    >
-      <mat-option value="">All Influencers</mat-option>
-      <mat-option *ngFor="let influencer of influencers" [value]="influencer">
-        {{ influencer | influencerName | async }}</mat-option
-      >
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field class="filter">
-    <mat-label> Campaigns Filter</mat-label>
-    <mat-select
-      placeholder="Gender Filter"
-      (selectionChange)="filterCampaign($any($event).value)"
-    >
-      <mat-option value="">All Campaigns</mat-option>
-      <mat-option *ngFor="let campaign of campaigns" [value]="campaign">
-        {{ campaign }}</mat-option
-      >
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field class="filter">
-    <mat-label> Contacts Filter</mat-label>
-    <mat-select
-      placeholder="Gender Filter"
-      (selectionChange)="filterContact($any($event).value)"
-    >
-      <mat-option value="">All Contacts</mat-option>
-      <mat-option *ngFor="let contact of contacts" [value]="contact">
-        {{ contact | userNamePipe | async }}</mat-option
-      >
-    </mat-select>
-  </mat-form-field>
-</div>
-<!-- Your table goes here -->
-
 <div class="table-container">
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="Influencer">

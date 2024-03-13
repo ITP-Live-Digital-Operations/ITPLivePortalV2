@@ -6,6 +6,7 @@ body {
 h2, h3, h4, h5 {
   margin: 10px 0;
   text-align: center;
+
 }
 
 // Table Styles
@@ -39,7 +40,7 @@ h2, h3, h4, h5 {
   .filter {
     flex-grow: 1;
     margin-right: 20px; // Space between filters
-
+width: fit-content;
     &:last-child {
       margin-right: 0; // Remove margin for the last filter
     }
@@ -54,7 +55,7 @@ h2, h3, h4, h5 {
     cursor: pointer;
 
     &:hover {
-      background-color: #4789A1;
+      background-color: #6190a1;
     }
   }
 }
@@ -117,4 +118,156 @@ mat-paginator {
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
+}
+.mat-expansion-panel  {
+  background: #1f3371 !important;
+  color: rgba(0, 0, 0, .87);
+
+}
+.search-container {
+padding-bottom: 5px;
+}
+
+::ng-deep .mat-mdc-select-panel {
+  background: #324481fd  !important;
+}
+
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
+  color: #ffffff !important;
+
+}
+
+::ng-deep .mat-mdc-option .mat-pseudo-checkbox-full {
+  margin-right: 16px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border-color: white;
+}
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.mat-input-element {
+  font-size: 16px;
+  color: #333;
+}
+
+::ng-deep .mat-expansion-indicator.ng-tns-c2690051721-4 {
+  display: none;
+}
+
+
+
+/* Style the expansion panel */
+.mat-expansion-panel {
+  margin-bottom: 16px;
+
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mat-expansion-panel-header {
+  background-color: #1f3371;
+}
+
+.mat-expansion-indicator {
+  color: #333;
+}
+
+/* Style the filter mat-select options */
+.mat-option {
+  font-size: 14px;
+}
+
+/* Style the table header cells */
+.mat-header-cell {
+  font-weight: bold;
+}
+
+/* Style the table cells */
+.mat-cell {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Style the pagination section */
+.mat-paginator {
+  margin-top: 16px;
+}
+
+/* Style the package and single sections */
+.package,
+.single {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid #3e0a76;
+  border-radius: 4px;
+}
+
+.package h2,
+.single h2,
+.package h4,
+.single h4 {
+  margin-bottom: 8px;
+}
+
+/* Style the icons in the Action column */
+.mat-icon {
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 8px;
+  color: #333;
+  transition: color 0.3s ease-in-out;
+}
+
+.mat-icon:hover {
+  color: #FF4081;
+}
+
+
+
+#search {
+	display: grid;
+	grid-area: search;
+	grid-template:
+		"search" 60px
+		/ 420px;
+	justify-content: center;
+	align-content: center;
+	justify-items: stretch;
+	align-items: stretch;
+
+}
+
+#searchInput {
+	display: block;
+	grid-area: search;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: 100%;
+	background: none;
+	padding: 0 30px 0 60px;
+	border: none;
+	border-radius: 100px;
+	font: 24px/1 system-ui, sans-serif;
+	outline-offset: -8px;
+}
+
+
+#search svg {
+	grid-area: search;
+	overflow: visible;
+	color:#1239ae ;
+	fill: none;
+	stroke: currentColor;
+}
+
+
+
+
+
+.mat-icon{
+  color: white
 }

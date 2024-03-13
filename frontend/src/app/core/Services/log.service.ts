@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import  { HttpClient,HttpHeaders} from '@angular/common/http'
-import { LogModel } from '../interfaces/logModel';
+import { LogModel, LogModelUpdated } from '../interfaces/logModel';
 import { Observable } from 'rxjs';
 import { environment} from '../../../environments/environment.development'
+import { ObjectDestructuringAssignment } from 'typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class LogService {
   }
   getAllLogs():Observable<LogModel[]>{
     return this.http.get<LogModel[]>(`${this.logApiURL}/getLogs`)
+  }
+
+  getAllLogsUpdated(): Observable<LogModelUpdated[]>{
+    return this.http.get<LogModelUpdated[]>(`${this.logApiURL}/getAllLogsUpdated`)
   }
 
   getInfluencerLogs(inputdata:any):Observable<LogModel[]>{

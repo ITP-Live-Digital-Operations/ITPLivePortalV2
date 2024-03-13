@@ -123,6 +123,25 @@ exports.getLogs = (req, res) => {
   }
 };
 
+exports.getAllLogsUpdated = (req, res) => {
+  try {
+    Log.findAll({
+      include: [
+        { model: logItem, as: "logItems" },
+        { model: Package, as: "packages" },
+        { model: Influencer, as: 'influencer', attributes : ['id', 'Name']},
+        { model: User, as: 'user', attributes : ['id', 'name']}
+      ],
+    }).then((logs) => {
+      res.status(200).send(logs);
+    });
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving logs.",
+    });
+  }
+}
+
 exports.deleteLog = (req, res) => {
   const id = req.params.id;
   try {
