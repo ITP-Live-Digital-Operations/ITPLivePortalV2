@@ -13,6 +13,7 @@ import { EditInfluencerComponent } from '../../emp/talent/edit/edit-influencer/e
 import { InfluencerIdComponent } from '../influencer-id/influencer-id.component';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-influencers',
@@ -32,6 +33,8 @@ export class InfluencersComponent {
   public allCities: string[] = [];
   public allVerticals: string[] = [];
   public allNationalities: string[] = [];
+  public minFollowers: number = 0; // Default minimum
+  public maxFollowers: number = 50000000; // Default maximum
 
   filterCriteria: any = {
     search: '',
@@ -40,6 +43,7 @@ export class InfluencersComponent {
     vertical: [],
     nationalities: [],
     city: [],
+    socialMediaPlatform: '', // Added
   };
 
   displayedColumns: string[] = [
@@ -60,11 +64,14 @@ export class InfluencersComponent {
   public userRole = this.userService.getRole();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  @ViewChild('socialMediaPlatformSelect') socialMediaPlatformSelect!: MatSelect;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-
   @ViewChild(MatTable) table!: MatTable<any>;
-
+  @ViewChild('genderSelect') genderSelect!: MatSelect;
+  @ViewChild('locationSelect') locationSelect!: MatSelect;
+  @ViewChild('citySelect') citySelect!: MatSelect;
+  @ViewChild('verticalSelect') verticalSelect!: MatSelect;
+  @ViewChild('nationalitySelect') nationalitySelect!: MatSelect;
   constructor(
     private influencerService: InfluencerService,
     private userService: UserService,
@@ -92,6 +99,42 @@ export class InfluencersComponent {
       this.nationalities.push(row.nationalities);
     }
   }
+  applyFollowerRangeChange(): void {
+    // Update the min and max followers
+    this.minFollowers = this.minFollowers;
+    this.maxFollowers = this.maxFollowers;
+
+    // Apply the filter with the updated follower range
+    this.applyFilter();
+
+    // Update the dropdowns based on the filtered data
+    this.updateFilterDropdowns();
+  }
+
+
+
+  applyPlatformFilter(selectedPlatform: string): void {
+    // Assuming you have a filterCriteria object to store the selected platform
+    this.filterCriteria.socialMediaPlatform = selectedPlatform;
+
+    this.updateFilterDropdowns();
+    this.applyFilter();
+  }
+  private isFollowerCountInRange(influencer: InfluencerModel): boolean {
+    // If no platform is selected, consider all influencers as within the range.
+    if (!this.filterCriteria.socialMediaPlatform) return true;
+
+    const followerCountKey = `${this.filterCriteria.socialMediaPlatform}Followers` as keyof InfluencerModel;
+    const followers = influencer[followerCountKey];
+
+    // Ensure followers is a number before comparing.
+    if (typeof followers === 'number') {
+      return followers >= this.minFollowers && followers <= this.maxFollowers;
+    }
+    return false; // If followers count is not available, do not include in range.
+  }
+
+
 
   private getInfluencers(): void {
     this.influencerService
@@ -160,6 +203,7 @@ export class InfluencersComponent {
     // Filter for Gender options based on all criteria except gender itself
     this.allGenders = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
+        this.isFollowerCountInRange(data) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
@@ -170,6 +214,7 @@ export class InfluencersComponent {
     // Filter for Location options based on all criteria except location itself
     this.allLocations = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
+        this.isFollowerCountInRange(data) &&
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
@@ -180,6 +225,7 @@ export class InfluencersComponent {
     // Repeat the pattern for City, Vertical, and Nationalities filters
     this.allCities = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
+        this.isFollowerCountInRange(data) &&
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
@@ -189,6 +235,7 @@ export class InfluencersComponent {
 
     this.allVerticals = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
+        this.isFollowerCountInRange(data) &&
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
@@ -198,6 +245,7 @@ export class InfluencersComponent {
 
     this.allNationalities = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
+        this.isFollowerCountInRange(data) &&
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
@@ -206,6 +254,48 @@ export class InfluencersComponent {
     );
   }
 
+  public resetFilters(): void {
+    // Reset filter criteria
+    this.filterCriteria = {
+      search: '',
+      gender: [],
+      location: [],
+      vertical: [],
+      nationalities: [],
+      city: [],
+      socialMediaPlatform: '',
+    };
+    if (this.socialMediaPlatformSelect) {
+      this.socialMediaPlatformSelect.value = '';
+    }
+    this.minFollowers = 0;
+    this.maxFollowers = 50000000;
+    this.allGenders = this.extractUniqueAttributes(this.dataSource.data, 'Gender');
+    this.allLocations = this.extractUniqueAttributes(this.dataSource.data, 'CountryLocation');
+    this.allCities = this.extractUniqueAttributes(this.dataSource.data, 'CityLocation');
+    this.allVerticals = this.extractUniqueAttributes(this.dataSource.data, 'MainVertical');
+    this.allNationalities = this.extractUniqueAttributes(this.dataSource.data, 'Nationality');
+    this.resetMatSelects();
+    this.applyFilter();
+  }
+
+  private resetMatSelects(): void {
+    if (this.genderSelect) {
+      this.genderSelect.value = [];
+    }
+    if (this.locationSelect) {
+      this.locationSelect.value = [];
+    }
+    if (this.citySelect) {
+      this.citySelect.value = [];
+    }
+    if (this.verticalSelect) {
+      this.verticalSelect.value = [];
+    }
+    if (this.nationalitySelect) {
+      this.nationalitySelect.value = [];
+    }
+  }
 
 
   public onPageChange(event: any): void {
@@ -239,6 +329,19 @@ export class InfluencersComponent {
       const isMatchNationalities = !this.filterCriteria.nationalities.length ||
       this.filterCriteria.nationalities.includes(data.Nationality?.trim().toLowerCase());
 
+      // Only apply followers range filter if a social media platform is selected
+      let followersInRange = true;
+      if (this.filterCriteria.socialMediaPlatform) {
+        const followerAttribute = `${this.filterCriteria.socialMediaPlatform}Followers` as keyof InfluencerModel;
+        const followers = data[followerAttribute];
+
+        if (typeof followers === 'number') {
+          followersInRange = followers >= this.minFollowers && followers <= this.maxFollowers;
+        } else {
+          followersInRange = false;
+        }
+      }
+
 
       return (
         isMatchSearch &&
@@ -246,12 +349,16 @@ export class InfluencersComponent {
         isMatchLocation &&
         isMatchVertical &&
         isMatchNationalities &&
-        isMatchCity
+        isMatchCity &&
+        followersInRange
       );
     };
 
     this.dataSource.filter = JSON.stringify(this.filterCriteria);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
+    // Update filter dropdowns based on the filtered data
     this.updateFilterDropdowns();
   }
 
@@ -314,7 +421,7 @@ export class InfluencersComponent {
 
   public editInfluencer(inputdata: any): void {
     this.dialog?.open(EditInfluencerComponent, {
-      width: '100%',
+      width: '90%',
       height: '80%',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
@@ -326,7 +433,7 @@ export class InfluencersComponent {
 
   public viewInfluencer(inputdata: any): void {
     this.dialog?.open(InfluencerIdComponent, {
-      width: '95vw',
+      width: '100%',
       height: '95%',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
