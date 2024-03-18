@@ -77,16 +77,30 @@
 
   <!-- view single logs -->
   <div class="single" *ngIf="single">
-    <div class="row">
-      <h2>Notes : {{ log.notes }}</h2>
+    <div class="log-details mat-elevation-z8">
+      <div class="log-detail">
+        <span class="log-label">Platform:</span>
+        <span>{{log.logItems.platform}}</span>
+      </div>
+      <div class="log-detail">
+        <span class="log-label">Deliverable:</span>
+        <span>{{log.logItems.deliverable}}</span>
+      </div>
+      <div class="log-detail">
+        <span class="log-label">Quantity:</span>
+        <span>{{log.logItems.quantity}}</span>
+      </div>
+      <div class="log-detail">
+        <span class="log-label">Currency:</span>
+        <span>{{log.logItems.currency}}</span>
+      </div>
+      <div class="log-detail">
+        <span class="log-label">Rate:</span>
+        <span>{{log.logItems.rate}}</span>
+      </div>
+      <h2>Reply Time: {{log.time_to_reply}}</h2>
+      <h2>Notes: {{log.notes}}</h2>
     </div>
-    <hr />
-    <div *ngFor="let item of log.logItems" class="row">
-      <h4>{{ item.platform }}</h4>
-      <h4>{{ item.deliverable }}</h4>
-      <h4>{{ item.quantity }}</h4>
-      <h4>{{ item.currency }}</h4>
-      <h4>{{ item.rate }}</h4>
-    </div>
+
   </div>
 </div>

@@ -11,7 +11,7 @@ export interface LogModel {
     currency ?: string,
     rate ?: number,
 
-    logItems : logItem[],
+    logItems : logItem,
     packages : logPackage[],
 
   }

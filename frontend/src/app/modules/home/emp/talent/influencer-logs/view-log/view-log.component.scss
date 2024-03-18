@@ -19,3 +19,39 @@
 .container{
   padding: 2%;
 }
+
+
+.log-details {
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light white border for depth */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+
+  .log-detail {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center; /* Ensure alignment is centered */
+
+    .log-label {
+      font-weight: bold;
+      margin-right: 5px;
+      color: rgba(255, 255, 255, 0.8); /* Slightly dimmed for depth */
+    }
+
+    span {
+      display: inline-block;
+      min-height: 22px;
+      color: rgba(255, 255, 255, 0.9); /* High contrast yet soft on eyes */
+    }
+  }
+
+  h2 {
+    margin-top: 20px;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9); /* Consistent with other texts */
+  }
+}
+

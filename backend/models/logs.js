@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Logs.belongsTo(models.User, {foreignKey: 'userID', as: 'user'})
       Logs.belongsTo(models.Influencer, {foreignKey: 'influencerID', as : 'influencer'})
-      Logs.hasMany(models.logItem, { foreignKey: 'logID', as: 'logItems', onDelete: 'CASCADE'});
+      Logs.hasOne(models.logItem, { foreignKey: 'logID', as: 'logItems', onDelete: 'CASCADE'});
       Logs.hasMany(models.Package, { foreignKey: 'logID', as: 'packages', onDelete: 'CASCADE'});
      
 

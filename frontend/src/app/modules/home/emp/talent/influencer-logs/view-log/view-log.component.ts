@@ -30,7 +30,7 @@ export class ViewLogComponent {
 
     this.logService.getLogById(this.id).subscribe(data => {
       this.log = data;
-
+      console.log(this.log);
       if(this.type == 'single'){
         this.single = true;
       }
