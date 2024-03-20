@@ -1,7 +1,7 @@
 <div class="content">
   <div class="social">
     <div class="items">
-      <li>
+      <li *ngIf="profileData?.data.InstagramLink">
         <ng-container *ngIf="profileData?.data.InstagramLink">
           <a href="{{ profileData.data.InstagramLink }}" target="_blank">
             <i class="bi bi-instagram" style="font-size: 2rem; color: #FFF"></i>
@@ -18,7 +18,7 @@
         </p>
       </li>
 
-      <li>
+      <li *ngIf="profileData?.data.TiktokLink">
         <ng-container *ngIf="profileData?.data.TiktokLink">
           <a href="{{ profileData.data.TiktokLink }}" target="_blank">
             <i class="bi bi-tiktok" style="font-size: 2rem; color:#FFF"></i>
@@ -34,7 +34,7 @@
         </p>
       </li>
 
-      <li>
+      <li *ngIf="profileData?.data.FacebookLink">
         <ng-container *ngIf="profileData?.data.FacebookLink">
           <a href="{{ profileData.data.FacebookLink }}" target="_blank">
             <i class="bi bi-facebook" style="font-size: 2rem; color: #FFF"></i>
@@ -51,7 +51,7 @@
         </p>
       </li>
 
-      <li>
+      <li *ngIf="profileData?.data.SnapchatLink">
         <ng-container *ngIf="profileData?.data.SnapchatLink">
           <a href="{{ profileData.data.SnapchatLink }}" target="_blank">
             <i class="bi bi-snapchat" style="font-size: 2rem; color: #FFF"></i>
@@ -68,7 +68,7 @@
         </p>
       </li>
 
-      <li>
+      <li *ngIf="profileData?.data.TwitterLink">
         <ng-container *ngIf="profileData?.data.TwitterLink">
           <a href="{{ profileData.data.TwitterLink }}" target="_blank">
             <i class="bi bi-twitter" style="font-size: 2rem; color: #FFF"></i>
@@ -84,7 +84,7 @@
         </p>
       </li>
 
-      <li>
+      <li *ngIf="profileData?.data.YoutubeLink">
         <ng-container *ngIf="profileData?.data.YoutubeLink">
           <a href="{{ profileData.data.YoutubeLink }}" target="_blank">
             <i class="bi bi-youtube" style="font-size: 2rem; ; color: #FFF"></i>
@@ -99,7 +99,7 @@
         </p>
       </li>
 
-      <li>
+      <li *ngIf="profileData?.data.TwitchLink">
         <ng-container *ngIf="profileData?.data.TwitchLink">
           <a href="{{ profileData.data.TwitchLink }}" target="_blank">
             <i class="bi bi-twitch" style="font-size: 2rem;; color: #FFF"></i>

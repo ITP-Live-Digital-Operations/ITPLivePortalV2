@@ -1,0 +1,25 @@
+<div class="remarks-container">
+  <button
+    class="new-remark-btn"
+    (click)="addNewRemark(profileData?.data.id, profileData?.data.Name)"
+  >
+    Add New Remark
+  </button>
+  <div class="remark-card" *ngFor="let remark of remarks">
+    <div class="remark-content">
+      <p class="remark-note">{{ remark.note }}</p>
+    </div>
+    <div class="remark-user">
+      <p class="remark-updated">{{ remark.updatedAt | date : "medium" }}</p>
+      <div class="bottom-line">
+        <span class="user-name">Remark by: {{ remark.user.name }}</span>
+        <button *ngIf="userId === remark.createdById" class="icon-btn" (click)="editRemark(remark.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button *ngIf="userId === 1" class="icon-btn" (click)="deleteRemark(remark.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

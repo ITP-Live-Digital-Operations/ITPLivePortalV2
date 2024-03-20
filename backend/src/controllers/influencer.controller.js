@@ -609,7 +609,7 @@ exports.getInfluencerRemarks = (req, res) => {
 };
 
 exports.updateInfluencerRemark = (req, res) => {
-  console.log(req.body);
+  
   InfluencerRemarks.update(req.body, { where: { id: req.params.id } })
     .then((data) => {
       res.status(200).send({

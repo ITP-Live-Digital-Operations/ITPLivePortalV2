@@ -89,14 +89,14 @@ export class CelebritiesListComponent {
   private populateFilterParameters(): void {
     // Assuming dataSource.data is an array of your items
     const data = this.dataSource.data;
-  
+
     // Extract and assign unique values for each filter
     this.allGenders = this.extractUniqueAttributes(data, 'Gender');
     this.allLocations = this.extractUniqueAttributes(data, 'CountryLocation');
     this.allVerticals = this.extractUniqueAttributes(data, 'MainVertical');
     this.allGames = this.extractUniqueAttributes(data, 'Game');
   }
-  
+
   private extractUniqueAttributes(data: any[], attribute: string): string[] {
     const uniqueValues = new Set(data.map(item => item[attribute]).filter(Boolean));
     return Array.from(uniqueValues).sort();
@@ -123,41 +123,41 @@ export class CelebritiesListComponent {
   private updateFilterDropdowns(): void {
     // Use a copy of the full data set as the starting point for filtering
     let baseFilteredData = [...this.dataSource.data];
-  
+
     // Dynamically update options for each filter based on current filterCriteria
     // Note: It's important to maintain the integrity of each "all" array to allow for multiple selections
-    
+
     // Filter for Gender options based on all criteria except gender itself
     this.allGenders = this.extractUniqueAttributes(
-      baseFilteredData.filter(data => 
+      baseFilteredData.filter(data =>
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.games.length || this.filterCriteria.games.includes(data.Game?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase()))  ), 'Gender'
     );
-  
+
     // Filter for Location options based on all criteria except location itself
     this.allLocations = this.extractUniqueAttributes(
-      baseFilteredData.filter(data => 
+      baseFilteredData.filter(data =>
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.games.length || this.filterCriteria.games.includes(data.Game?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) ), 'CountryLocation'
     );
-  
-  
+
+
     this.allVerticals = this.extractUniqueAttributes(
-      baseFilteredData.filter(data => 
+      baseFilteredData.filter(data =>
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.games.length || this.filterCriteria.games.includes(data.Game?.trim().toLowerCase())) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) ), 'MainVertical'
     );
-    
+
     this.allGames = this.extractUniqueAttributes(
-      baseFilteredData.filter(data => 
+      baseFilteredData.filter(data =>
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) ), 'MainVertical'
     );
-  
+
 
   }
   private resetMatSelects(): void {
@@ -167,7 +167,7 @@ export class CelebritiesListComponent {
     if (this.locationSelect) {
       this.locationSelect.value = [];
     }
-  
+
     if (this.verticalSelect) {
       this.verticalSelect.value = [];
     }
@@ -182,22 +182,22 @@ export class CelebritiesListComponent {
     // Define the filter predicate
     this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
       const filterObject = JSON.parse(filter);
-    
+
       const isMatchSearch = filterObject.search
         ? data.Name?.trim().toLowerCase().includes(filterObject.search) ||
           data.InstagramHandle?.trim().toLowerCase().includes(filterObject.search)
         : true;
-      
-      const isMatchGender = !this.filterCriteria.gender.length || 
+
+      const isMatchGender = !this.filterCriteria.gender.length ||
       this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase());
 
-      const isMatchLocation = !filterObject.location.length || 
+      const isMatchLocation = !filterObject.location.length ||
       filterObject.location.includes(data.CountryLocation?.trim().toLowerCase());
 
-      
-      const isMatchVertical = !this.filterCriteria.vertical.length || 
+
+      const isMatchVertical = !this.filterCriteria.vertical.length ||
       this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase());
-      
+
       //const isMatchGames = !filterObject.games.length || (data.game && filterObject.games.includes(data.game.toLowerCase()));
 
 
@@ -208,7 +208,7 @@ export class CelebritiesListComponent {
         isMatchLocation &&
         isMatchVertical
          //&&
-        //isMatchGames 
+        //isMatchGames
       );
     };
 
@@ -241,7 +241,7 @@ export class CelebritiesListComponent {
     if (!Array.isArray(filterValue)) {
       filterValue = [filterValue];
     }
-    this.filterCriteria[filterType] = filterValue.map((val: string) => val.trim().toLowerCase());  
+    this.filterCriteria[filterType] = filterValue.map((val: string) => val.trim().toLowerCase());
     this.applyFilter();
     this.updateFilterDropdowns();
 
@@ -275,8 +275,8 @@ export class CelebritiesListComponent {
 
   public viewCelebrity(inputdata: any): void {
     this.dialog.open(CelebrityIdComponent, {
-      width: '80%',
-      height: '70%',
+      width: '100%',
+      height: '95%',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {

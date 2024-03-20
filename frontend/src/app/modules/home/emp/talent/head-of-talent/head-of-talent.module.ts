@@ -12,12 +12,20 @@ import { SharingModule } from '../../../sharing/sharing.module';
 import { NumberFormatPipe } from 'src/app/shared/pipes/number-format.pipe';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatSliderModule } from '@angular/material/slider';
+import { BasicInfoComponent } from './celebrity-id/basic-info/basic-info.component';
+import { CelebrityRemarksComponent } from './celebrity-id/celebrity-remarks/celebrity-remarks.component';
+import { EditCelebrityRemarkComponent } from './celebrity-id/celebrity-remarks/edit-celebrity-remark/edit-celebrity-remark.component';
+import { AddCelebrityRemarkComponent } from './celebrity-id/celebrity-remarks/add-celebrity-remark/add-celebrity-remark.component';
 
 @NgModule({
   declarations: [
     TaskListComponent,
     CelebritiesListComponent,
     CelebrityIdComponent,
+    BasicInfoComponent,
+    CelebrityRemarksComponent,
+    EditCelebrityRemarkComponent,
+    AddCelebrityRemarkComponent,
   ],
   imports: [
     CommonModule,

@@ -1,13 +1,13 @@
-<div class="influencer" *ngIf="celebrityData!= undefined || celebrityData!= null">
-  <div class="container">
+<div *ngIf="celebrityData!= undefined || celebrityData!= null">
+  <div class="top-container">
     <app-main [profileData]="celebrityData" [id]="id" ></app-main>
-      <app-platform-links class="platform" [profileData]="celebrityData"></app-platform-links>
+      <app-platform-links class="platform-container" [profileData]="celebrityData"></app-platform-links>
   </div>
-  
+
   <mat-tab-group>
-    <mat-tab label="Basic Information"><app-table-content [profileData]="celebrityData"></app-table-content></mat-tab>
-    <mat-tab label="Campaign"><app-campaign-results></app-campaign-results></mat-tab>
-    <mat-tab label="Statistics"><app-statistics [profileData]="celebrityData"></app-statistics></mat-tab>
+    <mat-tab label="Basic Information"><app-basic-info [profileData]="celebrityData"></app-basic-info></mat-tab>
+    <!-- <mat-tab label="Campaign"><app-campaign-results></app-campaign-results></mat-tab>
+    <mat-tab label="Statistics"><app-statistics [profileData]="celebrityData"></app-statistics></mat-tab> -->
     <!-- <mat-tab label="Logs"><app-logs-table [dataSource]="dataSource" [UserDetails]="UserDetails" [profileData]="influencerData" [id]="id"></app-logs-table></mat-tab>
     <mat-tab label="Rate Card"><app-rate-card></app-rate-card></mat-tab> -->
   </mat-tab-group>

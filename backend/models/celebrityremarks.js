@@ -1,16 +1,16 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class influencerRemarks extends Model {
+  class celebrityRemarks extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      influencerRemarks.belongsTo(models.Influencer, {
-        foreignKey: "influencerId",
-        as: "influencer",
+      celebrityRemarks.belongsTo(models.Celebrity, {
+        foreignKey: "celebrityId",
+        as: "celebrity",
       });
       influencerRemarks.belongsTo(models.User, {
         foreignKey: "createdById",
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  influencerRemarks.init(
+  celebrityRemarks.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -26,11 +26,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      influencerId: {
+      celebrityId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "influencer",
+          model: "celebrity",
           key: "id",
         },
       },
@@ -49,9 +49,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      tableName: "influencerremarks",
-      modelName: "influencerRemarks",
+      tableName: "celebrityremarks",
+      modelName: "celebrityRemarks",
     }
   );
-  return influencerRemarks;
+  return celebrityRemarks;
 };
