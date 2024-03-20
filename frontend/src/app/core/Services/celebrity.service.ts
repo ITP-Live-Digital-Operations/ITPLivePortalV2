@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { InfluencerModel } from '../interfaces/influencersModel';
+import { InfluencerModel, returnData } from '../interfaces/influencersModel';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
+import { CelebrityRemark, CelebrityRemarkWithCelebrity, CreateCelebrityRemark } from '../interfaces/celebrity.model';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +39,38 @@ export class CelebrityService {
     return this.http.patch(
       `${this.celebrityApiURL}/updateCelebrity/${id}`,
       inputdata
+    );
+  }
+
+  createCelebrityRemark(inputdate: CreateCelebrityRemark): Observable<returnData> {
+    return this.http.post<returnData>(
+      `${this.celebrityApiURL}/createCelebrityRemark`,
+      inputdate
+    );
+  }
+
+  getCelebrityRemarkById(id: number): Observable<CelebrityRemarkWithCelebrity> {
+    return this.http.get<CelebrityRemarkWithCelebrity>(
+      `${this.celebrityApiURL}/getCelebrityRemarkById/${id}`
+    );
+  }
+
+  getCelebrityRemarks(celebrityId: number): Observable<CelebrityRemark[]> {
+    return this.http.get<CelebrityRemark[]>(
+      `${this.celebrityApiURL}/getCelebrityRemarks/${celebrityId}`
+    );
+  }
+
+  updateCelebrityRemark(id: number, note: string): Observable<returnData> {
+    return this.http.patch<returnData>(
+      `${this.celebrityApiURL}/updateCelebrityRemark/${id}`,
+      { note }
+    );
+  }
+
+  deleteCelebrityRemark(id: number): Observable<returnData> {
+    return this.http.delete<returnData>(
+      `${this.celebrityApiURL}/deleteCelebrityRemark/${id}`
     );
   }
 }

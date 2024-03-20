@@ -17,5 +17,20 @@ router.route('/getCelebrity/:id')
 
 router.route('/updateCelebrity/:id')
     .patch(asyncHandler(celebrityController.updateCelebrity));
+// ----------------------- Remarks 
+router.route('/createCelebrityRemark')
+    .post(asyncHandler(celebrityController.createCelebrityRemark));
+
+router.route('/getCelebrityRemarkById/:id')
+    .get(asyncHandler(celebrityController.getCelebrityRemarkById));
+
+router.route('/getCelebrityRemarks/:celebrityId')
+    .get(asyncHandler(celebrityController.getCelebrityRemarks));
+
+router.route('/updateCelebrityRemark/:id')
+    .patch(asyncHandler(celebrityController.updateCelebrityRemark));
+
+router.route('/deleteCelebrityRemark/:id')
+    .delete(asyncHandler(celebrityController.deleteCelebrityRemark));
 
 module.exports = router;

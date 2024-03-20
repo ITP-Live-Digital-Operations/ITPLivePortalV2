@@ -35,44 +35,32 @@
 
   <!-- view single logs -->
 <div *ngIf="single">
-    <!-- Material Table structure starts here -->
-    <mat-table [dataSource]="log.logItems" class="mat-elevation-z8">
 
-      <!-- Column Definitions -->
-      <ng-container matColumnDef="platform">
-        <mat-header-cell *matHeaderCellDef> Platform </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.platform}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="deliverable">
-        <mat-header-cell *matHeaderCellDef> Deliverable </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.deliverable}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="quantity">
-        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="currency">
-        <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="rate">
-        <mat-header-cell *matHeaderCellDef> Rate </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.rate}} </mat-cell>
-      </ng-container>
-
-      <!-- Header and Row Declarations -->
-      <mat-header-row *matHeaderRowDef="displayedColumnsSingle"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumnsSingle;"></mat-row>
-
-    </mat-table>
-
-    <hr>
-    <h2>Reply Time : {{log.time_to_reply}}</h2>
-    <h2>Notes: {{ log.notes }}</h2>
+    <div class="log-details mat-elevation-z8">
+      <div class="log-detail">
+        <span class="log-label">Platform:</span>
+        <span>{{log.logItems.platform}}</span>
+      </div>
+      <div class="log-detail">
+        <span class="log-label">Deliverable:</span>
+        <span>{{log.logItems.deliverable}}</span>
+      </div>
+      <div class="log-detail">
+        <span class="log-label">Quantity:</span>
+        <span>{{log.logItems.quantity}}</span>
+      </div>
+      <div class="log-detail">
+        <span class="log-label">Currency:</span>
+        <span>{{log.logItems.currency}}</span>
+      </div>
+      <div class="log-detail">
+        <span class="log-label">Rate:</span>
+        <span>{{log.logItems.rate}}</span>
+      </div>
+      <h2>Reply Time: {{log.time_to_reply}}</h2>
+      <h2>Notes: {{log.notes}}</h2>
+    </div>
+    
 </div>
 
 </div>
