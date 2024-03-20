@@ -204,7 +204,19 @@ export class NewSalesBriefComponent {
     this.toastrService.success('Brief submitted successfully!');
     this.router.navigate([this.path['forms']]);
   }
+  activeTabIndex: number = 0;
+  tabCount: number = 6; 
+  nextTab() {
+    if (this.activeTabIndex < this.tabCount - 1) {
+      this.activeTabIndex++;
+    }
+  }
 
+  prevTab() {
+    if (this.activeTabIndex > 0) {
+      this.activeTabIndex--;
+    }
+  }
   private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
 

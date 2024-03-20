@@ -231,15 +231,9 @@ export class InfluencerLogsComponent {
     };
  
     // Convert filterCriteria to lowercase before applying
-    const lowercaseFilterCriteria = {
-       ...this.filterCriteria,
-       search: searchString,
-       campaigns: this.filterCriteria.campaigns.map((campaign: string) => campaign.toLowerCase()),
-       influencers: this.filterCriteria.influencers.map((influencers: string) => influencers.toLowerCase()),
-       contacts: this.filterCriteria.contacts.map((contacts: string) => contacts.toLowerCase())
-    };
  
-    this.dataSource.filter = JSON.stringify(lowercaseFilterCriteria);
+ 
+    this.dataSource.filter = JSON.stringify(this.filterCriteria);
     this.updateFilterOptions();
  
     this.cdr.detectChanges(); // Update the view
@@ -287,8 +281,7 @@ export class InfluencerLogsComponent {
         (!this.filterCriteria.contacts.length || this.filterCriteria.contacts.includes(data.user?.name?.trim().toLowerCase()))
       ),
       'influencer.Name'
-    ).map(influencer => influencer.trim().toLowerCase());
-  
+    )
     // Filter for Campaigns options based on all criteria except campaign itself
     this.allCampaigns = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
@@ -297,7 +290,7 @@ export class InfluencerLogsComponent {
         typeof data.campaign === 'string'
       ),
       'campaign'
-    ).map(campaign => campaign.toLowerCase()); // Convert campaign names to lowercase
+    )
   
     // Filter for Contacts options based on all criteria except contact itself
     this.allContacts = this.extractUniqueAttributes(
@@ -306,12 +299,23 @@ export class InfluencerLogsComponent {
         (!this.filterCriteria.campaigns.length || this.filterCriteria.campaigns.includes(data.campaign?.trim().toLowerCase()))
       ),
       'user.name' // Make sure this is the correct attribute path for the 'user' name
-    ).map(contact => contact.trim().toLowerCase());
-    console.log('Filtered Data:', this.dataSource.filteredData);
+    )
 
   }
   
-  
+  activeTabIndex: number = 0;
+  tabCount: number = 6; 
+  nextTab() {
+    if (this.activeTabIndex < this.tabCount - 1) {
+      this.activeTabIndex++;
+    }
+  }
+
+  prevTab() {
+    if (this.activeTabIndex > 0) {
+      this.activeTabIndex--;
+    }
+  }
   
   
   public onPageChange(event: any): void {
