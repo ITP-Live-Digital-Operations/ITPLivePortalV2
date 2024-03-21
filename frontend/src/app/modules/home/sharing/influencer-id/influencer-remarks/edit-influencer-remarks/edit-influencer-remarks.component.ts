@@ -43,7 +43,7 @@ export class EditInfluencerRemarksComponent {
     });
   }
   onSubmit(): void {
-    console.log(this.form.value);
+
     this.influencerService.updateInfluencerRemark(this.remarkId, this.form.value).subscribe((item) => {
       if(item.status === 'success'){
         this.dialogRef.close();

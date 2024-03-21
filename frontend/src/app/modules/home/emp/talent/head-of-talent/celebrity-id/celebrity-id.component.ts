@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CelebrityService } from 'src/app/core/services/celebrity.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class CelebrityIdComponent {
 
   constructor(
     private service: CelebrityService,
-    @Inject(MAT_DIALOG_DATA) public source: any
+    @Inject(MAT_DIALOG_DATA) public source: any,
   ) {}
 
   ngOnInit() {

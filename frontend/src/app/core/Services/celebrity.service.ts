@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { InfluencerModel, returnData } from '../interfaces/influencersModel';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import { CelebrityRemark, CelebrityRemarkWithCelebrity, CreateCelebrityRemark } from '../interfaces/celebrity.model';
+import { CelebrityIdandName, CelebrityModel, CelebrityRemark, CelebrityRemarkWithCelebrity, CreateCelebrityRemark } from '../interfaces/celebrity.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +17,15 @@ export class CelebrityService {
     return this.http.post(`${this.celebrityApiURL}/createCelebrity`, inputdata);
   }
 
-  getCelebrities(): Observable<InfluencerModel[]> {
-    return this.http.get<InfluencerModel[]>(
+  getCelebrities(): Observable<CelebrityModel[]> {
+    return this.http.get<CelebrityModel[]>(
       `${this.celebrityApiURL}/getCelebrities`
+    );
+  }
+
+  getCelebritiesIdsandNames(): Observable<CelebrityIdandName[]> {
+    return this.http.get<CelebrityIdandName[]>(
+      `${this.celebrityApiURL}/getCelebritiesIdsandNames`
     );
   }
 
@@ -29,8 +35,8 @@ export class CelebrityService {
     );
   }
 
-  getCelebrity(inputdata: any): Observable<InfluencerModel> {
-    return this.http.get<InfluencerModel>(
+  getCelebrity(inputdata: any): Observable<CelebrityModel> {
+    return this.http.get<CelebrityModel>(
       `${this.celebrityApiURL}/getCelebrity/${inputdata}`
     );
   }
@@ -41,7 +47,7 @@ export class CelebrityService {
       inputdata
     );
   }
-
+// -=---------------------------- Remarks ----------------------------=-
   createCelebrityRemark(inputdate: CreateCelebrityRemark): Observable<returnData> {
     return this.http.post<returnData>(
       `${this.celebrityApiURL}/createCelebrityRemark`,

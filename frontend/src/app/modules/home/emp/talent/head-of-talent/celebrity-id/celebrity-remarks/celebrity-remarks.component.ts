@@ -16,11 +16,9 @@ import { AddCelebrityRemarkComponent } from './add-celebrity-remark/add-celebrit
   styleUrls: ['./celebrity-remarks.component.scss']
 })
 export class CelebrityRemarksComponent {
-  @Input()
-  id!: number;
 
   @Input()
-  profileData: any;
+  profileData!: any;
 
   path = PATH;
 
@@ -34,11 +32,16 @@ export class CelebrityRemarksComponent {
     private router: Router,
     private dialogRef: MatDialogRef<CelebrityIdComponent>,
     private dialog: MatDialog,
-    private confirmService: ConfirmationDialogService
+    private confirmService: ConfirmationDialogService,
   ) {}
 
   ngOnInit(): void {
-    this.celebrityService.getCelebrityRemarks(this.id).subscribe((data) => {
+
+    this.getCelebrityRemarks(this.profileData.data.id);
+  }
+
+  public getCelebrityRemarks(celebrityId: number){
+    this.celebrityService.getCelebrityRemarks(celebrityId).subscribe((data) => {
       this.remarks = data;
     });
   }
@@ -46,22 +49,20 @@ export class CelebrityRemarksComponent {
   public addNewRemark(celebrityId: number, celebrityName: string){
     this.dialog.open(AddCelebrityRemarkComponent, {
       width: '600px',
-      data: {id : celebrityId }
+      height: '350px',
+      data: {id : celebrityId, name: celebrityName}
       }).afterClosed().subscribe(() => {
-        this.celebrityService.getCelebrityRemarks(this.id).subscribe((data) => {
-          this.remarks = data;
-        });
+        this.getCelebrityRemarks(celebrityId);
       });
   }
 
   public editRemark(remarkId: number){
     this.dialog.open(EditCelebrityRemarkComponent, {
       width: '600px',
+      height: '350px',
       data: {id : remarkId }
       }).afterClosed().subscribe(() => {
-        this.celebrityService.getCelebrityRemarks(this.id).subscribe((data) => {
-          this.remarks = data;
-        });
+        this.getCelebrityRemarks(this.profileData.data.id);
       });
   }
 
@@ -71,9 +72,9 @@ export class CelebrityRemarksComponent {
     .subscribe((result) => {
       if (result) {
         this.celebrityService.deleteCelebrityRemark(remarkId).subscribe((data) => {
-          this.celebrityService.getCelebrityRemarks(this.id).subscribe((data) => {
-            this.remarks = data;
-          });
+          if( data.status === 'success'){
+            this.getCelebrityRemarks(this.profileData.data.id);
+        }
         });
       }
     });

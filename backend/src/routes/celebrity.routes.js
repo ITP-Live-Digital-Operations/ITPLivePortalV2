@@ -9,6 +9,9 @@ router.route('/createCelebrity')
 router.route('/getCelebrities')
     .get(asyncHandler(celebrityController.getCelebrities));
 
+router.route('/getCelebritiesIdsandNames')
+    .get(asyncHandler(celebrityController.getCelebritiesIdsandNames));
+
 router.route('/deleteCelebrity/:id')
     .delete(asyncHandler(celebrityController.deleteCelebrity));
 
@@ -24,7 +27,7 @@ router.route('/createCelebrityRemark')
 router.route('/getCelebrityRemarkById/:id')
     .get(asyncHandler(celebrityController.getCelebrityRemarkById));
 
-router.route('/getCelebrityRemarks/:celebrityId')
+router.route('/getCelebrityRemarks/:id')
     .get(asyncHandler(celebrityController.getCelebrityRemarks));
 
 router.route('/updateCelebrityRemark/:id')

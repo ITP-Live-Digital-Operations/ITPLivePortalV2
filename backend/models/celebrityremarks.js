@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "celebrityId",
         as: "celebrity",
       });
-      influencerRemarks.belongsTo(models.User, {
+      celebrityRemarks.belongsTo(models.User, {
         foreignKey: "createdById",
         as: "user",
       });

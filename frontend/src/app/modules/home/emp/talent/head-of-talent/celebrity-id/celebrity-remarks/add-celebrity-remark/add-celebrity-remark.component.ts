@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CelebrityIdandName } from 'src/app/core/interfaces/celebrity.model';
 import { CelebrityService } from 'src/app/core/services/celebrity.service';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -12,8 +14,9 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class AddCelebrityRemarkComponent {
   public form!: FormGroup;
-  public celebrities: any
-  private celebrityData: any;
+  public celebrities: CelebrityIdandName[] = [];
+  celebId: number = this.data.id;
+  celebName: string = this.data.name;
 
   private userId: number = this.userService.getID();
 
@@ -23,13 +26,35 @@ export class AddCelebrityRemarkComponent {
     private celebrityService: CelebrityService,
     private router: Router,
     private toastr: ToastrService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<AddCelebrityRemarkComponent>
   ){}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCelebrities();
+
+    this.form = this.formBuilder.group({
+      celebrityId: [this.celebId],
+      note: [''],
+    });
+  }
 
   private getCelebrities(): void {
-    this.celebrityService.getCelebrities().subscribe((data) => {
+    this.celebrityService.getCelebritiesIdsandNames().subscribe((data) => {
       this.celebrities = data;
     });
+  }
+
+  public submit(): void {
+    if (this.form.valid) {
+      this.celebrityService.createCelebrityRemark({ ...this.form.value, createdById: this.userId }).subscribe((data) => {
+        if (data.status === 'success') {
+          this.toastr.success(data.message);
+          this.dialogRef.close();
+        } else {
+          this.toastr.error(data.message);
+        }
+      });
+    }
   }
 }

@@ -46,6 +46,21 @@ exports.getCelebrities = (req, res) => {
   }
 };
 
+exports.getCelebritiesIdsandNames = (req, res) => {
+  Celebrity.findAll({
+    attributes: ["id", "Name"],
+  })
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+  }
+  
 exports.getCelebrity = (req, res) => {
   const celebrityId = Number(req.params.id);
   Celebrity.findByPk(celebrityId)
@@ -97,6 +112,8 @@ exports.updateCelebrity = (req, res) => {
     });
 };
 
+
+// ------------------------- Celebrity Remarks -------------------------
 exports.createCelebrityRemark = (req, res) => {
   const celebrityRemark = req.body;
   CelebrityRemarks.create(celebrityRemark)
@@ -139,12 +156,12 @@ exports.getCelebrityRemarkById = (req, res) => {
 };
 
 exports.getCelebrityRemarks = (req, res) => {
-  const celebrityId = Number(req.params.id);
+  const celebrityId = req.params.id;
   CelebrityRemarks.findAll({
     where: { celebrityId: celebrityId },
     include: [
       {
-        model: User,
+        model: models.User,
         as: "user",
         attributes: ["name"],
       },
