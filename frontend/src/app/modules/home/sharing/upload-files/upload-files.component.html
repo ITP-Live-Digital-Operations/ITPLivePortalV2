@@ -1,9 +1,9 @@
 
 <div class="container" appDnd (fileDropped)="onFileDropped($event)">
 	<input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" accept=".xls,.xlsx,.pdf,.doc,.docx,.ppt,.pptx"/>
-	<img src="../../../../../assets/img/dnd/ic-upload-file.svg" alt="">
-	<h3>Drag and drop file here</h3>
-	<h3>or</h3>
+	<img src="../../../../../assets/img/dnd/file-storage.png" alt="">
+	<h3 style="color: aliceblue;">Drag and drop file here</h3>
+	<h3 style="color: aliceblue;">or</h3>
 	<label  for="fileDropRef">Browse for file</label>
 </div>
 <div class="files-list">
