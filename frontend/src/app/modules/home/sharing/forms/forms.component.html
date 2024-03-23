@@ -1,21 +1,164 @@
 <!-- The outer container with a fixed width to act as a viewport -->
+<button style="margin-bottom: 1%" class="back-button" *ngIf="currentView == 'campaign' || currentView == 'talent' || currentView == 'sales'"
+(click)="changeView('main')">  <mat-icon style="height: 70%;">arrow_back</mat-icon>Back
+</button>
 <div #carouselContainer class="carousel-container" #carousel (wheel)="onWheel($event)" >
   <!-- The inner container with flex display to hold all buttons -->
   <div class="carousel-wrapper"  (wheel)="onWheel($event)"  >
   <div class="box">
+
     <div
-      class="btn d-flex flex-row align-items-center flex-wrap"
-      style="border-color: transparent"
-    >
+    class="btn d-flex flex-row align-items-center flex-wrap"
+    style="border-color: transparent" *ngIf="userRole == 'superadmin'" >
+ 
+      <ng-container *ngIf="currentView == 'main'">
+          <button mat-raised-button routerLink="{{ path['influencers'] }}">
+            <img src="../../../../../assets/white-buttons/Inlfuencer.png" />
+            <p>Influencers</p>
+          </button>
+          <button mat-raised-button routerLink="{{ path['generalStatistics'] }}">
+              <img src="../../../../../assets/white-buttons/transparent-storage-icon-backup-icon-cloud-service-icon-5f34a33fa37440.5589010315972851836695.png" />
+              <p> Statistics </p>
+          </button>
+          <button mat-raised-button (click)="changeView('talent')">
+            <img src="../../../../../assets/white-buttons/talent.png" /> 
+            <p>Talent</p></button>
+          <button mat-raised-button (click)="changeView('campaign')">
+            <img src="../../../../../assets/white-buttons/campaign.png" /> 
+            <p>Campaign</p></button>
+          <button mat-raised-button (click)="changeView('sales')">
+            <img src="../../../../../assets/white-buttons/sales.png" /> 
+            <p>Sales</p></button>
+            <button mat-raised-button routerLink="{{ path['shows'] }}">
+              <img src="../../../../../assets/white-buttons/originals.png"/>
+              <p>Originals</p>
+            </button>
+      </ng-container>
+
+      <!-- Talent View -->
+      <ng-container *ngIf="currentView == 'talent'">
+                 
+       
+        <!-- New Influencer Button -->
+        <button
+          mat-raised-button
+          routerLink="{{ path['newInfluencer'] }}"
+        >
+          <img src="../../../../../assets/white-buttons/new-influencer.png" />
+          <p>New Influencer</p>
+        </button>
+       <!-- Celebrities Button -->
+        <button
+          mat-raised-button
+          routerLink="{{ path['celebrities'] }}"
+        >
+          <img src="../../../../../assets/white-buttons/celebrities.png" />
+          <p>Celebrities</p>
+        </button>
+      
+        <!-- New Celebrity Button -->
+        <button
+          mat-raised-button
+          routerLink="{{ path['newCelebrity'] }}"
+        >
+          <img src="../../../../../assets/white-buttons/new-celebrities.png" />
+          <p>New Celebrity</p>
+        </button>
+      
+        <!-- Rate Logs Button -->
+        <button
+          mat-raised-button
+          routerLink="{{ path['rateLogs'] }}"
+        >
+          <img src="../../../../../assets/white-buttons/rate-log.png" />
+          <p>Rate Logs</p>
+        </button>
+      
+        <!-- New Rate Log Button -->
+        <button
+          mat-raised-button
+          routerLink="{{ path['newRateLog'] }}"
+        >
+          <img src="../../../../../assets/white-buttons/new-rate-log.png" />
+          <p>New Rate Log</p>
+        </button>
+      
+        <!-- Time Form Button -->
+        <button
+          mat-raised-button
+          routerLink="{{ path['newTimeForm'] }}"
+        >
+          <img src="../../../../../assets/white-buttons/time log.png" />
+          <p>Time Form</p>
+        </button>
+      </ng-container>
+
+      <!-- Campaign View -->
+      <ng-container *ngIf="currentView == 'campaign'">
+
+      <!-- View Campaigns Button -->
       <button
         mat-raised-button
-        *ngIf="userRole == 'superadmin'"
-        routerLink="{{ path['userManagement'] }}"
+        routerLink="{{ path['viewCampaigns'] }}"
       >
-
-        <img src="../../../../../assets/white-buttons/admin-forms.png" />
-        <p>User Management</p>
+        <img src="../../../../../assets/white-buttons/rate-log.png" /> <!-- Update icon path if necessary -->
+        <p>Campaigns</p>
       </button>
+      <button
+          mat-raised-button
+          routerLink="{{ path['newTimeForm'] }}"
+        >
+          <img src="../../../../../assets/white-buttons/time log.png" />
+          <p>Time Form</p>
+        </button>
+      <button
+        mat-raised-button
+        routerLink="{{ path['clients'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/rate-log.png" /> <!-- Update icon path if necessary -->
+        <p>Clients</p>
+      </button>
+      </ng-container>
+
+      <!-- Sales View -->
+      <ng-container *ngIf="currentView == 'sales'">
+
+
+      <!-- New Sales Brief Button -->
+      <button
+        mat-raised-button
+        routerLink="{{ path['newSalesBrief'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/new-sales-brief.png" />
+        <p>New Sales Brief</p>
+      </button>
+
+      <!-- Ready Briefs Button -->
+      <button
+        mat-raised-button
+        routerLink="{{ path['readyBriefs'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/all-brief.png" />
+        <p>Ready Briefs</p>
+      </button>
+
+      <!-- Sent Briefs Button -->
+      <button
+        mat-raised-button
+        routerLink="{{ path['sentBriefs'] }}"
+      >
+        <img src="../../../../../assets/white-buttons/sent-brief.png" />
+        <p>Sent Briefs</p>
+      </button>
+      </ng-container>
+
+</div>
+
+    <div
+      class="btn d-flex flex-row align-items-center flex-wrap"
+      style="border-color: transparent"   *ngIf="userRole != 'superadmin'"
+    >
+
       <button
         mat-raised-button
         *ngIf="
@@ -164,26 +307,6 @@
         <p>originals</p>
       </button>
 
-      <button
-      mat-raised-button
-      *ngIf="userRole == 'originals'"
-      routerLink="{{ path['viewShows'] }}"
-    >
-      <img src="../../../../../assets/white-buttons/shiningStar.png" style="width : 132px ; height : 121px"/>
-      <p>Shows</p>
-    </button>
-
-    <button
-    mat-raised-button
-    *ngIf="userRole == 'originals'"
-    routerLink="{{ path['bookings'] }}"
-  >
-    <img src="../../../../../assets/white-buttons/shiningStar.png" style="width : 132px ; height : 121px"/>
-    <p>Bookings</p>
-  </button>
-        
-
-        
     </div>
   </div>
 </div>

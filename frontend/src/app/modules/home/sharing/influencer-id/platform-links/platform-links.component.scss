@@ -63,9 +63,8 @@
 .social li {
   padding-top: 5%;
   flex: 1 1 auto; /* Adjust flex-basis to auto so items can grow */
-  max-width: 160px; /* Example fixed width, adjust based on actual number of items and container width */
-  min-width: 120px; /* Minimum width to ensure content fits, adjust as necessary */
-  min-height: 160px; /* Minimum height to ensure content fits, adjust as necessary */
+  width: 15vh;/* Minimum width to ensure content fits, adjust as necessary */
+  height: 20vh; /* Minimum height to ensure content fits, adjust as necessary */
   border-radius: 10px;
   text-align: center;
   align-items: center;

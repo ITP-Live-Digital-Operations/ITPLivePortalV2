@@ -40,7 +40,7 @@
   button[mat-raised-button] {
     scroll-snap-align: start;
     flex: 0 0 auto;
-    width: 300px;
+    width: 26.5vh !important;
     height: 73vh !important;
     margin: 0 10px;
     position: relative;
@@ -77,6 +77,26 @@
   .title {
     color: white;
   } 
+
+  img {
+    position: absolute !important;
+    bottom: -20vh !important; /* Adjust this value as needed to move the image up from the bottom */
+    left: 50%!important;
+    transform: translateX(-50%)!important; /* Center the image horizontally */
+    width: 9vh!important; /* Your desired width or keep it responsive */
+    height: 9vh!important;
+  
+  }
+  p {
+    position: relative;
+    bottom: -25vh; /* Text sticks to the bottom */
+    left: 0;
+    font-size: 2vh;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    color: white;
+  }
   
   // .splash {
   //   position: absolute;

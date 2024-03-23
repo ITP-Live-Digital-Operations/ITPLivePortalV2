@@ -41,7 +41,7 @@
 button[mat-raised-button] {
   scroll-snap-align: start;
   flex: 0 0 auto;
-  width: 300px;
+  width: 26.5vh !important;
   height: 73vh !important;
   margin: 0 10px;
   position: relative;
@@ -114,7 +114,28 @@ button[mat-raised-button] img {
 
 }
 
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: medium;
+  background-color: #ffffff2a;
+  border: 3px solid #1f3371;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  transition: background-color 300ms;
+}
 
+.back-button:hover {
+  background-color: #FFF;
+}
+
+.mat-icon {
+  margin-right: 8px;
+  height: 70%; /* Adjust spacing to your preference */
+}
 
 @media (max-width: 1440px), (max-height: 900px) {
   button[mat-raised-button]{
