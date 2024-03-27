@@ -130,8 +130,8 @@
           <span class="full-width">Profile</span>
         </mat-list-item>
 
-        <mat-list-item
-          *ngIf="['admin', 'superadmin', 'sales', 'talent'].includes(userRole)"
+        <mat-list-item 
+          *ngIf="['admin', 'sales', 'talent'].includes(userRole)"
           [routerLink]="
             userRole == 'sales' ||
             userRole == 'admin' ||
@@ -144,6 +144,10 @@
           <mat-icon mat-list-icon>help</mat-icon>
           <span class="full-width">Help</span>
         </mat-list-item>
+       <mat-list-item   *ngIf="userRole == 'superadmin'" routerLink="{{ path['influencers'] }}" class="menu-item">
+        <mat-icon mat-list-icon>supervisor_account</mat-icon>
+        <span class="full-width">User Management</span>
+      </mat-list-item>
 
         <mat-list-item routerLink="/login" class="menu-item">
           <mat-icon mat-list-icon>logout</mat-icon>

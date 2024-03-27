@@ -10,7 +10,7 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 })
 export class FormsComponent {
   @ViewChild('carousel', { static: true }) carousel!: ElementRef<HTMLDivElement>;
-
+  currentView: 'main' | 'talent' | 'campaign' | 'originals' | 'sales' = 'main'
   public path = PATH;
   public privilegeLevel!: number;
   public userRole!: string;
@@ -20,6 +20,9 @@ export class FormsComponent {
   ngOnInit(){
     this.getRole();
     this.getPrivilegeLevel();
+  }
+  changeView(view: 'main' | 'talent' | 'campaign' | 'sales'| 'originals') {
+    this.currentView = view;
   }
 
   private getRole(): void { 

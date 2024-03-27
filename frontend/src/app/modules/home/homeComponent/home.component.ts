@@ -109,6 +109,13 @@ export class HomeComponent {
   ) {}
 
   ngOnInit(): void {
+    this.updateViewState(this.router.url);
+
+    // Subscribe to router events to update state upon navigation
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(event => this.updateViewState((event as NavigationEnd).url));
+
     const url = this.router.url;
     if (url.endsWith('/forms')) {
       this.themeClass = 'content-noScroll';
@@ -159,7 +166,12 @@ export class HomeComponent {
       this.routerSubscription.unsubscribe();
     }
   }
-
+  private updateViewState(url: string): void {
+    const noBackButtonRoutes = ['/forms', '/main', '/talent', '/sales', '/home'];
+    this.backButton = !noBackButtonRoutes.some(route => url.endsWith(route));
+    this.themeClass = url.endsWith('/forms') ? 'content-noScroll' : '';
+  }
+  
   public toggleNotificationBox(): void {
     this.dialog.open(NotificationComponent, {
       width: '680px',
