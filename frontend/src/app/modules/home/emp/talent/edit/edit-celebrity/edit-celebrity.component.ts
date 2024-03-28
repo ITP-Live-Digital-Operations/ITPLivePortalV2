@@ -80,6 +80,7 @@ export class EditCelebrityComponent {
         PreviouslyWorkedWith: [''],
       }),
       extraInfo: this.formBuilder.group({
+        Game: [''],
         PreviousBrands: [''],
         Bio: [''],
         Notes: [''],
@@ -146,6 +147,7 @@ export class EditCelebrityComponent {
             },
 
             extraInfo: {
+            Game: this.celebrityData.data.Game,
             PreviousBrands: this.celebrityData.data.PreviousBrands,
             Bio: this.celebrityData.data.Bio,
             Notes: this.celebrityData.data.Notes,

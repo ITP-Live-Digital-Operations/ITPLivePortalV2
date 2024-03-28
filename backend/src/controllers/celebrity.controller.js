@@ -98,6 +98,7 @@ exports.deleteCelebrity = (req, res) => {
 };
 
 exports.updateCelebrity = (req, res) => {
+  console.log(req.body);
   Celebrity.update(req.body, { where: { id: req.params.id } })
     .then((data) => {
       res.status(200).send({

@@ -34,7 +34,7 @@ export class NewCelebrityComponent {
         Name: ['', [Validators.required]],
         Gender: ['', [Validators.required]],
         Number: [''],
-        Email: ['', [Validators.email]],
+        Email: ['',],
         MainContentLanguage: [''],
         MainVertical: [''],
         Occupation: [''],
@@ -46,7 +46,7 @@ export class NewCelebrityComponent {
       }),
       socials: this.formBuilder.group({
         InstagramHandle: ['', [Validators.required]],
-        InstagramFollowers: [''],
+        InstagramFollowers: [],
         InstagramLink: [''],
 
         TiktokHandle: [''],
@@ -81,6 +81,7 @@ export class NewCelebrityComponent {
         PreviouslyWorkedWith: [''],
       }),
       extraInfo: this.formBuilder.group({
+        Game:   [''],
         PreviousBrands: [''],
         Bio: [''],
         Notes: [''],
@@ -90,8 +91,11 @@ export class NewCelebrityComponent {
   }
 
   protected onSubmit(): void {
+    console.log(this.newCelebrityForm);
     const formValues = this.processFormGroups(this.newCelebrityForm);
     formValues.updatedBy = this.userService.getID();
+    console.log(formValues);
+
 
     this.service.addCelebrity({ ...formValues }).subscribe((res) => {
       this.data = res;
@@ -116,11 +120,12 @@ export class NewCelebrityComponent {
             ...this.processFormGroups(control),
           };
         } else if (control instanceof FormControl) {
-            if (key.endsWith('Followers') || key.endsWith('Number') && control.value === null){
-              valuesObject[key] = null;
-            } else {
+          if ((key.endsWith('Followers') || key.endsWith('Number')) && (control.value === null || control.value === undefined || control.value === '')) {
+            valuesObject[key] = null;
+        } else {
             valuesObject[key] = control.value;
-            }
+        }
+
         }
       });
     }
