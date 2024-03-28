@@ -10,29 +10,38 @@
   </header>
 
   <div class="filters">
+
     <mat-form-field class="filter">
+      <mat-icon matPrefix style="color: aliceblue">search</mat-icon>
+      <mat-label> Client Filter</mat-label>
       <input
         type="text"
         matInput
-        placeholder="🔍 Client Filter"
         [matAutocomplete]="autoClient"
         [(ngModel)]="selectedClientName"
         (input)="searchClients($any($event).target.value)"
         (focus)="searchClients($any($event).target.value)"
       />
-      <mat-autocomplete #autoClient="matAutocomplete" (optionSelected)="onClientNameSelect($event)">
+      <mat-autocomplete
+        #autoClient="matAutocomplete"
+        (optionSelected)="onClientNameSelect($event)"
+      >
         <mat-option value="">All Clients</mat-option>
-        <mat-option *ngFor="let client of clientName" [value]="client">
+           <mat-option *ngFor="let client of clientName" [value]="client">
+  
           {{ client }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
 
     <mat-form-field class="filter">
+      <mat-icon matPrefix style="color: aliceblue">search</mat-icon>
+      <mat-label>Industry Filter</mat-label>
+
       <input
         type="text"
         matInput
-        placeholder="🔍 Industry Filter"
+      
         [matAutocomplete]="autoIndustry"
         [(ngModel)]="selectedClientIndustry"
         (input)="searchIndustry($any($event).target.value)"

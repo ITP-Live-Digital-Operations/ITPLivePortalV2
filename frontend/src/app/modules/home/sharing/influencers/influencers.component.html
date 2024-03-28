@@ -3,23 +3,32 @@
   <div class="loading-container"*ngIf="isLoading">
     <img  src="../../../../../assets/gifs/table.gif" alt="Loading...">
   </div>
-  
-  <div class="search-bar" [hidden]="isLoading" >
-    <mat-form-field>
-      <input
-        #searchInput
-        matInput
-        (keyup)="applyFilterChange('search', searchInput.value)"
-        placeholder="🔍 Search"
-      />
-    </mat-form-field>
-  </div>
-  
+<h2 style="align-items: center; font-size: 35px">Influencers List</h2>
+
+<div id="search">
+  <svg viewBox="0 0 420 60">
+    <rect class="bar" />
+  </svg>
+
+  <mat-form-field>
+    <input
+      #searchInput
+      matInput
+      (keyup)="applyFilterChange('search', searchInput.value)"
+      placeholder="Search"
+    />
+    <mat-icon matPrefix style="color: aliceblue">search</mat-icon>
+  </mat-form-field>
+</div>
+<div>
+
+<div class="form-container">
   <div class="filter-container"[hidden]="isLoading">
+
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <mat-icon>filter_list</mat-icon>
+          <mat-icon style="color: aliceblue">filter_list</mat-icon>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <mat-form-field class="filter">

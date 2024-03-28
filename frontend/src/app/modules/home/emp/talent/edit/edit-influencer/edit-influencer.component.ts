@@ -90,7 +90,22 @@ export class EditInfluencerComponent {
       }),
     });
   }
-
+  activeTabIndex: number = 0;
+  tabCount: number = 3; 
+  nextTab() {
+    if (this.activeTabIndex < this.tabCount - 1) {
+      this.activeTabIndex++;
+    }
+  }
+  
+  prevTab() {
+    if (this.activeTabIndex > 0) {
+      this.activeTabIndex--;
+    }
+  }
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
   private GetInfluencerData(inputdata: any): void {
     this.service.getInfluencer(inputdata).subscribe((item) => {
       this.influencerData = item;

@@ -20,6 +20,10 @@ import { ProductionFormComponent } from './add-booking/production-form/productio
 import { EditorFormComponent } from './add-booking/editor-form/editor-form.component';
 import { GraphicsFormComponent } from './add-booking/graphics-form/graphics-form.component';
 import { ProductionTeamMembersFormComponent } from './add-booking/production-form/production-team-members-form/production-team-members-form.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -36,7 +40,8 @@ import { ProductionTeamMembersFormComponent } from './add-booking/production-for
     ProductionFormComponent,
     EditorFormComponent,
     GraphicsFormComponent,
-    ProductionTeamMembersFormComponent
+    ProductionTeamMembersFormComponent,
+
   ],
   imports: [
     CommonModule,
@@ -44,7 +49,7 @@ import { ProductionTeamMembersFormComponent } from './add-booking/production-for
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,MatExpansionModule,MatDatepickerModule,MatNativeDateModule,MatSortModule,MatPaginatorModule,MatTableModule,
   ]
 })
 export class OriginalsModule { }

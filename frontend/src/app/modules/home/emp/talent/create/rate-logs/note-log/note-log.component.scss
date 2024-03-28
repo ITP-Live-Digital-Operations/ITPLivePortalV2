@@ -8,10 +8,18 @@
 
 }
 
-button{
-  border-radius: 8px!important;
-  background-color: #1f3371!important;
-  color: white!important;
+
+
+.submit-btn{
+  align-self: flex-end;
+  width: 15%;
+  background-color: #3957b1;
+  color: #FFF;
+  border-radius: 10px!important;
+
+  &:disabled {
+    background-color: #1f3371;
+    color: #FFF;
+    opacity: 0.5;
+  }
 }
-
-

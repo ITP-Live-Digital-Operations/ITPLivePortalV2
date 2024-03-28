@@ -1,13 +1,15 @@
 .row{
-    display: flex;
-    flex-wrap: wrap;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 15px;
+  padding-bottom: 20px;
+}
 
-  
-  
-  mat-form-field {
-    flex: 1;
-    margin-right: 10px;
-    margin-bottom: 5px;
-   
-  } 
+
+
+mat-form-field {
+  flex: 1;
+  margin-right: 10px;
+  margin-bottom: 5px;
+ 
+} 

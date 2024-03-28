@@ -47,7 +47,7 @@ export interface ogBookings{
   createdAt: Date;
   updatedAt: Date;
   User: UserIdandName;
-  ogShow: ogShowIdandName;
+  ogshow: ogShow;
 }
 
 export interface ogBookingsCreate{

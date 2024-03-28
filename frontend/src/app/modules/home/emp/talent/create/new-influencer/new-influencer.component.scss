@@ -25,3 +25,106 @@
 .mat-mdc-raised-button.mat-primary {
   --mdc-protected-button-container-color: #4789A1;
 }
+
+.form-container {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.144);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 1089px;
+  margin: auto;
+  overflow: hidden;
+
+  h1{
+    color: #FFF;
+    margin-left: 35%;
+
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  mat-form-field {
+    background-color: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+
+    mat-label {
+      color: #FFF;
+    }
+
+    input, textarea, mat-select {
+      background-color: transparent;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    ::ng-deep .mdc-text-field{
+      background-color: transparent;
+    }
+
+    ::ng-deep .matformfieldlineripple{
+      display: none;
+    }
+
+
+    .mat-datepicker-toggle,
+    .mat-form-field-suffix {
+      color: rgba(0, 0, 0, 0.54);
+    }
+  }
+
+  input[matInput], textarea[matInput] {
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  
+
+  ::ng-deep .mat-datepicker-toggle-default-icon {
+    color: #FFF;
+  }
+
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent;
+    border-radius: 10px !important;
+  }
+
+  mat-datepicker {
+    mat-calendar {
+      border-radius: 10px;
+    }
+  }
+}
+::ng-deep .mat-mdc-select-panel {
+  background-color: rgba(41, 57, 93, 0.91)!important; 
+  backdrop-filter: blur(7px); 
+}
+
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
+  color: #ffffff !important;
+
+}
+::ng-deep .mat-mdc-option .mat-pseudo-checkbox-full {
+  margin-right: 16px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  border-color: white;
+}
