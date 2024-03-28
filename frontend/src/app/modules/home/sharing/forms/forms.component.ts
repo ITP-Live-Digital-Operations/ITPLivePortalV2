@@ -21,7 +21,7 @@ export class FormsComponent {
     this.getRole();
     this.getPrivilegeLevel();
   }
-  changeView(view: 'main' | 'talent' | 'campaign' | 'sales'| 'originals') {
+  changeView(view: 'main' | 'talent' | 'campaign' | 'sales'| 'sales') {
     this.currentView = view;
   }
 

@@ -18,7 +18,7 @@ import { CelebrityModel } from 'src/app/core/interfaces/celebrity.model';
   styleUrls: ['./celebrities-list.component.scss'],
 })
 export class CelebritiesListComponent {
-
+  public isLoading = true;
   public dataSource: any;
   public UserDetails: any;
   public verticals: string[] = [];
@@ -57,6 +57,7 @@ export class CelebritiesListComponent {
     'TiktokFollowers',
     'TwitterFollowers',
     'YoutubeFollowers',
+    'TwitchFollowers',
     'CountryLocation',
     'MainVertical',
     'Game',
@@ -76,9 +77,13 @@ export class CelebritiesListComponent {
   }
 
   private GetAllCelebrities(): void {
+    this.isLoading = true;
     this.service.getCelebrities().subscribe((item) => {
       this.UserDetails = item;
+
+      this.isLoading = false;
       this.dataSource = new MatTableDataSource<CelebrityModel>(
+
         this.UserDetails
       );
       this.dataSource.paginator = this.paginator;

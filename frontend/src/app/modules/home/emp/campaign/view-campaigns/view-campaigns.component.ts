@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class ViewCampaignsComponent {
   protected dataSource: any;
   public userRole = this.userService.getRole();
-
+  public isLoading = true;
   protected campaigns: string[] = [];
   protected clients: string[] = [];
   protected influencers: string[] = [];
@@ -67,11 +67,12 @@ export class ViewCampaignsComponent {
   }
 
   public loadCampaigns() {
+    this.isLoading = true;
     this.campaignService.getCampaigns().subscribe((res) => {
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator!;
       this.dataSource.sort = this.sort;
-
+      this.isLoading = false;
       // Extract unique values from columns to build filter
       this.campaigns = [
         ...new Set(res.map((result: any) => result.campaignName)),

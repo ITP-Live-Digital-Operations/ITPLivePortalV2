@@ -1,5 +1,26 @@
 <form [formGroup]="form">
   <div class="row">
+    <mat-form-field *ngIf="!isCelebrity">
+      <mat-label>Games</mat-label>
+      <textarea
+        matInput
+        formControlName="Game"
+        rows="2"
+        autocomplete="off"
+      ></textarea>
+      <mat-error
+        *ngIf="
+          form.controls['Game'].invalid &&
+          form.controls['Game'].touched
+        "
+      >
+        Please enter previous brands.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div class="row">
     <mat-form-field>
       <mat-label>Previous Brands</mat-label>
       <textarea

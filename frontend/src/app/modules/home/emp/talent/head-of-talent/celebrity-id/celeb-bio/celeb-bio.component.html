@@ -1,0 +1,14 @@
+<div class="container" >
+  <div class="profile-section">
+    <article class="profile-item">
+      <header *ngIf="profileData.data.Bio; else elseBlock" >{{ profileData.data.Bio }}</header>
+      <ng-template #elseBlock>
+        <header>No Biography Available</header>
+      </ng-template>
+
+    </article>
+  </div>
+</div>
+
+
+

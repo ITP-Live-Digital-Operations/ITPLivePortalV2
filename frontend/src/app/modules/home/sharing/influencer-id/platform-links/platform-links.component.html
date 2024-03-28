@@ -14,7 +14,7 @@
           {{ this.profileData?.data.InstagramHandle }}
         </p>
         <p class="number">
-          {{ this.profileData?.data.InstagramFollowers }}
+          {{ this.profileData?.data.InstagramFollowers | numberFormat }}
         </p>
       </li>
 
@@ -30,7 +30,7 @@
         <p class="mb-0">
           {{ this.profileData?.data.TiktokHandle }}</p>
         <p class="number">
-          {{ this.profileData?.data.TiktokFollowers }}
+          {{ this.profileData?.data.TiktokFollowers | numberFormat }}
         </p>
       </li>
 
@@ -47,7 +47,7 @@
           {{ this.profileData?.data.FacebookHandle }}
         </p>
         <p class="number">
-          {{ this.profileData?.data.FacebookFollowers }}
+          {{ this.profileData?.data.FacebookFollowers | numberFormat }}
         </p>
       </li>
 
@@ -64,7 +64,7 @@
           {{ this.profileData?.data.SnapchatHandle }}
         </p>
         <p class="number">
-          {{ this.profileData?.data.SnapchatFollowers }}
+          {{ this.profileData?.data.SnapchatFollowers | numberFormat }}
         </p>
       </li>
 
@@ -80,7 +80,7 @@
         <p class="mb-0">
           {{ this.profileData?.data.TwitterHandle }}</p>
         <p class="number">
-          {{ this.profileData?.data.TwitterFollowers }}
+          {{ this.profileData?.data.TwitterFollowers  | numberFormat}}
         </p>
       </li>
 
@@ -95,7 +95,7 @@
         </ng-container>
         <p class="mb-0">{{ this.profileData?.data.YoutubeHandle }}</p>
         <p class="number">
-          {{ this.profileData?.data.YoutubeFollowers }}
+          {{ this.profileData?.data.YoutubeFollowers | numberFormat }}
         </p>
       </li>
 
@@ -110,7 +110,7 @@
         </ng-container>
         <p class="mb-0">{{ this.profileData?.data.TwitchHandle }}</p>
         <p class="mb-0">
-          {{ this.profileData?.data.TwitchFollowers }}
+          {{ this.profileData?.data.TwitchFollowers | numberFormat }}
         </p>
       </li>
 

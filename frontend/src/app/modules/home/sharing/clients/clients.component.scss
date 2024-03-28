@@ -54,8 +54,17 @@
   }
 }
 
+
 ::ng-deep .mat-mdc-autocomplete-panel {  background: #324481fd !important;
 }
 ::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
   color: #ffffff !important;
+
+.loading-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56vh; /* Adjust this value as needed */
+  width: 100%;
+
 }

@@ -16,6 +16,7 @@ import { BasicInfoComponent } from './celebrity-id/basic-info/basic-info.compone
 import { CelebrityRemarksComponent } from './celebrity-id/celebrity-remarks/celebrity-remarks.component';
 import { EditCelebrityRemarkComponent } from './celebrity-id/celebrity-remarks/edit-celebrity-remark/edit-celebrity-remark.component';
 import { AddCelebrityRemarkComponent } from './celebrity-id/celebrity-remarks/add-celebrity-remark/add-celebrity-remark.component';
+import { CelebBioComponent } from './celebrity-id/celeb-bio/celeb-bio.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AddCelebrityRemarkComponent } from './celebrity-id/celebrity-remarks/ad
     CelebrityRemarksComponent,
     EditCelebrityRemarkComponent,
     AddCelebrityRemarkComponent,
+    CelebBioComponent,
   ],
   imports: [
     CommonModule,

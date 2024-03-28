@@ -178,6 +178,7 @@ mat-paginator {
   }
 }
 
+
 // Custom Scrollbars
 ::-webkit-scrollbar-track {
   background-color: #f5f5f5;
@@ -268,5 +269,13 @@ mat-paginator {
   color: #1239ae;
   fill: none;
   stroke: currentColor;
+}
+
+.loading-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56vh; /* Adjust this value as needed */
+  width: 100%;
 }
 
