@@ -1,7 +1,7 @@
 <div class="loading-container"*ngIf="isLoading">
   <img  src="../../../../../assets/gifs/table.gif" alt="Loading...">
 </div>
-<section class="clients-section" *ngIf="!isLoading">
+<section class="clients-section"  [hidden]="isLoading">
   <header>
     <h2>Clients</h2>
     <button type="button" class="add-client-btn" (click)="redirectToNewClient()">

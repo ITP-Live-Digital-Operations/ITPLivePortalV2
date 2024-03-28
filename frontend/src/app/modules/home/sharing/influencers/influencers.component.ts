@@ -90,6 +90,7 @@ export class InfluencersComponent {
   }
 
   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
     this.extractColumnData();
   }
 
@@ -164,7 +165,7 @@ export class InfluencersComponent {
     );
     return Array.from(attributeSet).sort();
   }
-  
+
   private getInfluencers(): void {
     this.isLoading = true; 
     this.influencerService
@@ -178,11 +179,13 @@ export class InfluencersComponent {
         this.allVerticals = this.extractUniqueAttributes(this.UserDetails.influencers, 'MainVertical');
         this.allNationalities = this.extractUniqueAttributes(this.UserDetails.influencers, 'Nationality');
         this.isLoading = false; 
+        
 
 
         this.dataSource = new MatTableDataSource<InfluencerModel[]>(
           this.UserDetails.influencers
         );
+        this.dataSource.paginator = this.paginator;
         this.dataSource.sortingDataAccessor = (item: any, property: any) => {
           switch (property) {
             case 'CPE':

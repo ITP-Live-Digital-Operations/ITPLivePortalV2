@@ -4,7 +4,7 @@
     <img  src="../../../../../assets/gifs/table.gif" alt="Loading...">
   </div>
   
-  <div class="search-bar" *ngIf="!isLoading" >
+  <div class="search-bar" [hidden]="isLoading" >
     <mat-form-field>
       <input
         #searchInput
@@ -15,7 +15,7 @@
     </mat-form-field>
   </div>
   
-  <div class="filter-container"*ngIf="!isLoading">
+  <div class="filter-container"[hidden]="isLoading">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -79,7 +79,6 @@
           <input matInput type="number" [(ngModel)]="maxFollowers" (ngModelChange)="applyFollowerRangeChange()">
         </mat-form-field>
       </div>
-      
       <div class="filter">
         <mat-form-field>
           <mat-label>Min CPE</mat-label>
@@ -122,7 +121,7 @@
     </button>
   </div>
 
-  <div class="table-container" *ngIf="!isLoading">
+  <div class="table-container" [hidden]="isLoading">
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>

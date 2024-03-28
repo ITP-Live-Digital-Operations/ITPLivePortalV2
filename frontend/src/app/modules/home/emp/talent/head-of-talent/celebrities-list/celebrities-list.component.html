@@ -2,7 +2,7 @@
   <img  src="../../../../../assets/gifs/table.gif" alt="Loading...">
 </div>
 
-<div style="position: relative" *ngIf="!isLoading">
+<div style="position: relative" [hidden]="isLoading">
   <mat-form-field
     style="width: 100%; height: 10%; margin-left: 0px; display: flex"
   >
