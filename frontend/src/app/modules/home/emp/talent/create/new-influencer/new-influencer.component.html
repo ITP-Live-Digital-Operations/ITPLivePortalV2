@@ -1,42 +1,4 @@
-<style>
-  ::ng-deep .mat-mdc-tab-body-content {
-    height: 100%;
-    overflow: hidden !important;
-  }
-    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
-      flex-grow: 1;
-      border-right: 1px solid rgba(70, 70, 93, 0.559);
-      transition: background-color 0.3s ease;
-      text-align: center;
-      font-size: 16px;
-      padding-bottom: 20px;
-      color: #333; 
-    }
-    ::ng-deep .mat-raised-button {
-      border-radius: 20px;}
-    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:hover {
-      background-color: rgba(70, 70, 93, 0.379);
-      cursor: pointer;
-    }
-  
-    @media (max-width: 767px) {
-      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header {
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    
-      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
-        display: inline-block;
-        width: auto;
-        border-right: none;
-      }
-      
-      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:nth-child(n+3) {
-        display: none; 
-      }
-    }
-    </style>
+
 <div class="form-container">
   <h2 style="text-align: center;">New Influencer</h2>
    <!-- GENERAL INFORMATION HERE -->
@@ -51,31 +13,38 @@
     </mat-tab>
 
     <!-- SOCIALS AND LICENSE HERE -->
-    <mat-tab label="Socials & Licenses" >
+    <mat-tab label="Socials" >
       <form [formGroup]="newInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
        <app-socials formGroupName="socials"></app-socials>
-       <div class="row">
-        <mat-checkbox  color="primary" formControlName="KSALicense">KSA License</mat-checkbox>
-      </div>
-  
-      <div class="row">
-        <mat-checkbox color="primary" formControlName="UAELicense">UAE License</mat-checkbox>
-      </div>
+      
   
       </form>
     </mat-tab>
-    <!-- AGENCY AND EXTRA INFORMATION HERE -->
+    <!-- License & Agency InformationHERE -->
  
-   <mat-tab label="Agency & Extra Information"  class="tab-with-border">
+   <mat-tab label="License & Agency Information"  class="tab-with-border">
       <form [formGroup]="newInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
                <app-agency-info formGroupName="agencyInfo" [isCelebrity]="isNotCelebrity"></app-agency-info>
+       
+
+               <div class="row">
+                <mat-checkbox  color="primary" formControlName="KSALicense">KSA License</mat-checkbox>
+              </div>
+          
+              <div class="row">
+                <mat-checkbox color="primary" formControlName="UAELicense">UAE License</mat-checkbox>
+              </div>
+      </form>
+    </mat-tab>
+
+    <mat-tab label=" Extra Information"  class="tab-with-border">
+      <form [formGroup]="newInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            
                <app-extra-info formGroupName="extraInfo" [isCelebrity]="isNotCelebrity"></app-extra-info>
 
 
       </form>
     </mat-tab>
-
-
     
   
       

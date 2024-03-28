@@ -1,42 +1,4 @@
-<style>
-  ::ng-deep .mat-mdc-tab-body-content {
-    height: 100%;
-    overflow: hidden !important;
-  }
-    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
-      flex-grow: 1;
-      border-right: 1px solid rgba(70, 70, 93, 0.559);
-      transition: background-color 0.3s ease;
-      text-align: center;
-      font-size: 16px;
-      padding-bottom: 20px;
-      color: #333; 
-    }
-    ::ng-deep .mat-raised-button {
-      border-radius: 20px;}
-    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:hover {
-      background-color: rgba(70, 70, 93, 0.379);
-      cursor: pointer;
-    }
-  
-    @media (max-width: 767px) {
-      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header {
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    
-      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
-        display: inline-block;
-        width: auto;
-        border-right: none;
-      }
-      
-      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:nth-child(n+3) {
-        display: none; 
-      }
-    }
-    </style>
+
 <div class="form-container">
   <h2 style="text-align: center;">New Celebrity</h2>
    <!-- GENERAL INFORMATION HERE -->
@@ -57,16 +19,21 @@
       </form>
     </mat-tab>
     <!-- AGENCY AND EXTRA INFORMATION HERE -->
-    <mat-tab label="Agency & Extra Info">
+    <mat-tab label="Agency Info">
       <form [formGroup]="newCelebrityForm" (ngSubmit)="onSubmit()" autocomplete="off">
-        <h2 >Agency Information</h2>
+
 
             <app-agency-info formGroupName="agencyInfo" [isCelebrity]="isCelebrity"></app-agency-info>
-            <h2>Extra Information</h2>
+         
+      </form>
+    </mat-tab>
+    <mat-tab label="Extra Info">
+      <form [formGroup]="newCelebrityForm" (ngSubmit)="onSubmit()" autocomplete="off">
+        
+         
             <app-extra-info formGroupName="extraInfo" [isCelebrity]="isCelebrity"></app-extra-info>
       </form>
     </mat-tab>
-
 
   </mat-tab-group>
   <div style="display: flex; justify-content: space-between;">

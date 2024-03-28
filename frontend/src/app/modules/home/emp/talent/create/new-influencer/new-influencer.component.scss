@@ -6,25 +6,25 @@
   --mdc-checkbox-disabled-selected-icon-color: white;
   --mdc-checkbox-disabled-unselected-icon-color: white;
   --mdc-checkbox-selected-checkmark-color: #fff;
-  --mdc-checkbox-selected-focus-icon-color: #4789A1;
-  --mdc-checkbox-selected-hover-icon-color: #4789A1;
-  --mdc-checkbox-selected-icon-color: #4789A1;
-  --mdc-checkbox-selected-pressed-icon-color: #4789A1;
+  --mdc-checkbox-selected-focus-icon-color:rgba(41, 57, 93, 0.91);
+  --mdc-checkbox-selected-hover-icon-color: rgba(41, 57, 93, 0.91);
+  --mdc-checkbox-selected-icon-color: rgba(41, 57, 93, 0.91);
+  --mdc-checkbox-selected-pressed-icon-color: rgba(41, 57, 93, 0.91);
   --mdc-checkbox-unselected-focus-icon-color: white;
   --mdc-checkbox-unselected-hover-icon-color: white;
   --mdc-checkbox-unselected-icon-color: white;
   --mdc-checkbox-unselected-pressed-icon-color: white;
-  --mdc-checkbox-selected-focus-state-layer-color: #4789A1;
-  --mdc-checkbox-selected-hover-state-layer-color: #4789A1;
-  --mdc-checkbox-selected-pressed-state-layer-color: #4789A1;
+  --mdc-checkbox-selected-focus-state-layer-color: rgba(41, 57, 93, 0.91);
+  --mdc-checkbox-selected-hover-state-layer-color: rgba(41, 57, 93, 0.91);
+  --mdc-checkbox-selected-pressed-state-layer-color:rgba(41, 57, 93, 0.91);
   --mdc-checkbox-unselected-focus-state-layer-color: white;
   --mdc-checkbox-unselected-hover-state-layer-color: white;
   --mdc-checkbox-unselected-pressed-state-layer-color: white;
 }
 
-.mat-mdc-raised-button.mat-primary {
-  --mdc-protected-button-container-color: #4789A1;
-}
+// .mat-mdc-raised-button.mat-primary {
+//   --mdc-protected-button-container-color: #4789A1;
+// }
 
 .form-container {
   backdrop-filter: blur(10px);
@@ -128,3 +128,41 @@
   border-radius: 5px;
   border-color: white;
 }
+
+::ng-deep .mat-mdc-tab-body-content {
+  height: 100%;
+  overflow: hidden !important;
+}
+  ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
+    flex-grow: 1;
+    border-right: 1px solid rgba(70, 70, 93, 0.559);
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 20px;
+    color: #333; 
+  }
+  ::ng-deep .mat-raised-button {
+    border-radius: 20px;}
+  ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:hover {
+    background-color: rgba(70, 70, 93, 0.379);
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
+      display: inline-block;
+      width: auto;
+      border-right: none;
+    }
+    
+    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:nth-child(n+3) {
+      display: none; 
+    }
+  }
