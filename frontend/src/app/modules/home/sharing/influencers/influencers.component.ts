@@ -36,7 +36,11 @@ export class InfluencersComponent {
   public allNationalities: string[] = [];
   public minFollowers: number = 0; // Default minimum
   public maxFollowers: number = 50000000; // Default maximum
-
+  public minCPE: number = 0; // Default minimum for CPE
+  public maxCPE: number = 1000; // Default maximum for CPE
+  public minCPM: number = 0; // Default minimum for CPM
+  public maxCPM: number = 1000; // Default maximum for CPM
+  
   filterCriteria: any = {
     search: '',
     gender: [],
@@ -100,6 +104,9 @@ export class InfluencersComponent {
       this.nationalities.push(row.nationalities);
     }
   }
+
+
+
   applyFollowerRangeChange(): void {
     // Update the min and max followers
     this.minFollowers = this.minFollowers;
@@ -111,8 +118,6 @@ export class InfluencersComponent {
     // Update the dropdowns based on the filtered data
     this.updateFilterDropdowns();
   }
-
-
 
   applyPlatformFilter(selectedPlatform: string): void {
     // Assuming you have a filterCriteria object to store the selected platform
@@ -136,7 +141,30 @@ export class InfluencersComponent {
   }
 
 
-
+  private isCPECpmInRange(influencer: InfluencerModel): boolean {
+    // Access CPE and CPM from the nested influencerMetrics structure
+    const isCpeInRange = influencer.influencerMetrics?.CPE >= this.minCPE && influencer.influencerMetrics?.CPE <= this.maxCPE;
+    const isCpmInRange = influencer.influencerMetrics?.CPM >= this.minCPM && influencer.influencerMetrics?.CPM <= this.maxCPM;
+  
+    // Account for potential undefined values with nullish coalescing operator (??)
+    return (isCpeInRange ?? false) && (isCpmInRange ?? false);
+  }
+  
+  applyCPECPMRangeChange(): void {
+    this.applyFilter();
+    this.updateFilterDropdowns();
+  }
+  
+  private extractUniqueAttributes(data: InfluencerModel[], attribute: keyof InfluencerModel): string[] {
+    const attributeSet = new Set<string>(
+      data.map(item => {
+        const value = item[attribute];
+        return (typeof value === 'string' || typeof value === 'number') ? value.toString().trim() : null;
+      }).filter((attr): attr is string => attr !== null && attr !== '')
+    );
+    return Array.from(attributeSet).sort();
+  }
+  
   private getInfluencers(): void {
     this.isLoading = true; 
     this.influencerService
@@ -186,27 +214,15 @@ export class InfluencersComponent {
       });
   }
 
-  private extractUniqueAttributes(data: InfluencerModel[], attribute: keyof InfluencerModel): string[] {
-    const attributeSet = new Set<string>(
-      data.map(item => {
-        const value = item[attribute];
-        return (typeof value === 'string' || typeof value === 'number') ? value.toString().trim() : null;
-      }).filter((attr): attr is string => attr !== null && attr !== '')
-    );
-    return Array.from(attributeSet).sort();
-  }
+
 
   private updateFilterDropdowns(): void {
     // Use a copy of the full data set as the starting point for filtering
     let baseFilteredData = [...this.dataSource.data];
-
-    // Dynamically update options for each filter based on current filterCriteria
-    // Note: It's important to maintain the integrity of each "all" array to allow for multiple selections
-
-    // Filter for Gender options based on all criteria except gender itself
     this.allGenders = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
         this.isFollowerCountInRange(data) &&
+        this.isCPECpmInRange(data) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
@@ -218,6 +234,7 @@ export class InfluencersComponent {
     this.allLocations = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
         this.isFollowerCountInRange(data) &&
+        this.isCPECpmInRange(data) &&
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
@@ -229,6 +246,7 @@ export class InfluencersComponent {
     this.allCities = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
         this.isFollowerCountInRange(data) &&
+        this.isCPECpmInRange(data) &&
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
@@ -239,6 +257,7 @@ export class InfluencersComponent {
     this.allVerticals = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
         this.isFollowerCountInRange(data) &&
+        this.isCPECpmInRange(data) &&
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
@@ -249,6 +268,7 @@ export class InfluencersComponent {
     this.allNationalities = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
         this.isFollowerCountInRange(data) &&
+        this.isCPECpmInRange(data) && 
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
@@ -273,6 +293,10 @@ export class InfluencersComponent {
     }
     this.minFollowers = 0;
     this.maxFollowers = 50000000;
+    this.minCPE = 0;
+    this.maxCPE = 1000;
+    this.minCPM = 0;
+    this.maxCPM = 1000;
     this.allGenders = this.extractUniqueAttributes(this.dataSource.data, 'Gender');
     this.allLocations = this.extractUniqueAttributes(this.dataSource.data, 'CountryLocation');
     this.allCities = this.extractUniqueAttributes(this.dataSource.data, 'CityLocation');
@@ -353,7 +377,8 @@ export class InfluencersComponent {
         isMatchVertical &&
         isMatchNationalities &&
         isMatchCity &&
-        followersInRange
+        followersInRange &&
+        this.isCPECpmInRange(data)
       );
     };
 
@@ -365,6 +390,7 @@ export class InfluencersComponent {
     this.updateFilterDropdowns();
   }
 
+  
   applyFilterChange(filterType: string, filterValue: any): void {
     switch (filterType) {
       case 'gender':

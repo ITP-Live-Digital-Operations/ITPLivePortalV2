@@ -79,7 +79,31 @@
           <input matInput type="number" [(ngModel)]="maxFollowers" (ngModelChange)="applyFollowerRangeChange()">
         </mat-form-field>
       </div>
-
+      
+      <div class="filter">
+        <mat-form-field>
+          <mat-label>Min CPE</mat-label>
+          <input matInput type="number" [(ngModel)]="minCPE" (ngModelChange)="applyCPECPMRangeChange()">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Max CPE</mat-label>
+          <input matInput type="number" [(ngModel)]="maxCPE" (ngModelChange)="applyCPECPMRangeChange()">
+        </mat-form-field>
+      </div>
+      
+      <div class="filter">
+        <mat-form-field>
+          <mat-label>Min CPM</mat-label>
+          <input matInput type="number" [(ngModel)]="minCPM" (ngModelChange)="applyCPECPMRangeChange()">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Max CPM</mat-label>
+          <input matInput type="number" [(ngModel)]="maxCPM" (ngModelChange)="applyCPECPMRangeChange()">
+        </mat-form-field>
+      </div>
+      
 
       <button mat-raised-button color="primary" (click)="resetFilters()">Reset Filters</button>
     </mat-expansion-panel>
