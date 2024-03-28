@@ -11,6 +11,7 @@ import { StatisticsService } from 'src/app/core/services/statistics.service';
   styleUrls: ['./client-stats.component.scss']
 })
 export class ClientStatsComponent {
+    public isLoading = true;
     public path = PATH;
     public dataSource: any;
     private clientMetrics : any;
@@ -39,8 +40,10 @@ export class ClientStatsComponent {
     }
 
     public loadClientMetrics() {
+      this.isLoading = true; 
       this.statisticsService.getClientMetrics().subscribe((res) => {
         this.clientMetrics = res;
+        this.isLoading = false; 
         this.dataSource = new MatTableDataSource<any[]>(
           this.clientMetrics
         );

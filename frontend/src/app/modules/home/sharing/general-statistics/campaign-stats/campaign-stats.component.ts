@@ -13,7 +13,7 @@ import { StatisticsService } from 'src/app/core/services/statistics.service';
 export class CampaignStatsComponent {
 
   path = PATH;
-
+  public isLoading = true;
   public dataSource: any;
   private campaignMetrics : any;
   displayedColumns: string[] = [
@@ -43,8 +43,10 @@ export class CampaignStatsComponent {
   }
 
   public loadCampaignMetrics() {
+    this.isLoading = true; 
     this.statisticsService.getCampaignMetrics().subscribe((res) => {
       this.campaignMetrics = res;
+      this.isLoading = false; 
       this.dataSource = new MatTableDataSource<any[]>(
         this.campaignMetrics
       );

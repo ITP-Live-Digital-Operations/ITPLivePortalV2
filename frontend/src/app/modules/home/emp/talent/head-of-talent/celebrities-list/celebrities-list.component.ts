@@ -17,8 +17,8 @@ import { MatSelect } from '@angular/material/select';
   styleUrls: ['./celebrities-list.component.scss'],
 })
 export class CelebritiesListComponent {
-
-  public dataSource: any;
+  public isLoading = true;
+  public dataSource: any; 
   public UserDetails: any;
   public verticals: string[] = [];
   public locations: string[] = [];
@@ -75,8 +75,10 @@ export class CelebritiesListComponent {
   }
 
   private GetAllCelebrities(): void {
+    this.isLoading = true; 
     this.service.getCelebrities().subscribe((item) => {
       this.UserDetails = item;
+      this.isLoading = false;
       this.dataSource = new MatTableDataSource<InfluencerModel>(
         this.UserDetails
       );

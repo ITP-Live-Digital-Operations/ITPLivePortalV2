@@ -1,5 +1,10 @@
+
 <div class="form-container">
-  <div class="search-bar">
+  <div class="loading-container"*ngIf="isLoading">
+    <img  src="../../../../../assets/gifs/table.gif" alt="Loading...">
+  </div>
+  
+  <div class="search-bar" [hidden]="isLoading" >
     <mat-form-field>
       <input
         #searchInput
@@ -9,8 +14,8 @@
       />
     </mat-form-field>
   </div>
-
-  <div class="filter-container">
+  
+  <div class="filter-container"[hidden]="isLoading">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -74,7 +79,30 @@
           <input matInput type="number" [(ngModel)]="maxFollowers" (ngModelChange)="applyFollowerRangeChange()">
         </mat-form-field>
       </div>
-
+      <div class="filter">
+        <mat-form-field>
+          <mat-label>Min CPE</mat-label>
+          <input matInput type="number" [(ngModel)]="minCPE" (ngModelChange)="applyCPECPMRangeChange()">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Max CPE</mat-label>
+          <input matInput type="number" [(ngModel)]="maxCPE" (ngModelChange)="applyCPECPMRangeChange()">
+        </mat-form-field>
+      </div>
+      
+      <div class="filter">
+        <mat-form-field>
+          <mat-label>Min CPM</mat-label>
+          <input matInput type="number" [(ngModel)]="minCPM" (ngModelChange)="applyCPECPMRangeChange()">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Max CPM</mat-label>
+          <input matInput type="number" [(ngModel)]="maxCPM" (ngModelChange)="applyCPECPMRangeChange()">
+        </mat-form-field>
+      </div>
+      
 
       <button mat-raised-button color="primary" (click)="resetFilters()">Reset Filters</button>
     </mat-expansion-panel>
@@ -93,7 +121,7 @@
     </button>
   </div>
 
-  <div class="table-container">
+  <div class="table-container" [hidden]="isLoading">
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
