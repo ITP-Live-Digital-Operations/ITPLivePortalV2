@@ -1,8 +1,10 @@
-<div class="logs-button">
+<div class="logs-button" *ngIf="!isLoading">
   <H2>Campaigns</H2>
 </div>
-
-<div class="filter-container">
+<div class="loading-container"*ngIf="isLoading">
+  <img  src="../../../../../assets/gifs/table.gif" alt="Loading...">
+</div>
+<div class="filter-container" *ngIf="!isLoading">
   <mat-form-field class="filter">
     <mat-label>🔍 Campaign Filter</mat-label>
     <input
@@ -45,7 +47,7 @@
   </mat-form-field>
 </div>
 
-<div class="table-container">
+<div class="table-container" *ngIf="!isLoading">
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="campaignName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign</th>
@@ -94,5 +96,6 @@
   [pageSizeOptions]="[5, 10, 25, 50, 100]"
   showFirstLastButtons
   aria-label="Select page"
+  *ngIf="!isLoading"
 >
 </mat-paginator>

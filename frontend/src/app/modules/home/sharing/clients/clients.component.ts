@@ -16,7 +16,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 })
 export class ClientsComponent {
   protected clients: any;
-
+  public isLoading = true;
   protected clientName: string[] = [];
   protected clientIndustry: string[] = [];
 
@@ -53,11 +53,12 @@ export class ClientsComponent {
   }
 
   private loadClients() {
+    this.isLoading = true;
     this.clientService.getClients().subscribe((clients: ClientModel[]) => {
       this.clients = new MatTableDataSource(clients);
       this.clients.paginator = this.paginator!;
       this.clients.sort = this.sort;
-
+      this.isLoading = false;
       // Extract unique values from columns to build filter
       this.clientName = [
         ...new Set(clients.map((result: any) => result.name)),

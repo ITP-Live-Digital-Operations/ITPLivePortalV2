@@ -21,6 +21,7 @@ import { MatSelect } from '@angular/material/select';
   styleUrls: ['./influencers.component.scss'],
 })
 export class InfluencersComponent {
+  public isLoading = true; 
   public dataSource: any;
   private UserDetails: any;
   public verticals: string[] = [];
@@ -137,6 +138,7 @@ export class InfluencersComponent {
 
 
   private getInfluencers(): void {
+    this.isLoading = true; 
     this.influencerService
       .getInfluencersWithRatings()
       .subscribe((response: PaginatedInfluencers) => {
@@ -147,6 +149,7 @@ export class InfluencersComponent {
         this.allCities = this.extractUniqueAttributes(this.UserDetails.influencers, 'CityLocation');
         this.allVerticals = this.extractUniqueAttributes(this.UserDetails.influencers, 'MainVertical');
         this.allNationalities = this.extractUniqueAttributes(this.UserDetails.influencers, 'Nationality');
+        this.isLoading = false; 
 
 
         this.dataSource = new MatTableDataSource<InfluencerModel[]>(

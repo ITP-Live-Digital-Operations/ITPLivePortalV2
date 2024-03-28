@@ -10,3 +10,10 @@ button {
     background-color: transparent!important;
   }
 }
+.loading-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56vh; /* Adjust this value as needed */
+  width: 100%;
+}

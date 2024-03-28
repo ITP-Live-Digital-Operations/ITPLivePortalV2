@@ -118,3 +118,10 @@ mat-paginator {
   width: 8px;
   height: 8px;
 }
+.loading-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56vh; /* Adjust this value as needed */
+  width: 100%;
+}

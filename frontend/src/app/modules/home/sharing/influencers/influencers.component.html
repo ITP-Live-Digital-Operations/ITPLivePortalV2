@@ -1,5 +1,10 @@
+
 <div class="form-container">
-  <div class="search-bar">
+  <div class="loading-container"*ngIf="isLoading">
+    <img  src="../../../../../assets/gifs/table.gif" alt="Loading...">
+  </div>
+  
+  <div class="search-bar" *ngIf="!isLoading" >
     <mat-form-field>
       <input
         #searchInput
@@ -9,8 +14,8 @@
       />
     </mat-form-field>
   </div>
-
-  <div class="filter-container">
+  
+  <div class="filter-container"*ngIf="!isLoading">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -93,7 +98,7 @@
     </button>
   </div>
 
-  <div class="table-container">
+  <div class="table-container" *ngIf="!isLoading">
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
