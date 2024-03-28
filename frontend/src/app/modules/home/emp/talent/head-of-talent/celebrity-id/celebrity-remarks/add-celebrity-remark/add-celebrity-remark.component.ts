@@ -37,6 +37,7 @@ export class AddCelebrityRemarkComponent {
       celebrityId: [this.celebId],
       note: [''],
     });
+    /* this.form.get('celebrityId')?.disable(); */
   }
 
   private getCelebrities(): void {

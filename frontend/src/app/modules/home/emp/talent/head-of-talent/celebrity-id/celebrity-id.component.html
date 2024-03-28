@@ -11,6 +11,11 @@
     <mat-tab label="Basic Information"
       ><app-basic-info [profileData]="celebrityData"></app-basic-info
     ></mat-tab>
+
+    <mat-tab label="Bio">
+      <app-celeb-bio [profileData]="celebrityData"></app-celeb-bio>
+    </mat-tab>
+
     <mat-tab label="Remarks"
       ><app-celebrity-remarks
         [profileData]="celebrityData"

@@ -1,15 +1,16 @@
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="row">
-      <mat-form-field>
-        <mat-label>Celebrity</mat-label>
-        <mat-select formControlName="celebrityId">
-          <mat-option *ngFor="let option of celebrities" [value]="option.id">{{
-            option.Name
-          }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+
+        <mat-form-field>
+          <mat-label>Celebrity</mat-label>
+          <mat-select formControlName="celebrityId">
+            <mat-option *ngFor="let option of celebrities" [value]="option.id">{{ option.Name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="not-allowed"></div>
+      </div>
+
 
     <div class="row">
       <mat-form-field>

@@ -1,17 +1,22 @@
-.form-container
-{
+.form-container {
   margin: 8%;
 }
 
-.icon-btn{
+.icon-btn {
   color: red;
-
 }
 
-button{
-  border-radius: 8px!important;
-  background-color: #1f3371!important;
-  color: white!important;
+button {
+  border-radius: 8px !important;
+  background-color: #1f3371 !important;
+  color: white !important;
 }
 
-
+.not-allowed {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: not-allowed;
+}
