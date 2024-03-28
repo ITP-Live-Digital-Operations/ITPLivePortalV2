@@ -44,7 +44,7 @@ export class EditCelebrityComponent {
         Address: [''],
       }),
       socials: this.formBuilder.group({
-        InstagramHandle: ['', [Validators.required]],
+        InstagramHandle: [''],
         InstagramFollowers: [''],
         InstagramLink: [''],
 
@@ -87,7 +87,22 @@ export class EditCelebrityComponent {
       }),
     });
   }
-
+  activeTabIndex: number = 0;
+  tabCount: number = 3; 
+  nextTab() {
+    if (this.activeTabIndex < this.tabCount - 1) {
+      this.activeTabIndex++;
+    }
+  }
+  
+  prevTab() {
+    if (this.activeTabIndex > 0) {
+      this.activeTabIndex--;
+    }
+  }
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
   private GetInfluencerData(inputdata: any): void {
     this.service.getCelebrity(inputdata).subscribe((item) => {
       this.celebrityData = item;

@@ -138,5 +138,17 @@ export class NewInfluencerComponent {
     }
     return valuesObject;
 }
+activeTabIndex: number = 0;
+tabCount: number = 3; 
+nextTab() {
+  if (this.activeTabIndex < this.tabCount - 1) {
+    this.activeTabIndex++;
+  }
+}
 
+prevTab() {
+  if (this.activeTabIndex > 0) {
+    this.activeTabIndex--;
+  }
+}
 }

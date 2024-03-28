@@ -421,8 +421,8 @@ export class InfluencersComponent {
 
   public editInfluencer(inputdata: any): void {
     this.dialog?.open(EditInfluencerComponent, {
-      width: '90%',
-      height: '80%',
+      width: '990px',
+      height: 'auto',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {

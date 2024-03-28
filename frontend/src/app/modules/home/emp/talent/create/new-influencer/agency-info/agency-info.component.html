@@ -1,93 +1,100 @@
 <form [formGroup]="form" autocomplete="off">
-<div class="row">
-  <mat-form-field *ngIf="!isCelebrity">
-    <mat-label>Agency</mat-label>
-    <input
-      matInput
-      type="text"
-      formControlName="Agency"
-      autocomplete="off"
-    />
-    <mat-error
-      *ngIf="
-        form.controls['Agency'].invalid &&
-        form.controls['Agency'].touched
-      "
-    >
-      Please enter a Contact Person.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Contact Person</mat-label>
-    <input
-      matInput
-      type="text"
-      formControlName="AgencyContactPerson"
-      autocomplete="off"
-    />
-    <mat-error
-      *ngIf="
-        form.controls['AgencyContactPerson'].invalid &&
-        form.controls['AgencyContactPerson'].touched
-      "
-    >
-      Please enter a Contact Person.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Phone Number</mat-label>
-    <input
-      matInput
-      type="number"
-      formControlName="AgencyNumber"
-      autocomplete="off"
-    />
-    <mat-error
-      *ngIf="
-        form.controls['AgencyNumber'].invalid &&
-        form.controls['AgencyNumber'].touched
-      "
-    >
-      Please enter a Contact Person.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Email</mat-label>
-    <input
-      matInput
-      type="email"
-      formControlName="AgencyEmail"
-      autocomplete="off"
-    />
-    <mat-error
-      *ngIf="
-        form.controls['AgencyEmail'].invalid &&
-        form.controls['AgencyEmail'].touched
-      "
-    >
-      Please enter a Contact Person.
-    </mat-error>
-  </mat-form-field>
-
-  <mat-form-field *ngIf="!isCelebrity">
-    <mat-label>Previously Worked With</mat-label>
-    <input
-      matInput
-      type="text"
-      formControlName="PreviouslyWorkedWith"
-      autocomplete="off"
-    />
-    <mat-error
-      *ngIf="
-        form.controls['PreviouslyWorkedWith'].invalid &&
-        form.controls['PreviouslyWorkedWith'].touched
-      "
-    >
-      Please enter a Contact Person.
-    </mat-error>
-  </mat-form-field>
-</div>
-</form>
+  <div class="row">
+    <mat-form-field *ngIf="!isCelebrity">
+      <mat-label>Agency</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="Agency"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['Agency'].invalid &&
+          form.controls['Agency'].touched
+        "
+      >
+        Please enter a Contact Person.
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Contact Person</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="AgencyContactPerson"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AgencyContactPerson'].invalid &&
+          form.controls['AgencyContactPerson'].touched
+        "
+      >
+        Please enter a Contact Person.
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <input
+        matInput
+        type="string"
+        formControlName="AgencyNumber"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AgencyNumber'].invalid &&
+          form.controls['AgencyNumber'].touched
+        "
+      >
+        Please enter a Contact Person.
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        formControlName="AgencyEmail"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['AgencyEmail'].invalid &&
+          form.controls['AgencyEmail'].touched
+        "
+      >
+        Please enter a Contact Person.
+      </mat-error>
+    </mat-form-field>
+  
+  
+  </div>
+  <div class="row">
+    <div style="width: 50%;">
+      <mat-form-field *ngIf="!isCelebrity" style="width: 100%;">
+        <mat-label>Previously Worked With</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="PreviouslyWorkedWith"
+          autocomplete="off"
+          style="width: 100%;"
+        />
+        <mat-error
+          *ngIf="
+            form.controls['PreviouslyWorkedWith'].invalid &&
+            form.controls['PreviouslyWorkedWith'].touched
+          "
+        >
+          Please enter a Contact Person.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  
+  </form>

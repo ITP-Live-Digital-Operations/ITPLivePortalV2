@@ -1,35 +1,89 @@
+<style>
+  ::ng-deep .mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: hidden !important;
+  }
+    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
+      flex-grow: 1;
+      border-right: 1px solid rgba(70, 70, 93, 0.559);
+      transition: background-color 0.3s ease;
+      text-align: center;
+      font-size: 16px;
+      padding-bottom: 20px;
+      color: #333; 
+    }
+    ::ng-deep .mat-raised-button {
+      border-radius: 20px;}
+    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:hover {
+      background-color: rgba(70, 70, 93, 0.379);
+      cursor: pointer;
+    }
+  
+    @media (max-width: 767px) {
+      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    
+      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
+        display: inline-block;
+        width: auto;
+        border-right: none;
+      }
+      
+      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:nth-child(n+3) {
+        display: none; 
+      }
+    }
+    </style>
 <div class="form-container">
-  <form
-    [formGroup]="newCelebrityForm"
-    autocomplete="off"
-    (ngSubmit)="onSubmit()"
-  >
-    <!-- GENERAL INFORMATION HERE -->
-    <h2>General Information</h2>
-    <app-general-info formGroupName="generalInfo" [isCelebrity]="isCelebrity"></app-general-info>
-    <hr />
+  <h2 style="text-align: center;">New Celebrity</h2>
+   <!-- GENERAL INFORMATION HERE -->
+
+  <mat-tab-group [(selectedIndex)]="activeTabIndex">
+    <mat-tab label="General Information"  class="tab-with-border">
+      <form [formGroup]="newCelebrityForm" (ngSubmit)="onSubmit()" autocomplete="off">
+          <app-general-info formGroupName="generalInfo" [isCelebrity]="isCelebrity"></app-general-info>
+
+      </form>
+    </mat-tab>
 
     <!-- SOCIALS HERE -->
-    <h2>Socials</h2>
-    <app-socials formGroupName="socials"></app-socials>
-    <hr />
+    <mat-tab label="Socials" >
+      <form [formGroup]="newCelebrityForm" (ngSubmit)="onSubmit()" autocomplete="off">
+       <app-socials formGroupName="socials"></app-socials>
+      
+      </form>
+    </mat-tab>
+    <!-- AGENCY AND EXTRA INFORMATION HERE -->
+    <mat-tab label="Agency & Extra Info">
+      <form [formGroup]="newCelebrityForm" (ngSubmit)="onSubmit()" autocomplete="off">
+        <h2 >Agency Information</h2>
 
-    <!-- AGENCY INFORMATION HERE -->
-    <h2>Agency Information</h2>
-    <app-agency-info formGroupName="agencyInfo" [isCelebrity]="isCelebrity"></app-agency-info>
-    <hr />
+            <app-agency-info formGroupName="agencyInfo" [isCelebrity]="isCelebrity"></app-agency-info>
+            <h2>Extra Information</h2>
+            <app-extra-info formGroupName="extraInfo"></app-extra-info>
+      </form>
+    </mat-tab>
 
-    <!-- END OF FORM HERE -->
-    <app-extra-info formGroupName="extraInfo"></app-extra-info>
+  </mat-tab-group>
+  <div style="display: flex; justify-content: space-between;">
+    <button mat-raised-button color="primary" (click)="prevTab()" [disabled]="activeTabIndex === 0" [style.visibility]="activeTabIndex === 0 ? 'hidden' : 'visible'" style="margin-right: 10px; border-radius: 10px !important;">Previous</button>
+    <ng-container *ngIf="activeTabIndex !== tabCount - 1">
+      <button mat-raised-button color="primary" (click)="nextTab()" [disabled]="activeTabIndex === tabCount - 1" [style.visibility]="activeTabIndex === tabCount - 1 ? 'hidden' : 'visible'" style="border-radius: 10px !important;">Next</button>
+    </ng-container>
 
     <!-- SUBMIT BUTTON HERE -->
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="!newCelebrityForm.valid"
-    >
-      Add new Celebrity
-    </button>
-  </form>
+    <ng-container *ngIf="activeTabIndex === tabCount - 1">
+      <form [formGroup]="newCelebrityForm" (ngSubmit)="onSubmit()" autocomplete="off" style="display: flex; justify-content: center;">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!newCelebrityForm.valid" style="margin: 2% auto;border-radius: 15px !important; color: white; width: 200px;">Add new Celebrity </button>
+      </form>  
+    </ng-container>
+  </div>
+  
+
+  
 </div>
+
+

@@ -76,7 +76,32 @@ $hint-color: #9E9E9E; // Hint text color
     border-radius: 10px;
   }
 }
+.submit-btn{
+  align-self: flex-end;
+  width: 25%;
+  background-color: #1f3371;
+  color: #FFF;
+  border-radius: 10px!important;
 
+  &:disabled {
+    background-color: #1f3371;
+    color: #FFF;
+    opacity: 0.5;
+  }
+}
 // Styles for Angular Material components can be customized as needed
 // Example for overriding Angular Material table styling
 
+.submit-btn{
+  align-self: flex-end;
+  width: 25%;
+  background-color: #1f3371;
+  color: #FFF;
+  border-radius: 10px!important;
+
+  &:disabled {
+    background-color: #1f3371;
+    color: #FFF;
+    opacity: 0.5;
+  }
+}

@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/core/services/user.service';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { MatSelect } from '@angular/material/select';
+import { CelebrityModel } from 'src/app/core/interfaces/celebrity.model';
 @Component({
   selector: 'app-celebrities-list',
   templateUrl: './celebrities-list.component.html',
@@ -77,7 +78,7 @@ export class CelebritiesListComponent {
   private GetAllCelebrities(): void {
     this.service.getCelebrities().subscribe((item) => {
       this.UserDetails = item;
-      this.dataSource = new MatTableDataSource<InfluencerModel>(
+      this.dataSource = new MatTableDataSource<CelebrityModel>(
         this.UserDetails
       );
       this.dataSource.paginator = this.paginator;
@@ -155,7 +156,7 @@ export class CelebritiesListComponent {
       baseFilteredData.filter(data =>
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.vertical.length || this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase())) &&
-        (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) ), 'MainVertical'
+        (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) ), 'Game'
     );
 
 
@@ -177,10 +178,10 @@ export class CelebritiesListComponent {
   }
 
   public applyFilter(): void {
-    this.dataSource = new MatTableDataSource<InfluencerModel>(this.UserDetails);
+    this.dataSource = new MatTableDataSource<CelebrityModel>(this.UserDetails);
 
     // Define the filter predicate
-    this.dataSource.filterPredicate = (data: InfluencerModel, filter: string) => {
+    this.dataSource.filterPredicate = (data: CelebrityModel, filter: string) => {
       const filterObject = JSON.parse(filter);
 
       const isMatchSearch = filterObject.search
@@ -198,7 +199,7 @@ export class CelebritiesListComponent {
       const isMatchVertical = !this.filterCriteria.vertical.length ||
       this.filterCriteria.vertical.includes(data.MainVertical?.trim().toLowerCase());
 
-      //const isMatchGames = !filterObject.games.length || (data.game && filterObject.games.includes(data.game.toLowerCase()));
+const isMatchGames = !filterObject.games.length || (data.Game && filterObject.games.includes(data.Game.toLowerCase()));
 
 
 
@@ -207,8 +208,8 @@ export class CelebritiesListComponent {
         isMatchGender &&
         isMatchLocation &&
         isMatchVertical
-         //&&
-        //isMatchGames
+         &&
+        isMatchGames
       );
     };
 
@@ -263,8 +264,8 @@ export class CelebritiesListComponent {
 
   public editCelebrity(inputdata: any): void {
     this.dialog.open(EditCelebrityComponent, {
-      width: '80%',
-      height: '70%',
+      width: '990px', // Set initial width to 'auto'
+      height: 'auto',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {
