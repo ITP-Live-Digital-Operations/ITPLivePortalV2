@@ -57,30 +57,38 @@
     </mat-tab>
 
     <!-- SOCIALS AND LICENSE HERE -->
-    <mat-tab label="Socials & Licenses" >
+    <mat-tab label="Socials" >
       <form [formGroup]="editInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
        <app-socials formGroupName="socials"></app-socials>
-       <div class="row">
-        <mat-checkbox  color="primary" formControlName="KSALicense">KSA License</mat-checkbox>
-      </div>
-  
-      <div class="row">
-        <mat-checkbox color="primary" formControlName="UAELicense">UAE License</mat-checkbox>
-      </div>
+      
   
       </form>
     </mat-tab>
     <!-- AGENCY AND EXTRA INFORMATION HERE -->
  
-   <mat-tab label="Agency & Extra Information"  class="tab-with-border">
+   <mat-tab label="Licenses & Agency Information"  class="tab-with-border">
       <form [formGroup]="editInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
                <app-agency-info formGroupName="agencyInfo" [isCelebrity]="isNotCelebrity"></app-agency-info>
-               <app-extra-info formGroupName="extraInfo" [isCelebrity]="isNotCelebrity"></app-extra-info>
+               <div class="row">
+                <mat-checkbox  color="primary" formControlName="KSALicense">KSA License</mat-checkbox>
+              </div>
+          
+              <div class="row">
+                <mat-checkbox color="primary" formControlName="UAELicense">UAE License</mat-checkbox>
+              </div>
 
 
       </form>
     </mat-tab>
 
+  <mat-tab label="Extra Information"  class="tab-with-border">
+      <form [formGroup]="editInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
+             
+               <app-extra-info formGroupName="extraInfo" [isCelebrity]="isNotCelebrity"></app-extra-info>
+
+
+      </form>
+    </mat-tab>
 
     
   

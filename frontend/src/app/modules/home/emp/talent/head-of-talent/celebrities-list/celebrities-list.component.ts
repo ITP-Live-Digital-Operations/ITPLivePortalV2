@@ -270,7 +270,7 @@ const isMatchGames = !filterObject.games.length || (data.Game && filterObject.ga
   public editCelebrity(inputdata: any): void {
     this.dialog.open(EditCelebrityComponent, {
       width: '990px', // Set initial width to 'auto'
-      height: 'auto',
+      height: '700px',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {

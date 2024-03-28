@@ -1,4 +1,4 @@
-<form [formGroup]="form" autocomplete="off">
+<form [formGroup]="form" autocomplete="off" >
   <div class="row">
     <mat-form-field *ngIf="!isCelebrity">
       <mat-label>Agency</mat-label>
@@ -17,25 +17,28 @@
         Please enter a Contact Person.
       </mat-error>
     </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Contact Person</mat-label>
-      <input
-        matInput
-        type="text"
-        formControlName="AgencyContactPerson"
-        autocomplete="off"
-      />
-      <mat-error
-        *ngIf="
-          form.controls['AgencyContactPerson'].invalid &&
-          form.controls['AgencyContactPerson'].touched
-        "
-      >
-        Please enter a Contact Person.
-      </mat-error>
-    </mat-form-field>
-  
+
+  </div>
+  <div class="row">
+  <mat-form-field>
+    <mat-label>Contact Person</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="AgencyContactPerson"
+      autocomplete="off"
+    />
+    <mat-error
+      *ngIf="
+        form.controls['AgencyContactPerson'].invalid &&
+        form.controls['AgencyContactPerson'].touched
+      "
+    >
+      Please enter a Contact Person.
+    </mat-error>
+  </mat-form-field>
+  </div>
+  <div class="row">
     <mat-form-field>
       <mat-label>Phone Number</mat-label>
       <input
@@ -53,29 +56,29 @@
         Please enter a Contact Person.
       </mat-error>
     </mat-form-field>
-  
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input
-        matInput
-        type="email"
-        formControlName="AgencyEmail"
-        autocomplete="off"
-      />
-      <mat-error
-        *ngIf="
-          form.controls['AgencyEmail'].invalid &&
-          form.controls['AgencyEmail'].touched
-        "
-      >
-        Please enter a Contact Person.
-      </mat-error>
-    </mat-form-field>
-  
-  
-  </div>
+
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="AgencyEmail"
+          autocomplete="off"
+        />
+        <mat-error
+          *ngIf="
+            form.controls['AgencyEmail'].invalid &&
+            form.controls['AgencyEmail'].touched
+          "
+        >
+          Please enter a Contact Person.
+        </mat-error>
+      </mat-form-field>
+    </div>
   <div class="row">
-    <div style="width: 50%;">
+
       <mat-form-field *ngIf="!isCelebrity" style="width: 100%;">
         <mat-label>Previously Worked With</mat-label>
         <input
@@ -94,7 +97,6 @@
           Please enter a Contact Person.
         </mat-error>
       </mat-form-field>
-    </div>
   </div>
   
   </form>

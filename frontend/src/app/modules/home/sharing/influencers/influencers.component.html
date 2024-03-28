@@ -1,8 +1,9 @@
 
-<div class="form-container">
   <div class="loading-container"*ngIf="isLoading">
     <img  src="../../../../../assets/gifs/table.gif" alt="Loading...">
   </div>
+  <div style="position: relative" [hidden]="isLoading">
+
 <h2 style="align-items: center; font-size: 35px">Influencers List</h2>
 
 <div id="search">
@@ -19,6 +20,7 @@
     />
     <mat-icon matPrefix style="color: aliceblue">search</mat-icon>
   </mat-form-field>
+</div>
 </div>
 <div>
 
