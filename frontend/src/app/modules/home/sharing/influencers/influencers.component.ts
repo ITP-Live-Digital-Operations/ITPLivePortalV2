@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { InfluencerModel } from 'src/app/core/interfaces/influencersModel';
@@ -77,6 +77,7 @@ export class InfluencersComponent {
   @ViewChild('citySelect') citySelect!: MatSelect;
   @ViewChild('verticalSelect') verticalSelect!: MatSelect;
   @ViewChild('nationalitySelect') nationalitySelect!: MatSelect;
+  @ViewChild('searchInput') searchInputElement!: ElementRef;
   constructor(
     private influencerService: InfluencerService,
     private userService: UserService,
@@ -293,6 +294,9 @@ export class InfluencersComponent {
     };
     if (this.socialMediaPlatformSelect) {
       this.socialMediaPlatformSelect.value = '';
+    }
+    if (this.searchInputElement && this.searchInputElement.nativeElement) {
+      this.searchInputElement.nativeElement.value = '';
     }
     this.minFollowers = 0;
     this.maxFollowers = 50000000;

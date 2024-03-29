@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -45,7 +45,7 @@ export class CelebritiesListComponent {
   public userRole = this.userService.getRole();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  @ViewChild('searchInput') searchInputElement!: ElementRef;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('genderSelect') genderSelect!: MatSelect;
   @ViewChild('locationSelect') locationSelect!: MatSelect;
@@ -123,6 +123,10 @@ export class CelebritiesListComponent {
     this.allLocations = this.extractUniqueAttributes(this.dataSource.data, 'CountryLocation');
     this.allVerticals = this.extractUniqueAttributes(this.dataSource.data, 'MainVertical');
     this.allGames = this.extractUniqueAttributes(this.dataSource.data, 'Game');
+    // Clear the search input
+  if (this.searchInputElement && this.searchInputElement.nativeElement) {
+    this.searchInputElement.nativeElement.value = '';
+  }
     this.resetMatSelects();
     this.applyFilter();
   }
