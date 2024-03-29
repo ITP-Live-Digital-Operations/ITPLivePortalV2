@@ -108,6 +108,43 @@ export class InfluencersComponent {
     }
   }
 
+  //Formatting and parsing for the filters
+
+    onMinFollowersInput(value: string): void {
+      this.minFollowers = this.parseFormattedNumber(value);
+      this.applyFollowerRangeChange();
+    }
+    onMaxFollowersInput(value: string): void {
+      this.maxFollowers = this.parseFormattedNumber(value);
+      this.applyFollowerRangeChange();
+    }
+    onMinCPEInput(value: string): void {
+      this.minCPE = this.parseFormattedNumber(value);
+      this.applyCPECPMRangeChange();
+    }
+
+    onMaxCPEInput(value: string): void {
+      this.maxCPE = this.parseFormattedNumber(value);
+      this.applyCPECPMRangeChange();
+    }
+
+    onMinCPMInput(value: string): void {
+      this.minCPM = this.parseFormattedNumber(value);
+      this.applyCPECPMRangeChange();
+    }
+
+    onMaxCPMInput(value: string): void {
+      this.maxCPM = this.parseFormattedNumber(value);
+      this.applyCPECPMRangeChange();
+    }
+    // Utility function to parse formatted number
+    parseFormattedNumber(value: string): number {
+      return Number(value.replace(/,/g, ''));
+    }
+    // Utility methods for formatting and parsing
+    formatNumber(value: number | null): string {
+      return value !== null ? value.toLocaleString() : '';
+    }
 
 
   applyFollowerRangeChange(): void {
