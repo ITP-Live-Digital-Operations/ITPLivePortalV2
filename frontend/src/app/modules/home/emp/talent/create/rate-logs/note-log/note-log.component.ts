@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
@@ -23,6 +24,7 @@ export class NoteLogComponent {
     private userService: UserService,
     private toastr: ToastrService,
     private route: Router,
+    private dialogRef: MatDialogRef<NoteLogComponent>
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,9 @@ export class NoteLogComponent {
     });
   }
 
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
   public submit(): void {
     if (this.form.invalid) {
       return;
@@ -56,7 +61,7 @@ export class NoteLogComponent {
         (response) => {
           if (response.status === 'success') {
             this.toastr.success(response.message);
-            this.route.navigate(['/home/main/influencers']);
+            this.dialogRef.close();
           }
         },
         (error) => {

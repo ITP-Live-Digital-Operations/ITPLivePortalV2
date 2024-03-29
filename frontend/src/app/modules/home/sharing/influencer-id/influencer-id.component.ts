@@ -1,6 +1,6 @@
 import { Component, ViewChild, Inject } from '@angular/core';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { UserService } from 'src/app/core/services/user.service';
@@ -23,7 +23,8 @@ export class InfluencerIdComponent {
   constructor(
     private service: InfluencerService,
     private userService: UserService,
-    @Inject(MAT_DIALOG_DATA) public source: any
+    @Inject(MAT_DIALOG_DATA) public source: any,
+    private dialogRef: MatDialogRef<InfluencerIdComponent>
   ) {}
 
   ngOnInit(): void {
@@ -46,5 +47,9 @@ export class InfluencerIdComponent {
     this.service.getAverageInfluencerRating(inputdata).subscribe((item) => {
       this.influencerRating = item;
     });
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }

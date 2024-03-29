@@ -1,8 +1,8 @@
-<h1>New Log Form</h1>
+<div class="container">
+  <button mat-icon-button class="close-button" (click)="closeDialog()">
+    <mat-icon style="color: aliceblue">close</mat-icon>
+  </button>
 <mat-tab-group>
-    <mat-tab label="Notes">
-        <app-note-log></app-note-log>
-    </mat-tab>
     <mat-tab label="Single">
         <app-single-influencer-logs></app-single-influencer-logs>
     </mat-tab>
@@ -11,3 +11,4 @@
           <app-new-rate-log></app-new-rate-log>
       </mat-tab>
 </mat-tab-group>
+</div>

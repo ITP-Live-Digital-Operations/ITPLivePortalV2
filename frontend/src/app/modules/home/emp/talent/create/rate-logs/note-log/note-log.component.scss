@@ -1,6 +1,6 @@
 .form-container
 {
-  margin-top: 1%;
+  margin: 3%;
 }
 
 .icon-btn{
@@ -8,6 +8,14 @@
 
 }
 
+.not-allowed {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: not-allowed;
+}
 
 
 .submit-btn{

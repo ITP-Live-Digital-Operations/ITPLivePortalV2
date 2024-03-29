@@ -1,13 +1,22 @@
-<div class="top-div">
-  <H2>Logs</H2>
-  <button
-    type="button"
-    class="logs-btn"
-    (click)="redirectToNewLog(profileData?.data.id, profileData?.data.Name)"
+<div class="top-container">
+  <button mat-icon-button class="expandable-button"
+  type="button"
+  (click)="redirectToNewLog(profileData?.data.id, profileData?.data.Name)"
   >
-    Add Log
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <linearGradient id="rainbowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="17%" style="stop-color:orange;" />
+        <stop offset="34%" style="stop-color:yellow;" />
+        <stop offset="100%" style="stop-color:red;" />
+      </linearGradient>
+    </defs>
+    <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="url(#rainbowGradient)"></path>
+  </svg>
   </button>
 </div>
+
+
 <div class="table-container">
   <table mat-table [dataSource]="dataSource" matSort class="mat-table-rounded" >
     <ng-container matColumnDef="Campaign">

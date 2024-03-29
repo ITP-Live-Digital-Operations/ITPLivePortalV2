@@ -1,13 +1,14 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { InfluencerIdComponent } from '../influencer-id.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { LogService } from 'src/app/core/services/log.service';
 import { LogModel } from 'src/app/core/interfaces/logModel';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { RateLogsComponent } from '../../../emp/talent/create/rate-logs/rate-logs.component';
 
 @Component({
   selector: 'app-logs-table',
@@ -49,7 +50,8 @@ export class LogsTableComponent {
   constructor(
     private router: Router,
     private dialogRef: MatDialogRef<InfluencerIdComponent>,
-    private logService: LogService
+    private logService: LogService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -60,8 +62,10 @@ export class LogsTableComponent {
     const data = { id: id, name: name };
 
     sessionStorage.setItem('influencerData', JSON.stringify(data));
-    this.dialogRef.close();
-    this.router.navigate([this.path['newRateLog']]);
+    this.dialog.open(RateLogsComponent, {
+      width: 'fit-to-content',
+      height: 'fit-to-content',
+    })
   }
 
   public getLogs(id: number): void {
