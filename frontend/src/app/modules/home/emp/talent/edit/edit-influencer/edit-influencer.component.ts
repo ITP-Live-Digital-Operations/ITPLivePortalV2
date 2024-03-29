@@ -91,7 +91,7 @@ export class EditInfluencerComponent {
     });
   }
   activeTabIndex: number = 0;
-  tabCount: number = 3; 
+  tabCount: number = 4; 
   nextTab() {
     if (this.activeTabIndex < this.tabCount - 1) {
       this.activeTabIndex++;
