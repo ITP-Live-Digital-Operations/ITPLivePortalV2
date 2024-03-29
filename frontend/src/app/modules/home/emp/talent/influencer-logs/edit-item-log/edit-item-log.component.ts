@@ -86,6 +86,7 @@ export class EditItemLogComponent {
 
   private loadRateLog(): void {
     this.logService.getLogById(this.id).subscribe((data) => {
+      console.log("Log data:", data);
       this.log = data;
       console.log(this.log);
       this.logForm.patchValue({
@@ -95,16 +96,17 @@ export class EditItemLogComponent {
         Time_to_reply: this.log.time_to_reply,
       });
 
-      this.logItemId = this.log.logItems[0].id;
+      this.logItemId = this.log.logItems.id;
       console.log(this.logItemId);
 
       this.fields.controls.forEach((control, index) => {
         control.patchValue({
-          Platform: this.log.logItems[index].platform,
-          Deliverable: this.log.logItems[index].deliverable,
-          Quantity: this.log.logItems[index].quantity,
-          Currency: this.log.logItems[index].currency,
-          Rate: this.log.logItems[index].rate,
+          Platform: this.log.logItems.platform,
+          Deliverable: this.log.logItems.deliverable,
+          Quantity: this.log.logItems.quantity,
+         
+          Currency: this.log.logItems.currency,
+          Rate: this.log.logItems.rate,
         });
       });
     });
@@ -205,7 +207,8 @@ export class EditItemLogComponent {
     }
   }
   formatNumber(value: number | null): string {
-    return value !== null ? value.toLocaleString() : '';
+    if (value === null) return '';
+    return new Intl.NumberFormat('en-US', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
   }
   
   // Method to handle numeric input for fields within the form array
