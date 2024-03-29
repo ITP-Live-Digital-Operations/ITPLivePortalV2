@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { InfluencerModel } from 'src/app/core/interfaces/influencersModel';
@@ -21,7 +22,7 @@ import { MatSelect } from '@angular/material/select';
   styleUrls: ['./influencers.component.scss'],
 })
 export class InfluencersComponent {
-  public isLoading = true; 
+  public isLoading = true;
   public dataSource: any;
   private UserDetails: any;
   public verticals: string[] = [];
@@ -40,7 +41,7 @@ export class InfluencersComponent {
   public maxCPE: number = 1000; // Default maximum for CPE
   public minCPM: number = 0; // Default minimum for CPM
   public maxCPM: number = 1000; // Default maximum for CPM
-  
+
   filterCriteria: any = {
     search: '',
     gender: [],
@@ -147,16 +148,16 @@ export class InfluencersComponent {
     // Access CPE and CPM from the nested influencerMetrics structure
     const isCpeInRange = influencer.influencerMetrics?.CPE >= this.minCPE && influencer.influencerMetrics?.CPE <= this.maxCPE;
     const isCpmInRange = influencer.influencerMetrics?.CPM >= this.minCPM && influencer.influencerMetrics?.CPM <= this.maxCPM;
-  
+
     // Account for potential undefined values with nullish coalescing operator (??)
     return (isCpeInRange ?? false) && (isCpmInRange ?? false);
   }
-  
+
   applyCPECPMRangeChange(): void {
     this.applyFilter();
     this.updateFilterDropdowns();
   }
-  
+
   private extractUniqueAttributes(data: InfluencerModel[], attribute: keyof InfluencerModel): string[] {
     const attributeSet = new Set<string>(
       data.map(item => {
@@ -168,7 +169,7 @@ export class InfluencersComponent {
   }
 
   private getInfluencers(): void {
-    this.isLoading = true; 
+    this.isLoading = true;
     this.influencerService
       .getInfluencersWithRatings()
       .subscribe((response: PaginatedInfluencers) => {
@@ -179,8 +180,8 @@ export class InfluencersComponent {
         this.allCities = this.extractUniqueAttributes(this.UserDetails.influencers, 'CityLocation');
         this.allVerticals = this.extractUniqueAttributes(this.UserDetails.influencers, 'MainVertical');
         this.allNationalities = this.extractUniqueAttributes(this.UserDetails.influencers, 'Nationality');
-        this.isLoading = false; 
-        
+        this.isLoading = false;
+
 
 
         this.dataSource = new MatTableDataSource<InfluencerModel[]>(
@@ -212,6 +213,9 @@ export class InfluencersComponent {
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          this.sort.active = 'Name';
+          this.sort.direction = 'asc';
+          this.sort.sortChange.emit({ active: this.sort.active, direction: this.sort.direction });
 
           this.updateFilterDropdowns();
         }, 1);
@@ -272,7 +276,7 @@ export class InfluencersComponent {
     this.allNationalities = this.extractUniqueAttributes(
       baseFilteredData.filter(data =>
         this.isFollowerCountInRange(data) &&
-        this.isCPECpmInRange(data) && 
+        this.isCPECpmInRange(data) &&
         (!this.filterCriteria.gender.length || this.filterCriteria.gender.includes(data.Gender?.trim().toLowerCase())) &&
         (!this.filterCriteria.location.length || this.filterCriteria.location.includes(data.CountryLocation?.trim().toLowerCase())) &&
         (!this.filterCriteria.city.length || this.filterCriteria.city.includes(data.CityLocation?.trim().toLowerCase())) &&
@@ -397,7 +401,7 @@ export class InfluencersComponent {
     this.updateFilterDropdowns();
   }
 
-  
+
   applyFilterChange(filterType: string, filterValue: any): void {
     switch (filterType) {
       case 'gender':
