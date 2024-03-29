@@ -71,12 +71,7 @@
   <div class="row">
     <mat-form-field>
       <mat-label>Number of recommendations</mat-label>
-      <input
-        matInput
-        type="number"
-        formControlName="NumberofRecommendations"
-        autocomplete="off"
-      />
+      <input matInput type="text" [value]="formatNumber(recommendationsForm.get('NumberofRecommendations')?.value)" (input)="onRecommendationsInput($any($event.target).value)" autocomplete="off">
     </mat-form-field>
 
     <mat-form-field>
@@ -91,11 +86,13 @@
     <mat-form-field>
       <mat-label>Approximate Budget</mat-label>
       <input
-        matInput
-        type="number"
-        formControlName="Budget"
-        autocomplete="off"
-      />
+      matInput
+      type="text"
+      [value]="formatNumber(form.get('Budget')?.value)"
+      (input)="onBudgetInput($any($event.target).value)"
+      autocomplete="off"
+    />
+
     </mat-form-field>
   </div>
 </ng-container>

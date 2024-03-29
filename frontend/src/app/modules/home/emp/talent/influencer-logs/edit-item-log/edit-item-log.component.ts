@@ -204,4 +204,18 @@ export class EditItemLogComponent {
       deliverableControl?.clearValidators();
     }
   }
+  formatNumber(value: number | null): string {
+    return value !== null ? value.toLocaleString() : '';
+  }
+  
+  // Method to handle numeric input for fields within the form array
+  onFieldNumericInput(index: number, fieldName: string, value: string): void {
+    const parsedValue = this.parseFormattedNumber(value);
+    ((this.form.get('fields') as FormArray).at(index) as FormGroup).get(fieldName)?.setValue(parsedValue, { emitEvent: false });
+  }
+  
+  // Utility method to parse formatted string back to number
+  parseFormattedNumber(value: string): number {
+    return Number(value.replace(/,/g, ''));
+  }
 }

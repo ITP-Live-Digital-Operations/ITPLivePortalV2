@@ -1,5 +1,5 @@
 import { Component, Input} from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { FormGroup, FormGroupDirective, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-socials',
@@ -21,5 +21,17 @@ export class SocialsComponent {
   ngOnInit(): void {
     this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
   }
+  formatNumber(value: number | null): string {
+    return value !== null ? value.toLocaleString() : '';
+  }
 
+  onNumericInput(fieldName: string, value: string): void {
+    const parsedValue = this.parseFormattedNumber(value);
+    this.form.get(fieldName)?.setValue(parsedValue, { emitEvent: false });
+  }
+  
+
+  parseFormattedNumber(value: string): number {
+    return Number(value.replace(/,/g, ''));
+  }
 }
