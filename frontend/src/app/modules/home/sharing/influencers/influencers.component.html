@@ -115,9 +115,10 @@
       </div>
       
 
-      <button mat-raised-button color="primary" (click)="resetFilters()">Reset Filters</button>
+      <button class="glow-on-hover" type="button" style="margin-left: 2%" (click)="resetFilters()">Reset Filters</button>
     </mat-expansion-panel>
-    <button
+
+    <!-- <button
       mat-raised-button
       style="
         width: 15%;
@@ -129,9 +130,24 @@
       *ngIf="userRole == 'talent'"
     >
       Add New Influencer
+    </button> -->
+
+  
+  </div>
+ 
+
+  <div style="position: relative" [hidden]="isLoading">
+  
+  <div class="logs-button">
+    <button class="glow-on-add-new"
+      type="button"
+   
+      (click)="redirectToNewInfluencer()"
+    >
+      Add New Influencer
     </button>
   </div>
-
+  </div>
   <div class="table-container" [hidden]="isLoading">
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="Name">

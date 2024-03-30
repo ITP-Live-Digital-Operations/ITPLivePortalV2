@@ -54,19 +54,19 @@ table {
 }
 
 
-.new-celeb button {
-  padding: 10px 15px;
-  background-color: transparent!important;
-  color: white!important;
-  border: 1px solid #4789A1;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-bottom: 2%;
+// .new-celeb button {
+//   padding: 10px 15px;
+//   background-color: transparent!important;
+//   color: white!important;
+//   border: 1px solid #4789A1;
+//   border-radius: 4px;
+//   cursor: pointer;
+//   margin-bottom: 2%;
 
-  &:hover {
-    background-color: #4789A1;
-  }
-}
+//   &:hover {
+//     background-color: #4789A1;
+//   }
+// }
 
 .truncate {
 
@@ -77,23 +77,23 @@ table {
 
 
 }
-.search-container {
+// .search-container {
 
 
-  button {
-    padding: 10px 15px;
-    background-color: transparent!important;
-    color: white!important;
-    border: 1px solid #4789A1;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 2%;
+//   button {
+//     padding: 10px 15px;
+//     background-color: transparent!important;
+//     color: white!important;
+//     border: 1px solid #4789A1;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     margin-bottom: 2%;
   
-    &:hover {
-      background-color: #4789A1;
-    }
-  }
-}
+//     &:hover {
+//       background-color: #4789A1;
+//     }
+//   }
+// }
 
 
 h2,
@@ -338,3 +338,15 @@ mat-paginator {
   width: 100%;
 }
 
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

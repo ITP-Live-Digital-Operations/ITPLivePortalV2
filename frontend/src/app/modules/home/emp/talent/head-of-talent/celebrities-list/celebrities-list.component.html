@@ -52,24 +52,24 @@
       </mat-form-field>
       <mat-form-field class="filter">
         <mat-label>Game Filter</mat-label>
-        <mat-select  #verticalSelect multiple placeholder="Game Filter" (selectionChange)="applyFilterChange('game', $event.value)">
+        <mat-select  #gameSelect multiple placeholder="Game Filter" (selectionChange)="applyFilterChange('game', $event.value)">
           <mat-option *ngFor="let option of allGames" [value]="option">{{ option }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <div><button mat-raised-button color="primary" (click)="resetFilters()">Reset Filters</button></div>
+<button class="glow-on-hover" type="button" style="margin-left: 2%"(click)="resetFilters()">Reset Filters</button>
 
 
 
         </mat-expansion-panel>
       </div>
     </div>
-  <div class="new-celeb">
-  <button mat-raised-button
+ 
+    <button class="glow-on-add-new" type="button" style="margin-left: 2%"
     routerLink="/home/talent/new/celebrity">
-    <mat-icon>add_circle_outline</mat-icon>
-    New Celebrity
+    <!-- <mat-icon matPrefix >add_circle_outline</mat-icon> -->
+   Add New Celebrity
   </button>
-</div>
+
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort>
 

@@ -14,6 +14,8 @@ import { InfluencerIdComponent } from '../influencer-id/influencer-id.component'
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { MatSelect } from '@angular/material/select';
+import { Router } from '@angular/router';
+import { PATH } from 'src/app/core/constant/routes.constants';
 
 @Component({
   selector: 'app-influencers',
@@ -40,7 +42,7 @@ export class InfluencersComponent {
   public maxCPE: number = 1000; // Default maximum for CPE
   public minCPM: number = 0; // Default minimum for CPM
   public maxCPM: number = 1000; // Default maximum for CPM
-  
+  public path = PATH;
   filterCriteria: any = {
     search: '',
     gender: [],
@@ -82,6 +84,7 @@ export class InfluencersComponent {
     private userService: UserService,
     private dialog: MatDialog,
     private toastrService: ToastrService,
+    private router: Router,
     private dialogService: ConfirmationDialogService
   ) {}
 
@@ -473,5 +476,8 @@ export class InfluencersComponent {
         id: inputdata,
       },
     });
+  }
+  public redirectToNewInfluencer(): void {
+    this.router.navigate([this.path['newInfluencer']]);
   }
 }
