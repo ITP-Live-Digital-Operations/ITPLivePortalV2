@@ -5,7 +5,6 @@
   width: 100%;
   height: auto;
 /* Initial setting, might be overridden by media query */
-  overflow-y: auto; /* Allows vertical scrolling if needed */
   background: rgba(255, 255, 255, 0);
 }
 
@@ -15,12 +14,20 @@
   align-items: center; /* Centers children horizontally */
   gap: 1vh; /* Space between items */
   width: 100vh; 
- padding-top: 7vh; /* Adjust based on design needs, consider using % for responsiveness */
+  background: rgba(255, 255, 255, 0);
+}
+.carousel-wrapper-admin {
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+  align-items: center; /* Centers children horizontally */
+  gap: 1vh; /* Space between items */
+  width: 100vh; 
+  padding-top: 10vh;
   background: rgba(255, 255, 255, 0);
 }
 
 /* Media query for mobile devices */
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .carousel-container {
     height: 100vh; /* Example fixed height for mobile, adjust as needed */
     overflow-y: scroll; /* Ensures scrollability on mobile */
@@ -46,8 +53,8 @@
 /* Ensuring buttons are square and images + text are centered */
 button[mat-raised-button] {
   position: relative; /* To position the img and p absolutely within the button */
-  width: 30vh; /* Adjust based on your preference for square size */
-  height: 30vh; /* Same as width to ensure square */
+  width: 25vh; /* Adjust based on your preference for square size */
+  height: 25vh; /* Same as width to ensure square */
   display: flex; /* To help center the content */
   flex-direction: column; /* Stack img and p vertically */
   justify-content: center; /* Center content vertically */
@@ -107,8 +114,8 @@ button[mat-raised-button] img {
   bottom: -2vh; /* Adjust this value as needed to move the image up from the bottom */
   left: 50%;
   transform: translateX(-50%); /* Center the image horizontally */
-  width: 9vh; /* Your desired width or keep it responsive */
-  height: 9vh;
+  width: 8vh; /* Your desired width or keep it responsive */
+  height: 8vh;
 
 }
 
