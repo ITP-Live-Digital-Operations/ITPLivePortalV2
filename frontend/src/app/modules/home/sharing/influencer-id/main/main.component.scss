@@ -9,12 +9,16 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  margin-left: 5%;
-  height: 100%;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  height: 20vh;
+  width: 25vh;
+  margin-bottom:6vh;
+  margin-top: 2vh;
 }
 
 .card-body {
-  width: 100%;
+  width: 80%;
   border: 0px solid;
   padding: 20px;
   color: white !important;
@@ -23,5 +27,5 @@
 
 .name {
   font-size: 4vh;
-  font-weight: 700;
+  font-weight: 500;
 }

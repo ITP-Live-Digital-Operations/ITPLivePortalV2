@@ -16,7 +16,12 @@ body {
   padding-left: 1%;
   padding-top: 1%;
 }
-
+.cdk-overlay-backdrop.cdk-overlay-dark-backdrop.cdk-overlay-backdrop-showing {
+  backdrop-filter: blur(10px);
+}
+.cdk-overlay-dark-backdrop {
+  background: rgb(255 255 255 / 14%);
+}
 // Notifications center background color
 .mat-mdc-dialog-container .mdc-dialog__surface {
   background: rgb(255, 255, 255);

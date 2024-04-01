@@ -8,10 +8,11 @@ import { CelebrityService } from 'src/app/core/services/celebrity.service';
   styleUrls: ['./celebrity-id.component.scss'],
 })
 export class CelebrityIdComponent {
-
+  public selectedComponent !: string;
   public id: number = 0;
   public celebrityData: any;
   public isReviewVisible: boolean = false;
+  
 
   constructor(
     private service: CelebrityService,
@@ -27,6 +28,9 @@ export class CelebrityIdComponent {
     this.service.getCelebrity(inputdata).subscribe((item) => {
       this.celebrityData = item;
     });
+  }
+  selectComponent(component: string) {
+    this.selectedComponent = component;
   }
 
   closeDialog(): void {
