@@ -16,6 +16,7 @@ export class CelebrityIdComponent {
   constructor(
     private service: CelebrityService,
     @Inject(MAT_DIALOG_DATA) public source: any,
+    private dialogRef: MatDialogRef<CelebrityIdComponent>
   ) {}
 
   ngOnInit() {
@@ -26,5 +27,9 @@ export class CelebrityIdComponent {
     this.service.getCelebrity(inputdata).subscribe((item) => {
       this.celebrityData = item;
     });
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }

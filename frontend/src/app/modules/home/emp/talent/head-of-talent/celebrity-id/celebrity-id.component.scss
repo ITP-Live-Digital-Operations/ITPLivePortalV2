@@ -1,15 +1,20 @@
-.container {
-  display: flex;
-  justify-content: space-between;
-  background-color: transparent;
-  align-items: center;
-  align-self: center;
- }
 
- .top-container{
-   margin-top: 1%;
-   margin-bottom: 1%;
- }
+.top-container {
+  display: flex;
+  flex-direction: row; // Use row to lay them out horizontally
+  width: 100%; // Take the full width of the parent
+  margin-bottom: 2%;
+
+  .bio-container {
+    flex: 0 1 40%; // Flex-grow, flex-shrink, flex-basis
+    // Additional styles for bio-container can go here, such as padding or margin
+  }
+
+  .platform-container {
+    flex: 0 1 60%; // Flex-grow, flex-shrink, flex-basis
+    // Additional styles for platform-container can go here
+  }
+}
 
 
  .mat-mdc-tab-group  {

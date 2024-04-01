@@ -1,10 +1,20 @@
+<button mat-icon-button class="close-button" (click)="closeDialog()">
+  <mat-icon style="color: aliceblue">close</mat-icon>
+</button>
 <div *ngIf="celebrityData != undefined || celebrityData != null">
   <div class="top-container">
-    <app-main [profileData]="celebrityData" [id]="id"></app-main>
+    <div class="bio-container">
+      <app-celeb-prof-card
+        [profileData]="celebrityData"
+        [id]="id"
+      ></app-celeb-prof-card>
+    </div>
+    <div class="platform-container">
     <app-platform-links
-      class="platform-container"
+
       [profileData]="celebrityData"
     ></app-platform-links>
+  </div>
   </div>
 
   <mat-tab-group>
