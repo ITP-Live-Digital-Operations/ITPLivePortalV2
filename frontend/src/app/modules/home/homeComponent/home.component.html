@@ -29,7 +29,7 @@
 <!-- TOP PART    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -->
 
 <mat-sidenav-container>
-  
+
     <div class="ball small-ball"></div>
     <div class="ball medium-ball"></div>
     <div class="ball large-ball"></div>
@@ -130,7 +130,7 @@
           <span class="full-width">Profile</span>
         </mat-list-item>
 
-        <mat-list-item 
+        <mat-list-item
           *ngIf="['admin', 'sales', 'talent'].includes(userRole)"
           [routerLink]="
             userRole == 'sales' ||
@@ -144,8 +144,10 @@
         <img src="../../../../../assets/white-buttons/help.png" />
           <span class="full-width">Help</span>
         </mat-list-item>
-       <mat-list-item   *ngIf="userRole == 'superadmin'" routerLink="{{ path['influencers'] }}" class="menu-item">
+
+       <mat-list-item   *ngIf="userRole == 'superadmin'" routerLink="{{ path['userManagement'] }}" class="menu-item">
         <img src="../../../../../assets/white-buttons/usermanagement.png" />
+
         <span class="full-width">User Management</span>
       </mat-list-item>
 
