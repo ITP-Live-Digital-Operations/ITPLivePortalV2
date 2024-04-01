@@ -10,7 +10,7 @@ import { campaignobjectives, clientIndustries, currencies } from 'src/assets/inf
   styleUrls: ['./basic-information.component.scss']
 })
 export class BasicInformationComponent {
-
+  public recommendationsForm: FormGroup;
   public clientIndustries: string[] = clientIndustries;
   public campaignobjectives: string[] = campaignobjectives;
   public currencies: string[] = currencies;
@@ -26,7 +26,13 @@ export class BasicInformationComponent {
   public form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective,
-    private clientService: ClientService, ){  }
+    private clientService: ClientService,
+     ){  
+      
+      this.recommendationsForm = new FormGroup({
+      NumberofRecommendations: new FormControl(0),
+    });
+}
 
   ngOnInit() {
 
@@ -60,6 +66,24 @@ export class BasicInformationComponent {
       }
     });
   }
+      // Method to format the number for display
+    formatNumber(value: number | null | undefined): string {
+      return value ? value.toLocaleString() : '0';
+    }
+    onBudgetInput(value: string): void {
+      const parsedValue = this.parseFormattedNumber(value);
+      this.form.get('Budget')?.setValue(parsedValue, { emitEvent: false });
+    }
+    
+  onRecommendationsInput(value: string): void {
+    const parsedValue = this.parseFormattedNumber(value);
+    // Use optional chaining with ?. and provide a fallback value with ??
+    this.recommendationsForm.get('NumberofRecommendations')?.setValue(parsedValue, {emitEvent: false});
+  }
 
+  // Utility method to parse formatted number
+  parseFormattedNumber(value: string): number {
+    return Number(value.replace(/,/g, ''));
+  }
 
 }

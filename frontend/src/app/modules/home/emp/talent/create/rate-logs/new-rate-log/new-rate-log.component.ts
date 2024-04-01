@@ -184,4 +184,22 @@ export class NewRateLogComponent {
       deliverableControl?.clearValidators();
     }
   }
+  formatNumber(value: number | null): string {
+    return value !== null ? value.toLocaleString() : '';
+  }
+
+  onNumericInput(fieldName: string, value: string): void {
+    const parsedValue = this.parseFormattedNumber(value);
+    this.logForm.get(fieldName)?.setValue(parsedValue, { emitEvent: false });
+  }
+  
+  onFieldNumericInput(index: number, fieldName: string, value: string): void {
+    const parsedValue = this.parseFormattedNumber(value);
+    ((this.form.get('fields') as FormArray).at(index) as FormGroup).get(fieldName)?.setValue(parsedValue, { emitEvent: false });
+  }
+  
+  
+  parseFormattedNumber(value: string): number {
+    return Number(value.replace(/,/g, ''));
+  }
 }
