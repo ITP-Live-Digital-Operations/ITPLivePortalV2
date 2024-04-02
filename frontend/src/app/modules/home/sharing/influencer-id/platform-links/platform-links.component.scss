@@ -1,55 +1,16 @@
-/* .content {
-    align-items: center;
-    text-align: center;
-}
-
-.social {
-    margin-top: 10px;
-    text-align: center;
-    color: white;
-    padding: 2%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 10px;
-}
-
-
-
-.social li {
-    border-radius: 0px;
-    text-align: center;
-    align-items: center;
-    list-style: none;
-}
-
-.items {
-    display: flex;
-    text-align: center;
-    width: 100%;
-    padding: 20px;
-    gap: 30px;
-   flex-grow: 1;
-
-
-
-}
-
-.social p {
-    margin-top: 10px;
-    padding: 2px;
-    font-size: 15px;
-}
- */.content {
+.content {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 
-}
+
 
 .social {
   text-align: center;
+  justify-content: center;
   color: white;
-  padding: 1%;
+  padding: 0.5%;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -61,15 +22,14 @@
 }
 
 .social li {
-  padding-top: 5%;
-  flex: 1 1 auto; /* Adjust flex-basis to auto so items can grow */
-  width: 15vh;/* Minimum width to ensure content fits, adjust as necessary */
-  height: 20vh; /* Minimum height to ensure content fits, adjust as necessary */
+  flex: 1; /* Adjust flex-basis to auto so items can grow */
+  min-width: 15vh;/* Minimum width to ensure content fits, adjust as necessary */
+  min-height: 16.5vh; /* Minimum height to ensure content fits, adjust as necessary */
   border-radius: 10px;
   text-align: center;
   align-items: center;
   list-style: none;
-  padding: 10px;
+  padding: 5px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -85,9 +45,9 @@
   align-items: center;
   text-align: center;
   width: 100%;
-  padding: 20px;
-  gap: 30px;
-  flex-wrap: nowrap; /* Prevent wrapping */
+  padding: 10px;
+  gap: 20px;
+  flex-wrap: wrap; /* Prevent wrapping */
 }
 
 .social p {
@@ -95,4 +55,9 @@
   padding: 2px;
   font-size: 15px;
   color: #fff;
+}
+
+social ng-container {
+ margin-top: 2%;
+}
 }

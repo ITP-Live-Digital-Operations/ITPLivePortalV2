@@ -8,6 +8,7 @@ import { InfluencerIdComponent } from '../influencer-id.component';
 import { EditInfluencerRemarksComponent } from './edit-influencer-remarks/edit-influencer-remarks.component';
 import { UserService } from 'src/app/core/services/user.service';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
+import { NoteLogComponent } from '../../../emp/talent/create/rate-logs/note-log/note-log.component';
 
 @Component({
   selector: 'app-influencer-remarks',
@@ -45,8 +46,15 @@ export class InfluencerRemarksComponent {
     const data = { id: id, name: name };
 
     sessionStorage.setItem('influencerData', JSON.stringify(data));
-    this.dialogRef.close();
-    this.router.navigate([this.path['newRateLog']]);
+    this.dialog.open(NoteLogComponent, {
+      width: '600px',
+      data: { id: id, name: name },
+    }).afterClosed().subscribe(() => {
+      this.influencerService.getInfluencerRemarks(this.id).subscribe((item) => {
+        this.remarks = item;
+      });
+    });
+
   }
 
   public editRemark(remarkId: number) {

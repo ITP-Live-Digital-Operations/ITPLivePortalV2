@@ -1,48 +1,433 @@
-.container {
- display: flex;
- justify-content: space-between;
- background-color: transparent;
- align-items: center;
- align-self: center;
+
+// .top-container {
+//   display: flex;
+//   flex-direction: row; // Use row to lay them out horizontally
+//   width: 100%; // Take the full width of the parent
+
+//   margin-bottom: 2%;
+
+//   .bio-container {
+//     flex: 0 1 30%; // Flex-grow, flex-shrink, flex-basis
+//     // Additional styles for bio-container can go here, such as padding or margin
+//   }
+
+//   .platform-container {
+//     flex: 0 1 70%; // Flex-grow, flex-shrink, flex-basis
+//     // Additional styles for platform-container can go here
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .mat-mdc-tab-group  {
+//   --mdc-tab-indicator-active-indicator-color: linear-gradient(
+//     300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+//   );
+//   --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
+//   --mat-tab-header-pagination-icon-color: #000;
+//   --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
+//   --mat-tab-header-active-label-text-color: linear-gradient(
+//     300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+//   );
+//   --mat-tab-header-active-ripple-color: linear-gradient(
+//     300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+//   );
+//   --mat-tab-header-inactive-ripple-color: linear-gradient(
+//     300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+//   );
+//   --mat-tab-header-inactive-focus-label-text-color: linear-gradient(
+//     300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+//   );
+//   --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
+//   --mat-tab-header-active-focus-label-text-color: linear-gradient(
+//     300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+//   );
+//   --mat-tab-header-active-hover-label-text-color: linear-gradient(
+//     300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+//   );
+//   --mat-tab-header-active-focus-indicator-color: linear-gradient(
+//     300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+//   );
+//   --mat-tab-header-active-hover-indicator-color: linear-gradient(
+//     300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
+//   );
+// }
+mat-toolbar {
+  color: white; padding-top: 10vh;
 }
 
-.top-container{
-  margin-top: 1%;
-  margin-bottom: 1%;
+mat-toolbar-row {
+  background-color: #080b21;
+  display: flex;
+}
+
+mat-sidenav {
+  position: fixed;
+  top: 2.5%; /* Center the element vertically */
+  bottom: 2.5%;
+  background: rgb(75, 75, 75);
+  background: linear-gradient(
+    0deg,
+    rgba(176, 186, 225, 0.2) 0%,
+    rgba(176, 186, 225, 0.15) 20%,
+    rgba(176, 186, 225, 0.1) 70%,
+    rgba(176, 186, 225, 0.02) 100%
+  );
+
+
+  color: white;
+  text-align: center;
+  border-bottom-left-radius: 10px;
+}
+
+.mat-mdc-icon-button {
+  color: #ffffff !important;
+}
+img {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
 }
 
 
-.mat-mdc-tab-group  {
-  --mdc-tab-indicator-active-indicator-color: linear-gradient(
-    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-  );
-  --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
-  --mat-tab-header-pagination-icon-color: #000;
-  --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
-  --mat-tab-header-active-label-text-color: linear-gradient(
-    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-  );
-  --mat-tab-header-active-ripple-color: linear-gradient(
-    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-  );
-  --mat-tab-header-inactive-ripple-color: linear-gradient(
-    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-  );
-  --mat-tab-header-inactive-focus-label-text-color: linear-gradient(
-    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-  );
-  --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
-  --mat-tab-header-active-focus-label-text-color: linear-gradient(
-    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-  );
-  --mat-tab-header-active-hover-label-text-color: linear-gradient(
-    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-  );
-  --mat-tab-header-active-focus-indicator-color: linear-gradient(
-    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-  );
-  --mat-tab-header-active-hover-indicator-color: linear-gradient(
-    300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-  );
+.content {
+  height: calc(100vh - 98px);
+  border-radius: 10px;
+  margin: 16px;
+  // margin-left: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: lightgray;
+}
+
+mat-sidenav-container {
+ /*  height: 100%;
+  background-color: hsla(232, 60%, 8%, 1);
+  background-image: radial-gradient(
+      at 86% 97%,
+      hsla(271, 0%, 0%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 22% 58%, #1f1fd66b 0px, transparent 50%);
+  animation: gradient 5s ease infinite;
+  background-size: 120% 120%; */
+  height: 100%;
+  /* Adjusted the base color to a lighter tone for a more modern feel */
+  background-color: rgba(48, 63, 149, 0.204);
+  /* Lightened the gradient colors and made them more subtle */
+  background-image: radial-gradient(
+      at 86% 97%,
+      hsla(271, 60%, 30%, 0.5) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 22% 58%, hsla(210, 60%, 50%, 0.3) 0px, transparent 50%);
+  animation: gradient 5s ease infinite;
+  background-size: 120% 120%;
+
+  }
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Aligns children vertically in the center */
+  align-items: center; /* Aligns children horizontally in the center, if you want */
+  height: 100%; /* Ensure it takes full height */
+  text-align: center; /* Centers the text, if needed */
+}
+
+
+
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    25% {
+      background-position: 100% 25%;
+    }
+    50% {
+      background-position: 0% 0%;
+    }
+    75% {
+      background-position: 100% 75%;
+    }
+  }
+
+// background: rgb(35,35,35);
+// background: linear-gradient(180deg, rgba(35,35,35,1) 0%, rgba(35,35,35,1) 90%, rgb(1, 1, 1) 100%);
+
+mat-sidenav-content {
+  overflow-x: hidden;
+  justify-content: center;
+  max-width: 100%;
+  vertical-align: middle;
+  padding-top: 1vh;
+  padding-bottom: 2vh;
+}
+
+.menu {
+  z-index: 990;
+  position: relative;
+}
+
+
+.menu-item:hover {
+  /* Transition to a lighter gradient to match the updated background */
+  background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+
+  transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.menu-button {
+  transition: transform 0.3s ease;
+  margin-left: 15px;
+  padding-top: 7px;
+}
+.close-button {
+  position: absolute; /* Adjust if necessary to fit your layout needs */
+  right: 0; /* Align to the left side of the closest positioned ancestor */
+  z-index: 1; /* Ensure it has a z-index of 1 */
+  color: aliceblue; /* Keeping your inline style for color, but it's better to move styles here */
+}
+
+/* Icon rotated state, pointing up */
+.rotate-icon {
+  transform: rotate(180deg);
+}
+.account-pic {
+  border: 3px solid rgb(0, 255, 0); /* Adjust the border size and style as needed */
+  border-radius: 50%; /* Assuming the picture is circular */
+}
+
+/* Additional class for when the user is on leave */
+.on-leave-border {
+  border-color: red;
+}
+.avatar {
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+h4 {
+  margin-top: 8px;
+  font-weight: normal;
+}
+
+.designation {
+  font-size: 0.7rem;
+  color: lightgrey;
+}
+
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.icon {
+  color: white;
+}
+
+.a:hover {
+  color: blueviolet;
+}
+
+.router-container {
+  padding: 7vh 60px;
+  justify-content: center;
+  // overflow-y: scroll;
+  /* overflow-x: hidden ; */
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(32, 32, 32);
+}
+
+/* customize the scroll bar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+/* customize the scroll bar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* customize the scroll bar width and height */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.btn-container {
+  padding: 20px;
+}
+
+.notification-container {
+  position: relative;
+  display: inline-block;
+
+  /* to shrink container to the size of the icon */
+}
+
+.notification-icon {
+  // background: url('/assets/white-buttons/white-notification-bell-icon.png');
+  background-size: cover;
+  cursor: pointer;
+}
+.notification-icon:hover {
+/* Transition to a lighter gradient to match the updated background */
+background: linear-gradient(
+  112deg,
+  rgba(147, 149, 255, 0.8) 0%, /* Lightened color */
+  rgba(103, 105, 194, 0.8) 77%, /* More subtle middle transition */
+  rgba(86, 88, 189, 0.8) 100% /* Softened end color */
+);
+border-bottom-right-radius: 10px;
+border-top-right-radius: 10px;
+transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+::ng-deep 
+.notification-dot {
+  position: absolute;
+  top: 5px;
+  left: 25px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.notification-box {
+  right: 0;
+  /* start from the right of the page */
+  top: 100%;
+  /* place box just below the icon */
+  width: max-content;
+  /* takes as much width as needed for the content */
+  max-width: 300px;
+  /* or any maximum width you want to set */
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.notification-box div {
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+}
+
+.notification-box p {
+  margin: 0;
+}
+
+.notification-box small {
+  display: block;
+  color: #666;
+  font-size: 80%;
+  margin-top: 5px;
+}
+
+.notification-box button {
+  display: block;
+  margin-top: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 1440px), (max-height: 900px) {
+  .router-container {
+    padding: 20px 50px;
+    background-color: rgba(8, 11, 33, 0.034);
+
+    animation: gradient 5s ease infinite;
+    background-size: 120% 120%;
+    // overflow-y: scroll;
+    /* overflow-x: hidden ; */
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 20%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 70%;
+  }
+  100% {
+    background-position: 0% 20%;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+span {
+  color: white;
+  flex-grow: 1;
+  padding-bottom: 2px !important; /* Let the text take up the remaining space */
+}
+
+mat-nav-list {
+  text-align: left;
+}
+
+mat-nav-list a.mat-list-item,
+mat-nav-list .mat-list-item {
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.example-sidenav .nav-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* This centers the content vertically */
+  height: 100%; /* Full height of the parent container */
+}
+
+.content-noScroll {
+  overflow-y: hidden;
+}
+
+::ng-deep .mdc-list-item__primary-text{
+  color: white !important;
 }
 

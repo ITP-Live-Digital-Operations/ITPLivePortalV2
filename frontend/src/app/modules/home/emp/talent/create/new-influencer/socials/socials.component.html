@@ -21,11 +21,12 @@
       <mat-form-field>
         <mat-label>Instagram Followers</mat-label>
         <input
-          matInput
-          type="number"
-          formControlName="InstagramFollowers"
-          autocomplete="off"
-        />
+        matInput
+        type="text"
+        [value]="formatNumber(form.get('InstagramFollowers')?.value)"
+        (input)="onNumericInput('InstagramFollowers', $any($event.target).value)"
+        autocomplete="off"
+      />
         <mat-error
           *ngIf="
             form.controls['InstagramFollowers'].invalid &&
@@ -77,11 +78,12 @@
       <mat-form-field>
         <mat-label>Tiktok Followers</mat-label>
         <input
-          matInput
-          type="number"
-          formControlName="TiktokFollowers"
-          autocomplete="off"
-        />
+        matInput
+        type="text"
+        [value]="formatNumber(form.get('TiktokFollowers')?.value)"
+        (input)="onNumericInput('TiktokFollowers', $any($event.target).value)"
+        autocomplete="off"
+      />
         <mat-error
           *ngIf="
             form.controls['TiktokFollowers'].invalid &&
@@ -132,11 +134,13 @@
       <mat-form-field>
         <mat-label>SnapChat Followers</mat-label>
         <input
-          matInput
-          type="number"
-          formControlName="SnapchatFollowers"
-          autocomplete="off"
-        />
+        matInput
+        type="text"
+        [value]="formatNumber(form.get('SnapchatFollowers')?.value)"
+        (input)="onNumericInput('SnapchatFollowers', $any($event.target).value)"
+        autocomplete="off"
+      />
+        
         <mat-error
           *ngIf="
             form.controls['SnapchatFollowers'].invalid &&
@@ -188,11 +192,13 @@
       <mat-form-field>
         <mat-label>Twitter Followers</mat-label>
         <input
-          matInput
-          type="number"
-          formControlName="TwitterFollowers"
-          autocomplete="off"
-        />
+        matInput
+        type="text"
+        [value]="formatNumber(form.get('TwitterFollowers')?.value)"
+        (input)="onNumericInput('TwitterFollowers', $any($event.target).value)"
+        autocomplete="off"
+      />
+      
         <mat-error
           *ngIf="
             form.controls['TwitterFollowers'].invalid &&
@@ -244,11 +250,12 @@
       <mat-form-field>
         <mat-label>Facebook Followers</mat-label>
         <input
-          matInput
-          type="number"
-          formControlName="FacebookFollowers"
-          autocomplete="off"
-        />
+        matInput
+        type="text"
+        [value]="formatNumber(form.get('FacebookFollowers')?.value)"
+        (input)="onNumericInput('FacebookFollowers', $any($event.target).value)"
+        autocomplete="off"
+      />
         <mat-error
           *ngIf="
             form.controls['FacebookFollowers'].invalid &&
@@ -300,11 +307,13 @@
       <mat-form-field>
         <mat-label>YouTube Followers</mat-label>
         <input
-          matInput
-          type="number"
-          formControlName="YoutubeFollowers"
-          autocomplete="off"
-        />
+        matInput
+        type="text"
+        [value]="formatNumber(form.get('YoutubeFollowers')?.value)"
+        (input)="onNumericInput('YoutubeFollowers', $any($event.target).value)"
+        autocomplete="off"
+      />
+      
         <mat-error
           *ngIf="
             form.controls['YoutubeFollowers'].invalid &&
@@ -355,12 +364,14 @@
 
       <mat-form-field>
         <mat-label>Twitch Followers</mat-label>
+  
         <input
-          matInput
-          type="number"
-          formControlName="TwitchFollowers"
-          autocomplete="off"
-        />
+        matInput
+        type="text"
+        [value]="formatNumber(form.get('TwitchFollowers')?.value)"
+        (input)="onNumericInput('TwitchFollowers', $any($event.target).value)"
+        autocomplete="off"
+      />
         <mat-error
           *ngIf="
             form.controls['TwitchFollowers'].invalid &&

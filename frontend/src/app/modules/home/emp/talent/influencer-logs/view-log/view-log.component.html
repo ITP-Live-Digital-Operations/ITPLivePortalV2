@@ -16,7 +16,7 @@
 
     <ng-container matColumnDef="quantity">
       <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
-      <mat-cell *matCellDef="let package"> {{ package.quantity }} </mat-cell>
+      <mat-cell *matCellDef="let package"> {{ package.quantity | number:'1.0-0' }} </mat-cell>
     </ng-container>
 
     <!-- Header and Row Declarations -->
@@ -47,7 +47,7 @@
       </div>
       <div class="log-detail">
         <span class="log-label">Quantity:</span>
-        <span>{{log.logItems.quantity}}</span>
+        <span>{{log.logItems.quantity | number:'1.0-0'}}</span>
       </div>
       <div class="log-detail">
         <span class="log-label">Currency:</span>
@@ -55,7 +55,7 @@
       </div>
       <div class="log-detail">
         <span class="log-label">Rate:</span>
-        <span>{{log.logItems.rate}}</span>
+        <span>{{log.logItems.rate | number:'1.2-2'}}</span>
       </div>
       <h2>Reply Time: {{log.time_to_reply}}</h2>
       <h2>Notes: {{log.notes}}</h2>

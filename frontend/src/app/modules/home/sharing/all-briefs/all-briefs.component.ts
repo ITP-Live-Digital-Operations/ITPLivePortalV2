@@ -16,7 +16,6 @@ import { ConfirmationDialogService } from 'src/app/core/services/confirmation.se
   styleUrls: ['./all-briefs.component.scss'],
 })
 export class AllBriefsComponent {
-
   private path = PATH;
   private briefDetails: any;
   public dataSource: any;
@@ -24,27 +23,27 @@ export class AllBriefsComponent {
   private id: any;
   public userRole: string = this.userService.getRole();
   public privilegeLevel: number = this.userService.getPrivilegeLevel();
-  public userId : number = this.userService.getID();
+  public userId: number = this.userService.getID();
 
   displayedColumns: string[] = [
     'id',
     'CampaignName',
     'Agency',
+    'CreatedDate',
     'Client',
     'CampaignObjective',
     'AssignedDate',
     'TaskDeadline',
-    'Weight',
     'Sales',
     'Talent',
     'Action',
   ];
   displayedColumns1: string[] = ['color', 'meaning'];
   colorLegend = [
-    { color : 'none', meaning: 'All'},
-    {color: 'green', meaning: 'Not Assigned'},
-    {color: 'blue', meaning: 'Assigned'},
-    {color: 'red', meaning: 'In Active'},
+    { color: 'none', meaning: 'All' },
+    { color: 'green', meaning: 'Not Assigned' },
+    { color: 'blue', meaning: 'Assigned' },
+    { color: 'red', meaning: 'In Active' },
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -58,13 +57,13 @@ export class AllBriefsComponent {
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
     private dialogService: ConfirmationDialogService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getAllBriefs();
 
-    this.userService.getAllUsers().subscribe(data => {
-      data.forEach(user => {
+    this.userService.getAllUsers().subscribe((data) => {
+      data.forEach((user) => {
         this.users[user.id] = user.name;
       });
     });
@@ -75,18 +74,18 @@ export class AllBriefsComponent {
       console.log(data);
       this.briefDetails = data;
       this.briefDetails.data.sort((a: any, b: any) => {
-    // Sort by createdAt
-    if (a.id > b.id) return -1;
-    if (a.id < b.id) return 1;
+        // Sort by createdAt
+        if (a.id > b.id) return -1;
+        if (a.id < b.id) return 1;
 
-    // If createdAt is equal, sort by priority
-    return a.Priority - b.Priority;
+        // If createdAt is equal, sort by priority
+        return a.Priority - b.Priority;
       });
 
       this.dataSource = new MatTableDataSource(this.briefDetails.data);
       this.dataSource.filterPredicate = (data: any, filter: string) => {
         // This assumes that each data row has a 'Status' property.
-        if( filter === 'Not Assigned'){
+        if (filter === 'Not Assigned') {
           return data.assigned == 0;
         }
         if (filter === 'Active') {
@@ -96,7 +95,7 @@ export class AllBriefsComponent {
           return true;
         }
         return data.Status === filter;
-    };
+      };
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -105,19 +104,18 @@ export class AllBriefsComponent {
       this.id = params['id'];
       this.salesService
         .getSalesBriefWithFiles(this.id)
-        .subscribe((data: any) => { });
+        .subscribe((data: any) => {});
     });
   }
 
   public viewedTask(id: number): void {
-      this.salesService.viewedByTalent(id).subscribe((data: any) => {});
+    this.salesService.viewedByTalent(id).subscribe((data: any) => {});
     if (this.userRole == 'sales') {
-      this.router.navigate([`${this.path['sentBriefs'] + id}`]);
+      this.router.navigate([`${this.path['viewBriefSales'] + id}`]);
     } else {
       this.router.navigate([`${this.path['viewBrief'] + id}`]);
     }
   }
-
 
   public drop(event: CdkDragDrop<string[]>): void {
     {
@@ -147,10 +145,10 @@ export class AllBriefsComponent {
   }
 
   public deleteBrief(inputdata: any): void {
-    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
-      .subscribe(result => {
+    this.dialogService
+      .openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
+      .subscribe((result) => {
         if (result === true) {
-
           this.salesService.deleteBrief(inputdata).subscribe(() => {
             this.toastrService.success('Deleted Successfully!');
             this.getAllBriefs();
@@ -160,21 +158,18 @@ export class AllBriefsComponent {
   }
 
   applyFilter(color: string) {
-    if(color === 'green') {
-        this.dataSource.filter = 'Not Assigned';
-    } else if(color === 'blue') {
-        this.dataSource.filter = 'Active';
-    } else if(color === 'red') {
-        this.dataSource.filter = 'InActive';
-    } else if (color === 'none'){
-        this.dataSource.filter = 'all';
+    if (color === 'green') {
+      this.dataSource.filter = 'Not Assigned';
+    } else if (color === 'blue') {
+      this.dataSource.filter = 'Active';
+    } else if (color === 'red') {
+      this.dataSource.filter = 'InActive';
+    } else if (color === 'none') {
+      this.dataSource.filter = 'all';
     }
-}
-
-
+  }
 
   public getUsername(id: number): string {
     return this.users[id] || 'Not Assigned';
   }
-
 }

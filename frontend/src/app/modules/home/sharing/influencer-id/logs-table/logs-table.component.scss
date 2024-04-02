@@ -10,38 +10,49 @@ table {
   padding: 1%;
 }
 
-.top-div {
+.top-container {
   display: flex;
-  flex-wrap: wrap;
-  margin: 2%;
-  align-self: center;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  padding: 1%;
-  width: auto;
+  justify-content: flex-end; // Adjusted to stick items to the right
+  margin-right: 2%;
+}
 
-  .logs-btn {
-    margin-left: 2%;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    padding: 1%;
-    background: linear-gradient(
-      300deg,
-      rgb(45, 47, 149) 0%,
-      /* Darkened shade of blue for the start */ rgba(43, 45, 124, 0.85) 77%,
-      /* Further darkened middle for depth, maintaining semi-transparency */
-        rgba(36, 38, 119, 0.85) 100%
-        /* Deepest end for a strong visual impact */
-    );
-    color: #ffffff;
-    padding: 0px 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.expandable-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; // Adjust starting content alignment for when the button expands
+  background: linear-gradient(
+    300deg,
+    rgb(45, 47, 149) 0%, // Darkened shade of blue for the start
+    rgba(43, 45, 124, 0.85) 77%, // Further darkened middle for depth, maintaining semi-transparency
+    rgba(36, 38, 119, 0.85) 100% // Deepest end for a strong visual impact
+  );
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease, width 0.3s ease 0.3s;
+  width: 48px; // Initial width to only show the icon
+  height: 48px;
+  border-radius: 24px;
+
+  position: relative; // Added for potential absolute positioning inside container
+  &:hover {
+    width: auto; // Expanded width to show text
+  }
+
+
+
+  .button-text {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.6s; // Wait for rotate and width expansion
+    padding: 2%;
+  }
+
+  &:hover .button-text {
+    opacity: 1;
   }
 }
+
 
 .single {
   color: white;

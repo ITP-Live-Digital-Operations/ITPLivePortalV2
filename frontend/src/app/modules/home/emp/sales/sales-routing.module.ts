@@ -6,6 +6,7 @@ import { ReadyBriefsComponent } from './ready-briefs/ready-briefs.component';
 import { SentBriefsComponent } from './sent-briefs/sent-briefs.component';
 import { SentBriefsIdComponent } from './sent-briefs-id/sent-briefs-id.component';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { ViewBriefComponent } from '../talent/view-brief/view-brief.component';
 
 let path = PATH;
 
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'sentBriefs/:id',
     component: SentBriefsIdComponent
+  },
+  {
+    path: 'viewBrief/:id',
+    component: ViewBriefComponent
   },
   {
     path: '',

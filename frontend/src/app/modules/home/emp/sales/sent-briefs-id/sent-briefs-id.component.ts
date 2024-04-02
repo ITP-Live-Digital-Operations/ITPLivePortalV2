@@ -26,7 +26,7 @@ export class SentBriefsIdComponent {
   public path = PATH;
 
   private briefId: any;
-  private briefData: any;
+  protected briefData: any;
   public newBrief: any;
   private taskData: any;
   brand : any;
@@ -53,11 +53,8 @@ export class SentBriefsIdComponent {
     this.userService.getUserNameById(this.userId).subscribe((res) => {
       this.userName = res;
     });
-
     this.loadSalesBriefData();
-
     this.initializeElements();
-
     this.getSalesFiles();
   }
 
@@ -147,16 +144,11 @@ export class SentBriefsIdComponent {
     this.activatedRoute.params.subscribe((params) => {
       this.briefId = params['id'];
     });
-
     this.salesService.getSalesBrief(this.briefId).subscribe((brief) => {
       this.briefData = brief;
-
-
       if( this.briefData.data.assigned ){
         this.taskService.getTaskByBriefId(this.briefId).subscribe( (task) => {
           this.taskData = task;
-
-
         })
       }
 
@@ -335,8 +327,6 @@ export class SentBriefsIdComponent {
     return ageGroups;
   }
 
-
-
   displayedColumns: string[] = [
     'id',
     'originalname',
@@ -350,7 +340,7 @@ export class SentBriefsIdComponent {
 
   private getSalesFiles() {
     this.fileService.getSalesBriefFiles(this.briefId).subscribe(data => {
-     
+
       this.dataSource = new MatTableDataSource(data.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

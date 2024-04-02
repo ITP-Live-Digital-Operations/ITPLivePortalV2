@@ -1,54 +1,66 @@
 .carousel-container {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory; /* This is optional and enables snap scrolling */
-  -webkit-overflow-scrolling: touch; /* For iOS Webkit browsers */
-  scrollbar-width: thin; /* For Firefox, let's make it thin */
-  scrollbar-color:  rgba(95, 95, 95, 0.575)  #e0e0e000;
-  -ms-overflow-style: none;
- 
+  display: flex;
+  justify-content: center; /* Centers the child horizontally */
+  align-items: flex-start; /* Aligns children to the top */
+  width: 100%;
+  height: auto;
+/* Initial setting, might be overridden by media query */
+  overflow-y: auto; /* Allows vertical scrolling if needed */
+  background: rgba(255, 255, 255, 0);
 }
-
 
 .carousel-wrapper {
   display: flex;
-  flex-direction: row;
-  width: max-content;
-  margin: 1rem auto; 
-  overflow-y : hidden;/* Corrected the margin property */
+  flex-direction: column; /* Stacks children vertically */
+  align-items: center; /* Centers children horizontally */
+  gap: 1vh; /* Space between items */
+  width: 100vh;
+ padding-top: 7vh; /* Adjust based on design needs, consider using % for responsiveness */
+  background: rgba(255, 255, 255, 0);
+}
+
+/* Media query for mobile devices */
+@media (max-width: 400px) {
+  .carousel-container {
+    height: 100vh; /* Example fixed height for mobile, adjust as needed */
+    overflow-y: scroll; /* Ensures scrollability on mobile */
+  }
+  button[mat-raised-button] {
+    width: 25vh !important; /* Adjust based on your preference for square size */
+    height: 25vh !important;
+}
 }
 
 
-
-.container .btn {
-  row-gap: 1px;
-  column-gap: 10px;
-  cursor: default;
-  border: 0px solid;
-  margin-left: 120px;
-}
  p {
   position: relative;
-  bottom: -15rem; /* Text sticks to the bottom */
+  bottom: -7vh; /* Text sticks to the bottom */
   left: 0;
+  font-size: 2vh;
   width: 100%;
   text-align: center;
   margin: 0;
   color: white;
 }
 
+/* Ensuring buttons are square and images + text are centered */
 button[mat-raised-button] {
-  scroll-snap-align: start;
-  flex: 0 0 auto;
-  width: 27vh !important;
-  height: 73vh !important;
-  margin: 0 10px;
-  position: relative;
+  position: relative; /* To position the img and p absolutely within the button */
+  width: 30vh; /* Adjust based on your preference for square size */
+  height: 30vh; /* Same as width to ensure square */
+  display: flex; /* To help center the content */
+  flex-direction: column; /* Stack img and p vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  margin: 0 10px; /* Maintain some space between buttons */
+  margin: 1vh;
   background: rgb(75,75,75);
   background: linear-gradient(0deg,rgba(176, 186, 225, 0.2)  0%, rgba(176, 186, 225, 0.15)  20%,rgba(176, 186, 225, 0.1)  70%,rgba(176, 186, 225, 0.02) 100%);
   transition: background-color 500ms, border-color 500ms;
   border-radius: 20px !important;
-  overflow: hidden; /* Ensure the pseudo-element doesn't exceed the button's boundary */
+  overflow: hidden; /* Add some padding inside the button */
 }
+
 
 button[mat-raised-button]::before {
   content: '';
@@ -64,40 +76,14 @@ button[mat-raised-button]::before {
 
 }
 
- p {
-  position: relative;
-  bottom: -25vh; /* Text sticks to the bottom */
-  left: 0;
-  font-size: 2vh;
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  color: white;
-}
-
 button[mat-raised-button]:hover::before {
   top: 0; /* Slide up to cover the entire button */
 }
 
 button[mat-raised-button]:hover {
   z-index: 2;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-
-
-
-
+  border: 4px solid  rgba(176, 186, 225, 0.15) ;
 }
-
-button[mat-raised-button] img {
-  position: absolute !important;
-  bottom: -20vh !important; /* Adjust this value as needed to move the image up from the bottom */
-  left: 50%!important;
-  transform: translateX(-50%)!important; /* Center the image horizontally */
-  width: 9vh!important; /* Your desired width or keep it responsive */
-  height: 9vh!important;
-
-}
-
 
 .title {
   color: white;
@@ -118,29 +104,34 @@ button[mat-raised-button] img {
 
 button[mat-raised-button] img {
   position: absolute;
-  bottom: -13rem; /* Adjust this value as needed to move the image up from the bottom */
+  bottom: -2vh; /* Adjust this value as needed to move the image up from the bottom */
   left: 50%;
   transform: translateX(-50%); /* Center the image horizontally */
-  width: 100px; /* Your desired width or keep it responsive */
-  height: 100px;
+  width: 9vh; /* Your desired width or keep it responsive */
+  height: 9vh;
 
 }
 
-
-
-@media (max-width: 1440px), (max-height: 900px) {
-  button[mat-raised-button]{
-      width: 220px;
-      height: 220px;
-  }
-
-  img {
-    margin-top: 10px;
-    width: 80px;
-    height: 80px;
-  }
-
-  .container .btn {
-    margin-left: 80px;
-  }
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: medium;
+  background-color: #ffffff2a;
+  border: 3px solid #1f3371;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  transition: background-color 300ms;
 }
+
+.back-button:hover {
+  background-color: #FFF;
+}
+
+.mat-icon {
+  margin-right: 8px;
+  height: 70%; /* Adjust spacing to your preference */
+}
+

@@ -1,25 +1,87 @@
+<style>
+  ::ng-deep .mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: hidden !important;
+  }
+  ::ng-deep
+    .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+    > .mat-mdc-tab-header
+    .mat-mdc-tab {
+    flex-grow: 1;
+    border-right: 1px solid rgba(70, 70, 93, 0.559);
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 20px;
+    color: #333;
+  }
+  ::ng-deep .mat-raised-button {
+    border-radius: 20px;
+  }
+  ::ng-deep
+    .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+    > .mat-mdc-tab-header
+    .mat-mdc-tab:hover {
+    background-color: rgba(70, 70, 93, 0.379);
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    ::ng-deep
+      .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+      > .mat-mdc-tab-header {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    ::ng-deep
+      .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+      > .mat-mdc-tab-header
+      .mat-mdc-tab {
+      display: inline-block;
+      width: auto;
+      border-right: none;
+    }
+
+    ::ng-deep
+      .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+      > .mat-mdc-tab-header
+      .mat-mdc-tab:nth-child(n + 3) {
+      display: none;
+    }
+  }
+</style>
+
 <div class="form-container">
   <h1>Edit Sales Brief</h1>
   <form [formGroup]="editForm" (ngSubmit)="submitForm()" autocomplete="off">
-
     <app-basic-information formGroupName="basicInfo"></app-basic-information>
 
-    <app-campaign-overview formGroupName="campaignOverview"></app-campaign-overview>
+    <app-campaign-overview
+      formGroupName="campaignOverview"
+    ></app-campaign-overview>
 
     <hr />
 
-    <app-influencer-details formGroupName="influencerDetails"></app-influencer-details>
+    <app-influencer-details
+      formGroupName="influencerDetails"
+    ></app-influencer-details>
 
     <hr />
 
-    <app-audience-details formGroupName="audienceDetails"></app-audience-details>
+    <app-audience-details
+      formGroupName="audienceDetails"
+    ></app-audience-details>
 
     <hr />
 
-    <app-department-details formGroupName="departmentDetails"></app-department-details>
+    <app-department-details
+      formGroupName="departmentDetails"
+    ></app-department-details>
 
-    <hr>
-    <h2> Uploaded Files </h2>
+    <hr />
+    <h2>Uploaded Files</h2>
 
     <div class="table-container">
       <table mat-table #table [dataSource]="dataSource" matSort>
@@ -34,21 +96,21 @@
         </ng-container>
 
         <ng-container matColumnDef="fileType">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Type </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
           <td mat-cell *matCellDef="let element">{{ element.fileType }}</td>
         </ng-container>
 
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Download</th>
-          <td mat-cell *matCellDef="let element">  <mat-icon color="warn" (click)="deleteFile(element.id)"> delete  </mat-icon></td>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon color="warn" (click)="deleteFile(element.id)">
+              delete
+            </mat-icon>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
-        <tr
-          mat-row
-          *matRowDef="let row; columns: displayedColumns"
-          sticky
-        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" sticky></tr>
       </table>
       <mat-paginator
         [length]="dataSource?.data.length"
@@ -59,12 +121,22 @@
       </mat-paginator>
     </div>
 
-    <hr>
-   <h2> Upload Files </h2>
-    <app-upload-files (filesUploaded)="transferedFiles($event)"></app-upload-files>
-    <hr>
+    <hr />
+    <h2>Upload Files</h2>
+    <app-upload-files
+      (filesUploaded)="transferedFiles($event)"
+    ></app-upload-files>
+    <hr />
 
-    <button mat-raised-button  type="submit" [disabled]="!editForm.valid" style="margin-bottom: 2%; margin-top: 2%">Edit Brief Form</button>
+    <button
+      mat-raised-button
+      type="submit"
+      [disabled]="
+        !editForm.valid || this.userId != this.briefData.data.CreatedbyID
+      "
+      style="margin-bottom: 2%; margin-top: 2%"
+    >
+      Edit Brief Form
+    </button>
   </form>
 </div>
-

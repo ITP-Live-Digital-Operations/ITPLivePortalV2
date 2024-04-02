@@ -183,6 +183,20 @@ export class SingleInfluencerLogsComponent {
       deliverableControl?.clearValidators();
     }
   }
+    // Helper method to format numbers with commas for display
+    formatNumber(value: number | null): string {
+      return value !== null ? value.toLocaleString() : '';
+    }
 
+    // Method to handle numeric input for fields within the form array
+    onFieldNumericInput(index: number, fieldName: string, value: string): void {
+      const parsedValue = this.parseFormattedNumber(value);
+      ((this.form.get('fields') as FormArray).at(index) as FormGroup).get(fieldName)?.setValue(parsedValue, { emitEvent: false });
+    }
+
+    // Utility method to parse numbers from formatted string
+    parseFormattedNumber(value: string): number {
+      return Number(value.replace(/,/g, ''));
+    }
 
 }
