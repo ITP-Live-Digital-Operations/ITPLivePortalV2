@@ -111,7 +111,7 @@ export class AllBriefsComponent {
   public viewedTask(id: number): void {
     this.salesService.viewedByTalent(id).subscribe((data: any) => {});
     if (this.userRole == 'sales') {
-      this.router.navigate([`${this.path['sentBriefs'] + id}`]);
+      this.router.navigate([`${this.path['viewBriefSales'] + id}`]);
     } else {
       this.router.navigate([`${this.path['viewBrief'] + id}`]);
     }

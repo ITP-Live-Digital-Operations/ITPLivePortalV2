@@ -40,6 +40,7 @@ export const PATH: { [key: string]: string } = {
   newSalesBrief: "/home/sales/newBrief",
   readyBriefs: "/home/sales/readyBriefs/",
   sentBriefs: "/home/sales/sentBriefs/",
+  viewBriefSales: "/home/sales/viewBrief/",
 
   // Campaign Routes
   viewCampaigns: "/home/campaign/viewCampaigns",

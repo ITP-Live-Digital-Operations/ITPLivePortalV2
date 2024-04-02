@@ -19,7 +19,7 @@ table {
 .expandable-button {
   display: flex;
   align-items: center;
-  justify-content: start; // Adjust starting content alignment for when the button expands
+  justify-content: flex-start; // Adjust starting content alignment for when the button expands
   background: linear-gradient(
     300deg,
     rgb(45, 47, 149) 0%, // Darkened shade of blue for the start
