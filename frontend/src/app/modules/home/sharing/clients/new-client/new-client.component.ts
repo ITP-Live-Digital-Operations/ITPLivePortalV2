@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ClientService } from 'src/app/core/services/client.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -19,6 +20,7 @@ export class NewClientComponent {
     private clientService: ClientService,
     private toastrService: ToastrService,
     private userService: UserService,
+    private dialogRef: MatDialogRef<NewClientComponent>
   ) {
     this.newClientForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -37,9 +39,7 @@ export class NewClientComponent {
       console.log(response);
       if (response.status == 'success') {
         this.toastrService.success("Client added successfully!")
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        this.dialogRef.close();
       }
       else{
         this.toastrService.error("Error adding client!")

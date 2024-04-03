@@ -159,6 +159,8 @@ export class ClientsComponent {
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {},
+    }).afterClosed().subscribe(() => {
+      this.loadClients();
     });
   }
 }

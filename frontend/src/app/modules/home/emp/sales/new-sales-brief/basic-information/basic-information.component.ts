@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ClientModel } from 'src/app/core/interfaces/client.model';
 import { ClientService } from 'src/app/core/services/client.service';
+import { NewClientComponent } from 'src/app/modules/home/sharing/clients/new-client/new-client.component';
 import {
   campaignobjectives,
   clientIndustries,
@@ -29,7 +31,8 @@ export class BasicInformationComponent {
 
   constructor(
     private rootFormGroup: FormGroupDirective,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit() {
@@ -85,5 +88,14 @@ export class BasicInformationComponent {
   // Utility method to parse formatted number
   parseFormattedNumber(value: string): number {
     return Number(value.replace(/,/g, ''));
+  }
+
+  addNewClient(): void {
+    this.dialog.open(NewClientComponent, {
+      width: '600px',
+      height: '350px',
+    }).afterClosed().subscribe((newClient: ClientModel) => {
+      this.getClients();
+    });
   }
 }
