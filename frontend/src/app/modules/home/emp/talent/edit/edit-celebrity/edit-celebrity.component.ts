@@ -89,13 +89,13 @@ export class EditCelebrityComponent {
     });
   }
   activeTabIndex: number = 0;
-  tabCount: number = 4; 
+  tabCount: number = 4;
   nextTab() {
     if (this.activeTabIndex < this.tabCount - 1) {
       this.activeTabIndex++;
     }
   }
-  
+
   prevTab() {
     if (this.activeTabIndex > 0) {
       this.activeTabIndex--;
@@ -180,7 +180,7 @@ export class EditCelebrityComponent {
     this.service.updateCelebrity(formValues, this.source.id).subscribe((res) => {
       this.data = res;
       if (this.data.status === 'success') {
-        this.dialogRef.close();
+       this.closeDialog();
         this.toastrService.success('Influencer Edited Successfully!');
       }
       else {

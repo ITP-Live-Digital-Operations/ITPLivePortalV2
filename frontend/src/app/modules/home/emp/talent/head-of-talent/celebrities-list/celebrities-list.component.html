@@ -1,79 +1,99 @@
-<div class="loading-container"*ngIf="isLoading">
-  <img  src="../../../../../assets/gifs/table.gif" alt="Loading...">
+<div class="loading-container" *ngIf="isLoading">
+  <img src="../../../../../assets/gifs/table.gif" alt="Loading..." />
 </div>
 <div style="position: relative" [hidden]="isLoading">
-<div id="search">
-  <svg viewBox="0 0 420 60">
-    <rect class="bar" />
-  </svg>
-  <mat-form-field>
-    <input
-      #searchInput
-      matInput
-      (keyup)="applyFilterChange('search', searchInput.value)"
-      placeholder="Search"
-    />
-    <mat-icon matPrefix style="color: aliceblue">search</mat-icon>
-  </mat-form-field>
-</div>
-<div>
- <div class="search-container">
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon style="color: aliceblue">filter_list</mat-icon>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <mat-form-field class="filter">
-            <mat-label>Gender Filter</mat-label>
-            <mat-select #genderSelect multiple placeholder="Gender Filter" (selectionChange)="applyFilterChange('gender', $event.value)">
-              <mat-option *ngFor="let gender of allGenders" [value]="gender">{{ gender }}</mat-option>
-            </mat-select>
-          </mat-form-field>
+  <div id="search">
+    <svg viewBox="0 0 420 60">
+      <rect class="bar" />
+    </svg>
+    <mat-form-field>
+      <input
+        #searchInput
+        matInput
+        (keyup)="applyFilterChange('search', searchInput.value)"
+        placeholder="Search"
+      />
+      <mat-icon matPrefix style="color: aliceblue">search</mat-icon>
+    </mat-form-field>
+  </div>
+  <div>
+    <div class="search-container">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon style="color: aliceblue">filter_list</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field class="filter">
+          <mat-label>Gender Filter</mat-label>
+          <mat-select
+            #genderSelect
+            multiple
+            placeholder="Gender Filter"
+            (selectionChange)="applyFilterChange('gender', $event.value)"
+          >
+            <mat-option *ngFor="let gender of allGenders" [value]="gender">{{
+              gender
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-
-
-          <mat-form-field class="filter">
+        <mat-form-field class="filter">
           <mat-label>Location Filter</mat-label>
-          <mat-select #locationSelect multiple placeholder="Location Filter" (selectionChange)="applyFilterChange('location', $event.value)">
+          <mat-select
+            #locationSelect
+            multiple
+            placeholder="Location Filter"
+            (selectionChange)="applyFilterChange('location', $event.value)"
+          >
             <mat-option *ngFor="let option of allLocations" [value]="option">
               {{ option }}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-
-
-          <mat-form-field class="filter">
-        <mat-label>Main Vertical Filter</mat-label>
-        <mat-select  #verticalSelect multiple placeholder="Main Vertical Filter" (selectionChange)="applyFilterChange('vertical', $event.value)">
-          <mat-option *ngFor="let option of allVerticals" [value]="option">{{ option }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="filter">
-        <mat-label>Game Filter</mat-label>
-        <mat-select  #verticalSelect multiple placeholder="Game Filter" (selectionChange)="applyFilterChange('game', $event.value)">
-          <mat-option *ngFor="let option of allGames" [value]="option">{{ option }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div><button mat-raised-button color="primary" (click)="resetFilters()">Reset Filters</button></div>
-
-
-
-        </mat-expansion-panel>
-      </div>
+        <mat-form-field class="filter">
+          <mat-label>Main Vertical Filter</mat-label>
+          <mat-select
+            #verticalSelect
+            multiple
+            placeholder="Main Vertical Filter"
+            (selectionChange)="applyFilterChange('vertical', $event.value)"
+          >
+            <mat-option *ngFor="let option of allVerticals" [value]="option">{{
+              option
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="filter">
+          <mat-label>Game Filter</mat-label>
+          <mat-select
+            #verticalSelect
+            multiple
+            placeholder="Game Filter"
+            (selectionChange)="applyFilterChange('game', $event.value)"
+          >
+            <mat-option *ngFor="let option of allGames" [value]="option">{{
+              option
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button color="primary" (click)="resetFilters()">
+            Reset Filters
+          </button>
+        </div>
+      </mat-expansion-panel>
     </div>
+  </div>
   <div class="new-celeb">
-  <button mat-raised-button
-    routerLink="/home/talent/new/celebrity">
-    <mat-icon>add_circle_outline</mat-icon>
-    New Celebrity
-  </button>
-</div>
+    <button mat-raised-button routerLink="/home/talent/new/celebrity">
+      <mat-icon>add_circle_outline</mat-icon>
+      New Celebrity
+    </button>
+  </div>
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort>
-
-
       <ng-container matColumnDef="ID">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
         <td mat-cell *matCellDef="let element">{{ element.id }}</td>
@@ -81,7 +101,11 @@
 
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let element" class="truncate">{{ element.Name }}</td>
+        <td mat-cell *matCellDef="let element">
+          <button class="icon-btn" (click)="viewCelebrity(element.id)">
+            {{ element.Name }}
+          </button>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="Gender">
@@ -90,7 +114,6 @@
       </ng-container>
 
       <ng-container matColumnDef="InstagramFollowers">
-
         <th mat-header-cell *matHeaderCellDef mat-sort-header>IG</th>
         <td
           mat-cell
@@ -102,7 +125,6 @@
       </ng-container>
 
       <ng-container matColumnDef="TiktokFollowers">
-
         <th mat-header-cell *matHeaderCellDef mat-sort-header>TT</th>
         <td
           mat-cell
@@ -110,25 +132,21 @@
           (click)="openLink(element.TiktokLink)"
         >
           {{ element.TiktokFollowers | numberFormat }}
-
         </td>
       </ng-container>
 
       <ng-container matColumnDef="SnapchatFollowers">
-
         <th mat-header-cell *matHeaderCellDef mat-sort-header>SC</th>
         <td
           mat-cell
           *matCellDef="let element"
           (click)="openLink(element.SnapchatLink)"
         >
-
           {{ element.SnapchatFollowers | numberFormat }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="TwitterFollowers">
-
         <th mat-header-cell *matHeaderCellDef mat-sort-header>X</th>
         <td
           mat-cell
@@ -136,12 +154,10 @@
           (click)="openLink(element.TwitterLink)"
         >
           {{ element.TwitterFollowers | numberFormat }}
-
         </td>
       </ng-container>
 
       <ng-container matColumnDef="YoutubeFollowers">
-
         <th mat-header-cell *matHeaderCellDef mat-sort-header>YT</th>
         <td
           mat-cell
@@ -160,7 +176,6 @@
           (click)="openLink(element.TwitchLink)"
         >
           {{ element.TwitchFollowers | numberFormat }}
-
         </td>
       </ng-container>
 
@@ -178,36 +193,42 @@
 
       <ng-container matColumnDef="Game" class="truncate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Game</th>
-        <td mat-cell *matCellDef="let element" class="truncate" >{{ element.Game }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="Action">
-        <th mat-header-cell *matHeaderCellDef>View | Edit</th>
-        <td mat-cell *matCellDef="let element">
-          <button class="icon-btn" (click)="viewCelebrity(element.id)">
-            <mat-icon>remove_red_eye</mat-icon>
-          </button>
-
-          <button class="icon-btn edit-button" (click)="editCelebrity(element.id)">
-            <mat-icon>create</mat-icon>
-          </button>
-
-
-          <mat-icon
-          *ngIf="userRole == 'superadmin'"
-          mat-raised-button
-          color="warn"
-          (click)="deleteCelebrity(element.id)"
-        >
-          delete
-        </mat-icon>
+        <td mat-cell *matCellDef="let element" class="truncate">
+          {{ element.Game }}
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            class="icon-btn edit-button"
+            (click)="editCelebrity(element.id)"
+          >
+            <mat-icon>create</mat-icon>
+          </button>
+          <mat-icon
+            *ngIf="userId == 1"
+            mat-raised-button
+            color="warn"
+            (click)="deleteCelebrity(element.id)"
+          >
+            delete
+          </mat-icon>
+        </td>
+      </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns" sticky>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" sticky></tr>
     </table>
-    <mat-paginator [length]="100" [pageSize]="25" [pageSizeOptions]="[3, 5, 10, 25, 100]" aria-label="Select page">
+
+    <mat-paginator
+      [length]="100"
+      [pageSize]="25"
+      [pageSizeOptions]="[3, 5, 10, 25, 100]"
+      showFirstLastButtons
+      aria-label="Select page"
+    >
     </mat-paginator>
   </div>
+</div>

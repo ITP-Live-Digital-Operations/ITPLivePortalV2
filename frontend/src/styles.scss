@@ -171,11 +171,14 @@ mat-form-field {
   border: 0px;
   padding: 4px 6px;
   color: white;
+
+  &:hover {
+    background-color: #000000;
+    border-radius: 5px;
+  }
 }
 
-.icon-btn:hover {
-  color: #1f3371;
-}
+
 
 h2 {
   color: white !important;
@@ -229,8 +232,8 @@ hr {
 :-moz-placeholder {
   /* Firefox 18- */
   color: #ffffffc1 !important;
-} 
-// here goews the reset filter css 
+}
+// here goews the reset filter css
 .glow-on-hover {
   width: 175px;
   height: 35px;
@@ -282,7 +285,7 @@ hr {
   background: linear-gradient(109.6deg, rgb(61, 121, 176) 11.3%, rgb(35, 66, 164) 91.1%);
   left: 0;
   top: 0;
-  
+
   border-radius: 55px;
 }
 

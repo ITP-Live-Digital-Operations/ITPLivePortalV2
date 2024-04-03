@@ -12,7 +12,7 @@ export class CelebrityIdComponent {
   public id: number = 0;
   public celebrityData: any;
   public isReviewVisible: boolean = false;
-  
+
 
   constructor(
     private service: CelebrityService,
@@ -22,6 +22,7 @@ export class CelebrityIdComponent {
 
   ngOnInit() {
     this.GetCelebrityData(this.source.id);
+    this.selectComponent('basicInfo');
   }
 
   private GetCelebrityData(inputdata: any): void {

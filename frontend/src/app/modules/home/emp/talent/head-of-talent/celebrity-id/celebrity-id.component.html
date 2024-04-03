@@ -1,60 +1,38 @@
-<!-- 
-<div *ngIf="celebrityData != undefined || celebrityData != null">
-  <div class="top-container">
-    <div class="bio-container">
-      <app-celeb-prof-card
-        [profileData]="celebrityData"
-        [id]="id"
-      ></app-celeb-prof-card>
-    </div>
-    <div class="platform-container">
-   
-  </div>
-  </div>
-
-  <mat-tab-group>
-
-    <mat-tab label="Basic Information"
-    ><app-basic-info [profileData]="celebrityData"></app-basic-info
-  ></mat-tab>
-
-    <mat-tab label="Social Media Links"
-      ><app-platform-links
-
-      [profileData]="celebrityData"
-    ></app-platform-links></mat-tab>
-
-    <mat-tab label="Bio">
-      <app-celeb-bio [profileData]="celebrityData"></app-celeb-bio>
-    </mat-tab>
-
-    <mat-tab label="Remarks"
-      ><app-celebrity-remarks
-        [profileData]="celebrityData"
-      ></app-celebrity-remarks>
-    </mat-tab>
-  </mat-tab-group>
-</div> -->
-
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
- 
     <!-- List of navigation items -->
-    <mat-nav-list >
+    <mat-nav-list>
       <app-celeb-prof-card
         [profileData]="celebrityData"
         [id]="id"
       ></app-celeb-prof-card>
-      <a mat-list-item class="menu-item basic" (click)="selectComponent('basicInfo')">  
-      <img src="../../../../../assets/white-buttons/information.png" />
+      <a
+        mat-list-item
+        class="menu-item"
+        [class.selected]="selectedComponent === 'basicInfo'"
+        (click)="selectComponent('basicInfo')"
+      >
+        <img src="../../../../../assets/white-buttons/information.png" />
         Basic Information
       </a>
-      <a mat-list-item class="menu-item" (click)="selectComponent('socialMedia')">
+      <a
+        mat-list-item
+        class="menu-item"
+        [class.selected]="selectedComponent === 'socialMedia'"
+        (click)="selectComponent('socialMedia')"
+      >
         <img src="../../../../../assets/white-buttons/social-media.png" />
-        Social Media Links</a>
-      <a mat-list-item class="menu-item" (click)="selectComponent('remarks')">
+        Social Media Links</a
+      >
+      <a
+        mat-list-item
+        class="menu-item"
+        [class.selected]="selectedComponent === 'remarks'"
+        (click)="selectComponent('remarks')"
+      >
         <img src="../../../../../assets/white-buttons/remarks.png" />
-        Remarks</a>
+        Remarks</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 
@@ -69,15 +47,12 @@
       <app-celeb-bio [profileData]="celebrityData"></app-celeb-bio>
     </ng-container>
     <ng-container *ngIf="selectedComponent === 'socialMedia'">
-      <app-platform-links
-      [profileData]="celebrityData"
-    ></app-platform-links>
+      <app-platform-links [profileData]="celebrityData"></app-platform-links>
     </ng-container>
     <ng-container *ngIf="selectedComponent === 'remarks'">
       <app-celebrity-remarks
-      [profileData]="celebrityData"
-    ></app-celebrity-remarks>
+        [profileData]="celebrityData"
+      ></app-celebrity-remarks>
     </ng-container>
-  
   </mat-sidenav-content>
 </mat-sidenav-container>

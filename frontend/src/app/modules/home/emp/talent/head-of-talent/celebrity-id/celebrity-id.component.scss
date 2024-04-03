@@ -1,56 +1,4 @@
 
-// .top-container {
-//   display: flex;
-//   flex-direction: row; // Use row to lay them out horizontally
-//   width: 100%; // Take the full width of the parent
-//   margin-bottom: 2%;
-
-//   .bio-container {
-//     flex: 0 1 40%; // Flex-grow, flex-shrink, flex-basis
-//     // Additional styles for bio-container can go here, such as padding or margin
-//   }
-
-//   .platform-container {
-//     flex: 0 1 60%; // Flex-grow, flex-shrink, flex-basis
-//     // Additional styles for platform-container can go here
-//   }
-// }
-
-
-//  .mat-mdc-tab-group  {
-//    --mdc-tab-indicator-active-indicator-color: linear-gradient(
-//      300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-//    );
-//    --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
-//    --mat-tab-header-pagination-icon-color: #000;
-//    --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
-//    --mat-tab-header-active-label-text-color: linear-gradient(
-//      300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-//    );
-//    --mat-tab-header-active-ripple-color: linear-gradient(
-//      300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-//    );
-//    --mat-tab-header-inactive-ripple-color: linear-gradient(
-//      300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-//    );
-//    --mat-tab-header-inactive-focus-label-text-color: linear-gradient(
-//      300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-//    );
-//    --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
-//    --mat-tab-header-active-focus-label-text-color: linear-gradient(
-//      300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-//    );
-//    --mat-tab-header-active-hover-label-text-color: linear-gradient(
-//      300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-//    );
-//    --mat-tab-header-active-focus-indicator-color: linear-gradient(
-//      300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-//    );
-//    --mat-tab-header-active-hover-indicator-color: linear-gradient(
-//      300deg,rgb(45, 47, 149) 0%,rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%
-//    );
-//  }
-
 mat-toolbar {
   color: white; padding-top: 10vh;
 }
@@ -170,6 +118,12 @@ mat-sidenav-content {
   transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
 
+.selected {
+  background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+}
+
+
+
 .menu-button {
   transition: transform 0.3s ease;
   margin-left: 15px;
@@ -287,7 +241,7 @@ border-top-right-radius: 10px;
 transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
 
-::ng-deep 
+::ng-deep
 .notification-dot {
   position: absolute;
   top: 5px;

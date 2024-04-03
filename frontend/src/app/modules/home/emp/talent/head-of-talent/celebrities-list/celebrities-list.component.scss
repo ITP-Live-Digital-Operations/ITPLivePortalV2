@@ -21,8 +21,6 @@ table {
 .table-container {
   max-height: auto;
   overflow-y: hidden;
-
-
 }
 
 
@@ -32,7 +30,17 @@ table {
   color: white
 }
 
+.icons-btn {
+  background-color: transparent;
+  border: 0px;
+  padding: 4px 6px;
+  color: white;
 
+  &:hover {
+    background-color: #1f3371;
+    border-radius: 5px;
+  }
+}
 
 
 .form-container {
@@ -88,7 +96,7 @@ table {
     border-radius: 4px;
     cursor: pointer;
     margin-bottom: 2%;
-  
+
     &:hover {
       background-color: #4789A1;
     }
@@ -141,7 +149,7 @@ h5 {
     }
   }
 
- 
+
 }
 
 // Paginator Styles

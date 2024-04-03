@@ -43,6 +43,7 @@ export class CelebritiesListComponent {
 
 
   public userRole = this.userService.getRole();
+  public userId = this.userService.getID();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild('searchInput') searchInputElement!: ElementRef;
@@ -280,6 +281,8 @@ const isMatchGames = !filterObject.games.length || (data.Game && filterObject.ga
       data: {
         id: inputdata,
       },
+    }).afterClosed().subscribe(() => {
+      this.GetAllCelebrities();
     });
   }
 
