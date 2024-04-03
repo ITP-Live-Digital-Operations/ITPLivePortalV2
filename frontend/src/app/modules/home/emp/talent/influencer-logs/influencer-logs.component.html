@@ -69,8 +69,8 @@
         </mat-select>
       </mat-form-field>
       <div class="logs-button">
-        <button type="button" style="margin-left: 2%" (click)="resetFilters()">
-          Clear Filters
+        <button class="glow-on-hover" type="button" style="margin-left: 2%" (click)="resetFilters()">
+          Reset Filters
         </button>
       </div>
     </mat-expansion-panel>
@@ -78,9 +78,9 @@
 </div>
 
 <div class="logs-button">
-  <button
+  <button class="glow-on-add-new"
     type="button"
-    style="display: flex; justify-content: flex-end"
+ 
     (click)="redirectToNewLog()"
   >
     Add New Log

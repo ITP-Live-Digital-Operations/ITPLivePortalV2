@@ -301,3 +301,59 @@ hr {
   }
 }
 //end
+// Add New button css 
+.glow-on-add-new{
+  width: 185px;
+  height: 45px;
+margin-bottom: 7px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: linear-gradient(181deg, rgb(2, 0, 97) 15%, rgb(97, 149, 219) 158.5%);
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 55px;
+}
+
+.glow-on-add-new:before {
+  content: '';
+  background: radial-gradient(circle at 48.7% 44.3%, rgb(30, 144, 231) 0%, rgb(56, 113, 209) 22.9%, rgb(38, 76, 140) 76.7%, rgb(31, 63, 116) 100.2%);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(3px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .1s ease-in-out;
+  border-radius: 55px;
+}
+
+.glow-on-add-new:active {
+  color: #e5e5e5;
+}
+
+.glow-on-add-new:active:after {
+  background: transparent;
+}
+
+.glow-on-add-new:hover:before {
+  opacity: 1;
+}
+
+.glow-on-add-new:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+background: radial-gradient(circle at 48.7% 44.3%, rgb(30, 144, 231) 0%, rgb(56, 113, 209) 22.9%, rgb(38, 76, 140) 76.7%, rgb(31, 63, 116) 100.2%);
+  left: 0;
+  top: 0;
+  border-radius: 55px;
+}
+//end
