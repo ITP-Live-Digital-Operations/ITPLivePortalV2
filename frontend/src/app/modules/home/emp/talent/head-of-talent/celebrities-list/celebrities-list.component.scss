@@ -30,7 +30,7 @@ table {
   color: white
 }
 
-.icons-btn {
+/* .icon-btn {
   background-color: transparent;
   border: 0px;
   padding: 4px 6px;
@@ -40,7 +40,7 @@ table {
     background-color: #1f3371;
     border-radius: 5px;
   }
-}
+} */
 
 
 .form-container {
@@ -88,7 +88,7 @@ table {
 // .search-container {
 
 
-  button {
+.new-celeb-btn{
     padding: 10px 15px;
     background-color: transparent!important;
     color: white!important;
@@ -102,6 +102,18 @@ table {
     }
   }
 
+.icons-btn{
+
+    background-color: transparent;
+    border: 0px;
+    padding: 4px 6px;
+    color: white;
+
+    &:hover {
+      background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+      border-radius: 5px;
+    }
+  }
 
 
 h2,

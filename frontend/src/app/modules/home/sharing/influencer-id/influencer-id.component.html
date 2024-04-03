@@ -1,65 +1,7 @@
-<!-- <button mat-icon-button class="close-button" (click)="closeDialog()">
-  <mat-icon style="color: aliceblue">close</mat-icon>
-</button>
-
-<div *ngIf="influencerData != undefined || influencerData != null">
-  <div class="top-container">
-    <div class="bio-container">
-      <app-main
-        [profileData]="influencerData"
-        [id]="id"
-        [influencerRating]="influencerRating"
-      ></app-main>
-    </div>
-    <div class="platform-container">
-      <app-platform-links [profileData]="influencerData"></app-platform-links>
-    </div>
-  </div>
-  <div class="tab-container">
-    <mat-tab-group>
-      <mat-tab label="Basic Information"
-        ><app-table-content [profileData]="influencerData"></app-table-content
-      ></mat-tab>
-
-      <mat-tab label="Logs"
-        ><app-logs-table
-          [users]="users"
-          [profileData]="influencerData"
-          [id]="id"
-        ></app-logs-table
-      ></mat-tab>
-
-      <mat-tab label="Campaigns"
-        ><app-campaign-results [id]="id"></app-campaign-results>
-
-        <!-- include stats in campaigns tab -->
-           <!-- <mat-tab label="Statistics"
-        ><app-statistics [profileData]="influencerData"></app-statistics
-      ></mat-tab> 
-      </mat-tab>
-
-      <mat-tab label="Remarks"
-        ><app-influencer-remarks
-          [id]="id"
-          [profileData]="influencerData"
-        ></app-influencer-remarks
-      ></mat-tab>
-
-
-
-      <mat-tab label="Star Rating"
-        ><app-influencer-star-rating
-          [influencerID]="id"
-        ></app-influencer-star-rating
-      ></mat-tab>
-      <!-- <mat-tab label="Rate Card"><app-rate-card></app-rate-card></mat-tab> 
-    </mat-tab-group>
-  </div>
-</div> -->
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
- 
+
     <!-- List of navigation items -->
     <mat-nav-list >
       <app-main
@@ -68,26 +10,26 @@
       [influencerRating]="influencerRating"
     ></app-main>
 
-      <a mat-list-item class="menu-item basic" (click)="selectComponent('basicInfo')">  
+      <a mat-list-item class="menu-item basic" [class.selected]="selectedComponent === 'basicInfo'" (click)="selectComponent('basicInfo')">
       <img src="../../../../../assets/white-buttons/information.png" />
         Basic Information
       </a>
-      <a mat-list-item class="menu-item" (click)="selectComponent('socialMedia')">
+      <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'socialMedia'" (click)="selectComponent('socialMedia')">
         <img src="../../../../../assets/white-buttons/social-media.png" />
         Social Media Links</a>
-        <a mat-list-item class="menu-item" (click)="selectComponent('logs')">
+        <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'logs'" (click)="selectComponent('logs')">
           <img src="../../../../../assets/white-buttons/logs.png" />
-          Logs</a>  
-      <a mat-list-item class="menu-item" (click)="selectComponent('remarks')">
+          Logs</a>
+      <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'remarks'" (click)="selectComponent('remarks')">
         <img src="../../../../../assets/white-buttons/remarks.png" />
         Remarks</a>
-     
-      <a mat-list-item class="menu-item" (click)="selectComponent('campaigns')">
+
+      <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'campaigns'" (click)="selectComponent('campaigns')">
         <img src="../../../../../assets/white-buttons/campaign.png" />
-        Campaigns</a> 
-      <a mat-list-item class="menu-item" (click)="selectComponent('starrating')">
+        Campaigns</a>
+      <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'starrating'" (click)="selectComponent('starrating')">
         <img src="../../../../../assets/white-buttons/star.png" />
-        Star Rating</a> 
+        Star Rating</a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -128,6 +70,6 @@
   >
      </ng-container>
     </div>
-  
+
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -15,7 +15,7 @@ export class InfluencerIdComponent {
   public influencerData: any;
   public influencerRating: any;
   public users: any = {};
-  public selectedComponent: string = 'basicInfo'; 
+  public selectedComponent: string = 'basicInfo';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -36,6 +36,7 @@ export class InfluencerIdComponent {
     });
     this.GetInfluencerData(this.source.id);
     this.GetInfluencerRating(this.source.id);
+    this.selectedComponent = 'basicInfo';
   }
   selectComponent(component: string) {
     this.selectedComponent = component;

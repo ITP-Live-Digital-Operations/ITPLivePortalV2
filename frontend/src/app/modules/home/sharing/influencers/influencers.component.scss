@@ -120,6 +120,7 @@ h5 {
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 1%;
+  margin-left: 2%;
   width: 100%;
 
   .filter {
@@ -131,7 +132,7 @@ h5 {
     }
   }
 
- 
+
 }
 
 // Paginator Styles
@@ -233,6 +234,19 @@ mat-paginator {
   display: none;
 }
 
+
+.icons-btn{
+
+  background-color: transparent;
+  border: 0px;
+  padding: 4px 6px;
+  color: white;
+
+  &:hover {
+    background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+    border-radius: 5px;
+  }
+}
 
 
 
