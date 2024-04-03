@@ -72,7 +72,8 @@ mat-label{
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  max-width: 1089px;
+  max-width: 70vw;
+
   margin: auto;
   overflow: hidden;
 
@@ -136,7 +137,7 @@ mat-label{
     }
   }
 
-  
+
 
   ::ng-deep .mat-datepicker-toggle-default-icon {
     color: #FFF;
@@ -154,8 +155,8 @@ mat-label{
   }
 }
 ::ng-deep .mat-mdc-select-panel {
-  background-color: rgba(41, 57, 93, 0.91)!important; 
-  backdrop-filter: blur(7px); 
+  background-color: rgba(41, 57, 93, 0.91)!important;
+  backdrop-filter: blur(7px);
 }
 
 ::ng-deep .mat-mdc-option .mdc-list-item__primary-text {

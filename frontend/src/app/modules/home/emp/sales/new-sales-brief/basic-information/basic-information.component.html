@@ -1,5 +1,5 @@
 <ng-container [formGroup]="form">
-  <div class="row" style="padding-top: 20px;">
+  <div class="row" style="padding-top: 20px">
     <mat-form-field>
       <mat-label>Agency</mat-label>
       <input matInput type="text" formControlName="Agency" autocomplete="off" />
@@ -7,7 +7,7 @@
 
     <mat-form-field>
       <mat-label>Client</mat-label>
-      <mat-select formControlName="clientId" >
+      <mat-select formControlName="clientId">
         <mat-option *ngFor="let option of clients" [value]="option.id">{{
           option.name
         }}</mat-option>
@@ -17,11 +17,11 @@
     <mat-form-field>
       <mat-label>Brand</mat-label>
       <mat-select formControlName="brandId">
-        <mat-option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</mat-option>
+        <mat-option *ngFor="let brand of brands" [value]="brand.id">{{
+          brand.name
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
-
-
   </div>
 
   <div class="row">
@@ -71,7 +71,13 @@
   <div class="row">
     <mat-form-field>
       <mat-label>Number of recommendations</mat-label>
-      <input matInput type="text" [value]="formatNumber(recommendationsForm.get('NumberofRecommendations')?.value)" (input)="onRecommendationsInput($any($event.target).value)" autocomplete="off">
+      <input
+        matInput
+        type="text"
+        [value]="formatNumber(form.get('NumberofRecommendations')?.value)"
+        (input)="onRecommendationsInput($any($event.target).value)"
+        autocomplete="off"
+      />
     </mat-form-field>
 
     <mat-form-field>
@@ -86,13 +92,16 @@
     <mat-form-field>
       <mat-label>Approximate Budget</mat-label>
       <input
-      matInput
-      type="text"
-      [value]="formatNumber(form.get('Budget')?.value)"
-      (input)="onBudgetInput($any($event.target).value)"
-      autocomplete="off"
-    />
-
+        matInput
+        type="text"
+        [value]="formatNumber(form.get('Budget')?.value)"
+        (input)="onBudgetInput($any($event.target).value)"
+        autocomplete="off"
+      />
     </mat-form-field>
+  </div>
+
+  <div class="row">
+    <button mat-raised-button class="add-btn" color="primary"> Add New Client</button>
   </div>
 </ng-container>

@@ -68,9 +68,9 @@ export class NewSalesBriefComponent {
         CampaignOverview: [''],
         CampaignObjective: [''],
         CampaignObjectiveDetails: [''],
-        NumberofRecommendations: ['', [Validators.required]],
+        NumberofRecommendations: [''],
         Currency: [''],
-        Budget: ['', [Validators.required]],
+        Budget: [''],
       }),
       //CAMPAIGN OVERVIEW
       campaignOverview: this.formBuilder.group({
@@ -80,7 +80,7 @@ export class NewSalesBriefComponent {
         CampaignMessagePhaseTwo: [''],
         CampaignMessagePhaseThree: [''],
         ContentDeliverables: [''],
-        BrandExclusivityDurationinDays: ['', [Validators.required]],
+        BrandExclusivityDurationinDays: [''],
         VideoProduction: new FormControl(false),
         VideoEditing: new FormControl(false),
       }),
@@ -155,6 +155,16 @@ export class NewSalesBriefComponent {
   }
 
   public submitForm(): void {
+    if(this.newForm.value.basicInfo.NumberofRecommendations === ""){
+      this.newForm.value.basicInfo.NumberofRecommendations = 0;
+    }
+    if(this.newForm.value.basicInfo.Budget === ""){
+      this.newForm.value.basicInfo.Budget = 0;
+    }
+    if(this.newForm.value.campaignOverview.BrandExclusivityDurationinDays === ""){
+      this.newForm.value.campaignOverview.BrandExclusivityDurationinDays = 0;
+    }
+
     const itpDepartment = this.newForm.value.departmentDetails.ItpDepartment;
 
     const formValues = this.processFormGroups(this.newForm);
@@ -199,17 +209,19 @@ export class NewSalesBriefComponent {
             .subscribe(() => {});
         }
       }
+      this.toastrService.success('Brief submitted successfully!');
+      this.router.navigate([this.path['forms']]);
     });
 
-    this.toastrService.success('Brief submitted successfully!');
-    this.router.navigate([this.path['forms']]);
+
   }
   activeTabIndex: number = 0;
-  tabCount: number = 6; 
+  tabCount: number = 6;
   nextTab() {
     if (this.activeTabIndex < this.tabCount - 1) {
       this.activeTabIndex++;
     }
+    console.log(this.newForm.value)
   }
 
   prevTab() {
