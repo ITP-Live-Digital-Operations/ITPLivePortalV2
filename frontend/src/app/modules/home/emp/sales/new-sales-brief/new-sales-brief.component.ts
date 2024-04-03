@@ -221,6 +221,7 @@ export class NewSalesBriefComponent {
     if (this.activeTabIndex < this.tabCount - 1) {
       this.activeTabIndex++;
     }
+    console.log("Form Value")
     console.log(this.newForm.value)
   }
 
