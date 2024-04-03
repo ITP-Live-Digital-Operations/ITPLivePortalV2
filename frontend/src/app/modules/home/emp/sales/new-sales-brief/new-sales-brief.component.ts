@@ -161,16 +161,8 @@ export class NewSalesBriefComponent {
 
     const formValues = this.processFormGroups(this.newForm);
 
-    if(this.newForm.value.basicInfo.NumberofRecommendations === ""){
-      this.newForm.value.basicInfo.NumberofRecommendations = 0;
-    }
-    if(this.newForm.value.basicInfo.Budget === ""){
-      this.newForm.value.basicInfo.Budget = 0;
-    }
-    if(this.newForm.value.campaignOverview.BrandExclusivityDurationinDays === ""){
-      this.newForm.value.campaignOverview.BrandExclusivityDurationinDays = 0;
-    }
-    
+
+
     formValues.CreatedbyID = this.userService.getID();
     formValues.Ready = false;
     formValues.ResultsViewed = false;
@@ -236,6 +228,8 @@ export class NewSalesBriefComponent {
   private processFormGroups(formGroup: FormGroup): any {
     let valuesObject: { [key: string]: any } = {};
 
+    this.setDefaultValues(formGroup);
+
     if (formGroup instanceof FormGroup) {
       Object.keys(formGroup.controls)?.forEach((key) => {
         const control = formGroup.get(key);
@@ -264,6 +258,21 @@ export class NewSalesBriefComponent {
       });
     }
     return valuesObject;
+  }
+
+  private setDefaultValues(formGroup: FormGroup): void {
+    const paths = [
+      { path: 'basicInfo.NumberofRecommendations', defaultValue: 0 },
+      { path: 'basicInfo.Budget', defaultValue: 0 },
+      { path: 'campaignOverview.BrandExclusivityDurationinDays', defaultValue: 0 },
+    ];
+
+    paths.forEach(({ path, defaultValue }) => {
+      const control = formGroup.get(path);
+      if (control && control.value === "") {
+        control.setValue(defaultValue);
+      }
+    });
   }
 
   private processAgeRangeGroup(group: FormGroup): string {
