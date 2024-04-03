@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BrandModel, ClientModel, editClientModel } from 'src/app/core/interfaces/client.model';
@@ -26,20 +27,28 @@ export class EditClientComponent {
     private clientService: ClientService,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialogRef: MatDialogRef<EditClientComponent>,
+    @Inject(MAT_DIALOG_DATA) public source: any
   ) { }
 
 
   ngOnInit(): void {
-    console.log(this.activatedRoute.snapshot.params['id']);
     this.loadClient();
   }
 
   loadClient() {
+    if(this.activatedRoute.snapshot.params['id'] == undefined){
+      this.client = this.source.client;
+      console.log("source")
+      console.log(this.client);
+    }
+    else{
     this.clientService.getClientById(this.activatedRoute.snapshot.params['id']).subscribe((client: ClientModel) => {
       this.client = client;
       console.log(this.client);
     });
+  }
   }
 
   toggleEditMode(): void {
@@ -69,6 +78,9 @@ export class EditClientComponent {
         this.toastr.success('Brand Added Successfully');
         this.showBrandForm = false;
         this.loadClient();
+      }
+      if(this.activatedRoute.snapshot.params['id'] == undefined){
+        this.dialogRef.close();
       }
     });
   }

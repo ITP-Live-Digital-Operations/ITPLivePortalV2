@@ -39,6 +39,7 @@ exports.addClient = (req, res) => {
         res.status(200).send({
         status: "success",
         message: "Client added successfully",
+        data: data,
         });
     })
     .catch((err) => {

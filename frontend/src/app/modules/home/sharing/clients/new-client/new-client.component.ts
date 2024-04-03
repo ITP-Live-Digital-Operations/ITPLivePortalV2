@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ClientService } from 'src/app/core/services/client.service';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { EditClientComponent } from '../edit-client/edit-client.component';
 
 @Component({
   selector: 'app-new-client',
@@ -20,7 +22,9 @@ export class NewClientComponent {
     private clientService: ClientService,
     private toastrService: ToastrService,
     private userService: UserService,
-    private dialogRef: MatDialogRef<NewClientComponent>
+    private dialogRef: MatDialogRef<NewClientComponent>,
+    private confirmService: ConfirmationDialogService,
+    private dialog: MatDialog
   ) {
     this.newClientForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -38,8 +42,22 @@ export class NewClientComponent {
     this.clientService.addClient({...this.newClientForm.value, updatedBy : this.userId}).subscribe((response: any) => {
       console.log(response);
       if (response.status == 'success') {
-        this.toastrService.success("Client added successfully!")
-        this.dialogRef.close();
+
+        this.confirmService.openConfirmationDialog("Client Added Successfully!", "Do you want to add a brand for this client?", 'yesno').subscribe((res) => {
+          if (res == true) {
+            this.dialog.open(EditClientComponent, {
+              width: "auto",
+              height: 'auto',
+              data: {client : response.data}
+            }).afterClosed().subscribe(() => {
+              
+              this.dialogRef.close();
+            });
+          }
+          else{
+            this.dialogRef.close();
+          }
+        });
       }
       else{
         this.toastrService.error("Error adding client!")
