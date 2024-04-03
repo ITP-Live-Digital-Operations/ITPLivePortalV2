@@ -155,6 +155,12 @@ export class NewSalesBriefComponent {
   }
 
   public submitForm(): void {
+
+
+    const itpDepartment = this.newForm.value.departmentDetails.ItpDepartment;
+
+    const formValues = this.processFormGroups(this.newForm);
+
     if(this.newForm.value.basicInfo.NumberofRecommendations === ""){
       this.newForm.value.basicInfo.NumberofRecommendations = 0;
     }
@@ -164,10 +170,7 @@ export class NewSalesBriefComponent {
     if(this.newForm.value.campaignOverview.BrandExclusivityDurationinDays === ""){
       this.newForm.value.campaignOverview.BrandExclusivityDurationinDays = 0;
     }
-
-    const itpDepartment = this.newForm.value.departmentDetails.ItpDepartment;
-
-    const formValues = this.processFormGroups(this.newForm);
+    
     formValues.CreatedbyID = this.userService.getID();
     formValues.Ready = false;
     formValues.ResultsViewed = false;
