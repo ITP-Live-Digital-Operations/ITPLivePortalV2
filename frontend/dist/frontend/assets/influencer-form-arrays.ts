@@ -529,9 +529,10 @@ export const platforms = [
   'Instagram',
   'Tiktok',
   'Snapchat',
-  'Twitter',
+  'X',
   'Facebook',
   'Youtube',
+  'Twitch'
 ];
 
 export const clientIndustries = [  'Agriculture',  'Automotives',  'Aviation',  'Banking', 'Beauty & Cosmetics',  'Bodybuilding',  'Business',  'Celebrities',  'Comedy',  'Electronics',  'Energy',  'Entertainment',  'FMCG',  'Finance',  'Food',  'Furniture',  'Gaming',  'Health',  'Healthcare',  'Hospitality',  'Humanitarian',  'Insurance',  'Investment',  'Lifestyle',  'Mobile App',  'NGO',  'Nutrition',  'Pharmaceutical',  'Public Sector',  'Real Estate',  'Retail',  'Shopping',  'Skin Care',  'Sports',  'Tech',  'Telecommunication',  'Travel', 'Other']
@@ -542,7 +543,6 @@ export const campaignobjectives = [
   'Traffic',
   'Conversions',
   'Brand Awareness',
-  'Product Launch',
   'Audience Engagement',
   'User-Generated Content',
   'Drive Traffic to Websites',
@@ -648,7 +648,7 @@ export const briefPlatforms = [
   'TikTok',
   'YouTube',
   'Facebook',
-  'Twitter',
+  'X',
   'Linkedin',
   'Twitch',
 ];
