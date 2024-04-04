@@ -13,7 +13,7 @@
   flex-direction: column; /* Stacks children vertically */
   align-items: center; /* Centers children horizontally */
   gap: 1vh; /* Space between items */
-  width: 100vh; 
+  width: 100vh;
   background: rgba(255, 255, 255, 0);
 }
 .carousel-wrapper-admin {
@@ -21,7 +21,7 @@
   flex-direction: column; /* Stacks children vertically */
   align-items: center; /* Centers children horizontally */
   gap: 1vh; /* Space between items */
-  width: 100vh; 
+  width: 100vh;
   padding-top: 10vh;
   background: rgba(255, 255, 255, 0);
 }
@@ -60,7 +60,7 @@ button[mat-raised-button] {
   justify-content: center; /* Center content vertically */
   align-items: center; /* Center content horizontally */
   margin: 0 10px; /* Maintain some space between buttons */
-  margin: 1vh; 
+  margin: 1vh;
   background: rgb(75,75,75);
   background: linear-gradient(0deg,rgba(176, 186, 225, 0.2)  0%, rgba(176, 186, 225, 0.15)  20%,rgba(176, 186, 225, 0.1)  70%,rgba(176, 186, 225, 0.02) 100%);
   transition: background-color 500ms, border-color 500ms;
@@ -80,7 +80,7 @@ button[mat-raised-button]::before {
   background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.01) 100%); /* This will be the color of the slide */
   transition: top 300ms; /* Adjust timing as needed */
   border-radius: 20px; /* Match the button's border-radius */
-  
+
 }
 
 button[mat-raised-button]:hover::before {
@@ -94,7 +94,7 @@ button[mat-raised-button]:hover {
 
 .title {
   color: white;
-} 
+}
 
 // .splash {
 //   position: absolute;
@@ -105,7 +105,7 @@ button[mat-raised-button]:hover {
 //   font-size: 12vh;
 //   color: white;
 //   z-index: 0;
-  
+
 // }
 
 
@@ -116,6 +116,7 @@ button[mat-raised-button] img {
   transform: translateX(-50%); /* Center the image horizontally */
   width: 8vh; /* Your desired width or keep it responsive */
   height: 8vh;
+  margin-bottom: 20%;
 
 }
 

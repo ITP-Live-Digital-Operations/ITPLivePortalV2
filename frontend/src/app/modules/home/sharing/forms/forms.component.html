@@ -10,7 +10,7 @@
     <div
     class="btn d-flex flex-row align-items-center flex-wrap"
     style="border-color: transparent" *ngIf="userRole == 'superadmin'" >
- 
+
       <ng-container *ngIf="currentView == 'main'">
           <button mat-raised-button routerLink="{{ path['influencers'] }}">
             <img src="../../../../../assets/white-buttons/Inlfuencer.png" />
@@ -21,13 +21,13 @@
               <p> Statistics </p>
           </button>
           <button mat-raised-button (click)="changeView('talent')">
-            <img src="../../../../../assets/white-buttons/talent.png" /> 
+            <img src="../../../../../assets/white-buttons/talent.png" />
             <p>Talent</p></button>
           <button mat-raised-button (click)="changeView('campaign')">
-            <img src="../../../../../assets/white-buttons/campaign.png" /> 
+            <img src="../../../../../assets/white-buttons/campaign.png" />
             <p>Campaign</p></button>
           <button mat-raised-button (click)="changeView('sales')">
-            <img src="../../../../../assets/white-buttons/sales.png" /> 
+            <img src="../../../../../assets/white-buttons/sales.png" />
             <p>Sales</p></button>
             <button mat-raised-button routerLink="{{ path['shows'] }}">
               <img src="../../../../../assets/white-buttons/originals.png"/>
@@ -37,8 +37,8 @@
 
       <!-- Talent View -->
       <ng-container *ngIf="currentView == 'talent'">
-                 
-       
+
+
         <!-- New Influencer Button -->
         <button
           mat-raised-button
@@ -53,18 +53,18 @@
           routerLink="{{ path['celebrities'] }}"
         >
           <img src="../../../../../assets/white-buttons/celebrities.png" />
-          <p>Celebrities</p>
+          <p>Celebrities & Internationals</p>
         </button>
-      
+
         <!-- New Celebrity Button -->
         <button
           mat-raised-button
           routerLink="{{ path['newCelebrity'] }}"
         >
           <img src="../../../../../assets/white-buttons/new-celebrities.png" />
-          <p>New Celebrity</p>
+          <p>New Celebrity/International</p>
         </button>
-      
+
         <!-- Rate Logs Button -->
         <button
           mat-raised-button
@@ -73,7 +73,7 @@
           <img src="../../../../../assets/white-buttons/rate-log.png" />
           <p>Rate Logs</p>
         </button>
-      
+
         <!-- New Rate Log Button -->
         <button
           mat-raised-button
@@ -82,7 +82,7 @@
           <img src="../../../../../assets/white-buttons/new-rate-log.png" />
           <p>New Rate Log</p>
         </button>
-      
+
         <!-- Time Form Button -->
         <button
           mat-raised-button
@@ -206,7 +206,7 @@
         routerLink="{{ path['celebrities'] }}"
       >
         <img src="../../../../../assets/white-buttons/celebrities.png" />
-        <p>Celebrities</p>
+        <p>Celebrities & Internationals </p>
       </button>
       <button
         mat-raised-button
@@ -217,7 +217,7 @@
         routerLink="{{ path['newCelebrity'] }}"
       >
         <img src="../../../../../assets/white-buttons/new-celebrities.png" />
-        <p>New Celebrity</p>
+        <p>New Celebrity/International</p>
       </button>
       <button
         mat-raised-button

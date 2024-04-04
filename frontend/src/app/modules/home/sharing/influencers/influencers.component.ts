@@ -64,7 +64,7 @@ export class InfluencersComponent {
     'YoutubeFollowers',
     'SnapchatFollowers',
     'TwitterFollowers',
-    'FacebookFollowers',
+    /* 'FacebookFollowers', */
     'CPE',
     'CPM',
     'marginOfProfit',
