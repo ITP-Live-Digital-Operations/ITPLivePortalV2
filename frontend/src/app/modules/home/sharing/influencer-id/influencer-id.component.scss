@@ -61,14 +61,14 @@ mat-sidenav-container {
   background-size: 120% 120%; */
   height: 100%;
   /* Adjusted the base color to a lighter tone for a more modern feel */
-  background-color: rgba(48, 63, 149, 0.204);
+  background-color: rgba(22, 34, 103, 0.204);
   /* Lightened the gradient colors and made them more subtle */
   background-image: radial-gradient(
       at 86% 97%,
-      hsla(271, 60%, 30%, 0.5) 0px,
+      hsla(271, 81%, 20%, 0.5) 0px,
       transparent 50%
     ),
-    radial-gradient(at 22% 58%, hsla(210, 60%, 50%, 0.3) 0px, transparent 50%);
+    radial-gradient(at 22% 58%, hsla(210, 73%, 34%, 0.3) 0px, transparent 50%);
   animation: gradient 5s ease infinite;
   background-size: 120% 120%;
 

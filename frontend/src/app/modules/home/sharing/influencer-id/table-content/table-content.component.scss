@@ -7,29 +7,24 @@
   margin-top: 3%;
 
   .profile-section {
-    background: linear-gradient(
-      300deg,
-      rgb(45, 47, 149) 0%, /* Darkened shade of blue for the start */
-      rgba(43, 45, 124, 0.85) 77%, /* Further darkened middle for depth, maintaining semi-transparency */
-      rgba(36, 38, 119, 0.85) 100% /* Deepest end for a strong visual impact */
-    );
+    background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.15) 20%, rgba(176, 186, 225, 0.1) 70%, rgba(176, 186, 225, 0.02) 100%);
 
-    border: 1px solid #34495e;
+    border: 2px solid #a4a4a42d;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     max-width: 300px;
     min-width: 300px;
-
+    margin:10px;
     padding: 15px;
     transition: transform 0.2s;
     position: relative;
 
     &:hover {
       transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
     }
 
     .profile-item {

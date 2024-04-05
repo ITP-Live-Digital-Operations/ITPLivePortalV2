@@ -65,7 +65,9 @@ export class LogsTableComponent {
     this.dialog.open(RateLogsComponent, {
       width: 'fit-to-content',
       height: 'fit-to-content',
-    })
+    }).afterClosed().subscribe(() => {
+      this.getLogs(this.id);
+    } );
   }
 
   public getLogs(id: number): void {

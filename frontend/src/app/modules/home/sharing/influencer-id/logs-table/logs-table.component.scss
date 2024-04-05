@@ -1,13 +1,19 @@
 table {
   max-height: auto;
   justify-content: center;
+  
 }
 
 .table-container {
   margin: 2%;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  // border-radius: 0.5rem;
+  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #a4a4a45e;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
   padding: 1%;
+  width: 100vh;
+  background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.15) 20%, rgba(176, 186, 225, 0.1) 70%, rgba(176, 186, 225, 0.02) 100%);
 }
 
 .top-container {
@@ -20,23 +26,22 @@ table {
   display: flex;
   align-items: center;
   justify-content: flex-start; // Adjust starting content alignment for when the button expands
-  background: linear-gradient(
-    300deg,
-    rgb(45, 47, 149) 0%, // Darkened shade of blue for the start
-    rgba(43, 45, 124, 0.85) 77%, // Further darkened middle for depth, maintaining semi-transparency
-    rgba(36, 38, 119, 0.85) 100% // Deepest end for a strong visual impact
-  );
-  border: none;
+  background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.15) 20%, rgba(176, 186, 225, 0.1) 70%, rgba(176, 186, 225, 0.02) 100%);
+  border: 1px solid #a4a4a45e;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.3s ease, width 0.3s ease 0.3s;
+  transition: transform 0.3s ease, width 0.3s ease 0.3s, background 0.3s, box-shadow 0.3s; // Added transition for width expansion and background change
   width: 48px; // Initial width to only show the icon
   height: 48px;
   border-radius: 24px;
 
   position: relative; // Added for potential absolute positioning inside container
   &:hover {
-    width: auto; // Expanded width to show text
+    transform: translateY(-5px);
+    background: linear-gradient(0deg, rgba(194, 200, 223, 0.2) 0%, rgba(205, 210, 230, 0.15) 20%, rgba(212, 214, 220, 0.1) 70%, rgba(219, 221, 227, 0.02) 100%);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
   }
 
 
@@ -95,3 +100,4 @@ table {
   flex: 1; /* ensures equal width for all h2 */
   text-align: center; /* centers the text within each h2 */
 }
+

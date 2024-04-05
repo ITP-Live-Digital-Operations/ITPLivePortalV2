@@ -2,7 +2,7 @@ import { InfluencerStatisticsModel } from "./influencerStatistics.model";
 
 export interface InfluencerModel
  {
-  
+  [key: string]: any; 
   id: number;
   Name: string;
   Gender: string;
@@ -59,11 +59,11 @@ export interface InfluencerIdsAndNames{
 
 export interface influencermetrics{
   id: number,
-  CPE: number,
-  CPM: number,
+  CPE?: number ,
+  CPM?: number,
   influencerId: number,
   influencerName: string,
-  marginOfProfit: number,
+  marginOfProfit?: number,
 }
 
 export interface getInfluencerNames{

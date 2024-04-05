@@ -7,52 +7,45 @@
 
   .new-remark-btn {
     width: 90%;
-    background: linear-gradient(
-      300deg,
-      rgb(45, 47, 149) 0%,
-      /* Darkened shade of blue for the start */ rgba(43, 45, 124, 0.85) 77%,
-      /* Further darkened middle for depth, maintaining semi-transparency */
-        rgba(36, 38, 119, 0.85) 100%
-        /* Deepest end for a strong visual impact */
-    );
+    background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.15) 20%, rgba(176, 186, 225, 0.1) 70%, rgba(176, 186, 225, 0.02) 100%);
     color: #ffffff;
     padding: 10px 0;
+    border:none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     font-size: 16px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s, border 0.3s; 
 
     &:hover {
-      background-color: #5a7682;
+      transform: translateY(-5px);
+      border: 2px solid #8e8e8f84;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+ 
     }
   }
 
   .remark-card {
-    background: linear-gradient(
-      300deg,
-      rgb(45, 47, 149) 0%,
-      /* Darkened shade of blue for the start */ rgba(43, 45, 124, 0.85) 77%,
-      /* Further darkened middle for depth, maintaining semi-transparency */
-        rgba(36, 38, 119, 0.85) 100%
-        /* Deepest end for a strong visual impact */
-    );
-    border: 1px solid #34495e;
+    background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.15) 20%, rgba(176, 186, 225, 0.1) 70%, rgba(176, 186, 225, 0.02) 100%);
+    border:none;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 300px; // Maximum width of each card
-    min-width: 300px; // Minimum width to ensure 3 cards per row
+    width: 30vh;
+    min-height: 14vh;
     padding: 15px;
     padding-bottom: 7%;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.3s, border 0.3s;
     position: relative;
 
+    
     &:hover {
       transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+      border: 2px solid #8e8e8f84;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
     }
   }
 

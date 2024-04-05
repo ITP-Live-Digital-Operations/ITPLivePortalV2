@@ -13,11 +13,14 @@
   padding: 0.5%;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  // border-radius: 10px;
+  // border: 1px solid rgba(255, 255, 255, 0.18);
   width: auto; /* Adjusted to automatically size based on children */
   overflow: auto; /* Ensures content stays within bounds */
+  border: 1px solid #a4a4a45e;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
 
 }
 
@@ -34,6 +37,7 @@
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
   &:hover {
     background: rgba(255, 255, 255, 0.2);
   }
