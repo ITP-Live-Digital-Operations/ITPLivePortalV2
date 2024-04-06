@@ -25,7 +25,7 @@ const campaignRoutes = require("./routes/campaign.routes");
 const clientRoutes = require("./routes/client.routes");
 const statisticsRoutes = require("./routes/statistics.routes");
 const OGRoutes = require("./routes/og.routes");
-
+const userStatsRoutes = require("./routes/userStats.routes");
 const app = express();
 
 app.use(express.json({ limit: "50mb" }));
@@ -86,6 +86,7 @@ app.use("/api/v1/notifications", authHandler, NotificationRoutes);
 app.use("/api/v1/clients", authHandler, clientRoutes);
 app.use("/api/v1/statistics", authHandler, statisticsRoutes);
 app.use("/api/v1/ogs", authHandler, OGRoutes);
+app.use("/api/v1/userStats", authHandler, userStatsRoutes);
 
 
 
