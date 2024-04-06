@@ -397,7 +397,7 @@ export class InfluencerLogsComponent {
   public viewInfluencerLog(inputdata: any, type: String): void {
     this.dialog?.open(ViewLogComponent, {
       width: '70%',
-      height: '50%',
+      height: 'fit-content',
       exitAnimationDuration: '1000ms',
       enterAnimationDuration: '1000ms',
       data: {

@@ -1,9 +1,6 @@
 button {
-  padding: 10px 15px;
-  background-color: #1f3371!important;
-  color: white!important;
-  border: 1px solid #1f3371;
-  border-radius: 4px;
+ width: 10vh;
+ height: 5vh;
   cursor: pointer;
 
   &:hover {
@@ -16,4 +13,4 @@ button {
   align-items: center;
   height: 56vh; /* Adjust this value as needed */
   width: 100%;
-}
+} 
