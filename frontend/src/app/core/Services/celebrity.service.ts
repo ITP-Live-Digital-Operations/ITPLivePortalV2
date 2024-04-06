@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { InfluencerModel, returnData } from '../interfaces/influencersModel';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
@@ -79,4 +79,40 @@ export class CelebrityService {
       `${this.celebrityApiURL}/deleteCelebrityRemark/${id}`
     );
   }
+
+  // Celebrity Files
+  uploadCelebrityFile(file: File, celebrityId: number): Observable<returnData> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<returnData>(
+      `${this.celebrityApiURL}/uploadCelebrityFile/${celebrityId}`,
+      formData, {
+        reportProgress: true,
+        responseType: 'json',
+      }
+    );
+  }
+
+  downloadCelebrityFile(id: number): Observable<any> {
+    return this.http.get(`${this.celebrityApiURL}/downloadCelebrityFile/${id}`, {
+      responseType: 'blob',
+      headers: new HttpHeaders().append('Content-Type', 'application/json'),
+    });
+  }
+
+  getCelebrityFiles(celebrityId: number): Observable<any> {
+    return this.http.get(`${this.celebrityApiURL}/getCelebrityFiles/${celebrityId}`, {
+      responseType: 'arraybuffer',
+      headers: new HttpHeaders().append('Content-Type', 'application/json'),
+    });
+  }
+
+  deleteCelebrityFile(id: number): Observable<returnData> {
+    return this.http.delete<returnData>(
+      `${this.celebrityApiURL}/deleteCelebrityFile/${id}`
+    );
+  }
+
 }
+
+

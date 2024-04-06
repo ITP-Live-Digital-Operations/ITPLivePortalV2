@@ -36,4 +36,16 @@ router.route('/updateCelebrityRemark/:id')
 router.route('/deleteCelebrityRemark/:id')
     .delete(asyncHandler(celebrityController.deleteCelebrityRemark));
 
+router.route('/uploadCelebrityFile/:id')
+    .post(asyncHandler(celebrityController.uploadCelebrityFile));
+
+router.route('/getCelebrityFiles/:id')
+    .get(asyncHandler(celebrityController.getCelebrityFiles));
+
+router.route('/downloadCelebrityFile/:id')
+    .get(asyncHandler(celebrityController.downloadCelebrityFile));
+
+router.route('/deleteCelebrityFile/:id')
+    .delete(asyncHandler(celebrityController.deleteCelebrityFile));
+
 module.exports = router;

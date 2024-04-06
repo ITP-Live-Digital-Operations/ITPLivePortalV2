@@ -2,7 +2,12 @@ const models = require("../../models");
 const Celebrity = models.Celebrity;
 const decode = require("../utils/token").decode;
 const CelebrityRemarks = models.celebrityRemarks;
+const CelebrityFiles = models.CelebrityFiles;
+const { celebrityFileUpload } = require("../../config/multerConfig")
+const path = require("path");
 
+
+// ------------------------- Celebrity -------------------------
 exports.createCelebrity = (req, res) => {
   console.log(req.body);
   const celebrity = req.body;
@@ -213,3 +218,102 @@ exports.deleteCelebrityRemark = (req, res) => {
       });
     });
 };
+
+
+// ------------------------- Celebrity File -------------------------
+exports.uploadCelebrityFile = (req, res) => {
+  celebrityFileUpload.single("file")(req, res, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+      return;
+    }
+    const file = req.file;
+    const id = Number(req.params.id);
+    console.log(file);
+
+    const fileType = file.mimetype.split("/")[1];
+    console.log(fileType);
+
+    const newFile = {
+      filename : file.filename,
+      mimetype : file.mimetype,
+      fileType : fileType,
+      celebrityId : id
+    }
+
+    CelebrityFiles.create(newFile)
+      .then((data) => {
+        res.status(200).send({
+          status: "success",
+          message: "File Uploaded",
+          data: data,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          status: "error",
+          message: err.message,
+        });
+      });
+  });
+}
+
+exports.getCelebrityFiles = (req, res) => {
+  const celebrityId = req.params.id;
+  CelebrityFiles.findAll({ where: { celebrityId: celebrityId } })
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+}
+
+exports.downloadCelebrityFile = (req, res) => {
+  const fileId = req.params.id;
+  CelebrityFiles.findByPk(fileId)
+    .then((data) => {
+      const file = path.resolve(__dirname, `../../uploads/celebrity/files/${data.filename}`);
+      
+      const encodedFileName = encodeURIComponent(data.filename);
+      
+      res.setHeader(
+        "Content-Disposition",
+        "attachment; filename*=UTF-8''" + encodedFileName
+      );
+
+      res.sendFile(file);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+}
+
+exports.deleteCelebrityFile = (req, res) => {
+  const id = req.params.id;
+  CelebrityFiles.destroy({ where: { id: id } })
+    .then((data) => {
+      res.status(200).send({
+        status: "success",
+        message: "File Deleted",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+};
+
