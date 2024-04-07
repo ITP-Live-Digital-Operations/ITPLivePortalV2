@@ -7,7 +7,7 @@ import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { LogService } from 'src/app/core/services/log.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { currencies, platforms } from 'src/assets/influencer-form-arrays';
-
+import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-single-influencer-logs',
   templateUrl: './single-influencer-logs.component.html',
@@ -34,6 +34,7 @@ export class SingleInfluencerLogsComponent {
     private router: Router,
     private influencerService: InfluencerService,
     private userService: UserService,
+    private dialogRef: MatDialogRef<SingleInfluencerLogsComponent>,
     private logService: LogService,
     private toastrService: ToastrService
   ) {
@@ -104,7 +105,7 @@ export class SingleInfluencerLogsComponent {
         if (this.data.status === "success") {
           this.toastrService.success('Log Added Successfully!');
           sessionStorage.removeItem('influencerData');
-          this.router.navigate([this.path['rateLogs']]);
+          this.dialogRef.close();
         }
         else {
           this.toastrService.error('Error! Please Try Again!');

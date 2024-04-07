@@ -7,6 +7,7 @@ import { LogService } from 'src/app/core/services/log.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { currencies, platforms } from 'src/assets/influencer-form-arrays';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-rate-log',
@@ -34,6 +35,7 @@ export class NewRateLogComponent {
     private router: Router,
     private service: InfluencerService,
     private userService: UserService,
+    private dialogRef: MatDialogRef<NewRateLogComponent>,
     private logService: LogService,
     private toastrService: ToastrService
   ) {
@@ -105,7 +107,7 @@ export class NewRateLogComponent {
         if (this.data.status === "success") {
           this.toastrService.success('Log Added Successfully!');
           sessionStorage.removeItem('influencerData');
-          this.router.navigate([this.path['rateLogs']]);
+          this.dialogRef.close();
         }
         else {
           this.toastrService.error('Error! Please Try Again!');

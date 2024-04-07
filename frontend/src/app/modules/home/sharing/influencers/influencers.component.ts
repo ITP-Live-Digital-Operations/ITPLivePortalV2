@@ -185,16 +185,20 @@ export class InfluencersComponent {
     return false; // If followers count is not available, do not include in range.
   }
 
-
   private isCPECpmInRange(influencer: InfluencerModel): boolean {
-    // Access CPE and CPM from the nested influencerMetrics structure
-    const isCpeInRange = influencer.influencerMetrics?.CPE >= this.minCPE && influencer.influencerMetrics?.CPE <= this.maxCPE;
-    const isCpmInRange = influencer.influencerMetrics?.CPM >= this.minCPM && influencer.influencerMetrics?.CPM <= this.maxCPM;
-
-    // Account for potential undefined values with nullish coalescing operator (??)
-    return (isCpeInRange ?? false) && (isCpmInRange ?? false);
+    // Check if influencerMetrics exists before attempting to access CPE or CPM
+    const metrics = influencer.influencerMetrics;
+    if (!metrics) {
+      // influencerMetrics is null or undefined, return false or handle accordingly
+      return false;
+    }
+  
+    const isCpeInRange = metrics.CPE! >= this.minCPE && metrics.CPE! <= this.maxCPE;
+    const isCpmInRange = metrics.CPM! >= this.minCPM && metrics.CPM! <= this.maxCPM;
+  
+    return isCpeInRange && isCpmInRange;
   }
-
+  
   applyCPECPMRangeChange(): void {
     this.applyFilter();
     this.updateFilterDropdowns();
@@ -230,28 +234,15 @@ export class InfluencersComponent {
           this.UserDetails.influencers
         );
         this.dataSource.paginator = this.paginator;
-        this.dataSource.sortingDataAccessor = (item: any, property: any) => {
-          switch (property) {
-            case 'CPE':
-              let value = item.influencerMetrics.CPE;
-              if (value === null || value === '') {
-                return 1000000;
-              } else {
-                return item.influencerMetrics.CPE;
-              }
-            case 'CPM':
-              let value1 = item.influencerMetrics.CPM;
-              if (value1 === null || value1 === '') {
-                return 10000000;
-              } else {
-                return item.influencerMetrics.CPM;
-              }
-            case 'marginOfProfit':
-              return item.influencerMetrics.marginOfProfit;
-            default:
-              return item[property];
+        this.dataSource.sortingDataAccessor = (item: InfluencerModel, property: string) => {
+          if (property === 'CPE' || property === 'CPM' || property === 'marginOfProfit') {
+            // Safely access nested properties, defaulting to a value if null
+            return item.influencerMetrics ? item.influencerMetrics[property] || 0 : 0;
           }
+          // Handle top-level properties
+          return item[property];
         };
+        
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

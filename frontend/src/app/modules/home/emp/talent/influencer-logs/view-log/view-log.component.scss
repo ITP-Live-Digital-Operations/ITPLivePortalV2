@@ -57,3 +57,7 @@
   }
 }
 
+.notes-field {
+  white-space: pre-wrap; /* Keeps whitespace formatting but wraps text */
+  overflow-y: auto; /* Adds scroll if needed */
+}

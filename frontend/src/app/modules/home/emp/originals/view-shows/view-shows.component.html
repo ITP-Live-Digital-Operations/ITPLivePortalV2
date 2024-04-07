@@ -11,18 +11,17 @@
 
     <div class="gap">
       <button
-        mat-raised-button
         routerLink="/home/originals/newShow"
         *ngIf="userRole == 'originals' || 'superadmin'"
-        class="custom-button"
+        class="glow-on-add-new editbtn"
       >
         Add New Show
       </button>
       <button
-        mat-raised-button
+      class="glow-on-add-new showbtn"
         (click)="toggleEditColumn()"
         *ngIf="userRole == 'originals' || 'superadmin'"
-        class="custom-button"
+      
       >
         Edit Show
       </button>
