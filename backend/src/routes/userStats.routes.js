@@ -8,4 +8,18 @@ router.route('/countUploadedBriefsByUser')
 router.route('/countAddedLogsByUser')
     .get(asyncHandler(userStatsController.countAddedLogsByUser));
 
+router.route('/countAddedInfluencersByUser')
+    .get(asyncHandler(userStatsController.countAddedInfluencersByUser));
+
+router.route('/countAddedCelebritiesByUser')
+    .get(asyncHandler(userStatsController.countAddedCelebritiesByUser));
+
+router.route('/countAddedClientsByUser')
+    .get(asyncHandler(userStatsController.countAddedClientsByUser));
+
+router.route('/countAddedFilesByUser')
+    .get(asyncHandler(userStatsController.countAddedFilesByUser));
+
+router.route('/countTalentTasks')
+    .get(asyncHandler(userStatsController.countTalentTasks));
 module.exports = router;
