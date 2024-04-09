@@ -4,6 +4,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { UserstatsComponent } from './userstats/userstats.component';
 
 let path = PATH;
 
@@ -24,6 +25,10 @@ const routes: Routes = [
     path: '',
     redirectTo: `${path['forms']}`,
     pathMatch: 'full'
+  },
+  {
+    path: 'employeeStats',
+    component: UserstatsComponent
   },
   {
     path: '**',

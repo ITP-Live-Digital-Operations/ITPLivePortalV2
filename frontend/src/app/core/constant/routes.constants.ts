@@ -21,6 +21,7 @@ export const PATH: { [key: string]: string } = {
   userManagement: "/home/admin/users",
   registerUser: "/home/admin/register",
   editUser: "/home/admin/edit/",
+  employeeStats: "/home/admin/employeeStats",
 
 
   //talent routes
