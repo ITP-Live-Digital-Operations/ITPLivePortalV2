@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>Celebrity Files</h2>
+
+    <div class="input-group custom-file-button">
+      <label class="input-group-text" for="inputGroupFile">Choose your file</label>
+      <input type="file" class="form-control" id="inputGroupFile" (change)="onFileSelected($event)">
+      <label class="input-group-text" (click)="uploadFile()">Upload file</label>
+    </div>
+
+    <div class="file-list"> 
+      <table class="table-rounded">
+        <thead>
+          <tr>
+            <th>File Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let file of celebrityFiles">
+            <!-- Apply the transformation method here -->
+            <td>{{ transformFilename(file.filename) }}</td>
+            <td>
+              <button   class="icons-btn edit-button" (click)="downloadFile(file.id, file.filename)"><mat-icon>download</mat-icon></button>
+              <button class="delete-btn">
+              <mat-icon
+              mat-raised-button
+              (click)="deleteFile(file.id)"
+            >
+              delete
+            </mat-icon>
+          </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  
+  </div>

@@ -33,6 +33,15 @@
         <img src="../../../../../assets/white-buttons/remarks.png" />
         Remarks</a
       >
+      <a
+      mat-list-item
+      class="menu-item"
+      [class.selected]="selectedComponent === 'files'"
+      (click)="selectComponent('files')"
+    >
+      <img src="../../../../../assets/white-buttons/files.png" />
+      Files</a
+    >
     </mat-nav-list>
   </mat-sidenav>
 
@@ -53,6 +62,9 @@
       <app-celebrity-remarks
         [profileData]="celebrityData"
       ></app-celebrity-remarks>
+    </ng-container>
+    <ng-container *ngIf="selectedComponent === 'files'">
+      <app-celebrity-files [celebrityId]="celebrityData?.data.id"></app-celebrity-files>
     </ng-container>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -81,18 +81,18 @@ export class CelebrityService {
   }
 
   // Celebrity Files
-  uploadCelebrityFile(file: File, celebrityId: number): Observable<returnData> {
-    const formData = new FormData();
-    formData.append('file', file);
-    return this.http.post<returnData>(
-      `${this.celebrityApiURL}/uploadCelebrityFile/${celebrityId}`,
-      formData, {
-        reportProgress: true,
-        responseType: 'json',
-      }
-    );
-  }
-
+uploadCelebrityFile(file: File, celebrityId: number): Observable<returnData> {
+  const formData = new FormData();
+  formData.append('file', file);
+  return this.http.post<returnData>(
+    `${this.celebrityApiURL}/uploadCelebrityFile/${celebrityId}`,
+    formData,
+    {
+      reportProgress: true,
+      responseType: 'json',
+    }
+  );
+}
   downloadCelebrityFile(id: number): Observable<any> {
     return this.http.get(`${this.celebrityApiURL}/downloadCelebrityFile/${id}`, {
       responseType: 'blob',
