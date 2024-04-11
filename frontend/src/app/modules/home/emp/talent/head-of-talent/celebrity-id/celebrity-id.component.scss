@@ -64,12 +64,7 @@ mat-sidenav-container {
   /* Adjusted the base color to a lighter tone for a more modern feel */
   background-color: rgba(48, 63, 149, 0.204);
   /* Lightened the gradient colors and made them more subtle */
-  background-image: radial-gradient(
-      at 86% 97%,
-      hsla(271, 60%, 30%, 0.5) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 22% 58%, hsla(210, 60%, 50%, 0.3) 0px, transparent 50%);
+  background-image: radial-gradient(at 86% 97%, hsl(271deg 81.25% 16.7% / 50%) 0px, transparent 50%), radial-gradient(at 22% 58%, hsl(210deg 61.25% 14.37% / 30%) 0px, transparent 50%);
   animation: gradient 5s ease infinite;
   background-size: 120% 120%;
 
@@ -352,4 +347,13 @@ mat-nav-list .mat-list-item {
 
 ::ng-deep .mdc-list-item__primary-text{
   color: white !important;
+}
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Aligns children vertically in the center */
+  align-items: center; /* Aligns children horizontally in the center, if you want */
+  height: 100%; /* Ensure it takes full height */
+  text-align: center; /* Centers the text, if needed */
 }

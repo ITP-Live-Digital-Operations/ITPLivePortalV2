@@ -50,7 +50,7 @@
       <mat-icon style="color: aliceblue">close</mat-icon>
     </button>
     <!-- Main content will be rendered here based on the selection -->
-
+<div class="content-area">
     <ng-container *ngIf="selectedComponent === 'basicInfo'">
       <app-basic-info [profileData]="celebrityData"></app-basic-info>
       <app-celeb-bio [profileData]="celebrityData"></app-celeb-bio>
@@ -66,5 +66,7 @@
     <ng-container *ngIf="selectedComponent === 'files'">
       <app-celebrity-files [celebrityId]="celebrityData?.data.id"></app-celebrity-files>
     </ng-container>
+  </div>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

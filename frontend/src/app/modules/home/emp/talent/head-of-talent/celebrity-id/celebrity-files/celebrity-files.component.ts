@@ -10,7 +10,7 @@ export class CelebrityFilesComponent implements OnInit {
   @Input() celebrityId!: number;
   celebrityFiles: any[] = []; // Consider defining a more specific type
   selectedFile: File | null = null;
-
+  isLoading: boolean = false; 
   constructor(private celebrityService: CelebrityService) {}
 
   ngOnInit() {
@@ -55,13 +55,19 @@ export class CelebrityFilesComponent implements OnInit {
 
   uploadFile(): void {
     if (this.selectedFile) {
+      this.isLoading = true; // Start loading
       this.celebrityService.uploadCelebrityFile(this.selectedFile, this.celebrityId).subscribe({
         next: (response) => {
           console.log('File uploaded successfully:', response);
           this.getCelebrityFiles(); // Refresh list
-          this.selectedFile = null; // Reset selection
         },
-        error: (error) => console.error('Error uploading file:', error)
+        error: (error) => {
+          console.error('Error uploading file:', error);
+        },
+        complete: () => {
+          this.isLoading = false; // Stop loading regardless of success or error
+          this.selectedFile = null; // Reset selection
+        }
       });
     }
   }
@@ -79,7 +85,18 @@ export class CelebrityFilesComponent implements OnInit {
       error: (error) => console.error('Error downloading file:', error)
     });
   }
-
+  openFile(fileId: number, fileName: string): void {
+    this.celebrityService.downloadCelebrityFile(fileId).subscribe({
+      next: (blob) => {
+        // Instead of triggering a download, create a blob URL and open it in a new tab.
+        const url = window.URL.createObjectURL(blob);
+        window.open(url, '_blank');
+        // Note: No need to revoke the URL here, as it should remain accessible in the new tab.
+      },
+      error: (error) => console.error('Error opening file:', error)
+    });
+  }
+  
   deleteFile(fileId: number): void {
     this.celebrityService.deleteCelebrityFile(fileId).subscribe({
       next: (response) => {
