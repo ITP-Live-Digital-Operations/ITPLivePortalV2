@@ -22,4 +22,10 @@ router.route('/countAddedFilesByUser')
 
 router.route('/countTalentTasks')
     .get(asyncHandler(userStatsController.countTalentTasks));
+
+router.route('/countInfluencerRemarksByUser')
+    .get(asyncHandler(userStatsController.countInfluencerRemarksByUser));
+
+router.route('/countInfluencerCampaigns')
+    .get(asyncHandler(userStatsController.countInfluencerCampaigns));
 module.exports = router;
