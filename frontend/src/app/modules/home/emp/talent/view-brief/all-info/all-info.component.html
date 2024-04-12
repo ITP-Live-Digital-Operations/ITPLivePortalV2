@@ -10,17 +10,36 @@
         1. Campaign Information:
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p class="words">Agency: {{ brief?.Agency }}</p>
-    <p class="words">Client: {{ brief?.client?.name }}</p>
-    <p class="words">Client Industry: {{ brief?.client?.industry }}</p>
-    <p class="words">Brand: {{ brief?.brand?.name}}</p>
-    <p class="words">Campaign Overview: {{ brief?.CampaignOverview }}</p>
-    <p class="words">
-      Campaign Objective: {{ brief?.CampaignObjective }}
-    </p>
-    <p class="words">
-      Campaign Objective Details: {{ brief?.CampaignObjectiveDetails }}
-    </p>
+    <table style="width: 100%;">
+      <tr class="row-color1">
+        <td><strong>Agency:</strong></td>
+        <td>{{ brief?.Agency }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Client:</strong></td>
+        <td>{{ brief?.client?.name }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Client Industry:</strong></td>
+        <td>{{ brief?.client?.industry }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Brand:</strong></td>
+        <td>{{ brief?.brand?.name}}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Campaign Overview:</strong></td>
+        <td>{{ brief?.CampaignOverview }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Campaign Objective:</strong></td>
+        <td>{{ brief?.CampaignObjective }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Campaign Objective Details:</strong></td>
+        <td>{{ brief?.CampaignObjectiveDetails }}</td>
+      </tr>
+    </table>
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
@@ -28,44 +47,56 @@
         2. Campaign Details:
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p class="words">
-      Number of Recommendations: {{ brief?.NumberofRecommendations }}
-    </p>
-    <p class="words">Currency: {{ brief?.Currency }}</p>
-    <p class="words">Budget: {{ brief?.Budget }}</p>
-    <p class="words">
-      Campaign Start Date: {{ brief?.CampaignStartDate | date }}
-    </p>
-    <p class="words">
-      Campaign End Date: {{ brief?.CampaignEndDate | date }}
-    </p>
-    <p class="words">
-      Campaign Message Phase One:{{ brief?.CampaignMessagePhaseOne }}
-    </p>
-    <p class="words">
-      Campaign Message Phase Two:{{ brief?.CampaignMessagePhaseTwo }}
-    </p>
-    <p class="words">
-      Campaign Message Phase Three:{{ brief?.CampaignMessagePhaseThree }}
-    </p>
-    <p class="words">
-      Content Deliverables: {{ brief?.ContentDeliverables }}
-    </p>
-    <p class="words">
-      Brand Exclusivity Duration in Days:{{
-      brief?.data?.BrandExclusivityDurationinDays
-      }}
-    </p>
-    <p class="words">
-      Video Production:
-      <span *ngIf="brief?.VideoProduction == 1"> Yes </span>
-      <span *ngIf="brief?.VideoProduction == 0"> No</span>
-    </p>
-    <p class="words">
-      Video Editing:
-      <span *ngIf="brief?.VideoEditing == 1"> Yes </span>
-      <span *ngIf="brief?.VideoEditing == 0"> No</span>
-    </p>
+    <table style="width: 100%;">
+      <tr class="row-color1">
+        <td><strong>Number of Recommendations:</strong></td>
+        <td>{{ brief?.NumberofRecommendations }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Currency:</strong></td>
+        <td>{{ brief?.Currency }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Budget:</strong></td>
+        <td>{{ brief?.Budget }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Campaign Start Date:</strong></td>
+        <td>{{ brief?.CampaignStartDate | date }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Campaign End Date:</strong></td>
+        <td>{{ brief?.CampaignEndDate | date }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Campaign Message Phase One:</strong></td>
+        <td>{{ brief?.CampaignMessagePhaseOne }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Campaign Message Phase Two:</strong></td>
+        <td>{{ brief?.CampaignMessagePhaseTwo }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Campaign Message Phase Three:</strong></td>
+        <td>{{ brief?.CampaignMessagePhaseThree }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Content Deliverables:</strong></td>
+        <td>{{ brief?.ContentDeliverables }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Brand Exclusivity Duration in Days:</strong></td>
+        <td>{{ brief?.data?.BrandExclusivityDurationinDays }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Video Production:</strong></td>
+        <td>{{ brief?.VideoProduction == 1 ? 'Yes' : 'No' }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Video Editing:</strong></td>
+        <td>{{ brief?.VideoEditing == 1 ? 'Yes' : 'No' }}</td>
+      </tr>
+    </table>
   </mat-expansion-panel>
 
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -74,30 +105,40 @@
         3. Influencer Information:
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p class="words" *ngIf="brief?.InfluencerAgeRange != undefined">
-      Influencer Age Range:{{ brief?.InfluencerAgeRange | ageGroup }}
-    </p>
-    <p class="words">
-      Influencer Location: {{ brief?.InfluencerLocation }}
-    </p>
-    <p class="words">
-      Influencer Nationality: {{ brief?.InfluencerNationality }}
-    </p>
-    <p class="words">Influencer Gender: {{ brief?.InfluencerGender }}</p>
-    <p class="words">
-      Similar Profile Link: {{ brief?.SimilarProfileLink }}
-    </p>
-    <p class="words">
-      Influencer Interest: {{ brief?.InfluencerInterest }}
-    </p>
-    <p class="words">
-      Influencer Number Of Followers:{{
-      brief?.InfluencerNumberOfFollowers
-      }}
-    </p>
-    <p class="words">
-      Note For Number Of Followers:{{ brief?.NoteForNumberOfFollowers }}
-    </p>
+    <table style="width: 100%;">
+      <tr class="row-color1" *ngIf="brief?.InfluencerAgeRange != undefined">
+        <td><strong>Influencer Age Range:</strong></td>
+        <td>{{ brief?.InfluencerAgeRange | ageGroup }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Influencer Location:</strong></td>
+        <td>{{ brief?.InfluencerLocation }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Influencer Nationality:</strong></td>
+        <td>{{ brief?.InfluencerNationality }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Influencer Gender:</strong></td>
+        <td>{{ brief?.InfluencerGender }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Similar Profile Link:</strong></td>
+        <td><a href="{{ brief?.SimilarProfileLink }}" target="_blank">{{ brief?.SimilarProfileLink }}</a></td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Influencer Interest:</strong></td>
+        <td>{{ brief?.InfluencerInterest }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Influencer Number Of Followers:</strong></td>
+        <td>{{ brief?.InfluencerNumberOfFollowers }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Note For Number Of Followers:</strong></td>
+        <td>{{ brief?.NoteForNumberOfFollowers }}</td>
+      </tr>
+    </table>
   </mat-expansion-panel>
 
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -106,27 +147,44 @@
         4. Audience Information:
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <p class="words" *ngIf="brief?.AudienceAgeRange != undefined">
-      Audience Age Range: {{ brief?.AudienceAgeRange | ageGroup }}
-    </p>
-    <p class="words">Audience Location: {{ brief?.AudienceLocation }}</p>
-    <p class="words">
-      Audience Nationality: {{ brief?.AudienceNationality }}
-    </p>
-    <p class="words">Audience Gender: {{ brief?.AudienceGender }}</p>
-    <p class="words">Audience Interest: {{ brief?.AudienceInterest }}</p>
-    <p class="words">
-      Confirmed Influencer Handles:{{
-      brief?.ConfirmedInfluencerHandles
-      }}
-    </p>
-    <p class="words">
-      Previous Brand Ambassadors Name:{{
-      brief?.PreviousBrandAmbassadorsName
-      }}
-    </p>
-    <p class="words">Created At: {{ brief?.createdAt | date }}</p>
-    <p class="words">Updated At: {{ brief?.updatedAt | date }}</p>
+    <table style="width: 100%;">
+      <tr class="row-color1" *ngIf="brief?.AudienceAgeRange != undefined">
+        <td><strong>Audience Age Range:</strong></td>
+        <td>{{ brief?.AudienceAgeRange | ageGroup }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Audience Location:</strong></td>
+        <td>{{ brief?.AudienceLocation }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Audience Nationality:</strong></td>
+        <td>{{ brief?.AudienceNationality }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Audience Gender:</strong></td>
+        <td>{{ brief?.AudienceGender }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Audience Interest:</strong></td>
+        <td>{{ brief?.AudienceInterest }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Confirmed Influencer Handles:</strong></td>
+        <td>{{ brief?.ConfirmedInfluencerHandles }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Previous Brand Ambassadors Name:</strong></td>
+        <td>{{ brief?.PreviousBrandAmbassadorsName }}</td>
+      </tr>
+      <tr class="row-color2">
+        <td><strong>Created At:</strong></td>
+        <td>{{ brief?.createdAt | date }}</td>
+      </tr>
+      <tr class="row-color1">
+        <td><strong>Updated At:</strong></td>
+        <td>{{ brief?.updatedAt | date }}</td>
+      </tr>
+    </table>
   </mat-expansion-panel>
 
   <mat-expansion-panel>
@@ -135,7 +193,7 @@
         5. Associated Files:
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <div class="table-container">
+    <div class="table-container secondtable">
       <table mat-table #table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
@@ -164,13 +222,6 @@
           sticky
         ></tr>
       </table>
-      <mat-paginator
-        [length]="dataSource?.data.length"
-        [pageSize]="15"
-        [pageSizeOptions]="[3, 5, 10, 25, 100]"
-        aria-label="Select page"
-      >
-      </mat-paginator>
     </div>
   </mat-expansion-panel>
 </div>

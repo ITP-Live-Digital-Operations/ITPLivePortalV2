@@ -56,4 +56,5 @@ export class AllInfoComponent {
       window.open(url);
     });
   }
+  
 }

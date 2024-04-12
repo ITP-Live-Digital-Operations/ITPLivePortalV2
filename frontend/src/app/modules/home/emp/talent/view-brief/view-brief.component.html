@@ -28,13 +28,6 @@
           [brief_id]="brief_id"
         ></app-update-activate>
       </form>
-      <button
-        mat-raised-button
-        *ngIf="talentHeads?.includes(user_id) || assigned"
-        (click)="editAssignedExecs()"
-      >
-        Edit Task
-      </button>
     </div>
 
     <div *ngIf="talentHeads?.includes(user_id) && !assigned">

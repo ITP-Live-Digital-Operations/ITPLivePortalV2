@@ -108,13 +108,12 @@ mat-sidenav-content {
 
 .menu-item:hover {
   /* Transition to a lighter gradient to match the updated background */
-  background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
-
+  background: linear-gradient(300deg, rgb(58 60 170) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
   transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
 
 .selected {
-  background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+  background: linear-gradient(300deg, rgb(58 60 170) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
 }
 
 

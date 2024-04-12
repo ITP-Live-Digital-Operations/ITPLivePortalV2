@@ -1,14 +1,21 @@
 <div class="form-container">
   <div>
-    <h1 class="progress-title">Progress:</h1>
-    <h2 class="progress-value">{{ task?.progress }}</h2>
+    <h2 class="progress-title">Progress:</h2>
+    <p class="progress-value">{{ task?.progress }}</p>
 
-    <h1>Brief Status: </h1>
+    <h2>Brief Status: </h2>
     <div *ngIf="brief?.data.Status == 'Active'" class="brief-status active">
-      <span>{{ brief?.data.Status }}</span>
-      <button mat-raised-button class="deactivate-button" (click)="deactivateBrief()">
+      <p>{{ brief?.data.Status }}</p>
+      <button  class="deactivate-button" (click)="deactivateBrief()">
         Deactivate
       </button>
+      <button
+      class="glow-on-add-new editbtn"
+      *ngIf="talentHeads?.includes(user_id) || assigned"
+      (click)="editAssignedExecs()"
+    >
+      Edit Task
+    </button>
     </div>
 
     <div *ngIf="brief?.data.Status != 'Active'" class="brief-status inactive">
@@ -16,6 +23,7 @@
       <button mat-raised-button class="activate-button" (click)="activateBrief()">
         Activate
       </button>
+   
     </div>
   </div>
 </div>

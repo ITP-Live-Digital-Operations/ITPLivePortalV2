@@ -1,5 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CelebrityService } from 'src/app/core/services/celebrity.service';
+import { ToastrService } from 'ngx-toastr';
+import { MatPaginator } from '@angular/material/paginator';
+import { ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 
 @Component({
   selector: 'app-celebrity-files',
@@ -11,7 +17,13 @@ export class CelebrityFilesComponent implements OnInit {
   celebrityFiles: any[] = []; // Consider defining a more specific type
   selectedFile: File | null = null;
   isLoading: boolean = false; 
-  constructor(private celebrityService: CelebrityService) {}
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+  dataSource!: MatTableDataSource<any>; 
+  constructor(private celebrityService: CelebrityService,
+    private dialog: MatDialog,
+    private dialogService: ConfirmationDialogService,
+    private toastrService: ToastrService  
+  ) {}
 
   ngOnInit() {
     this.getCelebrityFiles();
@@ -25,6 +37,8 @@ export class CelebrityFilesComponent implements OnInit {
           const decodedString = decoder.decode(response);
           try {
             this.celebrityFiles = JSON.parse(decodedString);
+            this.dataSource = new MatTableDataSource(this.celebrityFiles);
+            this.dataSource.paginator = this.paginator;
           } catch (error) {
             console.error('Failed to parse JSON from ArrayBuffer', error);
           }
@@ -50,8 +64,19 @@ export class CelebrityFilesComponent implements OnInit {
   
   onFileSelected(event: Event): void {
     const target = event.target as HTMLInputElement;
-    this.selectedFile = target.files ? target.files[0] : null;
+    const file = target.files ? target.files[0] : null;
+    if (file) {
+      const validTypes = ['pdf', 'ppt','pptx', 'docx'];
+      const extension = file.name.split('.').pop()?.toLowerCase();
+      if (extension && validTypes.includes(extension)) {
+        this.selectedFile = file;
+      } else {
+        this.toastrService.error('Please upload a file of type PDF, PPT, or DOCX.', 'Invalid File Type');
+        this.selectedFile = null; // Reset the file input
+      }
+    }
   }
+  
 
   uploadFile(): void {
     if (this.selectedFile) {
@@ -98,12 +123,19 @@ export class CelebrityFilesComponent implements OnInit {
   }
   
   deleteFile(fileId: number): void {
-    this.celebrityService.deleteCelebrityFile(fileId).subscribe({
-      next: (response) => {
-        console.log('File deleted successfully:', response);
-        this.getCelebrityFiles(); // Refresh list
-      },
-      error: (error) => console.error('Error deleting file:', error)
-    });
+    this.dialogService.openConfirmationDialog('Confirm!', 'Are you sure you want to delete?')
+      .subscribe((result) => {
+        if (result === true) {
+          this.celebrityService.deleteCelebrityFile(fileId).subscribe({
+            next: (response) => {
+              this.toastrService.success('File deleted successfully!');
+              this.getCelebrityFiles(); // Refresh the file list
+            },
+            error: (error) => {
+              this.toastrService.error('Error deleting file:', error.message);
+            }
+          });
+        }
+      });
   }
 }

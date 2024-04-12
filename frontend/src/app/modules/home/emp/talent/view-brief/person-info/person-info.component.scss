@@ -1,17 +1,23 @@
 .info {
-  padding: 2%;
-  margin-left: 5%;
+  background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.15) 20%, rgba(176, 186, 225, 0.1) 70%, rgba(176, 186, 225, 0.02) 100%);
+  border: 2px solid rgba(164, 164, 164, 0.1764705882);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
   display: flex;
-  justify-content: left;
-  align-items: left;
   flex-direction: column;
-  transform: scale(1.1);
+  justify-content: space-between;
+  margin: 10px;
+  padding: 15px;
+  transition: transform 0.2s;
+  position: relative;
+
+
 }
 
 
 
 p {
-  color: #4F5D2F;
+  color: #c2c2c2;
   justify-content: center;
   align-items: horizontal;
   font-size: 125%;
