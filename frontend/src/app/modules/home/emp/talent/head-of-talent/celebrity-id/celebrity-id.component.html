@@ -33,6 +33,15 @@
         <img src="../../../../../assets/white-buttons/remarks.png" />
         Remarks</a
       >
+      <a
+      mat-list-item
+      class="menu-item"
+      [class.selected]="selectedComponent === 'files'"
+      (click)="selectComponent('files')"
+    >
+      <img src="../../../../../assets/white-buttons/files.png" />
+      Files</a
+    >
     </mat-nav-list>
   </mat-sidenav>
 
@@ -41,7 +50,7 @@
       <mat-icon style="color: aliceblue">close</mat-icon>
     </button>
     <!-- Main content will be rendered here based on the selection -->
-
+<div class="content-area">
     <ng-container *ngIf="selectedComponent === 'basicInfo'">
       <app-basic-info [profileData]="celebrityData"></app-basic-info>
       <app-celeb-bio [profileData]="celebrityData"></app-celeb-bio>
@@ -54,5 +63,10 @@
         [profileData]="celebrityData"
       ></app-celebrity-remarks>
     </ng-container>
+    <ng-container *ngIf="selectedComponent === 'files'">
+      <app-celebrity-files [celebrityId]="celebrityData?.data.id"></app-celebrity-files>
+    </ng-container>
+  </div>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

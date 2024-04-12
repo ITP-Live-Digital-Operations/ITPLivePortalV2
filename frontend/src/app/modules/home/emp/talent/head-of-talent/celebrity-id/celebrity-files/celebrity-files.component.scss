@@ -1,0 +1,131 @@
+.container {
+    padding: 20px;
+  
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .file-list {
+      margin-bottom: 20px;
+  
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 10px;
+  
+        th, td {
+          padding: 10px;
+          border: 1px solid #ccc;
+          background: rgba(255, 255, 255, 0.062);
+        }
+  
+        th {
+          background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+          color: white;
+        }
+  
+        td {
+          text-align: left;
+          color: white;
+  
+          button {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  
+    .file-upload {
+      input[type="file"] {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .icons-btn{
+
+    background-color: transparent;
+    border: 0px;
+    padding: 4px 6px;
+    color: white;
+
+    &:hover {
+      background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+      border-radius: 5px;
+    }
+  }
+
+  .delete-btn{
+
+    background-color: transparent;
+    border: 0px;
+    padding: 4px 6px;
+    color:  white;
+
+    &:hover {
+      background: linear-gradient(300deg, rgb(149, 45, 45) 0%, rgba(124, 43, 43, 0.85) 77%, rgba(119, 36, 36, 0.85) 100%);
+      border-radius: 5px;
+      color:white;
+    }
+  }
+  /* Style the table */
+.table-rounded {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 2px solid rgba(164, 164, 164, 0.1764705882);
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden; /* To ensure the rounded corners are visible */
+}
+
+/* Style the first and last th elements */
+.table-rounded th:first-child{
+  border-top-left-radius: 10px;
+}
+
+.table-rounded th:last-child
+{
+  border-top-right-radius: 10px;
+}
+
+/* Apply rounded corners to the bottom of the table. 
+   This assumes your table has a tbody element. */
+.table-rounded tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.table-rounded tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+.upload-file{
+  width:17vh;
+  height:4vh;
+  font-size: 2.3vh;
+}
+.custom-file-button {
+  margin-bottom: 1rem;
+  border: 2px solid rgba(164, 164, 164, 0.1764705882);
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+	input[type="file"] {
+		margin-left: -2px !important;
+
+		&::-webkit-file-upload-button {
+			display: none;
+		}
+		&::file-selector-button {
+			display: none;
+		}
+	}
+  label{
+    background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+    color:white;
+  }
+	&:hover {
+		label {
+		
+			cursor: pointer;
+		}
+	}
+}

@@ -18,6 +18,7 @@ import { EditCelebrityRemarkComponent } from './celebrity-id/celebrity-remarks/e
 import { AddCelebrityRemarkComponent } from './celebrity-id/celebrity-remarks/add-celebrity-remark/add-celebrity-remark.component';
 import { CelebBioComponent } from './celebrity-id/celeb-bio/celeb-bio.component';
 import { CelebProfCardComponent } from './celebrity-id/celeb-prof-card/celeb-prof-card.component';
+import { CelebrityFilesComponent } from './celebrity-id/celebrity-files/celebrity-files.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CelebProfCardComponent } from './celebrity-id/celeb-prof-card/celeb-pro
     AddCelebrityRemarkComponent,
     CelebBioComponent,
     CelebProfCardComponent,
+    CelebrityFilesComponent,
   ],
   imports: [
     CommonModule,
