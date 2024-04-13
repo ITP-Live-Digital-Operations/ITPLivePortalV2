@@ -31,6 +31,9 @@ export class UpdateActivateComponent {
   @Output()
   submitEvent = new EventEmitter<void>();
 
+  @Output()
+  reloadEvent = new EventEmitter<void>();
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private salesService: SalesService,
@@ -45,11 +48,15 @@ export class UpdateActivateComponent {
     this.form = this.rootFormGroup.control;
     this.getTalentHeads();
     this.loadBriefData();
-    
+
   }
 
   public emitSubmit(): void {
     this.submitEvent.emit();
+  }
+
+  public emitReload(): void {
+    this.reloadEvent.emit();
   }
 
   public deactivateBrief(): void {
@@ -85,10 +92,8 @@ export class UpdateActivateComponent {
       height: '90%',
       data: { task: this.task, briefID: this.brief_id },
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        window.location.reload();
-      }
+    dialogRef.afterClosed().subscribe(() => {
+        this.emitSubmit();
     });
   }
   private getTalentHeads(): void {
@@ -108,5 +113,5 @@ export class UpdateActivateComponent {
 
     });
   }
-  
+
 }

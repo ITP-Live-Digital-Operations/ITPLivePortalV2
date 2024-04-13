@@ -63,7 +63,10 @@ export class CampaignDeliverablesComponent {
   public addRow(): void {
     const row = this.formBuilder.group({});
     this.keysAndTypes.forEach(keyAndType => {
-      row.addControl(keyAndType.key, this.formBuilder.control('',Validators.pattern('^[0-9]*$')));
+      row.addControl(keyAndType.key, this.formBuilder.control('', Validators.compose([
+        Validators.pattern('^[0-9]*$'),
+        Validators.required
+      ])));
     });
     this.rows.push(row);
   }

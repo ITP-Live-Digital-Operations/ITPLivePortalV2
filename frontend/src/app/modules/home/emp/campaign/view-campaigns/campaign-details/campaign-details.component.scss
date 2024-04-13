@@ -24,8 +24,8 @@ h1 {
   justify-content: center;
   background-color: transparent;
   color: white;
-  border: 1px solid #4789a1;
-  border-radius: 4px;
+
+
   cursor: pointer;
   padding: 3px 10px 3px 5px; /* Adjusted padding values */
 
@@ -59,15 +59,8 @@ h1 {
   }
 
   button {
-    padding: 10px 15px;
-    background-color: transparent;
-    color: white;
-    border: 1px solid #4789a1;
-    border-radius: 4px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #4789a1;
-    }
+    width: 15vh;
+    height: auto;
+    
   }
 }

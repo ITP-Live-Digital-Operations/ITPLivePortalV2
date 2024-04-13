@@ -44,5 +44,5 @@
     <button class="btn" (click)="addRow()">Add Row</button>
   </form>
 
-  <button class="btn-green" (click)="save()">Add Statistics</button>
+  <button class="btn-green" (click)="save()" [disabled]="form.invalid">Add Statistics</button>
 </div>

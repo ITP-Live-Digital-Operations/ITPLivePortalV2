@@ -17,12 +17,12 @@
       padding: 15px 10px;
       text-align: left;
 
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); // subtle shadow for cells
+      box-shadow: 0 1px 3px rgba(100, 100, 100, 0.1); // subtle shadow for cells
       /* border-radius: 4px; // rounded corners for cells */
     }
 
     th {
-      background-color: #4789A1;
+      background-color: #1f3371;
       color: white;
       font-weight: bold;
       border-bottom: none;
@@ -90,6 +90,11 @@
 
     &:hover {
       background-color: #B4DC7F;
+    }
+
+    &:disabled {
+      background-color: grey;
+      cursor: not-allowed;
     }
   }
 }
