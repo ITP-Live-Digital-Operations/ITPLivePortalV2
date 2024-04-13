@@ -27,10 +27,24 @@ export class ClientStatsComponent {
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-    @ViewChild(MatSort, { static: true }) sort!: MatSort;
-
     @ViewChild(MatTable) table!: MatTable<any>;
+    private _sort: MatSort | null = null;
 
+    @ViewChild(MatSort) set sort(sort: MatSort) {
+      this._sort = sort;
+      if (this.dataSource) {
+        this.dataSource.sort = sort;
+      }
+    }
+    
+    ngAfterViewInit(): void {
+      this.dataSource = new MatTableDataSource(this.clientMetrics);
+      if (this._sort) {
+        this.dataSource.sort = this._sort;
+      } else {
+        console.error('Sort not available');
+      }
+    }
     constructor(
       private statisticsService: StatisticsService,
     ) { }
@@ -38,20 +52,20 @@ export class ClientStatsComponent {
     ngOnInit(): void {
       this.loadClientMetrics();
     }
-
+   
     public loadClientMetrics() {
       this.isLoading = true; 
       this.statisticsService.getClientMetrics().subscribe((res) => {
         this.clientMetrics = res;
         this.isLoading = false; 
-        this.dataSource = new MatTableDataSource<any[]>(
-          this.clientMetrics
-        );
-
+        this.dataSource = new MatTableDataSource<any[]>(this.clientMetrics);
+        this.initializeSortingAndPagination();
         this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       });
-
-
     }
+    private initializeSortingAndPagination(): void {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+    
 }
