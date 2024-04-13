@@ -1,0 +1,27 @@
+
+  ::ng-deep.mat-mdc-tab-header-pagination-controls-enabled .mat-mdc-tab-header-pagination {
+    display: none !important; 
+}
+
+  ::ng-deep .mat-mdc-tab-labels{
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important; /* Align tabs to start from the right */
+
+  }
+
+  ::ng-deep .mat-tab-label {
+    flex-grow: 1 !important; /* Make each tab take up equal space */
+    max-width: calc(100% / 3) !important; /* Assuming 3 tabs per row, adjust as needed */
+    
+  }
+  .vertical-tabs-container {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+    padding: 9px;
+    max-width: 1300px;
+    margin: auto;
+    overflow: hidden;
+  }
+  
