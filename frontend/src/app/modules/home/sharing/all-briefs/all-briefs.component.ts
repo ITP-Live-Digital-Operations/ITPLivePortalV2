@@ -35,8 +35,13 @@ export class AllBriefsComponent {
     'Status',
     'Sales',
     'Talent',
-    'Action'
+    'Action',
   ];
+
+  filterCriteria: any = {
+    /* search: '', */
+    location: [],
+  };
 
   displayedColumns1: string[] = ['color', 'meaning'];
   colorLegend = [
@@ -70,7 +75,7 @@ export class AllBriefsComponent {
   }
 
   private getAllBriefs(): void {
-    this.salesService.getAllBriefsWithTask().subscribe((data: any) => {
+    this.salesService.getAllBriefsWithTaskAndUser().subscribe((data: any) => {
       console.log(data);
       this.briefDetails = data;
       this.briefDetails.data.sort((a: any, b: any) => {
@@ -157,7 +162,7 @@ export class AllBriefsComponent {
       });
   }
 
-  applyFilter(color: string) {
+  applyFilterColor(color: string) {
     if (color === 'green') {
       this.dataSource.filter = 'Not Assigned';
     } else if (color === 'blue') {
@@ -168,6 +173,55 @@ export class AllBriefsComponent {
       this.dataSource.filter = 'all';
     }
   }
+
+  applyFilterChange(filterType: string, filterValue: any): void {
+    switch (filterType) {
+      case 'search':
+        this.filterCriteria.search = filterValue.trim().toLowerCase();
+        break;
+      case 'location':
+        this.filterCriteria.location = filterValue.map((val: string) =>
+          val.trim()
+        );
+        break;
+      default:
+        break;
+    }
+    if (!Array.isArray(filterValue)) {
+      filterValue = [filterValue];
+    }
+
+    this.filterCriteria[filterType] = filterValue.map((val: string) =>
+      val.trim()
+    );
+    this.applyFilter();
+  }
+
+  public applyFilter(): void {
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      console.log(filter);
+      const filterObject = JSON.parse(filter);
+
+      /* const isMatchSearch = filterObject.search ? data.Agency.toLowerCase().includes(filterObject.search) ||
+        data.Client.toLowerCase().includes(filterObject.search) ||
+        data.CampaignName.toLowerCase().includes(filterObject.search) : true; */
+
+      const isMatchLocation = !this.filterCriteria.location.length ||
+        filterObject.location.includes(
+            data.user.location
+          );
+
+      return isMatchLocation;
+    };
+
+    this.dataSource.filter = JSON.stringify(this.filterCriteria);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
+    this.updateFilterDropDowns();
+  }
+
+  updateFilterDropDowns(): void {}
 
   public getUsername(id: number): string {
     return this.users[id] || 'Not Assigned';

@@ -97,7 +97,7 @@ export class SalesService {
     );
   }
 
-  getAllBriefsWithTask() {
+  getAllBriefsWithTaskAndUser() {
     return this.http.get(`${this.salesApiURL}/getAllBriefsWithTask`);
   }
 

@@ -505,6 +505,12 @@ exports.getAllBriefsWithTask = (req, res) => {
         required: false,
         as: "client",
       },
+      {
+        model: models.User,
+        required: false,
+        as: "user",
+        attributes: ["id", "name", "location"],
+      }
     ],
   })
     .then((data) => {
