@@ -13,31 +13,31 @@ export class UserstatsService {
 
   authApiURL = environment.apiUrl + '/v1/userStats';
 
-  countUploadedBriefsByUser(): Observable<userCountModel> {
-    return this.http.get<userCountModel>(`${this.authApiURL}/countUploadedBriefsByUser`);
+  countUploadedBriefsByUser(): Observable<userCountModel[]> {
+    return this.http.get<userCountModel[]>(`${this.authApiURL}/countUploadedBriefsByUser`);
   }
 
-  countAddedLogsByUser(): Observable<userCountModel> {
-    return this.http.get<userCountModel>(`${this.authApiURL}/countAddedLogsByUser`);
+  countAddedLogsByUser(): Observable<userCountModel[]> {
+    return this.http.get<userCountModel[]>(`${this.authApiURL}/countAddedLogsByUser`);
   }
 
-  countAddedInfluencersByUser(): Observable<userCountModel> {
-    return this.http.get<userCountModel>(`${this.authApiURL}/countAddedInfluencersByUser`);
+  countAddedInfluencersByUser(): Observable<userCountModel[]> {
+    return this.http.get<userCountModel[]>(`${this.authApiURL}/countAddedInfluencersByUser`);
   }
 
-  countAddedCelebritiesByUser(): Observable<userCountModel> {
-    return this.http.get<userCountModel>(`${this.authApiURL}/countAddedCelebritiesByUser`);
+  countAddedCelebritiesByUser(): Observable<userCountModel[]> {
+    return this.http.get<userCountModel[]>(`${this.authApiURL}/countAddedCelebritiesByUser`);
   }
 
-  countAddedClientsByUser(): Observable<userCountModel>{
-    return this.http.get<userCountModel>(`${this.authApiURL}/countAddedClientsByUser`);
+  countAddedClientsByUser(): Observable<userCountModel[]>{
+    return this.http.get<userCountModel[]>(`${this.authApiURL}/countAddedClientsByUser`);
   }
 
-  countAddedFilesByUser(): Observable<userCountModel>{
-    return this.http.get<userCountModel>(`${this.authApiURL}/countAddedFilesByUser`);
+  countAddedFilesByUser(): Observable<userCountModel[]>{
+    return this.http.get<userCountModel[]>(`${this.authApiURL}/countAddedFilesByUser`);
   }
 
-  countTalentTasks(): Observable<userCountModel> {
-    return this.http.get<userCountModel>(`${this.authApiURL}/countTalentTasks`);
+  countTalentTasks(): Observable<userCountModel[]> {
+    return this.http.get<userCountModel[]>(`${this.authApiURL}/countTalentTasks`);
   }
 }
