@@ -18,10 +18,14 @@ body {
     flex-direction: column; /* Arranges children vertically */
     justify-content: space-between; /* Distributes space between children */
     padding: 10px;
-    background-color: transparent;
+    background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.15) 20%, rgba(176, 186, 225, 0.1) 70%, rgba(176, 186, 225, 0.02) 100%);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 0 1%;
+    border: 2px solid rgba(164, 164, 164, 0.1764705882);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
+    
   }
 
   /* Card styles */

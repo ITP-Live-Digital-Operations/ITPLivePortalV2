@@ -1,12 +1,23 @@
 .form-container {
-  padding: 2%;
-
+  background: linear-gradient(0deg, rgba(176, 186, 225, 0.2) 0%, rgba(176, 186, 225, 0.15) 20%, rgba(176, 186, 225, 0.1) 70%, rgba(176, 186, 225, 0.02) 100%);
+  border: 2px solid rgba(164, 164, 164, 0.1764705882);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
   display: flex;
-  justify-content: left;
-  align-items: left;
   flex-direction: column;
-}
+  justify-content: space-between;
+  margin: 10px;
+  padding: 15px;
+  transition: transform 0.2s;
+  position: relative;
 
+}
+p {
+  color: #c2c2c2;
+  justify-content: center;
+  align-items: horizontal;
+  font-size: 125%;
+}
 h1 {
   color: #ffffff;
 }
@@ -17,7 +28,7 @@ h1 {
 }
 
 .progress-value {
-  color: #4F5D2F !important;
+  color: #c2c2c2 !important;
 }
 
 .brief-status {
@@ -31,21 +42,41 @@ h1 {
 }
 
 .active {
-  color: #4F5D2F;
+  color: #c2c2c2;
   .deactivate-button {
     background-color: #D72638;
     color: white;
-    height: 2em;
+    height: 2rem;
     width: 17em;
+    border-radius: 8px;
+    transform: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    &:hover{
+      border: 2px solid rgba(164, 164, 164, 0.1764705882);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
+    }
   }
 }
 
 .inactive {
   color: #D72638;
   .activate-button {
-    background-color: #B4DC7F;
+    background-color: #2aac20;
     color: white;
     height: 2rem;
     width: 17em;
+    border-radius: 8px !important;
+    &:hover{
+      border: 2px solid rgba(164, 164, 164, 0.1764705882);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
+    }
   }
+}
+.education{
+  background-color: #3c3c3c;
+}
+.editbtn{
+  margin-left:1rem;
+  width: 15vh;
+  height: 3vh;
+  margin-top: 1vh;
 }

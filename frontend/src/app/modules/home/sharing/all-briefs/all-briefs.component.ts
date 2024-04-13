@@ -25,19 +25,19 @@ export class AllBriefsComponent {
   public privilegeLevel: number = this.userService.getPrivilegeLevel();
   public userId: number = this.userService.getID();
 
-  displayedColumns: string[] = [
-    'id',
-    'CampaignName',
+  displayedColumns = [
     'Agency',
-    'CreatedDate',
     'Client',
-    'CampaignObjective',
+    'CampaignName',
+    'CreatedDate',
     'AssignedDate',
     'TaskDeadline',
+    'Status',
     'Sales',
     'Talent',
-    'Action',
+    'Action'
   ];
+
   displayedColumns1: string[] = ['color', 'meaning'];
   colorLegend = [
     { color: 'none', meaning: 'All' },
