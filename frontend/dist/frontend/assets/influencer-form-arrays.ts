@@ -72,6 +72,8 @@ export const verticals = [
 ];
 
 export const countries = [
+  'UAE',
+  'KSA',
   'Afghanistan',
   'Albania',
   'Algeria',
@@ -191,7 +193,7 @@ export const countries = [
   'Kazakhstan',
   'Kenya',
   'Kiribati',
-  'KSA',
+
   'Kuwait',
   'Kyrgyzstan',
   "Lao People's Democratic Republic",
@@ -308,7 +310,7 @@ export const countries = [
   'Tuvalu',
   'Uganda',
   'Ukraine',
-  'UAE',
+
   'UK',
   'United States Minor Outlying Islands',
   'USA',
