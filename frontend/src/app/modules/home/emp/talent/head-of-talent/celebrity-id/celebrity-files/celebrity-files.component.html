@@ -22,19 +22,22 @@
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let file of celebrityFiles">
-                  <td>{{ transformFilename(file.filename) }}</td>
-                  <td>
-                    <button class="icons-btn edit-button" (click)="openFile(file.id, file.filename)">
-                      <mat-icon>visibility</mat-icon>
+            <tr *ngFor="let file of celebrityFiles">
+                <td>{{ transformFilename(file.filename) }}</td>
+                <td>
+                    <!-- Visibility button shown only for PDF files -->
+                    <button *ngIf="file.filename.endsWith('.pdf')" class="icons-btn edit-button" (click)="openFile(file.id, file.filename)">
+                        <mat-icon>visibility</mat-icon>
                     </button>
-                      <button class="icons-btn edit-button" (click)="downloadFile(file.id, file.filename)"><mat-icon>download</mat-icon></button>
-                      <button class="delete-btn">
-                          <mat-icon mat-raised-button (click)="deleteFile(file.id)">delete</mat-icon>
-                      </button>
-                    
-                  </td>
-              </tr>
+                    <button class="icons-btn edit-button" (click)="downloadFile(file.id, file.filename)">
+                        <mat-icon>download</mat-icon>
+                    </button>
+                    <button class="delete-btn" (click)="deleteFile(file.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+            
           </tbody>
       </table>
   </div>

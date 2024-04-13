@@ -26,9 +26,15 @@ export class CampaignStatsComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  @ViewChild(MatSort, { static: true }) sort!: MatSort;
-
   @ViewChild(MatTable) table!: MatTable<any>;
+  private _sort: MatSort | null = null;
+
+  @ViewChild(MatSort) set sort(sort: MatSort) {
+    this._sort = sort;
+    if (this.dataSource) {
+      this.dataSource.sort = sort;
+    }
+  }
 
   constructor(
     private statisticsService: StatisticsService,
@@ -41,6 +47,15 @@ export class CampaignStatsComponent {
 
     this.loadCampaignMetrics();
   }
+  ngAfterViewInit(): void {
+    if (this.dataSource) {
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    } else {
+      console.error('DataSource not initialized');
+    }
+  }
+  
 
   public loadCampaignMetrics() {
     this.isLoading = true; 

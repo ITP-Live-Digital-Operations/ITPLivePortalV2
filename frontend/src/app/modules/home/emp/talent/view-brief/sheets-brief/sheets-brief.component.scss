@@ -19,13 +19,14 @@ body {
 
 /* Mat-tab-group styling */
 mat-tab-group {
-  background-color: transparent;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(164, 164, 164, 0.1764705882);
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgb(255 255 255 / 66%);
+  background: linear-gradient(0deg, rgb(139 156 223 / 33%) 0%, rgb(176 186 225 / 26%) 20%, rgb(176 186 225 / 27%) 70%, rgb(69 102 228 / 49%) 100%);
 }
 
 mat-tab {
-  background-color: #1f3371;
+  background-color: #ffffff;
 }
 
 /* Table styling */
@@ -133,4 +134,20 @@ button.icon-btn-del {
   background-color: #403d58;
   margin-bottom: 1%;
   color: white;
+}
+::ng-deep .mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+  --mdc-tab-indicator-active-indicator-color: #ffffff;
+  --mdc-tab-indicator-active-indicator-color: #ffffff;
+  --mat-tab-header-disabled-ripple-color: rgba(0, 0, 0, 0.38);
+  --mat-tab-header-pagination-icon-color: #000;
+  --mat-tab-header-inactive-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-active-label-text-color: #ffffff;
+  --mat-tab-header-active-ripple-color: #ffffff;
+  --mat-tab-header-inactive-ripple-color: #ffffff;
+  --mat-tab-header-inactive-focus-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-inactive-hover-label-text-color: rgba(0, 0, 0, 0.6);
+  --mat-tab-header-active-focus-label-text-color: #ffffff;
+  --mat-tab-header-active-hover-label-text-color: #ffffff;
+  --mat-tab-header-active-focus-indicator-color: #ffffff;
+  --mat-tab-header-active-hover-indicator-color: #ffffff;
 }
