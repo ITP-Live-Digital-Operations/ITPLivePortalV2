@@ -1,12 +1,15 @@
 <div class="form-container">
-  <form
-   [formGroup]="newCampaignForm"
-   >
+  <form [formGroup]="newCampaignForm">
     <h2>Edit Campaign</h2>
     <div class="row">
       <mat-form-field>
         <mat-label> Name </mat-label>
-        <input matInput type="text" formControlName="campaignName" autocomplete="off" />
+        <input
+          matInput
+          type="text"
+          formControlName="campaignName"
+          autocomplete="off"
+        />
       </mat-form-field>
 
       <mat-form-field>
@@ -19,18 +22,10 @@
         />
       </mat-form-field>
 
-      
-      <button
-      mat-raised-button
-
-      class="influ-button"
-      (click)="addInfluencers()"
-    >
-      Campaign Influencers
-    </button>
-
+      <button mat-raised-button class="influ-button" (click)="addInfluencers()">
+        Campaign Influencers
+      </button>
     </div>
-
 
     <button
       mat-raised-button
@@ -43,4 +38,3 @@
     </button>
   </form>
 </div>
-

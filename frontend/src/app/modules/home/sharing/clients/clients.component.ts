@@ -8,6 +8,7 @@ import { ClientModel } from 'src/app/core/interfaces/client.model';
 import { ClientService } from 'src/app/core/services/client.service';
 import { NewClientComponent } from './new-client/new-client.component';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { EditClientComponent } from './edit-client/edit-client.component';
 
 @Component({
   selector: 'app-clients',
@@ -149,18 +150,30 @@ export class ClientsComponent {
   }
 
   viewClient(id: number) {
-    this.router.navigate([`/home/main/editClient/${id}`]);
+    this.dialog
+      ?.open(EditClientComponent, {
+        width: '800px',
+        height: 'auto',
+        exitAnimationDuration: '1000ms',
+        enterAnimationDuration: '1000ms',
+        data: { id: id, source: 'clients' },
+      })
+      .afterClosed()
+      .subscribe(() => {});
   }
 
   redirectToNewClient() {
-    this.dialog?.open(NewClientComponent, {
-      width: '80%',
-      height: '65%',
-      exitAnimationDuration: '1000ms',
-      enterAnimationDuration: '1000ms',
-      data: {},
-    }).afterClosed().subscribe(() => {
-      this.loadClients();
-    });
+    this.dialog
+      ?.open(NewClientComponent, {
+        width: '80%',
+        height: '65%',
+        exitAnimationDuration: '1000ms',
+        enterAnimationDuration: '1000ms',
+        data: {},
+      })
+      .afterClosed()
+      .subscribe(() => {
+        this.loadClients();
+      });
   }
 }

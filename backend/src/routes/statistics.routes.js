@@ -17,4 +17,15 @@ router.route('/getInfluencerCampaignMetricsByCampaignId/:campaignId')
 
 router.route('/getInfluencerCampaignMetricsByInfluencerId/:influencerId')
     .get(asyncHandler(clientMetrics.getInfluencerCampaignMetricsByInfluencerId));
+
+router.route('/topInfluencersByCPE')
+    .get(asyncHandler(clientMetrics.topInfluencersByCPE));
+
+router.route('/topInfluencersByCPM')
+    .get(asyncHandler(clientMetrics.topInfluencersByCPM));
+
+router.route('/topInfluencersMarginOfProfit')
+    .get(asyncHandler(clientMetrics.topInfluencersMarginOfProfit));
+
+
 module.exports = router;
