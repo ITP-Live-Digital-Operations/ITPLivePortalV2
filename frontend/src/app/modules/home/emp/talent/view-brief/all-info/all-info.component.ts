@@ -13,6 +13,7 @@ import { FileService } from 'src/app/core/services/file.service';
 })
 export class AllInfoComponent {
   panelOpenState = false;
+displayedColumns: string[] = ['originalname', 'fileType', 'action'];
 
   @Input()
   brief: any;
@@ -39,7 +40,7 @@ export class AllInfoComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['originalname', 'fileType', 'action'];
+
 
   private getSalesFiles() {
     this.fileService.getSalesBriefFiles(this.briefId).subscribe((data) => {
@@ -49,12 +50,32 @@ export class AllInfoComponent {
     });
   }
 
-  downloadFile(id: number, mimeType: string) {
-    this.fileService.downloadFile(id).subscribe((data) => {
-      const blob = new Blob([data], { type: mimeType });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
+  
+  downloadFile(fileId: number, fileName: string): void {
+    this.fileService.downloadFile(fileId).subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        document.body.appendChild(link); // Append link to the document to ensure it works across all browsers
+        link.style.display = 'none'; // Hide the link
+        link.href = url;
+        link.download = fileName; // Set the desired file name for download
+        link.click(); // Trigger the download
+        document.body.removeChild(link); // Clean up by removing the link from the document
+        window.URL.revokeObjectURL(url); // Free up memory by revoking the blob URL
+      },
+      error: (error) => console.error('Error downloading file:', error)
     });
   }
+  
+  openFile(id: number) {
+    this.fileService.downloadFile(id).subscribe((data) => {
+      const blob = new Blob([data], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url, '_blank');
+      window.URL.revokeObjectURL(url);  // Optionally revoke the URL if needed
+    });
+  }
+  
   
 }

@@ -211,9 +211,15 @@
         </ng-container>
 
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Download</th>
-          <td mat-cell *matCellDef="let element"> <mat-icon (click)="downloadFile(element.id, element.mimetype)"> download </mat-icon></td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <!-- Download button for all files -->
+            <mat-icon class="hoverglow" (click)="downloadFile(element.id, element.filename)">download</mat-icon>
+            <!-- Visibility button only for PDFs -->
+            <mat-icon class="hoverglow" *ngIf="element.fileType === 'pdf'" (click)="openFile(element.id)">visibility</mat-icon>
+          </td>
         </ng-container>
+        
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns" sticky></tr>
         <tr

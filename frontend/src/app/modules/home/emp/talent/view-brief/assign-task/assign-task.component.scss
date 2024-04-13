@@ -1,3 +1,9 @@
 .container{
-  margin: 2%;
+  display: block;  /* Ensures the element is treated as a block-level element */
+  margin: 2% auto;
+  width: 80%;
+}
+.row{
+  margin-top: 4rem !important;
+  margin-bottom: 4rem !important;
 }
