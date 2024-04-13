@@ -25,6 +25,7 @@ exports.countUploadedBriefsByUser = (req, res) => {
       },
     ],
     group: ['user.id', 'user.name'],
+    order: [[models.sequelize.literal('count DESC')]],
   })
   .then((data) => {
     // Map over the data to reshape each item
@@ -94,6 +95,7 @@ exports.countAddedInfluencersByUser = (req, res) => {
       },
     ],
     group: ['user.id', 'user.name'],
+    order: [[models.sequelize.literal('count DESC')]],
   })
     .then((data) => {
       const reshapedData = data.map(item => {
@@ -126,6 +128,7 @@ exports.countAddedCelebritiesByUser = (req, res) => {
       },
     ],
     group: ['user.id', 'user.name'],
+    order: [[models.sequelize.literal('count DESC')]],
   })
     .then((data) => {
       const reshapedData = data.map(item => {
@@ -158,6 +161,7 @@ exports.countAddedClientsByUser = (req, res) => {
       },
     ],
     group: ['user.id', 'user.name'],
+    order: [[models.sequelize.literal('count DESC')]],
   })
     .then((data) => {
       const reshapedData = data.map(item => {
