@@ -10,6 +10,7 @@ const UserTasks = models.UserTasks;
 const User = models.User;
 const InfluencerRemarks = models.influencerRemarks;
 const influencerCampaignMetrics = models.influencerCampaignMetrics;
+const InfluencerMetrics = models.influencerMetrics;
 
 exports.countUploadedBriefsByUser = (req, res) => {
   SalesBrief.findAll({
@@ -60,6 +61,7 @@ exports.countAddedLogsByUser = (req, res) => {
       },
     ],
     group: ['user.id', 'user.name'],
+    order: [[models.sequelize.literal('count DESC')]],
   })
     .then((data) => {
       const reshapedData = data.map(item => {
@@ -301,4 +303,5 @@ exports.countInfluencerCampaigns = (req, res) => {
       });
     });
 }
+
 

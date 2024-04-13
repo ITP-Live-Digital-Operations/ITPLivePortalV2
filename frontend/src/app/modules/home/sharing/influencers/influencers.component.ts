@@ -192,13 +192,13 @@ export class InfluencersComponent {
       // influencerMetrics is null or undefined, return false or handle accordingly
       return false;
     }
-  
+
     const isCpeInRange = metrics.CPE! >= this.minCPE && metrics.CPE! <= this.maxCPE;
     const isCpmInRange = metrics.CPM! >= this.minCPM && metrics.CPM! <= this.maxCPM;
-  
+
     return isCpeInRange && isCpmInRange;
   }
-  
+
   applyCPECPMRangeChange(): void {
     this.applyFilter();
     this.updateFilterDropdowns();
@@ -211,7 +211,22 @@ export class InfluencersComponent {
         return (typeof value === 'string' || typeof value === 'number') ? value.toString().trim() : null;
       }).filter((attr): attr is string => attr !== null && attr !== '')
     );
-    return Array.from(attributeSet).sort();
+
+    let sortedAttributes = Array.from(attributeSet).sort();
+
+    // Check if the attribute is CountryLocation or Nationality
+    if (attribute === 'CountryLocation' || attribute === 'Nationality') {
+      // Remove 'KSA' and 'UAE' from the list and capture them
+      const specialValues = ['KSA', 'UAE'].filter(val => sortedAttributes.includes(val));
+
+      // Remove 'KSA' and 'UAE' from sortedAttributes
+      sortedAttributes = sortedAttributes.filter(val => !specialValues.includes(val));
+
+      // Place 'KSA' and 'UAE' at the beginning of the list
+      sortedAttributes = [...specialValues, ...sortedAttributes];
+    }
+
+    return sortedAttributes;
   }
 
   private getInfluencers(): void {
@@ -242,7 +257,7 @@ export class InfluencersComponent {
           // Handle top-level properties
           return item[property];
         };
-        
+
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

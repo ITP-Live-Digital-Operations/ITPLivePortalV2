@@ -21,6 +21,7 @@ exports.uploadFile = (req, res) => {
     const briefId = Number(req.body.brief_id);
     const userId = Number(req.body.uploaded_by);
     const department = Number(req.body.department);
+    const notes = req.body.notes;
 
     let fileType;
 
@@ -59,6 +60,7 @@ exports.uploadFile = (req, res) => {
       brief_id: briefId,
       uploaded_by: userId,
       department: department,
+      notes: notes,
     };
 
     File.create(newFile)

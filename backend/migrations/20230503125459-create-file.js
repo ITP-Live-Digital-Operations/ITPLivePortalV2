@@ -36,6 +36,10 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false
       },
+      notes: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
       uploaded_by: {
         type: DataTypes.INTEGER,
         allowNull: false,
