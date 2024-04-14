@@ -47,6 +47,10 @@ import { InfluencerRatingComponent } from '../emp/talent/influencer-rating/influ
 import { TalentModule } from '../emp/talent/talent.module';
 import { InfluencerStarRatingComponent } from './influencer-id/influencer-star-rating/influencer-star-rating.component';
 import { YesNoPipe } from './influencer-id/table-content/yes-no.pipe';
+import { TopinfluencersComponent } from './general-statistics/topinfluencers/topinfluencers.component';
+import { TopInfluencersByCpmComponent } from './general-statistics/topinfluencers/top-influencers-by-cpm/top-influencers-by-cpm.component';
+import { TopInfluencersByCPEComponent } from './general-statistics/topinfluencers/top-influencers-by-cpe/top-influencers-by-cpe.component';
+import { TopInfluencersByMarginProfitComponent } from './general-statistics/topinfluencers/top-influencers-by-margin-profit/top-influencers-by-margin-profit.component';
 
 
 
@@ -89,6 +93,10 @@ import { YesNoPipe } from './influencer-id/table-content/yes-no.pipe';
     EditInfluencerRemarksComponent,
     InfluencerStarRatingComponent,
     YesNoPipe,
+    TopinfluencersComponent,
+    TopInfluencersByCpmComponent,
+    TopInfluencersByCPEComponent,
+    TopInfluencersByMarginProfitComponent,
 
 
   ],

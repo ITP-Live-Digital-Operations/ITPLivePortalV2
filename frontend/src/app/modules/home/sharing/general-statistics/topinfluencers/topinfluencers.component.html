@@ -1,0 +1,25 @@
+<div #carouselContainer class="carousel-container">
+  <!-- The inner container with flex display to hold all buttons -->
+  <div class="carousel-wrapper">
+  <div class="box">
+    <div
+      class="btn d-flex flex-row align-items-center flex-wrap"
+      style="border-color: transparent"
+    >
+      <button mat-raised-button routerLink="{{ path['topbyCPM'] }}">
+        <img src="../../../../../assets/white-buttons/cpm.png"/>
+        <p>Top Influencers By CPM</p>
+      </button>
+
+      <button mat-raised-button routerLink="{{ path['topbyCPE'] }}">
+        <img src="../../../../../assets/white-buttons/CPE.png"/>
+        <p>Top Influencers By CPE</p>
+      </button>
+      <button mat-raised-button routerLink="{{ path['topByMargin'] }}">
+        <img class="mop" src="../../../../../assets/white-buttons/marginOfProfit.png"/>
+        <p > Top Influencers By Margin Of Profit</p>
+      </button>
+    </div>
+  </div>
+</div>
+</div>

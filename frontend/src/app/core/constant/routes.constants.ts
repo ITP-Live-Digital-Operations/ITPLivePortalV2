@@ -16,7 +16,10 @@ export const PATH: { [key: string]: string } = {
   viewClientStatistics: "/home/main/viewClientStatistics/",
   viewInfluencerCampaignStatistics: "/home/main/viewInfluencerCampaignStatistics/",
   editInfluencerRemark: "/home/main/editInfluencerRemark/:id",
-
+  topInfluencers: "/home/main/topInfluencers",
+  topbyCPM:"/home/main/topbyCPM",
+  topbyCPE:"/home/main/topbyCPE",
+  topByMargin:"/home/main/topByMargin",
   // admin routes
   userManagement: "/home/admin/users",
   registerUser: "/home/admin/register",

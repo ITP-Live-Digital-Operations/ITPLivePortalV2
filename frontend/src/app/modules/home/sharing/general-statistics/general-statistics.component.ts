@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { PATH } from 'src/app/core/constant/routes.constants';
-import { StatisticsService } from 'src/app/core/services/statistics.service';
 
 @Component({
   selector: 'app-general-statistics',
