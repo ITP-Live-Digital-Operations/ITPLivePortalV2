@@ -18,6 +18,10 @@ import { DrillDownStatsComponent } from './general-statistics/drill-down-stats/d
 import { DrillDownInfluencerStatsComponent } from './general-statistics/drill-down-stats/drill-down-influencer-stats/drill-down-influencer-stats.component';
 import { EditInfluencerComponent } from '../emp/talent/edit/edit-influencer/edit-influencer.component';
 import { EditInfluencerRemarksComponent } from './influencer-id/influencer-remarks/edit-influencer-remarks/edit-influencer-remarks.component';
+import { TopinfluencersComponent } from './general-statistics/topinfluencers/topinfluencers.component';
+import { TopInfluencersByCpmComponent } from './general-statistics/topinfluencers/top-influencers-by-cpm/top-influencers-by-cpm.component';
+import { TopInfluencersByCPEComponent } from './general-statistics/topinfluencers/top-influencers-by-cpe/top-influencers-by-cpe.component';
+import { TopInfluencersByMarginProfitComponent } from './general-statistics/topinfluencers/top-influencers-by-margin-profit/top-influencers-by-margin-profit.component';
 
 
 const routes: Routes = [
@@ -89,6 +93,22 @@ const routes: Routes = [
   {
     path: 'editInfluencerRemark',
     component: EditInfluencerRemarksComponent,
+  },
+  {
+    path: 'topInfluencers',
+    component: TopinfluencersComponent
+  },
+  {
+path:'topbyCPM',
+component:TopInfluencersByCpmComponent
+  },
+  {
+    path:'topbyCPE',
+    component:TopInfluencersByCPEComponent
+  },
+  {
+    path:'topByMargin',
+    component:TopInfluencersByMarginProfitComponent
   },
   {
     path: '',
