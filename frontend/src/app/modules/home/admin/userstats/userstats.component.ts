@@ -16,6 +16,7 @@ export class UserstatsComponent implements OnInit {
   countAddedInfluencersByUser:MatTableDataSource<userCountModel>;
   countAddedLogsByUser:MatTableDataSource<userCountModel>;
   countTalentTasks:MatTableDataSource<userCountModel>;
+  countInfluencerRemarksByUser:MatTableDataSource<userCountModel>;
   displayedColumns: string[] = ['name', 'count'];
 
   constructor(private userStatsService: UserstatsService) {
@@ -26,6 +27,7 @@ export class UserstatsComponent implements OnInit {
     this.countAddedInfluencersByUser = new MatTableDataSource<userCountModel>([]);
     this.countAddedLogsByUser = new MatTableDataSource<userCountModel>([]);
     this.countTalentTasks =new MatTableDataSource<userCountModel>([]);
+    this.countInfluencerRemarksByUser = new MatTableDataSource<userCountModel>([]);
   }
 
   ngOnInit(): void {
@@ -36,12 +38,13 @@ export class UserstatsComponent implements OnInit {
     this.fetchcountAddedInfluencersByUserData();
     this.fetchcountTalentTasksData();
     this.fetccountAddedLogsByUserhData();
+    this.fetchcountInfluencerRemarksByUserData();
   }
 
   fetchUploadedBriefsData(): void {
     this.userStatsService.countUploadedBriefsByUser().subscribe(
       (data: userCountModel[]) => {
-   
+
         this.uploadedBriefsDataSource = new MatTableDataSource<userCountModel>(data);
       },
       (error) => {
@@ -53,7 +56,7 @@ export class UserstatsComponent implements OnInit {
   fetchAddedCelebritiesData(): void {
     this.userStatsService.countAddedCelebritiesByUser().subscribe(
       (data: userCountModel[]) => {
-     
+
         this.addedCelebritiesDataSource = new MatTableDataSource<userCountModel>(data);
       },
       (error) => {
@@ -66,7 +69,7 @@ fetchAddedClientsByUserData(): void {
   this.userStatsService.countAddedClientsByUser().subscribe(
 
     (data: userCountModel[]) => {
-  
+
       this.addedClientsByUserDataSource = new MatTableDataSource<userCountModel>(data);
     },
     (error) => {
@@ -89,7 +92,7 @@ fetchcountAddedFilesByUserData():void{
 
   );
 }
-  
+
 fetchcountAddedInfluencersByUserData():void{
 this.userStatsService.countAddedInfluencersByUser().subscribe(
 
@@ -132,7 +135,21 @@ fetchcountTalentTasksData():void{
     (error) => {
       console.error('Error fetching added celebrities data: ', error);
     }
-  
+
+  );
+}
+
+fetchcountInfluencerRemarksByUserData():void{
+  this.userStatsService.countInfluencerRemarksByUser().subscribe(
+
+    (data: userCountModel[]) => {
+      console.log(data);
+      this.countInfluencerRemarksByUser = new MatTableDataSource<userCountModel>(data);
+    },
+    (error) => {
+      console.error('Error fetching added celebrities data: ', error);
+    }
+
   );
 }
 

@@ -1,7 +1,7 @@
 <div class="vertical-tabs-container" >
   <mat-tab-group mat-align-tabs="start" mat-stretch-tabs="true" mat-vertical-tabs >
     <!-- First tab for Number of Uploaded Briefs -->
-    <mat-tab label=" Uploaded Briefs" >
+    <mat-tab label=" Added Briefs" >
       <div>
         <table mat-table [dataSource]="uploadedBriefsDataSource"  class="mat-elevation-z8">
           <!-- Name Column -->
@@ -24,7 +24,7 @@
     </mat-tab>
 
     <!-- Second tab for Number of Added Celebrities -->
-    <mat-tab label="Uploaded Celebrities">
+    <mat-tab label="Added Celebrities">
       <div>
         <table mat-table [dataSource]="addedCelebritiesDataSource" class="mat-elevation-z8">
           <!-- Name Column -->
@@ -46,7 +46,7 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="Uploaded Clients">
+    <mat-tab label="Added Clients">
       <div>
         <table mat-table [dataSource]="addedClientsByUserDataSource" class="mat-elevation-z8">
           <!-- Name Column -->
@@ -69,7 +69,7 @@
     </mat-tab>
 
 
-    
+
     <mat-tab label="Uploaded Files">
       <div>
         <table mat-table [dataSource]="countAddedFilesByUserDataSource" class="mat-elevation-z8">
@@ -94,8 +94,8 @@
 
 
 
-        
-    <mat-tab label="Uploaded Influencers">
+
+    <mat-tab label="Added Influencers">
       <div>
         <table mat-table [dataSource]="countAddedInfluencersByUser" class="mat-elevation-z8">
           <!-- Name Column -->
@@ -117,7 +117,7 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="Uploaded Logs">
+    <mat-tab label="Created Logs">
       <div>
         <table mat-table [dataSource]="countAddedLogsByUser" class="mat-elevation-z8">
           <!-- Name Column -->
@@ -139,9 +139,31 @@
       </div>
     </mat-tab>
 
-    <mat-tab label=" Uploaded Talent Tasks">
+    <mat-tab label=" Assigned Tasks">
       <div>
         <table mat-table [dataSource]="countTalentTasks" class="mat-elevation-z8">
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <!-- Count Column -->
+          <ng-container matColumnDef="count">
+            <th mat-header-cell *matHeaderCellDef>Count</th>
+            <td mat-cell *matCellDef="let element">{{ element.count }}</td>
+          </ng-container>
+
+          <!-- Header and Row Definitions -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-tab>
+
+    <mat-tab label=" Added Influencer Remarks">
+      <div>
+        <table mat-table [dataSource]="countInfluencerRemarksByUser" class="mat-elevation-z8">
           <!-- Name Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -165,7 +187,5 @@
 
 
 
-
-    
   </mat-tab-group>
 </div>

@@ -223,14 +223,7 @@
         <img src="../../../../../assets/white-buttons/rate-log.png" />
         <p>Rate Logs</p>
       </button>
-      <button
-        mat-raised-button
-        *ngIf="userRole == 'talent' || userRole == 'superadmin'"
-        routerLink="{{ path['newRateLog'] }}"
-      >
-        <img src="../../../../../assets/white-buttons/new-rate-log.png" />
-        <p>New Rate Log</p>
-      </button>
+     
       <button
         mat-raised-button
         *ngIf="

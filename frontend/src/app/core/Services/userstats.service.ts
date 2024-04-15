@@ -40,4 +40,8 @@ export class UserstatsService {
   countTalentTasks(): Observable<userCountModel[]> {
     return this.http.get<userCountModel[]>(`${this.authApiURL}/countTalentTasks`);
   }
+
+  countInfluencerRemarksByUser(): Observable<userCountModel[]> {
+    return this.http.get<userCountModel[]>(`${this.authApiURL}/countInfluencerRemarksByUser`);
+  }
 }
