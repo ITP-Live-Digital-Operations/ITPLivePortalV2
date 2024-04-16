@@ -6,7 +6,10 @@
 .search-container {
   display: flex;
   align-items: center;
-  margin: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
+
+  margin-top: 1px;
 }
 
 .input-group {
@@ -16,31 +19,68 @@
 }
 
 .search-bar {
-  width: auto; /* Adjust this as needed */
-  flex-grow: 1; /* Allows the search bar to grow and fill available space */
+  width:150px ; /* Adjust this as needed */
 }
+.clear-btn{
+  display: flex;
 
+  margin-right: 30px;
+  justify-content: flex-end; 
+}
 .clear-button {
-  background-color: #4C5C68!important;
-  color: #FFF;
+  border:none;
+  background:rgba(255,255,255,0.1);
+  border-radius:12px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  box-shadow:0 13px 21px rgba(0,0,0,0.05);
+  margin-bottom:20px;
+  height:40px;
+ min-width: 150px;
+   color:white;
+  padding-left:10px;
+
+  &:hover{
+    
+background:rgba(255, 255, 255, 0.133); 
+box-shadow:0 13px 21px rgba(0,0,0,0.05);
+  }
 
   /* Add more styling as needed */
 }
 
 .add-button{
-  background-color: #403D58!important;
-  color: #FFF;
+  border:none;
+  background:rgba(255,255,255,0.1);
+  border-radius:12px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  box-shadow:0 13px 21px rgba(0,0,0,0.05);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height:35px;
+  color:white;
+  padding-left:10px;
+  min-width:100px;
   &:hover{
-    background-color: #3d4658!important;
-    color: #F8C537;
+    background:rgba(0, 78, 13, 0.36); 
+    box-shadow:0 13px 21px rgba(0,0,0,0.05);
   }
 }
 
 .delete-button{
-  background-color: #D72638!important;
-  color: #FFF;
+  border:none;
+  background:rgba(255,255,255,0.1);
+  border-radius:12px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  box-shadow:0 13px 21px rgba(0,0,0,0.05);
+margin-top: 20px;
+margin-bottom: 20px;
+  height:35px;
+  color:white;
+  padding-left:10px;
+  min-width:100px;
   &:hover{
-    color: #B4DC7F
+    background:rgba(152, 0, 0, 0.318); 
+    box-shadow:0 13px 21px rgba(0,0,0,0.05);
   }
 }
 
@@ -61,4 +101,35 @@ h2{
       }
     }
   }
+}
+.close-button{
+margin-top: 5px;
+margin-left: 5px;
+
+}
+.edit{
+  border:none;
+  background:rgba(255,255,255,0.1);
+  border-radius:12px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  box-shadow:0 13px 21px rgba(0,0,0,0.05);
+  margin-bottom:20px;
+  height:40px;
+ min-width: 150px;
+   color:white;
+  padding-left:10px;
+
+  &:hover{
+    
+background:rgba(255, 255, 255, 0.133); 
+box-shadow:0 13px 21px rgba(0,0,0,0.05);}}
+.vertical-container {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0);
+  padding: 20px;
+max-width: 1500px;
+  margin: auto;
+  overflow: hidden;
 }
