@@ -13,4 +13,31 @@ button {
   align-items: center;
   height: 56vh; /* Adjust this value as needed */
   width: 100%;
-} 
+}
+
+
+.edit {
+ 
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  height: 40px;
+  min-width: 50px;
+  color: white;
+
+  text-align: center; /* Center text alignment */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+}
+
+.edit:hover {
+  background: rgba(255, 255, 255, 0.15); /* Slightly increased visibility on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow for 3D effect on hover */
+}
+
+.edit:active {
+  background: rgba(255, 255, 255, 0.2); /* Darker background for active state */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow to simulate button press */
+}

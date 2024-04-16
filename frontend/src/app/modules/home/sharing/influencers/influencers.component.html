@@ -25,7 +25,7 @@
 <div>
 
 <div class="form-container">
-  <div class="filter-container"[hidden]="isLoading">
+  <div class="filter-container" [hidden]="isLoading">
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -115,7 +115,7 @@
 
 
 
-      <button class="glow-on-hover" type="button" style="margin-left: 2%" (click)="resetFilters()">Reset Filters</button>
+      <button class="edit"  (click)="resetFilters()">Reset Filters</button>
     </mat-expansion-panel>
 
 
@@ -125,13 +125,8 @@
 
 
   <div style="position: relative" [hidden]="isLoading">
-
-  <div class="logs-button">
-    <button class="glow-on-add-new addinfluencer"
-      type="button"
-
-      (click)="redirectToNewInfluencer()"
-    >
+  <div class="btns">
+    <button class="edit" (click)="redirectToNewInfluencer()">
       Add New Influencer
     </button>
   </div>
@@ -252,7 +247,7 @@
         </td>
       </ng-container>
 
-      
+
 
       <ng-container matColumnDef="Action">
         <th mat-header-cell *matHeaderCellDef sticky>Edit</th>

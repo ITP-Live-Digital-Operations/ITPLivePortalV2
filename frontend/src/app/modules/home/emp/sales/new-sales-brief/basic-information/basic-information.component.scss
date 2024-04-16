@@ -9,3 +9,29 @@
   border-radius: 15px;
   width: 20vw;
 }
+
+
+.edit {
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  height: 40px;
+  min-width: 150px;
+  color: white;
+  padding: 10px 20px; /* Increased padding for better visual spacing */
+  text-align: center; /* Center text alignment */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+}
+
+.edit:hover {
+  background: rgba(255, 255, 255, 0.6); /* Slightly increased visibility on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow for 3D effect on hover */
+}
+
+.edit:active {
+  background: rgba(255, 255, 255, 0.2); /* Darker background for active state */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow to simulate button press */
+}

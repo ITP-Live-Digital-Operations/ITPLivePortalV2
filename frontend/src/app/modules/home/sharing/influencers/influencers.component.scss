@@ -29,78 +29,35 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     padding: 1%;
     margin-bottom: 2%;
+    width: 87.5vw;
 
-    // mat-expansion-panel {
-    //   display: block;
-    //   width: 100%; // Stretch the panel to full width
-    //   margin-top: 12px;
-    //   background-color: transparent;
-    //   box-shadow: none;
-    //   border-radius: 0;
+    .filter {
+      display: inline-block;
+      width: calc(
+        100% / 5 - 10px
+      ); // adjust the denominator based on the number of filters
+      margin-right: 10px; // add space between filters
 
-      // mat-expansion-panel-header {
-      //   background: linear-gradient(
-      //     300deg,
-      //     rgb(45, 47, 149) 0%,
-      //     rgba(43, 45, 124, 0.85) 77%,
-      //     rgba(36, 38, 119, 0.85) 100%
-      //   );
-      //   border-bottom: 1px solid white;
-      //   margin-bottom: 10px;
-      //   width: min-content;
-      //   mat-icon{
-      //     color: white;
-      //   }
-      //   .mat-panel-title {
-      //     color: white;
-      //   }
-      // }
-
-      // ::ng-deep .mdc-text-field--filled,
-      // .mdc-text-field--focused {
-      //   background: linear-gradient(
-      //     300deg,
-      //     rgb(45, 47, 149) 0%,
-      //     rgba(43, 45, 124, 0.85) 77%,
-      //     rgba(36, 38, 119, 0.85) 100%
-      //   );
-      // }
-
-      // ::ng-deep .cdk-overlay-pane:not(.mat-mdc-select-panel-above){
-      //   background: linear-gradient(
-      //     300deg,
-      //     rgb(45, 47, 149) 0%,
-      //     rgba(43, 45, 124, 0.85) 77%,
-      //     rgba(36, 38, 119, 0.85) 100%
-      //   );
-      // }
-      .filter {
-        display: inline-block;
-        width: calc(
-          100% / 5 - 10px
-        ); // adjust the denominator based on the number of filters
-        margin-right: 10px; // add space between filters
-
-        &:last-child {
-          margin-right: 0;
-          margin-left: 0;
-        }
+      &:last-child {
+        margin-right: 0;
+        margin-left: 0;
       }
     }
   }
+}
 
-  .table-container {
-    width: 99%;
-    max-height: auto;
-    overflow-y: hidden;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    padding: 1%;
-  }
+.table-container {
+  width: 99%;
+  max-height: auto;
+  overflow-y: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  padding: 1%;
+}
 
-  .red-cell {
-    color: red;
-  }
+.red-cell {
+  color: red;
+}
 
 h2,
 h3,
@@ -111,7 +68,6 @@ h5 {
 }
 
 // Table Styles
-
 
 // Button and Filter Container Styles
 .logs-button,
@@ -131,8 +87,6 @@ h5 {
       margin-right: 0; // Remove margin for the last filter
     }
   }
-
-
 }
 
 // Paginator Styles
@@ -178,7 +132,6 @@ mat-paginator {
     align-items: flex-start;
   }
 }
-
 
 // Custom Scrollbars
 ::-webkit-scrollbar-track {
@@ -234,21 +187,22 @@ mat-paginator {
   display: none;
 }
 
-
-.icons-btn{
-
+.icons-btn {
   background-color: transparent;
   border: 0px;
   padding: 4px 6px;
   color: white;
 
   &:hover {
-    background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+    background: linear-gradient(
+      300deg,
+      rgb(45, 47, 149) 0%,
+      rgba(43, 45, 124, 0.85) 77%,
+      rgba(36, 38, 119, 0.85) 100%
+    );
     border-radius: 5px;
   }
 }
-
-
 
 #search {
   display: grid;
@@ -285,7 +239,7 @@ mat-paginator {
   stroke: currentColor;
 }
 
-.loading-container{
+.loading-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -293,7 +247,43 @@ mat-paginator {
   width: 100%;
 }
 
-.addinfluencer{
+.addinfluencer {
   width: 23vh;
   height: 4vh;
+}
+
+.edit {
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  height: 40px;
+  min-width: 150px;
+  color: white;
+  padding: 10px 20px; /* Increased padding for better visual spacing */
+  text-align: center; /* Center text alignment */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+}
+
+.edit:hover {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.15
+  ); /* Slightly increased visibility on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow for 3D effect on hover */
+}
+
+.edit:active {
+  background: rgba(255, 255, 255, 0.2); /* Darker background for active state */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow to simulate button press */
+}
+
+.btns {
+  display: flex;
+  margin-left: 2%;
+  justify-content: flex-start;
 }
