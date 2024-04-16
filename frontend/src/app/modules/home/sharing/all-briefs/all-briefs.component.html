@@ -3,45 +3,32 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <mat-icon style="color: white;">filter_list</mat-icon>
+        <mat-icon style="color: white;">filter_list</mat-icon> Filters
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <mat-form-field class="filter">
-      <mat-label>Location Filter</mat-label>
-      <mat-select #genderSelect multiple placeholder="Location Filter" (selectionChange)="applyFilterChange('location', $event.value)">
-        <mat-option *ngFor="let location of ['UAE', 'KSA']" [value]="location">{{ location }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-  </mat-expansion-panel>
-</div>
-</div>
-
-
-<div style="position: relative">
-  <div class="table-container" cdkDropList (cdkDropListDropped)="drop($event)">
-    <div class="legend-section">
-      <mat-table [dataSource]="colorLegend" class="legend-table">
-
-        <ng-container matColumnDef="color">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <mat-chip
-              [ngStyle]="{'background-color': element.color}"
-              class="color-chip">
-            </mat-chip>
-          </td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="meaning">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">{{ element.meaning }}</td>
-        </ng-container>
-
-        <tr mat-row *matRowDef="let row; columns: displayedColumns1" (click)="applyFilterColor(row.color)"></tr>
-      </mat-table>
+    <div class="filter-container" style="display: flex; gap: 10px; padding: 10px;">
+      <!-- Location Filter -->
+      <mat-form-field class="filter">
+        <mat-label>Location Filter</mat-label>
+        <mat-select multiple placeholder="Select Locations" (selectionChange)="applyFilterChange('location', $event.value)">
+          <mat-option *ngFor="let location of ['UAE', 'KSA']" [value]="location">
+            {{ location }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <!-- Meaning Filter -->
+      <mat-form-field class="filter">
+        <mat-label>Meaning Filter</mat-label>
+        <mat-select placeholder="Select Meaning" (selectionChange)=" applyFilterColor($event.value.color)">
+          <mat-option *ngFor="let item of colorLegend" [value]="item" [ngStyle]="{'background-color': item.color}">
+            {{ item.meaning }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
+  
+</mat-expansion-panel>
 
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <!-- Agency Column -->
