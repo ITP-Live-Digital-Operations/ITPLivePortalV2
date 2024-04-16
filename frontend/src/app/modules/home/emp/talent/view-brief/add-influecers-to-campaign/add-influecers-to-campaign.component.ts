@@ -7,8 +7,9 @@ import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CampaignService } from 'src/app/core/services/campaign.service';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-add-influecers-to-campaign',
@@ -37,6 +38,7 @@ export class AddInfluecersToCampaignComponent {
     private campaignService: CampaignService,
     private toastr: ToastrService,
     private dialog: MatDialog,
+    private dialogRef: MatDialogRef<AddInfluecersToCampaignComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) protected source: any
   ) {}
 
@@ -164,5 +166,7 @@ export class AddInfluecersToCampaignComponent {
         }
       );
   }
-
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }

@@ -6,7 +6,7 @@ import { CampaignService } from 'src/app/core/services/campaign.service';
 import { InfluencerIdComponent } from 'src/app/modules/home/sharing/influencer-id/influencer-id.component';
 import { EditCampaignComponent } from '../../edit-campaign/edit-campaign.component';
 import { CampaignResultsComponent } from 'src/app/modules/home/emp/campaign/view-campaigns/campaign-details/campaign-results/campaign-results.component';
-
+import { AddInfluecersToCampaignComponent } from '../../../talent/view-brief/add-influecers-to-campaign/add-influecers-to-campaign.component';
 
 @Component({
   selector: 'app-campaign-details',
@@ -17,6 +17,7 @@ export class CampaignDetailsComponent {
   protected id: any;
   protected campaign!: CampaignModel;
   public dataSource: InfluencerStatistic[] = [];
+  protected campaignId!: number;
 
   isTableVisible: boolean = true; // Initially, the table is visible
 
@@ -36,6 +37,8 @@ export class CampaignDetailsComponent {
     'influencerCost',
     'engagementRate',
     'year',
+    'Action'
+    
   ];
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -123,7 +126,7 @@ export class CampaignDetailsComponent {
     });
   }
 
-  redirectToNewCampaign() {
+ EditCampaign() {
     this.dialog?.open(EditCampaignComponent, {
       width: '80%',
       height: '65%',
@@ -156,11 +159,27 @@ export class CampaignDetailsComponent {
         campaignId: this.campaign.id,
         influencers: influencers,
       },
-    });
-
-    this.dialog.afterAllClosed.subscribe(() => {
+    }).afterClosed().subscribe(() => {
       this.loadCampaignData();
     });
+  }
+  addInfluencers() {
+    this.campaignId = this.campaign?.id;
+
+    const dialogRef = this.dialog?.open(AddInfluecersToCampaignComponent, {
+      width: '50%',
+      height: '90%',
+      data: {campaignId: this.campaignId},
+    });
+    dialogRef.afterClosed().subscribe(() => {
+        window.location.reload();
+    });
+  }
+  public editCampaign(inputdata: any): void {
+  
+  }
+  public deleteCampaign(inputdata: any): void {
+ 
   }
 
 }
