@@ -10,7 +10,7 @@
     text-align: center;
     font-size: 16px;
     padding-bottom: 20px;
-    color: #333; 
+    color: #333;
   }
   ::ng-deep .mat-raised-button {
     border-radius: 20px;}
@@ -25,20 +25,20 @@
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
     }
-  
+
     ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
       display: inline-block;
       width: auto;
       border-right: none;
     }
-    
+
     ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:nth-child(n+3) {
-      display: none; 
+      display: none;
     }
   }
   </style>
-  
-  
+
+
 <div class="form-container">
   <h2 style="text-align: center;">New Sales Brief</h2>
 
@@ -54,7 +54,7 @@
     <mat-tab label="Campaign Overview" >
       <form [formGroup]="newForm" (ngSubmit)="submitForm()" autocomplete="off">
         <app-campaign-overview formGroupName="campaignOverview"></app-campaign-overview>
-      
+
       </form>
     </mat-tab>
 
@@ -80,13 +80,23 @@
       <form [formGroup]="newForm" (ngSubmit)="submitForm()" autocomplete="off">
         <br> <br>
         <app-upload-files (filesUploaded)="transferedFiles($event)"></app-upload-files>
+
+        <mat-form-field>
+          <p style="color: white">File Notes </p>
+          <input
+            matInput
+            type="text"
+            formControlName="FileNotes"
+            autocomplete="off"
+          />
+        </mat-form-field>
         <hr>
       </form>
     </mat-tab>
 
-    
-  
-      
+
+
+
 
   </mat-tab-group>
   <div style="display: flex; justify-content: space-between;">
@@ -97,10 +107,10 @@
     <ng-container *ngIf="activeTabIndex === tabCount - 1">
       <form [formGroup]="newForm" (ngSubmit)="submitForm()" autocomplete="off" style="display: flex; justify-content: center;">
         <button mat-raised-button color="primary" type="submit" [disabled]="!newForm.valid" style="margin: 2% auto;border-radius: 15px !important; color: white; width: 200px;">Submit Brief Form</button>
-      </form>  
+      </form>
     </ng-container>
   </div>
-  
 
-  
+
+
 </div>

@@ -14,12 +14,13 @@ export class FileService {
 
   constructor(private http: HttpClient) { }
 
-  uploadFile(file: File, brief_id: number, uploaded_by : number, departmentId : number): Observable<any> {
+  uploadFile(file: File, brief_id: number, uploaded_by : number, departmentId : number, notes ?: string): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     formData.append('brief_id', String(brief_id));
     formData.append('uploaded_by', String(uploaded_by));
     formData.append('department', String(departmentId));
+    formData.append('notes', notes ? notes : '');
     return this.http.post(`${this.fileApiUrl}/upload`, formData, {
       reportProgress: true,
       responseType: 'json'
