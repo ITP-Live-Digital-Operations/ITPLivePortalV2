@@ -1,124 +1,145 @@
-<!-- <img
-  *ngIf="userId == 14"
-  class="avatar mat-elevation-z8"
-  src="../../assets/ahmadbashour.jpg"
-/>
-<img
-  *ngIf="userId == 29"
-  class="avatar mat-elevation-z8"
-  src="../../assets/kerem.jpeg"
-/>
-<img
-  *ngIf="userId == 15"
-  class="avatar mat-elevation-z8"
-  src="../../assets/rachelle.png"
-/>
-<img
-  *ngIf="userId == 18"
-  class="avatar mat-elevation-z8"
-  src="../../assets/remy.png"
-/> -->
 <div class="account">
-  <img src="../../../../../assets/white-buttons/account-pic.png">
+  <img src="../../../../../assets/white-buttons/account-pic.png" />
   <h4>{{ userName }}</h4>
   <H5>{{ userRole | uppercase }} </H5>
-  <h2 *ngIf="onLeave" style="color : red!important;"> ON LEAVE </h2>
+  <h2 *ngIf="onLeave" style="color: red !important">ON LEAVE</h2>
   <p class="designation"></p>
 </div>
 
-
-
 <div>
-  <button mat-button class="menu-button" routerLink="{{path['forms']}}">
+  <button mat-button class="menu-button" routerLink="{{ path['forms'] }}">
     <mat-icon>home</mat-icon>
     <span>Forms</span>
   </button>
 </div>
 
 <div>
-  <button mat-button class="menu-button" routerLink="{{path['allBriefs']}}">
+  <button mat-button class="menu-button" routerLink="{{ path['allBriefs'] }}">
     <mat-icon>chrome_reader_mode</mat-icon>
     <span>All Briefs</span>
   </button>
 </div>
 
 <div>
-  <button mat-button class="menu-button" *ngIf="(userRole == 'talent' && privilegeLevel > 7) || userRole == 'superadmin'"
-    routerLink="{{path['talentTasks']}}">
+  <button
+    mat-button
+    class="menu-button"
+    *ngIf="
+      (userRole == 'talent' && privilegeLevel > 7) || userRole == 'superadmin'
+    "
+    routerLink="{{ path['talentTasks'] }}"
+  >
     <mat-icon>supervisor_account</mat-icon>
     <span> Talent Tasks </span>
   </button>
 </div>
 
-<button mat-button class="menu-button" *ngIf="userRole == 'talent'" routerLink="{{path['personTasks'] +  userId}}">
+<button
+  mat-button
+  class="menu-button"
+  *ngIf="userRole == 'talent'"
+  routerLink="{{ path['personTasks'] + userId }}"
+>
   <mat-icon>assignment</mat-icon>
   <span>Tasks</span>
 </button>
 
-
 <div>
-  <button mat-button class="menu-button" *ngIf="userRole == 'superadmin'" routerLink="{{path['registerUser']}}">
+  <button
+    mat-button
+    class="menu-button"
+    *ngIf="userRole == 'superadmin'"
+    routerLink="{{ path['registerUser'] }}"
+  >
     <mat-icon>assignment</mat-icon>
     <span>Register User</span>
   </button>
 
-  <button mat-button class="menu-button" *ngIf="userRole == 'superadmin'" (click)="exportSeeds()">
+  <button
+    mat-button
+    class="menu-button"
+    *ngIf="userRole == 'superadmin'"
+    (click)="exportSeeds()"
+  >
     <mat-icon>import_export</mat-icon>
     <span>Export Seeds</span>
   </button>
 </div>
 
-
-
-
-
 <div>
-  <button mat-button class="menu-button"  routerLink="{{path['editProfile']}}">
+  <button mat-button class="menu-button" routerLink="{{ path['editProfile'] }}">
     <mat-icon>account_circle</mat-icon>
     <span>Profile</span>
   </button>
 </div>
 
 <div>
-  <button mat-button style="border-bottom: 1px solid #2c393f54;" class="menu-button" *ngIf="userRole == 'sales'" routerLink="{{path['salesGuide']}}">
-    <mat-icon>help</mat-icon>
-    <span>Help</span>
-  </button>
-</div>
-
-
-<div>
-  <button mat-button style="border-bottom: 1px solid #2c393f54;" class="menu-button" *ngIf="userRole == 'admin' || userRole == 'superadmin'"
-    routerLink="{{path['salesGuide']}}">
-    <mat-icon>help</mat-icon>
-    <span>Help</span>
-  </button>
-</div>
-
-<div>
-  <button mat-button style="border-bottom: 1px solid #2c393f54;" class="menu-button" *ngIf="userRole == 'talent'" routerLink="{{path['talentGuide']}}">
+  <button
+    mat-button
+    style="border-bottom: 1px solid #2c393f54"
+    class="menu-button"
+    *ngIf="userRole == 'sales'"
+    routerLink="{{ path['salesGuide'] }}"
+  >
     <mat-icon>help</mat-icon>
     <span>Help</span>
   </button>
 </div>
 
 <div>
-  <button mat-button style="border-bottom: 1px solid #2c393f54;" class="menu-button" *ngIf="!onLeave"  (click)="goOnLeave()">
+  <button
+    mat-button
+    style="border-bottom: 1px solid #2c393f54"
+    class="menu-button"
+    *ngIf="userRole == 'admin' || userRole == 'superadmin'"
+    routerLink="{{ path['salesGuide'] }}"
+  >
+    <mat-icon>help</mat-icon>
+    <span>Help</span>
+  </button>
+</div>
+
+<div>
+  <button
+    mat-button
+    style="border-bottom: 1px solid #2c393f54"
+    class="menu-button"
+    *ngIf="userRole == 'talent'"
+    routerLink="{{ path['talentGuide'] }}"
+  >
+    <mat-icon>help</mat-icon>
+    <span>Help</span>
+  </button>
+</div>
+
+<div>
+  <button
+    mat-button
+    style="border-bottom: 1px solid #2c393f54"
+    class="menu-button"
+    *ngIf="!onLeave"
+    (click)="goOnLeave()"
+  >
     <mat-icon>transfer_within_a_station</mat-icon>
-    <span >Go on Leave</span>
+    <span>Go on Leave</span>
   </button>
 </div>
 
 <div>
-  <button mat-button style="border-bottom: 1px solid #2c393f54;" class="menu-button" *ngIf="onLeave" (click)="returnFromLeave()" >
+  <button
+    mat-button
+    style="border-bottom: 1px solid #2c393f54"
+    class="menu-button"
+    *ngIf="onLeave"
+    (click)="returnFromLeave()"
+  >
     <mat-icon>transfer_within_a_station</mat-icon>
-    <span >Back to work</span>
+    <span>Back to work</span>
   </button>
 </div>
 
-
 <div>
-  <button mat-button class="log-menu-button"  routerLink="/login">
+  <button mat-button class="log-menu-button" routerLink="/login">
     <mat-icon>logout</mat-icon>
     <span>Log Out</span>
   </button>

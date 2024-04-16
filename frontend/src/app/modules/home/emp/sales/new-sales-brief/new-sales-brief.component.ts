@@ -135,6 +135,7 @@ export class NewSalesBriefComponent {
         ItpDepartment: ['', [Validators.required]],
         KPIs: [''],
       }),
+      FileNotes: [''],
     });
   }
 
@@ -173,7 +174,7 @@ export class NewSalesBriefComponent {
     this.salesService.createBrief({ ...formValues }).subscribe((brief) => {
       this.newBrief = brief;
 
-      this.uploadFiles(this.newBrief.id);
+      this.uploadFiles(this.newBrief.id, this.newForm.value.FileNotes);
 
       if (itpDepartment == 'Originals' || itpDepartment == 'UAE') {
         // Zineb will be notified usually
@@ -286,14 +287,15 @@ export class NewSalesBriefComponent {
     this.filesToUpload = files;
   }
 
-  protected uploadFiles(briefId: number): void {
+  protected uploadFiles(briefId: number, notes?: string): void {
     for (let i = 0; i < this.filesToUpload.length; i++) {
       this.fileService
         .uploadFile(
           this.filesToUpload[i],
           briefId,
           this.userId,
-          Department['SALES']
+          Department['SALES'],
+          notes
         )
         .subscribe(
           (event: any) => {

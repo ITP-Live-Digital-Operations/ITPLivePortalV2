@@ -13,14 +13,14 @@ import { FileService } from 'src/app/core/services/file.service';
 })
 export class AllInfoComponent {
   panelOpenState = false;
-displayedColumns: string[] = ['originalname', 'fileType', 'action'];
+displayedColumns: string[] = ['originalname', 'fileType', 'notes', 'action'];
 
   @Input()
   brief: any;
 
   briefId!: number;
 
-  public path = PATH; 
+  public path = PATH;
   public dataSource: any;
 
   constructor(
@@ -50,7 +50,7 @@ displayedColumns: string[] = ['originalname', 'fileType', 'action'];
     });
   }
 
-  
+
   downloadFile(fileId: number, fileName: string): void {
     this.fileService.downloadFile(fileId).subscribe({
       next: (blob) => {
@@ -67,7 +67,7 @@ displayedColumns: string[] = ['originalname', 'fileType', 'action'];
       error: (error) => console.error('Error downloading file:', error)
     });
   }
-  
+
   openFile(id: number) {
     this.fileService.downloadFile(id).subscribe((data) => {
       const blob = new Blob([data], { type: 'application/pdf' });
@@ -76,6 +76,6 @@ displayedColumns: string[] = ['originalname', 'fileType', 'action'];
       window.URL.revokeObjectURL(url);  // Optionally revoke the URL if needed
     });
   }
-  
-  
+
+
 }
