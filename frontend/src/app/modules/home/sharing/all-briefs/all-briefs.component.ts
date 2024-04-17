@@ -24,6 +24,7 @@ export class AllBriefsComponent {
   public userRole: string = this.userService.getRole();
   public privilegeLevel: number = this.userService.getPrivilegeLevel();
   public userId: number = this.userService.getID();
+  public uniqueLocations: string[] = [];
 
   displayedColumns = [
     'Agency',
@@ -37,12 +38,11 @@ export class AllBriefsComponent {
     'Talent',
     'Action',
   ];
-
   filterCriteria: any = {
-    /* search: '', */
     location: [],
+    meaning: 'All'
   };
-
+  
   displayedColumns1: string[] = ['color', 'meaning'];
   colorLegend = [
     { color: 'none', meaning: 'All' },
@@ -78,6 +78,7 @@ export class AllBriefsComponent {
     this.salesService.getAllBriefsWithTaskAndUser().subscribe((data: any) => {
       console.log(data);
       this.briefDetails = data;
+      this.extractUniqueLocations();
       this.briefDetails.data.sort((a: any, b: any) => {
         // Sort by createdAt
         if (a.id > b.id) return -1;
@@ -112,7 +113,15 @@ export class AllBriefsComponent {
         .subscribe((data: any) => {});
     });
   }
-
+  private extractUniqueLocations(): void {
+    const locationSet = new Set<string>();
+    this.briefDetails.data.forEach((item: any) => {
+      if (item.user && item.user.location) {
+        locationSet.add(item.user.location);
+      }
+    });
+    this.uniqueLocations = Array.from(locationSet);
+  } 
   public viewedTask(id: number): void {
     this.salesService.viewedByTalent(id).subscribe((data: any) => {});
     if (this.userRole == 'sales') {
@@ -175,55 +184,60 @@ export class AllBriefsComponent {
   }
 
   applyFilterChange(filterType: string, filterValue: any): void {
-    switch (filterType) {
-      case 'search':
-        this.filterCriteria.search = filterValue.trim().toLowerCase();
-        break;
-      case 'location':
-        this.filterCriteria.location = filterValue.map((val: string) =>
-          val.trim()
-        );
-        break;
-      default:
-        break;
-    }
     if (!Array.isArray(filterValue)) {
       filterValue = [filterValue];
     }
-
-    this.filterCriteria[filterType] = filterValue.map((val: string) =>
-      val.trim()
-    );
+    this.filterCriteria[filterType] = filterValue.map((val: string) => val.trim());
+    this.updateMeaningOptions(this.filterCriteria.location); // Call to update color meanings based on selected locations
     this.applyFilter();
   }
 
-  public applyFilter(): void {
-    this.dataSource.filterPredicate = (data: any, filter: string) => {
-      console.log(filter);
-      const filterObject = JSON.parse(filter);
+updateMeaningOptions(selectedLocations: string[]): void {
+    if (!selectedLocations.length) {
+        this.colorLegend = [
+            { color: 'none', meaning: 'All' },
+            { color: 'green', meaning: 'Not Assigned' },
+            { color: 'blue', meaning: 'Assigned' },
+            { color: 'red', meaning: 'In Active' },
+        ];
+    } else {
+        // Filter colorLegend based on the logic that ties locations to meanings
+        this.colorLegend = this.colorLegend.filter(item => {
+            // Call a service or use a dictionary to determine if the meaning is valid for the selected locations
+            return this.isValidMeaningForLocations(item.meaning, selectedLocations);
+        });
+    }
+}
 
-      /* const isMatchSearch = filterObject.search ? data.Agency.toLowerCase().includes(filterObject.search) ||
-        data.Client.toLowerCase().includes(filterObject.search) ||
-        data.CampaignName.toLowerCase().includes(filterObject.search) : true; */
+isValidMeaningForLocations(meaning: string, locations: string[]): boolean {
+    // Implement your logic to determine if a meaning is valid for the selected locations
+    // This is just a placeholder function
+    return true; // Replace with actual logic
+}
+public applyFilter(): void {
+  this.dataSource.filterPredicate = (data: any, filter: string) => {
+    const filterObject = JSON.parse(filter);
 
-      const isMatchLocation = !this.filterCriteria.location.length ||
-        filterObject.location.includes(
-            data.user.location
-          );
+    const isMatchLocation = !filterObject.location.length ||
+      filterObject.location.includes(data.user.location);
 
-      return isMatchLocation;
-    };
+    const isMatchMeaning = filterObject.meaning === 'All' ||
+      (filterObject.meaning === 'Not Assigned' && data.assigned === 0) ||
+      (filterObject.meaning === 'Assigned' && data.assigned === 1 && data.Status === 'Active') ||
+      (filterObject.meaning === 'In Active' && data.Status === 'InActive');
 
-    this.dataSource.filter = JSON.stringify(this.filterCriteria);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    return isMatchLocation && isMatchMeaning;
+  };
 
-    this.updateFilterDropDowns();
-  }
+  this.dataSource.filter = JSON.stringify(this.filterCriteria);
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+}
 
   updateFilterDropDowns(): void {}
 
   public getUsername(id: number): string {
     return this.users[id] || 'Not Assigned';
   }
+
 }
