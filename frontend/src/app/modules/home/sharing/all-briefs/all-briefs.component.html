@@ -16,10 +16,10 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      
+
       <!-- Meaning Filter -->
       <mat-form-field class="filter">
-        <mat-label>Meaning Filter</mat-label>
+        <mat-label>Status Filter</mat-label>
         <mat-select placeholder="Select Meaning" (selectionChange)=" applyFilterColor($event.value.color)">
           <mat-option *ngFor="let item of colorLegend" [value]="item" [ngStyle]="{'background-color': item.color}">
             {{ item.meaning }}
@@ -27,7 +27,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-  
+
 </mat-expansion-panel>
 
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
