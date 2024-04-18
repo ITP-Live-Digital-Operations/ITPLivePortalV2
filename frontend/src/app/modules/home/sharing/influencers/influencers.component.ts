@@ -233,7 +233,7 @@ export class InfluencersComponent {
     this.isLoading = true;
     this.influencerService
       .getInfluencersWithRatings()
-      .subscribe((response: PaginatedInfluencers) => {
+      .subscribe((response: any) => {
         console.log(response);
         this.UserDetails = response;
         this.allGenders = this.extractUniqueAttributes(this.UserDetails.influencers, 'Gender');
@@ -248,6 +248,7 @@ export class InfluencersComponent {
         this.dataSource = new MatTableDataSource<InfluencerModel[]>(
           this.UserDetails.influencers
         );
+        console.log(this.dataSource);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sortingDataAccessor = (item: InfluencerModel, property: string) => {
           if (property === 'CPE' || property === 'CPM' || property === 'marginOfProfit') {

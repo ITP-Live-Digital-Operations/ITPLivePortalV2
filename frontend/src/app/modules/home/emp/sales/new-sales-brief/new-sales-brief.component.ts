@@ -145,12 +145,17 @@ export class NewSalesBriefComponent {
 
   private getHeads() {
     this.userService.getKSAHeads().subscribe((res) => {
+      console.log("ksa heads");
+      console.log(res);
       this.headsOfKSA = res;
     });
 
     this.userService.getUAEHead().subscribe((res) => {
+      console.log("uae heads");
+      console.log(res);
       if (res.onLeave) {
-        this.headsofUAE.push(15);
+        this.headsofUAE.push(22);
+        console.log(this.headsofUAE);
       }
     });
   }
