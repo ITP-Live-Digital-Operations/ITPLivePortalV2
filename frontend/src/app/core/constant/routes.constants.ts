@@ -20,11 +20,15 @@ export const PATH: { [key: string]: string } = {
   topbyCPM:"/home/main/topbyCPM",
   topbyCPE:"/home/main/topbyCPE",
   topByMargin:"/home/main/topByMargin",
+  submitSuggestions: "/home/main/submit-suggestions",
+
+
   // admin routes
   userManagement: "/home/admin/users",
   registerUser: "/home/admin/register",
   editUser: "/home/admin/edit/",
   employeeStats: "/home/admin/employeeStats",
+  teamSuggestions: "/home/admin/teamSuggestions",
 
 
   //talent routes

@@ -1,33 +1,3 @@
-<!-- <mat-toolbar class="mat-elevation-z10">
-  <mat-toolbar-row>
-    <div class="title">
-      <span class="title-1">ITP</span>
-      <br/>
-      <span class="title-1">Portal</span>
-    </div>
-
-    <span class="spacer"></span>
-
-    <div class="btn-container">
-      <button mat-icon-button routerLink="{{ path['influencers'] }}">
-        <mat-icon class="icon">search</mat-icon>
-      </button>
-
-      <span class="changePassword-icon"></span>
-      <button mat-icon-button routerLink="{{ path['forms'] }}">
-        <mat-icon class="icon">home</mat-icon>
-      </button>
-    </div>
-
-    <span class="icon-spacer"></span>
-    <button mat-icon-button routerLink="/login">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </mat-toolbar-row>
-</mat-toolbar> -->
-
-<!-- TOP PART    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -->
-
 <mat-sidenav-container>
 
     <div class="ball small-ball"></div>
@@ -123,6 +93,13 @@
             *ngIf="notificationCount?.data > 0"
           ></span>
           <span class="full-width"> Notifications </span>
+        </mat-list-item>
+
+        <mat-list-item (click)="submitSuggestion()"  class="menu-item">
+
+          <img src="../../../../assets/white-buttons/suggestion.png" />
+          <span class="full-width">Suggestions</span>
+
         </mat-list-item>
 
         <mat-list-item [routerLink]="path['editProfile']" class="menu-item">
