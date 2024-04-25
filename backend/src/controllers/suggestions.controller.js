@@ -1,6 +1,6 @@
 const models = require("../../models");
 const Suggestions = models.Suggestions;
-
+const { Op } = require('sequelize');
 
 exports.addSuggestion = (req, res) => {
     Suggestions.create(req.body)
@@ -58,7 +58,7 @@ exports.getSuggestionsByTeam = (req, res) => {
                 where: {
                     // not development
                     position: {
-                        [models.Sequelize.Op.not]: "DEVELOPMENT"
+                        [Op.not]: "DEVELOPMENT"
                 }
             },
     }]
