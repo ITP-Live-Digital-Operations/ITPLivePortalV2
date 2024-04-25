@@ -58,7 +58,10 @@ exports.getSuggestionsByTeam = (req, res) => {
                 where: {
                     // not development
                     position: {
-                        [Op.not]: "DEVELOPMENT"
+                        [Op.or]: {
+                            [Op.eq]: null,  // Checks for NULL values
+                            [Op.not]: "DEVELOPMENT"  // Excludes "DEVELOPMENT" but includes all other non-NULL values
+                        }
                 }
             },
     }]
