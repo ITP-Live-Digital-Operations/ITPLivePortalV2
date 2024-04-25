@@ -59,6 +59,7 @@ export class TeamSuggestionsComponent {
   fetchSuggestionsByTeam() {
     this.suggestionService.getSuggestionsByTeam().subscribe(
       (object) => {
+        console.log(object);
         this.suggestions = object.data;
         this.teamSuggestionsDataSource = new MatTableDataSource<SuggestionModel>(this.suggestions);
       },
