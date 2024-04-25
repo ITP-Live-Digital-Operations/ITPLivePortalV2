@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { createSuggestionModel, returnSuggestionModel, statusAndMessage } from '../interfaces/suggestions.model';
+import { createSuggestionModel, returnSuggestionModel, returnSuggestionModelSingle, statusAndMessage } from '../interfaces/suggestions.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,10 @@ export class SuggestionService {
 
   addSuggestion(suggestion: createSuggestionModel ) : Observable<statusAndMessage> {
     return this.http.post<statusAndMessage>(`${this.suggestionsApiURL}/addSuggestion`, suggestion);
+  }
+
+  getSuggestionById(suggestionId: number) : Observable<returnSuggestionModelSingle>{
+    return this.http.get<returnSuggestionModelSingle>(`${this.suggestionsApiURL}/getSuggestionById/${suggestionId}`);
   }
 
   getSuggestionsByDevelopement() : Observable<returnSuggestionModel>{
@@ -44,5 +48,9 @@ export class SuggestionService {
 
   updatePriority(suggestionId : number, priority: number): Observable<statusAndMessage>{
     return this.http.put<statusAndMessage>(`${this.suggestionsApiURL}/updatePriority/${suggestionId}`,{priority: priority});
+  }
+
+  updateEstimatedTime( suggestionId: number, estimatedTime: number): Observable<statusAndMessage>{
+    return this.http.put<statusAndMessage>(`${this.suggestionsApiURL}/updateEstimatedTime/${suggestionId}`,{estimatedTime: estimatedTime});
   }
 }

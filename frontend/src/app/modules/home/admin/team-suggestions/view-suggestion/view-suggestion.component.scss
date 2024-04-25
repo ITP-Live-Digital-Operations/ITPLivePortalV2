@@ -1,0 +1,38 @@
+$data-primary: #3498db;
+$data-secondary: #FFF;
+$font-primary: Arial, sans-serif;
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-family: $font-primary;
+    color: $data-secondary;
+  }
+
+  .data-field {
+    font-family: $font-primary;
+    color: $data-primary;
+    margin: 10px 0;
+    font-size: 16px;
+
+    strong {
+      color: $data-secondary;
+    }
+  }
+}
+button{
+  background-color: transparent!important;
+  margin-bottom: 3%;
+  color: white!important;
+}
+
+mat-icon{
+  font-size: 20px;
+  color: $data-secondary;
+}

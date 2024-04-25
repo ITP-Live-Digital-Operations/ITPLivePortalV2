@@ -14,8 +14,9 @@ module.exports = {
         allowNull: false
       },
       estimatedTime: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
       },
       suggestedBy: {
         type: DataTypes.INTEGER,

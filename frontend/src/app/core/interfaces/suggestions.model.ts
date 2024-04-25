@@ -3,7 +3,7 @@ import { UserIdandName } from "./og.model";
 export interface SuggestionModel {
   id: number;
   suggestion: string;
-  estimatedTime: string;
+  estimatedTime: number;
   suggestedBy: string;
   priority: number;
   status: string;
@@ -27,4 +27,9 @@ export interface returnSuggestionModel {
   status: string;
   message: string;
   data: SuggestionModel[];
+}
+export interface returnSuggestionModelSingle {
+  status: string;
+  message: string;
+  data: SuggestionModel;
 }

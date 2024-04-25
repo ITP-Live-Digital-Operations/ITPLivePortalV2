@@ -6,6 +6,9 @@ const suggestionsController = require('../controllers/suggestions.controller');
 router.route('/addSuggestion')
     .post(asyncHandler(suggestionsController.addSuggestion));
 
+router.route('/getSuggestionById/:id')
+    .get(asyncHandler(suggestionsController.getSuggestionById));
+
 router.route('/getSuggestionsByDevelopement')
     .get(asyncHandler(suggestionsController.getSuggestionsByDevelopement));
 
@@ -26,5 +29,10 @@ router.route('/approveSuggestion/:id')
 
 router.route('/updatePriority/:id') 
     .put(asyncHandler(suggestionsController.updatePriority));
+
+router.route('/updateEstimatedTime/:id')
+    .put(asyncHandler(suggestionsController.updateEstimatedTime));
+
+
 
 module.exports = router;

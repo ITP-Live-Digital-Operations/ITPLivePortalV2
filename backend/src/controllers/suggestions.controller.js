@@ -18,6 +18,24 @@ exports.addSuggestion = (req, res) => {
         });
 }
 
+exports.getSuggestionById = (req, res) => {
+    Suggestions.findByPk(req.params.id)
+        .then((data) => {
+            res.status(200).send({
+                status: "success",
+                message: "Suggestion fetched successfully",
+                data: data,
+            });
+        })
+        .catch((err) => {
+            res.status(500).send({
+                status: "error",
+                message: err.message,
+            });
+        });
+}
+
+
 exports.getSuggestionsByDevelopement = (req, res) => {
     Suggestions.findAll({
         where: { status : "PENDING"},
@@ -172,6 +190,26 @@ exports.updatePriority = (req, res) => {
         res.status(200).send({
             status: "success",
             message: "Priority updated successfully",
+        });
+    })
+    .catch((err) => {
+        res.status(500).send({
+            status: "error",
+            message: err.message,
+        });
+    });
+}
+
+
+exports.updateEstimatedTime = (req, res) => {
+    Suggestions.update(
+        { estimatedTime: req.body.estimatedTime },
+        { where: { id: req.params.id } }
+    )
+    .then((data) => {
+        res.status(200).send({
+            status: "success",
+            message: "Estimated time updated successfully",
         });
     })
     .catch((err) => {

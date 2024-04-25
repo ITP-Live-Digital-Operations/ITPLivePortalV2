@@ -1,40 +1,61 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { SuggestionService } from 'src/app/core/Services/suggestion.service';
 import { SuggestionModel } from 'src/app/core/interfaces/suggestions.model';
 import { ConfirmationDialogService } from 'src/app/core/services/confirmation.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { ViewSuggestionComponent } from './view-suggestion/view-suggestion.component';
 
 @Component({
   selector: 'app-team-suggestions',
   templateUrl: './team-suggestions.component.html',
-  styleUrls: ['./team-suggestions.component.scss']
+  styleUrls: ['./team-suggestions.component.scss'],
 })
 export class TeamSuggestionsComponent {
-
-  displayedColumnsSuggestions: string[] = ['suggestion', 'estimatedTime', 'status', 'action'];
-  displayedColumnsPriorities: string[] = ['suggestion', 'estimatedTime', 'startDate'];
-  displayedColumnsTeamSuggestions: string[] = ['suggestion', 'estimatedTime', 'user' ,'status', 'action'];
-
+  displayedColumnsSuggestions: string[] = [
+    'suggestion',
+    'estimatedTime',
+    'status',
+    'action',
+  ];
+  displayedColumnsPriorities: string[] = [
+    'suggestion',
+    'estimatedTime',
+    'startDate',
+  ];
+  displayedColumnsTeamSuggestions: string[] = [
+    'suggestion',
+    'estimatedTime',
+    'user',
+    'status',
+    'action',
+  ];
 
   suggestions: SuggestionModel[] = [];
-  developerSuggestionsDataSource: MatTableDataSource<SuggestionModel>
-  teamSuggestionsDataSource: MatTableDataSource<SuggestionModel>
-  prioritiesDataSource: MatTableDataSource<SuggestionModel>
+  developerSuggestionsDataSource: MatTableDataSource<SuggestionModel>;
+  teamSuggestionsDataSource: MatTableDataSource<SuggestionModel>;
+  prioritiesDataSource: MatTableDataSource<SuggestionModel>;
 
   dragging = false; // Add this line
   success = false;
+
+  userId = this.userService.getID();
 
   constructor(
     private suggestionService: SuggestionService,
     private userService: UserService,
     private confirmationDialogService: ConfirmationDialogService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog
   ) {
-    this.developerSuggestionsDataSource = new MatTableDataSource<SuggestionModel>([]);
-    this.teamSuggestionsDataSource = new MatTableDataSource<SuggestionModel>([]);
+    this.developerSuggestionsDataSource =
+      new MatTableDataSource<SuggestionModel>([]);
+    this.teamSuggestionsDataSource = new MatTableDataSource<SuggestionModel>(
+      []
+    );
     this.prioritiesDataSource = new MatTableDataSource<SuggestionModel>([]);
   }
 
@@ -48,7 +69,8 @@ export class TeamSuggestionsComponent {
     this.suggestionService.getSuggestionsByDevelopement().subscribe(
       (object) => {
         this.suggestions = object.data;
-        this.developerSuggestionsDataSource = new MatTableDataSource<SuggestionModel>(this.suggestions);
+        this.developerSuggestionsDataSource =
+          new MatTableDataSource<SuggestionModel>(this.suggestions);
       },
       (error) => {
         console.error('Error fetching suggestions by developers: ', error);
@@ -61,7 +83,8 @@ export class TeamSuggestionsComponent {
       (object) => {
         console.log(object);
         this.suggestions = object.data;
-        this.teamSuggestionsDataSource = new MatTableDataSource<SuggestionModel>(this.suggestions);
+        this.teamSuggestionsDataSource =
+          new MatTableDataSource<SuggestionModel>(this.suggestions);
       },
       (error) => {
         console.error('Error fetching suggestions by team: ', error);
@@ -73,7 +96,9 @@ export class TeamSuggestionsComponent {
     this.suggestionService.getSuggestionsByPriorityASC().subscribe(
       (object) => {
         this.suggestions = object.data;
-        this.prioritiesDataSource = new MatTableDataSource<SuggestionModel>(this.suggestions);
+        this.prioritiesDataSource = new MatTableDataSource<SuggestionModel>(
+          this.suggestions
+        );
       },
       (error) => {
         console.error('Error fetching priority list: ', error);
@@ -82,7 +107,11 @@ export class TeamSuggestionsComponent {
   }
 
   drop(event: CdkDragDrop<SuggestionModel[]>): void {
-    moveItemInArray(this.prioritiesDataSource.data, event.previousIndex, event.currentIndex);
+    moveItemInArray(
+      this.prioritiesDataSource.data,
+      event.previousIndex,
+      event.currentIndex
+    );
     this.prioritiesDataSource.data = [...this.prioritiesDataSource.data]; // Refresh the data source to update the view
     this.updatePriorities();
   }
@@ -96,68 +125,33 @@ export class TeamSuggestionsComponent {
         (object) => {
           if (object.status === 'success') {
             this.success = true;
-            console.log(object.message)
+            console.log(object.message);
           }
         },
         (error) => {
           console.error('Error updating priority: ', error);
         }
       );
-
     });
-    if( this.success){
+    if (this.success) {
       this.toastr.success('Priorities updated successfully');
     }
-
   }
 
-
-  rejectSuggestion(suggestionId: number) {
-    this.confirmationDialogService.openConfirmationDialog('Reject Suggestion', 'Are you sure you want to reject this suggestion?', 'yesno').subscribe(
-      (confirmation) => {
-        if (confirmation) {
-          this.suggestionService.rejectSuggestion(suggestionId).subscribe(
-            (object) => {
-              if (object.status === 'success') {
-                this.toastr.success('Suggestion rejected successfully');
-                this.fetchSuggestionsByDevelopers();
-                this.fetchSuggestionsByTeam();
-                this.fetchPriorityList();
-              }
-            },
-            (error) => {
-              console.error('Error rejecting suggestion: ', error);
-            }
-          );
-        }
-      }
-
-    );
+  viewSuggestion(suggestionId: number) {
+    this.dialog
+      .open(ViewSuggestionComponent, {
+        width: '50%',
+        height: 'auto',
+        data: {
+          suggestionId: suggestionId,
+        },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        this.fetchSuggestionsByDevelopers();
+        this.fetchSuggestionsByTeam();
+        this.fetchPriorityList();
+      });
   }
-
-  approveSuggestion(suggestionId: number) {
-    this.confirmationDialogService.openConfirmationDialog('Approve Suggestion', 'Are you sure you want to approve this suggestion?', 'yesno').subscribe(
-      (confirmation) => {
-        if (confirmation) {
-          this.suggestionService.approveSuggestion(suggestionId).subscribe(
-            (object) => {
-              if (object.status === 'success') {
-                this.toastr.success('Suggestion approved successfully');
-                this.fetchSuggestionsByDevelopers();
-                this.fetchSuggestionsByTeam();
-                this.fetchPriorityList();
-              }
-            },
-            (error) => {
-              console.error('Error approving suggestion: ', error);
-            }
-          );
-        }
-      }
-
-    );
-  }
-
-
-
 }

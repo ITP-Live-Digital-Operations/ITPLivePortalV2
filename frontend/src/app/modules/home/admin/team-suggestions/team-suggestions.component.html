@@ -1,5 +1,5 @@
 <div class="container">
-  <div >
+  <div class="shadow-wrapper">
     <h1> Developers Suggestions </h1>
     <table mat-table [dataSource]="developerSuggestionsDataSource"  class="mat-elevation-z8">
       <!-- Name Column -->
@@ -22,8 +22,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon (click)="approveSuggestion(element.id)">done</mat-icon>
-          <mat-icon (click)="rejectSuggestion(element.id)">clear</mat-icon>
+          <mat-icon (click)="viewSuggestion(element.id)">visibility</mat-icon>
         </td>
       </ng-container>
 
@@ -33,32 +32,7 @@
     </table>
   </div>
 
-  <div >
-    <h1> Priority List </h1>
-    <table mat-table [dataSource]="prioritiesDataSource.data"  cdkDropList [cdkDropListData]="prioritiesDataSource.data" (cdkDropListDropped)="drop($event)" class="mat-elevation-z8">
-      <!-- Name Column -->
-      <ng-container matColumnDef="suggestion">
-        <th mat-header-cell *matHeaderCellDef>Suggestion </th>
-        <td mat-cell *matCellDef="let element" class="wrap-line">{{ element.suggestion }}</td>
-      </ng-container>
 
-      <!-- Count Column -->
-      <ng-container matColumnDef="estimatedTime">
-        <th mat-header-cell *matHeaderCellDef> Time</th>
-        <td mat-cell *matCellDef="let element">{{ element.estimatedTime }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="startDate">
-        <th mat-header-cell *matHeaderCellDef>Start Date</th>
-        <td mat-cell *matCellDef="let element"></td>
-      </ng-container>
-1
-      <!-- Header and Row Definitions -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumnsPriorities"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumnsPriorities;"  cdkDrag
-      (cdkDragStarted)="dragging = true" (cdkDragEnded)="dragging = false" [class.dragging]="dragging"></tr>
-    </table>
-  </div>
 
   <div >
     <h1> Team Suggestions </h1>
@@ -88,8 +62,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
-          <mat-icon (click)="approveSuggestion(element.id)">done</mat-icon>
-          <mat-icon (click)="rejectSuggestion(element.id)">clear</mat-icon>
+          <mat-icon (click)="viewSuggestion(element.id)">visibility</mat-icon>
         </td>
       </ng-container>
 
@@ -98,4 +71,34 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumnsTeamSuggestions;"></tr>
     </table>
   </div>
+</div>
+
+<div class="container">
+  <div >
+    <h1> Priority List </h1>
+    <table mat-table [dataSource]="prioritiesDataSource.data"  cdkDropList [cdkDropListData]="prioritiesDataSource.data" (cdkDropListDropped)="drop($event)" class="mat-elevation-z8">
+      <!-- Name Column -->
+      <ng-container matColumnDef="suggestion">
+        <th mat-header-cell *matHeaderCellDef>Suggestion </th>
+        <td mat-cell *matCellDef="let element" class="wrap-line">{{ element.suggestion }}</td>
+      </ng-container>
+
+      <!-- Count Column -->
+      <ng-container matColumnDef="estimatedTime">
+        <th mat-header-cell *matHeaderCellDef> Time</th>
+        <td mat-cell *matCellDef="let element">{{ element.estimatedTime }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef>Start Date</th>
+        <td mat-cell *matCellDef="let element"></td>
+      </ng-container>
+1
+      <!-- Header and Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsPriorities"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsPriorities;"  cdkDrag
+      (cdkDragStarted)="dragging = true" (cdkDragEnded)="dragging = false" [class.dragging]="dragging"></tr>
+    </table>
+
+</div>
 </div>

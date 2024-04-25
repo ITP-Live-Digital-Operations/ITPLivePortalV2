@@ -1,0 +1,28 @@
+<div class="data-container">
+  <h1>Suggestion Viewer</h1>
+  <div class="data-field"><strong>ID:</strong> {{ suggestion.id }}</div>
+  <div class="data-field"><strong>Status:</strong> {{ suggestion.status }}</div>
+  <div class="data-field"><strong>Priority:</strong> {{ suggestion.priority }}</div>
+  <div class="data-field"><strong>Created At:</strong> {{ suggestion.createdAt }}</div>
+  <div class="data-field"><strong>Updated At:</strong> {{ suggestion.updatedAt }}</div>
+  <div class="data-field"><strong>Estimated Time:</strong> {{ suggestion.estimatedTime }}</div>
+  <div class="data-field"><strong>Suggested By:</strong> {{ suggestion.suggestedBy }}</div>
+  <div class="data-field"><strong>Suggestion:</strong> {{ suggestion.suggestion }}</div>
+
+  <form [formGroup]="form" *ngIf="userId === 1" >
+    <ng-container>
+      <mat-form-field>
+        <mat-label> Estimated Time </mat-label>
+        <input matInput type="number"  formControlName="estimatedTime" required/>
+      </mat-form-field>
+    </ng-container>
+    <button mat-raised-button type="submit" (click)="updateEstimatedTime()"> Update <mat-icon >update</mat-icon></button>
+  </form>
+
+  <div *ngIf=" suggestion.estimatedTime != 0 ">
+  <button mat-raised-button (click)="approveSuggestion()"> Approve <mat-icon >done</mat-icon></button>
+  <button mat-raised-button (click)="rejectSuggestion()"> Reject <mat-icon >clear</mat-icon></button>
+</div>
+</div>
+
+
