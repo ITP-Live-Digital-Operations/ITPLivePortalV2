@@ -181,7 +181,7 @@ exports.getUsersAndTaskWeights = (req, res) => {
     where: {
       role: "talent",
       privilege_level: { [Op.lt]: 9 },
-      [Op.or]: [{ parentId: 15 }, { id: 15 }],
+      [Op.or]: [{ parentId: 15 }, { id: 15 },  {id :43}],
     },
     attributes: [
       "id",
