@@ -181,9 +181,9 @@ exports.approveSuggestion = (req, res) => {
     });
 }
 
-exports.updatePriority = (req, res) => {
+exports.updatePriorityAndDate = (req, res) => {
     Suggestions.update(
-        { priority: req.body.priority },
+        { priority: req.body.priority, startDate: req.body.startDate},
         { where: { id: req.params.id } }
     )
     .then((data) => {

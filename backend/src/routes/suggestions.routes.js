@@ -27,8 +27,8 @@ router.route('/rejectSuggestion/:id')
 router.route('/approveSuggestion/:id')
     .put(asyncHandler(suggestionsController.approveSuggestion));
 
-router.route('/updatePriority/:id') 
-    .put(asyncHandler(suggestionsController.updatePriority));
+router.route('/updatePriorityAndDate/:id') 
+    .put(asyncHandler(suggestionsController.updatePriorityAndDate));
 
 router.route('/updateEstimatedTime/:id')
     .put(asyncHandler(suggestionsController.updateEstimatedTime));

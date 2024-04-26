@@ -10,6 +10,7 @@ export interface SuggestionModel {
   createdAt: Date;
   updatedAt: Date;
   user: UserIdandName;
+  startDate ?: any;
 }
 
 export interface createSuggestionModel {

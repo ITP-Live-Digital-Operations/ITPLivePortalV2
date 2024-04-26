@@ -46,8 +46,8 @@ export class SuggestionService {
     return this.http.put<statusAndMessage>(`${this.suggestionsApiURL}/approveSuggestion/${suggestionId}`,{});
   }
 
-  updatePriority(suggestionId : number, priority: number): Observable<statusAndMessage>{
-    return this.http.put<statusAndMessage>(`${this.suggestionsApiURL}/updatePriority/${suggestionId}`,{priority: priority});
+  updatePriorityAndDate(suggestionId : number, priority: number, startDate: any): Observable<statusAndMessage>{
+    return this.http.put<statusAndMessage>(`${this.suggestionsApiURL}/updatePriorityAndDate/${suggestionId}`,{priority: priority, startDate: startDate});
   }
 
   updateEstimatedTime( suggestionId: number, estimatedTime: number): Observable<statusAndMessage>{

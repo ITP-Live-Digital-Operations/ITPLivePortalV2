@@ -34,6 +34,9 @@ export class TeamSuggestionsComponent {
     'action',
   ];
 
+  startDateArray : any
+
+
   suggestions: SuggestionModel[] = [];
   developerSuggestionsDataSource: MatTableDataSource<SuggestionModel>;
   teamSuggestionsDataSource: MatTableDataSource<SuggestionModel>;
@@ -63,6 +66,7 @@ export class TeamSuggestionsComponent {
     this.fetchSuggestionsByDevelopers();
     this.fetchSuggestionsByTeam();
     this.fetchPriorityList();
+    this.updatePriorities();
   }
 
   fetchSuggestionsByDevelopers() {
@@ -117,11 +121,16 @@ export class TeamSuggestionsComponent {
   }
 
   updatePriorities(): void {
+    let currentDate = new Date(); // Start with today's date
     this.prioritiesDataSource.data.forEach((item, index) => {
       item.priority = index + 1;
-      console.log(item.id, item.priority);
+       // Assign the current date to this item's startDate
+    item.startDate = new Date(currentDate);  // Copy currentDate to startDate
+    item.startDate = item.startDate.toISOString().split('T')[0];  // Format the date
+    currentDate.setDate(currentDate.getDate() + item.estimatedTime); // Increment the date by the estimated time
 
-      this.suggestionService.updatePriority(item.id, item.priority).subscribe(
+
+      this.suggestionService.updatePriorityAndDate(item.id, item.priority, item.startDate).subscribe(
         (object) => {
           if (object.status === 'success') {
             this.success = true;
