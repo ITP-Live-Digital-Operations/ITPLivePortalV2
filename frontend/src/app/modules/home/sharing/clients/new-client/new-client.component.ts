@@ -48,9 +48,9 @@ export class NewClientComponent {
             this.dialog.open(EditClientComponent, {
               width: "auto",
               height: 'auto',
-              data: {client : response.data}
+              data: response.data
             }).afterClosed().subscribe(() => {
-              
+
               this.dialogRef.close();
             });
           }

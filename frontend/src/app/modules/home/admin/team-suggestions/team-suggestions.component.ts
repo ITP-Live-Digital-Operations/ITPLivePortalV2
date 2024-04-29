@@ -123,14 +123,17 @@ export class TeamSuggestionsComponent {
   updatePriorities(): void {
     let currentDate = new Date(); // Start with today's date
     this.prioritiesDataSource.data.forEach((item, index) => {
-      item.priority = index + 1;
+    item.priority = index + 1;
        // Assign the current date to this item's startDate
     item.startDate = new Date(currentDate);  // Copy currentDate to startDate
     item.startDate = item.startDate.toISOString().split('T')[0];  // Format the date
     currentDate.setDate(currentDate.getDate() + item.estimatedTime); // Increment the date by the estimated time
+    // assign endDate based on calculations
+    // assign endDate based on calculations
+    item.endDate.setDate(item.endDate.getDate() + item.estimatedTime); // Add the estimated time to endDate
+    item.endDate = item.endDate.toISOString().split('T')[0]; // Format the date
 
-
-      this.suggestionService.updatePriorityAndDate(item.id, item.priority, item.startDate).subscribe(
+      this.suggestionService.updatePriorityAndDates(item.id, item.priority, item.startDate, item.endDate).subscribe(
         (object) => {
           if (object.status === 'success') {
             this.success = true;

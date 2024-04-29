@@ -9,7 +9,7 @@
 
     <div
     class="btn d-flex flex-row align-items-center flex-wrap"
-    style="border-color: transparent" *ngIf="userRole == 'superadmin'" >
+    style="border-color: transparent; margin-top: 5%" *ngIf="userRole == 'superadmin'" >
 
       <ng-container *ngIf="currentView == 'main'">
           <button mat-raised-button routerLink="{{ path['influencers'] }}">

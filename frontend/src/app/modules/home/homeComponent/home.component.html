@@ -1,10 +1,4 @@
 <mat-sidenav-container>
-
-    <div class="ball small-ball"></div>
-    <div class="ball medium-ball"></div>
-    <div class="ball large-ball"></div>
-
-
   <mat-sidenav
     #sidenav
     class="light example-sidenav"
@@ -70,7 +64,7 @@
           [routerLink]="path['talentTasks']"
           class="menu-item"
         >
-        <img src="../../../../../assets/white-buttons/user.png" />
+          <img src="../../../../../assets/white-buttons/user.png" />
           <span class="full-width">Talent Tasks</span>
         </mat-list-item>
 
@@ -79,7 +73,7 @@
           [routerLink]="path['personTasks'] + userId"
           class="menu-item"
         >
-        <img src="../../../../../assets/white-buttons/clipboard.png" />
+          <img src="../../../../../assets/white-buttons/clipboard.png" />
           <span class="full-width">Tasks</span>
         </mat-list-item>
 
@@ -87,7 +81,7 @@
           (click)="toggleNotificationBox()"
           class="notification-icon"
         >
-        <img src="../../../../../assets/white-buttons/ringing.png" />
+          <img src="../../../../../assets/white-buttons/ringing.png" />
           <span
             class="notification-dot"
             *ngIf="notificationCount?.data > 0"
@@ -95,11 +89,9 @@
           <span class="full-width"> Notifications </span>
         </mat-list-item>
 
-        <mat-list-item (click)="submitSuggestion()"  class="menu-item">
-
+        <mat-list-item (click)="submitSuggestion()" class="menu-item">
           <img src="../../../../assets/white-buttons/suggestion.png" />
           <span class="full-width">Suggestions</span>
-
         </mat-list-item>
 
         <mat-list-item [routerLink]="path['editProfile']" class="menu-item">
@@ -118,15 +110,19 @@
           "
           class="menu-item"
         >
-        <img src="../../../../../assets/white-buttons/help.png" />
+          <img src="../../../../../assets/white-buttons/help.png" />
           <span class="full-width">Help</span>
         </mat-list-item>
 
-       <mat-list-item   *ngIf="userRole == 'superadmin'" routerLink="{{ path['userManagement'] }}" class="menu-item">
-        <img src="../../../../../assets/white-buttons/usermanagement.png" />
+        <mat-list-item
+          *ngIf="userRole == 'superadmin'"
+          routerLink="{{ path['userManagement'] }}"
+          class="menu-item"
+        >
+          <img src="../../../../../assets/white-buttons/usermanagement.png" />
 
-        <span class="full-width">User Management</span>
-      </mat-list-item>
+          <span class="full-width">User Management</span>
+        </mat-list-item>
 
         <mat-list-item routerLink="/login" class="menu-item">
           <img src="../../../../../assets/white-buttons/exit.png" />
@@ -147,5 +143,4 @@
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
-
 </mat-sidenav-container>

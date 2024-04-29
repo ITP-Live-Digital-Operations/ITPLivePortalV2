@@ -11,6 +11,7 @@ export interface SuggestionModel {
   updatedAt: Date;
   user: UserIdandName;
   startDate ?: any;
+  endDate ?: any;
 }
 
 export interface createSuggestionModel {
@@ -29,6 +30,7 @@ export interface returnSuggestionModel {
   message: string;
   data: SuggestionModel[];
 }
+
 export interface returnSuggestionModelSingle {
   status: string;
   message: string;

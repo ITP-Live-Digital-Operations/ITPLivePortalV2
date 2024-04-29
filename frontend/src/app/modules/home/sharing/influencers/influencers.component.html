@@ -1,15 +1,10 @@
 
-  <div class="loading-container"*ngIf="isLoading">
+  <div class="loading-container" *ngIf="isLoading">
     <img  src="../../../../../assets/gifs/loading.svg" alt="Loading...">
   </div>
   <div style="position: relative" [hidden]="isLoading">
 
-<h2 style="align-items: center; font-size: 35px">Influencers List</h2>
-
-<div id="search">
-  <svg viewBox="0 0 420 60">
-    <rect class="bar" />
-  </svg>
+<div class="search-container">
 
   <mat-form-field>
     <input
@@ -17,8 +12,9 @@
       matInput
       (keyup)="applyFilterChange('search', searchInput.value)"
       placeholder="Search"
+      class="search"
     />
-    <mat-icon matPrefix style="color: aliceblue">search</mat-icon>
+    <mat-icon matPrefix style="color: white">search</mat-icon>
   </mat-form-field>
 </div>
 </div>

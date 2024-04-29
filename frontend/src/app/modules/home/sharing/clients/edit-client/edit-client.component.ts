@@ -37,6 +37,7 @@ export class EditClientComponent {
   }
 
   loadClient() {
+    
     this.clientService
       .getClientById(this.source.id)
       .subscribe((client: ClientModel) => {

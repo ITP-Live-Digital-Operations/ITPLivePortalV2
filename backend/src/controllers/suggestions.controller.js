@@ -181,9 +181,9 @@ exports.approveSuggestion = (req, res) => {
     });
 }
 
-exports.updatePriorityAndDate = (req, res) => {
+exports.updatePriorityAndDates = (req, res) => {
     Suggestions.update(
-        { priority: req.body.priority, startDate: req.body.startDate},
+        { priority: req.body.priority, startDate: req.body.startDate, endDate: req.body.endDate},
         { where: { id: req.params.id } }
     )
     .then((data) => {
@@ -219,3 +219,4 @@ exports.updateEstimatedTime = (req, res) => {
         });
     });
 }
+
