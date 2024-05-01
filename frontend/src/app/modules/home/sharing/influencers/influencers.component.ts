@@ -57,6 +57,7 @@ export class InfluencersComponent {
   };
 
   displayedColumns: string[] = [
+    'id',
     'Name',
     'Gender',
     'InstagramFollowers',
