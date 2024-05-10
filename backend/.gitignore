@@ -127,3 +127,20 @@ dist
 *.log.json
 
 
+models/demousers.js
+models/democelebrities.js
+models/democelebfamily.js
+models/democelebinterests.js
+models/democelebpassport.js
+models/democelebrequests.js
+models/democelebrequests.js
+models/democelebsocials.js
+
+migrations/20240501114545-create-demousers.js
+migrations/20240501114651-create-democelebrities.js
+migrations/20240501141038-create-democelebpassport.js
+migrations/20240501141103-create-democelebsocials.js
+migrations/20240501141103-create-democelebsocials.js
+migrations/20240501141130-create-democelebrequests.js
+migrations/20240501141151-create-democelebfamily.js
+migrations/20240501141216-create-democelebinterests.js

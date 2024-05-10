@@ -131,18 +131,30 @@ export class NewRateLogComponent {
           'Instagram Reels',
           'IGTV',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       case 'Tiktok':
         return [
           'Short-form video content',
           'Hashtag challenges',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       case 'Snapchat':
         return [
           'Snap stories',
           'Geofilters and lenses',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       case 'Twitter':
         return [
@@ -151,6 +163,10 @@ export class NewRateLogComponent {
           'Twitter threads',
           'Hashtags',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       case 'Facebook':
         return [
@@ -159,6 +175,10 @@ export class NewRateLogComponent {
           'Live videos',
           'Groups',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       case 'Youtube':
         return [
@@ -168,6 +188,18 @@ export class NewRateLogComponent {
           'Collaborations with other YouTubers or brands',
           'Product reviews or demonstrations',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
+        ];
+      case 'Other':
+        return [
+          'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       default:
         return [];
@@ -194,13 +226,13 @@ export class NewRateLogComponent {
     const parsedValue = this.parseFormattedNumber(value);
     this.logForm.get(fieldName)?.setValue(parsedValue, { emitEvent: false });
   }
-  
+
   onFieldNumericInput(index: number, fieldName: string, value: string): void {
     const parsedValue = this.parseFormattedNumber(value);
     ((this.form.get('fields') as FormArray).at(index) as FormGroup).get(fieldName)?.setValue(parsedValue, { emitEvent: false });
   }
-  
-  
+
+
   parseFormattedNumber(value: string): number {
     return Number(value.replace(/,/g, ''));
   }

@@ -534,7 +534,8 @@ export const platforms = [
   'X',
   'Facebook',
   'Youtube',
-  'Twitch'
+  'Twitch',
+  'Other',
 ];
 
 export const clientIndustries = [  'Agriculture',  'Automotives',  'Aviation',  'Banking', 'Beauty & Cosmetics',  'Bodybuilding',  'Business',  'Celebrities',  'Comedy',  'Electronics',  'Energy',  'Entertainment',  'FMCG',  'Finance',  'Food',  'Furniture',  'Gaming',  'Health',  'Healthcare',  'Hospitality',  'Humanitarian',  'Insurance',  'Investment',  'Lifestyle',  'Mobile App',  'NGO',  'Nutrition',  'Pharmaceutical',  'Public Sector',  'Real Estate',  'Retail',  'Shopping',  'Skin Care',  'Sports',  'Tech',  'Telecommunication',  'Travel', 'Other']
