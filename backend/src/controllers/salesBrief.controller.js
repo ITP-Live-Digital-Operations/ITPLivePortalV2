@@ -2,7 +2,7 @@ const models = require("../../models");
 const SalesBrief = models.SalesBrief;
 const Task = models.Task;
 const { createLogger, format, transports } = require('winston');
-/* const {path} = require('path');
+const {path} = require('path');
 
 // Configure the logger
 const logger = createLogger({
@@ -14,7 +14,7 @@ const logger = createLogger({
   transports: [
     new transports.File({ filename: path.join(__dirname, 'error.log') })
   ]
-}); */
+});
 
 exports.create = (req, res) => {
   SalesBrief.create(req.body)
@@ -23,12 +23,12 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       // Log error details using winston
-      /* logger.error({
+      logger.error({
         message: err.message,
         stack: err.stack,
         requestBody: req.body,
         validationErrors: err.errors
-      }); */
+      });
 
       // Send response with error message
       res.status(500).send({
