@@ -26,7 +26,7 @@ const statisticsRoutes = require("./routes/statistics.routes");
 const OGRoutes = require("./routes/og.routes");
 const userStatsRoutes = require("./routes/userStats.routes");
 const suggestionRoutes = require("./routes/suggestions.routes");
-const demoRoutes = require("./routes/demo.routes");
+
 const app = express();
 
 app.use(express.json({ limit: "50mb" }));
@@ -81,7 +81,7 @@ app.use("/api/v1/ogs", authHandler, OGRoutes);
 app.use("/api/v1/suggestions", authHandler, suggestionRoutes);
 app.use("/api/v1/userStats", authHandler, userStatsRoutes);
 
-app.use("/api/v1/demo", demoRoutes);
+
 
 app.use("/api/v1/webhooks", webHookRoutes);
 
