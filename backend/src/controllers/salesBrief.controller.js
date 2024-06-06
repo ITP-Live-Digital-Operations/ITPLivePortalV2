@@ -14,6 +14,7 @@ exports.create = (req, res) => {
       console.log(err);
       console.log(err.message);
       console.log(err.errors);
+      console.log(req.body);
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the SalesBrief.",
