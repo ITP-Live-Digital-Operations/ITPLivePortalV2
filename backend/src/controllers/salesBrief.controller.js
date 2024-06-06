@@ -2,7 +2,7 @@ const models = require("../../models");
 const SalesBrief = models.SalesBrief;
 const Task = models.Task;
 const { createLogger, format, transports } = require('winston');
-
+const path = require('path');
 // Configure the logger
 const logger = createLogger({
   level: 'error',
