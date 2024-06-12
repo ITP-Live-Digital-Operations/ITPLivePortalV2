@@ -119,8 +119,6 @@ export class InfluencerLogsComponent {
             return item.campaign;
           case 'Contact':
             return item.user.name;
-          case 'Time_to_reply':
-            return item.time_to_reply;
           case 'Date':
             return new Date(item.createdAt);
           case 'type':

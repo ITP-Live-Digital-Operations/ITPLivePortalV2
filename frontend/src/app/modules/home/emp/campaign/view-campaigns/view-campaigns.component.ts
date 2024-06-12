@@ -72,6 +72,20 @@ export class ViewCampaignsComponent {
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator!;
       this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+        switch (property) {
+          case 'clientName':
+            return item.client.name;
+          case 'campaignName':
+            return item.campaignName;
+          case 'market':
+            return item.market;
+          case 'clientIndustry':
+            return item.client.industry;
+          default:
+            return item[property];
+        }
+      }
       this.isLoading = false;
       // Extract unique values from columns to build filter
       this.campaigns = [
