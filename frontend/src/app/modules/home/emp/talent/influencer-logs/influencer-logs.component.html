@@ -82,7 +82,7 @@
     <ng-container matColumnDef="Influencer">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.influencerID | influencerName | async }}
+        {{ element.influencer.Name}}
       </td>
     </ng-container>
 
@@ -94,7 +94,7 @@
     <ng-container matColumnDef="Contact">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.userID | userNamePipe | async }}
+        {{ element.user.name }}
       </td>
     </ng-container>
 
