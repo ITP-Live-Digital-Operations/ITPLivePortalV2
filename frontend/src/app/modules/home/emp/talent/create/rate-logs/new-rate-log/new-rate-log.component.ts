@@ -156,7 +156,7 @@ export class NewRateLogComponent {
           'Full day shoot',
           'Event attendance',
         ];
-      case 'Twitter':
+      case 'X':
         return [
           'Tweets',
           'Retweets',
