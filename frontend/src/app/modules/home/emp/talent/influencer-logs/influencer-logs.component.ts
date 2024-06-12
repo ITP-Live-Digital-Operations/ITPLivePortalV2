@@ -75,7 +75,6 @@ export class InfluencerLogsComponent {
 
   constructor(
     private userService: UserService,
-    private router: Router,
     private logService: LogService,
     private dialog: MatDialog,
     private cdr: ChangeDetectorRef
@@ -83,6 +82,8 @@ export class InfluencerLogsComponent {
 
   ngOnInit(): void {
     this.getAllLogs();
+
+
   }
 
   ngAfterViewInit() {
@@ -100,43 +101,8 @@ export class InfluencerLogsComponent {
     }
   }
   // Add this method to your InfluencerLogsComponent class
-  public resetFilters(): void {
-    // Reset filter criteria
-    this.filterCriteria = {
-      search: '',
-      campaigns: [],
-      influencers: [],
-      contacts: [],
-    };
 
-    this.allCampaigns = this.extractUniqueAttributes(
-      this.dataSource.data,
-      'campaigns'
-    );
-    this.allContacts = this.extractUniqueAttributes(
-      this.dataSource.data,
-      'user.name'
-    );
-    this.allInfluencers = this.extractUniqueAttributes(
-      this.dataSource.data,
-      'influencers.Name'
-    );
 
-    this.resetMatSelects();
-    this.applyFilter();
-  }
-  private resetMatSelects(): void {
-    if (this.influencerSelect) {
-      this.influencerSelect.value = [];
-    }
-    if (this.campaignSelect) {
-      this.campaignSelect.value = [];
-    }
-
-    if (this.contactSelect) {
-      this.contactSelect.value = [];
-    }
-  }
 
   public getAllLogs(): void {
     this.logService.getAllLogsUpdated().subscribe((data) => {
@@ -145,6 +111,22 @@ export class InfluencerLogsComponent {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator!;
       this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = (item: any, property: any) => {
+        switch (property) {
+          case 'Influencer':
+            return item.influencer.Name;
+          case 'Campaign':
+            return item.campaign;
+          case 'Contact':
+            return item.user.name;
+          case 'Date':
+            return new Date(item.createdAt);
+          case 'type':
+            return item.type;
+          default:
+            return item[property];
+        }
+      }
 
       // Extract unique values
       this.allInfluencers = [
@@ -197,6 +179,45 @@ export class InfluencerLogsComponent {
     this.updateFilterOptions();
   }
 
+  private resetMatSelects(): void {
+    if (this.influencerSelect) {
+      this.influencerSelect.value = [];
+    }
+    if (this.campaignSelect) {
+      this.campaignSelect.value = [];
+    }
+
+    if (this.contactSelect) {
+      this.contactSelect.value = [];
+    }
+  }
+
+  public resetFilters(): void {
+    // Reset filter criteria
+    this.filterCriteria = {
+      search: '',
+      campaigns: [],
+      influencers: [],
+      contacts: [],
+    };
+
+    this.allCampaigns = this.extractUniqueAttributes(
+      this.dataSource.data,
+      'campaigns'
+    );
+    this.allContacts = this.extractUniqueAttributes(
+      this.dataSource.data,
+      'user.name'
+    );
+    this.allInfluencers = this.extractUniqueAttributes(
+      this.dataSource.data,
+      'influencers.Name'
+    );
+
+    this.resetMatSelects();
+    this.applyFilter();
+  }
+
   public applyFilter(): void {
     console.log('Applying filter:', this.filterCriteria);
 
@@ -246,10 +267,6 @@ export class InfluencerLogsComponent {
       }
     };
 
-    // Convert filterCriteria to lowercase before applying
-
- 
- 
     this.dataSource.filter = JSON.stringify(this.filterCriteria);
 
     this.updateFilterOptions();
@@ -311,8 +328,7 @@ export class InfluencerLogsComponent {
             ))
       ),
       'influencer.Name'
-
-    )
+    );
 
     // Filter for Campaigns options based on all criteria except campaign itself
     this.allCampaigns = this.extractUniqueAttributes(
@@ -329,9 +345,7 @@ export class InfluencerLogsComponent {
           typeof data.campaign === 'string'
       ),
       'campaign'
-
-    )
-  
+    );
 
     // Filter for Contacts options based on all criteria except contact itself
     this.allContacts = this.extractUniqueAttributes(
@@ -347,27 +361,7 @@ export class InfluencerLogsComponent {
             ))
       ),
       'user.name' // Make sure this is the correct attribute path for the 'user' name
-
-    )
-
-  }
-  
-  activeTabIndex: number = 0;
-  tabCount: number = 6; 
-  nextTab() {
-    if (this.activeTabIndex < this.tabCount - 1) {
-      this.activeTabIndex++;
-    }
-  }
-
-  prevTab() {
-    if (this.activeTabIndex > 0) {
-      this.activeTabIndex--;
-    }
-  }
-
-  public onPageChange(event: any): void {
-    this.getAllLogs();
+    );
   }
 
   public editInfluencerLog(inputdata: any, type: String): void {
@@ -405,9 +399,5 @@ export class InfluencerLogsComponent {
         type: type,
       },
     });
-  }
-
-  public redirectToNewLog(): void {
-    this.router.navigate([this.path['newRateLog']]);
   }
 }

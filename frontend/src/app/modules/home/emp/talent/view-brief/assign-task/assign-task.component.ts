@@ -216,4 +216,12 @@ export class AssignTaskComponent {
       console.log(this.talentHeads);
     });
   }
+
+  onCheckboxChange(id: number): void {
+    this.dataSource.forEach((user: any) => {
+      if (user.id !== id) {
+        user.selected.setValue(false);
+      }
+    });
+  }
 }

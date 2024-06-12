@@ -22,48 +22,48 @@ import { TopinfluencersComponent } from './general-statistics/topinfluencers/top
 import { TopInfluencersByCpmComponent } from './general-statistics/topinfluencers/top-influencers-by-cpm/top-influencers-by-cpm.component';
 import { TopInfluencersByCPEComponent } from './general-statistics/topinfluencers/top-influencers-by-cpe/top-influencers-by-cpe.component';
 import { TopInfluencersByMarginProfitComponent } from './general-statistics/topinfluencers/top-influencers-by-margin-profit/top-influencers-by-margin-profit.component';
-
+import { SubmitSuggestionComponent } from './submit-suggestion/submit-suggestion.component';
 
 const routes: Routes = [
   {
     path: 'forms',
-    component: FormsComponent
+    component: FormsComponent,
   },
   {
     path: 'allBriefs',
-    component: AllBriefsComponent
+    component: AllBriefsComponent,
   },
   {
     path: 'influencers',
-    component: InfluencersComponent
+    component: InfluencersComponent,
   },
   {
     path: 'influencer/:id',
-    component: InfluencerIdComponent
+    component: InfluencerIdComponent,
   },
   {
     path: 'adminGuide',
-    component: AdminGuideComponent
+    component: AdminGuideComponent,
   },
   {
     path: 'talentGuide',
-    component: TalentGuideComponent
+    component: TalentGuideComponent,
   },
   {
     path: 'salesGuide',
-    component: SalesGuideComponent
+    component: SalesGuideComponent,
   },
   {
     path: 'editProfile',
-    component: EditProfileComponent
+    component: EditProfileComponent,
   },
   {
     path: 'clients',
-    component: ClientsComponent
+    component: ClientsComponent,
   },
   {
-   path: 'newClient',
-   component: NewClientComponent,
+    path: 'newClient',
+    component: NewClientComponent,
   },
   {
     path: 'editClient/:id',
@@ -72,7 +72,6 @@ const routes: Routes = [
   {
     path: 'generalStatistics',
     component: GeneralStatisticsComponent,
-
   },
   {
     path: 'campaignStatistics',
@@ -96,34 +95,38 @@ const routes: Routes = [
   },
   {
     path: 'topInfluencers',
-    component: TopinfluencersComponent
+    component: TopinfluencersComponent,
   },
   {
-path:'topbyCPM',
-component:TopInfluencersByCpmComponent
+    path: 'topbyCPM',
+    component: TopInfluencersByCpmComponent,
   },
   {
-    path:'topbyCPE',
-    component:TopInfluencersByCPEComponent
+    path: 'topbyCPE',
+    component: TopInfluencersByCPEComponent,
   },
   {
-    path:'topByMargin',
-    component:TopInfluencersByMarginProfitComponent
+    path: 'topByMargin',
+    component: TopInfluencersByMarginProfitComponent,
+  },
+  {
+    path: 'submit-suggestions',
+    component: SubmitSuggestionComponent
   },
   {
     path: '',
     redirectTo: 'forms',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '**',
     redirectTo: '/site/notFound',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SharingRoutingModule { }
+export class SharingRoutingModule {}

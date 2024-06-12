@@ -50,9 +50,9 @@
       </ng-container>
 
       <!-- Submitted Date Column -->
-      <ng-container matColumnDef="CreatedDate">
+      <ng-container matColumnDef="CreatedDate" >
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Submitted Date</th>
-        <td mat-cell *matCellDef="let element">{{ element.createdAt | date }}</td>
+        <td mat-cell *matCellDef="let element" >{{ (element.createdAt ?? element.task?.createdAt) | date }}</td>
       </ng-container>
 
       <!-- Assigned Date Column -->

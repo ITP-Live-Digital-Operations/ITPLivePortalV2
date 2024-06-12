@@ -5,6 +5,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { UserstatsComponent } from './userstats/userstats.component';
+import { TeamSuggestionsComponent } from './team-suggestions/team-suggestions.component';
 
 let path = PATH;
 
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'employeeStats',
     component: UserstatsComponent
+  },
+  {
+    path: 'teamSuggestions',
+    component: TeamSuggestionsComponent
   },
   {
     path: '**',

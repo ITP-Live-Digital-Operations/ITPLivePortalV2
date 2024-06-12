@@ -51,6 +51,7 @@ import { TopinfluencersComponent } from './general-statistics/topinfluencers/top
 import { TopInfluencersByCpmComponent } from './general-statistics/topinfluencers/top-influencers-by-cpm/top-influencers-by-cpm.component';
 import { TopInfluencersByCPEComponent } from './general-statistics/topinfluencers/top-influencers-by-cpe/top-influencers-by-cpe.component';
 import { TopInfluencersByMarginProfitComponent } from './general-statistics/topinfluencers/top-influencers-by-margin-profit/top-influencers-by-margin-profit.component';
+import { SubmitSuggestionComponent } from './submit-suggestion/submit-suggestion.component';
 
 
 
@@ -97,6 +98,7 @@ import { TopInfluencersByMarginProfitComponent } from './general-statistics/topi
     TopInfluencersByCpmComponent,
     TopInfluencersByCPEComponent,
     TopInfluencersByMarginProfitComponent,
+    SubmitSuggestionComponent,
 
 
   ],

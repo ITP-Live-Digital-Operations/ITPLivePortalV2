@@ -1,19 +1,38 @@
 const models = require("../../models");
 const SalesBrief = models.SalesBrief;
 const Task = models.Task;
-const Campaign = models.Campaign;
+const { createLogger, format, transports } = require('winston');
+const path = require('path');
+
+// Configure the logger
+const logger = createLogger({
+  level: 'error',
+  format: format.combine(
+    format.timestamp(),
+    format.json()
+  ),
+  transports: [
+    new transports.File({ filename: path.join(__dirname, 'error.log') })
+  ]
+});
 
 exports.create = (req, res) => {
   SalesBrief.create(req.body)
     .then((data) => {
-      res.status(201).send({
-        id: data.id,
-      });
+      res.status(201).send({ id: data.id });
     })
     .catch((err) => {
+      // Log error details using winston
+      logger.error({
+        message: err.message,
+        stack: err.stack,
+        requestBody: req.body,
+        validationErrors: err.errors
+      });
+
+      // Send response with error message
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the SalesBrief.",
+        message: err.message || "Some error occurred while creating the SalesBrief.",
       });
     });
 };

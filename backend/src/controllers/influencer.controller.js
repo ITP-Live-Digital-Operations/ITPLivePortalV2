@@ -12,6 +12,21 @@ exports.createInfluencer = (req, res) => {
   const influencer = req.body;
   Influencer.create(influencer)
     .then((data) => {
+
+      InfluencerMetrics.create({
+        influencerId: data.id,
+      })
+        .then((data) => {
+          res.status(200).send({
+            status: "success",
+          });
+        })
+        .catch((err) => {
+          res.status(500).send({
+            status: "error",
+            message: err.message,
+          });
+        });
       res.status(200).send({
         status: "success",
       });

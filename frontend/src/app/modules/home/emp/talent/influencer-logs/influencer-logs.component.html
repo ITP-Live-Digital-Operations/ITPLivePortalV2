@@ -82,7 +82,7 @@
     <ng-container matColumnDef="Influencer">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.influencerID | influencerName | async }}
+        {{ element.influencer.Name}}
       </td>
     </ng-container>
 
@@ -94,7 +94,7 @@
     <ng-container matColumnDef="Contact">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.userID | userNamePipe | async }}
+        {{ element.user.name }}
       </td>
     </ng-container>
 
@@ -104,7 +104,7 @@
     </ng-container>
 
     <ng-container matColumnDef="Time_to_reply">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Reply time</th>
+      <th mat-header-cell *matHeaderCellDef >Reply time</th>
       <td mat-cell *matCellDef="let element" class="truncate-text">
         {{ element.time_to_reply }}
       </td>
@@ -130,7 +130,7 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
     <tr
       mat-row
       *matRowDef="let row; columns: displayedColumns; let i = index"
@@ -144,34 +144,3 @@
   >
   </mat-paginator>
 
-  <hr />
-<!--
-  <div class="package" *ngIf="package">
-    <div class="row">
-      <h2>Notes : {{ log.notes }}</h2>
-      <h2>Rate: {{ log.currency }} {{ log.rate }}</h2>
-    </div>
-    <hr />
-    <div *ngFor="let package of log.packages" class="row">
-      <h4>{{ package.platform }}</h4>
-      <h4>{{ package.deliverable }}</h4>
-      <h4>{{ package.quantity }}</h4>
-    </div>
-  </div>
-
-
-  <div class="single" *ngIf="single">
-    <div class="row">
-      <h2>Notes : {{ log.notes }}</h2>
-    </div>
-    <hr />
-    <div *ngFor="let item of log.logItems" class="row">
-      <h4>{{ item.platform }}</h4>
-      <h4>{{ item.deliverable }}</h4>
-      <h4>{{ item.quantity }}</h4>
-      <h4>{{ item.currency }}</h4>
-      <h4>{{ item.rate }}</h4>
-    </div>
-  </div>
-</div>
- -->

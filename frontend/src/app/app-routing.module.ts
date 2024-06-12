@@ -15,6 +15,11 @@ const routes: Routes = [
     component: LoginCredentialsComponent
   },
   {
+    path: 'teo',
+    loadChildren: () =>
+      import('./modules/teo/teo.module').then((m) => m.TeoModule),
+  },
+  {
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard],

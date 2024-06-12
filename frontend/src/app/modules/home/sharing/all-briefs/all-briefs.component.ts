@@ -4,7 +4,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SalesService } from 'src/app/core/services/sales.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { ToastrService } from 'ngx-toastr';
@@ -42,7 +41,7 @@ export class AllBriefsComponent {
     location: [],
     meaning: 'All'
   };
-  
+
   displayedColumns1: string[] = ['color', 'meaning'];
   colorLegend = [
     { color: 'none', meaning: 'All' },
@@ -54,6 +53,8 @@ export class AllBriefsComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @ViewChild(MatSort) sort!: MatSort;
+
+
 
   constructor(
     private salesService: SalesService,
@@ -72,6 +73,7 @@ export class AllBriefsComponent {
         this.users[user.id] = user.name;
       });
     });
+
   }
 
   private getAllBriefs(): void {
@@ -102,8 +104,16 @@ export class AllBriefsComponent {
         }
         return data.Status === filter;
       };
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = (item : any, property: any) => {
+        const value = this.getPropertyValue(item, property);
+    if (value === null || value === undefined || value === '') {
+      // Returning a high value to ensure empty or null values go to the end when sorting
+      return Number.MAX_SAFE_INTEGER;
+    }
+    return value;
+  };
+  this.dataSource.sort = this.sort;
+  this.dataSource.paginator = this.paginator;
     });
 
     this.activatedRoute.params.subscribe((params) => {
@@ -113,6 +123,19 @@ export class AllBriefsComponent {
         .subscribe((data: any) => {});
     });
   }
+
+  private getPropertyValue(item: any, property: string): any {
+    switch (property) {
+      case 'Client': return item.client?.name;
+      case 'Sales': return item.user.name;
+      case 'Talent': return item.task?.assignedUsers[0]?.name;
+      case 'CreatedDate': return new Date(item.createdAt ?? item.task?.createdAt);
+      case 'AssignedDate': return item.task ? new Date(item.task.createdAt) : null;
+      case 'TaskDeadline': return item.task ? new Date(item.task.deadline) : null;
+      default: return item[property];
+    }
+  }
+
   private extractUniqueLocations(): void {
     const locationSet = new Set<string>();
     this.briefDetails.data.forEach((item: any) => {
@@ -121,7 +144,7 @@ export class AllBriefsComponent {
       }
     });
     this.uniqueLocations = Array.from(locationSet);
-  } 
+  }
   public viewedTask(id: number): void {
     this.salesService.viewedByTalent(id).subscribe((data: any) => {});
     if (this.userRole == 'sales') {
@@ -131,32 +154,6 @@ export class AllBriefsComponent {
     }
   }
 
-  public drop(event: CdkDragDrop<string[]>): void {
-    {
-      moveItemInArray(
-        this.dataSource.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-
-      const updatedPriorities = this.dataSource.data.map(
-        (item: any, index: any) => {
-          return { id: item.id, newPriority: index + 1 };
-        }
-      );
-
-      this.salesService.updatePriorities(updatedPriorities).subscribe(
-        (response) => {
-          setTimeout(() => {
-            window.location.reload();
-          }, 200);
-        },
-        (error) => {
-          console.error('Error updating priorities:', error);
-        }
-      );
-    }
-  }
 
   public deleteBrief(inputdata: any): void {
     this.dialogService

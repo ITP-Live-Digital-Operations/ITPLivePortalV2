@@ -8,7 +8,9 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/components/shared.module';
-import { UserstatsComponent } from './userstats/userstats.component'
+import { UserstatsComponent } from './userstats/userstats.component';
+import { TeamSuggestionsComponent } from './team-suggestions/team-suggestions.component';
+import { ViewSuggestionComponent } from './team-suggestions/view-suggestion/view-suggestion.component'
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { UserstatsComponent } from './userstats/userstats.component'
     UserListComponent,
     RegisterUserComponent,
     EditUserComponent,
-    UserstatsComponent
+    UserstatsComponent,
+    TeamSuggestionsComponent,
+    ViewSuggestionComponent
   ],
   imports: [
     CommonModule,

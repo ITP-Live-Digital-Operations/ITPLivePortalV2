@@ -129,26 +129,42 @@ export class SingleInfluencerLogsComponent {
           'Instagram Reels',
           'IGTV',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       case 'Tiktok':
         return [
           'Short-form video content',
           'Hashtag challenges',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       case 'Snapchat':
         return [
           'Snap stories',
           'Geofilters and lenses',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
-      case 'Twitter':
+      case 'X':
         return [
           'Tweets',
           'Retweets',
           'Twitter threads',
           'Hashtags',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       case 'Facebook':
         return [
@@ -157,6 +173,10 @@ export class SingleInfluencerLogsComponent {
           'Live videos',
           'Groups',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       case 'Youtube':
         return [
@@ -166,6 +186,17 @@ export class SingleInfluencerLogsComponent {
           'Collaborations with other YouTubers or brands',
           'Product reviews or demonstrations',
           'Influencer partnerships and collaborations',
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
+        ];
+      case 'Other':
+        return [
+          'Content usage rights',
+          'Half day shoot',
+          'Full day shoot',
+          'Event attendance',
         ];
       default:
         return [];

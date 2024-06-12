@@ -18,6 +18,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { SubmitSuggestionComponent } from '../sharing/submit-suggestion/submit-suggestion.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -105,7 +106,7 @@ export class HomeComponent {
     private notificationService: NotificationService,
     private userService: UserService,
     private toastrService: ToastrService,
-    private dialogService: ConfirmationDialogService
+    private dialogService: ConfirmationDialogService,
   ) {}
 
   ngOnInit(): void {
@@ -171,7 +172,7 @@ export class HomeComponent {
     this.backButton = !noBackButtonRoutes.some(route => url.endsWith(route));
     this.themeClass = url.endsWith('/forms') ? 'content-noScroll' : '';
   }
-  
+
   public toggleNotificationBox(): void {
     this.dialog.open(NotificationComponent, {
       width: '680px',
@@ -276,5 +277,16 @@ export class HomeComponent {
         }
       });
   }
-     
+
+  submitSuggestion() {
+    this.dialog.open(SubmitSuggestionComponent, {
+      width: '100vh',
+      height: '70vh',
+      data: {
+        userId: this.userId,
+      },
+    });
+
+  }
+
 }

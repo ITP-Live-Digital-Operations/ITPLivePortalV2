@@ -2,7 +2,7 @@ import { InfluencerStatisticsModel } from "./influencerStatistics.model";
 
 export interface InfluencerModel
  {
-  [key: string]: any; 
+  [key: string]: any;
   id: number;
   Name: string;
   Gender: string;
