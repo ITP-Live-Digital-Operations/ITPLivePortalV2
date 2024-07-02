@@ -516,11 +516,14 @@ export class InfluencersComponent {
       const filterObject = JSON.parse(filter);
 
       const isMatchSearch = filterObject.search
-        ? data.Name?.trim().toLowerCase().includes(filterObject.search) ||
-          data.InstagramHandle?.trim()
-            .toLowerCase()
-            .includes(filterObject.search)
-        : true;
+      ? data.Name?.trim().toLowerCase().includes(filterObject.search) ||
+        data.InstagramHandle?.trim().toLowerCase().includes(filterObject.search) ||
+        data.TiktokHandle?.trim().toLowerCase().includes(filterObject.search) ||
+        data.YoutubeHandle?.trim().toLowerCase().includes(filterObject.search) ||
+        data.SnapchatHandle?.trim().toLowerCase().includes(filterObject.search) ||
+        data.TwitterHandle?.trim().toLowerCase().includes(filterObject.search) /* ||
+        data.FacebookHandle?.trim().toLowerCase().includes(filterObject.search) */
+      : true;
 
       const isMatchGender =
         !this.filterCriteria.gender.length ||
