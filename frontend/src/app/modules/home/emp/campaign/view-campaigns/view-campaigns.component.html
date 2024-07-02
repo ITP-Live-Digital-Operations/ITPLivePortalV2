@@ -11,7 +11,7 @@
     <input
       type="text"
       matInput
-      [matAutocomplete]="autoCampaign"
+      [matAutocomplete]="autoCampaign "
       [(ngModel)]="selectedCampaign"
       (input)="searchCampaigns($any($event).target.value)"
       (focus)="searchCampaigns($any($event).target.value)"
