@@ -49,8 +49,53 @@ exports.countUploadedBriefsByUser = (req, res) => {
 
 
 exports.countAddedLogsByUser = (req, res) => {
+  const oneWeekAgo = new Date(new Date() - 7 * 24 * 60 * 60 * 1000);
+
   Log.findAll({
-    where : {userID : { [models.Sequelize.Op.ne]: 1 }},
+    where: {
+      userID: { [models.Sequelize.Op.ne]: 1 }
+    },
+    attributes: [
+      [models.sequelize.fn('COUNT', models.sequelize.col('userID')), 'count'],
+      [models.sequelize.fn('SUM', 
+        models.sequelize.literal(`CASE WHEN logs.createdAt >= '${oneWeekAgo.toISOString()}' THEN 1 ELSE 0 END`)
+      ), 'countLastWeek']
+    ],
+    include: [
+      {
+        model: models.User,
+        as: 'user',
+        attributes: ['name'],
+      },
+    ],
+    group: ['user.id', 'user.name'],
+    order: [[models.sequelize.literal('count DESC')]],
+  })
+    .then((data) => {
+      
+      const reshapedData = data.map(item => ({
+        count: parseInt(item.dataValues.count),
+        weekCount: parseInt(item.dataValues.countLastWeek),
+        name: item.dataValues.user.name,
+      }));
+      res.status(200).send(reshapedData);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: 'error',
+        message: err.message,
+      });
+    });
+};
+
+/* exports.countLastWeekAddedLogsByUser = (req, res) => {
+  Log.findAll({
+    where : {
+      userID : { [models.Sequelize.Op.ne]: 1 },
+      createdAt: {
+        [models.Sequelize.Op.gt]: new Date(new Date() - 7 * 24 * 60 * 60 * 1000),
+      },
+    },
     attributes: [
       [models.sequelize.fn('COUNT', models.sequelize.col('userID')), 'count'],
     ],
@@ -79,7 +124,9 @@ exports.countAddedLogsByUser = (req, res) => {
         message: err.message,
       });
     });
-};
+}; */
+
+
 
 exports.countAddedInfluencersByUser = (req, res) => {
   Influencer.findAll({

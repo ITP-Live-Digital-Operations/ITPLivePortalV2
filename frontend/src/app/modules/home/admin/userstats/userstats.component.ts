@@ -18,6 +18,7 @@ export class UserstatsComponent implements OnInit {
   countTalentTasks:MatTableDataSource<userCountModel>;
   countInfluencerRemarksByUser:MatTableDataSource<userCountModel>;
   displayedColumns: string[] = ['name', 'count'];
+  displayedColumnsLogs: string[] = ['name', 'count', 'weekCount'];
 
   constructor(private userStatsService: UserstatsService) {
     this.uploadedBriefsDataSource = new MatTableDataSource<userCountModel>([]);
@@ -113,8 +114,9 @@ this.userStatsService.countAddedInfluencersByUser().subscribe(
 fetccountAddedLogsByUserhData():void{
 this.userStatsService.countAddedLogsByUser().subscribe(
   (data: userCountModel[]) => {
-
+    console.log(data);
     this.countAddedLogsByUser = new MatTableDataSource<userCountModel>(data);
+
   },
   (error) => {
     console.error('Error fetching added celebrities data: ', error);
