@@ -58,7 +58,7 @@ exports.countAddedLogsByUser = (req, res) => {
     attributes: [
       [models.sequelize.fn('COUNT', models.sequelize.col('userID')), 'count'],
       [models.sequelize.fn('SUM', 
-        models.sequelize.literal(`CASE WHEN logs.createdAt >= '${oneWeekAgo.toISOString()}' THEN 1 ELSE 0 END`)
+        models.sequelize.literal(`CASE WHEN \`${Log.tableName}\`.\`createdAt\` >= '${oneWeekAgo.toISOString()}' THEN 1 ELSE 0 END`)
       ), 'countLastWeek']
     ],
     include: [
