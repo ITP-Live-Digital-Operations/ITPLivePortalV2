@@ -56,9 +56,9 @@ exports.countAddedLogsByUser = (req, res) => {
       userID: { [models.Sequelize.Op.ne]: 1 }
     },
     attributes: [
-      [models.sequelize.fn('COUNT', models.sequelize.col('userID')), 'count'],
+      [models.sequelize.fn('COUNT', models.sequelize.col('Logs.id')), 'count'],
       [models.sequelize.fn('SUM', 
-        models.sequelize.literal(`CASE WHEN \`${Log.tableName}\`.\`createdAt\` >= '${oneWeekAgo.toISOString()}' THEN 1 ELSE 0 END`)
+        models.sequelize.literal('CASE WHEN `' + Log.tableName + '`.`createdAt` >= :oneWeekAgo THEN 1 ELSE 0 END')
       ), 'countLastWeek']
     ],
     include: [
@@ -70,9 +70,9 @@ exports.countAddedLogsByUser = (req, res) => {
     ],
     group: ['user.id', 'user.name'],
     order: [[models.sequelize.literal('count DESC')]],
+    replacements: { oneWeekAgo: oneWeekAgo.toISOString() }
   })
     .then((data) => {
-      
       const reshapedData = data.map(item => ({
         count: parseInt(item.dataValues.count),
         weekCount: parseInt(item.dataValues.countLastWeek),
