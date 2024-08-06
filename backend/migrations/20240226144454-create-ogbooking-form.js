@@ -1,7 +1,7 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface, DataTypes) {
     await queryInterface.createTable('ogbookingform', {
       id :{
         allowNull: false,
@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      ogbookingId: {
+      /* ogbookingId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -131,18 +131,18 @@ module.exports = {
           model: 'users',
           key: 'id'
         }
-      },
+      }, */
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       }
     });
   },
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface, DataTypes) {
     await queryInterface.dropTable('ogbookingform');
   }
 };

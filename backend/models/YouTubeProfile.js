@@ -1,31 +1,31 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class TikTokProfile extends Model {
+  class YouTubeProfile extends Model {
     static associate(models) {
-      TikTokProfile.belongsTo(models.Influencer, {
+      YouTubeProfile.belongsTo(models.Influencer, {
         foreignKey: "influencerId",
         as: "influencer",
       });
-      TikTokProfile.hasMany(models.TikTokAudienceDemographic, {
-        foreignKey: "tiktokProfileId",
+      YouTubeProfile.hasMany(models.YouTubeAudienceDemographic, {
+        foreignKey: "youtubeProfileId",
         as: "audienceDemographics",
       });
-      TikTokProfile.hasMany(models.TikTokInterest, {
-        foreignKey: "tiktokProfileId",
+      YouTubeProfile.hasMany(models.YouTubeInterest, {
+        foreignKey: "youtubeProfileId",
         as: "interests",
       });
-      TikTokProfile.hasMany(models.TikTokStatHistory, {
-        foreignKey: "tiktokProfileId",
+      YouTubeProfile.hasMany(models.YouTubeStatHistory, {
+        foreignKey: "youtubeProfileId",
         as: "statHistory",
       });
-      TikTokProfile.hasMany(models.TikTokVideo, {
-        foreignKey: "tiktokProfileId",
+      YouTubeProfile.hasMany(models.YouTubeVideo, {
+        foreignKey: "youtubeProfileId",
         as: "videos",
       });
     }
   }
-  TikTokProfile.init(
+  YouTubeProfile.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -42,20 +42,17 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       userId: DataTypes.STRING,
-      secUid: DataTypes.STRING,
       username: DataTypes.STRING,
       fullName: DataTypes.STRING,
       profilePicture: DataTypes.STRING,
-      bio: DataTypes.TEXT,
-      isPrivate: DataTypes.BOOLEAN,
+      description: DataTypes.TEXT,
       isVerified: DataTypes.BOOLEAN,
-      followerCount: DataTypes.INTEGER,
-      followingCount: DataTypes.INTEGER,
-      postCount: DataTypes.INTEGER,
-      avgLikes: DataTypes.FLOAT,
+      subscriberCount: DataTypes.INTEGER,
+      videoCount: DataTypes.INTEGER,
       avgViews: DataTypes.FLOAT,
+      avgLikes: DataTypes.FLOAT,
       avgComments: DataTypes.FLOAT,
-      totalLikes: DataTypes.BIGINT,
+      totalViews: DataTypes.BIGINT,
       engagementRate: DataTypes.FLOAT,
       city: DataTypes.STRING,
       country: DataTypes.STRING,
@@ -64,9 +61,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "TikTokProfile",
-      tableName: "tiktok_profiles",
+      modelName: "YouTubeProfile",
+      tableName: "youtube_profiles",
     }
   );
-  return TikTokProfile;
+  return YouTubeProfile;
 };

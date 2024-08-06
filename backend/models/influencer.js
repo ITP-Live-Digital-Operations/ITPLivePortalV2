@@ -34,6 +34,18 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "influencerId",
         as: "influencerMetrics",
       });
+      Influencer.hasOne(models.InstagramProfile, {
+        foreignKey: "influencerId",
+        as: "instagramProfile",
+      });
+      Influencer.hasOne(models.YouTubeProfile, {
+        foreignKey: "influencerId",
+        as: "youtubeProfile",
+      });
+      Influencer.hasOne(models.TikTokProfile, {
+        foreignKey: "influencerId",
+        as: "tiktokProfile",
+      });
     }
   }
   Influencer.init(
