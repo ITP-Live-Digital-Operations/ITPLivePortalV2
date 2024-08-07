@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientModel } from 'src/app/core/interfaces/client.model';
 import { ClientService } from 'src/app/core/services/client.service';
+import { UserService } from 'src/app/core/services/user.service';
 import { NewClientComponent } from 'src/app/modules/home/sharing/clients/new-client/new-client.component';
 import {
   campaignobjectives,
@@ -27,15 +28,18 @@ export class BasicInformationComponent {
   clients: any;
   brands: any;
 
+
   public form!: FormGroup;
 
   constructor(
     private rootFormGroup: FormGroupDirective,
     private clientService: ClientService,
     private dialog: MatDialog,
+    private userService: UserService,
   ) {}
 
   ngOnInit() {
+    
     this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup;
     this.getClients();
     this.setupFormChanges();
@@ -44,6 +48,10 @@ export class BasicInformationComponent {
       'brandId',
       new FormControl({ value: '', disabled: true })
     );
+    if (Number(this.userService.getID()) === 78 ){
+        currencies.push("USD")
+        currencies.push("INR")
+    }
   }
 
   private getClients(): void {

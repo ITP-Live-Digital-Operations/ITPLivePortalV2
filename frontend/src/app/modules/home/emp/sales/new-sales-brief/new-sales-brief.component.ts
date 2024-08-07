@@ -181,7 +181,7 @@ export class NewSalesBriefComponent {
 
       this.uploadFiles(this.newBrief.id, this.newForm.value.FileNotes);
 
-      if (itpDepartment == 'Originals' || itpDepartment == 'UAE') {
+      if (itpDepartment == 'Originals' || itpDepartment == 'UAE' ) {
         // Zineb will be notified usually
         for (let i = 0; i < this.headsofUAE.length; i++) {
           let id = this.headsofUAE[i];
@@ -194,7 +194,7 @@ export class NewSalesBriefComponent {
             .createNotification(id, input)
             .subscribe((notification) => {});
         }
-      } else if (itpDepartment == 'KSA' || itpDepartment == 'Gaming') {
+      } else if (itpDepartment == 'KSA' || itpDepartment == 'Gaming' || itpDepartment == 'USA' || itpDepartment == 'India') {
         // Rachelle will be notified usually
         for (let i = 0; i < this.headsOfKSA.length; i++) {
           let id = this.headsOfKSA[i];
