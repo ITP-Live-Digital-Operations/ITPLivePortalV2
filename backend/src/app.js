@@ -59,7 +59,8 @@ app.use(
         "https://cdn.jsdelivr.net",
         "http://localhost:3000",
       ],
-      imgSrc: ["'self'", "data:"],
+      imgSrc: ["'self'", "data:",
+        "https://*.modash.io",],
     },
   })
 );

@@ -85,20 +85,9 @@ const api = axios.create({
 
 
 async function fetchProfileData(platform, userId, profileId, influencerId) {
-  //if id is 49 load files from api_responses
-  if (influencerId == 49) {
-    const filePath = path.join(__dirname, 'api_responses', `${platform}-49.json`);
-    try {
-      const fileContent = await fs.readFile(filePath, 'utf-8');
-      return JSON.parse(fileContent);
-    }
-    catch (error) {
-      logger.error(`Error loading ${platform} data for ${userId}:`, error);
-      return null;
-    }
-  }else{
+
   try {
-    await rateLimiter.waitForToken();
+   await rateLimiter.waitForToken();
     const response = await api.get(`/${platform}/profile/${userId}/report`);
     /* await saveApiResponse(platform, userId, response.data); */
     return response.data;
@@ -117,7 +106,7 @@ async function fetchProfileData(platform, userId, profileId, influencerId) {
     return null;
   }
 }
-}
+
 
 async function saveIncidentToFile(incident) {
   const filePath = path.join(__dirname, 'invalid_profiles_log.json');
