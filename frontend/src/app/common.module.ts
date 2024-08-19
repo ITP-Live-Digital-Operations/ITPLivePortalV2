@@ -52,7 +52,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatChipsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    DragDropModule
+    DragDropModule,
+  
   ],
 })
 export class MaterialModule {}

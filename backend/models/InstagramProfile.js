@@ -9,27 +9,27 @@ module.exports = (sequelize, DataTypes) => {
       });
       InstagramProfile.hasMany(models.InstagramAudienceDemographic, {
         foreignKey: "instagramProfileId",
-        as: "audienceDemographics",
+        as: "InstagramAudienceDemographic",
       });
       InstagramProfile.hasMany(models.InstagramInterest, {
         foreignKey: "instagramProfileId",
-        as: "interests",
+        as: "InstagramInterest",
       });
       InstagramProfile.hasMany(models.InstagramBrandAffinity, {
         foreignKey: "instagramProfileId",
-        as: "brandAffinity",
+        as: "InstagramBrandAffinity",
       });
       InstagramProfile.hasMany(models.InstagramHashtag, {
         foreignKey: "instagramProfileId",
-        as: "hashtags",
+        as: "InstagramHashtag",
       });
       InstagramProfile.hasMany(models.InstagramMention, {
         foreignKey: "instagramProfileId",
-        as: "mentions",
+        as: "InstagramMention",
       });
       InstagramProfile.hasMany(models.InstagramStatHistory, {
         foreignKey: "instagramProfileId",
-        as: "statHistory",
+        as: "InstagramStatHistory",
       });
       InstagramProfile.hasMany(models.InstagramPost, {
         foreignKey: "instagramProfileId",
@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
       postCount: DataTypes.INTEGER,
       avgLikes: DataTypes.FLOAT,
       avgComments: DataTypes.FLOAT,
-      avgViews: DataTypes.FLOAT,
+      avgReelsPlays: DataTypes.FLOAT,
       engagementRate: DataTypes.FLOAT,
       city: DataTypes.STRING,
       country: DataTypes.STRING,

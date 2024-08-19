@@ -9,19 +9,19 @@ module.exports = (sequelize, DataTypes) => {
       });
       TikTokProfile.hasMany(models.TikTokAudienceDemographic, {
         foreignKey: "tiktokProfileId",
-        as: "audienceDemographics",
+        as: "TikTokAudienceDemographic",
       });
       TikTokProfile.hasMany(models.TikTokInterest, {
         foreignKey: "tiktokProfileId",
-        as: "interests",
+        as: "TikTokInterest",
       });
       TikTokProfile.hasMany(models.TikTokStatHistory, {
         foreignKey: "tiktokProfileId",
-        as: "statHistory",
+        as: "TikTokStatHistory",
       });
       TikTokProfile.hasMany(models.TikTokVideo, {
         foreignKey: "tiktokProfileId",
-        as: "videos",
+        as: "TikTokVideo",
       });
     }
   }

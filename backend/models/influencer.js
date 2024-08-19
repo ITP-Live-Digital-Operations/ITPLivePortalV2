@@ -270,7 +270,25 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-    },
+      // added after modash
+      profilePicture :{
+        type: DataTypes.STRING(255),
+        defaultValue: null,
+      },
+      ageGroup: {
+        type: DataTypes.STRING(50),
+        defaultValue: null,
+      },
+      avgComments : {
+        type: DataTypes.FLOAT,
+        defaultValue: null,
+      },
+      engagementRate: {
+        type: DataTypes.FLOAT,
+        defaultValue: null,
+      },
+    
+      },
     {
       sequelize,
       tableName: "influencer",

@@ -52,6 +52,9 @@ import { TopInfluencersByCpmComponent } from './general-statistics/topinfluencer
 import { TopInfluencersByCPEComponent } from './general-statistics/topinfluencers/top-influencers-by-cpe/top-influencers-by-cpe.component';
 import { TopInfluencersByMarginProfitComponent } from './general-statistics/topinfluencers/top-influencers-by-margin-profit/top-influencers-by-margin-profit.component';
 import { SubmitSuggestionComponent } from './submit-suggestion/submit-suggestion.component';
+import { InstagramDetailsComponent } from './influencer-id/instagram-details/instagram-details.component';
+import { TiktokDetailsComponent } from './influencer-id/tiktok-details/tiktok-details.component';
+import { YoutubeDetailsComponent } from './influencer-id/youtube-details/youtube-details.component';
 
 
 
@@ -99,6 +102,9 @@ import { SubmitSuggestionComponent } from './submit-suggestion/submit-suggestion
     TopInfluencersByCPEComponent,
     TopInfluencersByMarginProfitComponent,
     SubmitSuggestionComponent,
+    InstagramDetailsComponent,
+    TiktokDetailsComponent,
+    YoutubeDetailsComponent,
 
 
   ],

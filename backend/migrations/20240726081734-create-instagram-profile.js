@@ -30,7 +30,7 @@ module.exports = {
       postCount: Sequelize.INTEGER,
       avgLikes: Sequelize.FLOAT,
       avgComments: Sequelize.FLOAT,
-      avgViews: Sequelize.FLOAT,
+      avgReelsPlays: Sequelize.FLOAT,
       engagementRate: Sequelize.FLOAT,
       city: Sequelize.STRING,
       country: Sequelize.STRING,

@@ -1,60 +1,61 @@
-import { Component, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { UserService } from 'src/app/core/services/user.service';
+import { InfluencerProfile } from 'src/app/core/interfaces/influencerAPI.model';
+import { LogModel, LogModelUpdated } from 'src/app/core/interfaces/logModel';
+import { LogService } from 'src/app/core/services/log.service';
 
 @Component({
   selector: 'app-influencer-id',
   templateUrl: './influencer-id.component.html',
   styleUrls: ['./influencer-id.component.scss'],
 })
-export class InfluencerIdComponent {
-  public id: number = this.source.id;
-  public influencerData: any;
-  public influencerRating: any;
-  public users: any = {};
-  public selectedComponent: string = 'basicInfo';
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+export class InfluencerIdComponent implements OnInit {
+  influencerId: number = 0;
+  profile!: InfluencerProfile;
+  selectedPlatform: string | null = null;
+  logs: LogModelUpdated[] = [];
 
   constructor(
-    private service: InfluencerService,
-    private userService: UserService,
-    @Inject(MAT_DIALOG_DATA) public source: any,
-    private dialogRef: MatDialogRef<InfluencerIdComponent>
+    private influencerService: InfluencerService,
+    private logService: LogService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe((data) => {
-      data.forEach((user) => {
-        this.users[user.id] = user.name;
-      });
-    });
-    this.GetInfluencerData(this.source.id);
-    this.GetInfluencerRating(this.source.id);
-    this.selectedComponent = 'basicInfo';
-  }
-  selectComponent(component: string) {
-    this.selectedComponent = component;
-  }
-
-  private GetInfluencerData(inputdata: any): void {
-    this.service.getInfluencer(inputdata).subscribe((item) => {
-      this.influencerData = item;
+    this.route.paramMap.subscribe((params) => {
+      this.influencerId = Number(params.get('id')!);
+      this.getInfluencerProfile(this.influencerId);
+      this.getInfluencerLogs(this.influencerId);
     });
   }
 
-  private GetInfluencerRating(inputdata: any): void {
-    this.service.getAverageInfluencerRating(inputdata).subscribe((item) => {
-      this.influencerRating = item;
+  private getInfluencerProfile(influencerId: number): void {
+    this.influencerService.getInfluencerProfile(influencerId).subscribe((data) => {
+      if (data) {
+        this.profile = data;
+      } else {
+        console.error("No data found");
+      }
     });
   }
 
-  closeDialog(): void {
-    this.dialogRef.close();
+  private getInfluencerLogs(influencerId: number): void {
+    this.logService.getInfluencerLogs(influencerId).subscribe((data) => {
+      if (data) {
+        this.logs = data;
+        console.log(this.logs);
+      } else {
+        console.error("No logs found");
+      }
+    });
+  }
+
+  togglePlatformDetails(platform: string): void {
+    if (this.selectedPlatform === platform) {
+      this.selectedPlatform = null;
+    } else {
+      this.selectedPlatform = platform;
+    }
   }
 }

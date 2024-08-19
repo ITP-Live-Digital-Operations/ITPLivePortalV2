@@ -1,115 +1,40 @@
-<div class="top-container">
-  <button mat-icon-button class="expandable-button"
-  type="button"
-  (click)="redirectToNewLog(profileData?.data.id, profileData?.data.Name)"
-  >
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <defs>
-      <linearGradient id="rainbowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="17%" style="stop-color:orange;" />
-        <stop offset="34%" style="stop-color:yellow;" />
-        <stop offset="100%" style="stop-color:red;" />
-      </linearGradient>
-    </defs>
-    <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="url(#rainbowGradient)"></path>
-  </svg>
-  </button>
-</div>
-
-
-<div class="table-container">
-  <table mat-table [dataSource]="dataSource" matSort class="mat-table-rounded" >
-    <ng-container matColumnDef="Campaign">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Campaign</th>
-      <td mat-cell *matCellDef="let element">{{ element.campaign }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="Contact">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.userID | userNamePipe | async }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
-      <td mat-cell *matCellDef="let element">{{ element.createdAt | date }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="Time_to_reply">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Reply time</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.time_to_reply }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-      <td mat-cell *matCellDef="let element">{{ element.type | uppercase }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="Action">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>View</th>
-      <td mat-cell *matCellDef="let element; let i = index">
-        <mat-icon (click)="viewLog(i, element.type)"> remove_red_eye </mat-icon>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns; let i = index"
-    ></tr>
-  </table>
-  <mat-paginator
-    [length]="dataSource?.data.length"
-    [pageSize]="5"
-    [pageSizeOptions]="[3, 5, 10, 25, 100]"
-    aria-label="Select page"
-  >
-  </mat-paginator>
-
-  <hr />
-  <!-- view package logs -->
-  <div class="package" *ngIf="package">
-    <div class="row">
-      <h2>Notes : {{ log.notes }}</h2>
-      <h2>Rate: {{ log.currency }} {{ log.rate }}</h2>
-    </div>
-    <hr />
-    <div *ngFor="let package of log.packages" class="row">
-      <h4>{{ package.platform }}</h4>
-      <h4>{{ package.deliverable }}</h4>
-      <h4>{{ package.quantity }}</h4>
+<div class="logs-container">
+  <div class="logs-grid">
+    <div *ngFor="let log of logs" class="log-item" (click)="viewLogDetails(log)">
+      <div class="log-header">
+        <span class="log-type">{{ log.type | uppercase }}</span>
+        <span class="log-date">{{ log.createdAt | date }}</span>
+      </div>
+      <div class="log-content">
+        <p><strong>Campaign:</strong> {{ log.campaign }}</p>
+        <p><strong>User:</strong> {{ log.userID }}</p>
+        <p><strong>Reply Time:</strong> {{ log.time_to_reply }}</p>
+        <p><strong>Total Rate:</strong> {{ log.currency }} {{ getTotalRate(log) | number:'1.2-2' }}</p>
+      </div>
     </div>
   </div>
 
-  <!-- view single logs -->
-  <div class="single" *ngIf="single">
-    <div class="log-details mat-elevation-z8">
-      <div class="log-detail">
-        <span class="log-label">Platform:</span>
-        <span>{{log.logItems.platform}}</span>
+  <div *ngIf="selectedLog" class="log-details-overlay">
+    <div class="log-details">
+      <h3>Log Details</h3>
+      <button class="close-button" (click)="closeLogDetails()">×</button>
+      <div class="log-info">
+        <p><strong>Campaign:</strong> {{ selectedLog.campaign }}</p>
+        <p><strong>Type:</strong> {{ selectedLog.type | uppercase }}</p>
+        <p><strong>Date:</strong> {{ selectedLog.createdAt | date }}</p>
+        <p><strong>Reply Time:</strong> {{ selectedLog.time_to_reply }}</p>
+        <p><strong>Notes:</strong> {{ selectedLog.notes }}</p>
+        <p><strong>Total Rate:</strong> {{ selectedLog.currency }} {{ getTotalRate(selectedLog) | number:'1.2-2' }}</p>
       </div>
-      <div class="log-detail">
-        <span class="log-label">Deliverable:</span>
-        <span>{{log.logItems.deliverable}}</span>
+      <div>
+        <h4>{{ isSingleType(selectedLog) ? 'Log Items' : 'Packages' }}</h4>
+        <div *ngFor="let item of getLogItemsOrPackages(selectedLog)" class="item-info">
+          <p><strong>Platform:</strong> {{ item.platform }}</p>
+          <p><strong>Deliverable:</strong> {{ item.deliverable }}</p>
+          <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+          <p *ngIf="isSingleType(selectedLog)"><strong>Rate:</strong> {{ selectedLog.currency }} {{ getItemRate(item) | number:'1.2-2' }}</p>
+        </div>
       </div>
-      <div class="log-detail">
-        <span class="log-label">Quantity:</span>
-        <span>{{log.logItems.quantity}}</span>
-      </div>
-      <div class="log-detail">
-        <span class="log-label">Currency:</span>
-        <span>{{log.logItems.currency}}</span>
-      </div>
-      <div class="log-detail">
-        <span class="log-label">Rate:</span>
-        <span>{{log.logItems.rate}}</span>
-      </div>
-      <h2>Reply Time: {{log.time_to_reply}}</h2>
-      <h2>Notes: {{log.notes}}</h2>
     </div>
-
   </div>
 </div>

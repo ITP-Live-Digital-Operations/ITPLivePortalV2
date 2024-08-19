@@ -1,361 +1,172 @@
-mat-toolbar {
-  color: white; padding-top: 10vh;
-}
-
-mat-toolbar-row {
-  background-color: #080b21;
-  display: flex;
-}
-
-mat-sidenav {
-  position: fixed;
-  top: 2.5%; /* Center the element vertically */
-  bottom: 2.5%;
-  background: rgb(75, 75, 75);
-  background: linear-gradient(
-    0deg,
-    rgba(176, 186, 225, 0.2) 0%,
-    rgba(176, 186, 225, 0.15) 20%,
-    rgba(176, 186, 225, 0.1) 70%,
-    rgba(176, 186, 225, 0.02) 100%
-  );
-
-
-  color: white;
-  text-align: center;
-  border-bottom-left-radius: 10px;
-}
-
-.mat-mdc-icon-button {
-  color: #ffffff !important;
-}
-img {
-  width: 30px;
-  height: 30px;
-  margin-right: 8px;
-}
-
-
-.content {
-  height: calc(100vh - 98px);
-  border-radius: 10px;
-  margin: 16px;
-  // margin-left: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  color: lightgray;
-}
-
-mat-sidenav-container {
- /*  height: 100%;
-  background-color: hsla(232, 60%, 8%, 1);
-  background-image: radial-gradient(
-      at 86% 97%,
-      hsla(271, 0%, 0%, 1) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 22% 58%, #1f1fd66b 0px, transparent 50%);
-  animation: gradient 5s ease infinite;
-  background-size: 120% 120%; */
-  height: 100%;
-  /* Adjusted the base color to a lighter tone for a more modern feel */
-  background-color: rgba(22, 34, 103, 0.204);
-  /* Lightened the gradient colors and made them more subtle */
-  background-image: radial-gradient(
-      at 86% 97%,
-      hsla(271, 81%, 20%, 0.5) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 22% 58%, hsla(210, 73%, 34%, 0.3) 0px, transparent 50%);
-  animation: gradient 5s ease infinite;
-  background-size: 120% 120%;
-
-  }
-
-.content-area {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Aligns children vertically in the center */
-  align-items: center; /* Aligns children horizontally in the center, if you want */
-  height: 100%; /* Ensure it takes full height */
-  text-align: center; /* Centers the text, if needed */
-}
-
-
-
-  @keyframes gradient {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    25% {
-      background-position: 100% 25%;
-    }
-    50% {
-      background-position: 0% 0%;
-    }
-    75% {
-      background-position: 100% 75%;
-    }
-  }
-
-// background: rgb(35,35,35);
-// background: linear-gradient(180deg, rgba(35,35,35,1) 0%, rgba(35,35,35,1) 90%, rgb(1, 1, 1) 100%);
-
-mat-sidenav-content {
-  overflow-x: hidden;
-  justify-content: center;
-  max-width: 100%;
-  vertical-align: middle;
-  padding-top: 1vh;
-  padding-bottom: 2vh;
-}
-
-.menu {
-  z-index: 990;
-  position: relative;
-}
-
-
-.menu-item:hover {
-  /* Transition to a lighter gradient to match the updated background */
-  background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
-
-  transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
-}
-
-.menu-button {
-  transition: transform 0.3s ease;
-  margin-left: 15px;
-  padding-top: 7px;
-}
-.close-button {
-  position: absolute; /* Adjust if necessary to fit your layout needs */
-  right: 0; /* Align to the left side of the closest positioned ancestor */
-  z-index: 1; /* Ensure it has a z-index of 1 */
-  color: aliceblue; /* Keeping your inline style for color, but it's better to move styles here */
-}
-
-/* Icon rotated state, pointing up */
-.rotate-icon {
-  transform: rotate(180deg);
-}
-.account-pic {
-  border: 3px solid rgb(0, 255, 0); /* Adjust the border size and style as needed */
-  border-radius: 50%; /* Assuming the picture is circular */
-}
-
-/* Additional class for when the user is on leave */
-.on-leave-border {
-  border-color: red;
-}
-.avatar {
-  margin-top: 16px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-
-h4 {
-  margin-top: 8px;
-  font-weight: normal;
-}
-
-.designation {
-  font-size: 0.7rem;
-  color: lightgrey;
-}
-
-mat-divider {
-  margin-top: 16px;
-  margin-bottom: 16px;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-.spacer {
-  flex: 1 1 auto;
-}
-
-.icon {
-  color: white;
-}
-
-.a:hover {
-  color: blueviolet;
-}
-
-.router-container {
-  padding: 7vh 60px;
-  justify-content: center;
-  // overflow-y: scroll;
-  /* overflow-x: hidden ; */
-}
-
-::-webkit-scrollbar-track {
-  background-color: rgb(32, 32, 32);
-}
-
-/* customize the scroll bar thumb */
-::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 5px;
-}
-
-/* customize the scroll bar thumb on hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}
-
-/* customize the scroll bar width and height */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-
-.btn-container {
-  padding: 20px;
-}
-
-.notification-container {
-  position: relative;
-  display: inline-block;
-
-  /* to shrink container to the size of the icon */
-}
-
-.notification-icon {
-  // background: url('/assets/white-buttons/white-notification-bell-icon.png');
-  background-size: cover;
-  cursor: pointer;
-}
-.notification-icon:hover {
-/* Transition to a lighter gradient to match the updated background */
-background: linear-gradient(
-  112deg,
-  rgba(147, 149, 255, 0.8) 0%, /* Lightened color */
-  rgba(103, 105, 194, 0.8) 77%, /* More subtle middle transition */
-  rgba(86, 88, 189, 0.8) 100% /* Softened end color */
-);
-border-bottom-right-radius: 10px;
-border-top-right-radius: 10px;
-transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
-}
-
-::ng-deep
-.notification-dot {
-  position: absolute;
-  top: 5px;
-  left: 25px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background-color: red;
-}
-
-.notification-box {
-  right: 0;
-  /* start from the right of the page */
-  top: 100%;
-  /* place box just below the icon */
-  width: max-content;
-  /* takes as much width as needed for the content */
-  max-width: 300px;
-  /* or any maximum width you want to set */
-  max-height: 300px;
-  overflow-y: auto;
-  padding: 10px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.notification-box div {
-  border-bottom: 1px solid #ddd;
-  padding: 5px;
-}
-
-.notification-box p {
-  margin: 0;
-}
-
-.notification-box small {
-  display: block;
-  color: #666;
-  font-size: 80%;
-  margin-top: 5px;
-}
-
-.notification-box button {
-  display: block;
-  margin-top: 10px;
-  padding: 5px;
-  cursor: pointer;
-}
-
-@media (max-width: 1440px), (max-height: 900px) {
-  .router-container {
-    padding: 20px 50px;
-    background-color: rgba(8, 11, 33, 0.034);
-
-    animation: gradient 5s ease infinite;
-    background-size: 120% 120%;
-    // overflow-y: scroll;
-    /* overflow-x: hidden ; */
-  }
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 20%;
-  }
-  25% {
-    background-position: 100% 50%;
-  }
-  50% {
-    background-position: 50% 70%;
-  }
-  100% {
-    background-position: 0% 20%;
-  }
-}
-
-.full-width {
+.profile-container {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #f0f0f0;
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-span {
-  color: white;
-  flex-grow: 1;
-  padding-bottom: 2px !important; /* Let the text take up the remaining space */
-}
-
-mat-nav-list {
-  text-align: left;
-}
-
-mat-nav-list a.mat-list-item,
-mat-nav-list .mat-list-item {
-  justify-content: flex-start;
-  text-align: center;
-}
-
-.example-sidenav .nav-list-container {
+.profile-header {
   display: flex;
-  flex-direction: column;
-  justify-content: center; /* This centers the content vertically */
-  height: 100%; /* Full height of the parent container */
+  align-items: center;
+  margin-bottom: 40px;
+
+  .profile-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-right: 30px;
+    object-fit: cover;
+    border: 4px solid #FFF;
+  }
+
+  .profile-title {
+    flex-grow: 1;
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #FFF;
+    }
+
+    p {
+      margin: 5px 0 15px;
+      font-size: 1.2em;
+      color: #0f3460;
+    }
+
+    .profile-quick-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      span {
+        background-color: #16213e;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.9em;
+
+        i {
+          margin-right: 5px;
+          color: #FFF;
+        }
+      }
+    }
+  }
 }
 
-.content-noScroll {
-  overflow-y: hidden;
+.profile-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
-::ng-deep .mdc-list-item__primary-text{
-  color: white !important;
+.profile-info, .social-profiles, .metrics, .additional-info {
+  background-color: #16213e;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 0;
+  color: #e94560;
+  border-bottom: 2px solid #0f3460;
+  padding-bottom: 10px;
+}
+
+.social-profiles {
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .social-item {
+    background-color: #0f3460;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+
+    &.clickable {
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #1f2b4d;
+      }
+    }
+    i {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #e94560;
+    }
+
+    .social-platform {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .social-followers {
+      font-size: 0.9em;
+      color: #a0a0a0;
+    }
+  }
 }
 
 
-.selected {
-  background: linear-gradient(300deg, rgb(45, 47, 149) 0%, rgba(43, 45, 124, 0.85) 77%, rgba(36, 38, 119, 0.85) 100%);
+
+.metrics {
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+  }
+
+  .metric-item {
+    text-align: center;
+    background-color: #0f3460;
+    padding: 15px;
+    border-radius: 8px;
+
+    .metric-value {
+      display: block;
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #e94560;
+    }
+
+    .metric-label {
+      font-size: 0.9em;
+      color: #a0a0a0;
+    }
+  }
+}
+
+.additional-info {
+  h3 {
+    color: #e94560;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+}
+
+.platform-details {
+  margin-top: 20px;
+  background-color: #16213e;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logs-section {
+  margin-top: 2%;
 }

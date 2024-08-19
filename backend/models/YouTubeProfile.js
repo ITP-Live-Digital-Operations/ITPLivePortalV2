@@ -9,19 +9,19 @@ module.exports = (sequelize, DataTypes) => {
       });
       YouTubeProfile.hasMany(models.YouTubeAudienceDemographic, {
         foreignKey: "youtubeProfileId",
-        as: "audienceDemographics",
+        as: "YouTubeAudienceDemographic",
       });
       YouTubeProfile.hasMany(models.YouTubeInterest, {
         foreignKey: "youtubeProfileId",
-        as: "interests",
+        as: "YouTubeInterest",
       });
       YouTubeProfile.hasMany(models.YouTubeStatHistory, {
         foreignKey: "youtubeProfileId",
-        as: "statHistory",
+        as: "YouTubeStatHistory",
       });
       YouTubeProfile.hasMany(models.YouTubeVideo, {
         foreignKey: "youtubeProfileId",
-        as: "videos",
+        as: "YouTubeVideo",
       });
     }
   }

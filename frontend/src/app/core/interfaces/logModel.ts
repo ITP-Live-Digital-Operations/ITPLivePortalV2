@@ -17,7 +17,7 @@ export interface LogModel {
   }
 
 
-  interface logItem {
+ export  interface logItem {
     id : number,
     logID : number,
     platform : string,
@@ -27,7 +27,7 @@ export interface LogModel {
     rate : number,
   }
 
-  interface logPackage {
+ export  interface logPackage {
     id : number,
     logID : number,
     platform : string,

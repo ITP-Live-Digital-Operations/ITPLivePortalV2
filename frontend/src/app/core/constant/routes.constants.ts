@@ -21,6 +21,8 @@ export const PATH: { [key: string]: string } = {
   topbyCPE:"/home/main/topbyCPE",
   topByMargin:"/home/main/topByMargin",
   submitSuggestions: "/home/main/submit-suggestions",
+  //after modash
+  influencerProfile: "/home/main/influencer",
 
 
   // admin routes

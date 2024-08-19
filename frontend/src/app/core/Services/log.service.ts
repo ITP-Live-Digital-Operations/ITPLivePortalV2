@@ -25,8 +25,8 @@ export class LogService {
     return this.http.get<LogModelUpdated[]>(`${this.logApiURL}/getAllLogsUpdated`)
   }
 
-  getInfluencerLogs(inputdata:any):Observable<LogModel[]>{
-    return this.http.get<LogModel[]>(`${this.logApiURL}/getInfluencerLogs/${inputdata}`)
+  getInfluencerLogs(inputdata:any):Observable<LogModelUpdated[]>{
+    return this.http.get<LogModelUpdated[]>(`${this.logApiURL}/getInfluencerLogs/${inputdata}`)
   }
 
   deleteLog(inputdata:any){

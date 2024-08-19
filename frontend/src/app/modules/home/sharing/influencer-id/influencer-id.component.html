@@ -1,75 +1,112 @@
+<div class="profile-container" *ngIf="profile">
+  <div class="profile-header">
+    <img [src]="profile.profilePicture || 'assets/default-avatar.png'" alt="{{ profile.Name }}" class="profile-avatar">
+    <div class="profile-title">
+      <h1>{{ profile.Name }}</h1>
+      <h3></h3>
+      <div class="profile-quick-info">
+        <span><i class="fas fa-map-marker-alt"></i> {{ profile.CityLocation }}, {{ profile.CountryLocation }}</span>
+        <span><i class="fas fa-language"></i> {{ profile.MainContentLanguage }}{{ profile.SubContentLang ? ', ' + profile.SubContentLang : '' }}</span>
+        <span><i class="fas fa-user"></i> {{ profile.Gender }}</span>
+        <span><i class="fas fa-birthday-cake"></i> {{ profile.ageGroup }}</span>
+      </div>
+    </div>
+  </div>
 
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
-
-    <!-- List of navigation items -->
-    <mat-nav-list >
-      <app-main
-      [profileData]="influencerData"
-      [id]="id"
-      [influencerRating]="influencerRating"
-    ></app-main>
-
-      <a mat-list-item class="menu-item basic" [class.selected]="selectedComponent === 'basicInfo'" (click)="selectComponent('basicInfo')">
-      <img src="../../../../../assets/white-buttons/information.png" />
-        Basic Information
-      </a>
-      <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'socialMedia'" (click)="selectComponent('socialMedia')">
-        <img src="../../../../../assets/white-buttons/social-media.png" />
-        Social Media Links</a>
-        <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'logs'" (click)="selectComponent('logs')">
-          <img src="../../../../../assets/white-buttons/logs.png" />
-          Logs</a>
-      <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'remarks'" (click)="selectComponent('remarks')">
-        <img src="../../../../../assets/white-buttons/remarks.png" />
-        Remarks</a>
-
-      <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'campaigns'" (click)="selectComponent('campaigns')">
-        <img src="../../../../../assets/white-buttons/campaign.png" />
-        Campaigns</a>
-      <a mat-list-item class="menu-item" [class.selected]="selectedComponent === 'starrating'" (click)="selectComponent('starrating')">
-        <img src="../../../../../assets/white-buttons/star.png" />
-        Star Rating</a>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-
-    <button mat-icon-button class="close-button" (click)="closeDialog()">
-      <mat-icon style="color: aliceblue">close</mat-icon>
-    </button>
-    <!-- Main content will be rendered here based on the selection -->
-<div class="content-area">
-    <ng-container *ngIf="selectedComponent === 'basicInfo'">
-      <app-table-content [profileData]="influencerData"></app-table-content
-      >
-    </ng-container>
-    <ng-container *ngIf="selectedComponent === 'socialMedia'">
-      <app-platform-links [profileData]="influencerData"></app-platform-links>
-    </ng-container>
-    <ng-container *ngIf="selectedComponent === 'logs'">
-      <app-logs-table
-          [users]="users"
-          [profileData]="influencerData"
-          [id]="id"
-        ></app-logs-table
-      >
-    </ng-container>
-    <ng-container *ngIf="selectedComponent === 'remarks'">
-      <app-influencer-remarks
-      [id]="id"
-      [profileData]="influencerData"></app-influencer-remarks>
-    </ng-container>
-    <ng-container *ngIf="selectedComponent === 'campaigns'">
-      <app-campaign-results [id]="id"></app-campaign-results>
-     </ng-container>
-     <ng-container *ngIf="selectedComponent === 'starrating'">
-      <app-influencer-star-rating
-      [influencerID]="id"
-    ></app-influencer-star-rating
-  >
-     </ng-container>
+  <div class="profile-content">
+    <div class="profile-info">
+      <h2>Profile Information</h2>
+      <p><strong>Main Vertical:</strong> {{ profile.MainVertical }}</p>
+      <p><strong>Sub Vertical:</strong> {{ profile.SubVertical }}</p>
+      <p><strong>Nationality:</strong> {{ profile.Nationality }}</p>
+      <p><strong>Email:</strong> {{ profile.Email }}</p>
+      <p><strong>ITP Relationship:</strong> {{ profile.ItpRelationship }}</p>
+      <p><strong>KSA License:</strong> {{ profile.KSALicense ? 'Yes' : 'No' }}</p>
+      <p><strong>UAE License:</strong> {{ profile.UAELicense ? 'Yes' : 'No' }}</p>
     </div>
 
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <div class="social-profiles">
+      <h2>Social Media Presence</h2>
+      <div class="social-grid">
+        <div class="social-item clickable" *ngIf="profile.InstagramFollowers" (click)="togglePlatformDetails('instagram')">
+          <i class="fab fa-instagram"></i>
+          <span class="social-platform">Instagram</span>
+          <span class="social-followers">{{ profile.InstagramFollowers | number }} followers</span>
+        </div>
+        <div class="social-item clickable" *ngIf="profile.TiktokFollowers" (click)="togglePlatformDetails('tiktok')">
+          <i class="fab fa-tiktok"></i>
+          <span class="social-platform">TikTok</span>
+          <span class="social-followers">{{ profile.TiktokFollowers | number }} followers</span>
+        </div>
+        <div class="social-item clickable" *ngIf="profile.YoutubeFollowers" (click)="togglePlatformDetails('youtube')">
+          <i class="fab fa-youtube"></i>
+          <span class="social-platform">YouTube</span>
+          <span class="social-followers">{{ profile.YoutubeFollowers | number }} subscribers</span>
+        </div>
+        <div class="social-item" *ngIf="profile.TwitterFollowers">
+          <i class="fab fa-twitter"></i>
+          <span class="social-platform">Twitter</span>
+          <span class="social-followers">{{ profile.TwitterFollowers | number }} followers</span>
+        </div>
+        <div class="social-item" *ngIf="profile.FacebookFollowers">
+          <i class="fab fa-facebook"></i>
+          <span class="social-platform">Facebook</span>
+          <span class="social-followers">{{ profile.FacebookFollowers | number }} followers</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <h2>Performance Metrics</h2>
+      <div class="metric-grid">
+        <div class="metric-item">
+          <span class="metric-value">{{ profile.engagementRate | percent:'1.2-2' }}</span>
+          <span class="metric-label">Engagement Rate</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">{{ profile.avgComments | number:'1.0-0' }}</span>
+          <span class="metric-label">Avg. Comments</span>
+        </div>
+        <div class="metric-item" *ngIf="profile.influencerMetrics?.CPE">
+          <span class="metric-value">{{ profile.influencerMetrics?.CPE | currency:'USD':'symbol':'1.2-2' }}</span>
+          <span class="metric-label">Cost Per Engagement</span>
+        </div>
+        <div class="metric-item" *ngIf="profile.influencerMetrics?.CPM">
+          <span class="metric-value">{{ profile.influencerMetrics?.CPM | currency:'USD':'symbol':'1.2-2' }}</span>
+          <span class="metric-label">Cost Per Mille</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Platform-specific details sections -->
+  <div *ngIf="selectedPlatform === 'instagram'" class="platform-details">
+    <app-instagram-details [profile]="profile.instagramProfile"></app-instagram-details>
+  </div>
+  <div *ngIf="selectedPlatform === 'tiktok'" class="platform-details">
+    <app-tiktok-details [profile]="profile.tiktokProfile"></app-tiktok-details>
+  </div>
+  <div *ngIf="selectedPlatform === 'youtube'" class="platform-details">
+    <app-youtube-details [profile]="profile.youtubeProfile"></app-youtube-details>
+  </div>
+
+   <!-- Logs section -->
+  <div class="logs-section">
+    <h2>Influencer Logs</h2>
+    <app-logs-table [logs]="logs"></app-logs-table>
+  </div>
+
+  <div class="additional-info" *ngIf="profile.Bio || profile.PreviousBrands">
+    <h2>Additional Information</h2>
+    <div *ngIf="profile.Bio">
+      <h3>Bio</h3>
+      <p>{{ profile.Bio }}</p>
+    </div>
+    <div *ngIf="profile.PreviousBrands">
+      <h3>Previous Brand Collaborations</h3>
+      <p>{{ profile.PreviousBrands }}</p>
+    </div>
+  </div>
+</div>

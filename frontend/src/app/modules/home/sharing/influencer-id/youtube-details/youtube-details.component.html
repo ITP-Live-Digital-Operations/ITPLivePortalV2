@@ -1,0 +1,12 @@
+<div class="youtube-details" *ngIf="profile">
+  <h3>YouTube Details</h3>
+  <p><strong>Channel Name:</strong> {{ profile.username }}</p>
+  <p><strong>Full Name:</strong> {{ profile.fullName }}</p>
+  <p><strong>Subscribers:</strong> {{ profile.subscriberCount | number }}</p>
+  <p><strong>Total Videos:</strong> {{ profile.videoCount | number }}</p>
+  <p><strong>Total Views:</strong> {{ profile.totalViews | number }}</p>
+  <p><strong>Avg. Views:</strong> {{ profile.avgViews | number:'1.0-0' }}</p>
+  <p><strong>Avg. Likes:</strong> {{ profile.avgLikes | number:'1.0-0' }}</p>
+  <p><strong>Avg. Comments:</strong> {{ profile.avgComments | number:'1.0-0' }}</p>
+  <p><strong>Engagement Rate:</strong> {{ profile.engagementRate | percent:'1.2-2' }}</p>
+</div>

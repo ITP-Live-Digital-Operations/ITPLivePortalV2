@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { InfluencerIdComponent } from '../influencer-id.component';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { InfluencerProfile } from 'src/app/core/interfaces/influencerAPI.model';
 
 @Component({
   selector: 'app-main',
@@ -11,12 +12,15 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 })
 export class MainComponent {
 
-  @Input() 
+  @Input()
   id!: number;
 
-  @Input() 
+  @Input()
   profileData: any;
 
-  @Input() 
+  @Input()
   influencerRating: any;
+
+  @Input()
+  influencerProfile!: InfluencerProfile
 }

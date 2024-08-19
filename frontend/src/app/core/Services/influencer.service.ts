@@ -9,6 +9,7 @@ import {
   influencerRemarkWithInfluencer,
   returnData,
 } from '../interfaces/influencersModel';
+import { InfluencerProfile, InstagramProfile, TikTokProfile, YouTubeProfile } from '../interfaces/influencerAPI.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
@@ -32,6 +33,14 @@ export class InfluencerService {
 
   influencerApiURL = environment.apiUrl + '/v1/influencers';
 
+  // Modash API calls for Influencer Profile start here
+  getInfluencerProfile(inputdata: number): Observable<InfluencerProfile> {
+    return this.http.get<InfluencerProfile>(
+      `${this.influencerApiURL}/getInfluencerProfileV2/${inputdata}`
+    );
+  }
+
+  // Modash API calls for Influencer Profile end here
   addInfluencer(inputdata: any) {
     return this.http.post(`${this.influencerApiURL}/addInfluencer`, inputdata);
   }

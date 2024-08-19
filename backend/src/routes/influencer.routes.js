@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { asyncHandler } = require('../middlewares/asyncHandler');
 const authHandler = require('../middlewares/authHandler');
 const influencerController = require('../controllers/influencer.controller');
+const influencerV2Controller = require('../controllers/influencerAPI.controller');
 
 
 router.route('/addInfluencer')
@@ -75,4 +76,19 @@ router.route('/updateInfluencerRemark/:id')
 
 router.route('/deleteInfluencerRemark/:id')
     .delete(asyncHandler(influencerController.deleteInfluencerRemark));
+
+router.route('/getInfluencerProfileV2/:id')
+    .get(asyncHandler(influencerV2Controller.getInfluencerProfileV2));    
+
+router.route("/updateInfluencerProfileV2/:id")
+    .patch(asyncHandler(influencerV2Controller.updateInfluencerProfileV2));
+
+router.route('/getInstagramProfile/:id')
+    .get(asyncHandler(influencerV2Controller.getInstagramProfile));
+
+router.route('/getYouTubeProfile/:id')
+    .get(asyncHandler(influencerV2Controller.getYouTubeProfile));
+
+router.route('/getTikTokProfile/:id')
+    .get(asyncHandler(influencerV2Controller.getTikTokProfile));
 module.exports = router;

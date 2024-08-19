@@ -666,17 +666,15 @@ export class InfluencersComponent {
     });
   }
 
-  public viewInfluencer(inputdata: any): void {
-    this.dialog?.open(InfluencerIdComponent, {
-      width: '100%',
-      height: '95%',
-      exitAnimationDuration: '1000ms',
-      enterAnimationDuration: '1000ms',
-      data: {
-        id: inputdata,
-      },
-    });
-  }
+  public viewInfluencer(influencerId: any): void {
+    console.log(influencerId);
+    console.log(this.path['influencerProfile']);
+    const url = this.router.serializeUrl(
+        this.router.createUrlTree([this.path['influencerProfile'], influencerId])
+    );
+    window.open(url, '_blank');
+}
+
   public redirectToNewInfluencer(): void {
     this.router.navigate([this.path['newInfluencer']]);
   }
