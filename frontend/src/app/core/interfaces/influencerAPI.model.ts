@@ -97,6 +97,27 @@ interface InfluencerMetrics {
   createdAt: string;
 }
 
+export interface InstagramAudienceDemographic {
+  id: number;
+  instagramProfileId: number;
+  type: string;
+  code: string;
+  name?: string | null;
+  weight: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface InstagramBrandAffinity {
+  id: number;
+  instagramProfileId: number;
+  brandId?: number | null;
+  name: string;
+  weight: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface InstagramProfile {
   id: number;
   influencerId: number;
@@ -109,7 +130,7 @@ export interface InstagramProfile {
   isVerified?: boolean;
   accountType?: string;
   followerCount?: number;
-  followingCount?: number;
+  followingCount?: number | null;
   postCount?: number;
   avgLikes?: number;
   avgComments?: number;
@@ -123,7 +144,12 @@ export interface InstagramProfile {
   paidPostPerformance?: any; // You might want to define a more specific type if you know the structure
   createdAt: string;
   updatedAt: string;
+  InstagramAudienceDemographic?: InstagramAudienceDemographic[];
+  InstagramBrandAffinity?: InstagramBrandAffinity[];
 }
+
+
+
 
 export interface YouTubeProfile {
   id: number;

@@ -81,7 +81,7 @@ router.route('/getInfluencerProfileV2/:id')
     .get(asyncHandler(influencerV2Controller.getInfluencerProfileV2));    
 
 router.route("/updateInfluencerProfileV2/:id")
-    .patch(asyncHandler(influencerV2Controller.updateInfluencerProfileV2));
+    .get(asyncHandler(influencerV2Controller.updateInfluencerProfileV2));
 
 router.route('/getInstagramProfile/:id')
     .get(asyncHandler(influencerV2Controller.getInstagramProfile));

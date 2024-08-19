@@ -2,6 +2,12 @@ const models = require("../../models");
 const Influencer = models.Influencer;
 // import influencer models
 const InstagramProfile = models.InstagramProfile;
+const InstagramAudienceDemographic = models.InstagramAudienceDemographic;
+const InstagramInterest = models.InstagramInterest;
+const InstagramBrandAffinity = models.InstagramBrandAffinity;
+const InstagramHashtag = models.InstagramHashtag;
+const InstagramMention = models.InstagramMention;
+const InstagramStatHistory = models.InstagramStatHistory;
 
 const YouTubeProfile = models.YouTubeProfile;
 const YouTubeAudienceDemographic = models.YouTubeAudienceDemographic;
@@ -21,7 +27,10 @@ const User = models.User;
 const InfluencerStatistics = models.InfluencerStatistics;
 const InfluencerMetrics = models.influencerMetrics;
 const InfluencerRemarks = models.influencerRemarks;
+
 const { updateInfluencers } = require("../../scripts/updateInfluencers")
+
+
 exports.getInfluencerProfileV2 = async (req, res) => {
   const influencerId = Number(req.params.id);
   console.log(influencerId);
@@ -104,7 +113,14 @@ exports.updateInfluencerProfileV2 = async (req, res) => {
 exports.getInstagramProfile = async (req, res) => {
   const profileId = Number(req.params.id);
   try {
-    const profile = await InstagramProfile.findByPk(profileId);
+    const profile = await InstagramProfile.findByPk(profileId, {
+      include: [
+        { model: InstagramAudienceDemographic, as: "InstagramAudienceDemographic" },
+        { model: InstagramBrandAffinity, as: "InstagramBrandAffinity" },
+
+
+      ]
+    });
     if (!profile) {
       return res.status(404).json({ message: "Instagram profile not found" });
     }
@@ -118,7 +134,14 @@ exports.getInstagramProfile = async (req, res) => {
 exports.getYouTubeProfile = async (req, res) => {
   const profileId = Number(req.params.id);
   try {
-    const profile = await YouTubeProfile.findByPk(profileId);
+    const profile = await YouTubeProfile.findByPk(profileId, {
+      include: [
+        { model: YouTubeAudienceDemographic, as: "YouTubeAudienceDemographic" },
+        { model: YouTubeInterest, as: "YouTubeInterest" },
+        { model: YouTubeStatHistory, as: "YouTubeStatHistory" },
+        { model: YouTubeVideo, as: "YouTubeVideo" },
+      ]
+    });
     if (!profile) {
       return res.status(404).json({ message: "YouTube profile not found" });
     }
@@ -132,7 +155,16 @@ exports.getYouTubeProfile = async (req, res) => {
 exports.getTikTokProfile = async (req, res) => {
   const profileId = Number(req.params.id);
   try {
-    const profile = await TikTokProfile.findByPk(profileId);
+    const profile = await TikTokProfile.findByPk(profileId,
+      {
+        include: [
+          { model: TikTokAudienceDemographic, as: "TikTokAudienceDemographic" },
+          { model: TikTokInterest, as: "TikTokInterest" },
+          { model: TikTokStatHistory, as: "TikTokStatHistory" },
+          { model: TikTokVideo, as: "TikTokVideo" },
+        ]
+      }
+    );
     if (!profile) {
       return res.status(404).json({ message: "TikTok profile not found" });
     }

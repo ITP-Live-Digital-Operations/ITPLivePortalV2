@@ -40,6 +40,30 @@ export class InfluencerService {
     );
   }
 
+  updateInfluencerProfile(id: any) {
+    return this.http.get(
+      `${this.influencerApiURL}/updateInfluencerProfileV2/${id}`,
+    );
+  }
+
+  getInstagramProfile(inputdata: number): Observable<InstagramProfile> {
+    return this.http.get<InstagramProfile>(
+      `${this.influencerApiURL}/getInstagramProfile/${inputdata}`
+    );
+  }
+
+  getYouTubeProfile(inputdata: number): Observable<YouTubeProfile> {
+    return this.http.get<YouTubeProfile>(
+      `${this.influencerApiURL}/getYouTubeProfile/${inputdata}`
+    );
+  }
+
+  getTikTokProfile(inputdata: number): Observable<TikTokProfile> {
+    return this.http.get<TikTokProfile>(
+      `${this.influencerApiURL}/getTikTokProfile/${inputdata}`
+    );
+  }
+
   // Modash API calls for Influencer Profile end here
   addInfluencer(inputdata: any) {
     return this.http.post(`${this.influencerApiURL}/addInfluencer`, inputdata);

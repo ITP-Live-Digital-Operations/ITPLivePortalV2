@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { RateLogsComponent } from '../../../emp/talent/create/rate-logs/rate-logs.component';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-logs-table',
@@ -18,10 +19,21 @@ import { RateLogsComponent } from '../../../emp/talent/create/rate-logs/rate-log
 export class LogsTableComponent {
   @Input() logs: LogModelUpdated[] = [];
 
+  logsById : number = 0;
+
   selectedLog: LogModelUpdated | null = null;
+
+  constructor( private userService : UserService){}
 
   ngOnInit(): void {
     console.log(this.logs);
+  }
+
+  getUserById(user_id: number){
+    this.userService.getUserByID(user_id).subscribe((data) => {
+      console.log(data);
+      return data.id;
+    })
   }
 
   viewLogDetails(log: LogModelUpdated): void {

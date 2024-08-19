@@ -1,11 +1,36 @@
-<div class="instagram-details" *ngIf="profile">
+<div class="instagram-details" *ngIf="fullProfile">
   <h3>Instagram Details</h3>
-  <p><strong>Username:</strong> {{ profile.username }}</p>
-  <p><strong>Full Name:</strong> {{ profile.fullName }}</p>
-  <p><strong>Followers:</strong> {{ profile.followerCount | number }}</p>
-  <p><strong>Following:</strong> {{ profile.followingCount | number }}</p>
-  <p><strong>Posts:</strong> {{ profile.postCount | number }}</p>
-  <p><strong>Avg. Likes:</strong> {{ profile.avgLikes | number:'1.0-0' }}</p>
-  <p><strong>Avg. Comments:</strong> {{ profile.avgComments | number:'1.0-0' }}</p>
-  <p><strong>Engagement Rate:</strong> {{ profile.engagementRate | percent:'1.2-2' }}</p>
+
+  <div class="basic-info">
+    <p><strong>Username:</strong> {{ fullProfile.username }}</p>
+    <p><strong>Full Name:</strong> {{ fullProfile.fullName }}</p>
+    <p><strong>Followers:</strong> {{ fullProfile.followerCount | number }}</p>
+    <p><strong>Following:</strong> {{ fullProfile.followingCount | number }}</p>
+    <p><strong>Posts:</strong> {{ fullProfile.postCount | number }}</p>
+    <p><strong>Avg. Likes:</strong> {{ fullProfile.avgLikes | number:'1.0-0' }}</p>
+    <p><strong>Avg. Comments:</strong> {{ fullProfile.avgComments | number:'1.0-0' }}</p>
+    <p><strong>Avg. Reels Plays:</strong> {{ fullProfile.avgReelsPlays | number:'1.0-0' }}</p>
+    <p><strong>Engagement Rate:</strong> {{ fullProfile.engagementRate | percent:'1.2-2' }}</p>
+  </div>
+
+  <div class="audience-demographics">
+    <h4>Audience Demographics</h4>
+    <div *ngFor="let category of demographicCategories">
+      <h5>{{ category | titlecase }}</h5>
+      <ul>
+        <li *ngFor="let item of audienceDemographics[category].data">
+          {{ item.name }}: {{ item.weight | percent:'1.2-2' }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="brand-affinity" *ngIf="topBrands.length > 0">
+    <h4>Top Brand Affinities</h4>
+    <ul>
+      <li *ngFor="let brand of topBrands">
+        {{ brand.name }}: {{ brand.weight | percent:'1.2-2' }}
+      </li>
+    </ul>
+  </div>
 </div>
