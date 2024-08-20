@@ -2,36 +2,37 @@
   <div class="profile-header">
     <img [src]="profile.profilePicture || 'assets/default-avatar.png'" alt="{{ profile.Name }}" class="profile-avatar">
     <div class="profile-title">
-      <h1><strong>{{ profile.Name }}</strong></h1>
-      <h3></h3>
+      <h1>{{ profile.Name }}</h1>
       <div class="profile-quick-info">
-        <span><i class="fas fa-map-marker-alt"></i> {{ profile.CityLocation }}, {{ profile.CountryLocation }}</span>
+        <span><i class="fas fa-map-marker-alt"></i>   {{ profile.CityLocation }}, {{ profile.CountryLocation }}</span>
         <span><i class="fas fa-language"></i> {{ profile.MainContentLanguage }}{{ profile.SubContentLang ? ', ' + profile.SubContentLang : '' }}</span>
-        <span><i class="fas fa-user"></i> {{ profile.Gender }}</span>
-        <span><i class="fas fa-birthday-cake"></i> {{ profile.ageGroup }}</span>
+        <span><i class="fas fa-venus-mars"></i> {{ profile.Gender }}</span>
+        <span><i class="fas fa-user-clock"></i> {{ profile.ageGroup }}</span>
       </div>
     </div>
   </div>
 
   <div class="profile-content">
-    <div class="profile-info">
+    <div class="profile-section profile-info">
       <h2>Profile Information</h2>
-      <p><strong>Main Vertical:</strong> {{ profile.MainVertical }}</p>
-      <p><strong>Sub Vertical:</strong> {{ profile.SubVertical }}</p>
-      <p><strong>Nationality:</strong> {{ profile.Nationality }}</p>
-      <p><strong>Email:</strong> {{ profile.Email }}</p>
-      <p><strong>ITP Relationship:</strong> {{ profile.ItpRelationship }}</p>
-      <p><strong>KSA License:</strong> {{ profile.KSALicense ? 'Yes' : 'No' }}</p>
-      <p><strong>UAE License:</strong> {{ profile.UAELicense ? 'Yes' : 'No' }}</p>
+      <ul>
+        <li><strong>Main Vertical:</strong> {{ profile.MainVertical }}</li>
+        <li><strong>Sub Vertical:</strong> {{ profile.SubVertical }}</li>
+        <li><strong>Nationality:</strong> {{ profile.Nationality }}</li>
+        <li><strong>Email:</strong> {{ profile.Email }}</li>
+        <li><strong>ITP Relationship:</strong> {{ profile.ItpRelationship }}</li>
+        <li><strong>KSA License:</strong> {{ profile.KSALicense ? 'Yes' : 'No' }}</li>
+        <li><strong>UAE License:</strong> {{ profile.UAELicense ? 'Yes' : 'No' }}</li>
+      </ul>
     </div>
 
-    <div class="social-profiles">
+    <div class="profile-section social-profiles">
       <h2>Social Media Presence</h2>
       <div class="social-grid">
         <div class="social-item clickable" *ngIf="profile.InstagramHandle" (click)="togglePlatformDetails('instagram')">
           <i class="fab fa-instagram"></i>
           <span class="social-platform">Instagram</span>
-          <span class="social-followers" *ngIf="profile.InstagramFollowers != undefined" >{{ profile.InstagramFollowers |numberFormat  }} followers</span>
+          <span class="social-followers" *ngIf="profile.InstagramFollowers != undefined">{{ profile.InstagramFollowers | numberFormat }} followers</span>
         </div>
         <div class="social-item clickable" *ngIf="profile.TiktokHandle" (click)="togglePlatformDetails('tiktok')">
           <i class="fab fa-tiktok"></i>
@@ -41,7 +42,7 @@
         <div class="social-item clickable" *ngIf="profile.YoutubeHandle" (click)="togglePlatformDetails('youtube')">
           <i class="fab fa-youtube"></i>
           <span class="social-platform">YouTube</span>
-          <span class="social-followers"*ngIf="profile.YoutubeFollowers" >{{ profile.YoutubeFollowers | numberFormat }} subscribers</span>
+          <span class="social-followers" *ngIf="profile.YoutubeFollowers">{{ profile.YoutubeFollowers | numberFormat }} subscribers</span>
         </div>
         <div class="social-item" *ngIf="profile.TwitterHandle">
           <i class="fab fa-twitter"></i>
@@ -51,12 +52,12 @@
         <div class="social-item" *ngIf="profile.FacebookHandle">
           <i class="fab fa-facebook"></i>
           <span class="social-platform">Facebook</span>
-          <span class="social-followers" *ngIf="profile.FacebookFollowers != undefined ">{{ profile.FacebookFollowers | numberFormat }} followers</span>
+          <span class="social-followers" *ngIf="profile.FacebookFollowers != undefined">{{ profile.FacebookFollowers | numberFormat }} followers</span>
         </div>
       </div>
     </div>
 
-    <div class="metrics">
+    <div class="profile-section metrics">
       <h2>Performance Metrics</h2>
       <div class="metric-grid">
         <div class="metric-item">
@@ -79,26 +80,24 @@
     </div>
   </div>
 
-
-
-  <!-- Platform-specific details sections -->
-  <div *ngIf="selectedPlatform === 'instagram'" class="platform-details">
+  <div class="platform-details" *ngIf="selectedPlatform === 'instagram'">
     <app-instagram-details [profile]="profile.instagramProfile"></app-instagram-details>
   </div>
-  <div *ngIf="selectedPlatform === 'tiktok'" class="platform-details">
+
+  <div class="platform-details" *ngIf="selectedPlatform === 'tiktok'">
     <app-tiktok-details [profile]="profile.tiktokProfile"></app-tiktok-details>
   </div>
-  <div *ngIf="selectedPlatform === 'youtube'" class="platform-details">
+
+  <div class="platform-details" *ngIf="selectedPlatform === 'youtube'">
     <app-youtube-details [profile]="profile.youtubeProfile"></app-youtube-details>
   </div>
 
-   <!-- Logs section -->
-  <div class="logs-section">
+  <div class="profile-section logs-section">
     <h2>Influencer Logs</h2>
     <app-logs-table [logs]="logs"></app-logs-table>
   </div>
 
-  <div class="additional-info" *ngIf="profile.Bio || profile.PreviousBrands">
+  <div class="profile-section additional-info" *ngIf="profile.Bio || profile.PreviousBrands">
     <h2>Additional Information</h2>
     <div *ngIf="profile.Bio">
       <h3>Bio</h3>

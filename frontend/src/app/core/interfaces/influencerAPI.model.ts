@@ -65,6 +65,7 @@ export interface InfluencerProfile {
   user?: User;
   influencerStatistics?: any[];
   influencerMetrics?: InfluencerMetrics;
+  lastApiCall: Date | null;
 }
 
 interface User {

@@ -27,6 +27,7 @@ export class InfluencerIdComponent implements OnInit {
       this.influencerId = Number(params.get('id')!);
       this.getInfluencerProfile(this.influencerId);
       this.getInfluencerLogs(this.influencerId);
+
     });
   }
 
@@ -40,6 +41,8 @@ export class InfluencerIdComponent implements OnInit {
     });
   }
 
+
+
   private getInfluencerLogs(influencerId: number): void {
     this.logService.getInfluencerLogs(influencerId).subscribe((data) => {
       if (data) {
@@ -49,6 +52,16 @@ export class InfluencerIdComponent implements OnInit {
         console.error("No logs found");
       }
     });
+  }
+
+  private isLastApiCallOlderThan30Days(lastApiCall: Date | null): boolean {
+    if (!lastApiCall) {
+      return true;
+    }
+    const currentDate = new Date();
+    const lastApiCallDate = new Date(lastApiCall);
+    const differenceInDays = (currentDate.getTime() - lastApiCallDate.getTime()) / (1000 * 3600 * 24);
+    return differenceInDays > 30;
   }
 
   togglePlatformDetails(platform: string): void {

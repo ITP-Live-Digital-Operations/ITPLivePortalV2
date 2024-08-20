@@ -1,18 +1,28 @@
+// Import or redefine the color variables
+$background-dark: #0a192f;
+$background-light: #112240;
+$primary-blue: #4a90e2;
+$secondary-blue: #64ffda;
+$text-primary: #e6f1ff;
+$text-secondary: #d5d8e2;
+$accent: #ffa500;
+
 .youtube-details {
-  background-color: #16213e;
-  border-radius: 8px;
-  padding: 20px;
-  color: #f0f0f0;
-  font-family: Arial, sans-serif;
+  background-color: $background-light;
+  border-radius: 15px;
+  padding: 25px;
+  color: $text-primary;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
   h3, h4, h5 {
-    color: #e94560;
+    color: $secondary-blue;
     margin-bottom: 15px;
   }
 
   h3 {
     font-size: 1.8em;
-    border-bottom: 2px solid #e94560;
+    border-bottom: 2px solid $secondary-blue;
     padding-bottom: 10px;
   }
 
@@ -34,20 +44,26 @@
 
     p {
       margin: 0;
-      padding: 10px;
-      background-color: #1a2749;
-      border-radius: 5px;
+      padding: 15px;
+      background-color: rgba($primary-blue, 0.1);
+      border-radius: 12px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        background-color: rgba($primary-blue, 0.2);
+      }
 
       strong {
-        color: #e94560;
+        color: $accent;
       }
     }
   }
 
   .audience-demographics, .top-categories {
-    background-color: #1a2749;
-    border-radius: 5px;
-    padding: 15px;
+    background-color: rgba($primary-blue, 0.05);
+    border-radius: 12px;
+    padding: 20px;
     margin-top: 20px;
 
     ul {
@@ -56,13 +72,23 @@
       margin: 0;
 
       li {
-        padding: 5px 0;
-        border-bottom: 1px solid #2c3e50;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba($text-secondary, 0.2);
         display: flex;
         justify-content: space-between;
+        color: $text-secondary;
 
         &:last-child {
           border-bottom: none;
+        }
+
+        span:first-child {
+          color: $text-primary;
+        }
+
+        span:last-child {
+          color: $secondary-blue;
+          font-weight: bold;
         }
       }
     }
@@ -72,14 +98,25 @@
     ul {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
+      gap: 15px;
 
       li {
-        background-color: #213555;
-        padding: 10px;
-        border-radius: 5px;
+        background-color: rgba($primary-blue, 0.1);
+        padding: 15px;
+        border-radius: 12px;
         text-align: center;
         border: none;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+          background-color: rgba($primary-blue, 0.2);
+        }
+
+        span:last-child {
+          display: block;
+          margin-top: 5px;
+        }
       }
     }
   }

@@ -41,32 +41,14 @@ exports.getInfluencerProfileV2 = async (req, res) => {
           model: InstagramProfile,
           
           as: "instagramProfile", // Ensure this matches the alias in the model
-          /* include: [
-            { model: InstagramAudienceDemographic, as: "InstagramAudienceDemographic" },
-            { model: InstagramInterest, as: "InstagramInterest" },
-            { model: InstagramBrandAffinity, as: "InstagramBrandAffinity" },
-            { model: InstagramHashtag, as: "InstagramHashtag" },
-            { model: InstagramMention, as: "InstagramMention" },
-            { model: InstagramStatHistory, as: "InstagramStatHistory" },
-          ] */
         },
         {
           model: YouTubeProfile,
           as: "youtubeProfile", // Ensure this matches the alias in the model
-          /* include: [
-            { model: YouTubeAudienceDemographic, as: "YouTubeAudienceDemographic" },
-            { model: YouTubeInterest, as: "YouTubeInterest" },
-            { model: YouTubeStatHistory, as: "YouTubeStatHistory" },
-          ] */
         },
         {
           model: TikTokProfile,
-          as: "tiktokProfile", // Ensure this matches the alias in the model
-          /* include: [
-            { model: TikTokAudienceDemographic, as: "TikTokAudienceDemographic" },
-            { model: TikTokInterest, as: "TikTokInterest" },
-            { model: TikTokStatHistory, as: "TikTokStatHistory" },
-          ] */
+          as: "tiktokProfile", // Ensure this matches the alias in the mode
         },
         {
           model: InfluencerRating,
@@ -90,6 +72,19 @@ exports.getInfluencerProfileV2 = async (req, res) => {
 
     if (!influencer) {
       return res.status(404).json({ message: "Influencer not found" });
+    }
+
+        // Check if lastApiCall is null or older than 30 days
+        const now = new Date();
+        const thirtyDaysAgo = new Date(now);
+        thirtyDaysAgo.setDate(now.getDate() - 30);
+
+    if (!influencer.lastApiCall || new Date(influencer.lastApiCall) < thirtyDaysAgo) {
+      // Logic to update influencer information
+      console.log('Updating influencer data...');
+
+      await updateInfluencers(1, influencerId);
+
     }
 
     res.json(influencer);

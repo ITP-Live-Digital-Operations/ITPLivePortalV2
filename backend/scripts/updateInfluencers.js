@@ -353,6 +353,7 @@ async function updateInfluencerData(influencer, profiles, options = {}) {
   const interests = getNestedProperty(instagram, "profile.interests");
   const MainVertical = interests?.[0]?.name;
   const SubVertical = interests?.[1]?.name;
+  const lastApiCall = new Date();
 
   logger.info(`Name: ${Name}`);
   logger.info(`Gender: ${Gender}`);
@@ -439,6 +440,7 @@ async function updateInfluencerData(influencer, profiles, options = {}) {
     MainVertical: MainVertical,
     SubVertical: SubVertical,
     updatedAt: new Date(),
+    lastApiCall: lastApiCall,
   }
   console.log(updatedData);
 

@@ -287,6 +287,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.FLOAT,
         defaultValue: null,
       },
+      lastApiCall : {
+        type: DataTypes.DATE,
+        defaultValue: null,
+      },
     
       },
     {
