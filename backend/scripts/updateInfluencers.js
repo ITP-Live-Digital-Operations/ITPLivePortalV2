@@ -354,6 +354,9 @@ async function updateInfluencerData(influencer, profiles, options = {}) {
   const MainVertical = interests?.[0]?.name;
   const SubVertical = interests?.[1]?.name;
   const lastApiCall = new Date();
+  const InstagramFollowers = getNestedProperty(instagram, "profile.profile.followers");
+  const YoutubeFollowers = getNestedProperty(youtube, "profile.profile.followers");
+  const TiktokFollowers = getNestedProperty(tiktok, "profile.profile.followers");
 
   logger.info(`Name: ${Name}`);
   logger.info(`Gender: ${Gender}`);
@@ -439,6 +442,9 @@ async function updateInfluencerData(influencer, profiles, options = {}) {
     engagementRate: engagementRate,
     MainVertical: MainVertical,
     SubVertical: SubVertical,
+    InstagramFollowers: InstagramFollowers,
+    YoutubeFollowers: YoutubeFollowers,
+    TiktokFollowers: TiktokFollowers,
     updatedAt: new Date(),
     lastApiCall: lastApiCall,
   }
