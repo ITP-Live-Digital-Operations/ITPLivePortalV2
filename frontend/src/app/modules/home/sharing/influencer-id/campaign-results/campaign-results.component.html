@@ -1,39 +1,26 @@
-
-<div class="table-container" *ngIf="dataSource && dataSource.length > 0">
-  <table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Campaign Name </th>
-      <td mat-cell *matCellDef="let element"
-        > {{ element.campaignName }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="campaignName">
-      <th mat-header-cell *matHeaderCellDef> Campaign Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.campaignName}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="CPE">
-      <th mat-header-cell *matHeaderCellDef> CPE </th>
-      <td mat-cell *matCellDef="let element"> {{element.CPE | appCurrencyFormat}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="CPM">
-      <th mat-header-cell *matHeaderCellDef> CPM </th>
-      <td mat-cell *matCellDef="let element"> {{element.CPM | appCurrencyFormat : 3}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="ER">
-      <th mat-header-cell *matHeaderCellDef> Engagement Rate </th>
-      <td mat-cell *matCellDef="let element"> {{element.ER | percent  }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="marginOfProfit">
-      <th mat-header-cell *matHeaderCellDef> Margin Of Profit </th>
-      <td mat-cell *matCellDef="let element"> {{element.marginOfProfit | percent}} </td>
-    </ng-container>
-
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+<!-- campaign-results.component.html -->
+<div class="campaign-results profile-section" *ngIf="dataSource && dataSource.length > 0">
+  <div class="campaign-grid">
+    <div class="campaign-item" *ngFor="let element of dataSource">
+      <h3 class="campaign-name">{{ element.campaignName }}</h3>
+      <div class="campaign-metrics">
+        <div class="metric-item">
+          <span class="metric-value">{{ element.CPE | appCurrencyFormat }}</span>
+          <span class="metric-label">CPE</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">{{ element.CPM | appCurrencyFormat : 3 }}</span>
+          <span class="metric-label">CPM</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">{{ element.ER | percent }}</span>
+          <span class="metric-label">Engagement Rate</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">{{ element.marginOfProfit | percent }}</span>
+          <span class="metric-label">Margin of Profit</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,4 +1,7 @@
+
+
 <form [formGroup]="form" autocomplete="off">
+  <h1> Please fill in at least two handles, with one of them being either Instagram, TikTok, or YouTube. </h1>
   <div class="row">
       <mat-form-field>
         <mat-label>Instagram Handle</mat-label>
@@ -19,45 +22,6 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Instagram Followers</mat-label>
-        <input
-        matInput
-        type="text"
-        [value]="formatNumber(form.get('InstagramFollowers')?.value)"
-        (input)="onNumericInput('InstagramFollowers', $any($event.target).value)"
-        autocomplete="off"
-      />
-        <mat-error
-          *ngIf="
-            form.controls['InstagramFollowers'].invalid &&
-            form.controls['InstagramFollowers'].touched
-          "
-        >
-          Please enter Instagram Followers.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Instagram Link</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="InstagramLink"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['InstagramLink'].invalid &&
-            form.controls['InstagramLink'].touched
-          "
-        >
-          Please enter Instagram Link.
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="row">
-      <mat-form-field>
         <mat-label>Tiktok Handle</mat-label>
         <input
           matInput
@@ -74,45 +38,27 @@
           Please enter Tiktok Handle.
         </mat-error>
       </mat-form-field>
+    </div>
 
-      <mat-form-field>
-        <mat-label>Tiktok Followers</mat-label>
-        <input
-        matInput
-        type="text"
-        [value]="formatNumber(form.get('TiktokFollowers')?.value)"
-        (input)="onNumericInput('TiktokFollowers', $any($event.target).value)"
-        autocomplete="off"
-      />
-        <mat-error
-          *ngIf="
-            form.controls['TiktokFollowers'].invalid &&
-            form.controls['TiktokFollowers'].touched
-          "
-        >
-          Please enter Tiktok Followers.
-        </mat-error>
-      </mat-form-field>
 
+    <div class="row">
       <mat-form-field>
-        <mat-label>Tiktok Link</mat-label>
+        <mat-label>YouTube Handle</mat-label>
         <input
           matInput
           type="text"
-          formControlName="TiktokLink"
+          formControlName="YoutubeHandle"
           autocomplete="off"
         />
         <mat-error
           *ngIf="
-            form.controls['TiktokLink'].invalid &&
-            form.controls['TiktokLink'].touched
+            form.controls['YoutubeHandle'].invalid &&
+            form.controls['YoutubeHandle'].touched
           "
         >
-          Please enter Tiktok Link.
+          Please enter YouTube Handle.
         </mat-error>
       </mat-form-field>
-    </div>
-    <div class="row">
       <mat-form-field  >
         <mat-label>SnapChat Handle</mat-label>
         <input
@@ -131,102 +77,10 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>SnapChat Followers</mat-label>
-        <input
-        matInput
-        type="text"
-        [value]="formatNumber(form.get('SnapchatFollowers')?.value)"
-        (input)="onNumericInput('SnapchatFollowers', $any($event.target).value)"
-        autocomplete="off"
-      />
-        
-        <mat-error
-          *ngIf="
-            form.controls['SnapchatFollowers'].invalid &&
-            form.controls['SnapchatFollowers'].touched
-          "
-        >
-          Please enter SnapChat Followers.
-        </mat-error>
-      </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>SnapChat Link</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="SnapchatLink"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['SnapchatLink'].invalid &&
-            form.controls['SnapchatLink'].touched
-          "
-        >
-          Please enter SnapChat Link.
-        </mat-error>
-      </mat-form-field>
+
     </div>
 
-    <div class="row">
-      <mat-form-field>
-        <mat-label>Twitter Handle</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="TwitterHandle"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['TwitterHandle'].invalid &&
-            form.controls['TwitterHandle'].touched
-          "
-        >
-          Please enter Twitter Handle.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Twitter Followers</mat-label>
-        <input
-        matInput
-        type="text"
-        [value]="formatNumber(form.get('TwitterFollowers')?.value)"
-        (input)="onNumericInput('TwitterFollowers', $any($event.target).value)"
-        autocomplete="off"
-      />
-      
-        <mat-error
-          *ngIf="
-            form.controls['TwitterFollowers'].invalid &&
-            form.controls['TwitterFollowers'].touched
-          "
-        >
-          Please enter Twitter Followers.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Twitter Link</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="TwitterLink"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['TwitterLink'].invalid &&
-            form.controls['TwitterLink'].touched
-          "
-        >
-          Please enter Twitter Link.
-        </mat-error>
-      </mat-form-field>
-    </div>
 
     <div class="row" *ngIf="isCelebrity">
       <mat-form-field>
@@ -247,100 +101,6 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Facebook Followers</mat-label>
-        <input
-        matInput
-        type="text"
-        [value]="formatNumber(form.get('FacebookFollowers')?.value)"
-        (input)="onNumericInput('FacebookFollowers', $any($event.target).value)"
-        autocomplete="off"
-      />
-        <mat-error
-          *ngIf="
-            form.controls['FacebookFollowers'].invalid &&
-            form.controls['FacebookFollowers'].touched
-          "
-        >
-          Please enter Facebook Followers.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Facebook Link</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="FacebookLink"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['FacebookLink'].invalid &&
-            form.controls['FacebookLink'].touched
-          "
-        >
-          Please enter Facebook Link.
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="row">
-      <mat-form-field>
-        <mat-label>YouTube Handle</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="YoutubeHandle"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['YoutubeHandle'].invalid &&
-            form.controls['YoutubeHandle'].touched
-          "
-        >
-          Please enter YouTube Handle.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>YouTube Followers</mat-label>
-        <input
-        matInput
-        type="text"
-        [value]="formatNumber(form.get('YoutubeFollowers')?.value)"
-        (input)="onNumericInput('YoutubeFollowers', $any($event.target).value)"
-        autocomplete="off"
-      />
-      
-        <mat-error
-          *ngIf="
-            form.controls['YoutubeFollowers'].invalid &&
-            form.controls['YoutubeFollowers'].touched
-          "
-        >
-          Please enter YouTube Followers.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>YouTube Link</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="YoutubeLink"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['YoutubeLink'].invalid &&
-            form.controls['YoutubeLink'].touched
-          "
-        >
-          Please enter YouTube Link.
-        </mat-error>
-      </mat-form-field>
     </div>
 
     <div class="row">
@@ -363,40 +123,20 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Twitch Followers</mat-label>
-  
-        <input
-        matInput
-        type="text"
-        [value]="formatNumber(form.get('TwitchFollowers')?.value)"
-        (input)="onNumericInput('TwitchFollowers', $any($event.target).value)"
-        autocomplete="off"
-      />
-        <mat-error
-          *ngIf="
-            form.controls['TwitchFollowers'].invalid &&
-            form.controls['TwitchFollowers'].touched
-          "
-        >
-          Please enter Twitch Followers.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Twitch Link</mat-label>
+        <mat-label>Twitter Handle</mat-label>
         <input
           matInput
           type="text"
-          formControlName="TwitchLink"
+          formControlName="TwitterHandle"
           autocomplete="off"
         />
         <mat-error
           *ngIf="
-            form.controls['TwitchLink'].invalid &&
-            form.controls['TwitchLink'].touched
+            form.controls['TwitterHandle'].invalid &&
+            form.controls['TwitterHandle'].touched
           "
         >
-          Please enter Twitch Link.
+          Please enter Twitter Handle.
         </mat-error>
       </mat-form-field>
     </div>

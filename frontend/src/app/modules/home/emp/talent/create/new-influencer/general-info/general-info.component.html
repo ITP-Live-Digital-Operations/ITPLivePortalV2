@@ -1,274 +1,94 @@
 <form [formGroup]="form" autocomplete="off">
   <div class="row">
-    <mat-form-field  >
-        <mat-label>Name</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="Name"
-          autocomplete="off"
-          required
-        />
-        <mat-error
-          *ngIf="
-            form.controls['Name'].invalid &&
-            form.controls['Name'].touched
-          "
-        >
-          Please enter a name.
-        </mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label> Name </mat-label>
+      <input matInput type="text" formControlName="Name" autocomplete="off" />
+      <mat-error
+        *ngIf="form.controls['Name'].invalid && form.controls['Name'].touched"
+      >
+        Please enter a name.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <input
+        matInput
+        type="string"
+        formControlName="Number"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['Number'].invalid && form.controls['Number'].touched
+        "
+      >
+        Please enter a number.
+      </mat-error>
+    </mat-form-field>
 
-      <mat-form-field >
-        <mat-label>Gender</mat-label>
-        <mat-select formControlName="Gender">
-          <mat-option *ngFor="let option of genders" [value]="option">{{
-            option
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            form.controls['Gender'].invalid &&
-            form.controls['Gender'].touched
-          "
-        >
-          Please enter a gender.
-        </mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" formControlName="Email" autocomplete="off" />
+      <mat-error
+        *ngIf="form.controls['Email'].invalid && form.controls['Email'].touched"
+      >
+        Please enter a valid email address.
+      </mat-error>
+    </mat-form-field>
+  </div>
 
-      <mat-form-field >
-        <mat-label>Phone Number</mat-label>
-        <input
-          matInput
-          type="string"
-          formControlName="Number"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['Number'].invalid &&
-            form.controls['Number'].touched
-          "
-        >
-          Please enter a number.
-        </mat-error>
-      </mat-form-field>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Occupation</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="Occupation"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['Occupation'].invalid &&
+          form.controls['Occupation'].touched
+        "
+      >
+        Please enter an Occupation.
+      </mat-error>
+    </mat-form-field>
 
-      <mat-form-field >
-        <mat-label>Email Address</mat-label>
-        <input
-          matInput
-          type="email"
-          formControlName="Email"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['Email'].invalid &&
-            form.controls['Email'].touched
-          "
-        >
-          Please enter a valid email address.
-        </mat-error>
-      </mat-form-field>
-    </div>
+    <mat-form-field *ngIf="isCelebrity">
+      <mat-label>ITP Relationship</mat-label>
+      <mat-select formControlName="ItpRelationship">
+        <mat-option *ngFor="let country of itprelatioship" [value]="country">{{
+          country
+        }}</mat-option>
+      </mat-select>
 
-    <div class="row">
-      <mat-form-field >
-        <mat-label>Main Content Language</mat-label>
-        <mat-select formControlName="MainContentLanguage">
-          <mat-option *ngFor="let language of languages" [value]="language">{{
-            language
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            form.controls['MainContentLanguage'].invalid &&
-            form.controls['MainContentLanguage'].touched
-          "
-        >
-          Please select a language.
-        </mat-error>
-      </mat-form-field>
+      <mat-error
+        *ngIf="
+          form.controls['ItpRelationship'].invalid &&
+          form.controls['ItpRelationship'].touched
+        "
+      >
+        Please enter the Relationship.
+      </mat-error>
+    </mat-form-field>
 
-      <mat-form-field  *ngIf="isCelebrity">
-        <mat-label>Sub Content Language</mat-label>
-        <mat-select formControlName="SubContentLang">
-          <mat-option *ngFor="let language of languages" [value]="language">{{
-            language
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            form.controls['SubContentLang'].invalid &&
-            form.controls['SubContentLang'].touched
-          "
-        >
-          Please select a language.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field >
-        <mat-label>Main Vertical</mat-label>
-        <mat-select formControlName="MainVertical">
-          <mat-option *ngFor="let vertical of verticals" [value]="vertical">{{
-            vertical
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            form.controls['MainVertical'].invalid &&
-            form.controls['MainVertical'].touched
-          "
-        >
-          Please select a vertical.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field  *ngIf="isCelebrity">
-        <mat-label>Sub Vertical</mat-label>
-        <mat-select formControlName="SubVertical">
-          <mat-option *ngFor="let vertical of verticals" [value]="vertical">{{
-            vertical
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            form.controls['SubVertical'].invalid &&
-            form.controls['SubVertical'].touched
-          "
-        >
-          Please select a vertical.
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="row">
-      <mat-form-field >
-        <mat-label>Occupation</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="Occupation"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['Occupation'].invalid &&
-            form.controls['Occupation'].touched
-          "
-        >
-          Please enter an Occupation.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field *ngIf="isCelebrity">
-        <mat-label>ITP Relationship</mat-label>
-        <mat-select formControlName="ItpRelationship">
-          <mat-option
-            *ngFor="let country of itprelatioship"
-            [value]="country"
-            >{{ country }}</mat-option
-          >
-        </mat-select>
-
-        <mat-error
-          *ngIf="
-            form.controls['ItpRelationship'].invalid &&
-            form.controls['ItpRelationship'].touched
-          "
-        >
-          Please enter the Relationship.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field >
-        <mat-label>Nationality</mat-label>
-        <mat-select formControlName="Nationality">
-          <mat-option *ngFor="let country of countries" [value]="country">{{
-            country
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            form.controls['Nationality'].invalid &&
-            form.controls['Nationality'].touched
-          "
-        >
-          Please select a Nationality.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field  *ngIf="isCelebrity">
-        <mat-label>Second Nationality</mat-label>
-        <mat-select formControlName="SecondNationality">
-          <mat-option *ngFor="let country of countries" [value]="country">{{
-            country
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            form.controls['SecondNationality'].invalid &&
-            form.controls['SecondNationality'].touched
-          "
-        >
-          Please select a Nationality.
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field >
-        <mat-label>Location</mat-label>
-        <mat-select formControlName="CountryLocation">
-          <mat-option *ngFor="let country of countries" [value]="country">{{
-            country
-          }}</mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="
-            form.controls['CountryLocation'].invalid &&
-            form.controls['CountryLocation'].touched
-          "
-        >
-          Please select a Country.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field *ngIf="isCelebrity">
-        <mat-label>City</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="CityLocation"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['CityLocation'].invalid &&
-            form.controls['CityLocation'].touched
-          "
-        >
-          Please enter a city.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field *ngIf="isCelebrity" >
-        <mat-label>Address</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="Address"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['Address'].invalid &&
-            form.controls['Address'].touched
-          "
-        >
-          Please enter a Address.
-        </mat-error>
-      </mat-form-field>
-
+    <mat-form-field>
+      <mat-label>Nationality</mat-label>
+      <mat-select formControlName="Nationality">
+        <mat-option *ngFor="let country of countries" [value]="country">{{
+          country
+        }}</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          form.controls['Nationality'].invalid &&
+          form.controls['Nationality'].touched
+        "
+      >
+        Please select a Nationality.
+      </mat-error>
+    </mat-form-field>
   </div>
 </form>

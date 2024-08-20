@@ -2,13 +2,17 @@
   <div class="profile-header">
     <img [src]="profile.profilePicture || 'assets/default-avatar.png'" alt="{{ profile.Name }}" class="profile-avatar">
     <div class="profile-title">
-      <h1>{{ profile.Name }}</h1>
+      <div class="name-and-level">
+        <h1>{{ profile.Name }}</h1>
+        <span class="influencer-level">{{ influencerLevel }}</span>
+      </div>
       <div class="profile-quick-info">
         <span><i class="fas fa-map-marker-alt"></i>   {{ profile.CityLocation }}, {{ profile.CountryLocation }}</span>
         <span><i class="fas fa-language"></i> {{ profile.MainContentLanguage }}{{ profile.SubContentLang ? ', ' + profile.SubContentLang : '' }}</span>
         <span><i class="fas fa-venus-mars"></i> {{ profile.Gender }}</span>
         <span><i class="fas fa-user-clock"></i> {{ profile.ageGroup }}</span>
       </div>
+
     </div>
   </div>
 

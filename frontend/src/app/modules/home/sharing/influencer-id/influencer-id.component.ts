@@ -18,6 +18,7 @@ export class InfluencerIdComponent implements OnInit {
   profile!: InfluencerProfile;
   selectedPlatform: string | null = null;
   logs: LogModelUpdated[] = [];
+  influencerLevel: string = '';
 
   constructor(
     private influencerService: InfluencerService,
@@ -40,6 +41,7 @@ export class InfluencerIdComponent implements OnInit {
       if (data) {
         this.profile = data;
         console.log(this.profile);
+        this.influencerLevel = this.getInfluencerCategory();
       } else {
         console.error("No data found");
       }
@@ -72,6 +74,24 @@ export class InfluencerIdComponent implements OnInit {
         this.getInfluencerLogs(this.influencerId);
       }
     });
+  }
+
+  getInfluencerCategory(): string {
+    const followers = [
+      this.profile.InstagramFollowers || 0,
+      this.profile.TiktokFollowers || 0,
+      this.profile.YoutubeFollowers || 0
+    ];
+
+    const maxFollowers = Math.max(...followers);
+
+    if (maxFollowers < 10000) {
+      return 'Micro';
+    } else if (maxFollowers >= 10000 && maxFollowers < 100000) {
+      return 'Macro';
+    } else {
+      return 'Mega';
+    }
   }
 
   togglePlatformDetails(platform: string): void {

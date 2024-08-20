@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
@@ -12,7 +20,6 @@ import { PATH } from 'src/app/core/constant/routes.constants';
   styleUrls: ['./new-influencer.component.scss'],
 })
 export class NewInfluencerComponent {
-
   protected newInfluencerForm!: FormGroup;
   private data: any;
   protected isNotCelebrity: boolean = true;
@@ -33,51 +40,22 @@ export class NewInfluencerComponent {
       //GENERAL INFO
       generalInfo: this.formBuilder.group({
         Name: ['', [Validators.required]],
-        Gender: ['', [Validators.required]],
         Number: [''],
         Email: ['', [Validators.email]],
-        MainContentLanguage: [''],
-        SubContentLang: [''],
-        MainVertical: [''],
-        SubVertical: [''],
         Occupation: [''],
         ItpRelationship: [''],
         Nationality: [''],
-        SecondNationality: [''],
-        CountryLocation: [''],
-        CityLocation: [''],
-        Address: [''],
       }),
       //SOCIALS
       socials: this.formBuilder.group({
         InstagramHandle: [''],
-        InstagramFollowers: [],
-        InstagramLink: [''],
-
         TiktokHandle: [''],
-        TiktokFollowers: [],
-        TiktokLink: [''],
-
         SnapchatHandle: [''],
-        SnapchatFollowers: [],
-        SnapchatLink: [''],
-
         TwitterHandle: [''],
-        TwitterFollowers: [],
-        TwitterLink: [''],
-
         FacebookHandle: [''],
-        FacebookFollowers: [],
-        FacebookLink: [''],
-
         YoutubeHandle: [''],
-        YoutubeFollowers: [],
-        YoutubeLink: [''],
-
         TwitchHandle: [''],
-        TwitchFollowers: [],
-        TwitchLink: [''],
-      }),
+      }, { validators: requireAtLeastTwoHandlesValidator() }),
 
       //LICENSES
       KSALicense: [''],
@@ -101,7 +79,7 @@ export class NewInfluencerComponent {
     const formValues = this.processFormGroups(this.newInfluencerForm);
     formValues.updatedBy = this.userService.getID();
 
-    console.log({...formValues});
+    console.log({ ...formValues });
 
     this.service.addInfluencer({ ...formValues }).subscribe((res) => {
       this.data = res;
@@ -126,29 +104,62 @@ export class NewInfluencerComponent {
             ...this.processFormGroups(control),
           };
         } else if (control instanceof FormControl) {
-            if (control.value === '') {
-                valuesObject[key] = null;  // if the value is an empty string, set it to null
-            } else if ((key.endsWith('Followers') || key.endsWith('Number')) && typeof control.value === 'string') {
-                valuesObject[key] = parseInt(control.value, 10) || null;  // convert to integer or set to null if NaN
-            } else {
-                valuesObject[key] = control.value;
-            }
+          if (control.value === '') {
+            valuesObject[key] = null; // if the value is an empty string, set it to null
+          } else if (
+            (key.endsWith('Followers') || key.endsWith('Number')) &&
+            typeof control.value === 'string'
+          ) {
+            valuesObject[key] = parseInt(control.value, 10) || null; // convert to integer or set to null if NaN
+          } else {
+            valuesObject[key] = control.value;
+          }
         }
       });
     }
     return valuesObject;
-}
-activeTabIndex: number = 0;
-tabCount: number = 4; 
-nextTab() {
-  if (this.activeTabIndex < this.tabCount - 1) {
-    this.activeTabIndex++;
+  }
+  activeTabIndex: number = 0;
+  tabCount: number = 4;
+  nextTab() {
+    if (this.activeTabIndex < this.tabCount - 1) {
+      this.activeTabIndex++;
+    }
+  }
+
+  prevTab() {
+    if (this.activeTabIndex > 0) {
+      this.activeTabIndex--;
+    }
   }
 }
 
-prevTab() {
-  if (this.activeTabIndex > 0) {
-    this.activeTabIndex--;
-  }
-}
+
+export function requireAtLeastTwoHandlesValidator(): ValidatorFn {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const controls = group.value;
+    const handles = [
+      controls.InstagramHandle,
+      controls.TiktokHandle,
+      controls.SnapchatHandle,
+      controls.TwitterHandle,
+      controls.FacebookHandle,
+      controls.YoutubeHandle,
+      controls.TwitchHandle,
+    ];
+
+    const filledHandles = handles.filter(handle => handle && handle.trim() !== '');
+
+    const instagramTiktokYoutubeFilled = [
+      controls.InstagramHandle,
+      controls.TiktokHandle,
+      controls.YoutubeHandle,
+    ].some(handle => handle && handle.trim() !== '');
+
+    if (filledHandles.length >= 2 && instagramTiktokYoutubeFilled) {
+      return null; // No error, validation passed
+    }
+
+    return { requireAtLeastTwoHandles: true }; // Error, validation failed
+  };
 }
