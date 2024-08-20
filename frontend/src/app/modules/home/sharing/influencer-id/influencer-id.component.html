@@ -93,8 +93,16 @@
   </div>
 
   <div class="profile-section logs-section">
-    <h2>Influencer Logs</h2>
+    <div class="logs-header">
+      <h2>Influencer Logs</h2>
+      <button mat-raised-button color="primary" class="add-log-btn" (click)="openNewLogDialog()">Add Log</button>
+    </div>
     <app-logs-table [logs]="logs"></app-logs-table>
+  </div>
+
+  <div class="profile-section campaign-section">
+    <h2>Campaign Results</h2>
+    <app-campaign-results [id]="this.influencerId"></app-campaign-results>
   </div>
 
   <div class="profile-section additional-info" *ngIf="profile.Bio || profile.PreviousBrands">

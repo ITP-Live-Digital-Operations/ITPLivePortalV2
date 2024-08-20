@@ -4,6 +4,9 @@ import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { InfluencerProfile } from 'src/app/core/interfaces/influencerAPI.model';
 import { LogModel, LogModelUpdated } from 'src/app/core/interfaces/logModel';
 import { LogService } from 'src/app/core/services/log.service';
+import { MatDialog } from '@angular/material/dialog';
+import { NewRateLogComponent } from '../../emp/talent/create/rate-logs/new-rate-log/new-rate-log.component';
+import { RateLogsComponent } from '../../emp/talent/create/rate-logs/rate-logs.component';
 
 @Component({
   selector: 'app-influencer-id',
@@ -19,7 +22,8 @@ export class InfluencerIdComponent implements OnInit {
   constructor(
     private influencerService: InfluencerService,
     private logService: LogService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +39,7 @@ export class InfluencerIdComponent implements OnInit {
     this.influencerService.getInfluencerProfile(influencerId).subscribe((data) => {
       if (data) {
         this.profile = data;
+        console.log(this.profile);
       } else {
         console.error("No data found");
       }
@@ -54,14 +59,19 @@ export class InfluencerIdComponent implements OnInit {
     });
   }
 
-  private isLastApiCallOlderThan30Days(lastApiCall: Date | null): boolean {
-    if (!lastApiCall) {
-      return true;
-    }
-    const currentDate = new Date();
-    const lastApiCallDate = new Date(lastApiCall);
-    const differenceInDays = (currentDate.getTime() - lastApiCallDate.getTime()) / (1000 * 3600 * 24);
-    return differenceInDays > 30;
+  openNewLogDialog(): void {
+    const dialogRef = this.dialog.open(RateLogsComponent, {
+      width: '80%',
+      maxWidth: '1000px',
+      data: { influencerId: this.influencerId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Refresh the logs if a new log was added
+        this.getInfluencerLogs(this.influencerId);
+      }
+    });
   }
 
   togglePlatformDetails(platform: string): void {

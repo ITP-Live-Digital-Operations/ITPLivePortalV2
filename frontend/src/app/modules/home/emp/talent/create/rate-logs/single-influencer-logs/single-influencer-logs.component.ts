@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -11,9 +11,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-single-influencer-logs',
   templateUrl: './single-influencer-logs.component.html',
-  styleUrls: ['./single-influencer-logs.component.scss']
+  styleUrls: ['./single-influencer-logs.component.scss'],
 })
 export class SingleInfluencerLogsComponent {
+  @Input() influencerId!: number;
 
   public form: FormGroup;
   public logForm: FormGroup;
@@ -27,7 +28,7 @@ export class SingleInfluencerLogsComponent {
 
   public path = PATH;
 
-  private userId : number = this.userService.getID();
+  private userId: number = this.userService.getID();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,13 +56,8 @@ export class SingleInfluencerLogsComponent {
 
     this.addFields();
 
-    if (sessionStorage.getItem('influencerData') != null) {
-      this.influencerData = JSON.parse(
-        sessionStorage.getItem('influencerData') || '{}'
-      );
-      this.logForm.controls['Influencer'].setValue(this.influencerData.id);
-      /* sessionStorage.removeItem('influencerData'); */
-    }
+    this.logForm.controls['Influencer'].setValue(this.influencerId);
+    /* sessionStorage.removeItem('influencerData'); */
   }
 
   public get fields(): FormArray {
@@ -98,20 +94,27 @@ export class SingleInfluencerLogsComponent {
     this.submitted = true;
 
     if (this.form.valid) {
-      const inputData = { UserID: this.userId, InfluencerID: this.logForm.value.Influencer, Campaign: this.logForm.value.Campaign, type : 'single', Notes: this.logForm.value.Notes, Time_to_reply: this.logForm.value.Time_to_reply,  rateLogItems: this.form.value.fields, packageItems : {} }
+      const inputData = {
+        UserID: this.userId,
+        InfluencerID: this.logForm.value.Influencer,
+        Campaign: this.logForm.value.Campaign,
+        type: 'single',
+        Notes: this.logForm.value.Notes,
+        Time_to_reply: this.logForm.value.Time_to_reply,
+        rateLogItems: this.form.value.fields,
+        packageItems: {},
+      };
 
-      this.logService.addLog(inputData).subscribe(item => {
+      this.logService.addLog(inputData).subscribe((item) => {
         this.data = item;
-        if (this.data.status === "success") {
+        if (this.data.status === 'success') {
           this.toastrService.success('Log Added Successfully!');
           sessionStorage.removeItem('influencerData');
           this.dialogRef.close();
-        }
-        else {
+        } else {
           this.toastrService.error('Error! Please Try Again!');
         }
-
-      })
+      });
     }
     setTimeout(() => {
       this.submitted = false;
@@ -215,20 +218,21 @@ export class SingleInfluencerLogsComponent {
       deliverableControl?.clearValidators();
     }
   }
-    // Helper method to format numbers with commas for display
-    formatNumber(value: number | null): string {
-      return value !== null ? value.toLocaleString() : '';
-    }
+  // Helper method to format numbers with commas for display
+  formatNumber(value: number | null): string {
+    return value !== null ? value.toLocaleString() : '';
+  }
 
-    // Method to handle numeric input for fields within the form array
-    onFieldNumericInput(index: number, fieldName: string, value: string): void {
-      const parsedValue = this.parseFormattedNumber(value);
-      ((this.form.get('fields') as FormArray).at(index) as FormGroup).get(fieldName)?.setValue(parsedValue, { emitEvent: false });
-    }
+  // Method to handle numeric input for fields within the form array
+  onFieldNumericInput(index: number, fieldName: string, value: string): void {
+    const parsedValue = this.parseFormattedNumber(value);
+    ((this.form.get('fields') as FormArray).at(index) as FormGroup)
+      .get(fieldName)
+      ?.setValue(parsedValue, { emitEvent: false });
+  }
 
-    // Utility method to parse numbers from formatted string
-    parseFormattedNumber(value: string): number {
-      return Number(value.replace(/,/g, ''));
-    }
-
+  // Utility method to parse numbers from formatted string
+  parseFormattedNumber(value: string): number {
+    return Number(value.replace(/,/g, ''));
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -7,7 +7,7 @@ import { LogService } from 'src/app/core/services/log.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { currencies, platforms } from 'src/assets/influencer-form-arrays';
 import { PATH } from 'src/app/core/constant/routes.constants';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-rate-log',
@@ -16,19 +16,21 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class NewRateLogComponent {
 
+  @Input() influencerId!: number;
+
   public form: FormGroup;
   public logForm: FormGroup;
   private data: any;
   public currencies = currencies;
   public platforms = platforms;
   public influencers: any;
-
-  private influencerData: any;
   private submitted = false;
 
   public path = PATH;
 
   private userId : number = this.userService.getID();
+
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +38,7 @@ export class NewRateLogComponent {
     private service: InfluencerService,
     private userService: UserService,
     private dialogRef: MatDialogRef<NewRateLogComponent>,
+
     private logService: LogService,
     private toastrService: ToastrService
   ) {
@@ -51,6 +54,8 @@ export class NewRateLogComponent {
     this.form = this.formBuilder.group({
       fields: this.formBuilder.array([]),
     });
+
+
   }
 
   ngOnInit(): void {
@@ -58,13 +63,8 @@ export class NewRateLogComponent {
 
     this.addFields();
 
-    if (sessionStorage.getItem('influencerData') != null) {
-      this.influencerData = JSON.parse(
-        sessionStorage.getItem('influencerData') || '{}'
-      );
-      this.logForm.controls['Influencer'].setValue(this.influencerData.id);
-      /* sessionStorage.removeItem('influencerData'); */
-    }
+    this.logForm.controls['Influencer'].setValue(this.influencerId);
+
   }
 
   public get fields(): FormArray {

@@ -90,6 +90,7 @@ exports.getInfluencerLogs = (req, res) => {
       include: [
         { model: logItem, as: "logItems" },
         { model: Package, as: "packages" },
+        { model: User, as: "user" },
       ],
     }).then((log) => {
       if (!log) {

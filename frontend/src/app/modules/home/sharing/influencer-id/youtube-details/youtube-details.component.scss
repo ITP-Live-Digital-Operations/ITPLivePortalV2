@@ -5,58 +5,53 @@ $primary-blue: #4a90e2;
 $secondary-blue: #64ffda;
 $text-primary: #e6f1ff;
 $text-secondary: #d5d8e2;
-$accent: #ffa500;
+$accent: #ffa500; // YouTube's primary color
 
 .youtube-details {
+  font-family: 'Inter', sans-serif;
+  color: $text-primary;
   background-color: $background-light;
   border-radius: 15px;
-  padding: 25px;
-  color: $text-primary;
-  font-family: 'Inter', sans-serif;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-
-  h3, h4, h5 {
-    color: $secondary-blue;
-    margin-bottom: 15px;
-  }
+  padding: 20px;
+  margin-top: 20px;
 
   h3 {
-    font-size: 1.8em;
+    color: $secondary-blue;
     border-bottom: 2px solid $secondary-blue;
     padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.3em;
   }
 
-  h4 {
-    font-size: 1.4em;
-    margin-top: 25px;
-  }
-
-  h5 {
-    font-size: 1.2em;
-    margin-top: 20px;
-  }
-
-  .basic-info {
+  .basic-info.metric-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 15px;
-    margin-bottom: 25px;
+  }
 
-    p {
-      margin: 0;
-      padding: 15px;
-      background-color: rgba($primary-blue, 0.1);
-      border-radius: 12px;
-      transition: transform 0.3s ease, background-color 0.3s ease;
+  .metric-item {
+    text-align: center;
+    background-color: rgba($primary-blue, 0.1);
+    padding: 15px 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
 
-      &:hover {
-        transform: translateY(-5px);
-        background-color: rgba($primary-blue, 0.2);
-      }
+    &:hover {
+      transform: scale(1.05);
+    }
 
-      strong {
-        color: $accent;
-      }
+    .metric-value {
+      display: block;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: $accent;
+      margin-bottom: 5px;
+    }
+
+    .metric-label {
+      font-size: 0.8em;
+      color: $text-secondary;
     }
   }
 
@@ -65,6 +60,19 @@ $accent: #ffa500;
     border-radius: 12px;
     padding: 20px;
     margin-top: 20px;
+
+    h4, h5 {
+      color: $secondary-blue;
+      margin-bottom: 15px;
+    }
+
+    h4 {
+      font-size: 1.5em;
+    }
+
+    h5 {
+      font-size: 1.3em;
+    }
 
     ul {
       list-style-type: none;
@@ -77,6 +85,7 @@ $accent: #ffa500;
         display: flex;
         justify-content: space-between;
         color: $text-secondary;
+        font-size: 1em;
 
         &:last-child {
           border-bottom: none;

@@ -7,7 +7,7 @@
       </div>
       <div class="log-content">
         <p><strong>Campaign:</strong> {{ log.campaign }}</p>
-        <p><strong>User:</strong> {{ log.userID }}</p>
+        <p><strong>Logged By:</strong> {{ log.user.name }}</p>
         <p><strong>Reply Time:</strong> {{ log.time_to_reply }}</p>
         <p><strong>Total Rate:</strong> {{ log.currency }} {{ getTotalRate(log) | number:'1.2-2' }}</p>
       </div>

@@ -303,20 +303,32 @@ async function calculateInfluencerAgeGroup(instagram, youtube, tiktok) {
   function parseAgeGroup(ageGroup) {
     if (!ageGroup) return null;
 
-    const [min, max] = ageGroup.split('-').map(Number);
+    const [min, max] = ageGroup.split("-").map(Number);
     return { min, max };
   }
 
-  const instagramAge = parseAgeGroup(getNestedProperty(instagram, "profile.ageGroup"));
-  const youtubeAge = parseAgeGroup(getNestedProperty(youtube, "profile.ageGroup"));
-  const tiktokAge = parseAgeGroup(getNestedProperty(tiktok, "profile.ageGroup"));
+  const instagramAge = parseAgeGroup(
+    getNestedProperty(instagram, "profile.ageGroup")
+  );
+  const youtubeAge = parseAgeGroup(
+    getNestedProperty(youtube, "profile.ageGroup")
+  );
+  const tiktokAge = parseAgeGroup(
+    getNestedProperty(tiktok, "profile.ageGroup")
+  );
 
-  const ageGroups = [instagramAge, youtubeAge, tiktokAge].filter(age => age !== null);
+  const ageGroups = [instagramAge, youtubeAge, tiktokAge].filter(
+    (age) => age !== null
+  );
 
   if (ageGroups.length === 0) return null;
 
-  const averageMin = Math.round(ageGroups.reduce((acc, age) => acc + age.min, 0) / ageGroups.length);
-  const averageMax = Math.round(ageGroups.reduce((acc, age) => acc + age.max, 0) / ageGroups.length);
+  const averageMin = Math.round(
+    ageGroups.reduce((acc, age) => acc + age.min, 0) / ageGroups.length
+  );
+  const averageMax = Math.round(
+    ageGroups.reduce((acc, age) => acc + age.max, 0) / ageGroups.length
+  );
 
   return `${averageMin}-${averageMax}`;
 }
@@ -325,38 +337,95 @@ async function calculateAvgComments(instagram, youtube, tiktok) {
   const instagramComments = getNestedProperty(instagram, "profile.avgComments");
   const youtubeComments = getNestedProperty(youtube, "profile.avgComments");
   const tiktokComments = getNestedProperty(tiktok, "profile.avgComments");
-  const avgComments = [instagramComments, youtubeComments, tiktokComments].filter(comment => comment != null);
+  const avgComments = [
+    instagramComments,
+    youtubeComments,
+    tiktokComments,
+  ].filter((comment) => comment != null);
   if (avgComments.length === 0) return null;
-  return avgComments.reduce((acc, comment) => acc + comment, 0) / avgComments.length;
+  return (
+    avgComments.reduce((acc, comment) => acc + comment, 0) / avgComments.length
+  );
 }
 
 async function calculateAvgEngagementRate(instagram, youtube, tiktok) {
-  const instagramEngagementRate = getNestedProperty(instagram, "profile.profile.engagementRate");
-  const youtubeEngagementRate = getNestedProperty(youtube, "profile.profile.engagementRate");
-  const tiktokEngagementRate = getNestedProperty(tiktok, "profile.profile.engagementRate");
-  const avgEngagementRate = [instagramEngagementRate, youtubeEngagementRate, tiktokEngagementRate].filter(rate => rate != null);
+  const instagramEngagementRate = getNestedProperty(
+    instagram,
+    "profile.profile.engagementRate"
+  );
+  const youtubeEngagementRate = getNestedProperty(
+    youtube,
+    "profile.profile.engagementRate"
+  );
+  const tiktokEngagementRate = getNestedProperty(
+    tiktok,
+    "profile.profile.engagementRate"
+  );
+  const avgEngagementRate = [
+    instagramEngagementRate,
+    youtubeEngagementRate,
+    tiktokEngagementRate,
+  ].filter((rate) => rate != null);
   if (avgEngagementRate.length === 0) return null;
-  return avgEngagementRate.reduce((acc, rate) => acc + rate, 0) / avgEngagementRate.length;
+  return (
+    avgEngagementRate.reduce((acc, rate) => acc + rate, 0) /
+    avgEngagementRate.length
+  );
 }
 
 async function updateInfluencerData(influencer, profiles, options = {}) {
   const { instagram, youtube, tiktok } = profiles;
-  const Name = getNestedProperty(instagram, "profile.profile.fullname") || getNestedProperty(youtube, "profile.profile.fullname") || getNestedProperty(tiktok, "profile.profile.fullname");
-  const Gender = getNestedProperty(instagram, "profile.gender") || getNestedProperty(youtube, "profile.gender") || getNestedProperty(tiktok, "profile.gender");
-  const MainContentLanguage = getNestedProperty(instagram, "profile.language.name")
-  const CountryLocation = getNestedProperty(instagram, "profile.country") || getNestedProperty(youtube, "profile.country") || getNestedProperty(tiktok, "profile.country");
-  const CityLocation = getNestedProperty(instagram, "profile.city") || getNestedProperty(youtube, "profile.city") || getNestedProperty(tiktok, "profile.city");
-  const profilePicture = getNestedProperty(instagram, "profile.profile.picture") || getNestedProperty(youtube, "profile.profile.picture") || getNestedProperty(tiktok, "profile.profile.picture");
-  const ageGroup = await calculateInfluencerAgeGroup(instagram, youtube, tiktok);
+  const Name =
+    getNestedProperty(instagram, "profile.profile.fullname") ||
+    getNestedProperty(youtube, "profile.profile.fullname") ||
+    getNestedProperty(tiktok, "profile.profile.fullname");
+  const Gender =
+    getNestedProperty(instagram, "profile.gender") ||
+    getNestedProperty(youtube, "profile.gender") ||
+    getNestedProperty(tiktok, "profile.gender");
+  const MainContentLanguage = getNestedProperty(
+    instagram,
+    "profile.language.name"
+  );
+  const CountryLocation =
+    getNestedProperty(instagram, "profile.country") ||
+    getNestedProperty(youtube, "profile.country") ||
+    getNestedProperty(tiktok, "profile.country");
+  const CityLocation =
+    getNestedProperty(instagram, "profile.city") ||
+    getNestedProperty(youtube, "profile.city") ||
+    getNestedProperty(tiktok, "profile.city");
+  const profilePicture =
+    getNestedProperty(instagram, "profile.profile.picture") ||
+    getNestedProperty(youtube, "profile.profile.picture") ||
+    getNestedProperty(tiktok, "profile.profile.picture");
+  const ageGroup = await calculateInfluencerAgeGroup(
+    instagram,
+    youtube,
+    tiktok
+  );
   const avgComments = await calculateAvgComments(instagram, youtube, tiktok);
-  const engagementRate = await calculateAvgEngagementRate(instagram, youtube, tiktok);
+  const engagementRate = await calculateAvgEngagementRate(
+    instagram,
+    youtube,
+    tiktok
+  );
   const interests = getNestedProperty(instagram, "profile.interests");
   const MainVertical = interests?.[0]?.name;
   const SubVertical = interests?.[1]?.name;
   const lastApiCall = new Date();
-  const InstagramFollowers = getNestedProperty(instagram, "profile.profile.followers");
-  const YoutubeFollowers = getNestedProperty(youtube, "profile.profile.followers");
-  const TiktokFollowers = getNestedProperty(tiktok, "profile.profile.followers");
+  const InstagramFollowers = getNestedProperty(
+    instagram,
+    "profile.profile.followers"
+  );
+  const YoutubeFollowers = getNestedProperty(
+    youtube,
+    "profile.profile.followers"
+  );
+  const TiktokFollowers = getNestedProperty(
+    tiktok,
+    "profile.profile.followers"
+  );
 
   logger.info(`Name: ${Name}`);
   logger.info(`Gender: ${Gender}`);
@@ -369,10 +438,8 @@ async function updateInfluencerData(influencer, profiles, options = {}) {
   logger.info(`engagementRate: ${engagementRate}`);
   logger.info(`MainVertical: ${MainVertical}`);
   logger.info(`SubVertical: ${SubVertical}`);
-   
 
-
-/*   const totalFollowers =
+  /*   const totalFollowers =
     (instagram?.followerCount || 0) +
     (youtube?.subscriberCount || 0) +
     (tiktok?.followerCount || 0);
@@ -447,16 +514,21 @@ async function updateInfluencerData(influencer, profiles, options = {}) {
     TiktokFollowers: TiktokFollowers,
     updatedAt: new Date(),
     lastApiCall: lastApiCall,
-  }
+  };
   console.log(updatedData);
 
   // Pass transaction as part of options
-  try{
-  await influencer.update(updatedData, { ...options });
-  logger.info(updatedData);
-    logger.info(`This message is here. Updated influencer data for influencer ${influencer.id}`);
+  try {
+    await influencer.update(updatedData, { ...options });
+    logger.info(updatedData);
+    logger.info(
+      `This message is here. Updated influencer data for influencer ${influencer.id}`
+    );
   } catch (error) {
-    logger.error(`Error updating influencer data for influencer ${influencer.id}:`, error);
+    logger.error(
+      `Error updating influencer data for influencer ${influencer.id}:`,
+      error
+    );
     throw error;
   }
 }
@@ -542,14 +614,16 @@ async function updateInfluencerProfile(influencerId) {
 
         // Update main influencer data
         if (instagramData || youtubeData || tiktokData) {
-          
-          await updateInfluencerData(influencer, {
-            instagram: instagramData,
-            youtube: youtubeData,
-            tiktok: tiktokData,
-          }, { transaction });  // Pass the transaction context here
-        
-      }
+          await updateInfluencerData(
+            influencer,
+            {
+              instagram: instagramData,
+              youtube: youtubeData,
+              tiktok: tiktokData,
+            },
+            { transaction }
+          ); // Pass the transaction context here
+        }
       });
     } catch (error) {
       logger.error(

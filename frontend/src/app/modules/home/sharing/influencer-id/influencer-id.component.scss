@@ -100,9 +100,43 @@ $accent: #ff9f1c;
     font-size: 1.5em;
   }
 }
-
-.profile-section.logs-section{
+.campaign-section{
   margin-top: 2%;
+}
+
+.logs-section {
+  margin-top: 2%;
+  .logs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+    }
+
+    .add-log-btn {
+      background-color: $secondary-blue;
+      color: $background-dark;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background-color: lighten($secondary-blue, 10%);
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
 }
 
 .profile-info {
