@@ -6,7 +6,7 @@ const {
   InstagramHashtag,
   InstagramMention,
   InstagramStatHistory,
-  InstagramPost
+  InstagramPost,
 } = require("../../models");
 
 async function updateInstagramProfile(profile, apiData) {
@@ -49,119 +49,205 @@ async function updateInstagramProfile(profile, apiData) {
     logger.info(`Updated Instagram profile for user ${profile.username}`);
 
     // Update audience demographics
-    const audienceDemographics = [
-      ...(getNestedProperty(apiData, "profile.audience.genders") || []),
-      ...(getNestedProperty(apiData, "profile.audience.ages") || []),
-      ...(getNestedProperty(apiData, "profile.audience.geoCountries") || []),
-      ...(getNestedProperty(apiData, "profile.audience.languages") || []),
-      ...(getNestedProperty(apiData, "profile.audience.ethnicities") || []),
-    ].map((item) => ({
-      instagramProfileId: profile.id,
-      type: item.code ? (item.name ? "language" : "demographic") : "country",
-      code: item.code || item.name,
-      name: item.name,
-      weight: item.weight,
-    }));
+    try {
+      console.log(
+        "Starting updateAudienceDemographics for profile:",
+        profile.username
+      );
+      console.log("API Data:", JSON.stringify(apiData, null, 2));
 
-    // Check if any InstagramAudienceDemographic entries exist and destroy them
-    const existingDemographics = await InstagramAudienceDemographic.findAll({
-      where: { instagramProfileId: profile.id }
-    });
-
-    if (existingDemographics.length > 0) {
-      await InstagramAudienceDemographic.destroy({
-        where: { instagramProfileId: profile.id }
-      });
-      logger.info(`Deleted existing audience demographics for Instagram profile ${profile.username}`);
-    }
-
-    
-
-    for (const demo of audienceDemographics) {
-      await InstagramAudienceDemographic.findOrCreate({
-        where: {
-          instagramProfileId: profile.id,
-          type: demo.type,
-          code: demo.code,
+      const audienceCategories = [
+        {
+          type: "gender",
+          data: getNestedProperty(apiData, "profile.audience.genders") || [],
+          saveAll: true,
         },
-        defaults: demo,
+        {
+          type: "age",
+          data: getNestedProperty(apiData, "profile.audience.ages") || [],
+          saveAll: false,
+        },
+        {
+          type: "country",
+          data:
+            getNestedProperty(apiData, "profile.audience.geoCountries") || [],
+          saveAll: false,
+        },
+        {
+          type: "language",
+          data: getNestedProperty(apiData, "profile.audience.languages") || [],
+          saveAll: false,
+        },
+        {
+          type: "ethnicity",
+          data:
+            getNestedProperty(apiData, "profile.audience.ethnicities") || [],
+          saveAll: false,
+        },
+      ];
+
+      console.log(
+        "Audience Categories:",
+        JSON.stringify(audienceCategories, null, 2)
+      );
+
+      // Delete existing demographics for this profile
+      const deletedCount = await InstagramAudienceDemographic.destroy({
+        where: { instagramProfileId: profile.id },
       });
+      console.log(
+        `Deleted ${deletedCount} existing demographics for profile ${profile.username}`
+      );
+
+      let totalSaved = 0;
+
+      for (const category of audienceCategories) {
+        const itemsToSave = category.saveAll
+          ? category.data
+          : getTopNItems(category.data, 3);
+        console.log(`Processing ${category.type}: ${itemsToSave.length} items`);
+
+        for (const item of itemsToSave) {
+          try {
+            const newDemographic = await InstagramAudienceDemographic.create({
+              instagramProfileId: profile.id,
+              type: category.type,
+              code:
+                item.code ||
+                (category.type === "country" ? item.code : item.name),
+              name: item.name || null,
+              weight: item.weight,
+            });
+            console.log(
+              `Saved demographic: ${JSON.stringify(newDemographic.toJSON())}`
+            );
+            totalSaved++;
+          } catch (error) {
+            console.error(
+              `Error saving demographic for ${profile.username}: ${error.message}`
+            );
+            console.error("Failed item:", JSON.stringify(item));
+            // Optionally, you can choose to continue with the loop or throw the error
+            // throw error;
+          }
+        }
+      }
+
+      console.log(
+        `Total demographics saved for ${profile.username}: ${totalSaved}`
+      );
+
+      if (totalSaved === 0) {
+        console.warn(
+          `Warning: No demographics were saved for ${profile.username}`
+        );
+      }
+    } catch (error) {
+      console.error(
+        `Unexpected error in updateAudienceDemographics for ${profile.username}: ${error.message}`
+      );
+      console.error(error.stack);
+      throw error; // Re-throw the error to be handled by the caller
     }
-    logger.info(
-      `Updated audience demographics for Instagram profile ${profile.username}`
-    );
 
     // Update interests
-    const existingInterests = await InstagramInterest.findAll({
-      where: { instagramProfileId: profile.id }
-    });
+    try {
+      logger.info(
+        `Updating interests for Instagram profile ${profile.username}`
+      );
 
-    if (existingInterests.length > 0) {
+      // Delete existing interests
       await InstagramInterest.destroy({
-        where: { instagramProfileId: profile.id }
+        where: { instagramProfileId: profile.id },
       });
-      logger.info(`Deleted existing audience interests for Instagram profile ${profile.username}`);
-    }
+      logger.info(
+        `Deleted existing audience interests for Instagram profile ${profile.username}`
+      );
 
-    const interests = getNestedProperty(apiData, "  ") || [];
-    for (const interest of interests) {
-      await InstagramInterest.findOrCreate({
-        where: {
-          instagramProfileId: profile.id,
-          interestId: interest.id,
-        },
-        defaults: {
+      // Get interests from API data
+      const allInterests =
+        getNestedProperty(apiData, "profile.interests") || [];
+
+      // Sort interests by weight (or another relevant property) and take top 5
+      const topInterests = allInterests
+        .sort((a, b) => (b.weight || 0) - (a.weight || 0))
+        .slice(0, 5);
+
+      // Create new interests
+      for (const interest of topInterests) {
+        await InstagramInterest.create({
           instagramProfileId: profile.id,
           interestId: interest.id,
           name: interest.name,
-        },
-      });
+        });
+      }
+
+      logger.info(
+        `Updated top 5 interests for Instagram profile ${profile.username}`
+      );
+    } catch (error) {
+      logger.error(
+        `Error updating interests for ${profile.username}: ${error.message}`
+      );
+      throw error;
     }
-    logger.info(`Updated interests for Instagram profile ${profile.username}`);
 
     // Update brand affinity
-    const existingBrandAffinity = await InstagramBrandAffinity.findAll({
-      where: { instagramProfileId: profile.id }
-    });
+    try {
+      logger.info(
+        `Updating brand affinity for Instagram profile ${profile.username}`
+      );
 
-    if (existingBrandAffinity.length > 0) {
+      // Delete existing brand affinity
       await InstagramBrandAffinity.destroy({
-        where: { instagramProfileId: profile.id }
+        where: { instagramProfileId: profile.id },
       });
-      logger.info(`Deleted existing brand affinity for Instagram profile ${profile.username}`);
-    }
+      logger.info(
+        `Deleted existing brand affinity for Instagram profile ${profile.username}`
+      );
 
-    const brandAffinity =
-      getNestedProperty(apiData, "profile.audience.brandAffinity") || [];
-    for (const brand of brandAffinity) {
-      await InstagramBrandAffinity.findOrCreate({
-        where: {
-          instagramProfileId: profile.id,
-          name: brand.name,
-        },
-        defaults: {
+      // Get brand affinity from API data
+      const allBrandAffinity =
+        getNestedProperty(apiData, "profile.audience.brandAffinity") || [];
+
+      // Sort brand affinity by weight and take top 5
+      const topBrandAffinity = allBrandAffinity
+        .sort((a, b) => (b.weight || 0) - (a.weight || 0))
+        .slice(0, 5);
+
+      // Create new brand affinity entries
+      for (const brand of topBrandAffinity) {
+        await InstagramBrandAffinity.create({
           instagramProfileId: profile.id,
           name: brand.name,
           weight: brand.weight,
-        },
-      });
+        });
+      }
+
+      logger.info(
+        `Updated top 5 brand affinity for Instagram profile ${profile.username}`
+      );
+    } catch (error) {
+      logger.error(
+        `Error updating brand affinity for ${profile.username}: ${error.message}`
+      );
+      throw error;
     }
-    logger.info(
-      `Updated brand affinity for Instagram profile ${profile.username}`
-    );
 
     // Update hashtags
-    const existingHashtags = await InstagramHashtag.findAll({
-      where: { instagramProfileId: profile.id }
+/*     const existingHashtags = await InstagramHashtag.findAll({
+      where: { instagramProfileId: profile.id },
     });
 
     if (existingHashtags.length > 0) {
       await InstagramHashtag.destroy({
-        where: { instagramProfileId: profile.id }
+        where: { instagramProfileId: profile.id },
       });
-      logger.info(`Deleted existing hashtags for Instagram profile ${profile.username}`);
+      logger.info(
+        `Deleted existing hashtags for Instagram profile ${profile.username}`
+      );
     }
-    
+
     const hashtags = getNestedProperty(apiData, "profile.hashtags") || [];
     for (const tag of hashtags) {
       await InstagramHashtag.findOrCreate({
@@ -176,18 +262,20 @@ async function updateInstagramProfile(profile, apiData) {
         },
       });
     }
-    logger.info(`Updated hashtags for Instagram profile ${profile.username}`);
+    logger.info(`Updated hashtags for Instagram profile ${profile.username}`); */
 
     // Update mentions
-    const existingMentions = await InstagramMention.findAll({
-      where: { instagramProfileId: profile.id }
+/*     const existingMentions = await InstagramMention.findAll({
+      where: { instagramProfileId: profile.id },
     });
 
     if (existingMentions.length > 0) {
       await InstagramMention.destroy({
-        where: { instagramProfileId: profile.id }
+        where: { instagramProfileId: profile.id },
       });
-      logger.info(`Deleted existing mentions for Instagram profile ${profile.username}`);
+      logger.info(
+        `Deleted existing mentions for Instagram profile ${profile.username}`
+      );
     }
 
     const mentions = getNestedProperty(apiData, "profile.mentions") || [];
@@ -204,20 +292,21 @@ async function updateInstagramProfile(profile, apiData) {
         },
       });
     }
-    logger.info(`Updated mentions for Instagram profile ${profile.username}`);
+    logger.info(`Updated mentions for Instagram profile ${profile.username}`); */
 
     // Update stat history
-    const existingStatHistory = await InstagramStatHistory.findAll({
-      where: { instagramProfileId: profile.id }
+/*     const existingStatHistory = await InstagramStatHistory.findAll({
+      where: { instagramProfileId: profile.id },
     });
 
     if (existingStatHistory.length > 0) {
       await InstagramStatHistory.destroy({
-        where: { instagramProfileId: profile.id }
+        where: { instagramProfileId: profile.id },
       });
-      logger.info(`Deleted existing stat history for Instagram profile ${profile.username}`);
+      logger.info(
+        `Deleted existing stat history for Instagram profile ${profile.username}`
+      );
     }
-
 
     const statHistory = getNestedProperty(apiData, "profile.statHistory") || [];
     for (const stat of statHistory) {
@@ -240,17 +329,19 @@ async function updateInstagramProfile(profile, apiData) {
     logger.info(
       `Updated stat history for Instagram profile ${profile.username}`
     );
-
+ */
     // Update posts
-    const existingPosts = await InstagramPost.findAll({
-      where: { instagramProfileId: profile.id }
+/*     const existingPosts = await InstagramPost.findAll({
+      where: { instagramProfileId: profile.id },
     });
 
     if (existingPosts.length > 0) {
       await InstagramPost.destroy({
-        where: { instagramProfileId: profile.id }
+        where: { instagramProfileId: profile.id },
       });
-      logger.info(`Deleted existing posts for Instagram profile ${profile.username}`);
+      logger.info(
+        `Deleted existing posts for Instagram profile ${profile.username}`
+      );
     }
 
     const recentPosts = getNestedProperty(apiData, "profile.recentPosts") || [];
@@ -288,8 +379,9 @@ async function updateInstagramProfile(profile, apiData) {
           image: post.type === "photo" ? true : false,
         },
       });
-    }
-    logger.info(`Updated posts for Instagram profile ${profile.username}`);
+    } */
+    
+      logger.info(`Updated posts for Instagram profile ${profile.username}`);
   } catch (error) {
     logger.error(
       `Error updating Instagram profile for ${profile.username}:`,
@@ -297,6 +389,11 @@ async function updateInstagramProfile(profile, apiData) {
     );
     throw error;
   }
+}
+
+// Helper function to get top N items
+function getTopNItems(items, n) {
+  return items.sort((a, b) => b.weight - a.weight).slice(0, n);
 }
 
 module.exports = { updateInstagramProfile };

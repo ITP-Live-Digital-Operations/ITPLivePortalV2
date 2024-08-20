@@ -1,13 +1,27 @@
-<div class="tiktok-details" *ngIf="profile">
+<div class="tiktok-details" *ngIf="fullProfile">
   <h3>TikTok Details</h3>
-  <p><strong>Username:</strong> {{ profile.username }}</p>
-  <p><strong>Full Name:</strong> {{ profile.fullName }}</p>
-  <p><strong>Followers:</strong> {{ profile.followerCount | number }}</p>
-  <p><strong>Following:</strong> {{ profile.followingCount | number }}</p>
-  <p><strong>Total Likes:</strong> {{ profile.totalLikes | number }}</p>
-  <p><strong>Videos:</strong> {{ profile.postCount | number }}</p>
-  <p><strong>Avg. Views:</strong> {{ profile.avgViews | number:'1.0-0' }}</p>
-  <p><strong>Avg. Likes:</strong> {{ profile.avgLikes | number:'1.0-0' }}</p>
-  <p><strong>Avg. Comments:</strong> {{ profile.avgComments | number:'1.0-0' }}</p>
-  <p><strong>Engagement Rate:</strong> {{ profile.engagementRate | percent:'1.2-2' }}</p>
-</div>
+
+  <div class="basic-info">
+    <p><strong>Username:</strong> {{ fullProfile.username }}</p>
+    <p><strong>Full Name:</strong> {{ fullProfile.fullName }}</p>
+    <p><strong>Followers:</strong> {{ fullProfile.followerCount | number }}</p>
+    <p><strong>Total Likes:</strong> {{ fullProfile.totalLikes | number }}</p>
+    <p><strong>Videos:</strong> {{ fullProfile.postCount | number }}</p>
+    <p><strong>Avg. Views:</strong> {{ fullProfile.avgViews | number:'1.0-0' }}</p>
+    <p><strong>Avg. Likes:</strong> {{ fullProfile.avgLikes | number:'1.0-0' }}</p>
+    <p><strong>Avg. Comments:</strong> {{ fullProfile.avgComments | number:'1.0-0' }}</p>
+    <p><strong>Engagement Rate:</strong> {{ fullProfile.engagementRate | percent:'1.2-2' }}</p>
+  </div>
+
+  <div class="audience-demographics">
+    <h4>Audience Demographics</h4>
+    <div *ngFor="let category of demographicCategories">
+      <h5>{{ category | titlecase }}</h5>
+      <ul>
+        <li *ngFor="let item of audienceDemographics[category].data">
+          {{ item.name }}: {{ item.weight | percent:'1.2-2' }}
+        </li>
+      </ul>
+    </div>
+  </div>
+

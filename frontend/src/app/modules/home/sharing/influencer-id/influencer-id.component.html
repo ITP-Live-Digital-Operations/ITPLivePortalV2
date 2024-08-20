@@ -2,7 +2,7 @@
   <div class="profile-header">
     <img [src]="profile.profilePicture || 'assets/default-avatar.png'" alt="{{ profile.Name }}" class="profile-avatar">
     <div class="profile-title">
-      <h1>{{ profile.Name }}</h1>
+      <h1><strong>{{ profile.Name }}</strong></h1>
       <h3></h3>
       <div class="profile-quick-info">
         <span><i class="fas fa-map-marker-alt"></i> {{ profile.CityLocation }}, {{ profile.CountryLocation }}</span>
@@ -28,30 +28,30 @@
     <div class="social-profiles">
       <h2>Social Media Presence</h2>
       <div class="social-grid">
-        <div class="social-item clickable" *ngIf="profile.InstagramFollowers" (click)="togglePlatformDetails('instagram')">
+        <div class="social-item clickable" *ngIf="profile.InstagramHandle" (click)="togglePlatformDetails('instagram')">
           <i class="fab fa-instagram"></i>
           <span class="social-platform">Instagram</span>
-          <span class="social-followers">{{ profile.InstagramFollowers | number }} followers</span>
+          <span class="social-followers" *ngIf="profile.InstagramFollowers != undefined" >{{ profile.InstagramFollowers |numberFormat  }} followers</span>
         </div>
-        <div class="social-item clickable" *ngIf="profile.TiktokFollowers" (click)="togglePlatformDetails('tiktok')">
+        <div class="social-item clickable" *ngIf="profile.TiktokHandle" (click)="togglePlatformDetails('tiktok')">
           <i class="fab fa-tiktok"></i>
           <span class="social-platform">TikTok</span>
-          <span class="social-followers">{{ profile.TiktokFollowers | number }} followers</span>
+          <span class="social-followers" *ngIf="profile.TiktokFollowers != undefined">{{ profile.TiktokFollowers | numberFormat }} followers</span>
         </div>
-        <div class="social-item clickable" *ngIf="profile.YoutubeFollowers" (click)="togglePlatformDetails('youtube')">
+        <div class="social-item clickable" *ngIf="profile.YoutubeHandle" (click)="togglePlatformDetails('youtube')">
           <i class="fab fa-youtube"></i>
           <span class="social-platform">YouTube</span>
-          <span class="social-followers">{{ profile.YoutubeFollowers | number }} subscribers</span>
+          <span class="social-followers"*ngIf="profile.YoutubeFollowers" >{{ profile.YoutubeFollowers | numberFormat }} subscribers</span>
         </div>
-        <div class="social-item" *ngIf="profile.TwitterFollowers">
+        <div class="social-item" *ngIf="profile.TwitterHandle">
           <i class="fab fa-twitter"></i>
           <span class="social-platform">Twitter</span>
-          <span class="social-followers">{{ profile.TwitterFollowers | number }} followers</span>
+          <span class="social-followers" *ngIf="profile.TwitterFollowers != undefined">{{ profile.TwitterFollowers | numberFormat }} followers</span>
         </div>
-        <div class="social-item" *ngIf="profile.FacebookFollowers">
+        <div class="social-item" *ngIf="profile.FacebookHandle">
           <i class="fab fa-facebook"></i>
           <span class="social-platform">Facebook</span>
-          <span class="social-followers">{{ profile.FacebookFollowers | number }} followers</span>
+          <span class="social-followers" *ngIf="profile.FacebookFollowers != undefined ">{{ profile.FacebookFollowers | numberFormat }} followers</span>
         </div>
       </div>
     </div>
@@ -69,11 +69,11 @@
         </div>
         <div class="metric-item" *ngIf="profile.influencerMetrics?.CPE">
           <span class="metric-value">{{ profile.influencerMetrics?.CPE | currency:'USD':'symbol':'1.2-2' }}</span>
-          <span class="metric-label">Cost Per Engagement</span>
+          <span class="metric-label">CPE</span>
         </div>
         <div class="metric-item" *ngIf="profile.influencerMetrics?.CPM">
           <span class="metric-value">{{ profile.influencerMetrics?.CPM | currency:'USD':'symbol':'1.2-2' }}</span>
-          <span class="metric-label">Cost Per Mille</span>
+          <span class="metric-label">CPM</span>
         </div>
       </div>
     </div>

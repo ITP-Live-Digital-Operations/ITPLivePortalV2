@@ -64,36 +64,37 @@ export class InstagramDetailsComponent {
       this.demographicCategories.forEach(category => {
         let data: DemographicItem[] = [];
 
-        if ( this.fullProfile.InstagramAudienceDemographic  === undefined) {
+        if (this.fullProfile.InstagramAudienceDemographic === undefined) {
           return;
         }
 
-        switch(category) {
+        switch (category) {
           case 'gender':
             data = this.fullProfile.InstagramAudienceDemographic
-              .filter(item => item.type === 'demographic' && ['MALE', 'FEMALE'].includes(item.code))
+              .filter(item => item.type === 'gender' && ['MALE', 'FEMALE'].includes(item.code))
               .map(item => ({ name: item.code, weight: item.weight }));
             break;
           case 'age':
             data = this.fullProfile.InstagramAudienceDemographic
-              .filter(item => item.type === 'demographic' && item.code.includes('-'))
+              .filter(item => item.type === 'age')
               .map(item => ({ name: item.code, weight: item.weight }));
             break;
           case 'country':
             data = this.fullProfile.InstagramAudienceDemographic
-              .filter(item => item.type === 'language' && item.name && item.name.length === 2)
-              .map(item => ({ name: item.name!, weight: item.weight }));
+              .filter(item => item.type === 'country')
+              .map(item => ({ name: item.name || item.code, weight: item.weight }));
             break;
           case 'language':
             data = this.fullProfile.InstagramAudienceDemographic
-              .filter(item => item.type === 'language' && item.name && item.name.length > 2)
+              .filter(item => item.type === 'language')
               .map(item => ({ name: item.name!, weight: item.weight }));
             break;
           case 'ethnicity':
             data = this.fullProfile.InstagramAudienceDemographic
-              .filter(item => ['african_american', 'asian', 'white', 'hispanic'].includes(item.code))
+              .filter(item => item.type === 'ethnicity')
               .map(item => ({ name: item.name || item.code, weight: item.weight }));
             break;
+
         }
 
         this.audienceDemographics[category] = {
@@ -103,6 +104,7 @@ export class InstagramDetailsComponent {
       });
     }
   }
+
 
   private processTopBrands() {
     if (this.fullProfile?.InstagramBrandAffinity) {

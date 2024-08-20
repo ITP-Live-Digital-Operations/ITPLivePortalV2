@@ -1,10 +1,98 @@
 .tiktok-details {
-  color: #FFF;
+  background-color: #16213e;
+  border-radius: 8px;
+  padding: 20px;
+  color: #f0f0f0;
+  font-family: Arial, sans-serif;
+
+  h3, h4, h5 {
+    color: #e94560;
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    font-size: 1.8em;
+    border-bottom: 2px solid #e94560;
+    padding-bottom: 10px;
+  }
+
+  h4 {
+    font-size: 1.4em;
+    margin-top: 25px;
+  }
+
+  h5 {
+    font-size: 1.2em;
+    margin-top: 20px;
+  }
+
+  .basic-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+
+    p {
+      margin: 0;
+      padding: 10px;
+      background-color: #1a2749;
+      border-radius: 5px;
+
+      strong {
+        color: #e94560;
+      }
+    }
+  }
+
+  .audience-demographics, .top-interests {
+    background-color: #1a2749;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+
+      li {
+        padding: 5px 0;
+        border-bottom: 1px solid #2c3e50;
+        display: flex;
+        justify-content: space-between;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  .top-interests {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+
+      li {
+        background-color: #213555;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        border: none;
+      }
+    }
+  }
 }
-h3 {
-  color: #e94560;
-  margin-bottom: 15px;
-}
-p {
-  margin-bottom: 10px;
+
+@media (max-width: 768px) {
+  .tiktok-details {
+    .basic-info {
+      grid-template-columns: 1fr;
+    }
+
+    .top-interests ul {
+      grid-template-columns: 1fr;
+    }
+  }
 }

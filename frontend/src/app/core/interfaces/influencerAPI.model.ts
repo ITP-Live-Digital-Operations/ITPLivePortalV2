@@ -148,7 +148,16 @@ export interface InstagramProfile {
   InstagramBrandAffinity?: InstagramBrandAffinity[];
 }
 
-
+export interface YouTubeAudienceDemographic {
+  id: number;
+  instagramProfileId: number;
+  type: string;
+  code: string;
+  name?: string | null;
+  weight: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
 
 export interface YouTubeProfile {
@@ -171,6 +180,18 @@ export interface YouTubeProfile {
   country?: string;
   gender?: string;
   ageGroup?: string;
+  YouTubeAudienceDemographic?: YouTubeAudienceDemographic[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface TikTokAudienceDemographic {
+  id: number;
+  instagramProfileId: number;
+  type: string;
+  code: string;
+  name?: string | null;
+  weight: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -198,6 +219,7 @@ export interface TikTokProfile {
   country?: string;
   gender?: string;
   ageGroup?: string;
+  TikTokAudienceDemographic?: TikTokAudienceDemographic[];
   createdAt: string;
   updatedAt: string;
 }

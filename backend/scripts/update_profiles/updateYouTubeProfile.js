@@ -3,7 +3,7 @@ const {
   YouTubeAudienceDemographic,
   YouTubeInterest,
   YouTubeStatHistory,
-  YouTubeVideo
+  YouTubeVideo,
 } = require("../../models");
 
 async function updateYouTubeProfile(profile, apiData) {
@@ -24,7 +24,10 @@ async function updateYouTubeProfile(profile, apiData) {
     avgLikes: getNestedProperty(apiData, "profile.avgLikes"),
     avgComments: getNestedProperty(apiData, "profile.avgComments"),
     totalViews: getNestedProperty(apiData, "profile.totalViews"),
-    engagementRate: getNestedProperty(apiData, "profile.profile.engagementRate"),
+    engagementRate: getNestedProperty(
+      apiData,
+      "profile.profile.engagementRate"
+    ),
     city: getNestedProperty(apiData, "profile.city"),
     country: getNestedProperty(apiData, "profile.country"),
     gender: getNestedProperty(apiData, "profile.gender"),
@@ -36,67 +39,23 @@ async function updateYouTubeProfile(profile, apiData) {
     logger.info(`Updated YouTube profile for user ${profile.username}`);
 
     // Update audience demographics
-    const existingDemographics = await YouTubeAudienceDemographic.findAll({
-      where: { youtubeProfileId: profile.id }
-    });
-
-    if (existingDemographics.length > 0) {
-      await YouTubeAudienceDemographic.destroy({
-        where: { youtubeProfileId: profile.id }
-      });
-      logger.info(`Deleted existing audience demographics for YouTube profile ${profile.username}`);
-    }
-
-    const audienceDemographics = [
-      ...(getNestedProperty(apiData, "profile.audience.genders") || []),
-      ...(getNestedProperty(apiData, "profile.audience.ages") || []),
-      ...(getNestedProperty(apiData, "profile.audience.geoCountries") || []),
-      ...(getNestedProperty(apiData, "profile.audience.languages") || []),
-    ];
-
-    for (const demo of audienceDemographics) {
-      await YouTubeAudienceDemographic.create({
-        youtubeProfileId: profile.id,
-        type: demo.code ? (demo.name ? "language" : "demographic") : "country",
-        code: demo.code || demo.name,
-        name: demo.name,
-        weight: demo.weight,
-      });
-    }
-    logger.info(`Updated audience demographics for YouTube profile ${profile.username}`);
+    await updateAudienceDemographics(profile, apiData);
 
     // Update interests
-    const existingInterests = await YouTubeInterest.findAll({
-      where: { youtubeProfileId: profile.id }
-    });
-
-    if (existingInterests.length > 0) {
-      await YouTubeInterest.destroy({
-        where: { youtubeProfileId: profile.id }
-      });
-      logger.info(`Deleted existing interests for YouTube profile ${profile.username}`);
-    }
-
-    const interests = getNestedProperty(apiData, "profile.interests") || [];
-    for (const interest of interests) {
-      await YouTubeInterest.create({
-        youtubeProfileId: profile.id,
-        interestId: interest.id,
-        name: interest.name,
-      });
-    }
-    logger.info(`Updated interests for YouTube profile ${profile.username}`);
+    await updateInterests(profile, apiData);
 
     // Update stat history
     const existingStatHistory = await YouTubeStatHistory.findAll({
-      where: { youtubeProfileId: profile.id }
+      where: { youtubeProfileId: profile.id },
     });
 
     if (existingStatHistory.length > 0) {
       await YouTubeStatHistory.destroy({
-        where: { youtubeProfileId: profile.id }
+        where: { youtubeProfileId: profile.id },
       });
-      logger.info(`Deleted existing stat history for YouTube profile ${profile.username}`);
+      logger.info(
+        `Deleted existing stat history for YouTube profile ${profile.username}`
+      );
     }
 
     const statHistory = getNestedProperty(apiData, "profile.statHistory") || [];
@@ -115,18 +74,22 @@ async function updateYouTubeProfile(profile, apiData) {
 
     // Update videos
     const existingVideos = await YouTubeVideo.findAll({
-      where: { youtubeProfileId: profile.id }
+      where: { youtubeProfileId: profile.id },
     });
 
     if (existingVideos.length > 0) {
       await YouTubeVideo.destroy({
-        where: { youtubeProfileId: profile.id }
+        where: { youtubeProfileId: profile.id },
       });
-      logger.info(`Deleted existing videos for YouTube profile ${profile.username}`);
+      logger.info(
+        `Deleted existing videos for YouTube profile ${profile.username}`
+      );
     }
 
-    const recentVideos = getNestedProperty(apiData, "profile.recentPosts") || [];
-    const popularVideos = getNestedProperty(apiData, "profile.popularPosts") || [];
+    const recentVideos =
+      getNestedProperty(apiData, "profile.recentPosts") || [];
+    const popularVideos =
+      getNestedProperty(apiData, "profile.popularPosts") || [];
     const allVideos = [...recentVideos, ...popularVideos];
 
     for (const video of allVideos) {
@@ -146,9 +109,163 @@ async function updateYouTubeProfile(profile, apiData) {
     }
     logger.info(`Updated videos for YouTube profile ${profile.username}`);
   } catch (error) {
-    logger.error(`Error updating YouTube profile for ${profile.username}:`, error);
+    logger.error(
+      `Error updating YouTube profile for ${profile.username}:`,
+      error
+    );
     throw error;
   }
+}
+
+// Functions to save data
+async function updateAudienceDemographics(profile, apiData) {
+  try {
+    console.log(
+      "Starting updateAudienceDemographics for YouTube profile:",
+      profile.username
+    );
+    console.log("API Data:", JSON.stringify(apiData, null, 2));
+
+    const audienceCategories = [
+      {
+        type: "gender",
+        data: getNestedProperty(apiData, "profile.audience.genders") || [],
+        saveAll: true,
+      },
+      {
+        type: "age",
+        data: getNestedProperty(apiData, "profile.audience.ages") || [],
+        saveAll: true,
+      },
+      {
+        type: "country",
+        data: getNestedProperty(apiData, "profile.audience.geoCountries") || [],
+        saveAll: false,
+      },
+      {
+        type: "language",
+        data: getNestedProperty(apiData, "profile.audience.languages") || [],
+        saveAll: false,
+      },
+    ];
+
+    console.log(
+      "Audience Categories:",
+      JSON.stringify(audienceCategories, null, 2)
+    );
+
+    // Delete existing demographics for this profile
+    const deletedCount = await YouTubeAudienceDemographic.destroy({
+      where: { youtubeProfileId: profile.id },
+    });
+    console.log(
+      `Deleted ${deletedCount} existing demographics for YouTube profile ${profile.username}`
+    );
+
+    let totalSaved = 0;
+
+    for (const category of audienceCategories) {
+      const itemsToSave = category.saveAll
+        ? category.data
+        : getTopNItems(category.data, 3);
+      console.log(`Processing ${category.type}: ${itemsToSave.length} items`);
+
+      for (const item of itemsToSave) {
+        try {
+          const newDemographic = await YouTubeAudienceDemographic.create({
+            youtubeProfileId: profile.id,
+            type: category.type,
+            code:
+              item.code ||
+              (category.type === "country" ? item.code : item.name),
+            name: item.name || null,
+            weight: item.weight,
+          });
+          console.log(
+            `Saved demographic: ${JSON.stringify(newDemographic.toJSON())}`
+          );
+          totalSaved++;
+        } catch (error) {
+          console.error(
+            `Error saving demographic for ${profile.username}: ${error.message}`
+          );
+          console.error("Failed item:", JSON.stringify(item));
+          // Optionally, you can choose to continue with the loop or throw the error
+          // throw error;
+        }
+      }
+    }
+
+    console.log(
+      `Successfully updated ${totalSaved} audience demographics for YouTube profile ${profile.username}`
+    );
+  } catch (error) {
+    console.error(
+      `Error updating audience demographics for ${profile.username}: ${error.message}`
+    );
+    throw error;
+  }
+}
+
+async function updateInterests(profile, apiData) {
+  try {
+    console.log(
+      "Starting updateInterests for YouTube profile:",
+      profile.username
+    );
+    console.log("API Data:", JSON.stringify(apiData, null, 2));
+
+    // Delete existing interests for this profile
+    const deletedCount = await YouTubeInterest.destroy({
+      where: { youtubeProfileId: profile.id },
+    });
+    console.log(
+      `Deleted ${deletedCount} existing interests for YouTube profile ${profile.username}`
+    );
+
+    const interests = getNestedProperty(apiData, "profile.interests") || [];
+    const topInterests = getTopNItems(interests, 5);
+
+    console.log(`Processing top 5 interests: ${topInterests.length} items`);
+
+    let totalSaved = 0;
+
+    for (const interest of topInterests) {
+      try {
+        const newInterest = await YouTubeInterest.create({
+          youtubeProfileId: profile.id,
+          interestId: interest.id,
+          name: interest.name,
+          weight: interest.weight, // Adding weight to the saved data
+        });
+        console.log(
+          `Saved interest: ${JSON.stringify(newInterest.toJSON())}`
+        );
+        totalSaved++;
+      } catch (error) {
+        console.error(
+          `Error saving interest for ${profile.username}: ${error.message}`
+        );
+        console.error("Failed item:", JSON.stringify(interest));
+        // Optionally, you can choose to continue with the loop or throw the error
+        // throw error;
+      }
+    }
+
+    console.log(
+      `Successfully updated ${totalSaved} interests for YouTube profile ${profile.username}`
+    );
+  } catch (error) {
+    console.error(
+      `Error updating interests for ${profile.username}: ${error.message}`
+    );
+    throw error;
+  }
+}
+
+// Function to get top N items from an array, sorted by weight
+function getTopNItems(items, n) {
+  return items.sort((a, b) => b.weight - a.weight).slice(0, n);
 }
 
 module.exports = { updateYouTubeProfile };
