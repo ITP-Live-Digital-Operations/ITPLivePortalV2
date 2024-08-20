@@ -144,20 +144,31 @@ export class HomeComponent {
         )
       )
       .subscribe((event) => {
-        if (event.url.endsWith('/forms')) {
-          this.themeClass = 'content-noScroll';
+        const url = event.url;
+
+        // Define an array of URL patterns where the back button should not appear
+        const noBackButtonPatterns = [
+          /^\/forms$/,
+          /^\/main$/,
+          /^\/talent$/,
+          /^\/sales$/,
+          /^\/home$/,
+         /^\/home\/main\/influencer\/\d+$/,  // Matches /influencer/ followed by any number
+        ];
+
+        // Check if the current URL matches any of the patterns
+        const shouldHideBackButton = noBackButtonPatterns.some(pattern => pattern.test(url));
+
+        if (shouldHideBackButton) {
+
           this.backButton = false;
-        } else if (event.url.endsWith('/main')) {
-          this.backButton = false;
-        } else if (event.url.endsWith('/talent')) {
-          this.backButton = false;
-        } else if (event.url.endsWith('/sales')) {
-          this.backButton = false;
-        } else if (event.url.endsWith('/home')) {
-          this.backButton = false;
+          this.themeClass = url.endsWith('/forms') ? 'content-noScroll' : '';
         } else {
           this.backButton = true;
           this.themeClass = '';
+        }
+        if (url.match(/^\/home\/main\/influencer\/\d+$/)) {
+          this.backButton = false;
         }
       });
   }

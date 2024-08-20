@@ -1,7 +1,8 @@
 import { Component,ElementRef, ViewChild  } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-forms',
@@ -15,17 +16,29 @@ export class FormsComponent {
   public privilegeLevel!: number;
   public userRole!: string;
 
-  constructor(private userService: UserService){ }
- 
+  constructor(private userService: UserService,
+    private router: Router
+  ){ }
+
   ngOnInit(){
     this.getRole();
     this.getPrivilegeLevel();
+
+    console.log('Current URL:', this.router.url);
+    console.log('Current View:', this.currentView);
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.updateCurrentView();
+    });
+
   }
   changeView(view: 'main' | 'talent' | 'campaign' | 'sales'| 'sales') {
     this.currentView = view;
   }
 
-  private getRole(): void { 
+  private getRole(): void {
     this.userRole = this.userService.getRole();
   }
   onWheel(event: WheelEvent): void {
@@ -43,6 +56,35 @@ export class FormsComponent {
       var parts = jwt.split('.');
       var payload = JSON.parse(atob(parts[1]));
       this.privilegeLevel = payload.privilege_level;
+    }
+  }
+
+  isInfluencerDetailPage(): boolean {
+    const url = this.router.url;
+    return url.match(/^\/home\/main\/influencer\/\d+$/) !== null;
+  }
+
+  shouldShowBackButton(): boolean {
+    const isValidView = this.currentView === 'campaign' ||
+                        this.currentView === 'talent' ||
+                        this.currentView === 'sales';
+    const isInfluencerDetailPage = this.isInfluencerDetailPage();
+    console.log('Current URL:', this.router.url);
+    console.log('Is Valid View:', isValidView);
+    console.log('Is Influencer Detail Page:', isInfluencerDetailPage);
+    return isValidView && !isInfluencerDetailPage;
+  }
+
+  private updateCurrentView() {
+    const url = this.router.url;
+    if (url.includes('/talent')) {
+      this.currentView = 'talent';
+    } else if (url.includes('/campaign')) {
+      this.currentView = 'campaign';
+    } else if (url.includes('/sales')) {
+      this.currentView = 'sales';
+    } else {
+      this.currentView = 'main';
     }
   }
 }

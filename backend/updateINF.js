@@ -7,9 +7,9 @@ const rl = readline.createInterface({
 });
 
 const baseUrl = 'https://itplive.itpshare.com/api/v1/influencers/getInfluencerProfileV2/';
-const startId = 459;
+const startId = 1380;// add 300 
 const endId = 4234;
-const batchSize = 50;
+const batchSize = 300;
 
 const authToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Ik1vaGFtYWQgSGFtbW91ZCIsInJvbGUiOiJzdXBlcmFkbWluIiwicHJpdmlsZWdlX2xldmVsIjoxMCwiaWF0IjoxNzI0MTc0MTMwLCJleHAiOjE3MjQyMTczMzB9.k-UtiZWVnWRlVAkUEoTG6KvLshtpNdM354NeENrd2Yw";
 
@@ -51,7 +51,6 @@ async function processInfluencers(currentId) {
     totalProcessed: 0,
     successful: 0,
     failed: 0,
-    skipped: 0,
     errors: []
   };
 
@@ -63,18 +62,9 @@ async function processInfluencers(currentId) {
     if (status === 200) {
       console.log(`Influencer data for ID ${id}:`, JSON.stringify(data, null, 2));
       batchReport.successful++;
-    } else if (status === 500) {
-      const answer = await askQuestion('Received status 500. Try again? (y/n): ');
-      if (answer.toLowerCase() === 'y') {
-        id--; // Retry the same ID
-        batchReport.totalProcessed--;
-      } else {
-        batchReport.failed++;
-        batchReport.errors.push(`ID ${id}: Status 500`);
-      }
     } else {
-      console.log(`Skipping ID ${id} due to non-200 status`);
-      batchReport.skipped++;
+      console.log(`Error for ID ${id}: Status ${status}`);
+      batchReport.failed++;
       batchReport.errors.push(`ID ${id}: Status ${status}`);
     }
   }
@@ -83,7 +73,6 @@ async function processInfluencers(currentId) {
   console.log(`Total Processed: ${batchReport.totalProcessed}`);
   console.log(`Successful: ${batchReport.successful}`);
   console.log(`Failed: ${batchReport.failed}`);
-  console.log(`Skipped: ${batchReport.skipped}`);
   if (batchReport.errors.length > 0) {
     console.log('Errors:');
     batchReport.errors.forEach(error => console.log(error));

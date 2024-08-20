@@ -265,3 +265,20 @@ button{
   width:20vh;
   height:5vh;
 }
+
+.icons-btn {
+  background-color: transparent;
+  border: 0px;
+  padding: 4px 6px;
+  color: white;
+
+  &:hover {
+    background: linear-gradient(
+      300deg,
+      rgb(45, 47, 149) 0%,
+      rgba(43, 45, 124, 0.85) 77%,
+      rgba(36, 38, 119, 0.85) 100%
+    );
+    border-radius: 5px;
+  }
+}

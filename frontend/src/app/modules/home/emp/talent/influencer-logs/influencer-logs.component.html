@@ -82,7 +82,9 @@
     <ng-container matColumnDef="Influencer">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Influencer</th>
       <td mat-cell *matCellDef="let element">
-        {{ element.influencer.Name}}
+        <button class="icons-btn" (click)="viewInfluencer(element.influencer.id)">
+          {{ element.influencer.Name }}
+        </button>
       </td>
     </ng-container>
 

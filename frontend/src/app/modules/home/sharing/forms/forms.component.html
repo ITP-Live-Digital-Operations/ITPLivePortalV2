@@ -1,6 +1,8 @@
 <!-- The outer container with a fixed width to act as a viewport -->
-<button style="margin-bottom: 1%" class="back-button" *ngIf="currentView == 'campaign' || currentView == 'talent' || currentView == 'sales'"
-(click)="changeView('main')">  <mat-icon style="height: 70%;">arrow_back</mat-icon>Back
+<button style="margin-bottom: 1%" class="back-button"
+*ngIf="shouldShowBackButton()"
+(click)="changeView('main')">
+  <mat-icon style="height: 70%;">arrow_back</mat-icon>Back
 </button>
 <div #carouselContainer class="carousel-container" #carousel (wheel)="onWheel($event)" >
   <!-- The inner container with flex display to hold all buttons -->

@@ -77,7 +77,8 @@ export class InfluencerLogsComponent {
     private userService: UserService,
     private logService: LogService,
     private dialog: MatDialog,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -387,6 +388,15 @@ export class InfluencerLogsComponent {
       });
     }
   }
+
+  public viewInfluencer(influencerId: any): void {
+    console.log(influencerId);
+    console.log(this.path['influencerProfile']);
+    const url = this.router.serializeUrl(
+        this.router.createUrlTree([this.path['influencerProfile'], influencerId])
+    );
+    window.open(url, '_blank');
+}
 
   public viewInfluencerLog(inputdata: any, type: String): void {
     this.dialog?.open(ViewLogComponent, {
