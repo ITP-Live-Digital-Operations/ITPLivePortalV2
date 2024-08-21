@@ -95,9 +95,8 @@ async function migrateData() {
     // Fetch all influencers
     const influencers = await Influencer.findAll({
       where: {
-        id: {
-          [Op.gt]: minInfluencerId
-        }
+        id:InfluencerId
+        
       }
     });
     logger.info(`Found ${influencers.length} influencers to migrate`);
@@ -215,7 +214,7 @@ async function migrateData() {
 }
 
 // Run the migration
-const minInfluencerId = 4240; // Set this to your desired minimum influencer ID
+const InfluencerId = 4240; // Set this to your desired minimum influencer ID
 migrateData()
   .then(() => {
     logger.info("Migration process finished");

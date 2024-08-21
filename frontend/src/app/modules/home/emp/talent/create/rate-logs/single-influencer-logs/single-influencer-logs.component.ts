@@ -6,7 +6,7 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { LogService } from 'src/app/core/services/log.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { currencies, platforms } from 'src/assets/influencer-form-arrays';
+import { currencies, indiaCurrencies, platforms } from 'src/assets/influencer-form-arrays';
 import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-single-influencer-logs',
@@ -20,6 +20,7 @@ export class SingleInfluencerLogsComponent {
   public logForm: FormGroup;
   private data: any;
   public currencies = currencies;
+  public indiaCurrencies = indiaCurrencies;
   public platforms = platforms;
   public influencers: any;
 
