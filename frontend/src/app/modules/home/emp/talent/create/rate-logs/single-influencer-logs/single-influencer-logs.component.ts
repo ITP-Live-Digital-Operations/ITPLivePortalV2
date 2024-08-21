@@ -59,6 +59,7 @@ export class SingleInfluencerLogsComponent {
 
     this.logForm.controls['Influencer'].setValue(this.influencerId);
     /* sessionStorage.removeItem('influencerData'); */
+    console.log(this.indiaCurrencies)
   }
 
   public get fields(): FormArray {

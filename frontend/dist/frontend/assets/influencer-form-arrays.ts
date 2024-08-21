@@ -527,6 +527,8 @@ export const nationalities = [
 
 export const currencies = ['AED', 'SAR'];
 
+export const indiaCurrencies = ['INR', 'AED', 'SAR', 'USD'];
+
 export const platforms = [
   'Instagram',
   'Tiktok',
