@@ -7,11 +7,11 @@ const rl = readline.createInterface({
 });
 
 const baseUrl = 'https://itplive.itpshare.com/api/v1/influencers/getInfluencerProfileV2/';
-const startId = 1380;// add 300 
-const endId = 4234;
-const batchSize = 300;
+const startId = 4230;// add 300 
+const endId = 5000;
+const batchSize = 20;
 
-const authToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Ik1vaGFtYWQgSGFtbW91ZCIsInJvbGUiOiJzdXBlcmFkbWluIiwicHJpdmlsZWdlX2xldmVsIjoxMCwiaWF0IjoxNzI0MTc0MTMwLCJleHAiOjE3MjQyMTczMzB9.k-UtiZWVnWRlVAkUEoTG6KvLshtpNdM354NeENrd2Yw";
+const authToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Ik1vaGFtYWQgSGFtbW91ZCIsInJvbGUiOiJzdXBlcmFkbWluIiwicHJpdmlsZWdlX2xldmVsIjoxMCwiaWF0IjoxNzI0MjI0MjU1LCJleHAiOjE3MjQyNjc0NTV9.Tps-c4XKV4AbuNpuUjj2ciBc6QSLPFI1zVVWdbibprI";
 
 function askQuestion(question) {
   return new Promise((resolve) => {

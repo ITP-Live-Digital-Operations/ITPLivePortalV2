@@ -92,7 +92,13 @@ async function migrateData() {
     const skipYoutubeIds = await getSkipInfluencerIds('./files/youtube_filtered_influencer_data.csv');
 
     // Fetch all influencers
-    const influencers = await Influencer.findAll();
+    const influencers = await Influencer.findAll({
+      where: {
+        id: {
+          [sequelize.Op.gt]: minInfluencerId
+        }
+      }
+    });
     logger.info(`Found ${influencers.length} influencers to migrate`);
 
     for (const influencer of influencers) {
@@ -208,6 +214,7 @@ async function migrateData() {
 }
 
 // Run the migration
+const minInfluencerId = 4240; // Set this to your desired minimum influencer ID
 migrateData()
   .then(() => {
     logger.info("Migration process finished");
