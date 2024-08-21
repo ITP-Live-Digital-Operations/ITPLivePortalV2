@@ -1,4 +1,5 @@
-const { sequelize } = require("../models/index");
+const { sequelize, Sequelize } = require("../models/index");
+const { Op } = Sequelize;
 const winston = require("winston");
 const path = require("path");
 const csv = require("csv-parser");
@@ -95,7 +96,7 @@ async function migrateData() {
     const influencers = await Influencer.findAll({
       where: {
         id: {
-          [sequelize.Op.gt]: minInfluencerId
+          [Op.gt]: minInfluencerId
         }
       }
     });
