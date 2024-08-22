@@ -7,12 +7,17 @@ const User = models.User;
 const InfluencerStatistics = models.InfluencerStatistics;
 const InfluencerMetrics = models.influencerMetrics;
 const InfluencerRemarks = models.influencerRemarks;
+const { runMigration } = require("../../scripts/migrateInfluencerData");
 
 exports.createInfluencer = (req, res) => {
   const influencer = req.body;
   Influencer.create(influencer)
     .then((data) => {
-
+      if(data.id){
+      runMigration(data.id);
+      }else{
+        console.log("No Influencer Id.")
+      }
       InfluencerMetrics.create({
         influencerId: data.id,
       })

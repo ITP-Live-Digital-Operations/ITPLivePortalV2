@@ -7,9 +7,9 @@ const rl = readline.createInterface({
 });
 
 const baseUrl = 'https://itplive.itpshare.com/api/v1/influencers/getInfluencerProfileV2/';
-const startId = 1380;// add 300 
+const startId = 2505;// add 1000 
 const endId = 4234;
-const batchSize = 300;
+const batchSize = 1500;
 
 const authToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Ik1vaGFtYWQgSGFtbW91ZCIsInJvbGUiOiJzdXBlcmFkbWluIiwicHJpdmlsZWdlX2xldmVsIjoxMCwiaWF0IjoxNzI0MTc0MTMwLCJleHAiOjE3MjQyMTczMzB9.k-UtiZWVnWRlVAkUEoTG6KvLshtpNdM354NeENrd2Yw";
 

@@ -28,18 +28,17 @@ const InfluencerStatistics = models.InfluencerStatistics;
 const InfluencerMetrics = models.influencerMetrics;
 const InfluencerRemarks = models.influencerRemarks;
 
-const { updateInfluencers } = require("../../scripts/updateInfluencers")
-
+const { updateInfluencers } = require("../../scripts/updateInfluencers");
 
 exports.getInfluencerProfileV2 = async (req, res) => {
   const influencerId = Number(req.params.id);
   console.log(influencerId);
   try {
-    const influencer = await Influencer.findByPk(influencerId, {
+    let influencer = await Influencer.findByPk(influencerId, {
       include: [
         {
           model: InstagramProfile,
-          
+
           as: "instagramProfile", // Ensure this matches the alias in the model
         },
         {
@@ -52,39 +51,76 @@ exports.getInfluencerProfileV2 = async (req, res) => {
         },
         {
           model: InfluencerRating,
-          as: "influencerRating" // Ensure this matches the alias in the model
+          as: "influencerRating", // Ensure this matches the alias in the model
         },
         {
           model: User,
           as: "user", // Ensure this matches the alias in the model
-          attributes: ['id', 'name'],
+          attributes: ["id", "name"],
         },
         {
           model: InfluencerStatistics,
-          as: "influencerStatistics" // Ensure this matches the alias in the model
+          as: "influencerStatistics", // Ensure this matches the alias in the model
         },
         {
           model: InfluencerMetrics,
-          as: "influencerMetrics" // Ensure this matches the alias in the model
-        }
-      ]
+          as: "influencerMetrics", // Ensure this matches the alias in the model
+        },
+      ],
     });
 
     if (!influencer) {
       return res.status(404).json({ message: "Influencer not found" });
     }
 
-        // Check if lastApiCall is null or older than 30 days
-        const now = new Date();
-        const thirtyDaysAgo = new Date(now);
-        thirtyDaysAgo.setDate(now.getDate() - 30);
+    // Check if lastApiCall is null or older than 30 days
+    const now = new Date();
+    const thirtyDaysAgo = new Date(now);
+    thirtyDaysAgo.setDate(now.getDate() - 30);
 
-    if (!influencer.lastApiCall || new Date(influencer.lastApiCall) < thirtyDaysAgo) {
+    if (
+      !influencer.lastApiCall ||
+      new Date(influencer.lastApiCall) < thirtyDaysAgo
+    ) {
       // Logic to update influencer information
-      console.log('Updating influencer data...');
+      console.log("Updating influencer data...");
 
       await updateInfluencers(1, influencerId);
 
+      // Refetch the updated influencer data
+      influencer = await Influencer.findByPk(influencerId, {
+        include: [
+          {
+            model: InstagramProfile,
+            as: "instagramProfile",
+          },
+          {
+            model: YouTubeProfile,
+            as: "youtubeProfile",
+          },
+          {
+            model: TikTokProfile,
+            as: "tiktokProfile",
+          },
+          {
+            model: InfluencerRating,
+            as: "influencerRating",
+          },
+          {
+            model: User,
+            as: "user",
+            attributes: ["id", "name"],
+          },
+          {
+            model: InfluencerStatistics,
+            as: "influencerStatistics",
+          },
+          {
+            model: InfluencerMetrics,
+            as: "influencerMetrics",
+          },
+        ],
+      });
     }
 
     res.json(influencer);
@@ -103,18 +139,19 @@ exports.updateInfluencerProfileV2 = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: "Server error" });
   }
-}
+};
 
 exports.getInstagramProfile = async (req, res) => {
   const profileId = Number(req.params.id);
   try {
     const profile = await InstagramProfile.findByPk(profileId, {
       include: [
-        { model: InstagramAudienceDemographic, as: "InstagramAudienceDemographic" },
+        {
+          model: InstagramAudienceDemographic,
+          as: "InstagramAudienceDemographic",
+        },
         { model: InstagramBrandAffinity, as: "InstagramBrandAffinity" },
-
-
-      ]
+      ],
     });
     if (!profile) {
       return res.status(404).json({ message: "Instagram profile not found" });
@@ -135,7 +172,7 @@ exports.getYouTubeProfile = async (req, res) => {
         { model: YouTubeInterest, as: "YouTubeInterest" },
         { model: YouTubeStatHistory, as: "YouTubeStatHistory" },
         { model: YouTubeVideo, as: "YouTubeVideo" },
-      ]
+      ],
     });
     if (!profile) {
       return res.status(404).json({ message: "YouTube profile not found" });
@@ -150,16 +187,14 @@ exports.getYouTubeProfile = async (req, res) => {
 exports.getTikTokProfile = async (req, res) => {
   const profileId = Number(req.params.id);
   try {
-    const profile = await TikTokProfile.findByPk(profileId,
-      {
-        include: [
-          { model: TikTokAudienceDemographic, as: "TikTokAudienceDemographic" },
-          { model: TikTokInterest, as: "TikTokInterest" },
-          { model: TikTokStatHistory, as: "TikTokStatHistory" },
-          { model: TikTokVideo, as: "TikTokVideo" },
-        ]
-      }
-    );
+    const profile = await TikTokProfile.findByPk(profileId, {
+      include: [
+        { model: TikTokAudienceDemographic, as: "TikTokAudienceDemographic" },
+        { model: TikTokInterest, as: "TikTokInterest" },
+        { model: TikTokStatHistory, as: "TikTokStatHistory" },
+        { model: TikTokVideo, as: "TikTokVideo" },
+      ],
+    });
     if (!profile) {
       return res.status(404).json({ message: "TikTok profile not found" });
     }
@@ -169,5 +204,3 @@ exports.getTikTokProfile = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
-
