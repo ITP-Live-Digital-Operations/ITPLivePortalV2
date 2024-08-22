@@ -378,7 +378,7 @@ async function updateInfluencerData(influencer, profiles, options = {}) {
   const Name =
     getNestedProperty(instagram, "profile.profile.fullname") ||
     getNestedProperty(youtube, "profile.profile.fullname") ||
-    getNestedProperty(tiktok, "profile.profile.fullname");
+    getNestedProperty(tiktok, "profile.profile.fullname") || influencer.Name;
   const Gender =
     getNestedProperty(instagram, "profile.gender") ||
     getNestedProperty(youtube, "profile.gender") ||
