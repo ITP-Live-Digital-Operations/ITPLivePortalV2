@@ -81,7 +81,7 @@ async function migrateInfluencerData(influencerId) {
     logger.info(`Starting data migration for influencer ${influencerId}`);
 
     // Read the IDs from the CSV file that should be skipped for YouTube profiles
-    const skipYoutubeIds = await getSkipInfluencerIds('./files/youtube_filtered_influencer_data.csv');
+  /*   const skipYoutubeIds = await getSkipInfluencerIds('./files/youtube_filtered_influencer_data.csv'); */
 
     // Fetch the specific influencer
     const influencer = await Influencer.findByPk(influencerId);
@@ -129,7 +129,6 @@ async function migrateInfluencerData(influencerId) {
     if (influencer.YoutubeHandle) {
       const cleanedYouTubeHandle = removeSpaces(influencer.YoutubeHandle);
       if (isValidYouTubeHandle(cleanedYouTubeHandle)) {
-        if (!skipYoutubeIds.has(String(influencer.id))) {
           const [youtubeProfile, youtubeCreated] =
             await YouTubeProfile.findOrCreate({
               where: { influencerId: influencer.id },
@@ -150,11 +149,7 @@ async function migrateInfluencerData(influencerId) {
               `YouTube profile already exists for influencer ${influencer.id}`
             );
           }
-        } else {
-          logger.info(
-            `Skipping YouTube profile creation for influencer ${influencer.id} as per CSV file`
-          );
-        }
+       
       } else {
         logger.warn(
           `Invalid YouTube handle for influencer ${influencer.id}: ${influencer.YoutubeHandle}`
@@ -209,9 +204,9 @@ async function runMigration(influencerId) {
     logger.info(`Migration process finished for influencer ${influencerId}`);
   } catch (error) {
     logger.error(`Migration failed for influencer ${influencerId}:`, error);
-  } finally {
+  } /* finally {
     await sequelize.close();
-  }
+  } */
 }
 
 // Export the function to be used externally
