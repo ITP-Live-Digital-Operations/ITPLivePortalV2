@@ -6,7 +6,11 @@ import { PATH } from 'src/app/core/constant/routes.constants';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { LogService } from 'src/app/core/services/log.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { currencies, indiaCurrencies, platforms } from 'src/assets/influencer-form-arrays';
+import {
+  currencies,
+  indiaCurrencies,
+  platforms,
+} from 'src/assets/influencer-form-arrays';
 import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-single-influencer-logs',
@@ -59,7 +63,7 @@ export class SingleInfluencerLogsComponent {
 
     this.logForm.controls['Influencer'].setValue(this.influencerId);
     /* sessionStorage.removeItem('influencerData'); */
-    console.log(this.indiaCurrencies)
+    console.log(this.indiaCurrencies);
   }
 
   public get fields(): FormArray {
@@ -184,18 +188,9 @@ export class SingleInfluencerLogsComponent {
           'Event attendance',
         ];
       case 'Youtube':
-        return [
-          'Video content',
-          'Livestreams',
-          'Live videos',
-          'Collaborations with other YouTubers or brands',
-          'Product reviews or demonstrations',
-          'Influencer partnerships and collaborations',
-          'Content usage rights',
-          'Half day shoot',
-          'Full day shoot',
-          'Event attendance',
-        ];
+        return ['Dedicated', 'Livestream', 'Integration', 'Short', 'Vlog'];
+      case 'Twitch':
+        return ['Livestream', 'Integration'];
       case 'Other':
         return [
           'Content usage rights',

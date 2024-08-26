@@ -5,7 +5,11 @@ import { ToastrService } from 'ngx-toastr';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { LogService } from 'src/app/core/services/log.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { currencies, indiaCurrencies, platforms } from 'src/assets/influencer-form-arrays';
+import {
+  currencies,
+  indiaCurrencies,
+  platforms,
+} from 'src/assets/influencer-form-arrays';
 import { PATH } from 'src/app/core/constant/routes.constants';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -15,7 +19,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./new-rate-log.component.scss'],
 })
 export class NewRateLogComponent {
-
   @Input() influencerId!: number;
 
   public form: FormGroup;
@@ -29,9 +32,7 @@ export class NewRateLogComponent {
 
   public path = PATH;
 
-  private userId : number = this.userService.getID();
-
-
+  private userId: number = this.userService.getID();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,8 +56,6 @@ export class NewRateLogComponent {
     this.form = this.formBuilder.group({
       fields: this.formBuilder.array([]),
     });
-
-
   }
 
   ngOnInit(): void {
@@ -65,7 +64,6 @@ export class NewRateLogComponent {
     this.addFields();
 
     this.logForm.controls['Influencer'].setValue(this.influencerId);
-
   }
 
   public get fields(): FormArray {
@@ -76,7 +74,7 @@ export class NewRateLogComponent {
     const fields = this.formBuilder.group({
       Platform: ['', Validators.required],
       Deliverable: ['', Validators.required],
-      Quantity: ['', Validators.required]
+      Quantity: ['', Validators.required],
     });
 
     this.fields.push(fields);
@@ -101,20 +99,29 @@ export class NewRateLogComponent {
 
     if (this.form.valid) {
       console.log(this.form.value.fields);
-      const inputData = { UserID: this.userId, InfluencerID: this.logForm.value.Influencer, Campaign: this.logForm.value.Campaign,  type: 'package',Time_to_reply: this.logForm.value.Time_to_reply, Notes: this.logForm.value.Notes, Currency: this.logForm.value.Currency, Rate: this.logForm.value.Rate, packageItems: this.form.value.fields, rateLogItems : {} }
+      const inputData = {
+        UserID: this.userId,
+        InfluencerID: this.logForm.value.Influencer,
+        Campaign: this.logForm.value.Campaign,
+        type: 'package',
+        Time_to_reply: this.logForm.value.Time_to_reply,
+        Notes: this.logForm.value.Notes,
+        Currency: this.logForm.value.Currency,
+        Rate: this.logForm.value.Rate,
+        packageItems: this.form.value.fields,
+        rateLogItems: {},
+      };
 
-      this.logService.addLog(inputData).subscribe(item => {
+      this.logService.addLog(inputData).subscribe((item) => {
         this.data = item;
-        if (this.data.status === "success") {
+        if (this.data.status === 'success') {
           this.toastrService.success('Log Added Successfully!');
           sessionStorage.removeItem('influencerData');
           this.dialogRef.close();
-        }
-        else {
+        } else {
           this.toastrService.error('Error! Please Try Again!');
         }
-
-      })
+      });
     }
     setTimeout(() => {
       this.submitted = false;
@@ -182,18 +189,9 @@ export class NewRateLogComponent {
           'Event attendance',
         ];
       case 'Youtube':
-        return [
-          'Video content',
-          'Livestreams',
-          'Live videos',
-          'Collaborations with other YouTubers or brands',
-          'Product reviews or demonstrations',
-          'Influencer partnerships and collaborations',
-          'Content usage rights',
-          'Half day shoot',
-          'Full day shoot',
-          'Event attendance',
-        ];
+        return ['Dedicated', 'Livestream', 'Integration', 'Short', 'Vlog'];
+      case 'Twitch':
+        return ['Livestream', 'Integration'];
       case 'Other':
         return [
           'Influencer partnerships and collaborations',
@@ -230,9 +228,10 @@ export class NewRateLogComponent {
 
   onFieldNumericInput(index: number, fieldName: string, value: string): void {
     const parsedValue = this.parseFormattedNumber(value);
-    ((this.form.get('fields') as FormArray).at(index) as FormGroup).get(fieldName)?.setValue(parsedValue, { emitEvent: false });
+    ((this.form.get('fields') as FormArray).at(index) as FormGroup)
+      .get(fieldName)
+      ?.setValue(parsedValue, { emitEvent: false });
   }
-
 
   parseFormattedNumber(value: string): number {
     return Number(value.replace(/,/g, ''));
