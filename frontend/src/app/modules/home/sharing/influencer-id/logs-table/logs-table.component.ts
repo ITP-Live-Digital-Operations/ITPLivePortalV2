@@ -45,7 +45,12 @@ export class LogsTableComponent {
   }
 
   getLogItemsOrPackages(log: LogModelUpdated): (logItem | logPackage)[] {
-    return log.type === 'single' ? log.logItems : log.packages;
+    if (log.type === 'single') {
+      // Handle both array and single object cases
+      return Array.isArray(log.logItems) ? log.logItems : [log.logItems];
+    } else {
+      return log.packages;
+    }
   }
 
   isSingleType(log: LogModelUpdated): boolean {
@@ -53,13 +58,22 @@ export class LogsTableComponent {
   }
 
   getTotalRate(log: LogModelUpdated): number {
-    if (this.isSingleType(log) && log.logItems.length > 0) {
-      return log.logItems[0].rate;
+    if (this.isSingleType(log)) {
+      // Handle both single item and array of items
+      const items = Array.isArray(log.logItems) ? log.logItems : [log.logItems];
+      return items.reduce((total, item) => total + (item.rate * item.quantity), 0);
+    } else if (log.packages && log.packages.length > 0) {
+      // For package type, sum up rates if available
+      return log.packages.reduce((total, pkg) => {
+        return total + ((pkg.rate !== undefined ? pkg.rate : 0) * pkg.quantity);
+      }, 0);
     } else if (log.rate !== undefined) {
+      // Fallback to log.rate if available
       return log.rate;
     }
     return 0;
   }
+  
   // New helper method to safely access the rate property
   getItemRate(item: logItem | logPackage): number | undefined {
     return 'rate' in item ? item.rate : undefined;

@@ -33,6 +33,7 @@ export interface LogModel {
     platform : string,
     deliverable : string,
     quantity : number,
+    rate?: number;  // Make rate optional for packages
   }
 
 
@@ -49,7 +50,7 @@ export interface LogModel {
     currency ?: string,
     rate ?: number,
 
-    logItems : logItem[],
+    logItems: logItem | logItem[];
     packages : logPackage[],
 
     user: userIdAndName;
