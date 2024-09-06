@@ -56,7 +56,7 @@ export class LogsTableComponent {
   isSingleType(log: LogModelUpdated): boolean {
     return log.type === 'single';
   }
-
+/*
   getTotalRate(log: LogModelUpdated): number {
     if (this.isSingleType(log)) {
       // Handle both single item and array of items
@@ -72,8 +72,30 @@ export class LogsTableComponent {
       return log.rate;
     }
     return 0;
-  }
-  
+  } */
+
+    getTotalRate(log: LogModelUpdated): number {
+      if (this.isSingleType(log)) {
+        // Handle both single item and array of items
+        const items = Array.isArray(log.logItems) ? log.logItems : [log.logItems];
+        return items.reduce((total, item) => total + (item.rate * (item.quantity || 0)), 0);
+      } else if (log.packages && log.packages.length > 0) {
+        // For package type, sum up rates if available, ensuring quantity is also handled
+        return log.rate  || 0;
+      } else if (log.rate !== undefined) {
+        // Fallback to log.rate if available
+        return log.rate;
+      }
+      return 0;
+    }
+
+    getCurrencyFromLogItem(log: LogModelUpdated): string {
+      const items = Array.isArray(log.logItems) ? log.logItems : [log.logItems];
+      return items[0].currency;
+    }
+
+
+
   // New helper method to safely access the rate property
   getItemRate(item: logItem | logPackage): number | undefined {
     return 'rate' in item ? item.rate : undefined;

@@ -9,7 +9,8 @@
         <p><strong>Campaign:</strong> {{ log.campaign }}</p>
         <p><strong>Logged By:</strong> {{ log.user.name }}</p>
         <p><strong>Reply Time:</strong> {{ log.time_to_reply }}</p>
-        <p ><strong>Total Rate:</strong> {{ log.currency }} {{ getTotalRate(log) | number:'1.2-2' }}</p>
+        <p *ngIf="!isSingleType(log)"><strong>Total Rate:</strong> {{ log.currency }} {{ getTotalRate(log) | number:'1.2-2' }}</p>
+        <p *ngIf="isSingleType(log)"><strong>Total Rate:</strong> {{ getCurrencyFromLogItem(log) }} {{ getTotalRate(log) | number:'1.2-2' }}</p>
       </div>
     </div>
   </div>
@@ -24,7 +25,8 @@
         <p><strong>Date:</strong> {{ selectedLog.createdAt | date }}</p>
         <p><strong>Reply Time:</strong> {{ selectedLog.time_to_reply }}</p>
         <p><strong>Notes:</strong> {{ selectedLog.notes }}</p>
-        <p><strong>Total Rate:</strong> {{ selectedLog.currency }} {{ getTotalRate(selectedLog) | number:'1.2-2' }}</p>
+        <p *ngIf="isSingleType(selectedLog)"><strong>Total Rate:</strong> {{ getCurrencyFromLogItem(selectedLog) }} {{ getTotalRate(selectedLog) | number:'1.2-2' }}</p>
+        <p *ngIf="!isSingleType(selectedLog)"><strong>Total Rate:</strong> {{ selectedLog.currency }} {{ getTotalRate(selectedLog) | number:'1.2-2' }}</p>
       </div>
       <div>
         <h4>{{ isSingleType(selectedLog) ? 'Log Items' : 'Packages' }}</h4>
@@ -32,7 +34,7 @@
           <p><strong>Platform:</strong> {{ item.platform }}</p>
           <p><strong>Deliverable:</strong> {{ item.deliverable }}</p>
           <p><strong>Quantity:</strong> {{ item.quantity }}</p>
-          <p *ngIf="isSingleType(selectedLog)"><strong>Rate:</strong> {{ selectedLog.currency }} {{ getItemRate(item) | number:'1.2-2' }}</p>
+          <p *ngIf="isSingleType(selectedLog)"><strong>Rate:</strong> {{ item.currency }} {{ getItemRate(item) | number:'1.2-2' }}</p>
         </div>
       </div>
     </div>

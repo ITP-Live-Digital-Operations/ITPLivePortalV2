@@ -43,7 +43,6 @@ export class EditInfluencerComponent {
         Occupation: [''],
         ItpRelationship: [''],
         Nationality: [''],
-
       }),
       socials: this.formBuilder.group(
         {
@@ -53,16 +52,13 @@ export class EditInfluencerComponent {
 
           SnapchatHandle: [''],
 
-
           TwitterHandle: [''],
-
 
           FacebookHandle: [''],
 
           YoutubeHandle: [''],
 
           TwitchHandle: [''],
-          
         },
         { validators: requireAtLeastTwoHandlesValidator() }
       ),

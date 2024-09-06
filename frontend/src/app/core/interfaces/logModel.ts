@@ -33,6 +33,7 @@ export interface LogModel {
     platform : string,
     deliverable : string,
     quantity : number,
+    currency ?: string,
     rate?: number;  // Make rate optional for packages
   }
 
