@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
-import { InfluencerProfile } from 'src/app/core/interfaces/influencerAPI.model';
+import { ExportModashInfluencerProfile, InfluencerProfile } from 'src/app/core/interfaces/influencerAPI.model';
 import { LogModel, LogModelUpdated } from 'src/app/core/interfaces/logModel';
 import { LogService } from 'src/app/core/services/log.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,6 +16,7 @@ import { RateLogsComponent } from '../../emp/talent/create/rate-logs/rate-logs.c
 export class InfluencerIdComponent implements OnInit {
   influencerId: number = 0;
   profile!: InfluencerProfile;
+  exportProfile !: ExportModashInfluencerProfile;
   selectedPlatform: string | null = null;
   logs: LogModelUpdated[] = [];
   influencerLevel: string = '';
@@ -32,6 +33,7 @@ export class InfluencerIdComponent implements OnInit {
       this.influencerId = Number(params.get('id')!);
       this.getInfluencerProfile(this.influencerId);
       this.getInfluencerLogs(this.influencerId);
+      this.getModashInfluencerProfile(this.influencerId);
 
     });
   }
@@ -40,6 +42,7 @@ export class InfluencerIdComponent implements OnInit {
     this.influencerService.getInfluencerProfile(influencerId).subscribe((data) => {
       if (data) {
         this.profile = data;
+
         console.log(this.profile);
         this.influencerLevel = this.getInfluencerCategory();
       } else {
@@ -48,7 +51,16 @@ export class InfluencerIdComponent implements OnInit {
     });
   }
 
-
+  private getModashInfluencerProfile(influencerId: number): void {
+    this.influencerService.getModashProfile(influencerId).subscribe((data) => {
+      if (data) {
+        this.exportProfile = data;
+        console.log(this.exportProfile);
+      } else {
+        console.error("No data found");
+      }
+    });
+  }
 
   private getInfluencerLogs(influencerId: number): void {
     this.logService.getInfluencerLogs(influencerId).subscribe((data) => {

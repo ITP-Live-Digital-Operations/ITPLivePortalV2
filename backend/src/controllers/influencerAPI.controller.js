@@ -1,4 +1,6 @@
+const { AbstractQuery } = require("sequelize/lib/dialects/abstract/query");
 const models = require("../../models");
+const { Op } = require("sequelize");
 const Influencer = models.Influencer;
 // import influencer models
 const InstagramProfile = models.InstagramProfile;
@@ -199,6 +201,51 @@ exports.getTikTokProfile = async (req, res) => {
       return res.status(404).json({ message: "TikTok profile not found" });
     }
     res.json(profile);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+exports.getModashProfile = async (req, res) => {
+  const profileId = Number(req.params.id);
+  try {
+    const profile = await Influencer.findByPk(profileId, {
+      attributes: ["id", "Name"],
+      include: [
+        {
+          model: InstagramProfile,
+          as: "instagramProfile",
+          attributes: ["id", "username", "profilePicture" ,"followerCount", "avgLikes", "engagementRate"],
+          include: [
+            {
+              model: InstagramAudienceDemographic,
+              as: "InstagramAudienceDemographic",
+              attributes: ["type", "code", "name", "weight"],
+              where: {
+                [Op.or]: [
+                  { type: "gender" },
+                  { type: "country" },
+                  { type: "gendersPerAge" }
+                ]
+              }
+            },
+            {
+              model: InstagramInterest,
+              as: "InstagramInterest",
+              attributes: ["name"]
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!profile) {
+      return res.status(404).json({ message: "Profile not found" });
+    }
+
+    res.json(profile); // Return the profile data as JSON
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

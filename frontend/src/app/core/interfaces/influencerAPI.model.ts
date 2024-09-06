@@ -226,3 +226,33 @@ export interface TikTokProfile {
 }
 
 
+// -------------------------------------- Modash  Interfaces for profile export --------------------------------------
+
+
+export interface ExportModashInstagramAudienceDemographic {
+  type: string;
+  code: string;
+  name: string | null;
+  weight: number;
+}
+
+interface ExportModashInstagramInterest {
+  name: string;
+}
+
+interface ExportModashInstagramProfile {
+  id: number;
+  username: string;
+  profilePicture: string;
+  followerCount: number;
+  avgLikes: number;
+  engagementRate: number;
+  InstagramAudienceDemographic: ExportModashInstagramAudienceDemographic[];
+  InstagramInterest: ExportModashInstagramInterest[];
+}
+
+export interface ExportModashInfluencerProfile {
+  id: number;
+  Name: string;
+  instagramProfile: ExportModashInstagramProfile;
+}

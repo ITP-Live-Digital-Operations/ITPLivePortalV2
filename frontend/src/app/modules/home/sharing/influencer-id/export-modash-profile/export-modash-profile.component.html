@@ -1,0 +1,56 @@
+<div class="instagram-details">
+  <h3>{{ profile.Name }}</h3>
+
+  <div class="social-info">
+    <div class="instagram">
+      <i class="fab fa-instagram"></i> {{ profile.instagramProfile.username }}
+      <span>{{ profile.instagramProfile.followerCount | number }} followers</span>
+    </div>
+  </div>
+
+  <div class="basic-info metric-grid">
+    <div class="metric-item">
+      <span class="metric-value">{{ profile.instagramProfile.avgLikes | number }}</span>
+      <span class="metric-label">Avg. Likes</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">{{ profile.instagramProfile.followerCount | number }}</span>
+      <span class="metric-label">Followers</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">{{ profile.instagramProfile.engagementRate | percent }}</span>
+      <span class="metric-label">Engagement Rate</span>
+    </div>
+  </div>
+
+  <div class="audience-demographics">
+    <h4>Audience Demographics</h4>
+
+    <h5>Age & Gender split</h5>
+    <div class="age-gender-chart">
+      <!-- Add chart implementation here -->
+    </div>
+
+    <h5>Gender Split</h5>
+    <div class="gender-chart">
+      <!-- Add chart implementation here -->
+    </div>
+
+    <h5>Top Countries</h5>
+    <ul>
+      <li *ngFor="let country of getTopCountries()">
+        <span>{{ country.name }}</span>
+        <span>{{ country.weight | percent }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="top-brands">
+    <h4>Follower Interests</h4>
+    <ul>
+      <li *ngFor="let interest of profile.instagramProfile.InstagramInterest">
+        <span>{{ interest.name }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

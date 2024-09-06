@@ -55,6 +55,7 @@ import { SubmitSuggestionComponent } from './submit-suggestion/submit-suggestion
 import { InstagramDetailsComponent } from './influencer-id/instagram-details/instagram-details.component';
 import { TiktokDetailsComponent } from './influencer-id/tiktok-details/tiktok-details.component';
 import { YoutubeDetailsComponent } from './influencer-id/youtube-details/youtube-details.component';
+import { ExportModashProfileComponent } from './influencer-id/export-modash-profile/export-modash-profile.component';
 
 
 
@@ -105,6 +106,7 @@ import { YoutubeDetailsComponent } from './influencer-id/youtube-details/youtube
     InstagramDetailsComponent,
     TiktokDetailsComponent,
     YoutubeDetailsComponent,
+    ExportModashProfileComponent,
 
 
   ],

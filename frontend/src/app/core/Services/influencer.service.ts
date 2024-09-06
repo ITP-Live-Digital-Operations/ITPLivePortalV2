@@ -210,4 +210,8 @@ export class InfluencerService {
     return this.http.delete<returnData>(`${this.influencerApiURL}/deleteInfluencerRemark/${id}`);
   }
 
+  getModashProfile(influencerId: number): Observable<any> {
+    return this.http.get(`${this.influencerApiURL}/getModashProfile/${influencerId}`);
+  }
+
 }

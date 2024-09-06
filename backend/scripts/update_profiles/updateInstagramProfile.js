@@ -84,6 +84,12 @@ async function updateInstagramProfile(profile, apiData) {
             getNestedProperty(apiData, "profile.audience.ethnicities") || [],
           saveAll: false,
         },
+        {
+          type: "gendersPerAge",
+          data:
+            getNestedProperty(apiData, "profile.audience.gendersPerAge") || [],
+          saveAll: true,
+        },
       ];
 
       console.log(
@@ -100,6 +106,7 @@ async function updateInstagramProfile(profile, apiData) {
       );
 
       let totalSaved = 0;
+  
 
       for (const category of audienceCategories) {
         const itemsToSave = category.saveAll
@@ -109,26 +116,43 @@ async function updateInstagramProfile(profile, apiData) {
 
         for (const item of itemsToSave) {
           try {
-            const newDemographic = await InstagramAudienceDemographic.create({
-              instagramProfileId: profile.id,
-              type: category.type,
-              code:
-                item.code ||
-                (category.type === "country" ? item.code : item.name),
-              name: item.name || null,
-              weight: item.weight,
-            });
-            console.log(
-              `Saved demographic: ${JSON.stringify(newDemographic.toJSON())}`
-            );
+            if (category.type === "gendersPerAge") {
+              // Save male data
+              await InstagramAudienceDemographic.create({
+                instagramProfileId: profile.id,
+                type: "gendersPerAge",
+                code: `${item.code}_male`,
+                name: `Male ${item.code}`,
+                weight: item.male,
+              });
+
+              // Save female data
+              await InstagramAudienceDemographic.create({
+                instagramProfileId: profile.id,
+                type: "gendersPerAge",
+                code: `${item.code}_female`,
+                name: `Female ${item.code}`,
+                weight: item.female,
+              });
+            } else {
+              // Original logic for other categories
+              await InstagramAudienceDemographic.create({
+                instagramProfileId: profile.id,
+                type: category.type,
+                code:
+                  item.code ||
+                  (category.type === "country" ? item.code : item.name),
+                name: item.name || null,
+                weight: item.weight,
+              });
+            }
+            console.log(`Saved demographic: ${JSON.stringify(item)}`);
             totalSaved++;
           } catch (error) {
             console.error(
               `Error saving demographic for ${profile.username}: ${error.message}`
             );
             console.error("Failed item:", JSON.stringify(item));
-            // Optionally, you can choose to continue with the loop or throw the error
-            // throw error;
           }
         }
       }

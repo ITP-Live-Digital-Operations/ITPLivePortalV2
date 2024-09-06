@@ -91,4 +91,7 @@ router.route('/getYouTubeProfile/:id')
 
 router.route('/getTikTokProfile/:id')
     .get(asyncHandler(influencerV2Controller.getTikTokProfile));
+  
+router.route('/getModashProfile/:id')
+    .get(asyncHandler(influencerV2Controller.getModashProfile));
 module.exports = router;
