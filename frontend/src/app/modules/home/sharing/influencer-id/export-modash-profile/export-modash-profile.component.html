@@ -1,3 +1,4 @@
+
 <div class="instagram-details">
   <h3>{{ profile.Name }}</h3>
 
@@ -28,12 +29,20 @@
 
     <h5>Age & Gender split</h5>
     <div class="age-gender-chart">
-      <!-- Add chart implementation here -->
+      <canvas baseChart
+        [data]="ageGenderChartData"
+        [options]="barChartOptions"
+        [type]="'bar'">
+      </canvas>
     </div>
 
     <h5>Gender Split</h5>
     <div class="gender-chart">
-      <!-- Add chart implementation here -->
+      <canvas baseChart
+        [data]="genderChartData"
+        [options]="pieChartOptions"
+        [type]="'pie'">
+      </canvas>
     </div>
 
     <h5>Top Countries</h5>

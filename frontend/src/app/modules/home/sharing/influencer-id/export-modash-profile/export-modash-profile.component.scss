@@ -1,3 +1,4 @@
+
 :host {
   --background-dark: #0a192f;
   --background-light: #112240;
@@ -41,10 +42,10 @@ h3 {
   padding: 15px 10px;
   border-radius: 10px;
   transition: transform 0.3s ease;
-}
 
-.metric-item:hover {
-  transform: scale(1.05);
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .metric-value {
@@ -89,19 +90,19 @@ li {
   justify-content: space-between;
   color: var(--text-secondary);
   font-size: 1em;
-}
 
-li:last-child {
-  border-bottom: none;
-}
+  &:last-child {
+    border-bottom: none;
+  }
 
-li span:first-child {
-  color: var(--text-primary);
-}
+  span:first-child {
+    color: var(--text-primary);
+  }
 
-li span:last-child {
-  color: var(--secondary-blue);
-  font-weight: bold;
+  span:last-child {
+    color: var(--secondary-blue);
+    font-weight: bold;
+  }
 }
 
 .top-brands ul {
@@ -117,16 +118,16 @@ li span:last-child {
   text-align: center;
   border: none;
   transition: transform 0.3s ease, background-color 0.3s ease;
-}
 
-.top-brands li:hover {
-  transform: translateY(-5px);
-  background-color: rgba(74, 144, 226, 0.2);
-}
+  &:hover {
+    transform: translateY(-5px);
+    background-color: rgba(74, 144, 226, 0.2);
+  }
 
-.top-brands li span:last-child {
-  display: block;
-  margin-top: 5px;
+  span:last-child {
+    display: block;
+    margin-top: 5px;
+  }
 }
 
 @media (max-width: 768px) {

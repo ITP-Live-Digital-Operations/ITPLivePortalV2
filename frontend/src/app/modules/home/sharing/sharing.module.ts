@@ -56,6 +56,7 @@ import { InstagramDetailsComponent } from './influencer-id/instagram-details/ins
 import { TiktokDetailsComponent } from './influencer-id/tiktok-details/tiktok-details.component';
 import { YoutubeDetailsComponent } from './influencer-id/youtube-details/youtube-details.component';
 import { ExportModashProfileComponent } from './influencer-id/export-modash-profile/export-modash-profile.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -122,6 +123,7 @@ import { ExportModashProfileComponent } from './influencer-id/export-modash-prof
     MatExpansionModule,
     FormsModule,
     CurrencyFormatPipe,
+    NgChartsModule
 
   ],
   exports: [

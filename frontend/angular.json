@@ -37,7 +37,8 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/chart.js/dist/chart.umd.js"
             ]
           },
           "configurations": {
