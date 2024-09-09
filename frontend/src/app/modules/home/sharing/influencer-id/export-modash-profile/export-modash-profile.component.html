@@ -4,10 +4,8 @@
 
     <div class="social-info">
       <div class="instagram">
-        <i class="fab fa-instagram"></i> {{ profile.instagramProfile.username }}
-        <span
-          >{{ profile.instagramProfile.followerCount | number }} followers</span
-        >
+        {{ profile.instagramProfile.username }}
+        {{ profile.instagramProfile.followerCount | number }} followers
       </div>
     </div>
 
@@ -33,35 +31,35 @@
     </div>
 
     <div class="audience-demographics">
-      <h4>Audience Demographics</h4>
 
+      <h4>Audience Demographics</h4>
       <h5>Age & Gender split</h5>
-      <div class="age-gender-chart">
-        <canvas
-          baseChart
-          [data]="ageGenderChartData"
+      <div class="chart-container" style="height: 300px; width: 100%;">
+        <canvas baseChart
+          [datasets]="ageGenderChartData.datasets"
+          [labels]="ageGenderChartData.labels"
           [options]="barChartOptions"
-          [type]="'bar'"
-        >
+          [plugins]="[ChartDataLabels]"
+          [legend]="true"
+          type="bar">
         </canvas>
       </div>
 
       <h5>Gender Split</h5>
-      <div class="gender-chart">
-        <canvas
-          baseChart
-          [data]="genderChartData"
-          [options]="pieChartOptions"
-          [type]="'pie'"
-        >
+      <div class="chart-container gender-split" style="height: 300px; width: 100%;">
+        <canvas baseChart
+          [datasets]="genderChartData.datasets"
+          [labels]="genderChartData.labels"
+          [options]="genderChartOptions"
+          [legend]="true"
+          type="doughnut">
         </canvas>
       </div>
 
       <h5>Top Countries</h5>
       <ul>
         <li *ngFor="let country of getTopCountries()">
-          <span>{{ country.name }}</span>
-          <span>{{ country.weight | percent }}</span>
+          {{ country.name }} {{ country.weight | percent }}
         </li>
       </ul>
     </div>
@@ -70,7 +68,7 @@
       <h4>Follower Interests</h4>
       <ul>
         <li *ngFor="let interest of profile.instagramProfile.InstagramInterest">
-          <span>{{ interest.name }}</span>
+          {{ interest.name }}
         </li>
       </ul>
     </div>
