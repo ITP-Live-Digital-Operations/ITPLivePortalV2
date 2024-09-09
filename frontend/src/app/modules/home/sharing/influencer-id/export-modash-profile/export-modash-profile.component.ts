@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { ExportModashInfluencerProfile, ExportModashInstagramAudienceDemographic, InstagramAudienceDemographic } from 'src/app/core/interfaces/influencerAPI.model';
 import { ChartConfiguration, ChartData } from 'chart.js';
 
@@ -81,9 +81,12 @@ export class ExportModashProfileComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.initializeCharts();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['profile'] && !changes['profile'].firstChange && this.profile) {
+      this.initializeCharts();
+    }
   }
+
 
   getTopCountries(): ExportModashInstagramAudienceDemographic[] {
     return this.profile.instagramProfile.InstagramAudienceDemographic
@@ -94,6 +97,7 @@ export class ExportModashProfileComponent {
 
 
   private initializeCharts(): void {
+    console.log("here")
     const ageGenderData = this.profile.instagramProfile.InstagramAudienceDemographic
       .filter(demo => demo.type === 'gendersPerAge');
 
