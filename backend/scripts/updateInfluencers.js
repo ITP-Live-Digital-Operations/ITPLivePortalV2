@@ -154,76 +154,7 @@ async function updateInfluencerData(influencer, profiles, options = {}) {
     "profile.profile.followers"
   );
 
-  logger.info(`Name: ${Name}`);
-  logger.info(`Gender: ${Gender}`);
-  logger.info(`MainContentLanguage: ${MainContentLanguage}`);
-  logger.info(`CountryLocation: ${CountryLocation}`);
-  logger.info(`CityLocation: ${CityLocation}`);
-  logger.info(`profilePicture: ${profilePicture}`);
-  logger.info(`ageGroup: ${ageGroup}`);
-  logger.info(`avgComments: ${avgComments}`);
-  logger.info(`engagementRate: ${engagementRate}`);
-  logger.info(`MainVertical: ${MainVertical}`);
-  logger.info(`SubVertical: ${SubVertical}`);
 
-  /*   const totalFollowers =
-    (instagram?.followerCount || 0) +
-    (youtube?.subscriberCount || 0) +
-    (tiktok?.followerCount || 0);
-  const totalEngagements = calculateTotalEngagements(
-    instagram,
-    youtube,
-    tiktok
-  );
-  const averageEngagementRate = calculateAverageEngagementRate(
-    instagram,
-    youtube,
-    tiktok
-  );
-  const totalPosts =
-    (instagram?.postCount || 0) +
-    (youtube?.videoCount || 0) +
-    (tiktok?.postCount || 0);
-
-  const updatedData = {
-    TotalFollowers: totalFollowers,
-    TotalEngagements: totalEngagements,
-    AverageEngagementRate: averageEngagementRate,
-    TotalPosts: totalPosts,
-    AveragePostsPerWeek: averagePostsPerWeek,
-    AverageLikesPerPost: calculateAverageLikesPerPost(
-      instagram,
-      youtube,
-      tiktok
-    ),
-    AverageCommentsPerPost: calculateAverageCommentsPerPost(
-      instagram,
-      youtube,
-      tiktok
-    ),
-    AverageViewsPerPost: calculateAverageViewsPerPost(
-      instagram,
-      youtube,
-      tiktok
-    ),
-    EstimatedAudienceAge: aggregateAudienceAge(instagram, youtube, tiktok),
-    EstimatedAudienceGender: aggregateAudienceGender(
-      instagram,
-      youtube,
-      tiktok
-    ),
-    TopAudienceCountries: aggregateTopAudienceCountries(
-      instagram,
-      youtube,
-      tiktok
-    ),
-    TopAudienceLanguages: aggregateTopAudienceLanguages(
-      instagram,
-      youtube,
-      tiktok
-    ),
-    updatedAt: new Date(),
-  }; */
   const updatedData = {
     Name: Name,
     Gender: Gender,

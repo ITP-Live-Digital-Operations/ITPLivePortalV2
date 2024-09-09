@@ -238,6 +238,7 @@ export interface ExportModashInstagramAudienceDemographic {
 
 interface ExportModashInstagramInterest {
   name: string;
+  weight: number;
 }
 
 interface ExportModashInstagramProfile {

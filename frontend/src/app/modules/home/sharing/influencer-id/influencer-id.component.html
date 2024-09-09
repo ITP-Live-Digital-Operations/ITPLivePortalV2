@@ -1,20 +1,30 @@
 <div class="profile-container" *ngIf="profile">
   <div class="profile-header">
-    <img [src]="profile.profilePicture || 'assets/default-avatar.png'" alt="{{ profile.Name }}" class="profile-avatar">
+    <img
+      [src]="profile.profilePicture || 'assets/default-avatar.png'"
+      alt="{{ profile.Name }}"
+      class="profile-avatar"
+    />
     <div class="profile-title">
       <div class="name-and-level">
         <h1>{{ profile.Name }}</h1>
         <span class="influencer-level">{{ influencerLevel }}</span>
       </div>
       <div class="profile-quick-info">
-        <span><i class="fas fa-map-marker-alt"></i>   {{ profile.CityLocation }}, {{ profile.CountryLocation }}</span>
-        <span><i class="fas fa-language"></i> {{ profile.MainContentLanguage }}{{ profile.SubContentLang ? ', ' + profile.SubContentLang : '' }}</span>
+        <span
+          ><i class="fas fa-map-marker-alt"></i> {{ profile.CityLocation }},
+          {{ profile.CountryLocation }}</span
+        >
+        <span
+          ><i class="fas fa-language"></i> {{ profile.MainContentLanguage
+          }}{{
+            profile.SubContentLang ? ", " + profile.SubContentLang : ""
+          }}</span
+        >
         <span><i class="fas fa-venus-mars"></i> {{ profile.Gender }}</span>
         <span><i class="fas fa-user-clock"></i> {{ profile.ageGroup }}</span>
         <span><i class="fas fa-phone"></i> {{ profile.Number }}</span>
-
       </div>
-
     </div>
   </div>
 
@@ -26,39 +36,75 @@
         <li><strong>Sub Vertical:</strong> {{ profile.SubVertical }}</li>
         <li><strong>Nationality:</strong> {{ profile.Nationality }}</li>
         <li><strong>Email:</strong> {{ profile.Email }}</li>
-        <li><strong>ITP Relationship:</strong> {{ profile.ItpRelationship }}</li>
-        <li><strong>KSA License:</strong> {{ profile.KSALicense ? 'Yes' : 'No' }}</li>
-        <li><strong>UAE License:</strong> {{ profile.UAELicense ? 'Yes' : 'No' }}</li>
+        <li>
+          <strong>ITP Relationship:</strong> {{ profile.ItpRelationship }}
+        </li>
+        <li>
+          <strong>KSA License:</strong> {{ profile.KSALicense ? "Yes" : "No" }}
+        </li>
+        <li>
+          <strong>UAE License:</strong> {{ profile.UAELicense ? "Yes" : "No" }}
+        </li>
       </ul>
     </div>
 
     <div class="profile-section social-profiles">
       <h2>Social Media Presence</h2>
       <div class="social-grid">
-        <div class="social-item clickable" *ngIf="profile.InstagramHandle" (click)="togglePlatformDetails('instagram')">
+        <div
+          class="social-item clickable"
+          *ngIf="profile.InstagramHandle"
+          (click)="togglePlatformDetails('instagram')"
+        >
           <i class="fab fa-instagram"></i>
           <span class="social-platform">Instagram</span>
-          <span class="social-followers" *ngIf="profile.InstagramFollowers != undefined">{{ profile.InstagramFollowers | numberFormat }} followers</span>
+          <span
+            class="social-followers"
+            *ngIf="profile.InstagramFollowers != undefined"
+            >{{ profile.InstagramFollowers | numberFormat }} followers</span
+          >
         </div>
-        <div class="social-item clickable" *ngIf="profile.TiktokHandle" (click)="togglePlatformDetails('tiktok')">
+        <div
+          class="social-item clickable"
+          *ngIf="profile.TiktokHandle"
+          (click)="togglePlatformDetails('tiktok')"
+        >
           <i class="fab fa-tiktok"></i>
           <span class="social-platform">TikTok</span>
-          <span class="social-followers" *ngIf="profile.TiktokFollowers != undefined">{{ profile.TiktokFollowers | numberFormat }} followers</span>
+          <span
+            class="social-followers"
+            *ngIf="profile.TiktokFollowers != undefined"
+            >{{ profile.TiktokFollowers | numberFormat }} followers</span
+          >
         </div>
-        <div class="social-item clickable" *ngIf="profile.YoutubeHandle" (click)="togglePlatformDetails('youtube')">
+        <div
+          class="social-item clickable"
+          *ngIf="profile.YoutubeHandle"
+          (click)="togglePlatformDetails('youtube')"
+        >
           <i class="fab fa-youtube"></i>
           <span class="social-platform">YouTube</span>
-          <span class="social-followers" *ngIf="profile.YoutubeFollowers">{{ profile.YoutubeFollowers | numberFormat }} subscribers</span>
+          <span class="social-followers" *ngIf="profile.YoutubeFollowers"
+            >{{ profile.YoutubeFollowers | numberFormat }} subscribers</span
+          >
         </div>
         <div class="social-item" *ngIf="profile.TwitterHandle">
           <i class="fab fa-twitter"></i>
           <span class="social-platform">Twitter</span>
-          <span class="social-followers" *ngIf="profile.TwitterFollowers != undefined">{{ profile.TwitterFollowers | numberFormat }} followers</span>
+          <span
+            class="social-followers"
+            *ngIf="profile.TwitterFollowers != undefined"
+            >{{ profile.TwitterFollowers | numberFormat }} followers</span
+          >
         </div>
         <div class="social-item" *ngIf="profile.FacebookHandle">
           <i class="fab fa-facebook"></i>
           <span class="social-platform">Facebook</span>
-          <span class="social-followers" *ngIf="profile.FacebookFollowers != undefined">{{ profile.FacebookFollowers | numberFormat }} followers</span>
+          <span
+            class="social-followers"
+            *ngIf="profile.FacebookFollowers != undefined"
+            >{{ profile.FacebookFollowers | numberFormat }} followers</span
+          >
         </div>
       </div>
     </div>
@@ -67,19 +113,29 @@
       <h2>Performance Metrics</h2>
       <div class="metric-grid">
         <div class="metric-item">
-          <span class="metric-value">{{ profile.engagementRate | percent:'1.2-2' }}</span>
+          <span class="metric-value">{{
+            profile.engagementRate | percent : "1.2-2"
+          }}</span>
           <span class="metric-label">Engagement Rate</span>
         </div>
         <div class="metric-item">
-          <span class="metric-value">{{ profile.avgComments | number:'1.0-0' }}</span>
+          <span class="metric-value">{{
+            profile.avgComments | number : "1.0-0"
+          }}</span>
           <span class="metric-label">Avg. Comments</span>
         </div>
         <div class="metric-item" *ngIf="profile.influencerMetrics?.CPE">
-          <span class="metric-value">{{ profile.influencerMetrics?.CPE | currency:'USD':'symbol':'1.2-2' }}</span>
+          <span class="metric-value">{{
+            profile.influencerMetrics?.CPE
+              | currency : "USD" : "symbol" : "1.2-2"
+          }}</span>
           <span class="metric-label">CPE</span>
         </div>
         <div class="metric-item" *ngIf="profile.influencerMetrics?.CPM">
-          <span class="metric-value">{{ profile.influencerMetrics?.CPM | currency:'USD':'symbol':'1.2-2' }}</span>
+          <span class="metric-value">{{
+            profile.influencerMetrics?.CPM
+              | currency : "USD" : "symbol" : "1.2-2"
+          }}</span>
           <span class="metric-label">CPM</span>
         </div>
       </div>
@@ -87,7 +143,9 @@
   </div>
 
   <div class="platform-details" *ngIf="selectedPlatform === 'instagram'">
-    <app-instagram-details [profile]="profile.instagramProfile"></app-instagram-details>
+    <app-instagram-details
+      [profile]="profile.instagramProfile"
+    ></app-instagram-details>
   </div>
 
   <div class="platform-details" *ngIf="selectedPlatform === 'tiktok'">
@@ -95,13 +153,22 @@
   </div>
 
   <div class="platform-details" *ngIf="selectedPlatform === 'youtube'">
-    <app-youtube-details [profile]="profile.youtubeProfile"></app-youtube-details>
+    <app-youtube-details
+      [profile]="profile.youtubeProfile"
+    ></app-youtube-details>
   </div>
 
   <div class="profile-section logs-section">
     <div class="logs-header">
       <h2>Influencer Logs</h2>
-      <button mat-raised-button color="primary" class="add-log-btn" (click)="openNewLogDialog()">Add Log</button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="add-log-btn"
+        (click)="openNewLogDialog()"
+      >
+        Add Log
+      </button>
     </div>
     <app-logs-table [logs]="logs"></app-logs-table>
   </div>
@@ -111,7 +178,10 @@
     <app-campaign-results [id]="this.influencerId"></app-campaign-results>
   </div>
 
-  <div class="profile-section additional-info" *ngIf="profile.Bio || profile.PreviousBrands">
+  <div
+    class="profile-section additional-info"
+    *ngIf="profile.Bio || profile.PreviousBrands"
+  >
     <h2>Additional Information</h2>
     <div *ngIf="profile.Bio">
       <h3>Bio</h3>
@@ -122,7 +192,8 @@
       <p>{{ profile.PreviousBrands }}</p>
     </div>
   </div>
-  <app-export-modash-profile [profile]="exportProfile"></app-export-modash-profile>
+  
+  <app-export-modash-profile
+    [profile]="exportProfile"
+  ></app-export-modash-profile>
 </div>
-
-

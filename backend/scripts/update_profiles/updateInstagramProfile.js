@@ -190,7 +190,7 @@ async function updateInstagramProfile(profile, apiData) {
 
       // Get interests from API data
       const allInterests =
-        getNestedProperty(apiData, "profile.interests") || [];
+        getNestedProperty(apiData, "profile.audience.interests") || [];
 
       // Sort interests by weight (or another relevant property) and take top 5
       const topInterests = allInterests
@@ -203,6 +203,7 @@ async function updateInstagramProfile(profile, apiData) {
           instagramProfileId: profile.id,
           interestId: interest.id,
           name: interest.name,
+          weight: interest.weight,
         });
       }
 

@@ -12,5 +12,19 @@
     "username": "LaylaAkil",
     "profileId": 7,
     "error": "The request was invalid"
+  },
+  {
+    "influencerId": 13,
+    "platform": "youtube",
+    "username": "LaylaAkil",
+    "profileId": 7,
+    "error": "The request was invalid"
+  },
+  {
+    "influencerId": 13,
+    "platform": "youtube",
+    "username": "LaylaAkil",
+    "profileId": 7,
+    "error": "The request was invalid"
   }
 ]

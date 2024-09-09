@@ -16,6 +16,7 @@ export class ExportModashProfileComponent {
   @Input() profile!: ExportModashInfluencerProfile;
 
   ChartDataLabels = ChartDataLabels;
+  influencerCategory: string = '';
 
   // Custom color scheme
   private colors = {
@@ -49,6 +50,9 @@ export class ExportModashProfileComponent {
       x: {
         grid: {
           display: false
+        },
+        ticks: {
+          color: 'white' // Change x-axis labels to white
         }
       },
       y: {
@@ -65,6 +69,7 @@ export class ExportModashProfileComponent {
         display: true,
         position: 'bottom',
         labels: {
+          color: 'white', // Change legend labels to white
           usePointStyle: true,
           pointStyle: 'circle',
           padding: 20,
@@ -92,7 +97,7 @@ export class ExportModashProfileComponent {
         anchor: 'end',
         align: 'top',
         offset: 4,
-        color: '#000',
+        color: '#FFF',
         font: {
           weight: 'bold',
           size: 11
@@ -144,16 +149,24 @@ export class ExportModashProfileComponent {
                 strokeStyle: backgroundColor[index],
                 lineWidth: 0,
                 hidden: false,
-                index: index
+                index: index,
+                // Add these properties to ensure white text
+                color: 'white',
+                fontColor: 'white'
               };
             });
           },
+          color: 'white', // This sets the default color for all legend items
           usePointStyle: true,
           pointStyle: 'circle',
           padding: 20,
           font: {
             size: 14
-          }
+          },
+          // Add this to override any default text color
+          textAlign: 'left' as const,
+          boxWidth: 20,
+          boxHeight: 20
         }
       },
       tooltip: {
@@ -165,6 +178,18 @@ export class ExportModashProfileComponent {
             return `${label}: ${percentage}`;
           }
         }
+      },
+      datalabels: {
+        color: 'white',
+        font: {
+          weight: 'bold',
+          size: 14
+        },
+        formatter: (value: number, context: any) => {
+          const sum = context.dataset.data.reduce((a: number, b: number) => a + b, 0);
+          const percentage = ((value / sum) * 100).toFixed(2) + '%';
+          return context.chart.data.labels[context.dataIndex] + '\n' + percentage;
+        }
       }
     }
   };
@@ -175,6 +200,7 @@ export class ExportModashProfileComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['profile'] && !changes['profile'].firstChange && this.profile) {
       this.initializeCharts();
+      this.calculateInfluencerCategory();
     }
   }
 
@@ -224,5 +250,18 @@ export class ExportModashProfileComponent {
       maleTotal * 100,
       femaleTotal * 100,
     ];
+  }
+
+  private calculateInfluencerCategory(): void {
+    const followerCount = this.profile.instagramProfile.followerCount;
+    if (followerCount >= 1000000) {
+      this.influencerCategory = 'MEGA';
+    } else if (followerCount >= 100000) {
+      this.influencerCategory = 'Macro';
+    } else if (followerCount >= 10000) {
+      this.influencerCategory = 'Micro';
+    } else {
+      this.influencerCategory = 'Nano';
+    }
   }
 }

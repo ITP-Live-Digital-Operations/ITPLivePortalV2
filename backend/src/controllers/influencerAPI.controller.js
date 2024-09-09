@@ -234,7 +234,7 @@ exports.getModashProfile = async (req, res) => {
             {
               model: InstagramInterest,
               as: "InstagramInterest",
-              attributes: ["name"]
+              attributes: ["name", "weight"]
             },
           ],
         },

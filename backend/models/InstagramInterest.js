@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       interestId: DataTypes.INTEGER,
       name: DataTypes.STRING,
+      weight: DataTypes.FLOAT,
     },
     {
       sequelize,
