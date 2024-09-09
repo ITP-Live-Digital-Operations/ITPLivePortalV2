@@ -52,12 +52,11 @@ export class ExportModashProfileComponent {
         }
       },
       y: {
+        display: false, // Hide y-axis
         beginAtZero: true,
         max: 100,
-        ticks: {
-          callback: function(value) {
-            return value + '%';
-          }
+        grid: {
+          display: false // Hide background lines
         }
       }
     },
@@ -184,7 +183,7 @@ export class ExportModashProfileComponent {
       (demo) => demo.type === 'country'
     )
       .sort((a, b) => b.weight - a.weight)
-      .slice(0, 5);
+      .slice(0, 3);
   }
 
   private initializeCharts(): void {

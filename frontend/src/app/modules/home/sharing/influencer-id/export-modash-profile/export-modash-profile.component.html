@@ -1,71 +1,65 @@
-<div *ngIf="profile">
-  <div class="instagram-details">
-    <h3>{{ profile.Name }}</h3>
-
+<div *ngIf="profile" class="profile-container">
+  <div class="header">
+    <h2>{{ profile.Name }}</h2>
     <div class="social-info">
-      <div class="instagram">
-        {{ profile.instagramProfile.username }}
-        {{ profile.instagramProfile.followerCount | number }} followers
-      </div>
+      <span class="instagram">{{ profile.instagramProfile.username }}</span>
+      <span class="followers">{{ profile.instagramProfile.followerCount | number }} followers</span>
     </div>
+  </div>
 
-    <div class="basic-info metric-grid">
-      <div class="metric-item">
-        <span class="metric-value">{{
-          profile.instagramProfile.avgLikes | number
-        }}</span>
-        <span class="metric-label">Avg. Likes</span>
-      </div>
-      <div class="metric-item">
-        <span class="metric-value">{{
-          profile.instagramProfile.followerCount | number
-        }}</span>
-        <span class="metric-label">Followers</span>
-      </div>
-      <div class="metric-item">
-        <span class="metric-value">{{
-          profile.instagramProfile.engagementRate | percent
-        }}</span>
-        <span class="metric-label">Engagement Rate</span>
-      </div>
+  <div class="metrics-row">
+    <div class="metric-item">
+      <span class="metric-value">{{ profile.instagramProfile.avgLikes | number }}</span>
+      <span class="metric-label">Avg. Likes</span>
     </div>
+    <div class="metric-item">
+      <span class="metric-value">{{ profile.instagramProfile.followerCount | number }}</span>
+      <span class="metric-label">Followers</span>
+    </div>
+    <div class="metric-item">
+      <span class="metric-value">{{ profile.instagramProfile.engagementRate | percent }}</span>
+      <span class="metric-label">Engagement Rate</span>
+    </div>
+  </div>
 
-    <div class="audience-demographics">
-
-      <h4>Audience Demographics</h4>
-      <h5>Age & Gender split</h5>
-      <div class="chart-container" style="height: 300px; width: 100%;">
+  <div class="charts-container">
+    <div class="chart-section">
+      <h3>Age & Gender split</h3>
+      <div class="chart-container">
         <canvas baseChart
-          [datasets]="ageGenderChartData.datasets"
-          [labels]="ageGenderChartData.labels"
+          [data]="ageGenderChartData"
           [options]="barChartOptions"
           [plugins]="[ChartDataLabels]"
-          [legend]="true"
           type="bar">
         </canvas>
       </div>
+    </div>
 
-      <h5>Gender Split</h5>
-      <div class="chart-container gender-split" style="height: 300px; width: 100%;">
+    <div class="chart-section">
+      <h3>Gender Split</h3>
+      <div class="chart-container">
         <canvas baseChart
-          [datasets]="genderChartData.datasets"
-          [labels]="genderChartData.labels"
+          [data]="genderChartData"
           [options]="genderChartOptions"
-          [legend]="true"
           type="doughnut">
         </canvas>
       </div>
+    </div>
+  </div>
 
-      <h5>Top Countries</h5>
+  <div class="data-section">
+    <div class="top-countries">
+      <h3>Location By Country</h3>
       <ul>
         <li *ngFor="let country of getTopCountries()">
-          {{ country.name }} {{ country.weight | percent }}
+          <span>{{ country.name }}</span>
+          <span>{{ country.weight | percent }}</span>
         </li>
       </ul>
     </div>
 
-    <div class="top-brands">
-      <h4>Follower Interests</h4>
+    <div class="follower-interests">
+      <h3>Follower Interests</h3>
       <ul>
         <li *ngFor="let interest of profile.instagramProfile.InstagramInterest">
           {{ interest.name }}
