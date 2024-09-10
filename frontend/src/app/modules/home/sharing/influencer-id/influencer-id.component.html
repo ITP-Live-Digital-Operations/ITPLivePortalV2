@@ -26,6 +26,7 @@
         <span><i class="fas fa-phone"></i> {{ profile.Number }}</span>
       </div>
     </div>
+    <button class="edit-button" (click)="editInfluencer(profile.id)">Edit</button>
   </div>
 
   <div class="profile-content">
@@ -192,8 +193,8 @@
       <p>{{ profile.PreviousBrands }}</p>
     </div>
   </div>
-  
-  <app-export-modash-profile
+
+ <!--  <app-export-modash-profile
     [profile]="exportProfile"
-  ></app-export-modash-profile>
+  ></app-export-modash-profile> -->
 </div>

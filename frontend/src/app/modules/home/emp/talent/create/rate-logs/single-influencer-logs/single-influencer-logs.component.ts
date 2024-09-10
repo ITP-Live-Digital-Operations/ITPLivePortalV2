@@ -136,6 +136,8 @@ export class SingleInfluencerLogsComponent {
           'Carousel posts',
           'Instagram Stories',
           'Instagram Reels',
+          'Indoor Story Coverage',
+          'Outdoor Story Coverage',
           'IGTV',
           'Influencer partnerships and collaborations',
           'Content usage rights',
@@ -156,6 +158,8 @@ export class SingleInfluencerLogsComponent {
       case 'Snapchat':
         return [
           'Snap stories',
+          'Indoor Story Coverage',
+          'Outdoor Story Coverage',
           'Geofilters and lenses',
           'Influencer partnerships and collaborations',
           'Content usage rights',

@@ -47,20 +47,26 @@ export class EditInfluencerComponent {
       socials: this.formBuilder.group(
         {
           InstagramHandle: [''],
-
           TiktokHandle: [''],
-
-          SnapchatHandle: [''],
-
-          TwitterHandle: [''],
-
-          FacebookHandle: [''],
-
           YoutubeHandle: [''],
 
+          SnapchatHandle: [''],
+          SnapchatFollowers: [''],
+
+          TwitterHandle: [''],
+          TwitterFollowers: [''],
+
           TwitchHandle: [''],
+          TwitchFollowers: [''],
         },
-        { validators: requireAtLeastTwoHandlesValidator() }
+        {
+          validators: [
+            requireAtLeastTwoHandlesValidator(),
+            handleWithFollowersValidator('SnapchatHandle', 'SnapchatFollowers'),
+            handleWithFollowersValidator('TwitterHandle', 'TwitterFollowers'),
+            handleWithFollowersValidator('TwitchHandle', 'TwitchFollowers'),
+          ],
+        }
       ),
 
       KSALicense: [''],
@@ -108,18 +114,17 @@ export class EditInfluencerComponent {
           },
           socials: {
             InstagramHandle: this.influencerData.data.InstagramHandle,
-
             TiktokHandle: this.influencerData.data.TiktokHandle,
-
-            SnapchatHandle: this.influencerData.data.SnapchatHandle,
-
-            TwitterHandle: this.influencerData.data.TwitterHandle,
-
-            FacebookHandle: this.influencerData.data.FacebookHandle,
-
             YoutubeHandle: this.influencerData.data.YoutubeHandle,
 
+            SnapchatHandle: this.influencerData.data.SnapchatHandle,
+            SnapchatFollowers: this.influencerData.data.SnapchatFollowers,
+
+            TwitterHandle: this.influencerData.data.TwitterHandle,
+            TwitterFollowers: this.influencerData.data.TwitterFollowers,
+
             TwitchHandle: this.influencerData.data.TwitchHandle,
+            TwitchFollowers: this.influencerData.data.TwitchFollowers,
           },
 
           KSALicense: this.influencerData.data.KSALicense,
@@ -205,5 +210,34 @@ export function requireAtLeastTwoHandlesValidator(): ValidatorFn {
     }
 
     return { requireAtLeastTwoHandles: true }; // Error, validation failed
+  };
+}
+
+export function handleWithFollowersValidator(
+  handleKey: string,
+  followersKey: string
+): ValidatorFn {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const handle = group.get(handleKey);
+    const followersControl = group.get(followersKey);
+
+    if (handle && followersControl) {
+      handle.valueChanges.subscribe(() => {
+        if (handle.value && !followersControl.value) {
+          followersControl.setErrors({ required: true });
+          followersControl.markAsTouched();
+        } else if (!handle.value) {
+          followersControl.setErrors(null);
+        }
+      });
+
+      if (handle.value && !followersControl.value) {
+        followersControl.setErrors({ required: true });
+      } else if (!handle.value) {
+        followersControl.setErrors(null);
+      }
+    }
+
+    return null;
   };
 }

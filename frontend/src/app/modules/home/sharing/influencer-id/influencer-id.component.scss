@@ -24,6 +24,7 @@ $accent: #ff9f1c;
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative; /* Add this to make relative positioning work */
 
   .profile-avatar {
     width: 150px;
@@ -96,6 +97,25 @@ $accent: #ff9f1c;
           color: $secondary-blue;
         }
       }
+    }
+  }
+  .edit-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: $secondary-blue;
+    color: $background-light;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($secondary-blue, 10%);
     }
   }
 }

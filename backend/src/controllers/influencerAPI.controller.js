@@ -207,17 +207,41 @@ exports.getTikTokProfile = async (req, res) => {
   }
 };
 
-
 exports.getModashProfile = async (req, res) => {
   const profileId = Number(req.params.id);
   try {
     const profile = await Influencer.findByPk(profileId, {
-      attributes: ["id", "Name"],
+      attributes: [
+        "id",
+        "Name",
+        "TiktokHandle",
+        "TiktokFollowers",
+        "TiktokLink",
+        "SnapchatHandle",
+        "SnapchatFollowers",
+        "SnapchatLink",
+        "TwitterHandle",
+        "TwitterFollowers",
+        "TwitterLink",
+        "YoutubeHandle",
+        "YoutubeFollowers",
+        "YoutubeLink",
+        "TwitchHandle",
+        "TwitchFollowers",
+        "TwitchLink",
+      ],
       include: [
         {
           model: InstagramProfile,
           as: "instagramProfile",
-          attributes: ["id", "username", "profilePicture" ,"followerCount", "avgLikes", "engagementRate"],
+          attributes: [
+            "id",
+            "username",
+            "profilePicture",
+            "followerCount",
+            "avgLikes",
+            "engagementRate",
+          ],
           include: [
             {
               model: InstagramAudienceDemographic,
@@ -227,14 +251,14 @@ exports.getModashProfile = async (req, res) => {
                 [Op.or]: [
                   { type: "gender" },
                   { type: "country" },
-                  { type: "gendersPerAge" }
-                ]
-              }
+                  { type: "gendersPerAge" },
+                ],
+              },
             },
             {
               model: InstagramInterest,
               as: "InstagramInterest",
-              attributes: ["name", "weight"]
+              attributes: ["name", "weight"],
             },
           ],
         },

@@ -256,4 +256,19 @@ export interface ExportModashInfluencerProfile {
   id: number;
   Name: string;
   instagramProfile: ExportModashInstagramProfile;
+  TiktokHandle: string;
+  TiktokFollowers: number;
+  TiktokLink: string;
+  YoutubeHandle: string;
+  YoutubeFollowers: number;
+  YoutubeLink: string;
+  SnapchatHandle: string;
+  SnapchatFollowers: number;
+  SnapchatLink: string;
+  TwitterHandle: string;
+  TwitterFollowers: number;
+  TwitterLink: string;
+  TwitchHandle: string;
+  TwitchFollowers: number;
+  TwitchLink: string;
 }

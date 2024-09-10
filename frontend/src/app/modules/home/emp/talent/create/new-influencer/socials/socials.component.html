@@ -1,143 +1,130 @@
-
-
 <form [formGroup]="form" autocomplete="off">
-  <h1> Please fill in at least two handles, with one of them being either Instagram, TikTok, or YouTube. </h1>
+  <h1>
+    Please fill in at least two handles, with one of them being either
+    Instagram, TikTok, or YouTube.
+  </h1>
   <div class="row">
-      <mat-form-field>
-        <mat-label>Instagram Handle</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="InstagramHandle"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['InstagramHandle'].invalid &&
-            form.controls['InstagramHandle'].touched
-          "
-        >
-          Please enter Instagram Handle.
-        </mat-error>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Instagram Handle</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="InstagramHandle"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['InstagramHandle'].invalid &&
+          form.controls['InstagramHandle'].touched
+        "
+      >
+        Please enter Instagram Handle.
+      </mat-error>
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Tiktok Handle</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="TiktokHandle"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['TiktokHandle'].invalid &&
-            form.controls['TiktokHandle'].touched
-          "
-        >
-          Please enter Tiktok Handle.
-        </mat-error>
-      </mat-form-field>
-    </div>
+    <mat-form-field>
+      <mat-label>Tiktok Handle</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="TiktokHandle"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['TiktokHandle'].invalid &&
+          form.controls['TiktokHandle'].touched
+        "
+      >
+        Please enter Tiktok Handle.
+      </mat-error>
+    </mat-form-field>
 
+    <mat-form-field>
+      <mat-label>YouTube Handle</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="YoutubeHandle"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['YoutubeHandle'].invalid &&
+          form.controls['YoutubeHandle'].touched
+        "
+      >
+        Please enter YouTube Handle.
+      </mat-error>
+    </mat-form-field>
+  </div>
 
-    <div class="row">
-      <mat-form-field>
-        <mat-label>YouTube Handle</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="YoutubeHandle"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['YoutubeHandle'].invalid &&
-            form.controls['YoutubeHandle'].touched
-          "
-        >
-          Please enter YouTube Handle.
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field  >
-        <mat-label>SnapChat Handle</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="SnapchatHandle"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['SnapchatHandle'].invalid &&
-            form.controls['SnapchatHandle'].touched
-          "
-        >
-          Please enter SnapChat Handle.
-        </mat-error>
-      </mat-form-field>
+  <div class="row">
+    <mat-form-field>
+      <mat-label>SnapChat Handle</mat-label>
+      <input matInput type="text" formControlName="SnapchatHandle" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>SnapChat Followers</mat-label>
+      <input matInput type="number" formControlName="SnapchatFollowers" autocomplete="off" />
+      <mat-error *ngIf="form.get('SnapchatFollowers')?.errors?.['required']">
+        Please enter SnapChat followers.
+      </mat-error>
+    </mat-form-field>
+  </div>
 
 
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Twitter Handle</mat-label>
+      <input matInput type="text" formControlName="TwitterHandle" autocomplete="off" />
+    </mat-form-field>
 
-    </div>
+    <mat-form-field>
+      <mat-label>Twitter Followers</mat-label>
+      <input matInput type="number" formControlName="TwitterFollowers" autocomplete="off" />
+      <mat-error *ngIf="form.get('TwitterFollowers')?.errors?.['required']">
+        Please enter Twitter followers.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Twitch Handle</mat-label>
+      <input matInput type="text" formControlName="TwitchHandle" autocomplete="off" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Twitch Followers</mat-label>
+      <input matInput type="number" formControlName="TwitchFollowers" autocomplete="off" />
+      <mat-error *ngIf="form.get('TwitchFollowers')?.errors?.['required']">
+        Please enter Twitch followers.
+      </mat-error>
+    </mat-form-field>
+  </div>
 
 
-    <div class="row" *ngIf="isCelebrity">
-      <mat-form-field>
-        <mat-label>Facebook Handle</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="FacebookHandle"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['FacebookHandle'].invalid &&
-            form.controls['FacebookHandle'].touched
-          "
-        >
-          Please enter Facebook Handle.
-        </mat-error>
-      </mat-form-field>
+  <!-- not sure why this is here ( test when updating celebrity) -->
+  <div class="row" *ngIf="isCelebrity">
+    <mat-form-field>
+      <mat-label>Facebook Handle</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="FacebookHandle"
+        autocomplete="off"
+      />
+      <mat-error
+        *ngIf="
+          form.controls['FacebookHandle'].invalid &&
+          form.controls['FacebookHandle'].touched
+        "
+      >
+        Please enter Facebook Handle.
+      </mat-error>
+    </mat-form-field>
+  </div>
 
-    </div>
-
-    <div class="row">
-      <mat-form-field>
-        <mat-label>Twitch Handle</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="TwitchHandle"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['TwitchHandle'].invalid &&
-            form.controls['TwitchHandle'].touched
-          "
-        >
-          Please enter Twitch Handle.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Twitter Handle</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="TwitterHandle"
-          autocomplete="off"
-        />
-        <mat-error
-          *ngIf="
-            form.controls['TwitterHandle'].invalid &&
-            form.controls['TwitterHandle'].touched
-          "
-        >
-          Please enter Twitter Handle.
-        </mat-error>
-      </mat-form-field>
-    </div>
-  </form>
+</form>

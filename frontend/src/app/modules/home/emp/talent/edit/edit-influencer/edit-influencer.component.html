@@ -1,117 +1,176 @@
-
-
-
 <style>
   ::ng-deep .mat-mdc-tab-body-content {
     height: 100%;
     overflow: hidden !important;
   }
-    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
-      flex-grow: 1;
-      border-right: 1px solid rgba(70, 70, 93, 0.559);
-      transition: background-color 0.3s ease;
-      text-align: center;
-      font-size: 16px;
-      padding-bottom: 20px;
-      color: #333; 
+  ::ng-deep
+    .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+    > .mat-mdc-tab-header
+    .mat-mdc-tab {
+    flex-grow: 1;
+    border-right: 1px solid rgba(70, 70, 93, 0.559);
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 20px;
+    color: #333;
+  }
+  ::ng-deep .mat-raised-button {
+    border-radius: 20px;
+  }
+  ::ng-deep
+    .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+    > .mat-mdc-tab-header
+    .mat-mdc-tab:hover {
+    background-color: rgba(70, 70, 93, 0.379);
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    ::ng-deep
+      .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+      > .mat-mdc-tab-header {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
     }
-    ::ng-deep .mat-raised-button {
-      border-radius: 20px;}
-    ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:hover {
-      background-color: rgba(70, 70, 93, 0.379);
-      cursor: pointer;
+
+    ::ng-deep
+      .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+      > .mat-mdc-tab-header
+      .mat-mdc-tab {
+      display: inline-block;
+      width: auto;
+      border-right: none;
     }
-  
-    @media (max-width: 767px) {
-      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header {
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-    
-      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
-        display: inline-block;
-        width: auto;
-        border-right: none;
-      }
-      
-      ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:nth-child(n+3) {
-        display: none; 
-      }
+
+    ::ng-deep
+      .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs
+      > .mat-mdc-tab-header
+      .mat-mdc-tab:nth-child(n + 3) {
+      display: none;
     }
-    </style>
+  }
+</style>
 <div class="form-container">
   <button mat-icon-button class="close-button" (click)="closeDialog()">
-    <mat-icon style="color: aliceblue;">close</mat-icon>
+    <mat-icon style="color: aliceblue">close</mat-icon>
   </button>
-  <h2 style="text-align: center;">Edit Influencer</h2>
-   <!-- GENERAL INFORMATION HERE -->
+  <h2 style="text-align: center">Edit Influencer</h2>
+  <!-- GENERAL INFORMATION HERE -->
 
   <mat-tab-group [(selectedIndex)]="activeTabIndex">
-    <mat-tab label="General Information"  class="tab-with-border">
-      <form [formGroup]="editInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
-             <app-general-info formGroupName="generalInfo" [isCelebrity]="isNotCelebrity"></app-general-info>
-
-
+    <mat-tab label="General Information" class="tab-with-border">
+      <form
+        [formGroup]="editInfluencerForm"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+      >
+        <app-general-info
+          formGroupName="generalInfo"
+          [isCelebrity]="isNotCelebrity"
+        ></app-general-info>
       </form>
     </mat-tab>
 
     <!-- SOCIALS AND LICENSE HERE -->
-    <mat-tab label="Socials" >
-      <form [formGroup]="editInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
-       <app-socials formGroupName="socials"></app-socials>
-      
-  
+    <mat-tab label="Socials">
+      <form
+        [formGroup]="editInfluencerForm"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+      >
+        <app-socials formGroupName="socials"></app-socials>
       </form>
     </mat-tab>
     <!-- AGENCY AND EXTRA INFORMATION HERE -->
- 
-   <mat-tab label="Licenses & Agency Information"  class="tab-with-border">
-      <form [formGroup]="editInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
-               <app-agency-info formGroupName="agencyInfo" [isCelebrity]="isNotCelebrity"></app-agency-info>
-               <div class="row">
-                <mat-checkbox  color="primary" formControlName="KSALicense">KSA License</mat-checkbox>
-              </div>
-          
-              <div class="row">
-                <mat-checkbox color="primary" formControlName="UAELicense">UAE License</mat-checkbox>
-              </div>
 
+    <mat-tab label="Licenses & Agency Information" class="tab-with-border">
+      <form
+        [formGroup]="editInfluencerForm"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+      >
+        <app-agency-info
+          formGroupName="agencyInfo"
+          [isCelebrity]="isNotCelebrity"
+        ></app-agency-info>
+        <div class="row">
+          <mat-checkbox color="primary" formControlName="KSALicense"
+            >KSA License</mat-checkbox
+          >
+        </div>
 
+        <div class="row">
+          <mat-checkbox color="primary" formControlName="UAELicense"
+            >UAE License</mat-checkbox
+          >
+        </div>
       </form>
     </mat-tab>
 
-  <mat-tab label="Extra Information"  class="tab-with-border">
-      <form [formGroup]="editInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
-             
-               <app-extra-info formGroupName="extraInfo" [isCelebrity]="isNotCelebrity"></app-extra-info>
-
-
+    <mat-tab label="Extra Information" class="tab-with-border">
+      <form
+        [formGroup]="editInfluencerForm"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+      >
+        <app-extra-info
+          formGroupName="extraInfo"
+          [isCelebrity]="isNotCelebrity"
+        ></app-extra-info>
       </form>
     </mat-tab>
-
-    
-  
-      
-
   </mat-tab-group>
-<div style="display: flex; justify-content: space-between;">
-  <button mat-raised-button color="primary" (click)="prevTab()" [disabled]="activeTabIndex === 0" [style.visibility]="activeTabIndex === 0 ? 'hidden' : 'visible'" style="margin-right: 10px; border-radius: 10px !important;">Previous</button>
-  <ng-container *ngIf="activeTabIndex !== tabCount - 1">
-    <button mat-raised-button color="primary" (click)="nextTab()" [disabled]="activeTabIndex === tabCount - 1" [style.visibility]="activeTabIndex === tabCount - 1 ? 'hidden' : 'visible'" style="border-radius: 10px !important;">Next</button>
-  </ng-container>
+  <div style="display: flex; justify-content: space-between">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="prevTab()"
+      [disabled]="activeTabIndex === 0"
+      [style.visibility]="activeTabIndex === 0 ? 'hidden' : 'visible'"
+      style="margin-right: 10px; border-radius: 10px !important"
+    >
+      Previous
+    </button>
+    <ng-container *ngIf="activeTabIndex !== tabCount - 1">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="nextTab()"
+        [disabled]="activeTabIndex === tabCount - 1"
+        [style.visibility]="
+          activeTabIndex === tabCount - 1 ? 'hidden' : 'visible'
+        "
+        style="border-radius: 10px !important"
+      >
+        Next
+      </button>
+    </ng-container>
 
-  <!-- SUBMIT BUTTON HERE -->
-  <ng-container *ngIf="activeTabIndex === tabCount - 1">
-    <form [formGroup]="editInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off" style="display: flex; justify-content: center;">
-      <button mat-raised-button color="primary" type="submit" [disabled]="!editInfluencerForm.valid" style="margin: 2% auto;border-radius: 15px !important; color: white; width: 200px;">            Edit Influencer
-</button>
-    </form>  
-  </ng-container>
+    <!-- SUBMIT BUTTON HERE -->
+    <ng-container *ngIf="activeTabIndex === tabCount - 1">
+      <form
+        [formGroup]="editInfluencerForm"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+        style="display: flex; justify-content: center"
+      >
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!editInfluencerForm.valid"
+          style="
+            margin: 2% auto;
+            border-radius: 15px !important;
+            color: white;
+            width: 200px;
+          "
+        >
+          Save Influencer
+        </button>
+      </form>
+    </ng-container>
+  </div>
 </div>
-
-
-  
-</div>
-
-

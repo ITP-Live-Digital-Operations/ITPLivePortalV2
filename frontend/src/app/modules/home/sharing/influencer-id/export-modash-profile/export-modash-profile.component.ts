@@ -15,6 +15,8 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 export class ExportModashProfileComponent {
   @Input() profile!: ExportModashInfluencerProfile;
 
+  bio: string =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
   ChartDataLabels = ChartDataLabels;
   influencerCategory: string = '';
 
@@ -49,39 +51,39 @@ export class ExportModashProfileComponent {
     scales: {
       x: {
         grid: {
-          display: false
+          display: false,
         },
         ticks: {
-          color: 'white' // Change x-axis labels to white
-        }
+          color: 'black', // Change x-axis labels to white
+        },
       },
       y: {
         display: false, // Hide y-axis
         beginAtZero: true,
         max: 100,
         grid: {
-          display: false // Hide background lines
-        }
-      }
+          display: false, // Hide background lines
+        },
+      },
     },
     plugins: {
       legend: {
         display: true,
         position: 'bottom',
         labels: {
-          color: 'white', // Change legend labels to white
+          color: 'black', // Change legend labels to white
           usePointStyle: true,
           pointStyle: 'circle',
           padding: 20,
           font: {
-            size: 14
-          }
-        }
+            size: 14,
+          },
+        },
       },
       tooltip: {
         enabled: true,
         callbacks: {
-          label: function(context) {
+          label: function (context) {
             let label = context.dataset.label || '';
             if (label) {
               label += ': ';
@@ -90,23 +92,23 @@ export class ExportModashProfileComponent {
               label += context.parsed.y.toFixed(1) + '%';
             }
             return label;
-          }
-        }
+          },
+        },
       },
       datalabels: {
         anchor: 'end',
         align: 'top',
         offset: 4,
-        color: '#FFF',
+        color: 'black',
         font: {
           weight: 'bold',
-          size: 11
+          size: 11,
         },
         formatter: (value: number) => {
           return value.toFixed(1) + '%';
-        }
-      }
-    }
+        },
+      },
+    },
   };
 
   public pieChartOptions: ChartConfiguration['options'] = {
@@ -151,49 +153,53 @@ export class ExportModashProfileComponent {
                 hidden: false,
                 index: index,
                 // Add these properties to ensure white text
-                color: 'white',
-                fontColor: 'white'
+                color: 'black',
+                fontColor: 'black',
               };
             });
           },
-          color: 'white', // This sets the default color for all legend items
+          color: 'black', // This sets the default color for all legend items
           usePointStyle: true,
           pointStyle: 'circle',
           padding: 20,
           font: {
-            size: 14
+            size: 14,
           },
           // Add this to override any default text color
           textAlign: 'left' as const,
           boxWidth: 20,
-          boxHeight: 20
-        }
+          boxHeight: 20,
+        },
       },
       tooltip: {
         callbacks: {
-          label: function(context) {
+          label: function (context) {
             const label = context.label || '';
             const value = context.parsed;
             const percentage = value.toFixed(2) + '%';
             return `${label}: ${percentage}`;
-          }
-        }
+          },
+        },
       },
       datalabels: {
         color: 'white',
         font: {
           weight: 'bold',
-          size: 14
+          size: 14,
         },
         formatter: (value: number, context: any) => {
-          const sum = context.dataset.data.reduce((a: number, b: number) => a + b, 0);
+          const sum = context.dataset.data.reduce(
+            (a: number, b: number) => a + b,
+            0
+          );
           const percentage = ((value / sum) * 100).toFixed(2) + '%';
-          return context.chart.data.labels[context.dataIndex] + '\n' + percentage;
-        }
-      }
-    }
+          return (
+            context.chart.data.labels[context.dataIndex] + '\n' + percentage
+          );
+        },
+      },
+    },
   };
-
 
   constructor() {}
 
@@ -263,5 +269,29 @@ export class ExportModashProfileComponent {
     } else {
       this.influencerCategory = 'Nano';
     }
+  }
+
+  openInstagram(): void {
+    window.open(`https://www.instagram.com/${this.profile.instagramProfile.username}`);
+  }
+
+  openTikTok(): void {
+    window.open(`https://www.tiktok.com/@${this.profile.TiktokHandle}`);
+  }
+
+  openYoutube(): void {
+    window.open(`https://www.youtube.com/${this.profile.YoutubeHandle}`);
+  }
+
+  openTwitter(): void {
+    window.open(`https://www.twitter.com/${this.profile.TwitterHandle}`);
+  }
+
+  openSnapchat(): void {
+    window.open(`https://www.snapchat.com/add/${this.profile.SnapchatHandle}`);
+  }
+
+  openTwitch(): void {
+    window.open(`https://www.twitch.tv/${this.profile.TwitchHandle}`);
   }
 }

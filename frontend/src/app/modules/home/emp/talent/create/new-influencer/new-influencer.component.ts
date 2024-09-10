@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { twoWays } from '@syncfusion/ej2-angular-inputs/src/textbox/textbox.component';
 
 @Component({
   selector: 'app-new-influencer',
@@ -50,12 +51,21 @@ export class NewInfluencerComponent {
       socials: this.formBuilder.group({
         InstagramHandle: [''],
         TiktokHandle: [''],
-        SnapchatHandle: [''],
-        TwitterHandle: [''],
-        FacebookHandle: [''],
         YoutubeHandle: [''],
+        SnapchatHandle: [''],
+        SnapchatFollowers: [''],
+        TwitterHandle: [''],
+        TwitterFollowers: [''],
         TwitchHandle: [''],
-      }, { validators: requireAtLeastTwoHandlesValidator() }),
+        TwitchFollowers: [''],
+      }, {
+        validators: [
+          requireAtLeastTwoHandlesValidator(),
+          handleWithFollowersValidator('SnapchatHandle', 'SnapchatFollowers'),
+          handleWithFollowersValidator('TwitterHandle', 'TwitterFollowers'),
+          handleWithFollowersValidator('TwitchHandle', 'TwitchFollowers')
+        ]
+      }),
 
       //LICENSES
       KSALicense: [''],
@@ -161,5 +171,31 @@ export function requireAtLeastTwoHandlesValidator(): ValidatorFn {
     }
 
     return { requireAtLeastTwoHandles: true }; // Error, validation failed
+  };
+}
+
+export function handleWithFollowersValidator(handleKey: string, followersKey: string): ValidatorFn {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const handle = group.get(handleKey);
+    const followersControl = group.get(followersKey);
+
+    if (handle && followersControl) {
+      handle.valueChanges.subscribe(() => {
+        if (handle.value && !followersControl.value) {
+          followersControl.setErrors({ required: true });
+          followersControl.markAsTouched();
+        } else if (!handle.value) {
+          followersControl.setErrors(null);
+        }
+      });
+
+      if (handle.value && !followersControl.value) {
+        followersControl.setErrors({ required: true });
+      } else if (!handle.value) {
+        followersControl.setErrors(null);
+      }
+    }
+
+    return null;
   };
 }

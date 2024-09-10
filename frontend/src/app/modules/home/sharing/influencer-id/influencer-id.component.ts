@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
 import { ExportModashInfluencerProfile, InfluencerProfile } from 'src/app/core/interfaces/influencerAPI.model';
-import { LogModel, LogModelUpdated } from 'src/app/core/interfaces/logModel';
+import { LogModelUpdated } from 'src/app/core/interfaces/logModel';
 import { LogService } from 'src/app/core/services/log.service';
 import { MatDialog } from '@angular/material/dialog';
-import { NewRateLogComponent } from '../../emp/talent/create/rate-logs/new-rate-log/new-rate-log.component';
 import { RateLogsComponent } from '../../emp/talent/create/rate-logs/rate-logs.component';
+import { EditInfluencerComponent } from '../../emp/talent/edit/edit-influencer/edit-influencer.component';
 
 @Component({
   selector: 'app-influencer-id',
@@ -70,6 +70,18 @@ export class InfluencerIdComponent implements OnInit {
       } else {
         console.error("No logs found");
       }
+    });
+  }
+
+  public editInfluencer(inputdata: any): void {
+    this.dialog?.open(EditInfluencerComponent, {
+      width: '990px',
+      height: '700px',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration: '1000ms',
+      data: {
+        id: inputdata,
+      },
     });
   }
 
