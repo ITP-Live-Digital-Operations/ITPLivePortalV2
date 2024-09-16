@@ -2,7 +2,6 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import {
   ExportModashInfluencerProfile,
   ExportModashInstagramAudienceDemographic,
-  InstagramAudienceDemographic,
 } from 'src/app/core/interfaces/influencerAPI.model';
 import { ChartConfiguration, ChartData } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -15,8 +14,9 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 export class ExportModashProfileComponent {
   @Input() profile!: ExportModashInfluencerProfile;
 
-  bio: string =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+  bio: string = ''; // limit to 250 characters for display
+  reasonToChoose: string = ''; // limit to 250 characters for display
+
   ChartDataLabels = ChartDataLabels;
   influencerCategory: string = '';
 

@@ -108,10 +108,11 @@ export class InfluencerIdComponent implements OnInit {
     ];
 
     const maxFollowers = Math.max(...followers);
-
     if (maxFollowers < 10000) {
+      return 'Nano';
+    } else if (maxFollowers < 100000) {
       return 'Micro';
-    } else if (maxFollowers >= 10000 && maxFollowers < 100000) {
+    } else if (maxFollowers < 1000000) {
       return 'Macro';
     } else {
       return 'Mega';

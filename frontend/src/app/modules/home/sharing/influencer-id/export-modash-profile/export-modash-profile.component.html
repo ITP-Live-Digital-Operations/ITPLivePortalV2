@@ -1,7 +1,11 @@
 <div class="profile-container" *ngIf="profile">
-  <img src="../../../../../../assets/images/logo1.jpg" alt="Logo" class="logo">
+  <img
+    src="../../../../../../assets/images/logo1.jpg"
+    alt="Logo"
+    class="logo"
+  />
   <div class="profile-section">
-    <div class="category-label">{{ influencerCategory }}</div>
+    <div class="category-label">{{ influencerCategory | uppercase }}</div>
     <div class="profile-picture-container">
       <img
         [src]="profile.instagramProfile.profilePicture"
@@ -13,151 +17,89 @@
     <div class="profile-bio">
       <p>{{ bio }}</p>
     </div>
-      <div class="social-info">
-        <div class="social-platform instagram" (click)="openInstagram()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="social-icon"
+    <div class="social-info">
+      <div class="social-platform instagram" (click)="openInstagram()">
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ic29jaWFsLWljb24iPgogICAgICAgICAgICA8cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSI1IiByeT0iNSI+PC9yZWN0PgogICAgICAgICAgICA8cGF0aCBkPSJNMTYgMTEuMzdBNCA0IDAgMSAxIDEyLjYzIDggNCA0IDAgMCAxIDE2IDExLjM3eiI+PC9wYXRoPgogICAgICAgICAgICA8bGluZSB4MT0iMTcuNSIgeTE9IjYuNSIgeDI9IjE3LjUxIiB5Mj0iNi41Ij48L2xpbmU+CiAgICAgICAgICA8L3N2Zz4="
+          class="social-icon"
+          alt="Instagram"
+        />
+        <div class="profile-info">
+          <span class="username">{{ profile.instagramProfile.username }}</span>
+          <span class="followers"
+            >{{
+              profile.instagramProfile.followerCount | numberFormat
+            }}
+            followers</span
           >
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg>
-          <div class="profile-info">
-            <span class="username">{{
-              profile.instagramProfile.username
-            }}</span>
-            <span class="followers"
-              >{{
-                profile.instagramProfile.followerCount | numberFormat
-              }}
-              followers</span
-            >
-          </div>
-        </div>
-
-        <div *ngIf="profile.TiktokHandle" class="social-platform tiktok" (click)="openTikTok()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="social-icon"
-          >
-            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
-          </svg>
-          <div class="profile-info">
-            <span class="username">{{ profile.TiktokHandle }}</span>
-            <span class="followers"
-              >{{ profile.TiktokFollowers | numberFormat }} followers</span
-            >
-          </div>
-        </div>
-
-        <div *ngIf="profile.YoutubeHandle" class="social-platform youtube" (click)="openYoutube()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="social-icon"
-          >
-            <path
-              d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
-            ></path>
-            <polygon
-              points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
-            ></polygon>
-          </svg>
-          <div class="profile-info">
-            <span class="username">{{ profile.YoutubeHandle }}</span>
-            <span class="followers"
-              >{{ profile.YoutubeFollowers | numberFormat }} subscribers</span
-            >
-          </div>
-        </div>
-
-        <div *ngIf="profile.SnapchatHandle" class="social-platform snapchat" (click)="openSnapchat()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="social-icon"
-          >
-            <path
-              d="M12 2a10 10 0 0 0-3.16 19.5c.3.05.6.07.89.07h1.27c.29 0 .59-.02.89-.07A10 10 0 0 0 12 2z"
-            ></path>
-            <path d="M6.5 10a2.5 2.5 0 0 1 5 0v1a2.5 2.5 0 0 1-5 0v-1z"></path>
-            <path d="M17.5 10a2.5 2.5 0 0 1-5 0v1a2.5 2.5 0 0 1 5 0v-1z"></path>
-          </svg>
-          <div class="profile-info">
-            <span class="username">{{ profile.SnapchatHandle }}</span>
-            <span class="followers"
-              >{{ profile.SnapchatFollowers | numberFormat }} followers</span
-            >
-          </div>
-        </div>
-
-        <div *ngIf="profile.TwitchHandle" class="social-platform twitch" (click)="openTwitch()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="social-icon"
-          >
-            <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path>
-          </svg>
-          <div class="profile-info">
-            <span class="username">{{ profile.TwitchHandle }}</span>
-            <span class="followers"
-              >{{ profile.TwitchFollowers | numberFormat }} followers</span
-            >
-          </div>
-        </div>
-
-        <div *ngIf="profile.TwitterHandle" class="social-platform twitter" (click)="openTwitter()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="social-icon"
-          >
-            <path
-              d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
-            ></path>
-          </svg>
-          <div class="profile-info">
-            <span class="username">{{ profile.TwitterHandle }}</span>
-            <span class="followers"
-              >{{ profile.TwitterFollowers | numberFormat }} followers</span
-            >
-          </div>
         </div>
       </div>
+      <div class="social-platform tiktok" *ngIf="profile.TiktokHandle" (click)="openTikTok()">
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ic29jaWFsLWljb24iPgogICAgICAgICAgICA8cGF0aCBkPSJNOSAxMmE0IDQgMCAxIDAgNCA0VjRhNSA1IDAgMCAwIDUgNSI+PC9wYXRoPgogICAgICAgICAgPC9zdmc+"
+          class="social-icon"
+          alt="TikTok"
+        />
+        <div class="profile-info">
+          <span class="username">{{ profile.TiktokHandle }}</span>
+          <span class="followers"
+            >{{ profile.TiktokFollowers | numberFormat }} followers</span
+          >
+        </div>
+      </div>
+      <div class="social-platform youtube" *ngIf="profile.YoutubeHandle" (click)="openYoutube()">
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ic29jaWFsLWljb24iPgogICAgICAgICAgICA8cGF0aCBkPSJNMjIuNTQgNi40MmEyLjc4IDIuNzggMCAwIDAtMS45NC0yQzE4Ljg4IDQgMTIgNCAxMiA0cy02Ljg4IDAtOC42LjQ2YTIuNzggMi43OCAwIDAgMC0xLjk0IDJBMjkgMjkgMCAwIDAgMSAxMS43NWEyOSAyOSAwIDAgMCAuNDYgNS4zM0EyLjc4IDIuNzggMCAwIDAgMy40IDE5YzEuNzIuNDYgOC42LjQ2IDguNi40NnM2Ljg4IDAgOC42LS40NmEyLjc4IDIuNzggMCAwIDAgMS45NC0yIDI5IDI5IDAgMCAwIC40Ni01LjI1IDI5IDI5IDAgMCAwLS40Ni01LjMzeiI+PC9wYXRoPgogICAgICAgICAgICA8cG9seWdvbiBwb2ludHM9IjkuNzUgMTUuMDIgMTUuNSAxMS43NSA5Ljc1IDguNDggOS43NSAxNS4wMiI+PC9wb2x5Z29uPgogICAgICAgICAgPC9zdmc+"
+          class="social-icon"
+          alt="YouTube"
+        />
+        <div class="profile-info">
+          <span class="username">{{ profile.YoutubeHandle }}</span>
+          <span class="followers"
+            >{{ profile.YoutubeFollowers | numberFormat }} subscribers</span
+          >
+        </div>
+      </div>
+      <div class="social-platform snapchat" *ngIf="profile.SnapchatHandle" (click)="openSnapchat()">
+        <img
+          src="../../../../../../assets/images/snapchat.png"
+          class="social-icon"
+          alt="Snapchat"
+        />
+        <div class="profile-info">
+          <span class="username">{{ profile.SnapchatHandle }}</span>
+          <span class="followers"
+            >{{ profile.SnapchatFollowers | numberFormat }} followers</span
+          >
+        </div>
+      </div>
+      <div class="social-platform twitch" *ngIf="profile.TwitchHandle" (click)="openTwitch()">
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ic29jaWFsLWljb24iPgogICAgICAgICAgICA8cGF0aCBkPSJNMjEgMkgzdjE2aDV2NGw0LTRoNWw0LTRWMnptLTEwIDlWN201IDRWNyI+PC9wYXRoPgogICAgICAgICAgPC9zdmc+"
+          class="social-icon"
+          alt="Twitch"
+        />
+        <div class="profile-info">
+          <span class="username">{{ profile.TwitchHandle }}</span>
+          <span class="followers"
+            >{{ profile.TwitchFollowers | numberFormat }} followers</span
+          >
+        </div>
+      </div>
+      <div class="social-platform twitter" *ngIf="profile.TwitterHandle" (click)="openTwitter()">
+        <img
+          src="../../../../../../assets/images/twitter.png"
+          class="social-icon"
+          alt="Twitter"
+        />
+        <div class="profile-info">
+          <span class="username">{{ profile.TwitterHandle }}</span>
+          <span class="followers"
+            >{{ profile.TwitterFollowers | numberFormat }} followers</span
+          >
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="stats-section">
@@ -254,7 +196,7 @@
       <div class="metric-item">
         <svg class="metric-icon" viewBox="0 0 24 24" width="24" height="24">
           <path
-            d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"
+            d="M18.6 6.62c-1.44 0-2.8.56-3.77 1.53L12 10.66 10.48 12h.01L7.8 14.39c-.64.64-1.49.99-2.4.99-1.87 0-3.39-1.51-3.39-3.38S3.53 8.62 5.4 8.62c.91 0 1.76.35 2.44 1.03l1.13 1 1.51-1.34L9.22 8.2C8.2 7.18 6.84 6.62 5.4 6.62 2.42 6.62 0 9.04 0 12s2.42 5.38 5.4 5.38c1.44 0 2.8-.56 3.77-1.53l2.83-2.5.01.01L13.52 12h-.01l2.69-2.39c.64-.64 1.49-.99 2.4-.99 1.87 0 3.39 1.51 3.39 3.38s-1.52 3.38-3.39 3.38c-.9 0-1.76-.35-2.44-1.03l-1.14-1.01-1.51 1.34 1.27 1.12c1.02 1.01 2.37 1.57 3.82 1.57 2.98 0 5.4-2.41 5.4-5.38s-2.42-5.37-5.4-5.37z"
           />
         </svg>
         <span class="metric-value">{{
@@ -262,6 +204,11 @@
         }}</span>
         <span class="metric-label">Engagement Rate</span>
       </div>
+    </div>
+
+    <div class="reasons-section">
+      <h2 class="reasons-name"> Why {{profile.Name}} ?</h2>
+      <p class="reasons-item">{{reasonToChoose}}</p>
     </div>
   </div>
 </div>
