@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
-import { ExportModashInfluencerProfile, InfluencerProfile } from 'src/app/core/interfaces/influencerAPI.model';
+import { ExportModashInfluencerProfile, InfluencerProfile, InstagramProfile } from 'src/app/core/interfaces/influencerAPI.model';
 import { LogModelUpdated } from 'src/app/core/interfaces/logModel';
 import { LogService } from 'src/app/core/services/log.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RateLogsComponent } from '../../emp/talent/create/rate-logs/rate-logs.component';
 import { EditInfluencerComponent } from '../../emp/talent/edit/edit-influencer/edit-influencer.component';
+import { ExportModashProfileComponent } from './export-modash-profile/export-modash-profile.component';
 
 @Component({
   selector: 'app-influencer-id',
@@ -97,6 +98,14 @@ export class InfluencerIdComponent implements OnInit {
         // Refresh the logs if a new log was added
         this.getInfluencerLogs(this.influencerId);
       }
+    });
+  }
+
+  exportInfluencer(profile: ExportModashInfluencerProfile): void {
+    this.dialog.open(ExportModashProfileComponent, {
+      width: '60%',
+      height: '90%',
+      data: { profile }
     });
   }
 

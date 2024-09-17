@@ -1,4 +1,62 @@
-<div class="profile-container" *ngIf="profile">
+<!-- Form Section -->
+<div class="profile-form" *ngIf="!isFormSubmitted && profile">
+  <h2>Create Profile Export</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="profilePicture">Upload Profile Picture:</label>
+      <input type="file" id="profilePicture" (change)="onFileSelected($event)">
+    </div>
+
+    <div class="form-group">
+      <label for="bio">Bio:</label>
+      <textarea id="bio" formControlName="bio"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="reasonToChoose">Why choose this profile:</label>
+      <textarea id="reasonToChoose" formControlName="reasonToChoose"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Select Platforms to Include:</label>
+      <div class="platforms-group" formGroupName="selectedPlatforms">
+        <div class="platform-checkbox">
+          <input type="checkbox" id="instagram" formControlName="instagram">
+          <label for="instagram">Instagram</label>
+        </div>
+        <div class="platform-checkbox">
+          <input type="checkbox" id="tiktok" formControlName="tiktok">
+          <label for="tiktok">TikTok</label>
+        </div>
+        <div class="platform-checkbox">
+          <input type="checkbox" id="youtube" formControlName="youtube">
+          <label for="youtube">YouTube</label>
+        </div>
+        <div class="platform-checkbox">
+          <input type="checkbox" id="snapchat" formControlName="snapchat">
+          <label for="snapchat">Snapchat</label>
+        </div>
+        <div class="platform-checkbox">
+          <input type="checkbox" id="twitch" formControlName="twitch">
+          <label for="twitch">Twitch</label>
+        </div>
+        <div class="platform-checkbox">
+          <input type="checkbox" id="twitter" formControlName="twitter">
+          <label for="twitter">Twitter</label>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">Preview Profile</button>
+  </form>
+</div>
+
+<!-- Profile Preview Section -->
+<div
+  class="profile-container"
+  *ngIf="isFormSubmitted && profile"
+  #profileContainer
+>
   <img
     src="../../../../../../assets/images/logo1.jpg"
     alt="Logo"
@@ -8,19 +66,24 @@
     <div class="category-label">{{ influencerCategory | uppercase }}</div>
     <div class="profile-picture-container">
       <img
-        [src]="profile.instagramProfile.profilePicture"
+        [src]="uploadedPicture || profile.instagramProfile.profilePicture"
         alt="{{ profile.Name }}"
         class="profile-picture"
       />
     </div>
     <h2 class="profile-name">{{ profile.Name }}</h2>
-    <div class="profile-bio">
-      <p>{{ bio }}</p>
+    <div class="profile-bio" *ngIf="customBio">
+      <p>{{ customBio }}</p>
     </div>
     <div class="social-info">
-      <div class="social-platform instagram" (click)="openInstagram()">
+      <!-- Instagram -->
+      <div
+        class="social-platform instagram"
+        *ngIf="selectedPlatforms.instagram"
+        (click)="openInstagram()"
+      >
         <img
-          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ic29jaWFsLWljb24iPgogICAgICAgICAgICA8cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSI1IiByeT0iNSI+PC9yZWN0PgogICAgICAgICAgICA8cGF0aCBkPSJNMTYgMTEuMzdBNCA0IDAgMSAxIDEyLjYzIDggNCA0IDAgMCAxIDE2IDExLjM3eiI+PC9wYXRoPgogICAgICAgICAgICA8bGluZSB4MT0iMTcuNSIgeTE9IjYuNSIgeDI9IjE3LjUxIiB5Mj0iNi41Ij48L2xpbmU+CiAgICAgICAgICA8L3N2Zz4="
+          src="../../../../../../assets/images/instagram-logo.png"
           class="social-icon"
           alt="Instagram"
         />
@@ -34,9 +97,14 @@
           >
         </div>
       </div>
-      <div class="social-platform tiktok" *ngIf="profile.TiktokHandle" (click)="openTikTok()">
+      <!-- TikTok -->
+      <div
+        class="social-platform tiktok"
+        *ngIf="selectedPlatforms.tiktok && profile.TiktokHandle"
+        (click)="openTikTok()"
+      >
         <img
-          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ic29jaWFsLWljb24iPgogICAgICAgICAgICA8cGF0aCBkPSJNOSAxMmE0IDQgMCAxIDAgNCA0VjRhNSA1IDAgMCAwIDUgNSI+PC9wYXRoPgogICAgICAgICAgPC9zdmc+"
+          src="../../../../../../assets/images/tiktok-logo.png"
           class="social-icon"
           alt="TikTok"
         />
@@ -47,9 +115,14 @@
           >
         </div>
       </div>
-      <div class="social-platform youtube" *ngIf="profile.YoutubeHandle" (click)="openYoutube()">
+      <!-- YouTube -->
+      <div
+        class="social-platform youtube"
+        *ngIf="selectedPlatforms.youtube && profile.YoutubeHandle"
+        (click)="openYoutube()"
+      >
         <img
-          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ic29jaWFsLWljb24iPgogICAgICAgICAgICA8cGF0aCBkPSJNMjIuNTQgNi40MmEyLjc4IDIuNzggMCAwIDAtMS45NC0yQzE4Ljg4IDQgMTIgNCAxMiA0cy02Ljg4IDAtOC42LjQ2YTIuNzggMi43OCAwIDAgMC0xLjk0IDJBMjkgMjkgMCAwIDAgMSAxMS43NWEyOSAyOSAwIDAgMCAuNDYgNS4zM0EyLjc4IDIuNzggMCAwIDAgMy40IDE5YzEuNzIuNDYgOC42LjQ2IDguNi40NnM2Ljg4IDAgOC42LS40NmEyLjc4IDIuNzggMCAwIDAgMS45NC0yIDI5IDI5IDAgMCAwIC40Ni01LjI1IDI5IDI5IDAgMCAwLS40Ni01LjMzeiI+PC9wYXRoPgogICAgICAgICAgICA8cG9seWdvbiBwb2ludHM9IjkuNzUgMTUuMDIgMTUuNSAxMS43NSA5Ljc1IDguNDggOS43NSAxNS4wMiI+PC9wb2x5Z29uPgogICAgICAgICAgPC9zdmc+"
+          src="../../../../../../assets/images/youtube-logo.png"
           class="social-icon"
           alt="YouTube"
         />
@@ -60,7 +133,12 @@
           >
         </div>
       </div>
-      <div class="social-platform snapchat" *ngIf="profile.SnapchatHandle" (click)="openSnapchat()">
+      <!-- Snapchat -->
+      <div
+        class="social-platform snapchat"
+        *ngIf="selectedPlatforms.snapchat && profile.SnapchatHandle"
+        (click)="openSnapchat()"
+      >
         <img
           src="../../../../../../assets/images/snapchat.png"
           class="social-icon"
@@ -73,9 +151,14 @@
           >
         </div>
       </div>
-      <div class="social-platform twitch" *ngIf="profile.TwitchHandle" (click)="openTwitch()">
+      <!-- Twitch -->
+      <div
+        class="social-platform twitch"
+        *ngIf="selectedPlatforms.twitch && profile.TwitchHandle"
+        (click)="openTwitch()"
+      >
         <img
-          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdib3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ic29jaWFsLWljb24iPgogICAgICAgICAgICA8cGF0aCBkPSJNMjEgMkgzdjE2aDV2NGw0LTRoNWw0LTRWMnptLTEwIDlWN201IDRWNyI+PC9wYXRoPgogICAgICAgICAgPC9zdmc+"
+          src="../../../../../../assets/images/twitch-logo.png"
           class="social-icon"
           alt="Twitch"
         />
@@ -86,7 +169,13 @@
           >
         </div>
       </div>
-      <div class="social-platform twitter" *ngIf="profile.TwitterHandle" (click)="openTwitter()">
+
+      <!-- Twitter -->
+      <div
+        class="social-platform twitter"
+        *ngIf="selectedPlatforms.twitter && profile.TwitterHandle"
+        (click)="openTwitter()"
+      >
         <img
           src="../../../../../../assets/images/twitter.png"
           class="social-icon"
@@ -206,9 +295,23 @@
       </div>
     </div>
 
-    <div class="reasons-section">
-      <h2 class="reasons-name"> Why {{profile.Name}} ?</h2>
-      <p class="reasons-item">{{reasonToChoose}}</p>
+    <div class="reasons-section" *ngIf="reasonToChoose">
+      <h2 class="reasons-name">Why {{ profile.Name }}?</h2>
+      <p class="reasons-item">
+        <span class="reason-content">{{ reasonToChoose }}</span>
+      </p>
     </div>
   </div>
+</div>
+
+<div class="buttons" *ngIf="isFormSubmitted">
+  <!-- Edit Button -->
+  <button type="button" (click)="editForm()" aria-label="Edit profile">
+    <span class="button-text">Edit</span>
+  </button>
+
+  <!-- Export Button -->
+  <button type="button" (click)="exportAsImage()" aria-label="Export profile as image">
+    <span class="button-text">Export as Image</span>
+  </button>
 </div>

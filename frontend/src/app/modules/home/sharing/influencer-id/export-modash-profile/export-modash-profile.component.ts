@@ -1,10 +1,13 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Inject, Input, Optional, SimpleChanges, ViewChild } from '@angular/core';
 import {
   ExportModashInfluencerProfile,
   ExportModashInstagramAudienceDemographic,
 } from 'src/app/core/interfaces/influencerAPI.model';
 import { ChartConfiguration, ChartData } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import html2canvas from 'html2canvas';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-export-modash-profile',
@@ -13,12 +16,24 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 })
 export class ExportModashProfileComponent {
   @Input() profile!: ExportModashInfluencerProfile;
+  isDialog: boolean = false;
+
 
   bio: string = ''; // limit to 250 characters for display
   reasonToChoose: string = ''; // limit to 250 characters for display
 
   ChartDataLabels = ChartDataLabels;
   influencerCategory: string = '';
+
+  isFormSubmitted: boolean = false;
+
+  uploadedPicture: string | null = null;
+  customBio: string = '';
+  selectedPlatforms: any = {};
+
+  form!: FormGroup;
+
+  @ViewChild('profileContainer') profileContainer!: ElementRef;
 
   // Custom color scheme
   private colors = {
@@ -201,14 +216,99 @@ export class ExportModashProfileComponent {
     },
   };
 
-  constructor() {}
+  constructor(private fb: FormBuilder,
+    @Optional() public dialogRef: MatDialogRef<ExportModashProfileComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: { profile: ExportModashInfluencerProfile }
+  ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['profile'] && !changes['profile'].firstChange && this.profile) {
+  ngOnInit() {
+    if (this.data && this.data.profile) {
+      this.profile = this.data.profile;
+      this.isDialog = true;
+    }
+    this.initForm();
+    if (this.profile) {
       this.initializeCharts();
       this.calculateInfluencerCategory();
     }
   }
+
+
+  private initForm() {
+    this.form = this.fb.group({
+      profilePicture: [null],
+      bio: [''],
+      reasonToChoose: [''],
+      selectedPlatforms: this.fb.group({
+        instagram: [{ value: true, disabled: false }],
+        tiktok: [{ value: false, disabled: true }],
+        youtube: [{ value: false, disabled: true }],
+        snapchat: [{ value: false, disabled: true }],
+        twitch: [{ value: false, disabled: true }],
+        twitter: [{ value: false, disabled: true }],
+      }),
+    });
+
+    if (this.profile) {
+      const platformsGroup = this.form.get('selectedPlatforms') as FormGroup;
+      const platformControls = {
+        tiktok: this.profile.TiktokHandle,
+        youtube: this.profile.YoutubeHandle,
+        snapchat: this.profile.SnapchatHandle,
+        twitch: this.profile.TwitchHandle,
+        twitter: this.profile.TwitterHandle,
+      };
+
+      Object.entries(platformControls).forEach(([platform, handle]) => {
+        const control = platformsGroup.get(platform);
+        if (control) {
+          if (handle) {
+            control.enable();
+            control.setValue(true);
+          } else {
+            control.disable();
+            control.setValue(false);
+          }
+        }
+      });
+    }
+  }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['profile'] && this.profile) {
+      // Update form initial values based on profile
+      this.initForm();
+      this.initializeCharts();
+      this.calculateInfluencerCategory();
+    }
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.uploadedPicture = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onSubmit() {
+    // Assign form values to component variables
+    this.customBio = this.form.value.bio;
+    this.reasonToChoose = this.form.value.reasonToChoose;
+    this.selectedPlatforms = this.form.value.selectedPlatforms;
+
+    // Set isFormSubmitted to true to display the profile preview
+    this.isFormSubmitted = true;
+  }
+
+  editForm() {
+    this.isFormSubmitted = false;
+  }
+
 
   getTopCountries(): ExportModashInstagramAudienceDemographic[] {
     return this.profile.instagramProfile.InstagramAudienceDemographic.filter(
@@ -293,5 +393,39 @@ export class ExportModashProfileComponent {
 
   openTwitch(): void {
     window.open(`https://www.twitch.tv/${this.profile.TwitchHandle}`);
+  }
+
+  exportAsImage() {
+    const element = this.profileContainer.nativeElement;
+
+    // Remove comment nodes
+    const removeComments = (elem: Node) => {
+      for (let i = 0; i < elem.childNodes.length; i++) {
+        const child = elem.childNodes[i];
+        if (child.nodeType === 8) {
+          elem.removeChild(child);
+          i--;
+        } else if (child.nodeType === 1) {
+          removeComments(child);
+        }
+      }
+    };
+
+    removeComments(element);
+
+    const options = {
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+    };
+
+    html2canvas(element, options).then(canvas => {
+      const link = document.createElement('a');
+      link.download = `${this.profile.Name}_profile.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }).catch(err => {
+      console.error('Error exporting image:', err);
+    });
   }
 }

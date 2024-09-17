@@ -118,6 +118,25 @@ $accent: #ff9f1c;
       background-color: darken($secondary-blue, 10%);
     }
   }
+  .export-button{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: $secondary-blue;
+    color: $background-light;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($secondary-blue, 10%);
+    }
+  }
 }
 
 .profile-content {

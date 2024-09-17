@@ -139,32 +139,32 @@
     }
 
     .instagram {
-      background-color: #fcf1ed;
+      /* background-color: #fcf1ed; */
       .social-icon { stroke: #e95950; }
     }
 
     .tiktok {
-      background-color: #f3f3f3;
+     /*  background-color: #f3f3f3; */
       .social-icon { stroke: #000000; }
     }
 
     .youtube {
-      background-color: #ffeaea;
+      /* background-color: #ffeaea; */
       .social-icon { stroke: #ff0000; }
     }
 
     .snapchat {
-      background-color: #ffffd4;
+      /* background-color: #ffffd4; */
       .social-icon { stroke: #fffc00; }
     }
 
     .twitch {
-      background-color: #f0e6ff;
+      /* background-color: #f0e6ff; */
       .social-icon { stroke: #6441a5; }
     }
 
     .twitter {
-      background-color: #e8f5fd;
+      /* background-color: #e8f5fd; */
       .social-icon { stroke: #1da1f2; }
     }
   }
@@ -322,5 +322,244 @@
 
   .profile-section .profile-picture-container {
     max-width: 200px;
+  }
+}
+
+
+// Add this to your export-modash-profile.component.scss file
+
+.profile-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+  }
+
+  .platforms-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+
+    .platform-checkbox {
+      display: flex;
+      align-items: center;
+
+      input[type="checkbox"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:checked {
+          background-color: #4a90e2;
+          border-color: #4a90e2;
+
+          &::after {
+            content: '\2714';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+          }
+        }
+
+        &:disabled {
+          background-color: #f0f0f0;
+          border-color: #ccc;
+          cursor: not-allowed;
+        }
+      }
+
+      label {
+        cursor: pointer;
+      }
+    }
+  }
+
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #3a7bc8;
+    }
+  }
+}
+
+
+
+// buttons
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+
+  button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  button:first-child {
+    // Edit button
+    background-color: #f8f9fa;
+    color: #495057;
+    border: 1px solid #ced4da;
+
+    &:hover {
+      background-color: #e9ecef;
+    }
+  }
+
+  button:last-child {
+    // Export button
+    background-color: #007bff;
+    color: white;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+// Add responsive styles for smaller screens
+@media (max-width: 600px) {
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+.reasons-section {
+  background-color: #FFF176;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+
+  .reasons-name {
+    color: #212121;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .reasons-item {
+    color: #424242;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 0 20px;
+    max-width: 80%;
+    margin: 0 auto;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '"';
+      position: absolute;
+      font-size: 18px;
+      color: #FFB300;
+      font-weight: bold;
+    }
+
+    &::before {
+      left: 0;
+      top: -2px;
+    }
+
+    &::after {
+      right: 0;
+      bottom: -8px;
+    }
+  }
+}
+
+// Hide comments in export
+.reason-content {
+  display: inline-block;
+  // This will hide any comment nodes
+  ::comment {
+    display: none;
   }
 }
