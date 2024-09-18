@@ -97,6 +97,25 @@ exports.getInfluencerProfileV2 = async (req, res) => {
           {
             model: InstagramProfile,
             as: "instagramProfile",
+            include: [
+              {
+                model: InstagramAudienceDemographic,
+                as: "InstagramAudienceDemographic",
+                attributes: ["type", "code", "name", "weight"],
+                where: {
+                  [Op.or]: [
+                    { type: "gender" },
+                    { type: "country" },
+                    { type: "gendersPerAge" },
+                  ],
+                },
+              },
+              {
+                model: InstagramInterest,
+                as: "InstagramInterest",
+                attributes: ["name", "weight"],
+              },
+            ],
           },
           {
             model: YouTubeProfile,
