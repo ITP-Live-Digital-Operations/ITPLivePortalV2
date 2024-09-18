@@ -40,6 +40,7 @@ export class InfluencerIdComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.influencerId = Number(params.get('id')!);
+      this.getInfluencerProfile(this.influencerId);
       this.getInfluencerLogs(this.influencerId);
       this.getModashInfluencerProfile(this.influencerId);
     });
@@ -66,9 +67,6 @@ export class InfluencerIdComponent implements OnInit {
       if (data) {
         this.exportProfile = data;
         console.log(this.exportProfile);
-        // Trigger change detection to update the view
-        this.getInfluencerProfile(this.influencerId);
-
         this.isLoading = false;
         console.log("Loading is false");
         this.cdRef.detectChanges();
@@ -116,14 +114,24 @@ export class InfluencerIdComponent implements OnInit {
     });
   }
 
-  exportInfluencer(profile: ExportModashInfluencerProfile): void {
-    this.dialog.open(ExportModashProfileComponent, {
-      width: '1220px',
+  exportInfluencer(): void {
+    this.influencerService.getModashProfile(this.influencerId).subscribe({
+      next: (data) => {
+        this.exportProfile = data;
+        this.dialog.open(ExportModashProfileComponent, {
+          width: '1220px',
 
-      height: '90%',
-      data: { profile },
+          height: '90%',
+          data: { profile: this.exportProfile },
+        });
+      },
+      error: (error) => {
+        console.error('Error exporting profile', error);
+      },
     });
-  }
+    }
+
+
 
   getInfluencerCategory(): string {
     const followers = [
