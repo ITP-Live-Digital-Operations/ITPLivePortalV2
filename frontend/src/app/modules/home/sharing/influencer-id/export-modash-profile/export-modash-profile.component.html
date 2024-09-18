@@ -14,12 +14,14 @@
 
     <div class="form-group">
       <label for="bio">Bio:</label>
-      <textarea id="bio" formControlName="bio" rows="2"  ></textarea>
+      <textarea id="bio" formControlName="bio" rows="2" maxlength="300" (input)="onInput($event, 'bio')" ></textarea>
+      <small>{{bioRemainingChars}} characters remaining</small>
     </div>
 
     <div class="form-group">
       <label for="reasonToChoose">Why choose this profile:</label>
-      <textarea id="reasonToChoose" formControlName="reasonToChoose" rows="2" ></textarea>
+      <textarea id="reasonToChoose" formControlName="reasonToChoose" rows="2" maxlength="300"  (input)="onInput($event, 'reasonToChoose')" ></textarea>
+      <small>{{reasonToChooseRemainingChars}} characters remaining</small>
     </div>
 
     <div class="form-group">

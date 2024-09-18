@@ -1,11 +1,19 @@
-import { Component, ElementRef, Inject, Input, Optional, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Input,
+  Optional,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import {
   ExportModashInfluencerProfile,
   ExportModashInstagramAudienceDemographic,
 } from 'src/app/core/interfaces/influencerAPI.model';
 import { ChartConfiguration, ChartData } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -17,7 +25,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ExportModashProfileComponent {
   @Input() profile!: ExportModashInfluencerProfile;
   isDialog: boolean = false;
-
 
   bio: string = ''; // limit to 250 characters for display
   reasonToChoose: string = ''; // limit to 250 characters for display
@@ -217,9 +224,12 @@ export class ExportModashProfileComponent {
     },
   };
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     @Optional() public dialogRef: MatDialogRef<ExportModashProfileComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: { profile: ExportModashInfluencerProfile }
+    @Optional()
+    @Inject(MAT_DIALOG_DATA)
+    public data: { profile: ExportModashInfluencerProfile }
   ) {}
 
   ngOnInit() {
@@ -234,13 +244,12 @@ export class ExportModashProfileComponent {
     }
   }
 
-
   private initForm() {
     this.form = this.fb.group({
       name: [this.profile.Name],
       profilePicture: [null],
-      bio: [''],
-      reasonToChoose: [''],
+      bio: ['', [Validators.maxLength(300)]],
+      reasonToChoose: ['', [Validators.maxLength(300)]],
       selectedPlatforms: this.fb.group({
         instagram: [{ value: true, disabled: false }],
         tiktok: [{ value: false, disabled: true }],
@@ -276,6 +285,23 @@ export class ExportModashProfileComponent {
     }
   }
 
+  get bioRemainingChars(): number {
+    return 300 - (this.form.get('bio')?.value?.length || 0);
+  }
+
+  get reasonToChooseRemainingChars(): number {
+    return 300 - (this.form.get('reasonToChoose')?.value?.length || 0);
+  }
+
+  onInput(event: Event, fieldName: string) {
+    const input = event.target as HTMLTextAreaElement;
+    const maxLength = 300;
+
+    if (input.value.length > maxLength) {
+      input.value = input.value.slice(0, maxLength);
+      this.form.get(fieldName)?.setValue(input.value);
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['profile'] && this.profile) {
@@ -311,7 +337,6 @@ export class ExportModashProfileComponent {
   editForm() {
     this.isFormSubmitted = false;
   }
-
 
   getTopCountries(): ExportModashInstagramAudienceDemographic[] {
     return this.profile.instagramProfile.InstagramAudienceDemographic.filter(
@@ -375,7 +400,9 @@ export class ExportModashProfileComponent {
   }
 
   openInstagram(): void {
-    window.open(`https://www.instagram.com/${this.profile.instagramProfile.username}`);
+    window.open(
+      `https://www.instagram.com/${this.profile.instagramProfile.username}`
+    );
   }
 
   openTikTok(): void {
@@ -422,13 +449,15 @@ export class ExportModashProfileComponent {
       logging: false,
     };
 
-    html2canvas(element, options).then(canvas => {
-      const link = document.createElement('a');
-      link.download = `${this.profile.Name}_profile.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    }).catch(err => {
-      console.error('Error exporting image:', err);
-    });
+    html2canvas(element, options)
+      .then((canvas) => {
+        const link = document.createElement('a');
+        link.download = `${this.profile.Name}_profile.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      })
+      .catch((err) => {
+        console.error('Error exporting image:', err);
+      });
   }
 }

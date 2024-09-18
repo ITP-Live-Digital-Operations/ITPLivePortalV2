@@ -10,6 +10,12 @@
   --male: #3a0083;
 } */
 
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+body {
+  font-family: 'Cairo', sans-serif !important;
+}
+
 :host {
   --background-dark: #FFF;
   --background-light: #FFF;
@@ -63,7 +69,7 @@
     width: 70%; // Make the label span the full width of the container
     text-align: center;
     z-index: 2; // Ensure the label is on top of the profile picture
-    
+
   }
 
   .profile-picture-container {
