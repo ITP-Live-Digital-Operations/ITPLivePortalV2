@@ -1,7 +1,12 @@
 <!-- Form Section -->
 <div class="profile-form" *ngIf="!isFormSubmitted && profile">
-  <h2>Create Profile Export</h2>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input  type=text id="name" formControlName="name" />
+    </div>
+
     <div class="form-group">
       <label for="profilePicture">Upload Profile Picture:</label>
       <input type="file" id="profilePicture" (change)="onFileSelected($event)">
@@ -9,12 +14,12 @@
 
     <div class="form-group">
       <label for="bio">Bio:</label>
-      <textarea id="bio" formControlName="bio"></textarea>
+      <textarea id="bio" formControlName="bio" rows="2"  ></textarea>
     </div>
 
     <div class="form-group">
       <label for="reasonToChoose">Why choose this profile:</label>
-      <textarea id="reasonToChoose" formControlName="reasonToChoose"></textarea>
+      <textarea id="reasonToChoose" formControlName="reasonToChoose" rows="2" ></textarea>
     </div>
 
     <div class="form-group">
@@ -71,7 +76,7 @@
         class="profile-picture"
       />
     </div>
-    <h2 class="profile-name">{{ profile.Name }}</h2>
+    <h2 class="profile-name">{{ uploadedName }}</h2>
     <div class="profile-bio" *ngIf="customBio">
       <p>{{ customBio }}</p>
     </div>
@@ -296,7 +301,7 @@
     </div>
 
     <div class="reasons-section" *ngIf="reasonToChoose">
-      <h2 class="reasons-name">Why {{ profile.Name }}?</h2>
+      <h2 class="reasons-name">Why {{ uploadedName }}?</h2>
       <p class="reasons-item">
         <span class="reason-content">{{ reasonToChoose }}</span>
       </p>

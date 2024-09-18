@@ -27,6 +27,7 @@ export class ExportModashProfileComponent {
 
   isFormSubmitted: boolean = false;
 
+  uploadedName: string | null = null;
   uploadedPicture: string | null = null;
   customBio: string = '';
   selectedPlatforms: any = {};
@@ -236,6 +237,7 @@ export class ExportModashProfileComponent {
 
   private initForm() {
     this.form = this.fb.group({
+      name: [this.profile.Name],
       profilePicture: [null],
       bio: [''],
       reasonToChoose: [''],
@@ -297,6 +299,7 @@ export class ExportModashProfileComponent {
 
   onSubmit() {
     // Assign form values to component variables
+    this.uploadedName = this.form.value.name;
     this.customBio = this.form.value.bio;
     this.reasonToChoose = this.form.value.reasonToChoose;
     this.selectedPlatforms = this.form.value.selectedPlatforms;

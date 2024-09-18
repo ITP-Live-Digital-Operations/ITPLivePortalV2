@@ -7,6 +7,15 @@ $text-primary: #e6f1ff;
 $text-secondary: #d5d8e2;
 $accent: #ff9f1c;
 
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56vh; /* Adjust this value as needed */
+  width: 100%;
+}
+
+
 .profile-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -352,3 +361,6 @@ $accent: #ff9f1c;
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
+

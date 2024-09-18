@@ -1,6 +1,8 @@
 const { AbstractQuery } = require("sequelize/lib/dialects/abstract/query");
 const models = require("../../models");
 const { Op } = require("sequelize");
+const moment = require('moment');
+
 const Influencer = models.Influencer;
 // import influencer models
 const InstagramProfile = models.InstagramProfile;
@@ -210,7 +212,7 @@ exports.getTikTokProfile = async (req, res) => {
 exports.getModashProfile = async (req, res) => {
   const profileId = Number(req.params.id);
   try {
-    const profile = await Influencer.findByPk(profileId, {
+    let profile = await Influencer.findByPk(profileId, {
       attributes: [
         "id",
         "Name",
@@ -229,6 +231,7 @@ exports.getModashProfile = async (req, res) => {
         "TwitchHandle",
         "TwitchFollowers",
         "TwitchLink",
+        "lastApiCall",
       ],
       include: [
         {
@@ -269,9 +272,86 @@ exports.getModashProfile = async (req, res) => {
       return res.status(404).json({ message: "Profile not found" });
     }
 
+    const targetDate = moment('2024-09-16');
+    const currentDate = moment();
+    let shouldUpdate = false;
+
+    if (profile.lastApiCall) {
+      const lastApiCallDate = moment(profile.lastApiCall);
+
+      if (lastApiCallDate.isBefore(targetDate)) {
+        shouldUpdate = true;
+      } else if (currentDate.diff(lastApiCallDate, 'months') >= 1) {
+        shouldUpdate = true;
+      }
+    } else {
+      shouldUpdate = true;
+    } 
+
+    if (shouldUpdate) {
+      // Assuming updateInfluencers is an async function
+      await updateInfluencers(1, profile.id);
+      // Fetch the updated profile
+      profile = await Influencer.findByPk(profileId, {
+        attributes: [
+          "id",
+          "Name",
+          "TiktokHandle",
+          "TiktokFollowers",
+          "TiktokLink",
+          "SnapchatHandle",
+          "SnapchatFollowers",
+          "SnapchatLink",
+          "TwitterHandle",
+          "TwitterFollowers",
+          "TwitterLink",
+          "YoutubeHandle",
+          "YoutubeFollowers",
+          "YoutubeLink",
+          "TwitchHandle",
+          "TwitchFollowers",
+          "TwitchLink",
+          "lastApiCall",
+        ],
+        include: [
+          {
+            model: InstagramProfile,
+            as: "instagramProfile",
+            attributes: [
+              "id",
+              "username",
+              "profilePicture",
+              "followerCount",
+              "avgLikes",
+              "engagementRate",
+            ],
+            include: [
+              {
+                model: InstagramAudienceDemographic,
+                as: "InstagramAudienceDemographic",
+                attributes: ["type", "code", "name", "weight"],
+                where: {
+                  [Op.or]: [
+                    { type: "gender" },
+                    { type: "country" },
+                    { type: "gendersPerAge" },
+                  ],
+                },
+              },
+              {
+                model: InstagramInterest,
+                as: "InstagramInterest",
+                attributes: ["name", "weight"],
+              },
+            ],
+          },
+        ],
+      });
+    }
+
     res.json(profile); // Return the profile data as JSON
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error" , error: error.message});
   }
 };

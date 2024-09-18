@@ -47,5 +47,26 @@
     "username": "ItsOZX",
     "profileId": 527,
     "error": "The request was invalid"
+  },
+  {
+    "influencerId": 13,
+    "platform": "youtube",
+    "username": "LaylaAkil",
+    "profileId": 7,
+    "error": "The request was invalid"
+  },
+  {
+    "influencerId": 32,
+    "platform": "tiktok",
+    "username": "ghidaaranout",
+    "profileId": 23,
+    "error": "The request was invalid"
+  },
+  {
+    "influencerId": 32,
+    "platform": "tiktok",
+    "username": "ghidaaranout",
+    "profileId": 23,
+    "error": "The request was invalid"
   }
 ]

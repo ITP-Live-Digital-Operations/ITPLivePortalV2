@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
-import { ExportModashInfluencerProfile, InfluencerProfile, InstagramProfile } from 'src/app/core/interfaces/influencerAPI.model';
+import {
+  ExportModashInfluencerProfile,
+  InfluencerProfile,
+  InstagramProfile,
+} from 'src/app/core/interfaces/influencerAPI.model';
 import { LogModelUpdated } from 'src/app/core/interfaces/logModel';
 import { LogService } from 'src/app/core/services/log.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,9 +19,12 @@ import { ExportModashProfileComponent } from './export-modash-profile/export-mod
   styleUrls: ['./influencer-id.component.scss'],
 })
 export class InfluencerIdComponent implements OnInit {
+  public isLoading = true;
+
   influencerId: number = 0;
   profile!: InfluencerProfile;
-  exportProfile !: ExportModashInfluencerProfile;
+  exportProfile!: ExportModashInfluencerProfile;
+
   selectedPlatform: string | null = null;
   logs: LogModelUpdated[] = [];
   influencerLevel: string = '';
@@ -26,39 +33,47 @@ export class InfluencerIdComponent implements OnInit {
     private influencerService: InfluencerService,
     private logService: LogService,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.influencerId = Number(params.get('id')!);
-      this.getInfluencerProfile(this.influencerId);
       this.getInfluencerLogs(this.influencerId);
       this.getModashInfluencerProfile(this.influencerId);
-
     });
   }
 
   private getInfluencerProfile(influencerId: number): void {
-    this.influencerService.getInfluencerProfile(influencerId).subscribe((data) => {
-      if (data) {
-        this.profile = data;
+    this.influencerService
+      .getInfluencerProfile(influencerId)
+      .subscribe((data) => {
+        if (data) {
+          this.profile = data;
 
-        console.log(this.profile);
-        this.influencerLevel = this.getInfluencerCategory();
-      } else {
-        console.error("No data found");
-      }
-    });
+          console.log(this.profile);
+          this.influencerLevel = this.getInfluencerCategory();
+        } else {
+          console.error('No data found');
+        }
+      });
   }
 
   private getModashInfluencerProfile(influencerId: number): void {
+    this.isLoading = true;
     this.influencerService.getModashProfile(influencerId).subscribe((data) => {
       if (data) {
         this.exportProfile = data;
         console.log(this.exportProfile);
+        // Trigger change detection to update the view
+        this.getInfluencerProfile(this.influencerId);
+
+        this.isLoading = false;
+        console.log("Loading is false");
+        this.cdRef.detectChanges();
       } else {
-        console.error("No data found");
+        console.error('No data found');
       }
     });
   }
@@ -69,7 +84,7 @@ export class InfluencerIdComponent implements OnInit {
         this.logs = data;
         console.log(this.logs);
       } else {
-        console.error("No logs found");
+        console.error('No logs found');
       }
     });
   }
@@ -90,10 +105,10 @@ export class InfluencerIdComponent implements OnInit {
     const dialogRef = this.dialog.open(RateLogsComponent, {
       width: '80%',
       maxWidth: '1000px',
-      data: { influencerId: this.influencerId }
+      data: { influencerId: this.influencerId },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // Refresh the logs if a new log was added
         this.getInfluencerLogs(this.influencerId);
@@ -103,9 +118,10 @@ export class InfluencerIdComponent implements OnInit {
 
   exportInfluencer(profile: ExportModashInfluencerProfile): void {
     this.dialog.open(ExportModashProfileComponent, {
-      width: '60%',
+      width: '1220px',
+
       height: '90%',
-      data: { profile }
+      data: { profile },
     });
   }
 
@@ -113,7 +129,7 @@ export class InfluencerIdComponent implements OnInit {
     const followers = [
       this.profile.InstagramFollowers || 0,
       this.profile.TiktokFollowers || 0,
-      this.profile.YoutubeFollowers || 0
+      this.profile.YoutubeFollowers || 0,
     ];
 
     const maxFollowers = Math.max(...followers);

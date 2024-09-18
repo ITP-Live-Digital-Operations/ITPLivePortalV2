@@ -1,4 +1,7 @@
-<div class="profile-container" *ngIf="profile">
+<div class="loading-container" *ngIf="isLoading">
+  <img src="../../../../../assets/gifs/loading.svg" alt="Loading..." />
+</div>
+<div class="profile-container"  [hidden]="isLoading">
   <div class="profile-header">
     <img
       [src]="profile.profilePicture || 'assets/default-avatar.png'"
@@ -27,7 +30,7 @@
       </div>
     </div>
     <button class="edit-button" (click)="editInfluencer(profile.id)">Edit</button>
-    <button class="export-button" (click)="exportInfluencer(exportProfile)">Export  </button>
+    <button class="export-button" (click)="exportInfluencer(exportProfile)" *ngIf="exportProfile">Export</button>
   </div>
 
   <div class="profile-content">
@@ -195,7 +198,7 @@
     </div>
   </div>
 
-  <app-export-modash-profile
+  <!-- <app-export-modash-profile
     [profile]="exportProfile"
-  ></app-export-modash-profile>
+  ></app-export-modash-profile> -->
 </div>
