@@ -16,6 +16,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import pptxgen from 'pptxgenjs';
 
 @Component({
   selector: 'app-export-modash-profile',
@@ -463,4 +464,48 @@ export class ExportModashProfileComponent {
         console.error('Error exporting image:', err);
       });
   }
+
+  exportToPowerPoint() {
+    const element = this.profileContainer.nativeElement;
+
+    // Remove comment nodes
+    const removeComments = (elem: Node) => {
+      for (let i = 0; i < elem.childNodes.length; i++) {
+        const child = elem.childNodes[i];
+        if (child.nodeType === 8) {
+          elem.removeChild(child);
+          i--;
+        } else if (child.nodeType === 1) {
+          removeComments(child);
+        }
+      }
+    };
+
+    removeComments(element);
+
+    const options = {
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+    };
+
+    html2canvas(element, options).then((canvas) => {
+      const imageDataUrl = canvas.toDataURL('image/png');
+
+      // Create a new PowerPoint presentation
+      let pptx = new pptxgen();
+
+      // Add a new slide
+      let slide = pptx.addSlide();
+
+      // Add the image to the slide
+      slide.addImage({ data: imageDataUrl, x: 0, y: 0, w: '100%', h: '100%' });
+
+      // Save the PowerPoint file
+      pptx.writeFile({ fileName: `${this.profile.Name}_profile.pptx` });
+    }).catch((err) => {
+      console.error('Error exporting to PowerPoint:', err);
+    });
+  }
+
 }
