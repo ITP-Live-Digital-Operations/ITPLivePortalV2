@@ -4,11 +4,13 @@
 
     <div class="form-group">
       <label for="name">Name:</label>
+      <small>Change Arabic Names to English</small>
       <input  type=text id="name" formControlName="name" />
     </div>
 
     <div class="form-group">
       <label for="profilePicture">Upload Profile Picture:</label>
+      <small>If image is not uploaded, Modash image will be used by default</small>
       <input type="file" id="profilePicture" (change)="onFileSelected($event)">
     </div>
 
@@ -19,7 +21,7 @@
     </div>
 
     <div class="form-group">
-      <label for="reasonToChoose">Why choose this profile:</label>
+      <label for="reasonToChoose">Rationale for Influencer Recommendation</label>
       <textarea id="reasonToChoose" formControlName="reasonToChoose" rows="2" maxlength="300"  (input)="onInput($event, 'reasonToChoose')" ></textarea>
       <small>{{reasonToChooseRemainingChars}} characters remaining</small>
     </div>
@@ -52,6 +54,12 @@
           <label for="twitter">Twitter</label>
         </div>
       </div>
+    </div>
+
+    <div class="form-group">
+      <label for="engagementRate">Engagement Rate</label>
+      <input type="number" id="ER" formControlName="engagementRate">
+
     </div>
 
     <button type="submit">Preview Profile</button>
@@ -296,7 +304,7 @@
           />
         </svg>
         <span class="metric-value">{{
-          profile.instagramProfile.engagementRate | percent
+          uploadedRate| percent
         }}</span>
         <span class="metric-label">Engagement Rate</span>
       </div>

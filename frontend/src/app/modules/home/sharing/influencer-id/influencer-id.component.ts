@@ -119,9 +119,8 @@ export class InfluencerIdComponent implements OnInit {
       next: (data) => {
         this.exportProfile = data;
         this.dialog.open(ExportModashProfileComponent, {
-          width: '1220px',
-
-          height: '90%',
+          width: '1400px',
+          height: '720px',
           data: { profile: this.exportProfile },
         });
       },

@@ -271,4 +271,6 @@ export interface ExportModashInfluencerProfile {
   TwitchHandle: string;
   TwitchFollowers: number;
   TwitchLink: string;
+  engagementRate: number;
+  Bio: string;
 }

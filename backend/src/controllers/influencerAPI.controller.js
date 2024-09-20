@@ -250,7 +250,9 @@ exports.getModashProfile = async (req, res) => {
         "TwitchHandle",
         "TwitchFollowers",
         "TwitchLink",
+        "engagementRate",
         "lastApiCall",
+        "Bio",
       ],
       include: [
         {
@@ -330,7 +332,9 @@ exports.getModashProfile = async (req, res) => {
           "TwitchHandle",
           "TwitchFollowers",
           "TwitchLink",
+          "engagementRate",
           "lastApiCall",
+          "Bio",
         ],
         include: [
           {

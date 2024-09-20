@@ -10,7 +10,7 @@
   --male: #3a0083;
 } */
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 body {
   font-family: 'Cairo', sans-serif !important;
@@ -31,7 +31,9 @@ body {
 
 
 
+
 .profile-container {
+  
   font-family: 'Inter', sans-serif;
   color: var(--text-primary);
   background-color: var(--background-dark);
@@ -47,6 +49,8 @@ body {
     right: 10px;
     width: 50px; // Adjust this value to change the size of the logo
     height: auto;
+    padding-bottom: 2px;
+    margin-bottom: 2px;
   }
 }
 
@@ -338,117 +342,6 @@ body {
 
 // Add this to your export-modash-profile.component.scss file
 
-.profile-form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: #555;
-    }
-
-    input[type="text"],
-    input[type="file"],
-    textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-
-      &:focus {
-        outline: none;
-        border-color: #4a90e2;
-        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
-      }
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-  }
-
-  .platforms-group {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-
-    .platform-checkbox {
-      display: flex;
-      align-items: center;
-
-      input[type="checkbox"] {
-        appearance: none;
-        width: 20px;
-        height: 20px;
-        border: 2px solid #ddd;
-        border-radius: 4px;
-        margin-right: 0.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        &:checked {
-          background-color: #4a90e2;
-          border-color: #4a90e2;
-
-          &::after {
-            content: '\2714';
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 14px;
-          }
-        }
-
-        &:disabled {
-          background-color: #f0f0f0;
-          border-color: #ccc;
-          cursor: not-allowed;
-        }
-      }
-
-      label {
-        cursor: pointer;
-      }
-    }
-  }
-
-  button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 1rem;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #3a7bc8;
-    }
-  }
-}
 
 
 
@@ -571,5 +464,185 @@ body {
   // This will hide any comment nodes
   ::comment {
     display: none;
+  }
+}
+
+
+// form styles
+
+$background-dark: #0a192f;
+$background-light: #112240;
+$primary-blue: #4a90e2;
+$secondary-blue: #64ffda;
+$text-primary: #e6f1ff;
+$text-secondary: #d5d8e2;
+$accent: #ff9f1c;
+
+.profile-form {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: $background-dark;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  font-family: 'Inter', sans-serif;
+  color: $text-primary;
+
+  h2 {
+    font-size: 2.5rem;
+    color: $secondary-blue;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+    grid-column: 1 / -1;
+  }
+
+  .form-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .form-group {
+    background: $background-light;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin: 1%;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+      color: $secondary-blue;
+      font-size: 1.1rem;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid $primary-blue;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      background-color: $background-dark;
+      color: $text-primary;
+
+      &:focus {
+        outline: none;
+        border-color: $secondary-blue;
+        box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.2);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    small {
+      display: block;
+      margin-top: 0.5rem;
+      color: $text-secondary;
+      font-size: 0.9rem;
+    }
+  }
+
+  .platforms-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @media (min-width: 480px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .platform-checkbox {
+      display: flex;
+      align-items: center;
+      background-color: $background-dark;
+      padding: 0.75rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: lighten($background-dark, 5%);
+      }
+
+      input[type="checkbox"] {
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        border: 2px solid $primary-blue;
+        border-radius: 6px;
+        margin-right: 0.75rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:checked {
+          background-color: $primary-blue;
+          border-color: $primary-blue;
+
+          &::after {
+            content: '\2714';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $text-primary;
+            font-size: 16px;
+          }
+        }
+
+        &:disabled {
+          background-color: darken($background-light, 5%);
+          border-color: $text-secondary;
+          cursor: not-allowed;
+        }
+      }
+
+      label {
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: $text-primary;
+      }
+    }
+  }
+
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    padding: 1.25rem;
+    background-color: $accent;
+    color: $background-dark;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 2rem auto 0;
+
+    &:hover {
+      background-color: lighten($accent, 10%);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
   }
 }

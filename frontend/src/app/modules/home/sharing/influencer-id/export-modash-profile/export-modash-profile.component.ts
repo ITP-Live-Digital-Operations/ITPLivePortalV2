@@ -38,6 +38,7 @@ export class ExportModashProfileComponent {
   uploadedPicture: string | null = null;
   customBio: string = '';
   selectedPlatforms: any = {};
+  uploadedRate: number | null = null;
 
   form!: FormGroup;
 
@@ -248,7 +249,7 @@ export class ExportModashProfileComponent {
     this.form = this.fb.group({
       name: [this.profile.Name],
       profilePicture: [null],
-      bio: ['', [Validators.maxLength(300)]],
+      bio: [this.profile.Bio, [Validators.maxLength(300)]],
       reasonToChoose: ['', [Validators.maxLength(300)]],
       selectedPlatforms: this.fb.group({
         instagram: [{ value: true, disabled: false }],
@@ -258,6 +259,7 @@ export class ExportModashProfileComponent {
         twitch: [{ value: false, disabled: true }],
         twitter: [{ value: false, disabled: true }],
       }),
+      engagementRate: [this.profile.engagementRate]
     });
 
     if (this.profile) {
@@ -329,6 +331,7 @@ export class ExportModashProfileComponent {
     this.customBio = this.form.value.bio;
     this.reasonToChoose = this.form.value.reasonToChoose;
     this.selectedPlatforms = this.form.value.selectedPlatforms;
+    this.uploadedRate = this.form.value.engagementRate;
 
     // Set isFormSubmitted to true to display the profile preview
     this.isFormSubmitted = true;
