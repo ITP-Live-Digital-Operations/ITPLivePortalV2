@@ -464,7 +464,6 @@ export class ExportModashProfileComponent {
         console.error('Error exporting image:', err);
       });
   }
-
   exportToPowerPoint() {
     const element = this.profileContainer.nativeElement;
 
@@ -487,25 +486,101 @@ export class ExportModashProfileComponent {
       useCORS: true,
       allowTaint: true,
       logging: false,
+      scale: 1, // Ensure the canvas matches the element size in CSS pixels
     };
 
-    html2canvas(element, options).then((canvas) => {
-      const imageDataUrl = canvas.toDataURL('image/png');
+    html2canvas(element, options)
+      .then((canvas) => {
+        const imgDataUrl = canvas.toDataURL('image/png');
 
-      // Create a new PowerPoint presentation
-      let pptx = new pptxgen();
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
 
-      // Add a new slide
-      let slide = pptx.addSlide();
+        // Convert pixels to inches (assuming 96 DPI)
+        const inchPerPx = 1 / 96;
 
-      // Add the image to the slide
-      slide.addImage({ data: imageDataUrl, x: 0, y: 0, w: '100%', h: '100%' });
+        const slideWidthInches = canvasWidth * inchPerPx;
+        const slideHeightInches = canvasHeight * inchPerPx;
 
-      // Save the PowerPoint file
-      pptx.writeFile({ fileName: `${this.profile.Name}_profile.pptx` });
-    }).catch((err) => {
-      console.error('Error exporting to PowerPoint:', err);
-    });
+        const pptx = new pptxgen();
+
+        // Define custom layout
+        pptx.defineLayout({ name: 'Custom', width: slideWidthInches, height: slideHeightInches });
+        pptx.layout = 'Custom';
+
+        const slide = pptx.addSlide();
+
+        // Add image to slide
+        slide.addImage({
+          data: imgDataUrl,
+          x: 0,
+          y: 0,
+          w: slideWidthInches,
+          h: slideHeightInches,
+        });
+
+        // Get the positions of the social platform elements
+        const socialPlatforms = element.querySelectorAll('.social-platform');
+
+        socialPlatforms.forEach((platformElement: HTMLElement) => {
+          const rect = platformElement.getBoundingClientRect();
+          const containerRect = element.getBoundingClientRect();
+
+          // Position relative to the container
+          const x = rect.left - containerRect.left;
+          const y = rect.top - containerRect.top;
+          const width = rect.width;
+          const height = rect.height;
+
+          // Convert positions from pixels to inches
+          const xInches = x * inchPerPx;
+          const yInches = y * inchPerPx;
+          const wInches = width * inchPerPx;
+          const hInches = height * inchPerPx;
+
+          // Get the URL to link to
+          let url = '';
+
+          if (platformElement.classList.contains('instagram')) {
+            url = `https://www.instagram.com/${this.profile.instagramProfile.username}`;
+          } else if (platformElement.classList.contains('tiktok')) {
+            url = `https://www.tiktok.com/@${this.profile.TiktokHandle}`;
+          } else if (platformElement.classList.contains('youtube')) {
+            url = `https://www.youtube.com/${this.profile.YoutubeHandle}`;
+          } else if (platformElement.classList.contains('twitter')) {
+            url = `https://www.twitter.com/${this.profile.TwitterHandle}`;
+          } else if (platformElement.classList.contains('snapchat')) {
+            url = `https://www.snapchat.com/add/${this.profile.SnapchatHandle}`;
+          } else if (platformElement.classList.contains('twitch')) {
+            url = `https://www.twitch.tv/${this.profile.TwitchHandle}`;
+          }
+
+          if (url) {
+            slide.addShape(pptx.ShapeType.rect, {
+              x: xInches,
+              y: yInches,
+              w: wInches,
+              h: hInches,
+              fill: { color: 'FFFFFF', transparency: 100 },
+              line: { color: 'FFFFFF', transparency: 100 },
+              hyperlink: { url: url },
+            });
+          }
+        });
+
+        // Save the presentation
+        pptx
+          .writeFile({ fileName: `${this.profile.Name}_profile.pptx` })
+          .then(() => {
+            console.log('Presentation created successfully');
+          })
+          .catch((err) => {
+            console.error('Error creating presentation:', err);
+          });
+      })
+      .catch((err) => {
+        console.error('Error exporting to PowerPoint:', err);
+      });
   }
 
 }
