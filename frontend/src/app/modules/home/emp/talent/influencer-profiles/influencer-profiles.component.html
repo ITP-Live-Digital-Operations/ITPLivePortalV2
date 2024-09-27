@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Influencer Search</h2>
+  <input [formControl]="searchControl" placeholder="Search influencers..." class="search-input">
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <div *ngIf="(searchControl.value === '' || searchControl.value == null) && !(filteredInfluencers | async)?.length" class="prompt-message">
+    Please search to view profiles
+  </div>
+
+  <table *ngIf="(filteredInfluencers | async)?.length">
+    <tr *ngFor="let influencer of filteredInfluencers | async | slice:0:10">
+      <td class="image-cell">
+        <div class="image-container">
+          <img [src]="influencer.profilePicture" [alt]="influencer.Name" class="profile-pic">
+          <div class="image-preview">
+            <img [src]="influencer.profilePicture" [alt]="influencer.Name" class="preview-pic">
+          </div>
+        </div>
+      </td>
+      <td>{{ influencer.Name }}</td>
+      <td>
+        <input type="checkbox" [checked]="isSelected(influencer)" (change)="toggleSelection(influencer)">
+      </td>
+    </tr>
+  </table>
+
+  <div class="selected-influencers">
+    <h3>Selected Influencers:</h3>
+    <div *ngFor="let influencer of selectedInfluencers" class="selected-influencer">
+      <div class="image-container">
+        <img [src]="influencer.profilePicture" [alt]="influencer.Name" class="profile-pic">
+        <div class="image-preview">
+          <img [src]="influencer.profilePicture" [alt]="influencer.Name" class="preview-pic">
+        </div>
+      </div>
+      <span>{{ influencer.Name }}</span>
+      <button (click)="removeInfluencer(influencer)" class="remove-btn">Remove</button>
+    </div>
+  </div>
+
+  <button (click)="onNext()" class="next-btn" [disabled]="selectedInfluencers.length === 0">Next</button>
+</div>

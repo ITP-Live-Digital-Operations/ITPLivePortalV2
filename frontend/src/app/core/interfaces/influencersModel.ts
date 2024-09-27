@@ -119,3 +119,8 @@ export interface returnData{
 
 
 
+export interface InfluencerSearchProfile{
+  id: number;
+  Name: string;
+  profilePicture: string;
+}

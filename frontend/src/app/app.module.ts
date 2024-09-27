@@ -19,6 +19,7 @@ import { TokenInterceptorService } from './core/services/token-interceptor.servi
 import { UserService } from './core/services/user.service';
 import { LoginCredentialsComponent } from './modules/login/login-credentials/login-credentials.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgChartsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-center',

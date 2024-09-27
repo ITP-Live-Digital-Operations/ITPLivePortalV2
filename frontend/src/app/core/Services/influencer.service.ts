@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import {
   InfluencerIdsAndNames,
   InfluencerModel,
+  InfluencerSearchProfile,
   createInfluencerRemark,
   getInfluencerNames,
   influencerRemark,
   influencerRemarkWithInfluencer,
   returnData,
 } from '../interfaces/influencersModel';
-import { InfluencerProfile, InstagramProfile, TikTokProfile, YouTubeProfile } from '../interfaces/influencerAPI.model';
+import { ExportModashInfluencerProfile, InfluencerProfile, InstagramProfile, TikTokProfile, YouTubeProfile } from '../interfaces/influencerAPI.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
@@ -210,8 +211,16 @@ export class InfluencerService {
     return this.http.delete<returnData>(`${this.influencerApiURL}/deleteInfluencerRemark/${id}`);
   }
 
-  getModashProfile(influencerId: number): Observable<any> {
-    return this.http.get(`${this.influencerApiURL}/getModashProfile/${influencerId}`);
+  getModashProfile(influencerId: number): Observable<ExportModashInfluencerProfile> {
+    return this.http.get<ExportModashInfluencerProfile>(`${this.influencerApiURL}/getModashProfile/${influencerId}`);
   }
 
+  getModashProfiles(ids: number[]): Observable<any> {
+    return this.http.post(`${this.influencerApiURL}/getModashProfiles`, {ids});
+  }
+
+  getInfluencersSearchProfiles(): Observable<InfluencerSearchProfile[]> {
+    return this.http.get<InfluencerSearchProfile[]>(`${this.influencerApiURL}/getInfluencersSearchProfiles`);
+  }
 }
+

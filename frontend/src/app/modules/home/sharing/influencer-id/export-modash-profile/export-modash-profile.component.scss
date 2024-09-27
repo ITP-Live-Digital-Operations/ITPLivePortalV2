@@ -1,24 +1,12 @@
-/* :host {
-  --background-dark: #0a192f;
-  --background-light: #112240;
-  --primary-blue: #4a90e2;
-  --secondary-blue: #64ffda;
-  --text-primary: #e6f1ff;
-  --text-secondary: #d5d8e2;
-  --accent: #ffa500;
-  --female: #ef5350;
-  --male: #3a0083;
-} */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
 body {
-  font-family: 'Cairo', sans-serif !important;
+  font-family: "Cairo", sans-serif !important;
 }
 
 :host {
-  --background-dark: #FFF;
-  --background-light: #FFF;
+  --background-dark: #fff;
+  --background-light: #fff;
   --primary-blue: #000;
   --secondary-blue: #000;
   --text-primary: #000;
@@ -26,15 +14,11 @@ body {
   --accent: #ffbf00;
   --female: #ef5350;
   --male: #3a0083;
-  --dark-blue: #0047AB;
+  --dark-blue: #0047ab;
 }
 
-
-
-
 .profile-container {
-  
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--text-primary);
   background-color: var(--background-dark);
   padding: 20px;
@@ -73,7 +57,6 @@ body {
     width: 70%; // Make the label span the full width of the container
     text-align: center;
     z-index: 2; // Ensure the label is on top of the profile picture
-
   }
 
   .profile-picture-container {
@@ -81,12 +64,11 @@ body {
     width: 100%;
     max-width: 350px;
     height: 0;
-    padding-bottom: 100%; // Maintain the 4:5 aspect ratio
+    padding-bottom: 100%; // This maintains the 1:1 aspect ratio for the square image
     position: relative;
     overflow: hidden;
     margin-bottom: 5px;
 
-    // Adjust padding to create space for the label
     padding-top: 50px; // Create space for the label above the picture
   }
 
@@ -125,7 +107,6 @@ body {
       width: calc(50% - 5px);
       border-radius: 8px;
 
-
       .social-icon {
         width: 24px;
         height: 24px;
@@ -137,7 +118,6 @@ body {
         display: flex;
         flex-direction: column;
 
-
         .username {
           font-weight: bold;
           font-size: 14px;
@@ -147,46 +127,52 @@ body {
         .followers {
           font-size: 12px;
           color: #666;
-
         }
       }
     }
 
     .instagram {
-      /* background-color: #fcf1ed; */
-      .social-icon { stroke: #e95950; }
+      .social-icon {
+        stroke: #e95950;
+      }
     }
 
     .tiktok {
-     /*  background-color: #f3f3f3; */
-      .social-icon { stroke: #000000; }
+      .social-icon {
+        stroke: #000000;
+      }
     }
 
     .youtube {
-      /* background-color: #ffeaea; */
-      .social-icon { stroke: #ff0000; }
+      .social-icon {
+        stroke: #ff0000;
+      }
     }
 
     .snapchat {
-      /* background-color: #ffffd4; */
-      .social-icon { stroke: #fffc00; }
+      .social-icon {
+        stroke: #fffc00;
+      }
     }
 
     .twitch {
-      /* background-color: #f0e6ff; */
-      .social-icon { stroke: #6441a5; }
+      .social-icon {
+        stroke: #6441a5;
+      }
     }
 
     .twitter {
-      /* background-color: #e8f5fd; */
-      .social-icon { stroke: #1da1f2; }
+      .social-icon {
+        stroke: #1da1f2;
+      }
     }
   }
 }
 
-
 .social-info > * {
-  flex-basis: calc(50% - 5px); /* Each item takes up 50% of the row minus the gap */
+  flex-basis: calc(
+    50% - 5px
+  ); /* Each item takes up 50% of the row minus the gap */
   box-sizing: border-box; /* Ensures padding and borders are included in width calculation */
 }
 
@@ -287,7 +273,7 @@ body {
     width: 28px; // Increase icon size
     height: 36px;
     stroke: var(--dark-blue);
-    fill: var(--dark-blue)
+    fill: var(--dark-blue);
   }
 
   .metric-value {
@@ -303,12 +289,11 @@ body {
   }
 }
 
-.reasons-section{
-  .reasons-name{
-    color: black!important;
+.reasons-section {
+  .reasons-name {
+    color: black !important;
   }
 }
-
 
 @media (max-width: 768px) {
   .profile-container {
@@ -339,11 +324,7 @@ body {
   }
 }
 
-
 // Add this to your export-modash-profile.component.scss file
-
-
-
 
 // buttons
 .buttons {
@@ -414,7 +395,7 @@ body {
 }
 
 .reasons-section {
-  background-color: #FFF176;
+  background-color: #fff176;
   border-radius: 6px;
   padding: 15px;
   margin-top: 20px;
@@ -442,7 +423,7 @@ body {
       content: '"';
       position: absolute;
       font-size: 18px;
-      color: #FFB300;
+      color: #ffb300;
       font-weight: bold;
     }
 
@@ -467,7 +448,6 @@ body {
   }
 }
 
-
 // form styles
 
 $background-dark: #0a192f;
@@ -485,7 +465,7 @@ $accent: #ff9f1c;
   background-color: $background-dark;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: $text-primary;
 
   h2 {
@@ -501,7 +481,6 @@ $accent: #ff9f1c;
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr);
@@ -598,7 +577,7 @@ $accent: #ff9f1c;
           border-color: $primary-blue;
 
           &::after {
-            content: '\2714';
+            content: "\2714";
             display: flex;
             justify-content: center;
             align-items: center;

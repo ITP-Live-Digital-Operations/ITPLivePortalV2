@@ -16,6 +16,8 @@ import { ViewLogComponent } from './influencer-logs/view-log/view-log.component'
 import { EditItemLogComponent } from './influencer-logs/edit-item-log/edit-item-log.component';
 import { EditPackageLogComponent } from './influencer-logs/edit-package-log/edit-package-log.component';
 import { AddInfluecersToCampaignComponent } from './view-brief/add-influecers-to-campaign/add-influecers-to-campaign.component';
+import { InfluencerProfilesComponent } from './influencer-profiles/influencer-profiles.component';
+import { ExportMultipleProfilesComponent } from './influencer-profiles/export-multiple-profiles/export-multiple-profiles.component';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { AddInfluecersToCampaignComponent } from './view-brief/add-influecers-to
     ViewLogComponent,
     EditItemLogComponent,
     EditPackageLogComponent,
+    InfluencerProfilesComponent,
+    ExportMultipleProfilesComponent,
 
   ],
   imports: [

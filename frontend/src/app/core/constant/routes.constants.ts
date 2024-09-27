@@ -44,6 +44,7 @@ export const PATH: { [key: string]: string } = {
   personTasks: "/home/talent/tasks/",
   influencerRating: "/home/talent/influencerRating/",
   viewBrief: "/home/talent/viewBrief/",
+  influencerProfiles: "/home/talent/influencerProfiles",
 
 
   // sales routes

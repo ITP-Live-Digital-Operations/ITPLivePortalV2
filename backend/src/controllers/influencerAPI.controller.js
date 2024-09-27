@@ -378,3 +378,161 @@ exports.getModashProfile = async (req, res) => {
     res.status(500).json({ message: "Server error" , error: error.message});
   }
 };
+
+exports.getModashProfiles = async (req, res) => {
+  const profileIds = req.body.ids; // Assuming the IDs are sent in the request body
+  
+  if (!Array.isArray(profileIds) || profileIds.length === 0) {
+    return res.status(400).json({ message: "Invalid or empty profile IDs array" });
+  }
+
+  try {
+    const profiles = await Promise.all(profileIds.map(async (profileId) => {
+      let profile = await Influencer.findByPk(profileId, {
+        attributes: [
+          "id",
+          "Name",
+          "TiktokHandle",
+          "TiktokFollowers",
+          "TiktokLink",
+          "SnapchatHandle",
+          "SnapchatFollowers",
+          "SnapchatLink",
+          "TwitterHandle",
+          "TwitterFollowers",
+          "TwitterLink",
+          "YoutubeHandle",
+          "YoutubeFollowers",
+          "YoutubeLink",
+          "TwitchHandle",
+          "TwitchFollowers",
+          "TwitchLink",
+          "engagementRate",
+          "lastApiCall",
+          "Bio",
+        ],
+        include: [
+          {
+            model: InstagramProfile,
+            as: "instagramProfile",
+            attributes: [
+              "id",
+              "username",
+              "profilePicture",
+              "followerCount",
+              "avgLikes",
+              "engagementRate",
+            ],
+            include: [
+              {
+                model: InstagramAudienceDemographic,
+                as: "InstagramAudienceDemographic",
+                attributes: ["type", "code", "name", "weight"],
+                where: {
+                  [Op.or]: [
+                    { type: "gender" },
+                    { type: "country" },
+                    { type: "gendersPerAge" },
+                  ],
+                },
+              },
+              {
+                model: InstagramInterest,
+                as: "InstagramInterest",
+                attributes: ["name", "weight"],
+              },
+            ],
+          },
+        ],
+      });
+
+      if (!profile) {
+        return { id: profileId, error: "Profile not found" };
+      }
+
+      const targetDate = moment('2024-09-16');
+      const currentDate = moment();
+      let shouldUpdate = false;
+
+      if (profile.lastApiCall) {
+        const lastApiCallDate = moment(profile.lastApiCall);
+
+        if (lastApiCallDate.isBefore(targetDate)) {
+          shouldUpdate = true;
+        } else if (currentDate.diff(lastApiCallDate, 'months') >= 1) {
+          shouldUpdate = true;
+        }
+      } else {
+        shouldUpdate = true;
+      } 
+
+      if (shouldUpdate) {
+        await updateInfluencers(1, profile.id);
+        profile = await Influencer.findByPk(profileId, {
+          attributes: [
+            "id",
+            "Name",
+            "TiktokHandle",
+            "TiktokFollowers",
+            "TiktokLink",
+            "SnapchatHandle",
+            "SnapchatFollowers",
+            "SnapchatLink",
+            "TwitterHandle",
+            "TwitterFollowers",
+            "TwitterLink",
+            "YoutubeHandle",
+            "YoutubeFollowers",
+            "YoutubeLink",
+            "TwitchHandle",
+            "TwitchFollowers",
+            "TwitchLink",
+            "engagementRate",
+            "lastApiCall",
+            "Bio",
+          ],
+          include: [
+            {
+              model: InstagramProfile,
+              as: "instagramProfile",
+              attributes: [
+                "id",
+                "username",
+                "profilePicture",
+                "followerCount",
+                "avgLikes",
+                "engagementRate",
+              ],
+              include: [
+                {
+                  model: InstagramAudienceDemographic,
+                  as: "InstagramAudienceDemographic",
+                  attributes: ["type", "code", "name", "weight"],
+                  where: {
+                    [Op.or]: [
+                      { type: "gender" },
+                      { type: "country" },
+                      { type: "gendersPerAge" },
+                    ],
+                  },
+                },
+                {
+                  model: InstagramInterest,
+                  as: "InstagramInterest",
+                  attributes: ["name", "weight"],
+                },
+              ],
+            },
+          ],
+        });
+      }
+
+      return profile;
+    }));
+
+    res.json(profiles);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};

@@ -61,6 +61,14 @@
           <img src="../../../../../assets/white-buttons/new-influencer.png" />
           <p>New Influencer</p>
         </button>
+
+        <button
+          mat-raised-button
+          routerLink="{{ path['influencerProfiles'] }}"
+        >
+          <img src="../../../../../assets/white-buttons/influencers.png" />
+          <p>Influencer Profiles</p>
+        </button>
        <!-- Celebrities Button -->
         <button
           mat-raised-button
@@ -177,6 +185,16 @@
         <img src="../../../../../assets/white-buttons/influencers.png" />
         <p>Influencers</p>
       </button>
+
+      <button
+      mat-raised-button
+      *ngIf="userRole == 'talent' || userRole == 'superadmin'"
+      routerLink="{{ path['influencerProfiles'] }}"
+    >
+      <img src="../../../../../assets/white-buttons/influencerProfiles.png" />
+      <p>Influencer Profiles</p>
+    </button>
+
       <button
         mat-raised-button
         *ngIf="userRole == 'talent' || userRole == 'superadmin'"

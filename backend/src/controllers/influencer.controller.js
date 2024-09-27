@@ -664,3 +664,21 @@ exports.deleteInfluencerRemark = (req, res) => {
       });
     });
 };
+
+exports.getInfluencersSearchProfiles = (req, res) => {
+ 
+  Influencer.findAll({
+    where: { Status: "Active" },
+    attributes: ['id', 'Name', 'profilePicture'],
+    order: [['id', 'DESC']],
+  })
+    .then((influencers) => {
+      res.status(200).send({ influencers });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        status: "error",
+        message: err.message,
+      });
+    });
+}

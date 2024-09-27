@@ -4,6 +4,7 @@ import { PersonTasksComponent } from './person-tasks/person-tasks.component';
 import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
 import { InfluencerLogsComponent } from './influencer-logs/influencer-logs.component';
 import { PATH } from 'src/app/core/constant/routes.constants';
+import { InfluencerProfilesComponent } from './influencer-profiles/influencer-profiles.component';
 
 let path = PATH;
 
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'influencerRating/:id',
     component: InfluencerRatingComponent
+  },
+  {
+    path: 'influencerProfiles',
+    component: InfluencerProfilesComponent
   },
   {
     path: 'new',
