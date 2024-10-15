@@ -15,7 +15,7 @@ import {
 } from 'src/app/core/interfaces/influencerAPI.model';
 import { ChartConfiguration, ChartData } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import html2canvas from 'html2canvas';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import pptxgen from 'pptxgenjs';
@@ -50,7 +50,14 @@ export class ExportModashProfileComponent {
 
   form!: FormGroup;
 
- 
+  uploadedAvgLikes: number | null = null;
+  uploadedGenderSplit: number | null = null; // Stores female percentage
+  originalMaleData: number[] = [];
+  originalFemaleData: number[] = [];
+
+  customFollowerInterests: { name: string; weight: number }[] = [];
+  customTopCountries: { name: string; weight: number }[] = [];
+
 
   // Custom color scheme
   private colors = {
@@ -251,6 +258,8 @@ export class ExportModashProfileComponent {
       this.initializeCharts();
       this.calculateInfluencerCategory();
     }
+
+    this.uploadedAvgLikes = this.profile.instagramProfile.avgLikes;
   }
 
   private initForm() {
@@ -267,7 +276,12 @@ export class ExportModashProfileComponent {
         twitch: [{ value: false, disabled: true }],
         twitter: [{ value: false, disabled: true }],
       }),
-      engagementRate: [this.profile.engagementRate]
+      engagementRate: [this.profile.engagementRate],
+      avgLikes: [this.profile.instagramProfile.avgLikes, [Validators.min(0)]],
+      genderSplit: [this.getFemalePercentage(), [Validators.min(0), Validators.max(100)]],
+
+      followerInterests: this.fb.array([], [this.totalPercentageValidator(100)]),
+      topCountries: this.fb.array([], [this.totalPercentageValidator(100)]),
     });
 
     if (this.profile) {
@@ -293,7 +307,52 @@ export class ExportModashProfileComponent {
         }
       });
     }
+
+     // Initialize the follower interests FormArray
+  const interestsArray = this.form.get('followerInterests') as FormArray;
+  this.profile.instagramProfile.InstagramInterest.forEach((interest) => {
+    interestsArray.push(
+      this.fb.group({
+        name: [interest.name, Validators.required],
+        weight: [
+          interest.weight * 100,
+          [Validators.required, Validators.min(0), Validators.max(100)],
+        ],
+      })
+    );
+  });
+
+  // Initialize the top countries FormArray
+  const countriesArray = this.form.get('topCountries') as FormArray;
+  this.getTopCountries().forEach((country) => {
+    countriesArray.push(
+      this.fb.group({
+        name: [country.name, Validators.required],
+        weight: [
+          country.weight * 100,
+          [Validators.required, Validators.min(0), Validators.max(100)],
+        ],
+      })
+    );
+  });
   }
+
+  get followerInterests(): FormArray {
+    return this.form.get('followerInterests') as FormArray;
+  }
+
+  get topCountries(): FormArray {
+    return this.form.get('topCountries') as FormArray;
+  }
+
+  private getFemalePercentage(): number {
+    const genderData = this.profile.instagramProfile.InstagramAudienceDemographic.filter(
+      (demo) => demo.type === 'gender'
+    );
+    const femaleTotal = genderData.find((d) => d.code === 'FEMALE')?.weight || 0;
+    return femaleTotal * 100;
+  }
+
 
   get bioRemainingChars(): number {
     return 300 - (this.form.get('bio')?.value?.length || 0);
@@ -340,12 +399,71 @@ export class ExportModashProfileComponent {
     this.reasonToChoose = this.form.value.reasonToChoose;
     this.selectedPlatforms = this.form.value.selectedPlatforms;
     this.uploadedRate = this.form.value.engagementRate;
+    this.uploadedAvgLikes = this.form.value.avgLikes;
+    this.uploadedGenderSplit = this.form.value.genderSplit;
+
+    // Update the gender chart data
+    const femalePercentage = this.uploadedGenderSplit || 0;
+    const malePercentage = 100 - femalePercentage;
+    this.genderChartData.datasets[0].data = [malePercentage, femalePercentage];
+
+    // Update the age-gender chart data
+    const originalMaleTotal = this.originalMaleData.reduce((sum, value) => sum + value, 0);
+    const originalFemaleTotal = this.originalFemaleData.reduce((sum, value) => sum + value, 0);
+
+    const maleScalingFactor = originalMaleTotal > 0 ? malePercentage / originalMaleTotal : 0;
+    const femaleScalingFactor = originalFemaleTotal > 0 ? femalePercentage / originalFemaleTotal : 0;
+
+    const adjustedMaleData = this.originalMaleData.map(value => value * maleScalingFactor);
+    const adjustedFemaleData = this.originalFemaleData.map(value => value * femaleScalingFactor);
+
+    this.ageGenderChartData.datasets[0].data = adjustedMaleData;
+    this.ageGenderChartData.datasets[1].data = adjustedFemaleData;
+
+     // Update follower interests
+     this.customFollowerInterests = this.followerInterests.value.map(
+      (interest: any) => ({
+        name: interest.name,
+        weight: interest.weight / 100, // Convert back to fraction
+      })
+    );
+
+    // Update top countries
+    this.customTopCountries = this.topCountries.value.map((country: any) => ({
+      name: country.name,
+      weight: country.weight / 100, // Convert back to fraction
+    }));
 
     // Set isFormSubmitted to true to display the profile preview
     this.isFormSubmitted = true;
 
     this.profileEdited.emit(this.profile); // Emit the updated profile
   }
+
+  onGenderSplitChange(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.form.get('genderSplit')?.setValue(Number(value));
+    this.updateGenderCharts();
+  }
+
+  private updateGenderCharts(): void {
+    const femalePercentage = this.form.value.genderSplit || 0;
+    const malePercentage = 100 - femalePercentage;
+    this.genderChartData.datasets[0].data = [malePercentage, femalePercentage];
+
+    const originalMaleTotal = this.originalMaleData.reduce((sum, value) => sum + value, 0);
+    const originalFemaleTotal = this.originalFemaleData.reduce((sum, value) => sum + value, 0);
+
+    const maleScalingFactor = originalMaleTotal > 0 ? malePercentage / originalMaleTotal : 0;
+    const femaleScalingFactor = originalFemaleTotal > 0 ? femalePercentage / originalFemaleTotal : 0;
+
+    const adjustedMaleData = this.originalMaleData.map(value => value * maleScalingFactor);
+    const adjustedFemaleData = this.originalFemaleData.map(value => value * femaleScalingFactor);
+
+    this.ageGenderChartData.datasets[0].data = adjustedMaleData;
+    this.ageGenderChartData.datasets[1].data = adjustedFemaleData;
+  }
+
 
   editForm() {
     this.isFormSubmitted = false;
@@ -397,6 +515,9 @@ export class ExportModashProfileComponent {
       maleTotal * 100,
       femaleTotal * 100,
     ];
+
+    this.originalMaleData = [...maleData];
+    this.originalFemaleData = [...femaleData];
   }
 
   private calculateInfluencerCategory(): void {
@@ -411,6 +532,20 @@ export class ExportModashProfileComponent {
       this.influencerCategory = 'Nano';
     }
   }
+
+
+  private totalPercentageValidator(maxTotal: number): ValidatorFn {
+    return (formArray: AbstractControl): { [key: string]: any } | null => {
+      const total = formArray.value.reduce(
+        (sum: number, curr: any) => sum + Number(curr.weight || 0),
+        0
+      );
+      return total > maxTotal
+        ? { totalPercentageExceeds: { total: total } }
+        : null;
+    };
+  }
+
 
   openInstagram(): void {
     window.open(

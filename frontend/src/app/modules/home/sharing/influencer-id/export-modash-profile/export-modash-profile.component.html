@@ -1,12 +1,14 @@
 <!-- Form Section -->
 <div class="profile-form" *ngIf="!isFormSubmitted && profile">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Name -->
     <div class="form-group">
       <label for="name">Name:</label>
       <small>Change Arabic Names to English</small>
       <input type="text" id="name" formControlName="name" />
     </div>
 
+    <!-- Picture -->
     <div class="form-group">
       <label for="profilePicture">Upload Profile Picture:</label>
       <small
@@ -19,6 +21,7 @@
       />
     </div>
 
+    <!-- Bio -->
     <div class="form-group">
       <label for="bio">Bio:</label>
       <textarea
@@ -31,6 +34,7 @@
       <small>{{ bioRemainingChars }} characters remaining</small>
     </div>
 
+    <!-- Reasons -->
     <div class="form-group">
       <label for="reasonToChoose"
         >Rationale for Influencer Recommendation</label
@@ -45,6 +49,7 @@
       <small>{{ reasonToChooseRemainingChars }} characters remaining</small>
     </div>
 
+    <!-- Platforms -->
     <div class="form-group">
       <label>Select Platforms to Include:</label>
       <div class="platforms-group" formGroupName="selectedPlatforms">
@@ -79,6 +84,83 @@
       <label for="engagementRate">Engagement Rate</label>
       <input type="number" id="ER" formControlName="engagementRate" />
     </div>
+
+    <div class="form-group">
+      <label for="avgLikes">Average Likes:</label>
+      <input type="number" id="avgLikes" formControlName="avgLikes" min="0" />
+    </div>
+
+    <!-- Gender Split -->
+    <div class="form-group">
+      <label for="genderSplit">Gender Split:</label>
+      <input
+        type="range"
+        id="genderSplit"
+        formControlName="genderSplit"
+        min="0"
+        max="100"
+        (input)="onGenderSplitChange($event)"
+      />
+      <div>{{ form.value.genderSplit }}% Female - {{ 100 - form.value.genderSplit }}% Male</div>
+    </div>
+
+    <!-- Follower Interests Editing Section -->
+<div class="form-group" formArrayName="followerInterests">
+  <label>Follower Interests:</label>
+  <div
+    *ngFor="let interest of followerInterests.controls; let i = index"
+    [formGroupName]="i"
+    class="interest-item"
+  >
+    <input
+      type="text"
+      formControlName="name"
+      placeholder="Interest Name"
+      required
+    />
+    <input
+      type="number"
+      formControlName="weight"
+      placeholder="Percentage"
+      min="0"
+      max="100"
+      required
+    />
+
+  </div>
+
+</div>
+
+
+<!-- Location By Country Editing Section -->
+<div class="form-group" formArrayName="topCountries">
+  <label>Location By Country:</label>
+  <div
+    *ngFor="let country of topCountries.controls; let i = index"
+    [formGroupName]="i"
+    class="country-item"
+  >
+    <input
+      type="text"
+      formControlName="name"
+      placeholder="Country Name"
+      required
+    />
+    <input
+      type="number"
+      formControlName="weight"
+      placeholder="Percentage"
+      min="0"
+      max="100"
+      required
+    />
+
+  </div>
+
+</div>
+
+
+
 
     <button type="submit">Preview Profile</button>
   </form>
@@ -298,7 +380,7 @@
           />
         </svg>
         <span class="metric-value">{{
-          profile.instagramProfile.avgLikes | numberFormat
+          uploadedAvgLikes || profile.instagramProfile.avgLikes | numberFormat
         }}</span>
         <span class="metric-label">Avg. Likes</span>
       </div>
