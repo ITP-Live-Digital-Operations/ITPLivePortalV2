@@ -1,9 +1,11 @@
 import {
   Component,
   ElementRef,
+  EventEmitter,
   Inject,
   Input,
   Optional,
+  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -25,6 +27,12 @@ import pptxgen from 'pptxgenjs';
 })
 export class ExportModashProfileComponent {
   @Input() profile!: ExportModashInfluencerProfile;
+  @Input() isFormSubmitted: boolean = false;
+
+  @ViewChild('profileContainer') profileContainer!: ElementRef;
+
+  @Output() profileEdited = new EventEmitter<ExportModashInfluencerProfile>();
+
   isDialog: boolean = false;
 
   bio: string = ''; // limit to 250 characters for display
@@ -33,7 +41,6 @@ export class ExportModashProfileComponent {
   ChartDataLabels = ChartDataLabels;
   influencerCategory: string = '';
 
-  isFormSubmitted: boolean = false;
 
   uploadedName: string | null = null;
   uploadedPicture: string | null = null;
@@ -43,7 +50,7 @@ export class ExportModashProfileComponent {
 
   form!: FormGroup;
 
-  @ViewChild('profileContainer') profileContainer!: ElementRef;
+ 
 
   // Custom color scheme
   private colors = {
@@ -336,6 +343,8 @@ export class ExportModashProfileComponent {
 
     // Set isFormSubmitted to true to display the profile preview
     this.isFormSubmitted = true;
+
+    this.profileEdited.emit(this.profile); // Emit the updated profile
   }
 
   editForm() {
@@ -464,6 +473,8 @@ export class ExportModashProfileComponent {
         console.error('Error exporting image:', err);
       });
   }
+
+
   exportToPowerPoint() {
     const element = this.profileContainer.nativeElement;
 

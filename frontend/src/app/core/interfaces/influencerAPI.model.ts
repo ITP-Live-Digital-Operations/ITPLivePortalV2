@@ -254,7 +254,7 @@ interface ExportModashInstagramProfile {
 
 export interface ExportModashInfluencerProfile {
   id: number;
-  Name: string;
+  Name: string | null;
   instagramProfile: ExportModashInstagramProfile;
   TiktokHandle: string;
   TiktokFollowers: number;
@@ -271,6 +271,6 @@ export interface ExportModashInfluencerProfile {
   TwitchHandle: string;
   TwitchFollowers: number;
   TwitchLink: string;
-  engagementRate: number;
+  engagementRate: number | null;
   Bio: string;
 }

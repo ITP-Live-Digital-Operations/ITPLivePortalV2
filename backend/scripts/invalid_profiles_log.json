@@ -68,5 +68,26 @@
     "username": "ghidaaranout",
     "profileId": 23,
     "error": "The request was invalid"
+  },
+  {
+    "influencerId": 4333,
+    "platform": "tiktok",
+    "username": "arisa.yamanaka_official",
+    "profileId": 786,
+    "error": "The request was invalid"
+  },
+  {
+    "influencerId": 4333,
+    "platform": "tiktok",
+    "username": "arisa.yamanaka_official",
+    "profileId": 786,
+    "error": "The request was invalid"
+  },
+  {
+    "influencerId": 4326,
+    "platform": "tiktok",
+    "username": "mizteriously",
+    "profileId": 780,
+    "error": "The request was invalid"
   }
 ]

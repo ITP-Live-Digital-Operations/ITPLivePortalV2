@@ -141,6 +141,7 @@ import { NgChartsModule } from 'ng2-charts';
     InfluencerNamePipe,
     ClientsComponent,
     CurrencyFormatPipe,
+    ExportModashProfileComponent
 
   ],
 })

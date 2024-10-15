@@ -215,8 +215,8 @@ export class InfluencerService {
     return this.http.get<ExportModashInfluencerProfile>(`${this.influencerApiURL}/getModashProfile/${influencerId}`);
   }
 
-  getModashProfiles(ids: number[]): Observable<any> {
-    return this.http.post(`${this.influencerApiURL}/getModashProfiles`, {ids});
+  getModashProfiles(ids: number[]): Observable<ExportModashInfluencerProfile> {
+    return this.http.post<ExportModashInfluencerProfile>(`${this.influencerApiURL}/getModashProfiles`, {ids});
   }
 
   getInfluencersSearchProfiles(): Observable<InfluencerSearchProfile[]> {

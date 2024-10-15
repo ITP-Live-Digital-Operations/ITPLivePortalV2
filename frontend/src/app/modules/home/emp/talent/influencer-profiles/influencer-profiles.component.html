@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!next">
   <h2>Influencer Search</h2>
   <input [formControl]="searchControl" placeholder="Search influencers..." class="search-input">
 
@@ -41,3 +41,9 @@
 
   <button (click)="onNext()" class="next-btn" [disabled]="selectedInfluencers.length === 0">Next</button>
 </div>
+
+
+<app-export-multiple-profiles
+[profiles]="profiles"
+*ngIf="next"
+></app-export-multiple-profiles>

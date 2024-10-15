@@ -1,0 +1,41 @@
+<!-- Profile Editing and Preview Section -->
+<div class="profiles-container" *ngIf="!isAllApproved && profiles">
+  <div *ngIf="currentProfile && !isFormSubmitted">
+    <h3>Editing Profile {{ currentProfileIndex + 1 }} of {{ profiles.length }}</h3>
+
+    <!-- Reusing the form structure -->
+    <app-export-modash-profile
+      [profile]="currentProfile"
+      (profileEdited)="onProfileEdited($event)"
+    ></app-export-modash-profile>
+  </div>
+
+  <!-- Profile Approval Section -->
+  <div *ngIf="isFormSubmitted && currentProfile">
+    <h3>Previewing Profile {{ currentProfileIndex + 1 }} of {{ profiles.length }}</h3>
+
+    <!-- Display the profile preview as in export-modash-profile -->
+    <div
+      class="profile-container"
+      *ngIf="currentProfile && isFormSubmitted"
+      #profileContainer
+    >
+      <app-export-modash-profile
+        [profile]="currentProfile"
+        [isFormSubmitted]="isFormSubmitted"
+      ></app-export-modash-profile>
+    </div>
+
+    <!-- Buttons to approve or edit the profile -->
+    <div class="buttons">
+      <button type="button" (click)="editProfile()">Edit</button>
+      <button type="button" (click)="approveProfile()">Approve</button>
+    </div>
+  </div>
+</div>
+
+<!-- All Profiles Approved Section -->
+<div class="export-section" *ngIf="isAllApproved">
+  <h3>All profiles approved!</h3>
+  <button (click)="exportAllProfilesToPowerPoint()">Export All to PowerPoint</button>
+</div>

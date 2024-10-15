@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, startWith, map, of, catchError } from 'rxjs';
 import { InfluencerSearchProfile } from 'src/app/core/interfaces/influencersModel';
 import { InfluencerService } from 'src/app/core/services/influencer.service';
+import { ExportModashProfileComponent } from '../../../sharing/influencer-id/export-modash-profile/export-modash-profile.component';
+import { ExportModashInfluencerProfile } from 'src/app/core/interfaces/influencerAPI.model';
 
 @Component({
   selector: 'app-influencer-profiles',
@@ -16,8 +19,10 @@ export class InfluencerProfilesComponent {
   selectedInfluencers: InfluencerSearchProfile[] = [];
   searchControl = new FormControl('');
   errorMessage: string = '';
+  profiles: ExportModashInfluencerProfile[]= [];
+  next: boolean = false;
 
-  constructor(private influencerService: InfluencerService, private router: Router) {}
+  constructor(private influencerService: InfluencerService, private router: Router,     private dialog: MatDialog,) {}
 
   ngOnInit() {
     this.influencerService.getInfluencersSearchProfiles().pipe(
@@ -76,8 +81,23 @@ export class InfluencerProfilesComponent {
 
   onNext() {
     if (this.selectedInfluencers.length > 0) {
-      const selectedIds = this.selectedInfluencers.map(influencer => influencer.id);
-      this.router.navigate(['/next-component'], { state: { selectedIds } });
+      const ids = this.selectedInfluencers.map(influencer => influencer.id);
+
+      this.influencerService.getModashProfiles(ids).subscribe(
+        (response: any) => {
+          if (response && Array.isArray(response)) {
+            this.profiles = response;
+            this.next = true;
+          } else {
+            console.error('Received invalid data:', response);
+            this.errorMessage = 'Received invalid data from the server.';
+          }
+        },
+        error => {
+          console.error('Error fetching Modash profiles:', error);
+          this.errorMessage = 'Failed to load Modash profiles. Please try again later.';
+        }
+      );
     }
   }
 }
