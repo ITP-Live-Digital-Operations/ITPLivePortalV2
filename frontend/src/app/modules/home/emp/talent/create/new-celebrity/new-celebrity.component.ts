@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CelebrityService } from 'src/app/core/services/celebrity.service';
@@ -32,7 +32,7 @@ export class NewCelebrityComponent {
     this.newCelebrityForm = this.formBuilder.group({
       generalInfo: this.formBuilder.group({
         Name: ['', [Validators.required]],
-        Gender: ['', [Validators.required]],
+        Gender: [''],
         Number: [''],
         Email: ['',],
         MainContentLanguage: [''],
@@ -45,33 +45,22 @@ export class NewCelebrityComponent {
         Address: [''],
       }),
       socials: this.formBuilder.group({
-        InstagramHandle: ['', [Validators.required]],
-        InstagramFollowers: [],
-        InstagramLink: [''],
-
+        InstagramHandle: [''],
         TiktokHandle: [''],
-        TiktokFollowers: [''],
-        TiktokLink: [''],
-
+        YoutubeHandle: [''],
         SnapchatHandle: [''],
         SnapchatFollowers: [''],
-        SnapchatLink: [''],
-
         TwitterHandle: [''],
         TwitterFollowers: [''],
-        TwitterLink: [''],
-
-        FacebookHandle: [''],
-        FacebookFollowers: [''],
-        FacebookLink: [''],
-
-        YoutubeHandle: [''],
-        YoutubeFollowers: [''],
-        YoutubeLink: [''],
-
         TwitchHandle: [''],
         TwitchFollowers: [''],
-        TwitchLink: [''],
+      }, {
+        validators: [
+          requireAtLeastTwoHandlesValidator(),
+          handleWithFollowersValidator('SnapchatHandle', 'SnapchatFollowers'),
+          handleWithFollowersValidator('TwitterHandle', 'TwitterFollowers'),
+          handleWithFollowersValidator('TwitchHandle', 'TwitchFollowers')
+        ]
       }),
       agencyInfo: this.formBuilder.group({
         Agency: [''],
@@ -132,7 +121,7 @@ export class NewCelebrityComponent {
     return valuesObject;
   }
   activeTabIndex: number = 0;
-  tabCount: number = 4; 
+  tabCount: number = 4;
   nextTab() {
     if (this.activeTabIndex < this.tabCount - 1) {
       this.activeTabIndex++;
@@ -146,3 +135,60 @@ export class NewCelebrityComponent {
   }
 }
 
+
+
+
+export function requireAtLeastTwoHandlesValidator(): ValidatorFn {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const controls = group.value;
+    const handles = [
+      controls.InstagramHandle,
+      controls.TiktokHandle,
+      controls.SnapchatHandle,
+      controls.TwitterHandle,
+      controls.FacebookHandle,
+      controls.YoutubeHandle,
+      controls.TwitchHandle,
+    ];
+
+    const filledHandles = handles.filter(handle => handle && handle.trim() !== '');
+
+    const instagramTiktokYoutubeFilled = [
+      controls.InstagramHandle,
+      controls.TiktokHandle,
+      controls.YoutubeHandle,
+    ].some(handle => handle && handle.trim() !== '');
+
+    if (filledHandles.length >= 2 && instagramTiktokYoutubeFilled) {
+      return null; // No error, validation passed
+    }
+
+    return { requireAtLeastTwoHandles: true }; // Error, validation failed
+  };
+}
+
+export function handleWithFollowersValidator(handleKey: string, followersKey: string): ValidatorFn {
+  return (group: AbstractControl): ValidationErrors | null => {
+    const handle = group.get(handleKey);
+    const followersControl = group.get(followersKey);
+
+    if (handle && followersControl) {
+      handle.valueChanges.subscribe(() => {
+        if (handle.value && !followersControl.value) {
+          followersControl.setErrors({ required: true });
+          followersControl.markAsTouched();
+        } else if (!handle.value) {
+          followersControl.setErrors(null);
+        }
+      });
+
+      if (handle.value && !followersControl.value) {
+        followersControl.setErrors({ required: true });
+      } else if (!handle.value) {
+        followersControl.setErrors(null);
+      }
+    }
+
+    return null;
+  };
+}
