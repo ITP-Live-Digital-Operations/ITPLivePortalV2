@@ -29,9 +29,7 @@
         formControlName="bio"
         rows="2"
         maxlength="300"
-        (input)="onInput($event, 'bio')"
       ></textarea>
-      <small>{{ bioRemainingChars }} characters remaining</small>
     </div>
 
     <!-- Reasons -->
@@ -340,7 +338,7 @@
         <h3>Follower Interests</h3>
         <ul>
           <li
-            *ngFor="let interest of profile.instagramProfile.InstagramInterest"
+            *ngFor="let interest of getDisplayInterests()"
           >
             <div class="interest-info">
               <span class="interest-name">{{ interest.name }}</span>
@@ -354,7 +352,7 @@
       <div class="top-countries">
         <h3>Location By Country</h3>
         <ul>
-          <li *ngFor="let country of getTopCountries()">
+          <li *ngFor="let country of getDisplayCountries()">
             <div class="country-info">
               <span class="country-name">{{ country.name }}</span>
               <span class="country-percentage">{{

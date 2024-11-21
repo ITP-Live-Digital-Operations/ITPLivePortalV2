@@ -57,6 +57,9 @@ import { TiktokDetailsComponent } from './influencer-id/tiktok-details/tiktok-de
 import { YoutubeDetailsComponent } from './influencer-id/youtube-details/youtube-details.component';
 import { ExportModashProfileComponent } from './influencer-id/export-modash-profile/export-modash-profile.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ProfileEditFormComponent } from './influencer-id/export-modash-profile/components/profile-edit-form/profile-edit-form.component';
+import { ProfilePreviewComponent } from './influencer-id/export-modash-profile/components/profile-preview/profile-preview.component';
+import { ProfileDemographicsComponent } from './influencer-id/export-modash-profile/components/profile-demographics/profile-demographics.component';
 
 
 
@@ -108,6 +111,9 @@ import { NgChartsModule } from 'ng2-charts';
     TiktokDetailsComponent,
     YoutubeDetailsComponent,
     ExportModashProfileComponent,
+    ProfileEditFormComponent,
+    ProfilePreviewComponent,
+    ProfileDemographicsComponent,
 
 
   ],
