@@ -71,7 +71,7 @@ export class ExportModashProfileComponent {
 
 
   // Custom color scheme
-  private colors = {
+  private genderChartColors = {
     male: '#3a0083', // Dark purple for male
     female: '#ef5350', // Pink for female
   };
@@ -79,8 +79,8 @@ export class ExportModashProfileComponent {
   public ageGenderChartData: ChartData<'bar'> = {
     labels: ['13-17', '18-24', '25-34', '35-44', '45-64'],
     datasets: [
-      { data: [], label: 'Male', backgroundColor: this.colors.male },
-      { data: [], label: 'Female', backgroundColor: this.colors.female },
+      { data: [], label: 'Male', backgroundColor: this.genderChartColors.male },
+      { data: [], label: 'Female', backgroundColor: this.genderChartColors.female },
     ],
   };
 
@@ -89,7 +89,7 @@ export class ExportModashProfileComponent {
     datasets: [
       {
         data: [],
-        backgroundColor: [this.colors.male, this.colors.female],
+        backgroundColor: [this.genderChartColors.male, this.genderChartColors.female],
         borderWidth: 0,
       },
     ],
@@ -356,8 +356,6 @@ export class ExportModashProfileComponent {
     return this.form.get('topCountries') as FormArray;
   }
 
-
-
   // Separate conversion method for interests
   private convertInterest(interest: ExportModashInstagramInterest): CustomInterest {
     return {
@@ -377,19 +375,20 @@ export class ExportModashProfileComponent {
   // Helper method to get interests in the correct format
   getDisplayInterests(): CustomInterest[] {
     if (this.customFollowerInterests.length) {
-      return this.customFollowerInterests;
+      return this.customFollowerInterests.slice(0, 5); // Limit to 5 interests
     }
-    return this.profile.instagramProfile.InstagramInterest.map(interest =>
-      this.convertInterest(interest)
-    );
+    return this.profile.instagramProfile.InstagramInterest
+      .slice(0, 5) // Limit to 5 interests
+      .map(interest => this.convertInterest(interest));
   }
 
   // Helper method to get countries in the correct format
   getDisplayCountries(): CustomCountry[] {
     if (this.customTopCountries.length) {
-      return this.customTopCountries;
+      return this.customTopCountries.slice(0, 3);;
     }
-    return this.getTopCountries().map(demographic =>
+    return this.getTopCountries().slice(0, 3)
+    .map(demographic =>
       this.convertDemographic(demographic)
     );
   }
@@ -411,15 +410,6 @@ export class ExportModashProfileComponent {
     return 300 - (this.form.get('reasonToChoose')?.value?.length || 0);
   }
 
-  onInput(event: Event, fieldName: string) {
-    const input = event.target as HTMLTextAreaElement;
-    const maxLength = 300;
-
-    if (input.value.length > maxLength) {
-      input.value = input.value.slice(0, maxLength);
-      this.form.get(fieldName)?.setValue(input.value);
-    }
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['profile'] && this.profile) {
@@ -574,162 +564,6 @@ export class ExportModashProfileComponent {
     window.open(`https://www.twitch.tv/${this.profile.TwitchHandle}`);
   }
 
-  exportAsImage() {
-    const element = this.profileContainer.nativeElement;
-
-    // Remove comment nodes
-    const removeComments = (elem: Node) => {
-      for (let i = 0; i < elem.childNodes.length; i++) {
-        const child = elem.childNodes[i];
-        if (child.nodeType === 8) {
-          elem.removeChild(child);
-          i--;
-        } else if (child.nodeType === 1) {
-          removeComments(child);
-        }
-      }
-    };
-
-    removeComments(element);
-
-    const options = {
-      useCORS: true,
-      allowTaint: true,
-      logging: false,
-    };
-
-    html2canvas(element, options)
-      .then((canvas) => {
-        const link = document.createElement('a');
-        link.download = `${this.profile.Name}_profile.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      })
-      .catch((err) => {
-        console.error('Error exporting image:', err);
-      });
-  }
-
-
-  exportToPowerPoint() {
-    const element = this.profileContainer.nativeElement;
-
-    // Remove comment nodes
-    const removeComments = (elem: Node) => {
-      for (let i = 0; i < elem.childNodes.length; i++) {
-        const child = elem.childNodes[i];
-        if (child.nodeType === 8) {
-          elem.removeChild(child);
-          i--;
-        } else if (child.nodeType === 1) {
-          removeComments(child);
-        }
-      }
-    };
-
-    removeComments(element);
-
-    const options = {
-      useCORS: true,
-      allowTaint: true,
-      logging: false,
-      scale: 1, // Ensure the canvas matches the element size in CSS pixels
-    };
-
-    html2canvas(element, options)
-      .then((canvas) => {
-        const imgDataUrl = canvas.toDataURL('image/png');
-
-        const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-
-        // Convert pixels to inches (assuming 96 DPI)
-        const inchPerPx = 1 / 96;
-
-        const slideWidthInches = canvasWidth * inchPerPx;
-        const slideHeightInches = canvasHeight * inchPerPx;
-
-        const pptx = new pptxgen();
-
-        // Define custom layout
-        pptx.defineLayout({ name: 'Custom', width: slideWidthInches, height: slideHeightInches });
-        pptx.layout = 'Custom';
-
-        const slide = pptx.addSlide();
-
-        // Add image to slide
-        slide.addImage({
-          data: imgDataUrl,
-          x: 0,
-          y: 0,
-          w: slideWidthInches,
-          h: slideHeightInches,
-        });
-
-        // Get the positions of the social platform elements
-        const socialPlatforms = element.querySelectorAll('.social-platform');
-
-        socialPlatforms.forEach((platformElement: HTMLElement) => {
-          const rect = platformElement.getBoundingClientRect();
-          const containerRect = element.getBoundingClientRect();
-
-          // Position relative to the container
-          const x = rect.left - containerRect.left;
-          const y = rect.top - containerRect.top;
-          const width = rect.width;
-          const height = rect.height;
-
-          // Convert positions from pixels to inches
-          const xInches = x * inchPerPx;
-          const yInches = y * inchPerPx;
-          const wInches = width * inchPerPx;
-          const hInches = height * inchPerPx;
-
-          // Get the URL to link to
-          let url = '';
-
-          if (platformElement.classList.contains('instagram')) {
-            url = `https://www.instagram.com/${this.profile.instagramProfile.username}`;
-          } else if (platformElement.classList.contains('tiktok')) {
-            url = `https://www.tiktok.com/@${this.profile.TiktokHandle}`;
-          } else if (platformElement.classList.contains('youtube')) {
-            url = `https://www.youtube.com/${this.profile.YoutubeHandle}`;
-          } else if (platformElement.classList.contains('twitter')) {
-            url = `https://www.twitter.com/${this.profile.TwitterHandle}`;
-          } else if (platformElement.classList.contains('snapchat')) {
-            url = `https://www.snapchat.com/add/${this.profile.SnapchatHandle}`;
-          } else if (platformElement.classList.contains('twitch')) {
-            url = `https://www.twitch.tv/${this.profile.TwitchHandle}`;
-          }
-
-          if (url) {
-            slide.addShape(pptx.ShapeType.rect, {
-              x: xInches,
-              y: yInches,
-              w: wInches,
-              h: hInches,
-              fill: { color: 'FFFFFF', transparency: 100 },
-              line: { color: 'FFFFFF', transparency: 100 },
-              hyperlink: { url: url },
-            });
-          }
-        });
-
-        // Save the presentation
-        pptx
-          .writeFile({ fileName: `${this.profile.Name}_profile.pptx` })
-          .then(() => {
-            console.log('Presentation created successfully');
-          })
-          .catch((err) => {
-            console.error('Error creating presentation:', err);
-          });
-      })
-      .catch((err) => {
-        console.error('Error exporting to PowerPoint:', err);
-      });
-  }
-
   onSubmit() {
     // Assign form values to component variables
     this.uploadedName = this.form.value.name;
@@ -782,5 +616,95 @@ export class ExportModashProfileComponent {
     this.profileEdited.emit(this.profile); // Emit the updated profile
   }
 
+  async exportToPowerPoint() {
+    const element = this.profileContainer.nativeElement;
+
+    // Get the container dimensions
+    const containerRect = element.getBoundingClientRect();
+    const inchPerPx = 1 / 96;
+    const slideWidthInches = containerRect.width * inchPerPx;
+    const slideHeightInches = containerRect.height * inchPerPx;
+
+    // Initialize pptxgenjs presentation
+    const pptx = new pptxgen();
+    pptx.defineLayout({ name: 'Custom', width: slideWidthInches, height: slideHeightInches });
+    pptx.layout = 'Custom';
+    const slide = pptx.addSlide();
+
+    
+
+    // List of selectors for the sections you want to capture
+    const sectionSelectors = [
+      '.logo',
+      '.category-label',
+      '.profile-picture-container',
+      '.profile-name',
+      '.profile-bio',
+      '.social-info .instagram',
+      '.social-info .tiktok',
+      '.social-info .youtube',
+      '.social-info .snapchat',
+      '.social-info .twitch',
+      '.social-info .twitter',
+      '.charts-container',
+      '.data-section',
+      '.metrics-row',
+      '.reasons-section'
+    ];
+
+    // Function to capture and add each section
+    const captureAndAddSection = async (selector: string) => {
+      const sectionElem = element.querySelector(selector) as HTMLElement;
+      if (sectionElem) {
+        // Remove comments within the section
+        const removeComments = (elem: Node) => {
+          for (let i = 0; i < elem.childNodes.length; i++) {
+            const child = elem.childNodes[i];
+            if (child.nodeType === 8) {
+              elem.removeChild(child);
+              i--;
+            } else if (child.nodeType === 1) {
+              removeComments(child);
+            }
+          }
+        };
+        removeComments(sectionElem);
+
+        // Capture the section as an image
+        const canvas = await html2canvas(sectionElem, {
+          useCORS: true,
+          allowTaint: true,
+          scale: 2, // Increase scale for better resolution
+          backgroundColor: null // Set to null if you want transparent background
+        });
+
+        const imgDataUrl = canvas.toDataURL('image/png');
+
+        // Get position and size relative to the container
+        const rect = sectionElem.getBoundingClientRect();
+        const x = (rect.left - containerRect.left) * inchPerPx;
+        const y = (rect.top - containerRect.top) * inchPerPx;
+        const w = rect.width * inchPerPx;
+        const h = rect.height * inchPerPx;
+
+        // Add the image to the slide
+        slide.addImage({
+          data: imgDataUrl,
+          x,
+          y,
+          w,
+          h
+        });
+      }
+    };
+
+    // Loop through each section and add it to the slide
+    for (const selector of sectionSelectors) {
+      await captureAndAddSection(selector);
+    }
+
+    // Save the presentation
+    pptx.writeFile({ fileName: `${this.profile.Name}_profile.pptx` });
+  }
 
 }

@@ -13,7 +13,7 @@ body {
   --accent: #ffbf00;
   --female: #ef5350;
   --male: #3a0083;
-  --dark-blue: #0047ab;
+  --dark-blue: #1e5f99 ;
 }
 
 .profile-container {
@@ -59,7 +59,7 @@ body {
   }
 
   .profile-picture-container {
-    margin-top: 0; // Remove the margin-top to align with the label
+    margin-top: 40px; // Remove the margin-top to align with the label
     width: 100%;
     max-width: 350px;
     height: 0;
@@ -67,7 +67,7 @@ body {
     position: relative;
     overflow: hidden;
     margin-bottom: 5px;
-
+    margin-left: 3%;
     padding-top: 50px; // Create space for the label above the picture
   }
 
@@ -89,6 +89,7 @@ body {
 
   .profile-bio {
     text-align: center;
+    margin-top: 2%;
   }
 
   .social-info {
@@ -235,7 +236,7 @@ body {
         justify-content: space-between;
         margin-bottom: 5px;
         font-size: 14px;
-        color: #666;
+        color: #000;
       }
 
       .percentage-bar {
@@ -288,11 +289,41 @@ body {
   }
 }
 
+
 .reasons-section {
+  background-color: #FFF9C4 ;
+  border-radius: 6px;
+  padding: 5px;
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+
   .reasons-name {
-    color: black !important;
+    color: #FF5252 !important ;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .reasons-item {
+    color: #424242;
+    font-size: 14px;
+    line-height: 1.4;
+    max-width: 80%;
+    position: relative;
+
+    &::before {
+      left: 0;
+      top: -2px;
+    }
+
+    &::after {
+      right: 0;
+      bottom: -8px;
+    }
   }
 }
+
 
 @media (max-width: 768px) {
   .profile-container {
@@ -394,15 +425,15 @@ body {
 }
 
 .reasons-section {
-  background-color: #fff176;
+  background-color: #FFF9C4 ;
   border-radius: 6px;
-  padding: 15px;
+  padding: 5px;
   margin-top: 20px;
   text-align: center;
   position: relative;
 
   .reasons-name {
-    color: #212121;
+    color: #FF5252 ;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 10px;
@@ -412,19 +443,10 @@ body {
     color: #424242;
     font-size: 14px;
     line-height: 1.4;
-    padding: 0 20px;
+
     max-width: 80%;
     margin: 0 auto;
     position: relative;
-
-    &::before,
-    &::after {
-      content: '"';
-      position: absolute;
-      font-size: 18px;
-      color: #ffb300;
-      font-weight: bold;
-    }
 
     &::before {
       left: 0;

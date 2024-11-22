@@ -41,10 +41,7 @@
         id="reasonToChoose"
         formControlName="reasonToChoose"
         rows="2"
-        maxlength="300"
-        (input)="onInput($event, 'reasonToChoose')"
       ></textarea>
-      <small>{{ reasonToChooseRemainingChars }} characters remaining</small>
     </div>
 
     <!-- Platforms -->
@@ -421,15 +418,7 @@
     <span class="button-text">Edit</span>
   </button>
 
-  <!-- Export Button -->
-  <button
-    type="button"
-    (click)="exportAsImage()"
-    aria-label="Export profile as image"
-  >
-    <span class="button-text">Export as Image</span>
-  </button>
-
+  <!-- Export to PowerPoint Button -->
   <button type="button" (click)="exportToPowerPoint()">
     <span class="button-text">Export to PowerPoint</span>
   </button>
