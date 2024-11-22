@@ -16,10 +16,18 @@ import {
 } from 'src/app/core/interfaces/influencerAPI.model';
 import { ChartConfiguration, ChartData } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import html2canvas from 'html2canvas';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import pptxgen from 'pptxgenjs';
+import { LoadingOverlayServiceService } from 'src/app/core/Services/loading-overlay.service';
 
 interface CustomInterest {
   name: string;
@@ -45,13 +53,13 @@ export class ExportModashProfileComponent {
   @Output() profileEdited = new EventEmitter<ExportModashInfluencerProfile>();
 
   isDialog: boolean = false;
+  isExporting: boolean = false;
 
   bio: string = ''; // limit to 250 characters for display
   reasonToChoose: string = ''; // limit to 250 characters for display
 
   ChartDataLabels = ChartDataLabels;
   influencerCategory: string = '';
-
 
   uploadedName: string | null = null;
   uploadedPicture: string | null = null;
@@ -69,7 +77,6 @@ export class ExportModashProfileComponent {
   customFollowerInterests: CustomInterest[] = [];
   customTopCountries: CustomCountry[] = [];
 
-
   // Custom color scheme
   private genderChartColors = {
     male: '#3a0083', // Dark purple for male
@@ -80,7 +87,11 @@ export class ExportModashProfileComponent {
     labels: ['13-17', '18-24', '25-34', '35-44', '45-64'],
     datasets: [
       { data: [], label: 'Male', backgroundColor: this.genderChartColors.male },
-      { data: [], label: 'Female', backgroundColor: this.genderChartColors.female },
+      {
+        data: [],
+        label: 'Female',
+        backgroundColor: this.genderChartColors.female,
+      },
     ],
   };
 
@@ -89,7 +100,10 @@ export class ExportModashProfileComponent {
     datasets: [
       {
         data: [],
-        backgroundColor: [this.genderChartColors.male, this.genderChartColors.female],
+        backgroundColor: [
+          this.genderChartColors.male,
+          this.genderChartColors.female,
+        ],
         borderWidth: 0,
       },
     ],
@@ -256,7 +270,8 @@ export class ExportModashProfileComponent {
     @Optional() public dialogRef: MatDialogRef<ExportModashProfileComponent>,
     @Optional()
     @Inject(MAT_DIALOG_DATA)
-    public data: { profile: ExportModashInfluencerProfile }
+    public data: { profile: ExportModashInfluencerProfile },
+    private loadingOverlay: LoadingOverlayServiceService
   ) {}
 
   ngOnInit() {
@@ -289,9 +304,15 @@ export class ExportModashProfileComponent {
       }),
       engagementRate: [this.profile.engagementRate],
       avgLikes: [this.profile.instagramProfile.avgLikes, [Validators.min(0)]],
-      genderSplit: [this.getFemalePercentage(), [Validators.min(0), Validators.max(100)]],
+      genderSplit: [
+        this.getFemalePercentage(),
+        [Validators.min(0), Validators.max(100)],
+      ],
 
-      followerInterests: this.fb.array([], [this.totalPercentageValidator(100)]),
+      followerInterests: this.fb.array(
+        [],
+        [this.totalPercentageValidator(100)]
+      ),
       topCountries: this.fb.array([], [this.totalPercentageValidator(100)]),
     });
 
@@ -319,33 +340,33 @@ export class ExportModashProfileComponent {
       });
     }
 
-     // Initialize the follower interests FormArray
-  const interestsArray = this.form.get('followerInterests') as FormArray;
-  this.profile.instagramProfile.InstagramInterest.forEach((interest) => {
-    interestsArray.push(
-      this.fb.group({
-        name: [interest.name, Validators.required],
-        weight: [
-          interest.weight * 100,
-          [Validators.required, Validators.min(0), Validators.max(100)],
-        ],
-      })
-    );
-  });
+    // Initialize the follower interests FormArray
+    const interestsArray = this.form.get('followerInterests') as FormArray;
+    this.profile.instagramProfile.InstagramInterest.forEach((interest) => {
+      interestsArray.push(
+        this.fb.group({
+          name: [interest.name, Validators.required],
+          weight: [
+            interest.weight * 100,
+            [Validators.required, Validators.min(0), Validators.max(100)],
+          ],
+        })
+      );
+    });
 
-  // Initialize the top countries FormArray
-  const countriesArray = this.form.get('topCountries') as FormArray;
-  this.getTopCountries().forEach((country) => {
-    countriesArray.push(
-      this.fb.group({
-        name: [country.name, Validators.required],
-        weight: [
-          country.weight * 100,
-          [Validators.required, Validators.min(0), Validators.max(100)],
-        ],
-      })
-    );
-  });
+    // Initialize the top countries FormArray
+    const countriesArray = this.form.get('topCountries') as FormArray;
+    this.getTopCountries().forEach((country) => {
+      countriesArray.push(
+        this.fb.group({
+          name: [country.name, Validators.required],
+          weight: [
+            country.weight * 100,
+            [Validators.required, Validators.min(0), Validators.max(100)],
+          ],
+        })
+      );
+    });
   }
 
   get followerInterests(): FormArray {
@@ -357,18 +378,22 @@ export class ExportModashProfileComponent {
   }
 
   // Separate conversion method for interests
-  private convertInterest(interest: ExportModashInstagramInterest): CustomInterest {
+  private convertInterest(
+    interest: ExportModashInstagramInterest
+  ): CustomInterest {
     return {
       name: interest.name || '',
-      weight: interest.weight
+      weight: interest.weight,
     };
   }
 
   // Separate conversion method for demographic data (countries)
-  private convertDemographic(demographic: ExportModashInstagramAudienceDemographic): CustomCountry {
+  private convertDemographic(
+    demographic: ExportModashInstagramAudienceDemographic
+  ): CustomCountry {
     return {
       name: demographic.name || '',
-      weight: demographic.weight
+      weight: demographic.weight,
     };
   }
 
@@ -377,30 +402,29 @@ export class ExportModashProfileComponent {
     if (this.customFollowerInterests.length) {
       return this.customFollowerInterests.slice(0, 5); // Limit to 5 interests
     }
-    return this.profile.instagramProfile.InstagramInterest
-      .slice(0, 5) // Limit to 5 interests
-      .map(interest => this.convertInterest(interest));
+    return this.profile.instagramProfile.InstagramInterest.slice(0, 5) // Limit to 5 interests
+      .map((interest) => this.convertInterest(interest));
   }
 
   // Helper method to get countries in the correct format
   getDisplayCountries(): CustomCountry[] {
     if (this.customTopCountries.length) {
-      return this.customTopCountries.slice(0, 3);;
+      return this.customTopCountries.slice(0, 3);
     }
-    return this.getTopCountries().slice(0, 3)
-    .map(demographic =>
-      this.convertDemographic(demographic)
-    );
+    return this.getTopCountries()
+      .slice(0, 3)
+      .map((demographic) => this.convertDemographic(demographic));
   }
 
   private getFemalePercentage(): number {
-    const genderData = this.profile.instagramProfile.InstagramAudienceDemographic.filter(
-      (demo) => demo.type === 'gender'
-    );
-    const femaleTotal = genderData.find((d) => d.code === 'FEMALE')?.weight || 0;
+    const genderData =
+      this.profile.instagramProfile.InstagramAudienceDemographic.filter(
+        (demo) => demo.type === 'gender'
+      );
+    const femaleTotal =
+      genderData.find((d) => d.code === 'FEMALE')?.weight || 0;
     return femaleTotal * 100;
   }
-
 
   get bioRemainingChars(): number {
     return 300 - (this.form.get('bio')?.value?.length || 0);
@@ -409,7 +433,6 @@ export class ExportModashProfileComponent {
   get reasonToChooseRemainingChars(): number {
     return 300 - (this.form.get('reasonToChoose')?.value?.length || 0);
   }
-
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['profile'] && this.profile) {
@@ -431,7 +454,6 @@ export class ExportModashProfileComponent {
     }
   }
 
-
   onGenderSplitChange(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.form.get('genderSplit')?.setValue(Number(value));
@@ -443,27 +465,39 @@ export class ExportModashProfileComponent {
     const malePercentage = 100 - femalePercentage;
     this.genderChartData.datasets[0].data = [malePercentage, femalePercentage];
 
-    const originalMaleTotal = this.originalMaleData.reduce((sum, value) => sum + value, 0);
-    const originalFemaleTotal = this.originalFemaleData.reduce((sum, value) => sum + value, 0);
+    const originalMaleTotal = this.originalMaleData.reduce(
+      (sum, value) => sum + value,
+      0
+    );
+    const originalFemaleTotal = this.originalFemaleData.reduce(
+      (sum, value) => sum + value,
+      0
+    );
 
-    const maleScalingFactor = originalMaleTotal > 0 ? malePercentage / originalMaleTotal : 0;
-    const femaleScalingFactor = originalFemaleTotal > 0 ? femalePercentage / originalFemaleTotal : 0;
+    const maleScalingFactor =
+      originalMaleTotal > 0 ? malePercentage / originalMaleTotal : 0;
+    const femaleScalingFactor =
+      originalFemaleTotal > 0 ? femalePercentage / originalFemaleTotal : 0;
 
-    const adjustedMaleData = this.originalMaleData.map(value => value * maleScalingFactor);
-    const adjustedFemaleData = this.originalFemaleData.map(value => value * femaleScalingFactor);
+    const adjustedMaleData = this.originalMaleData.map(
+      (value) => value * maleScalingFactor
+    );
+    const adjustedFemaleData = this.originalFemaleData.map(
+      (value) => value * femaleScalingFactor
+    );
 
     this.ageGenderChartData.datasets[0].data = adjustedMaleData;
     this.ageGenderChartData.datasets[1].data = adjustedFemaleData;
   }
-
 
   editForm() {
     this.isFormSubmitted = false;
   }
 
   getTopCountries(): ExportModashInstagramAudienceDemographic[] {
-    return this.profile.instagramProfile.InstagramAudienceDemographic
-      .filter((demo) => demo.type === 'country')
+    return this.profile.instagramProfile.InstagramAudienceDemographic.filter(
+      (demo) => demo.type === 'country'
+    )
       .sort((a, b) => b.weight - a.weight)
       .slice(0, 3);
   }
@@ -524,7 +558,6 @@ export class ExportModashProfileComponent {
     }
   }
 
-
   private totalPercentageValidator(maxTotal: number): ValidatorFn {
     return (formArray: AbstractControl): { [key: string]: any } | null => {
       const total = formArray.value.reduce(
@@ -536,7 +569,6 @@ export class ExportModashProfileComponent {
         : null;
     };
   }
-
 
   openInstagram(): void {
     window.open(
@@ -580,14 +612,26 @@ export class ExportModashProfileComponent {
     this.genderChartData.datasets[0].data = [malePercentage, femalePercentage];
 
     // Update the age-gender chart data
-    const originalMaleTotal = this.originalMaleData.reduce((sum, value) => sum + value, 0);
-    const originalFemaleTotal = this.originalFemaleData.reduce((sum, value) => sum + value, 0);
+    const originalMaleTotal = this.originalMaleData.reduce(
+      (sum, value) => sum + value,
+      0
+    );
+    const originalFemaleTotal = this.originalFemaleData.reduce(
+      (sum, value) => sum + value,
+      0
+    );
 
-    const maleScalingFactor = originalMaleTotal > 0 ? malePercentage / originalMaleTotal : 0;
-    const femaleScalingFactor = originalFemaleTotal > 0 ? femalePercentage / originalFemaleTotal : 0;
+    const maleScalingFactor =
+      originalMaleTotal > 0 ? malePercentage / originalMaleTotal : 0;
+    const femaleScalingFactor =
+      originalFemaleTotal > 0 ? femalePercentage / originalFemaleTotal : 0;
 
-    const adjustedMaleData = this.originalMaleData.map(value => value * maleScalingFactor);
-    const adjustedFemaleData = this.originalFemaleData.map(value => value * femaleScalingFactor);
+    const adjustedMaleData = this.originalMaleData.map(
+      (value) => value * maleScalingFactor
+    );
+    const adjustedFemaleData = this.originalFemaleData.map(
+      (value) => value * femaleScalingFactor
+    );
 
     this.ageGenderChartData.datasets[0].data = adjustedMaleData;
     this.ageGenderChartData.datasets[1].data = adjustedFemaleData;
@@ -595,20 +639,23 @@ export class ExportModashProfileComponent {
     // Update follower interests with proper typing
     this.customFollowerInterests = this.followerInterests.value
       .filter((interest: any) => interest.name && interest.weight)
-      .map((interest: any): CustomInterest => ({
-        name: interest.name,
-        weight: interest.weight / 100,
-      }));
+      .map(
+        (interest: any): CustomInterest => ({
+          name: interest.name,
+          weight: interest.weight / 100,
+        })
+      );
 
     // Update top countries with proper typing and type annotations in sort
     this.customTopCountries = this.topCountries.value
       .filter((country: any) => country.name && country.weight)
-      .map((country: any): CustomCountry => ({
-        name: country.name,
-        weight: country.weight / 100,
-      }))
+      .map(
+        (country: any): CustomCountry => ({
+          name: country.name,
+          weight: country.weight / 100,
+        })
+      )
       .sort((a: CustomCountry, b: CustomCountry) => b.weight - a.weight);
-
 
     // Set isFormSubmitted to true to display the profile preview
     this.isFormSubmitted = true;
@@ -617,152 +664,171 @@ export class ExportModashProfileComponent {
   }
 
   async exportToPowerPoint() {
-    const element = this.profileContainer.nativeElement;
+    try {
+      this.isExporting = true;
+      this.loadingOverlay.show('Exporting profile...');
+      const element = this.profileContainer.nativeElement;
 
-    // Get the container dimensions
-    const containerRect = element.getBoundingClientRect();
-    const inchPerPx = 1 / 96;
-    const slideWidthInches = containerRect.width * inchPerPx;
-    const slideHeightInches = containerRect.height * inchPerPx;
+      // Get the container dimensions
+      const containerRect = element.getBoundingClientRect();
+      const inchPerPx = 1 / 96;
+      const slideWidthInches = containerRect.width * inchPerPx;
+      const slideHeightInches = containerRect.height * inchPerPx;
 
-    // Initialize pptxgenjs presentation
-    const pptx = new pptxgen();
-    pptx.defineLayout({ name: 'Custom', width: slideWidthInches, height: slideHeightInches });
-    pptx.layout = 'Custom';
-    const slide = pptx.addSlide();
+      // Initialize pptxgenjs presentation
+      const pptx = new pptxgen();
+      pptx.defineLayout({
+        name: 'Custom',
+        width: slideWidthInches,
+        height: slideHeightInches,
+      });
+      pptx.layout = 'Custom';
+      const slide = pptx.addSlide();
 
       // Define social media platforms and their link patterns
-  const socialPlatforms = [
-    {
-      selector: '.social-info .instagram',
-      getUrl: () => `https://www.instagram.com/${this.profile.instagramProfile.username}`,
-      shouldAdd: () => true // Instagram is always available
-    },
-    {
-      selector: '.social-info .tiktok',
-      getUrl: () => `https://www.tiktok.com/@${this.profile.TiktokHandle}`,
-      shouldAdd: () => Boolean(this.profile.TiktokHandle && this.selectedPlatforms.tiktok)
-    },
-    {
-      selector: '.social-info .youtube',
-      getUrl: () => `https://www.youtube.com/${this.profile.YoutubeHandle}`,
-      shouldAdd: () => Boolean(this.profile.YoutubeHandle && this.selectedPlatforms.youtube)
-    },
-    {
-      selector: '.social-info .snapchat',
-      getUrl: () => `https://www.snapchat.com/add/${this.profile.SnapchatHandle}`,
-      shouldAdd: () => Boolean(this.profile.SnapchatHandle && this.selectedPlatforms.snapchat)
-    },
-    {
-      selector: '.social-info .twitch',
-      getUrl: () => `https://www.twitch.tv/${this.profile.TwitchHandle}`,
-      shouldAdd: () => Boolean(this.profile.TwitchHandle && this.selectedPlatforms.twitch)
-    },
-    {
-      selector: '.social-info .twitter',
-      getUrl: () => `https://www.twitter.com/${this.profile.TwitterHandle}`,
-      shouldAdd: () => Boolean(this.profile.TwitterHandle && this.selectedPlatforms.twitter)
-    }
-  ];
+      const socialPlatforms = [
+        {
+          selector: '.social-info .instagram',
+          getUrl: () =>
+            `https://www.instagram.com/${this.profile.instagramProfile.username}`,
+          shouldAdd: () => true, // Instagram is always available
+        },
+        {
+          selector: '.social-info .tiktok',
+          getUrl: () => `https://www.tiktok.com/@${this.profile.TiktokHandle}`,
+          shouldAdd: () =>
+            Boolean(this.profile.TiktokHandle && this.selectedPlatforms.tiktok),
+        },
+        {
+          selector: '.social-info .youtube',
+          getUrl: () => `https://www.youtube.com/${this.profile.YoutubeHandle}`,
+          shouldAdd: () =>
+            Boolean(
+              this.profile.YoutubeHandle && this.selectedPlatforms.youtube
+            ),
+        },
+        {
+          selector: '.social-info .snapchat',
+          getUrl: () =>
+            `https://www.snapchat.com/add/${this.profile.SnapchatHandle}`,
+          shouldAdd: () =>
+            Boolean(
+              this.profile.SnapchatHandle && this.selectedPlatforms.snapchat
+            ),
+        },
+        {
+          selector: '.social-info .twitch',
+          getUrl: () => `https://www.twitch.tv/${this.profile.TwitchHandle}`,
+          shouldAdd: () =>
+            Boolean(this.profile.TwitchHandle && this.selectedPlatforms.twitch),
+        },
+        {
+          selector: '.social-info .twitter',
+          getUrl: () => `https://www.twitter.com/${this.profile.TwitterHandle}`,
+          shouldAdd: () =>
+            Boolean(
+              this.profile.TwitterHandle && this.selectedPlatforms.twitter
+            ),
+        },
+      ];
 
-  // Group selectors by their desired layer order (back to front)
-  const selectorsByLayer = {
-    background: [
-      '.charts-container',
-      '.data-section',
-      '.metrics-row',
-    ],
-    middle: [
-      '.category-label',
-      '.profile-picture-container',
-      '.profile-name',
-      '.profile-bio',
-      '.reasons-section'
-    ],
-    foreground: [
-      '.logo'
-    ]
-  };
+      // Group selectors by their desired layer order (back to front)
+      const selectorsByLayer = {
+        background: ['.charts-container', '.data-section', '.metrics-row'],
+        middle: [
+          '.category-label',
+          '.profile-picture-container',
+          '.profile-name',
+          '.profile-bio',
+          '.reasons-section',
+        ],
+        foreground: ['.logo'],
+      };
 
-    // Function to capture and add a section
-  const captureAndAddSection = async (selector: string, addLink?: string) => {
-    const sectionElem = element.querySelector(selector) as HTMLElement;
-    if (sectionElem) {
-      // Remove comments within the section
-      const removeComments = (elem: Node) => {
-        for (let i = 0; i < elem.childNodes.length; i++) {
-          const child = elem.childNodes[i];
-          if (child.nodeType === 8) {
-            elem.removeChild(child);
-            i--;
-          } else if (child.nodeType === 1) {
-            removeComments(child);
+      // Function to capture and add a section
+      const captureAndAddSection = async (
+        selector: string,
+        addLink?: string
+      ) => {
+        const sectionElem = element.querySelector(selector) as HTMLElement;
+        if (sectionElem) {
+          // Remove comments within the section
+          const removeComments = (elem: Node) => {
+            for (let i = 0; i < elem.childNodes.length; i++) {
+              const child = elem.childNodes[i];
+              if (child.nodeType === 8) {
+                elem.removeChild(child);
+                i--;
+              } else if (child.nodeType === 1) {
+                removeComments(child);
+              }
+            }
+          };
+          removeComments(sectionElem);
+
+          // Capture the section as an image
+          const canvas = await html2canvas(sectionElem, {
+            useCORS: true,
+            allowTaint: true,
+            scale: 2,
+            backgroundColor: null,
+          });
+
+          const imgDataUrl = canvas.toDataURL('image/png');
+
+          // Get position and size relative to the container
+          const rect = sectionElem.getBoundingClientRect();
+          const x = (rect.left - containerRect.left) * inchPerPx;
+          const y = (rect.top - containerRect.top) * inchPerPx;
+          const w = rect.width * inchPerPx;
+          const h = rect.height * inchPerPx;
+
+          // Add the image to the slide
+          const imageOptions: any = {
+            data: imgDataUrl,
+            x,
+            y,
+            w,
+            h,
+          };
+
+          // If a link is provided, add it to the image
+          if (addLink) {
+            imageOptions.hyperlink = { url: addLink };
           }
+
+          slide.addImage(imageOptions);
         }
       };
-      removeComments(sectionElem);
 
-      // Capture the section as an image
-      const canvas = await html2canvas(sectionElem, {
-        useCORS: true,
-        allowTaint: true,
-        scale: 2,
-        backgroundColor: null
-      });
-
-      const imgDataUrl = canvas.toDataURL('image/png');
-
-      // Get position and size relative to the container
-      const rect = sectionElem.getBoundingClientRect();
-      const x = (rect.left - containerRect.left) * inchPerPx;
-      const y = (rect.top - containerRect.top) * inchPerPx;
-      const w = rect.width * inchPerPx;
-      const h = rect.height * inchPerPx;
-
-      // Add the image to the slide
-      const imageOptions: any = {
-        data: imgDataUrl,
-        x,
-        y,
-        w,
-        h
-      };
-
-      // If a link is provided, add it to the image
-      if (addLink) {
-        imageOptions.hyperlink = { url: addLink };
+      // Process elements in order from background to foreground
+      // 1. Background elements first
+      for (const selector of selectorsByLayer.background) {
+        await captureAndAddSection(selector);
       }
 
-      slide.addImage(imageOptions);
+      // 2. Social media sections
+      for (const platform of socialPlatforms) {
+        if (platform.shouldAdd()) {
+          await captureAndAddSection(platform.selector, platform.getUrl());
+        }
+      }
+
+      // 3. Middle layer elements
+      for (const selector of selectorsByLayer.middle) {
+        await captureAndAddSection(selector);
+      }
+
+      // 4. Foreground elements last (will appear on top)
+      for (const selector of selectorsByLayer.foreground) {
+        await captureAndAddSection(selector);
+      }
+
+      // Save the presentation
+      pptx.writeFile({ fileName: `${this.profile.Name}_profile.pptx` });
+    } finally {
+      this.isExporting = false;
+      this.loadingOverlay.hide();
     }
-  };
-
-
-// Process elements in order from background to foreground
-  // 1. Background elements first
-  for (const selector of selectorsByLayer.background) {
-    await captureAndAddSection(selector);
   }
-
-  // 2. Social media sections
-  for (const platform of socialPlatforms) {
-    if (platform.shouldAdd()) {
-      await captureAndAddSection(platform.selector, platform.getUrl());
-    }
-  }
-
-  // 3. Middle layer elements
-  for (const selector of selectorsByLayer.middle) {
-    await captureAndAddSection(selector);
-  }
-
-  // 4. Foreground elements last (will appear on top)
-  for (const selector of selectorsByLayer.foreground) {
-    await captureAndAddSection(selector);
-  }
-
-    // Save the presentation
-    pptx.writeFile({ fileName: `${this.profile.Name}_profile.pptx` });
-  }
-
 }

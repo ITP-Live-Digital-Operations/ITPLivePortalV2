@@ -60,6 +60,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { ProfileEditFormComponent } from './influencer-id/export-modash-profile/components/profile-edit-form/profile-edit-form.component';
 import { ProfilePreviewComponent } from './influencer-id/export-modash-profile/components/profile-preview/profile-preview.component';
 import { ProfileDemographicsComponent } from './influencer-id/export-modash-profile/components/profile-demographics/profile-demographics.component';
+import { LoadingOverlayComponentComponent } from 'src/app/shared/components/loading-overlay-component/loading-overlay-component.component';
 
 
 
@@ -129,7 +130,7 @@ import { ProfileDemographicsComponent } from './influencer-id/export-modash-prof
     MatExpansionModule,
     FormsModule,
     CurrencyFormatPipe,
-    NgChartsModule
+    NgChartsModule,
 
   ],
   exports: [

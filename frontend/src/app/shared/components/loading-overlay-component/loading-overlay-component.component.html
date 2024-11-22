@@ -1,0 +1,10 @@
+<div
+  *ngIf="loadingOverlay.loading$ | async as loading"
+  class="loading-overlay"
+  [class.visible]="loading.show"
+>
+  <div class="loading-content">
+    <div class="spinner"></div>
+    <p class="message">{{ loading.message }}</p>
+  </div>
+</div>

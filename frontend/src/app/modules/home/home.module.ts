@@ -15,13 +15,15 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 
 
+
 @NgModule({
   declarations: [
     HomeComponent,
     SideNavContentComponent,
     BackButtonComponent,
     NotificationComponent,
-    
+
+
   ],
   imports: [
     CommonModule,

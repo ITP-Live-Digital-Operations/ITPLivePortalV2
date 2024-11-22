@@ -6,6 +6,7 @@ import { MaterialModule } from 'src/app/common.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { LoadingOverlayComponentComponent } from './loading-overlay-component/loading-overlay-component.component';
 
 
 
@@ -13,6 +14,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
   declarations: [
     ChangePasswordComponent,
     ConfirmationDialogComponent,
+    LoadingOverlayComponentComponent,
 
   ],
   imports: [
@@ -21,6 +23,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     MaterialModule,
     ReactiveFormsModule,
   ],
-  exports: []
+  exports: [
+    LoadingOverlayComponentComponent,
+  ]
 })
 export class SharedModule { }
