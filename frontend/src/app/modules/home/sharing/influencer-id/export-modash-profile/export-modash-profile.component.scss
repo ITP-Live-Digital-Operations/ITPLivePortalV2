@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
 body {
-  font-family: "Cairo", sans-serif !important;
+  font-family: "Helvetica"!important;
   max-height: 1400px;
   max-width: 720px;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 .profile-container {
-  font-family: "Inter", sans-serif;
+  font-family: "Helvetica"!important;
   color: var(--text-primary);
   background-color: var(--background-dark);
   padding: 20px;
@@ -189,7 +189,7 @@ body {
   flex: 1;
   background-color: var(--background-light);
   border-radius: 8px;
-  padding: 10px;
+
 
   h3 {
     font-size: 18px;
@@ -433,15 +433,15 @@ body {
   position: relative;
 
   .reasons-name {
-    color: #FF5252 ;
+    color: #F44336  ;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 10px;
   }
 
   .reasons-item {
-    color: #424242;
-    font-size: 14px;
+    color: #000;
+    font-size: 16px;
     line-height: 1.4;
 
     max-width: 80%;
@@ -486,7 +486,7 @@ $accent: #ff9f1c;
   background-color: $background-dark;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  font-family: "Inter", sans-serif;
+  font-family: "Helvetica"!important;
   color: $text-primary;
 
   h2 {

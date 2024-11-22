@@ -631,77 +631,135 @@ export class ExportModashProfileComponent {
     pptx.layout = 'Custom';
     const slide = pptx.addSlide();
 
-    
+      // Define social media platforms and their link patterns
+  const socialPlatforms = [
+    {
+      selector: '.social-info .instagram',
+      getUrl: () => `https://www.instagram.com/${this.profile.instagramProfile.username}`,
+      shouldAdd: () => true // Instagram is always available
+    },
+    {
+      selector: '.social-info .tiktok',
+      getUrl: () => `https://www.tiktok.com/@${this.profile.TiktokHandle}`,
+      shouldAdd: () => Boolean(this.profile.TiktokHandle && this.selectedPlatforms.tiktok)
+    },
+    {
+      selector: '.social-info .youtube',
+      getUrl: () => `https://www.youtube.com/${this.profile.YoutubeHandle}`,
+      shouldAdd: () => Boolean(this.profile.YoutubeHandle && this.selectedPlatforms.youtube)
+    },
+    {
+      selector: '.social-info .snapchat',
+      getUrl: () => `https://www.snapchat.com/add/${this.profile.SnapchatHandle}`,
+      shouldAdd: () => Boolean(this.profile.SnapchatHandle && this.selectedPlatforms.snapchat)
+    },
+    {
+      selector: '.social-info .twitch',
+      getUrl: () => `https://www.twitch.tv/${this.profile.TwitchHandle}`,
+      shouldAdd: () => Boolean(this.profile.TwitchHandle && this.selectedPlatforms.twitch)
+    },
+    {
+      selector: '.social-info .twitter',
+      getUrl: () => `https://www.twitter.com/${this.profile.TwitterHandle}`,
+      shouldAdd: () => Boolean(this.profile.TwitterHandle && this.selectedPlatforms.twitter)
+    }
+  ];
 
-    // List of selectors for the sections you want to capture
-    const sectionSelectors = [
-      '.logo',
+  // Group selectors by their desired layer order (back to front)
+  const selectorsByLayer = {
+    background: [
+      '.charts-container',
+      '.data-section',
+      '.metrics-row',
+    ],
+    middle: [
       '.category-label',
       '.profile-picture-container',
       '.profile-name',
       '.profile-bio',
-      '.social-info .instagram',
-      '.social-info .tiktok',
-      '.social-info .youtube',
-      '.social-info .snapchat',
-      '.social-info .twitch',
-      '.social-info .twitter',
-      '.charts-container',
-      '.data-section',
-      '.metrics-row',
       '.reasons-section'
-    ];
+    ],
+    foreground: [
+      '.logo'
+    ]
+  };
 
-    // Function to capture and add each section
-    const captureAndAddSection = async (selector: string) => {
-      const sectionElem = element.querySelector(selector) as HTMLElement;
-      if (sectionElem) {
-        // Remove comments within the section
-        const removeComments = (elem: Node) => {
-          for (let i = 0; i < elem.childNodes.length; i++) {
-            const child = elem.childNodes[i];
-            if (child.nodeType === 8) {
-              elem.removeChild(child);
-              i--;
-            } else if (child.nodeType === 1) {
-              removeComments(child);
-            }
+    // Function to capture and add a section
+  const captureAndAddSection = async (selector: string, addLink?: string) => {
+    const sectionElem = element.querySelector(selector) as HTMLElement;
+    if (sectionElem) {
+      // Remove comments within the section
+      const removeComments = (elem: Node) => {
+        for (let i = 0; i < elem.childNodes.length; i++) {
+          const child = elem.childNodes[i];
+          if (child.nodeType === 8) {
+            elem.removeChild(child);
+            i--;
+          } else if (child.nodeType === 1) {
+            removeComments(child);
           }
-        };
-        removeComments(sectionElem);
+        }
+      };
+      removeComments(sectionElem);
 
-        // Capture the section as an image
-        const canvas = await html2canvas(sectionElem, {
-          useCORS: true,
-          allowTaint: true,
-          scale: 2, // Increase scale for better resolution
-          backgroundColor: null // Set to null if you want transparent background
-        });
+      // Capture the section as an image
+      const canvas = await html2canvas(sectionElem, {
+        useCORS: true,
+        allowTaint: true,
+        scale: 2,
+        backgroundColor: null
+      });
 
-        const imgDataUrl = canvas.toDataURL('image/png');
+      const imgDataUrl = canvas.toDataURL('image/png');
 
-        // Get position and size relative to the container
-        const rect = sectionElem.getBoundingClientRect();
-        const x = (rect.left - containerRect.left) * inchPerPx;
-        const y = (rect.top - containerRect.top) * inchPerPx;
-        const w = rect.width * inchPerPx;
-        const h = rect.height * inchPerPx;
+      // Get position and size relative to the container
+      const rect = sectionElem.getBoundingClientRect();
+      const x = (rect.left - containerRect.left) * inchPerPx;
+      const y = (rect.top - containerRect.top) * inchPerPx;
+      const w = rect.width * inchPerPx;
+      const h = rect.height * inchPerPx;
 
-        // Add the image to the slide
-        slide.addImage({
-          data: imgDataUrl,
-          x,
-          y,
-          w,
-          h
-        });
+      // Add the image to the slide
+      const imageOptions: any = {
+        data: imgDataUrl,
+        x,
+        y,
+        w,
+        h
+      };
+
+      // If a link is provided, add it to the image
+      if (addLink) {
+        imageOptions.hyperlink = { url: addLink };
       }
-    };
 
-    // Loop through each section and add it to the slide
-    for (const selector of sectionSelectors) {
-      await captureAndAddSection(selector);
+      slide.addImage(imageOptions);
     }
+  };
+
+
+// Process elements in order from background to foreground
+  // 1. Background elements first
+  for (const selector of selectorsByLayer.background) {
+    await captureAndAddSection(selector);
+  }
+
+  // 2. Social media sections
+  for (const platform of socialPlatforms) {
+    if (platform.shouldAdd()) {
+      await captureAndAddSection(platform.selector, platform.getUrl());
+    }
+  }
+
+  // 3. Middle layer elements
+  for (const selector of selectorsByLayer.middle) {
+    await captureAndAddSection(selector);
+  }
+
+  // 4. Foreground elements last (will appear on top)
+  for (const selector of selectorsByLayer.foreground) {
+    await captureAndAddSection(selector);
+  }
 
     // Save the presentation
     pptx.writeFile({ fileName: `${this.profile.Name}_profile.pptx` });
