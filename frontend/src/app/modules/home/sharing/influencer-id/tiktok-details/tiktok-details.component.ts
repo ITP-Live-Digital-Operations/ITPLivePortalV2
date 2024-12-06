@@ -84,5 +84,8 @@ export class TiktokDetailsComponent implements OnInit {
     }
   }
 
+  toggleTiktok() {
+    window.open('https://www.tiktok.com/@' + this.profile?.username);
+  }
 
 }

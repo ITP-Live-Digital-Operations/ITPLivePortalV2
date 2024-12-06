@@ -38,6 +38,8 @@ export class InfluencerLogsComponent {
     campaigns: [],
     influencers: [],
     contacts: [],
+    rateRange: { min: null, max: null }, // Add rate range
+    currency: '',
   };
 
   displayedColumns: string[] = [
@@ -60,6 +62,7 @@ export class InfluencerLogsComponent {
 
   logs: LogModelUpdated[] = [];
   log!: LogModelUpdated;
+  allCurrencies: string[] | undefined = [];
 
   users: any;
 
@@ -83,8 +86,6 @@ export class InfluencerLogsComponent {
 
   ngOnInit(): void {
     this.getAllLogs();
-
-
   }
 
   ngAfterViewInit() {
@@ -103,8 +104,6 @@ export class InfluencerLogsComponent {
   }
   // Add this method to your InfluencerLogsComponent class
 
-
-
   public getAllLogs(): void {
     this.logService.getAllLogsUpdated().subscribe((data) => {
       console.log(data);
@@ -112,6 +111,20 @@ export class InfluencerLogsComponent {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator!;
       this.dataSource.sort = this.sort;
+
+       // Extract unique currencies
+       this.allCurrencies = [
+        ...new Set(
+          data.flatMap((log: LogModelUpdated) =>
+            log.type === 'package'
+              ? [log.currency]
+              : log.logItems instanceof Array
+              ? log.logItems.map((item) => item.currency)
+              : [log.logItems?.currency]
+          )
+        ),
+      ].filter((currency): currency is string => !!currency); // Filter out undefined or null values
+
       this.dataSource.sortingDataAccessor = (item: any, property: any) => {
         switch (property) {
           case 'Influencer':
@@ -127,7 +140,7 @@ export class InfluencerLogsComponent {
           default:
             return item[property];
         }
-      }
+      };
 
       // Extract unique values
       this.allInfluencers = [
@@ -200,6 +213,8 @@ export class InfluencerLogsComponent {
       campaigns: [],
       influencers: [],
       contacts: [],
+      rateRange: { min: null, max: null },
+      currency: ''
     };
 
     this.allCampaigns = this.extractUniqueAttributes(
@@ -220,14 +235,14 @@ export class InfluencerLogsComponent {
   }
 
   public applyFilter(): void {
-    console.log('Applying filter:', this.filterCriteria);
-
-    // Rest of your filter logic...
-
     // Apply filter directly without creating lowercaseFilterCriteria
     const searchString = this.filterCriteria.search
       ? this.filterCriteria.search.toString().toLowerCase()
       : '';
+
+    const rateMin = this.filterCriteria.rateRange.min;
+    const rateMax = this.filterCriteria.rateRange.max;
+    const selectedCurrency = this.filterCriteria.currency.toLowerCase();
 
     this.dataSource.filterPredicate = (
       data: LogModelUpdated,
@@ -256,11 +271,34 @@ export class InfluencerLogsComponent {
           !filterObject.contacts.length ||
           filterObject.contacts.includes(data.user?.name.trim().toLowerCase());
 
+        const logRate =
+          data.type === 'package'
+            ? data.rate ?? 0 // Use 0 as a fallback for undefined rates
+            : Array.isArray(data.logItems)
+            ? data.logItems.reduce((sum, item) => sum + (item.rate ?? 0), 0) // Use 0 as fallback for undefined item rates
+            : data.logItems?.rate ?? 0; // Use 0 as fallback if logItems is not an array or is undefined
+
+        const logCurrency =
+          data.type === 'package'
+            ? data.currency ?? ''
+            : Array.isArray(data.logItems)
+            ? data.logItems[0]?.currency ?? '' // Assume all items in the array have the same currency
+            : data.logItems?.currency ?? '';
+
+        const isMatchCurrency =
+          !selectedCurrency || logCurrency.toLowerCase() === selectedCurrency;
+
+        const isMatchRate =
+          (rateMin === null || logRate >= rateMin) &&
+          (rateMax === null || logRate <= rateMax);
+
         return (
           isMatchSearch &&
           isMatchInfluencer &&
           isMatchCampaign &&
-          isMatchContact
+          isMatchContact &&
+          isMatchRate &&
+          isMatchCurrency
         );
       } catch (error) {
         console.error('Error parsing filter JSON:', error);
@@ -293,6 +331,9 @@ export class InfluencerLogsComponent {
         this.filterCriteria.contacts = filterValue.map((val: any) =>
           typeof val === 'string' ? val.trim().toLowerCase() : val
         );
+        break;
+      case 'rateRange':
+        this.filterCriteria.rateRange = filterValue;
         break;
       default:
         break;
@@ -393,10 +434,10 @@ export class InfluencerLogsComponent {
     console.log(influencerId);
     console.log(this.path['influencerProfile']);
     const url = this.router.serializeUrl(
-        this.router.createUrlTree([this.path['influencerProfile'], influencerId])
+      this.router.createUrlTree([this.path['influencerProfile'], influencerId])
     );
     window.open(url, '_blank');
-}
+  }
 
   public viewInfluencerLog(inputdata: any, type: String): void {
     this.dialog?.open(ViewLogComponent, {

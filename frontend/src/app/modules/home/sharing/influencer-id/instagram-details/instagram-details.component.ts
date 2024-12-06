@@ -114,4 +114,8 @@ export class InstagramDetailsComponent {
         .map(brand => ({ name: brand.name, weight: brand.weight }));
     }
   }
+
+  toggleInstagram() {
+    window.open(`https://www.instagram.com/${this.profile?.username}/`, '_blank');
+  }
 }

@@ -84,4 +84,8 @@ export class YoutubeDetailsComponent implements OnInit {
     }
   }
 
+  toggleYoutube() {
+    window.open('https://www.youtube.com/@' + this.profile?.username, '_blank');
+  }
+
 }

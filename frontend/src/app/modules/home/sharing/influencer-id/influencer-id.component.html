@@ -1,7 +1,7 @@
 <div class="loading-container" *ngIf="isLoading">
   <img src="../../../../../assets/gifs/loading.svg" alt="Loading..." />
 </div>
-<div class="profile-container"  [hidden]="isLoading">
+<div class="profile-container" [hidden]="isLoading">
   <div class="profile-header">
     <img
       [src]="profile.profilePicture || 'assets/default-avatar.png'"
@@ -29,8 +29,16 @@
         <span><i class="fas fa-phone"></i> {{ profile.Number }}</span>
       </div>
     </div>
-    <button class="edit-button" (click)="editInfluencer(profile.id)">Edit</button>
-    <button class="export-button" (click)="exportInfluencer()" *ngIf="exportProfile">Export Profile</button>
+    <button class="edit-button" (click)="editInfluencer(profile.id)">
+      Edit
+    </button>
+    <button
+      class="export-button"
+      (click)="exportInfluencer()"
+      *ngIf="exportProfile"
+    >
+      Export Profile
+    </button>
   </div>
 
   <div class="profile-content">
@@ -93,7 +101,11 @@
             >{{ profile.YoutubeFollowers | numberFormat }} subscribers</span
           >
         </div>
-        <div class="social-item" *ngIf="profile.TwitterHandle">
+        <div
+          class="social-item"
+          *ngIf="profile.TwitterHandle"
+          (click)="toggleSocialProfile('twitter')"
+        >
           <i class="fab fa-x-twitter"></i>
           <span class="social-platform">X</span>
           <span
@@ -102,7 +114,24 @@
             >{{ profile.TwitterFollowers | numberFormat }} followers</span
           >
         </div>
-        <div class="social-item" *ngIf="profile.FacebookHandle">
+        <div
+          class="social-item"
+          *ngIf="profile.SnapchatHandle"
+          (click)="toggleSocialProfile('snapchat')"
+        >
+          <i class="fab fa-snapchat"></i>
+          <span class="social-platform">Snapchat</span>
+          <span
+            class="social-followers"
+            *ngIf="profile.SnapchatFollowers != undefined"
+            >{{ profile.SnapchatFollowers | numberFormat }} followers</span
+          >
+        </div>
+        <div
+          class="social-item"
+          *ngIf="profile.FacebookHandle"
+          (click)="toggleSocialProfile('facebook')"
+        >
           <i class="fab fa-facebook"></i>
           <span class="social-platform">Facebook</span>
           <span

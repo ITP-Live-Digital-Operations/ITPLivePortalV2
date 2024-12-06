@@ -68,6 +68,25 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <div class="rate-filter">
+        <mat-form-field>
+          <mat-label>Select Currency</mat-label>
+          <mat-select
+            [(ngModel)]="filterCriteria.currency"
+            (selectionChange)="applyFilter()"
+          >
+            <mat-option *ngFor="let currency of allCurrencies" [value]="currency">
+              {{ currency }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Min Rate" [(ngModel)]="filterCriteria.rateRange.min" (ngModelChange)="applyFilter()" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Max Rate" [(ngModel)]="filterCriteria.rateRange.max" (ngModelChange)="applyFilter()" />
+        </mat-form-field>
+      </div>
       <div class="logs-button">
         <button class="glow-on-hover" type="button" style="margin-left: 2%" (click)="resetFilters()">
           Reset Filters

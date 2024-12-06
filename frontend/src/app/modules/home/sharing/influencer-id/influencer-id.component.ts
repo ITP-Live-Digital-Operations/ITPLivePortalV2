@@ -158,4 +158,18 @@ export class InfluencerIdComponent implements OnInit {
       this.selectedPlatform = platform;
     }
   }
+
+  toggleSocialProfile(platform: string): void {
+    if(platform === 'twitter')
+    {
+      window.open('https://twitter.com/' + this.profile.TwitterHandle, '_blank');
+    }
+    else if(platform === 'snapchat'){
+      window.open('https://www.snapchat.com/add/' + this.profile.SnapchatHandle, '_blank');
+    }
+    else if(platform === 'facebook'){
+      window.open('https://www.facebook.com/' + this.profile.FacebookHandle, '_blank');
+    }
+
+  }
 }
